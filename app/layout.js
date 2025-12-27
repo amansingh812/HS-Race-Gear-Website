@@ -1,7 +1,13 @@
 "use client";
 import DemoModal from "@/components/modals/DemoModal";
 
-import "../public/scss/main.scss";
+import "@/public/fonts/fonts.css";
+import "@/public/fonts/font-icons.css";
+import "@/public/css/bootstrap.min.css";
+import "@/public/css/bootstrap-select.min.css";
+import "@/public/css/swiper-bundle.min.css";
+import "@/public/css/animate.css";
+import "@/public/css/main.css";
 import "photoswipe/dist/photoswipe.css";
 import "rc-slider/assets/index.css";
 import { useEffect } from "react";
