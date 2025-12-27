@@ -1,0 +1,34 @@
+import Footer1 from "@/components/footers/Footer1";
+import Header4 from "@/components/headers/Header4";
+import Topbar2 from "@/components/headers/Topbar2";
+import Categories from "@/components/homes/home-furniture/Categories";
+import Collections from "@/components/homes/home-furniture/Collections";
+import Collections2 from "@/components/homes/home-furniture/Collections2";
+import Featires from "@/components/common/Featires3";
+import Hero from "@/components/homes/home-furniture/Hero";
+import Lookbook from "@/components/homes/home-furniture/Lookbook";
+import Products from "@/components/homes/home-furniture/Products";
+import Testimonials from "@/components/homes/home-furniture/Testimonials";
+import React from "react";
+
+export const metadata = {
+  title: "Home Furniture || Vineta - Multipurpose React Nextjs eCommerce",
+  description: "Vineta - Multipurpose React Nextjs eCommerce",
+};
+export default function page() {
+  return (
+    <>
+      <Topbar2 parentClass="tf-topbar bg-light-purple topbar-bg" />
+      <Header4 />
+      <Hero />
+      <Featires />
+      <Products />
+      <Collections />
+      <Categories />
+      <Collections2 />
+      <Lookbook />
+      <Testimonials />
+      <Footer1 />
+    </>
+  );
+}

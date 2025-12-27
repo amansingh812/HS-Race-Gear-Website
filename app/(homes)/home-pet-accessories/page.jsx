@@ -1,0 +1,40 @@
+import Brands from "@/components/common/Brands";
+import Footer1 from "@/components/footers/Footer1";
+import Header7 from "@/components/headers/Header7";
+import Topbar2 from "@/components/headers/Topbar2";
+import Banner from "@/components/homes/home-pet-accessories/Banner";
+import Banner2 from "@/components/homes/home-pet-accessories/Banner2";
+import Blogs from "@/components/homes/home-pet-accessories/Blogs";
+import Collections from "@/components/homes/home-pet-accessories/Collections";
+import Contact from "@/components/homes/home-pet-accessories/Contact";
+import Features from "@/components/homes/home-pet-accessories/Features";
+import Hero from "@/components/homes/home-pet-accessories/Hero";
+import Products from "@/components/homes/home-pet-accessories/Products";
+import Products2 from "@/components/homes/home-pet-accessories/Products2";
+import Testimonials from "@/components/homes/home-pet-accessories/Testimonials";
+import React from "react";
+
+export const metadata = {
+  title: "Home Pet Accessories || Vineta - Multipurpose React Nextjs eCommerce",
+  description: "Vineta - Multipurpose React Nextjs eCommerce",
+};
+export default function page() {
+  return (
+    <>
+      <Topbar2 parentClass="tf-topbar bg-light-blue topbar-bg" />
+      <Header7 />
+      <Hero />
+      <Collections />
+      <Products />
+      <Blogs />
+      <Banner />
+      <Products2 />
+      <Brands parentClass="flat-spacing-2 pb-0" />
+      <Banner2 />
+      <Testimonials />
+      <Contact />
+      <Features />
+      <Footer1 />
+    </>
+  );
+}
