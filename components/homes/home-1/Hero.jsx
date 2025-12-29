@@ -38,10 +38,10 @@ export default function Hero() {
                       <div className="content-slider">
                         <div className="box-title-slider">
                           <h2
-                            className="heading fw-medium fade-item fade-item-1 text-dark-5"
+                            className="heading fw-medium fade-item fade-item-1 text-white"
                             dangerouslySetInnerHTML={{ __html: slide.heading }}
                           />
-                          <p className="sub text-md fade-item fade-item-2 text-dark-5">
+                          <p className="sub text-md fade-item fade-item-2 text-white">
                             {slide.subText}
                           </p>
                         </div>
