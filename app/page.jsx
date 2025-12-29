@@ -25,6 +25,7 @@ import PlantProducts from "@/components/homes/home-plant/Products";
 import PlantBlogs from "@/components/homes/home-plant/Blogs";
 import PlantTestimonials from "@/components/homes/home-plant/Testimonials";
 import PlantShopgram from "@/components/homes/home-plant/Shopgram";
+import VideoBanner from "@/components/homes/home-bicycle/VideoBanner";
 
 
 
@@ -42,9 +43,12 @@ export default function Home() {
       <PlantFeatures />
       <PlantBanner />
       <PlantHero />
+      
       <PlantBanner2 />
       <PlantCollections />
+      
       <PlantProducts />
+      <VideoBanner />
       <PlantTestimonials />
       <Shopgram />
       <Features />
