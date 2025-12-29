@@ -306,14 +306,14 @@ export const sliderItems6 = [
   {
     id: 1,
     imgSrc: "/images/slider/plant/slider-plant-1.jpg",
-    title: "Elegance Redefined",
-    subtitle: "Discover timeless styles for every occasion.",
+    title: "Premium Racing Gear",
+    subtitle: "Custom-fit FIA approved racing suits for professional racers.",
   },
   {
     id: 2,
     imgSrc: "/images/slider/plant/slider-plant-2.jpg",
-    title: "Timeless Sophistication",
-    subtitle: "Explore classic designs that suit every moment.",
+    title: "Safety Meets Performance",
+    subtitle: "Motorsport safety equipment trusted by champions worldwide.",
   },
 ];
 

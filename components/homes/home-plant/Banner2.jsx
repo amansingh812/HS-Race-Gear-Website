@@ -9,14 +9,14 @@ export default function Banner2() {
           <div className="content-with-text wow fadeInUp">
             <div className="box-title-content">
               <span className="subtitle text-md fw-medium">
-                LIFE GATHERS AROUND PLANTS
+                WHERE CHAMPIONS ARE MADE
               </span>
               <h2 className="title fw-semibold font-7">
-                Perfect Plants for Every Corner
+                Perfect Gear for Every Race
               </h2>
               <p className="desc text-main text-md">
-                From small succulents to statement plants, find the ideal green
-                companion for any room. Explore our collection today!
+                From karting suits to professional racing gear, find the perfect
+                equipment for your motorsport journey. Explore our collection today!
               </p>
             </div>
             <Link

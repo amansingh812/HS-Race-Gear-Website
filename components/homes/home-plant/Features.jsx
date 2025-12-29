@@ -46,8 +46,8 @@ export default function Features() {
                   </svg>
                 </div>
                 <div className="content">
-                  <div className="title fw-bold font-7">Quality trees</div>
-                  <p className="text-main-3 text-md">Always the best</p>
+                  <div className="title fw-bold font-7">FIA Certified</div>
+                  <p className="text-main-3 text-md">Premium quality guaranteed</p>
                 </div>
               </div>
             </SwiperSlide>
@@ -68,8 +68,8 @@ export default function Features() {
                   </svg>
                 </div>
                 <div className="content">
-                  <div className="title fw-bold font-7">Eco-Friendly</div>
-                  <p className="text-main-3 text-md">Expect more by default</p>
+                  <div className="title fw-bold font-7">Custom-Made</div>
+                  <p className="text-main-3 text-md">Tailored to perfection</p>
                 </div>
               </div>
             </SwiperSlide>
@@ -90,8 +90,8 @@ export default function Features() {
                   </svg>
                 </div>
                 <div className="content">
-                  <div className="title fw-bold font-7">Great support</div>
-                  <p className="text-main-3 text-md">We’re here to help</p>
+                  <div className="title fw-bold font-7">Expert Support</div>
+                  <p className="text-main-3 text-md">Racing specialists ready</p>
                 </div>
               </div>
             </SwiperSlide>
@@ -116,8 +116,8 @@ export default function Features() {
                   </svg>
                 </div>
                 <div className="content">
-                  <div className="title fw-bold font-7">Expert Care</div>
-                  <p className="text-main-3 text-md">Ready to impress</p>
+                  <div className="title fw-bold font-7">Fast Delivery</div>
+                  <p className="text-main-3 text-md">Race-ready gear shipped fast</p>
                 </div>
               </div>
             </SwiperSlide>

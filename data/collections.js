@@ -525,27 +525,27 @@ export const categoryItems4 = [
   {
     id: 1,
     imgSrc: "/images/cls-categories/plant/plant-1.jpg",
-    title: "Plants",
+    title: "Racing Suits",
   },
   {
     id: 2,
     imgSrc: "/images/cls-categories/plant/plant-2.jpg",
-    title: "Plant Care",
+    title: "Karting Gear",
   },
   {
     id: 3,
     imgSrc: "/images/cls-categories/plant/plant-3.jpg",
-    title: "Planters",
+    title: "Safety Equipment",
   },
   {
     id: 4,
     imgSrc: "/images/cls-categories/plant/plant-4.jpg",
-    title: "Pet-Friendly",
+    title: "Accessories",
   },
   {
     id: 5,
     imgSrc: "/images/cls-categories/plant/plant-5.jpg",
-    title: "Gift Idea",
+    title: "Team Wear",
   },
 ];
 

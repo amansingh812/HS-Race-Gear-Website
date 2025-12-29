@@ -18,11 +18,11 @@ export default function Banner() {
           <div className="content-with-text wow fadeInUp">
             <div className="box-title-content">
               <h2 className="title fw-semibold font-7">
-                Refresh Your Space with Greenery
+                Gear Up for Victory
               </h2>
               <p className="desc text-main text-md">
-                Discover a range of indoor plants that breathe life into your
-                home. Shop now and elevate your space with nature's beauty.
+                Discover premium racing suits and safety equipment designed for champions.
+                Shop now and experience unmatched quality and performance on the track.
               </p>
             </div>
             <Link

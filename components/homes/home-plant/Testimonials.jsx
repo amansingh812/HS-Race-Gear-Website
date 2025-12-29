@@ -6,22 +6,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 const testimonials = [
   {
-    title: "Beautiful, Healthy Plants!",
-    desc: "I ordered a few indoor plants, and they arrived in perfect condition. They’ve added so much life to my living room! I’ll definitely be back for more.",
-    author: "Vineta",
-    item: "Olive Tree",
+    title: "Perfect Fit, Exceptional Quality!",
+    desc: "I ordered a custom racing suit, and it arrived perfectly tailored. The quality is outstanding and it performs amazingly on track! I'll definitely be back for more gear.",
+    author: "Marcus R.",
+    item: "Custom Racing Suit",
   },
   {
-    title: "Gorgeous, Thriving Plants!",
-    desc: "I ordered a few indoor plants, and they arrived in perfect condition. They’ve added so much life to my living room.",
-    author: "Lisa",
-    item: "Olive Tree",
+    title: "Top-Tier Racing Gear!",
+    desc: "I ordered a karting suit and gloves, and they exceeded all my expectations. The fit is perfect and the quality is professional-grade.",
+    author: "Sarah K.",
+    item: "Karting Suit Pro",
   },
   {
-    title: "Vibrant, Lush Greenery!",
-    desc: "I recently got a few indoor plants, and they arrived in flawless condition. They’ve brought so much freshness to my home.",
-    author: "Emily",
-    item: "Ficus Audrey Tree",
+    title: "Championship Quality!",
+    desc: "I recently purchased a complete racing suit package, and the attention to detail is incredible. Feels great and looks even better on the podium.",
+    author: "David L.",
+    item: "FIA Approved Racing Suit",
   },
 ];
 export default function Testimonials() {
@@ -59,7 +59,7 @@ export default function Testimonials() {
                 <div className="wg-testimonial-3 text-center wow fadeInUp">
                   <div className="box-top">
                     <i className="icon icon-leaf text-white fs-42" />
-                    <p className="text-md text-white">HAPPY CUSTOMERS</p>
+                    <p className="text-md text-white">SATISFIED RACERS</p>
                   </div>
                   <div className="box-title-desc">
                     <h3 className="title-review text-white font-7 fw-semibold">

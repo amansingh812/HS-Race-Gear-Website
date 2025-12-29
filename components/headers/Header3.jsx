@@ -25,6 +25,8 @@ export default function Header3() {
               </a>
             </div>
             <div className="col-xl-2 col-md-4 col-6">
+              {/* Temporarily replace image logo with text */}
+              {/*
               <Link href={`/home-electronic`} className="logo-header">
                 <Image
                   alt="logo"
@@ -34,6 +36,8 @@ export default function Header3() {
                   height={44}
                 />
               </Link>
+              */}
+              <div className="logo-text h5 fw-bold">H&amp;S Racegear</div>
             </div>
             <div className="col-xl-6 d-none d-xl-block"></div>
             <div className="col-xl-4 col-md-4 col-3">
