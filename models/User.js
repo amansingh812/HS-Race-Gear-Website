@@ -15,7 +15,10 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'Please provide a password'],
+    required: function() {
+      // Password not required for OAuth users
+      return !this.oauthProvider;
+    },
     minlength: [6, 'Password must be at least 6 characters'],
     select: false
   },
@@ -31,6 +34,16 @@ const userSchema = new mongoose.Schema({
   isActive: {
     type: Boolean,
     default: true
+  },
+  // OAuth fields
+  oauthProvider: {
+    type: String,
+    enum: ['google', 'facebook', null],
+    default: null
+  },
+  oauthId: {
+    type: String,
+    default: null
   },
   addresses: [{
     type: {
@@ -50,6 +63,14 @@ const userSchema = new mongoose.Schema({
   }],
   lastLogin: {
     type: Date
+  },
+  passwordResetToken: {
+    type: String,
+    select: false
+  },
+  passwordResetExpires: {
+    type: Date,
+    select: false
   }
 }, {
   timestamps: true

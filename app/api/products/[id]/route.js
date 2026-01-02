@@ -8,7 +8,7 @@ export async function GET(request, { params }) {
   try {
     await connectDB();
     
-    const { id } = params;
+    const { id } = await params;
     
     if (!id) {
       return Response.json({ error: 'Product ID is required' }, { status: 400 });
@@ -38,7 +38,7 @@ export async function PUT(request, { params }) {
   try {
     await connectDB();
     
-    const { id } = params;
+    const { id } = await params;
     
     if (!id) {
       return Response.json({ error: 'Product ID is required' }, { status: 400 });
@@ -88,7 +88,7 @@ export async function DELETE(request, { params }) {
   try {
     await connectDB();
     
-    const { id } = params;
+    const { id } = await params;
     
     if (!id) {
       return Response.json({ error: 'Product ID is required' }, { status: 400 });
