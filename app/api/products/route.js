@@ -270,6 +270,12 @@ export async function POST(request) {
 
   } catch (error) {
     logger.error('Error creating product:', error);
+    console.error('Detailed error:', {
+      name: error.name,
+      message: error.message,
+      code: error.code,
+      errors: error.errors
+    });
     
     if (error.code === 11000) {
       return Response.json(

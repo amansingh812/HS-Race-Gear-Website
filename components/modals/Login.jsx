@@ -13,6 +13,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [success, setSuccess] = useState(false);
   
   const { login } = useAuth();
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess(false);
     setLoading(true);
 
     // Basic validation
@@ -33,27 +35,29 @@ export default function Login() {
       const result = await login(email, password, rememberMe);
 
       if (result.success) {
-        // Close the modal
-        const modalElement = document.getElementById('login');
-        if (modalElement && typeof window !== 'undefined') {
-          try {
-            const { Offcanvas } = await import('bootstrap');
-            const modal = Offcanvas.getInstance(modalElement);
-            if (modal) {
-              modal.hide();
-            }
-          } catch (err) {
-            // Fallback: just hide the modal using Bootstrap's data attribute
-            const closeBtn = modalElement?.querySelector('[data-bs-dismiss="offcanvas"]');
-            if (closeBtn) closeBtn.click();
-          }
-        }
-
-        // Show success message
-        alert('Login successful! Welcome back!');
+        setSuccess(true);
         
-        // Redirect to account page
-        router.push('/account-page');
+        // Show success message for 3 seconds then close modal and redirect
+        setTimeout(async () => {
+          const modalElement = document.getElementById('login');
+          if (modalElement && typeof window !== 'undefined') {
+            try {
+              const { Offcanvas } = await import('bootstrap');
+              const modal = Offcanvas.getInstance(modalElement);
+              if (modal) {
+                modal.hide();
+              }
+            } catch (err) {
+              // Fallback: just hide the modal using Bootstrap's data attribute
+              const closeBtn = modalElement?.querySelector('[data-bs-dismiss="offcanvas"]');
+              if (closeBtn) closeBtn.click();
+            }
+          }
+          setSuccess(false);
+          
+          // Redirect to account page
+          router.push('/account-page');
+        }, 3000);
       } else {
         setError(result.error || 'Login failed. Please check your credentials.');
       }
@@ -103,6 +107,12 @@ export default function Login() {
               </div>
             )}
 
+            {success && (
+              <div className="alert alert-success mb-3" role="alert">
+                <strong>Success!</strong> Login successful! Welcome back!
+              </div>
+            )}
+
             <div>
               <fieldset className="email mb_12">
                 <input 
@@ -112,7 +122,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  disabled={loading}
+                  disabled={loading || success}
                 />
               </fieldset>
               
@@ -124,7 +134,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  disabled={loading}
+                  disabled={loading || success}
                   minLength={8}
                 />
                 <button
@@ -133,6 +143,7 @@ export default function Login() {
                   style={{ right: '10px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none' }}
                   onClick={() => setShowPassword(!showPassword)}
                   tabIndex={-1}
+                  disabled={success}
                 >
                   {showPassword ? '👁️' : '👁️‍🗨️'}
                 </button>
@@ -146,7 +157,7 @@ export default function Login() {
                     id="rememberMe"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    disabled={loading}
+                    disabled={loading || success}
                   />
                   <label className="form-check-label text-sm" htmlFor="rememberMe">
                     Remember me
@@ -161,7 +172,7 @@ export default function Login() {
                 data-bs-toggle="offcanvas"
                 className="text text-sm text-main-2"
                 onClick={(e) => {
-                  if (loading) e.preventDefault();
+                  if (loading || success) e.preventDefault();
                 }}
               >
                 Forgot your password?
@@ -171,13 +182,15 @@ export default function Login() {
                 <button
                   className="subscribe-button tf-btn animate-btn d-inline-flex bg-dark-2 w-100"
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || success}
                 >
                   {loading ? (
                     <>
                       <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                       Signing in...
                     </>
+                  ) : success ? (
+                    'Login Successful!'
                   ) : (
                     'Sign in'
                   )}
@@ -188,7 +201,7 @@ export default function Login() {
                   data-bs-target="#register"
                   data-bs-toggle="offcanvas"
                   className="tf-btn btn-out-line-dark2 w-100"
-                  disabled={loading}
+                  disabled={loading || success}
                 >
                   Create an account
                 </button>
@@ -202,7 +215,7 @@ export default function Login() {
             <button
               onClick={() => handleOAuthLogin('facebook')}
               className="w-100 text-md mb_8 btn"
-              disabled={loading}
+              disabled={loading || success}
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px', border: '1px solid #ddd', borderRadius: '4px', background: 'white' }}
             >
               <svg
@@ -227,7 +240,7 @@ export default function Login() {
             <button
               onClick={() => handleOAuthLogin('google')}
               className="w-100 text-md btn"
-              disabled={loading}
+              disabled={loading || success}
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px', border: '1px solid #ddd', borderRadius: '4px', background: 'white' }}
             >
               <svg

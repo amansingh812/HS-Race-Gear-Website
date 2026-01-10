@@ -17,9 +17,30 @@ export default function Products1({
 }) {
   const [activeLayout, setActiveLayout] = useState(4);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All');
   
   // Use database products if provided, otherwise use demo products
   const productsList = initialProducts && initialProducts.length > 0 ? initialProducts : products;
+  
+  // Fetch categories for filtering
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('/api/categories');
+        const data = await response.json();
+        if (data.success) {
+          setCategories(data.data.categories.filter(cat => !cat.parent));
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+    
+    if (initialProducts) {
+      fetchCategories();
+    }
+  }, [initialProducts]);
   const {
     price,
     availability,

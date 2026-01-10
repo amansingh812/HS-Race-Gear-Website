@@ -113,7 +113,7 @@ export default async function ProductDetailPage({ params }) {
           pageName={product.name} 
           pageTitle={product.name}
           parentPage="Racing Suits"
-          parentLink="/shop-default"
+          parentLink="/shop"
         />
         <div className="flat-spacing-10">
           <div className="container">

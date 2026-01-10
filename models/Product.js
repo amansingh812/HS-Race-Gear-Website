@@ -122,21 +122,27 @@ const productSchema = new mongoose.Schema({
   // Racing Suit Specific Fields
   certification: {
     type: String,
-    enum: ['SFI 3.2A/1', 'SFI 3.2A/5', 'SFI 3.2A/15', 'FIA 8856-2000', 'FIA 8856-2018', 'None'],
-    default: 'None'
+    enum: {
+      values: ['SFI 3.2A/1', 'SFI 3.2A/5', 'SFI 3.2A/15', 'FIA 8856-2000', 'FIA 8856-2018', null],
+      message: '{VALUE} is not a valid certification'
+    },
+    default: null
   },
   certificationLevel: {
     type: String,
-    enum: ['SFI-1', 'SFI-5', 'SFI-15', 'FIA Level 1', 'FIA Level 2', 'None'],
-    default: 'None'
+    enum: {
+      values: ['SFI-1', 'SFI-5', 'SFI-15', 'FIA Level 1', 'FIA Level 2', null],
+      message: '{VALUE} is not a valid certification level'
+    },
+    default: null
   },
   material: {
     type: String,
-    default: 'Nomex'
+    default: null
   },
   construction: {
     type: String,
-    default: 'One-piece'
+    default: null
   },
   layers: {
     type: Number,
@@ -293,14 +299,16 @@ productSchema.virtual('discountPercentage').get(function() {
 });
 
 // Pre-save hook to generate slug
-productSchema.pre('save', function(next) {
+productSchema.pre('save', async function(next) {
   if (this.isModified('name') && !this.slug) {
     this.slug = this.name
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
   }
-  next();
+  if (typeof next === 'function') {
+    next();
+  }
 });
 
 // Static method to find active products
