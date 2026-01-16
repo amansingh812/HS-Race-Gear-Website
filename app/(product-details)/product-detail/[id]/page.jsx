@@ -4,29 +4,66 @@ import Topbar2 from "@/components/headers/Topbar2";
 import Breadcumb from "@/components/productDetails/Breadcumb";
 import Description1 from "@/components/productDetails/Description1";
 import Details1 from "@/components/productDetails/Details1";
-import RecentlyViewedProducts from "@/components/productDetails/RecentlyViewedProducts";
-import RecommendedProdtcts from "@/components/productDetails/RecommendedProdtcts";
-import { allProducts } from "@/data/products";
-import React from "react";
+import connectDB from "@/lib/mongodb";
+import Product from "@/models/Product";
+import { notFound } from "next/navigation";
 
-export const metadata = {
-  title: "Product Details || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
-};
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  try {
+    await connectDB();
+    const product = await Product.findById(id)
+      .populate('category', 'name')
+      .lean();
+    
+    if (!product) {
+      return {
+        title: "Product Not Found | HS Race Gear",
+      };
+    }
+
+    return {
+      title: `${product.name} | HS Race Gear`,
+      description: product.description || product.shortDescription || `Shop ${product.name} at HS Race Gear`,
+    };
+  } catch (error) {
+    return {
+      title: "Product | HS Race Gear",
+    };
+  }
+}
+
 export default async function ProductDetailPage({ params }) {
   const { id } = await params;
 
-  const product = allProducts.filter((p) => p.id == id)[0] || allProducts[0];
-  return (
-    <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
-      <Breadcumb product={product} />
-      <Details1 product={product} />
-      <Description1 />
-      <RecommendedProdtcts />
-      <RecentlyViewedProducts />
-      <Footer1 paddingBottom />
-    </>
-  );
+  try {
+    await connectDB();
+    
+    const product = await Product.findById(id)
+      .populate('category', 'name slug')
+      .populate('subcategory', 'name slug')
+      .lean();
+
+    if (!product) {
+      notFound();
+    }
+    
+    // Convert MongoDB ObjectIds and Dates to plain objects
+    const serializedProduct = JSON.parse(JSON.stringify(product));
+
+    return (
+      <>
+        <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
+        <Header1 />
+        <Breadcumb product={serializedProduct} />
+        <Details1 product={serializedProduct} />
+        <Description1 product={serializedProduct} />
+        <Footer1 paddingBottom />
+      </>
+    );
+  } catch (error) {
+    console.error('Error loading product:', error);
+    notFound();
+  }
 }
+

@@ -284,21 +284,24 @@ export default function AdminProducts() {
                               <Link
                                 href={`/admin/products/${product._id}`}
                                 className="btn btn-outline-primary"
+                                title="Edit product details"
                               >
-                                Edit
+                                <i className="icon-edit" />
                               </Link>
                               <Link
-                                href={`/product-detail/${product.slug}`}
+                                href={`/product-detail/${product._id}`}
                                 target="_blank"
                                 className="btn btn-outline-secondary"
+                                title="View as customer"
                               >
-                                View
+                                <i className="icon-eye" />
                               </Link>
                               <button
                                 className="btn btn-outline-danger"
                                 onClick={() => handleDelete(product._id, product.name)}
+                                title="Archive product"
                               >
-                                Archive
+                                <i className="icon-trash" />
                               </button>
                             </div>
                           </td>
