@@ -14,23 +14,23 @@ export default function Nav() {
     {
       heading: "Racing Suits",
       links: [
-        { text: "Custom Racing Suits", href: "/coming-soon" },
-        { text: "FIA Approved Suits", href: "/coming-soon" },
-        { text: "Karting Suits", href: "/coming-soon" },
-        { text: "Pre-Made Suits", href: "/coming-soon" },
+        { text: "Custom Racing Suits", href: "/shop" },
+        { text: "FIA Approved Suits", href: "/shop" },
+        { text: "Karting Suits", href: "/shop" },
+        { text: "Pre-Made Suits", href: "/shop" },
       ],
     },
     {
       heading: "Accessories",
       links: [
-        { text: "Racing Gloves", href: "/coming-soon" },
-        { text: "Racing Shoes", href: "/coming-soon" },
+        { text: "Racing Gloves", href: "/shop" },
+        { text: "Racing Shoes", href: "/shop" },
       ],
     },
     {
       heading: "Team Wear",
       links: [
-        { text: "Team Wear", href: "/coming-soon" },
+        { text: "Team Wear", href: "/shop" },
       ],
     },
   ];
@@ -79,9 +79,9 @@ export default function Nav() {
 
       <li className="menu-item">
         <Link
-          href="/coming-soon"
+          href="/custom-fit"
           className={`item-link ${
-            isMenuActive("/coming-soon") ? "menuActive" : ""
+            isMenuActive("/custom-fit") ? "menuActive" : ""
           }`}
         >
           Custom Fit

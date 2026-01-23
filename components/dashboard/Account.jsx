@@ -1,9 +1,22 @@
+'use client';
+
 import React from "react";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 import Sidebar from "./Sidebar";
 import Link from "next/link";
 import Image from "next/image";
 import CountdownTimer from "../common/Countdown";
+
 export default function Account() {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };
+
   return (
     <div className="flat-spacing-13">
       <div className="container-7">
@@ -25,13 +38,17 @@ export default function Account() {
           <div className="my-acount-content account-dashboard">
             <div className="box-account-title">
               <p className="hello-name display-sm fw-medium">
-                Hello Vinetant Pham!
+                Hello {user?.name || 'User'}!
                 <span>
-                  (not <span className="name">Vinetant Pham</span>?
+                  (not <span className="name">{user?.name || 'User'}</span>?
                 </span>
-                <Link href={`/`} className="text-decoration-underline link">
+                <button 
+                  onClick={handleLogout}
+                  className="text-decoration-underline link bg-transparent border-0"
+                  style={{ cursor: 'pointer', padding: 0, font: 'inherit', color: 'inherit' }}
+                >
                   Log Out
-                </Link>
+                </button>
                 <span>)</span>
               </p>
               <p className="notice text-sm">

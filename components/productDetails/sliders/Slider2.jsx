@@ -57,14 +57,32 @@ const slides = [
   },
 ];
 
-export default function Slider2({
-  activeColor = "Black",
-  setActiveColor = () => {},
-  firstItem,
-  slideItems = slides,
-}) {
-  const items = [...slideItems];
-  items[0].imgSrc = firstItem ?? items[0].imgSrc;
+export default function Slider2({ product, activeColor = "Black", setActiveColor = () => {} }) {
+  // Use product images from DB if available, otherwise use default slides
+  let items = [];
+  
+  if (product?.images && product.images.length > 0) {
+    // Map product images from database
+    items = product.images.map((image, index) => ({
+      id: index + 1,
+      color: image.color || "Default",
+      size: image.size || "standard",
+      imgSrc: image.url,
+      alt: image.alt || image.altText || product.name,
+    }));
+  } else if (product?.primaryImage) {
+    // Use single primary image
+    items = [{
+      id: 1,
+      color: "Default",
+      size: "standard",
+      imgSrc: product.primaryImage,
+      alt: product.name,
+    }];
+  } else {
+    // Fallback to default slides
+    items = slides;
+  }
 
   const [thumbSwiper, setThumbSwiper] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);

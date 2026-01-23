@@ -8,20 +8,44 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import ProgressBarComponent from "../common/Progressbar";
+
 export default function CartModal() {
   const [openTool, setOpenTool] = useState(-1);
   const {
     cartProducts,
-    setCartProducts,
     totalPrice,
-    addProductToCart,
-    isAddedToCartProducts,
     updateQuantity,
+    removeFromCart,
+    cartLoading,
   } = useContextElement();
 
-  const removeItem = (id) => {
-    setCartProducts((pre) => [...pre.filter((elm) => elm.id != id)]);
+  // Get product image - handle both API and local format
+  const getProductImage = (product) => {
+    return product.imgSrc || 
+           product.images?.[0]?.url || 
+           product.productSnapshot?.image ||
+           "/images/products/default.jpg";
   };
+
+  // Get product title
+  const getProductTitle = (product) => {
+    return product.title || product.name || product.productSnapshot?.name || "Product";
+  };
+
+  // Get product price
+  const getProductPrice = (product) => {
+    return product.finalPrice || product.price || product.productSnapshot?.price || 0;
+  };
+
+  // Get product link
+  const getProductLink = (product) => {
+    return `/product-detail/${product.id || product._id || product.productId}`;
+  };
+
+  // Calculate free shipping threshold
+  const freeShippingThreshold = 100;
+  const amountToFreeShipping = Math.max(0, freeShippingThreshold - totalPrice);
+  const freeShippingProgress = Math.min(100, (totalPrice / freeShippingThreshold) * 100);
 
   return (
     <div
@@ -38,12 +62,18 @@ export default function CartModal() {
         </div>
         <div className="wrap">
           <div className="tf-mini-cart-threshold">
-            <div className="text">
-              Spend <span className="fw-medium">$100</span> more to get
-              <span className="fw-medium">Free Shipping</span>
-            </div>
+            {amountToFreeShipping > 0 ? (
+              <div className="text">
+                Spend <span className="fw-medium">${amountToFreeShipping.toFixed(2)}</span> more to get
+                <span className="fw-medium"> Free Shipping</span>
+              </div>
+            ) : (
+              <div className="text">
+                🎉 You've unlocked <span className="fw-medium">Free Shipping!</span>
+              </div>
+            )}
             <div className="tf-progress-bar tf-progress-ship">
-              <ProgressBarComponent max={75}>
+              <ProgressBarComponent max={freeShippingProgress}>
                 <i className="icon icon-car" />
               </ProgressBarComponent>
             </div>
@@ -51,16 +81,23 @@ export default function CartModal() {
           <div className="tf-mini-cart-wrap">
             <div className="tf-mini-cart-main">
               <div className="tf-mini-cart-sroll">
+                {cartLoading && (
+                  <div className="text-center py-3">
+                    <div className="spinner-border spinner-border-sm text-primary" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                )}
                 {cartProducts.length ? (
                   <div className="tf-mini-cart-items">
                     {cartProducts.map((product, i) => (
-                      <div key={i} className="tf-mini-cart-item file-delete">
+                      <div key={product.id || product.cartItemId || i} className="tf-mini-cart-item file-delete">
                         <div className="tf-mini-cart-image">
-                          <Link href={`/product-detail/${product.id}`}>
+                          <Link href={getProductLink(product)}>
                             <Image
                               className="lazyload"
-                              alt="img-product"
-                              src={product.imgSrc}
+                              alt={getProductTitle(product)}
+                              src={getProductImage(product)}
                               width={190}
                               height={252}
                             />
@@ -70,39 +107,36 @@ export default function CartModal() {
                           <div className="d-flex justify-content-between">
                             <Link
                               className="title link text-md fw-medium"
-                              href={`/product-detail/${product.id}`}
+                              href={getProductLink(product)}
                             >
-                              {product.title}
+                              {getProductTitle(product)}
                             </Link>
                             <i
                               className="icon icon-close remove fs-12"
-                              onClick={() => removeItem(product.id)}
+                              onClick={() => removeFromCart(product.id || product._id)}
+                              style={{ cursor: "pointer" }}
                             />
                           </div>
                           <div className="d-flex gap-10">
-                            <div className="text-xs">White / L</div>
-                            <a href="#" className="link edit">
-                              <i className="icon-pen" />
-                            </a>
+                            {product.size && (
+                              <div className="text-xs">Size: {product.size}</div>
+                            )}
+                            {product.isCustomFit && (
+                              <span className="badge bg-primary-subtle text-primary">
+                                Custom Fit
+                              </span>
+                            )}
                           </div>
                           <p className="price-wrap text-sm fw-medium">
                             <span className="new-price text-primary">
-                              ${(product.price * product.quantity).toFixed(2)}
-                            </span>{" "}
-                            {product.oldPrice && (
-                              <span className="old-price text-decoration-line-through text-dark-1">
-                                $
-                                {(product.oldPrice * product.quantity).toFixed(
-                                  2
-                                )}
-                              </span>
-                            )}
+                              ${(getProductPrice(product) * product.quantity).toFixed(2)}
+                            </span>
                           </p>
                           <QuantitySelect
                             styleClass="small"
                             quantity={product.quantity}
                             setQuantity={(qty) => {
-                              updateQuantity(product.id, qty);
+                              updateQuantity(product.id || product._id, qty);
                             }}
                           />
                         </div>
@@ -110,90 +144,21 @@ export default function CartModal() {
                     ))}
                   </div>
                 ) : (
-                  <div className="p-4">
-                    Your Cart is empty. Start adding favorite products to cart!{" "}
+                  <div className="p-4 text-center">
+                    <div className="mb-3">
+                      <i className="icon-cart fs-1 text-muted" />
+                    </div>
+                    <p>Your cart is empty</p>
                     <Link
                       className="tf-btn btn-dark2 animate-btn mt-3"
-                      href="/shop-default"
+                      href="/shop"
+                      data-bs-dismiss="offcanvas"
                     >
                       Explore Products
                     </Link>
                   </div>
                 )}
-                <div className="tf-minicart-recommendations">
-                  <div className="tf-minicart-recommendations-heading d-flex justify-content-between align-items-end">
-                    <div className="tf-minicart-recommendations-title text-md fw-medium">
-                      You may also like
-                    </div>
-                    <div className="d-flex gap-10">
-                      <div className="swiper-button-prev nav-swiper arrow-1 size-30 nav-prev-cls" />
-                      <div className="swiper-button-next nav-swiper arrow-1 size-30 nav-next-cls" />
-                    </div>
-                  </div>
-                  <Swiper
-                    dir="ltr"
-                    className="swiper tf-swiper"
-                    {...{
-                      slidesPerView: 1,
-                      spaceBetween: 10,
-                      speed: 800,
-                      autoplay: "play",
-                      observer: true,
-                      observeParents: true,
-                      slidesPerGroup: 1,
-                      navigation: {
-                        clickable: true,
-                        nextEl: ".nav-next-cls",
-                        prevEl: ".nav-prev-cls",
-                      },
-                    }}
-                    modules={[Navigation]}
-                  >
-                    {products1.slice(0, 4).map((product, i) => (
-                      <SwiperSlide key={i} className="swiper-slide">
-                        <div className="tf-mini-cart-item line radius-16">
-                          <div className="tf-mini-cart-image">
-                            <Link href={`/product-detail/${product.id}`}>
-                              <Image
-                                className="lazyload"
-                                alt="img-product"
-                                src={product.imgSrc}
-                                width={684}
-                                height={972}
-                              />
-                            </Link>
-                          </div>
-                          <div className="tf-mini-cart-info justify-content-center">
-                            <Link
-                              className="title link text-md fw-medium"
-                              href={`/product-detail/${product.id}`}
-                            >
-                              {product.title}
-                            </Link>
-                            <p className="price-wrap text-sm fw-medium">
-                              <span className="new-price text-primary">
-                                ${product.price.toFixed(2)}
-                              </span>{" "}
-                              {product.oldPrice && (
-                                <span className="old-price text-decoration-line-through text-dark-1">
-                                  ${product.oldPrice.toFixed(2)}
-                                </span>
-                              )}
-                            </p>
-                            <a
-                              className="tf-btn animate-btn d-inline-flex bg-dark-2 w-max-content"
-                              onClick={() => addProductToCart(product.id)}
-                            >
-                              {isAddedToCartProducts(product.id)
-                                ? "Already Added"
-                                : "Add to cart"}
-                            </a>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-                </div>
+                
               </div>
             </div>
             <div className="tf-mini-cart-bottom">

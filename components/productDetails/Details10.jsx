@@ -103,9 +103,9 @@ export default function Details10({ product }) {
                           fill="#EA5513"
                         />
                       </svg>
-                      <span className="text-dark">
+                      {/* <span className="text-dark">
                         30 sold in last 24 hours
-                      </span>
+                      </span> */}
                     </div>
                     <div className="product-info-countdown">
                       <div className="countdown-title">
@@ -177,12 +177,12 @@ export default function Details10({ product }) {
                             </clipPath>
                           </defs>
                         </svg>
-                        <p className="text-xs fw-medium">
+                        {/* <p className="text-xs fw-medium">
                           <span className="text-primary fw-normal">
                             HURRY UP!
                           </span>{" "}
                           Sale ends in:
-                        </p>
+                        </p> */}
                       </div>
                       <div
                         className="js-countdown countdown-box"

@@ -29,6 +29,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Markdown files
+*.md
+
 # IDE
 .idea/
 .vscode/
@@ -78,3 +81,4 @@ temp/
 .LSOverride
 .Spotlight-V100
 .Trashes
+.DocumentRevisions-V100

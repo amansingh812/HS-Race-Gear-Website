@@ -1,19 +1,22 @@
 "use client";
-import React, { useState } from "react";
-import Slider1 from "./sliders/Slider1";
-import BoughtTogether from "./BoughtTogether";
+import React, { useState, useEffect } from "react";
+import Slider2 from "./sliders/Slider2";
 import Link from "next/link";
 import Image from "next/image";
-import ColorSelect1 from "./ColorSelect1";
-import SizePicker from "./SizeSelect";
 import { useContextElement } from "@/context/Context";
+import { useAuth } from "@/context/AuthContext";
 import QuantitySelect from "../common/QuantitySelect";
 import StickyProducts from "./StickyProducts";
-import ProgressBarComponent from "../common/Progressbar";
+
 import ProductHeading from "./ProductHeading";
+import BoughtTogether from "./BoughtTogether";
+
 export default function Details1({ product }) {
   const [quantity, setQuantity] = useState(1);
-  const [activeColor, setActiveColor] = useState("Black");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [customFit, setCustomFit] = useState(false);
+  
   const {
     addProductToCart,
     isAddedToCartProducts,
@@ -24,6 +27,59 @@ export default function Details1({ product }) {
     cartProducts,
     updateQuantity,
   } = useContextElement();
+  
+  const { user } = useAuth();
+
+  // Get available sizes from inventory
+  const availableSizes = product.inventory?.filter(inv => inv.stock > 0 && inv.isAvailable) || [];
+  
+  // Set default size if available
+  useEffect(() => {
+    if (availableSizes.length > 0 && !selectedSize) {
+      setSelectedSize(availableSizes[0].size);
+    }
+  }, [availableSizes, selectedSize]);
+
+  // Calculate total price
+  const calculateTotalPrice = () => {
+    let total = product.price || 0;
+    
+    // Add custom fit price
+    if (customFit && product.customFitAvailable && product.customFitPrice) {
+      total += product.customFitPrice;
+    }
+    
+    // Add custom options prices
+    selectedOptions.forEach(optionSlug => {
+      const option = product.customOptions?.find(opt => opt.slug === optionSlug);
+      if (option) {
+        total += option.price || 0;
+      }
+    });
+    
+    return total;
+  };
+
+  const totalPrice = calculateTotalPrice();
+  const hasDiscount = product.compareAtPrice && product.compareAtPrice > product.price;
+  const discountPercentage = hasDiscount 
+    ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
+    : 0;
+
+  const handleOptionToggle = (optionSlug) => {
+    setSelectedOptions(prev => 
+      prev.includes(optionSlug) 
+        ? prev.filter(s => s !== optionSlug)
+        : [...prev, optionSlug]
+    );
+  };
+
+  const getSelectedInventoryItem = () => {
+    return product.inventory?.find(inv => inv.size === selectedSize);
+  };
+
+  const selectedInventory = getSelectedInventoryItem();
+
   return (
     <section className="flat-single-product">
       <div className="tf-main-product section-image-zoom">
@@ -33,11 +89,7 @@ export default function Details1({ product }) {
             <div className="col-md-6">
               <div className="tf-product-media-wrap sticky-top">
                 <div className="product-thumbs-slider">
-                  <Slider1
-                    activeColor={activeColor}
-                    firstItem={product.imgSrc}
-                    setActiveColor={setActiveColor}
-                  />
+                  <Slider2 product={product} />
                 </div>
               </div>
             </div>
@@ -46,28 +98,163 @@ export default function Details1({ product }) {
             <div className="col-md-6">
               <div className="tf-zoom-main" />
               <div className="tf-product-info-wrap position-relative">
+                {/* Admin Edit Button */}
+                {user && user.role === 'admin' && (
+                  <div className="mb-3">
+                    <Link
+                      href={`/admin/products/${product._id}`}
+                      className="btn btn-warning btn-sm"
+                    >
+                      <i className="icon-edit me-2" />
+                      Edit Product (Admin)
+                    </Link>
+                  </div>
+                )}
                 <div className="tf-product-info-list other-image-zoom">
                   <ProductHeading product={product} />
-                  <div className="tf-product-variant">
-                    <ColorSelect1
-                      setActiveColor={setActiveColor}
-                      activeColor={activeColor}
-                    />
-                    <SizePicker />
+                  {/* Racing Specifications */}
+                  {(product.certification || product.certificationLevel || product.material || product.construction) && (
+                    <div className="tf-product-specifications mb-3">
+                      <h6 className="fw-bold mb-2">Racing Specifications:</h6>
+                      <ul className="list-unstyled">
+                        {product.certification && (
+                          <li className="mb-1">
+                            <span className="text-muted">Certification:</span> 
+                            <span className="fw-medium ms-2">{product.certification}</span>
+                          </li>
+                        )}
+                        {product.certificationLevel && (
+                          <li className="mb-1">
+                            <span className="text-muted">Level:</span> 
+                            <span className="fw-medium ms-2">{product.certificationLevel}</span>
+                          </li>
+                        )}
+                        {product.material && (
+                          <li className="mb-1">
+                            <span className="text-muted">Material:</span> 
+                            <span className="fw-medium ms-2">{product.material}</span>
+                          </li>
+                        )}
+                        {product.construction && (
+                          <li className="mb-1">
+                            <span className="text-muted">Construction:</span> 
+                            <span className="fw-medium ms-2">{product.construction}</span>
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Size Selection */}
+                  <div className="tf-product-variant mb-3">
+                    <h6 className="fw-bold mb-2">Select Size:</h6>
+                    <div className="btn-group" role="group">
+                      {availableSizes.length > 0 ? (
+                        availableSizes.map((inv) => (
+                          <button
+                            key={inv.size}
+                            type="button"
+                            className={`btn btn-outline-dark ${selectedSize === inv.size ? 'active' : ''}`}
+                            onClick={() => setSelectedSize(inv.size)}
+                          >
+                            {inv.size}
+                            <small className="d-block text-muted" style={{ fontSize: '0.7rem' }}>
+                              {inv.stock} left
+                            </small>
+                          </button>
+                        ))
+                      ) : (
+                        <p className="text-danger">Out of stock</p>
+                      )}
+                    </div>
                   </div>
+
+                  {/* Custom Fit Option */}
+                  {product.customFitAvailable && (
+                    <div className="tf-product-custom-fit mb-3">
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="customFit"
+                          checked={customFit}
+                          onChange={(e) => setCustomFit(e.target.checked)}
+                        />
+                        <label className="form-check-label" htmlFor="customFit">
+                          Custom Fit Available 
+                          {product.customFitPrice > 0 && (
+                            <span className="text-muted ms-2">
+                              (+${(product.customFitPrice / 100).toFixed(2)})
+                            </span>
+                          )}
+                        </label>
+                        {customFit && product.customFitLeadTime && (
+                          <small className="d-block text-muted mt-1">
+                            Lead time: {product.customFitLeadTime}
+                          </small>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Custom Options (Add-ons) */}
+                  {product.customOptions && product.customOptions.length > 0 && (
+                    <div className="tf-product-custom-options mb-3">
+                      <h6 className="fw-bold mb-2">Add-ons:</h6>
+                      {product.customOptions.map((option) => (
+                        <div key={option.slug} className="form-check mb-2">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id={`option-${option.slug}`}
+                            checked={selectedOptions.includes(option.slug)}
+                            onChange={() => handleOptionToggle(option.slug)}
+                          />
+                          <label className="form-check-label" htmlFor={`option-${option.slug}`}>
+                            {option.name}
+                            {option.price > 0 && (
+                              <span className="text-muted ms-2">
+                                (+${(option.price / 100).toFixed(2)})
+                              </span>
+                            )}
+                            {option.description && (
+                              <small className="d-block text-muted">{option.description}</small>
+                            )}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Price Display */}
+                  <div className="tf-product-price mb-3">
+                    <div className="d-flex align-items-center gap-2">
+                      <h3 className="mb-0">${(totalPrice / 100).toFixed(2)}</h3>
+                      {hasDiscount && (
+                        <>
+                          <span className="text-decoration-line-through text-muted">
+                            ${(product.compareAtPrice / 100).toFixed(2)}
+                          </span>
+                          <span className="badge bg-danger">{discountPercentage}% OFF</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Add to Cart Section */}
                   <div className="tf-product-total-quantity">
-                    <div className="group-btn">
+                    <div className="group-btn mb-3">
                       <QuantitySelect
                         quantity={
-                          isAddedToCartProducts(product.id)
+                          isAddedToCartProducts(product._id)
                             ? cartProducts.filter(
-                                (elm) => elm.id == product.id
-                              )[0].quantity
+                                (elm) => elm.id == product._id
+                              )[0]?.quantity || quantity
                             : quantity
                         }
                         setQuantity={(qty) => {
-                          if (isAddedToCartProducts(product.id)) {
-                            updateQuantity(product.id, qty);
+                          if (isAddedToCartProducts(product._id)) {
+                            updateQuantity(product._id, qty);
                           } else {
                             setQuantity(qty);
                           }
@@ -76,32 +263,55 @@ export default function Details1({ product }) {
                       <a
                         href="#shoppingCart"
                         data-bs-toggle="offcanvas"
-                        onClick={() => addProductToCart(product.id, quantity)}
-                        className="tf-btn hover-primary btn-add-to-cart"
+                        onClick={() => {
+                          if (availableSizes.length > 0 && selectedSize) {
+                            addProductToCart(product._id, quantity, {
+                              size: selectedSize,
+                              customFit,
+                              selectedOptions,
+                              price: totalPrice
+                            });
+                          } else {
+                            alert('Please select a size');
+                          }
+                        }}
+                        className={`tf-btn hover-primary btn-add-to-cart ${
+                          availableSizes.length === 0 ? 'disabled' : ''
+                        }`}
                       >
-                        {isAddedToCartProducts(product.id)
+                        {availableSizes.length === 0 
+                          ? "Out of Stock"
+                          : isAddedToCartProducts(product._id)
                           ? "Already Added"
                           : "Add to cart"}
                       </a>
                     </div>
                     <a
                       href="#"
-                      className="tf-btn btn-primary w-100 animate-btn"
+                      className={`tf-btn btn-primary w-100 animate-btn ${
+                        availableSizes.length === 0 ? 'disabled' : ''
+                      }`}
+                      onClick={(e) => {
+                        if (availableSizes.length === 0) {
+                          e.preventDefault();
+                        }
+                      }}
                     >
                       Buy it now
                     </a>
                     <Link
                       href={`/checkout`}
                       className="more-choose-payment link"
-                    >
+                    > 
                       More payment options
                     </Link>
                   </div>
+                  {/* Product Actions */}
                   <div className="tf-product-extra-link">
                     <a
-                      onClick={() => addToWishlist(product.id)}
+                      onClick={() => addToWishlist(product._id)}
                       className={`product-extra-icon link btn-add-wishlist ${
-                        isAddedtoWishlist(product.id) ? "added-wishlist" : ""
+                        isAddedtoWishlist(product._id) ? "added-wishlist" : ""
                       } `}
                     >
                       <i className="icon add icon-heart" />
@@ -112,11 +322,11 @@ export default function Details1({ product }) {
                     <a
                       href="#compare"
                       data-bs-toggle="modal"
-                      onClick={() => addToCompareItem(product.id)}
+                      onClick={() => addToCompareItem(product._id)}
                       className="product-extra-icon link"
                     >
                       <i className="icon icon-compare2" />
-                      {isAddedtoCompareItem(product.id)
+                      {isAddedtoCompareItem(product._id)
                         ? "Already compared"
                         : "Add to Compare"}
                     </a>
@@ -137,15 +347,32 @@ export default function Details1({ product }) {
                       Share
                     </a>
                   </div>
+
+                  {/* Product Meta */}
                   <ul className="tf-product-cate-sku text-md">
+                    {selectedInventory?.sku && (
+                      <li className="item-cate-sku">
+                        <span className="label">SKU:</span>
+                        <span className="value">{selectedInventory.sku}</span>
+                      </li>
+                    )}
                     <li className="item-cate-sku">
-                      <span className="label">SKU:</span>
-                      <span className="value">AD1FSSE0YR</span>
+                      <span className="label">Category:</span>
+                      <span className="value">
+                        {product.category?.name || 'Racing Suits'}
+                        {product.subcategory && `, ${product.subcategory.name}`}
+                      </span>
                     </li>
                     <li className="item-cate-sku">
-                      <span className="label">Categories:</span>
-                      <span className="value">Clothes, Top</span>
+                      <span className="label">Brand:</span>
+                      <span className="value">{product.brand || 'HS Race Gear'}</span>
                     </li>
+                    {product.certification && (
+                      <li className="item-cate-sku">
+                        <span className="label">Safety Rating:</span>
+                        <span className="value">{product.certification}</span>
+                      </li>
+                    )}
                   </ul>
 
                   <div className="tf-product-trust-seal text-center">
@@ -230,12 +457,12 @@ export default function Details1({ product }) {
                     </div>
                   </div>
                 </div>
-                <div className="tf-product-fbt">
+                {/* <div className="tf-product-fbt">
                   <div className="title text-xl fw-medium">
                     Frequently Bought Together
                   </div>
                   <BoughtTogether />
-                </div>
+                </div> */}
               </div>
             </div>
             {/* /Product Info */}

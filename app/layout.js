@@ -14,11 +14,15 @@ import { useEffect } from "react";
 
 import Compare from "@/components/modals/Compare";
 import Login from "@/components/modals/Login";
+import Register from "@/components/modals/Register";
+import ResetPass from "@/components/modals/ResetPass";
 import MobileMenu from "@/components/modals/MobileMenu";
 import Quickview from "@/components/modals/Quickview";
 import SearchModal from "@/components/modals/SearchModal";
 import Toolbar from "@/components/modals/Toolbar";
 import Context from "@/context/Context";
+import { AuthProvider } from "@/context/AuthContext";
+import NextAuthProvider from "@/components/providers/NextAuthProvider";
 import ScrollTop from "@/components/common/ScrollTop";
 import { usePathname } from "next/navigation";
 import SizeGuide from "@/components/modals/SizeGuide";
@@ -122,22 +126,28 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Context>
-          {children}
-          <DemoModal />
-          <CartComponent />
-          <Compare />
-          <Login />
-          <MobileMenu />
-          <Quickview />
-          <SearchModal />
-          <Toolbar /> <SizeGuide />
-          <QuestionModal />
-          <ShareModal />
-          <DbSidebar />
-        </Context>
-        <ScrollTop />
-        <RtlToggler />
+        <NextAuthProvider>
+          <AuthProvider>
+            <Context>
+              {children}
+              <DemoModal />
+              <CartComponent />
+              <Compare />
+              <Login />
+              <Register />
+              <ResetPass />
+              <MobileMenu />
+              <Quickview />
+              <SearchModal />
+              <Toolbar /> <SizeGuide />
+              <QuestionModal />
+              <ShareModal />
+              <DbSidebar />
+            </Context>
+            <ScrollTop />
+            <RtlToggler />
+          </AuthProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

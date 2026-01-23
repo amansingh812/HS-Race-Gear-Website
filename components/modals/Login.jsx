@@ -1,7 +1,86 @@
+'use client';
+
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [success, setSuccess] = useState(false);
+  
+  const { login } = useAuth();
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess(false);
+    setLoading(true);
+
+    // Basic validation
+    if (!email || !password) {
+      setError('Please enter both email and password');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const result = await login(email, password, rememberMe);
+
+      if (result.success) {
+        setSuccess(true);
+        
+        // Show success message for 3 seconds then close modal and redirect
+        setTimeout(async () => {
+          const modalElement = document.getElementById('login');
+          if (modalElement && typeof window !== 'undefined') {
+            try {
+              const { Offcanvas } = await import('bootstrap');
+              const modal = Offcanvas.getInstance(modalElement);
+              if (modal) {
+                modal.hide();
+              }
+            } catch (err) {
+              // Fallback: just hide the modal using Bootstrap's data attribute
+              const closeBtn = modalElement?.querySelector('[data-bs-dismiss="offcanvas"]');
+              if (closeBtn) closeBtn.click();
+            }
+          }
+          setSuccess(false);
+          
+          // Redirect to account page
+          router.push('/account-page');
+        }, 3000);
+      } else {
+        setError(result.error || 'Login failed. Please check your credentials.');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+      console.error('Login error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOAuthLogin = async (provider) => {
+    try {
+      await signIn(provider, {
+        callbackUrl: '/account-page',
+        redirect: true
+      });
+    } catch (error) {
+      console.error(`${provider} login error:`, error);
+      setError(`Failed to login with ${provider}`);
+    }
+  };
+
   return (
     <div
       className="offcanvas offcanvas-end popup-style-1 popup-login"
@@ -18,47 +97,127 @@ export default function Login() {
         </div>
         <div className="canvas-body popup-inner">
           <form
-            action="account-page.html"
+            onSubmit={handleSubmit}
             acceptCharset="utf-8"
             className="form-login"
           >
+            {error && (
+              <div className="alert alert-danger mb-3" role="alert">
+                {error}
+              </div>
+            )}
+
+            {success && (
+              <div className="alert alert-success mb-3" role="alert">
+                <strong>Success!</strong> Login successful! Welcome back!
+              </div>
+            )}
+
             <div>
               <fieldset className="email mb_12">
-                <input type="email" className="" placeholder="Email*" />
+                <input 
+                  type="email" 
+                  className="form-control" 
+                  placeholder="Email*"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={loading || success}
+                />
               </fieldset>
-              <fieldset className="password">
-                <input type="password" className="" placeholder="Password*" />
+              
+              <fieldset className="password mb_12 position-relative">
+                <input 
+                  type={showPassword ? "text" : "password"}
+                  className="form-control" 
+                  placeholder="Password*"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  disabled={loading || success}
+                  minLength={8}
+                />
+                <button
+                  type="button"
+                  className="btn btn-sm position-absolute"
+                  style={{ right: '10px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none' }}
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex={-1}
+                  disabled={success}
+                >
+                  {showPassword ? '👁️' : '👁️‍🗨️'}
+                </button>
               </fieldset>
+
+              <div className="mb_12 d-flex justify-content-between align-items-center">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="rememberMe"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    disabled={loading || success}
+                  />
+                  <label className="form-check-label text-sm" htmlFor="rememberMe">
+                    Remember me
+                  </label>
+                </div>
+              </div>
             </div>
+
             <div className="bot">
               <a
                 href="#resetPass"
                 data-bs-toggle="offcanvas"
                 className="text text-sm text-main-2"
+                onClick={(e) => {
+                  if (loading || success) e.preventDefault();
+                }}
               >
                 Forgot your password?
               </a>
+              
               <div className="button-wrap">
                 <button
                   className="subscribe-button tf-btn animate-btn d-inline-flex bg-dark-2 w-100"
                   type="submit"
+                  disabled={loading || success}
                 >
-                  Sign in
+                  {loading ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      Signing in...
+                    </>
+                  ) : success ? (
+                    'Login Successful!'
+                  ) : (
+                    'Sign in'
+                  )}
                 </button>
+                
                 <button
                   type="button"
                   data-bs-target="#register"
                   data-bs-toggle="offcanvas"
                   className="tf-btn btn-out-line-dark2 w-100"
+                  disabled={loading || success}
                 >
                   Create an account
                 </button>
               </div>
             </div>
           </form>
+
           <div className="other-login">
             <p className="text-sm text-center text-main-2">Or sign in with:</p>
-            <Link href={`/account-page`} className="w-100 text-md mb_8">
+            
+            <button
+              onClick={() => handleOAuthLogin('facebook')}
+              className="w-100 text-md mb_8 btn"
+              disabled={loading || success}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px', border: '1px solid #ddd', borderRadius: '4px', background: 'white' }}
+            >
               <svg
                 className="icon"
                 width={32}
@@ -76,8 +235,14 @@ export default function Login() {
                 />
               </svg>
               FACEBOOK
-            </Link>
-            <Link href={`/account-page`} className="w-100 text-md bg-dark">
+            </button>
+
+            <button
+              onClick={() => handleOAuthLogin('google')}
+              className="w-100 text-md btn"
+              disabled={loading || success}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '12px', border: '1px solid #ddd', borderRadius: '4px', background: 'white' }}
+            >
               <svg
                 className="icon"
                 width={32}
@@ -119,7 +284,7 @@ export default function Login() {
                 </defs>
               </svg>
               GOOGLE
-            </Link>
+            </button>
           </div>
         </div>
       </div>

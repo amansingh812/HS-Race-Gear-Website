@@ -13,9 +13,34 @@ export default function Products1({
   cardStyleClass,
   tooltipDirection,
   parentClass = "flat-spacing-24",
+  initialProducts = null, // Accept products from database
 }) {
   const [activeLayout, setActiveLayout] = useState(4);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  
+  // Use database products if provided, otherwise use demo products
+  const productsList = initialProducts && initialProducts.length > 0 ? initialProducts : products;
+  
+  // Fetch categories for filtering
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('/api/categories');
+        const data = await response.json();
+        if (data.success) {
+          setCategories(data.data.categories.filter(cat => !cat.parent));
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+    
+    if (initialProducts) {
+      fetchCategories();
+    }
+  }, [initialProducts]);
   const {
     price,
     availability,
@@ -75,40 +100,40 @@ export default function Products1({
     let filteredArrays = [];
 
     if (brands !== "All") {
-      const filteredByBrands = [...products].filter((elm) =>
+      const filteredByBrands = [...productsList].filter((elm) =>
         elm.filterBrands.includes(brands)
       );
       filteredArrays = [...filteredArrays, filteredByBrands];
     }
     if (availability !== "All") {
-      const filteredByavailability = [...products].filter(
+      const filteredByavailability = [...productsList].filter(
         (elm) => availability === elm.inStock
       );
       filteredArrays = [...filteredArrays, filteredByavailability];
     }
     if (color !== "All") {
-      const filteredByColor = [...products].filter((elm) =>
+      const filteredByColor = [...productsList].filter((elm) =>
         elm.filterColor.includes(color)
       );
       filteredArrays = [...filteredArrays, filteredByColor];
     }
     if (size !== "All" && size !== "Free Size") {
-      const filteredBysize = [...products].filter((elm) =>
+      const filteredBysize = [...productsList].filter((elm) =>
         elm.filterSizes.includes(size)
       );
       filteredArrays = [...filteredArrays, filteredBysize];
     }
 
-    const filteredByPrice = [...products].filter(
+    const filteredByPrice = [...productsList].filter(
       (elm) => elm.price >= price[0] && elm.price <= price[1]
     );
     filteredArrays = [...filteredArrays, filteredByPrice];
 
-    const commonItems = [...products].filter((item) =>
+    const commonItems = [...productsList].filter((item) =>
       filteredArrays.every((array) => array.includes(item))
     );
     dispatch({ type: "SET_FILTERED", payload: commonItems });
-  }, [price, availability, color, size, brands]);
+  }, [price, availability, color, size, brands, productsList]);
 
   useEffect(() => {
     if (sortingOption === "Price Ascending") {

@@ -8,19 +8,42 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import ProgressBarComponent from "../common/Progressbar";
+
 export default function Cartmodal3() {
   const [openTool, setOpenTool] = useState(-1);
   const {
     cartProducts,
-    setCartProducts,
     totalPrice,
     setQuickViewItem,
     updateQuantity,
+    removeFromCart,
+    cartLoading,
   } = useContextElement();
 
-  const removeItem = (id) => {
-    setCartProducts((pre) => [...pre.filter((elm) => elm.id != id)]);
+  // Helper functions to get product data
+  const getProductImage = (product) => {
+    return product.imgSrc || 
+           product.images?.[0]?.url || 
+           product.productSnapshot?.image ||
+           "/images/products/default.jpg";
   };
+
+  const getProductTitle = (product) => {
+    return product.title || product.name || product.productSnapshot?.name || "Product";
+  };
+
+  const getProductPrice = (product) => {
+    return product.finalPrice || product.price || product.productSnapshot?.price || 0;
+  };
+
+  const getProductLink = (product) => {
+    return `/product-detail/${product.id || product._id || product.productId}`;
+  };
+
+  // Calculate free shipping threshold
+  const freeShippingThreshold = 100;
+  const amountToFreeShipping = Math.max(0, freeShippingThreshold - totalPrice);
+  const freeShippingProgress = Math.min(100, (totalPrice / freeShippingThreshold) * 100);
 
   return (
     <div
@@ -91,12 +114,18 @@ export default function Cartmodal3() {
             </div>
             <div className="wrap">
               <div className="tf-mini-cart-threshold">
-                <div className="text">
-                  Spend <span className="fw-medium">$100</span> more to get{" "}
-                  <span className="fw-medium">Free Shipping</span>
-                </div>
+                {amountToFreeShipping > 0 ? (
+                  <div className="text">
+                    Spend <span className="fw-medium">${amountToFreeShipping.toFixed(2)}</span> more to get{" "}
+                    <span className="fw-medium">Free Shipping</span>
+                  </div>
+                ) : (
+                  <div className="text">
+                    🎉 You've unlocked <span className="fw-medium">Free Shipping!</span>
+                  </div>
+                )}
                 <div className="tf-progress-bar tf-progress-ship">
-                  <ProgressBarComponent max={75}>
+                  <ProgressBarComponent max={freeShippingProgress}>
                     <i className="icon icon-car" />
                   </ProgressBarComponent>
                 </div>
@@ -104,19 +133,26 @@ export default function Cartmodal3() {
               <div className="tf-mini-cart-wrap">
                 <div className="tf-mini-cart-main">
                   <div className="tf-mini-cart-sroll">
+                    {cartLoading && (
+                      <div className="text-center py-3">
+                        <div className="spinner-border spinner-border-sm text-primary" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+                    )}
                     {cartProducts.length ? (
                       <div className="tf-mini-cart-items">
                         {cartProducts.map((product, i) => (
                           <div
-                            key={i}
+                            key={product.id || product.cartItemId || i}
                             className="tf-mini-cart-item file-delete"
                           >
                             <div className="tf-mini-cart-image">
-                              <Link href={`/product-detail/${product.id}`}>
+                              <Link href={getProductLink(product)}>
                                 <Image
                                   className="lazyload"
-                                  alt="img-product"
-                                  src={product.imgSrc}
+                                  alt={getProductTitle(product)}
+                                  src={getProductImage(product)}
                                   width={190}
                                   height={252}
                                 />
@@ -126,42 +162,36 @@ export default function Cartmodal3() {
                               <div className="d-flex justify-content-between">
                                 <Link
                                   className="title link text-md fw-medium"
-                                  href={`/product-detail/${product.id}`}
+                                  href={getProductLink(product)}
                                 >
-                                  {product.title}
+                                  {getProductTitle(product)}
                                 </Link>
                                 <i
                                   className="icon icon-close remove fs-12"
-                                  onClick={() => removeItem(product.id)}
+                                  onClick={() => removeFromCart(product.id || product._id)}
+                                  style={{ cursor: "pointer" }}
                                 />
                               </div>
                               <div className="d-flex gap-10">
-                                <div className="text-xs">White / L</div>
-                                <a href="#" className="link edit">
-                                  <i className="icon-pen" />
-                                </a>
+                                {product.size && (
+                                  <div className="text-xs">Size: {product.size}</div>
+                                )}
+                                {product.isCustomFit && (
+                                  <span className="badge bg-primary-subtle text-primary">
+                                    Custom Fit
+                                  </span>
+                                )}
                               </div>
                               <p className="price-wrap text-sm fw-medium">
                                 <span className="new-price text-primary">
-                                  $
-                                  {(product.price * product.quantity).toFixed(
-                                    2
-                                  )}
-                                </span>{" "}
-                                {product.oldPrice && (
-                                  <span className="old-price text-decoration-line-through text-dark-1">
-                                    $
-                                    {(
-                                      product.oldPrice * product.quantity
-                                    ).toFixed(2)}
-                                  </span>
-                                )}
+                                  ${(getProductPrice(product) * product.quantity).toFixed(2)}
+                                </span>
                               </p>
                               <QuantitySelect
                                 styleClass="small"
                                 quantity={product.quantity}
                                 setQuantity={(qty) => {
-                                  updateQuantity(product.id, qty);
+                                  updateQuantity(product.id || product._id, qty);
                                 }}
                               />
                             </div>
@@ -169,12 +199,15 @@ export default function Cartmodal3() {
                         ))}
                       </div>
                     ) : (
-                      <div className="p-4">
-                        Your Cart is empty. Start adding favorite products to
-                        cart!{" "}
+                      <div className="p-4 text-center">
+                        <div className="mb-3">
+                          <i className="icon-cart fs-1 text-muted" />
+                        </div>
+                        <p className="text-muted mb-3">Your Cart is empty. Start adding favorite products to cart!</p>
                         <Link
                           className="tf-btn btn-dark2 animate-btn mt-3"
                           href="/shop-default"
+                          data-bs-dismiss="modal"
                         >
                           Explore Products
                         </Link>

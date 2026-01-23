@@ -8,8 +8,14 @@ import Testimonials from "@/components/otherPages/Testimonials";
 import React from "react";
 
 export const metadata = {
-  title: "About Us || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "About Us - HS Race Gear | Premium SFI Certified Racing Suits & Motorsports Apparel",
+  description: "Discover HS Race Gear - Over 10 years providing premium SFI certified racing suits, custom racegear, and fire-resistant motorsports apparel. Safety first, quality always.",
+  keywords: "SFI certified racing suits, custom racegear, fire-resistant racing gear, motorsports apparel, SFI 3.2A/1, racing safety equipment",
+  openGraph: {
+    title: "About HS Race Gear - Premium SFI Certified Racing Equipment",
+    description: "Trusted by racers worldwide for over a decade. Premium SFI certified racing suits and custom motorsports apparel.",
+    type: "website",
+  },
 };
 export default function page() {
   return (
@@ -18,6 +24,9 @@ export default function page() {
       <Header1 />
       <About />
       <Features />
+      <div className="container">
+        <div className="line" />
+      </div>
       <Features2 />
       <Testimonials />
       <Footer1 />

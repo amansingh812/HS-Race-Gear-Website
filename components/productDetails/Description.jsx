@@ -1,47 +1,76 @@
 import React from "react";
 
-export default function Description() {
+export default function Description({ product }) {
   return (
     <>
+      {product.description && (
+        <div className="item mb-4">
+          <p>{product.description}</p>
+        </div>
+      )}
+
+      {product.shortDescription && (
+        <div className="item mb-4">
+          <p className="fw-medium">{product.shortDescription}</p>
+        </div>
+      )}
+
+      {product.material && (
+        <div className="item mb-4">
+          <p className="fw-medium title">Material Composition</p>
+          <ul>
+            <li>{product.material}</li>
+            {product.construction && <li>Construction: {product.construction}</li>}
+            {product.layers && <li>Layers: {product.layers}</li>}
+          </ul>
+        </div>
+      )}
+
+      {product.certification && (
+        <div className="item mb-4">
+          <p className="fw-medium title">Safety Certifications</p>
+          <ul>
+            <li>{product.certification}</li>
+            {product.certificationLevel && <li>Level: {product.certificationLevel}</li>}
+          </ul>
+          <p className="text-muted small mt-2">
+            This product meets or exceeds the safety standards required for professional racing.
+          </p>
+        </div>
+      )}
+
+      {product.features && product.features.length > 0 && (
+        <div className="item mb-4">
+          <p className="fw-medium title">Key Features</p>
+          <ul>
+            {product.features.map((feature, index) => (
+              <li key={index}>{feature}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {product.brand && (
+        <div className="item mb-4">
+          <p className="fw-medium title">About {product.brand}</p>
+          <p>
+            {product.brand} is committed to providing high-quality racing gear 
+            that meets the stringent safety requirements of professional motorsports 
+            while ensuring maximum comfort and performance.
+          </p>
+        </div>
+      )}
+
       <div className="item">
-        <p className="fw-medium title">Composition</p>
+        <p className="fw-medium title">Care Instructions</p>
         <ul>
-          <li>Viscose 55%, Linen 45%</li>
-          <li>We exclude the weight of minor components</li>
+          <li>Professional cleaning recommended</li>
+          <li>Do not machine wash unless specified</li>
+          <li>Store in a cool, dry place away from direct sunlight</li>
+          <li>Inspect regularly for wear or damage</li>
+          <li>Follow manufacturer's care label instructions</li>
         </ul>
       </div>
-      <p className="item">Additional material information</p>
-      <div className="item">
-        <p className="title">The total weight of this product contains:</p>
-        <ul>
-          <li>55% LivaEco™ viscose</li>
-          <li>Viscose 55%</li>
-        </ul>
-      </div>
-      <ul className="item">
-        <li>
-          We exclude the weight of minor components such as, but not
-          exclusively: threads, buttons, zippers, embellishments and prints.
-        </li>
-        <li>
-          The total weight of the product is calculated by adding the weight of
-          all layers and main components together. Based on that, we calculate
-          how much of that weight is made out by each material. For sets &amp;
-          multipacks all pieces are counted together as one product in
-          calculations.
-        </li>
-        <li>Materials in this product explained</li>
-        <li>LinenLinen is a natural bast fibre derived from flax plants.</li>
-        <li>
-          LivaEco™ viscoseLivaEco™ viscose is a branded viscose fibre, made from
-          wood pulp.
-        </li>
-        <li>
-          ViscoseViscose is a regenerated cellulose fibre commonly made from
-          wood, but the raw material could also consist of other cellulosic
-          materials.
-        </li>
-      </ul>
     </>
   );
 }

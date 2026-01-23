@@ -13,20 +13,24 @@ export default function Testimonials() {
             <i className="icon-star text-green" />
           </div>
           <p className="text-xl-2 lh-xl-32">
-            "I've ordered from many places, but I have to say, this shop offers
-            the best shipping <br className="d-none d-lg-block" />
-            experience ever. Thank you so much for the outstanding service!"
+            "The quality of my custom SFI racing suit exceeded all expectations. Perfect fit, 
+            <br className="d-none d-lg-block" />
+            fast delivery, and the team's support was outstanding. Highly recommend HS Race Gear!"
           </p>
           <div className="box-author">
             <div className="avt">
+              {/* IMAGE NEEDED: Customer/Racer testimonial photo
+                  Size: 100 x 100 pixels (square)
+                  Description: Professional headshot of a satisfied racer customer, 
+                  or racing helmet photo. Should convey authenticity and trust. */}
               <Image
-                alt=""
+                alt="HS Race Gear Customer Testimonial"
                 src="/images/testimonial/tes-about.jpg"
                 width={100}
                 height={100}
               />
             </div>
-            <p className="text-md lh-xl-26 fw-medium">Vinetant P</p>
+            <p className="text-md lh-xl-26 fw-medium">Professional Drag Racer</p>
           </div>
         </div>
       </div>

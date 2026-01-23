@@ -8,17 +8,48 @@ import Link from "next/link";
 import { useContextElement } from "@/context/Context";
 import QuantitySelect from "../common/QuantitySelect";
 import Image from "next/image";
+import { useState } from "react";
+
 export default function ShopCart() {
   const {
     cartProducts,
-    setCartProducts,
     totalPrice,
-
     updateQuantity,
+    removeFromCart,
+    applyDiscount,
+    cartLoading,
   } = useContextElement();
 
-  const removeItem = (id) => {
-    setCartProducts((pre) => [...pre.filter((elm) => elm.id != id)]);
+  const [discountCode, setDiscountCode] = useState("");
+  const [discountMessage, setDiscountMessage] = useState(null);
+
+  const handleApplyDiscount = async () => {
+    if (!discountCode.trim()) return;
+    const result = await applyDiscount(discountCode);
+    setDiscountMessage(result);
+  };
+
+  // Get product image - handle both API and local format
+  const getProductImage = (product) => {
+    return product.imgSrc || 
+           product.images?.[0]?.url || 
+           product.productSnapshot?.image ||
+           "/images/products/default.jpg";
+  };
+
+  // Get product title
+  const getProductTitle = (product) => {
+    return product.title || product.name || product.productSnapshot?.name || "Product";
+  };
+
+  // Get product price
+  const getProductPrice = (product) => {
+    return product.finalPrice || product.price || product.productSnapshot?.price || 0;
+  };
+
+  // Get product link
+  const getProductLink = (product) => {
+    return `/product-detail/${product.id || product._id || product.productId}`;
   };
 
   return (
@@ -28,6 +59,14 @@ export default function ShopCart() {
           <div className="col-xl-8">
             <div className="tf-page-cart-main">
               <form className="form-cart" onSubmit={(e) => e.preventDefault()}>
+                {cartLoading && (
+                  <div className="text-center py-3">
+                    <div className="spinner-border spinner-border-sm text-primary" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <span className="ms-2">Updating cart...</span>
+                  </div>
+                )}
                 {cartProducts.length ? (
                   <table className="table-page-cart">
                     <thead>
@@ -40,30 +79,38 @@ export default function ShopCart() {
                     </thead>
                     <tbody>
                       {cartProducts.map((product, i) => (
-                        <tr key={i} className="tf-cart-item file-delete">
+                        <tr key={product.id || product.cartItemId || i} className="tf-cart-item file-delete">
                           <td className="tf-cart-item_product">
                             <Link
-                              href={`/product-detail/${product.id}`}
+                              href={getProductLink(product)}
                               className="img-box"
                             >
                               <Image
-                                alt="img-product"
-                                src={product.imgSrc}
+                                alt={getProductTitle(product)}
+                                src={getProductImage(product)}
                                 width={684}
                                 height={972}
                               />
                             </Link>
                             <div className="cart-info">
                               <Link
-                                href={`/product-detail/${product.id}`}
+                                href={getProductLink(product)}
                                 className="name text-md link fw-medium"
                               >
-                                {product.title}
+                                {getProductTitle(product)}
                               </Link>
-                              <div className="variants">White / L</div>
+                              <div className="variants">
+                                {product.size && `Size: ${product.size}`}
+                                {product.isCustomFit && (
+                                  <span className="badge bg-primary-subtle text-primary ms-2">
+                                    Custom Fit
+                                  </span>
+                                )}
+                              </div>
                               <span
                                 className="remove-cart link remove"
-                                onClick={() => removeItem(product.id)}
+                                onClick={() => removeFromCart(product.id || product._id)}
+                                style={{ cursor: "pointer" }}
                               >
                                 Remove
                               </span>
@@ -71,7 +118,7 @@ export default function ShopCart() {
                           </td>
                           <td className="tf-cart-item_price text-center">
                             <span className="cart-price price-on-sale text-md fw-medium">
-                              ${product.price.toFixed(2)}
+                              ${getProductPrice(product).toFixed(2)}
                             </span>
                           </td>
                           <td
@@ -81,7 +128,7 @@ export default function ShopCart() {
                             <QuantitySelect
                               quantity={product.quantity}
                               setQuantity={(qty) => {
-                                updateQuantity(product.id, qty);
+                                updateQuantity(product.id || product._id, qty);
                               }}
                             />
                           </td>
@@ -90,7 +137,7 @@ export default function ShopCart() {
                             data-cart-title="Total"
                           >
                             <div className="cart-total total-price text-md fw-medium">
-                              ${(product.price * product.quantity).toFixed(2)}
+                              ${(getProductPrice(product) * product.quantity).toFixed(2)}
                             </div>
                           </td>
                         </tr>
@@ -98,11 +145,15 @@ export default function ShopCart() {
                     </tbody>
                   </table>
                 ) : (
-                  <div className="p-4">
-                    Your Cart is empty. Start adding favorite products to cart!{" "}
+                  <div className="p-4 text-center">
+                    <div className="mb-3">
+                      <i className="icon-cart fs-1 text-muted" />
+                    </div>
+                    <h5>Your cart is empty</h5>
+                    <p className="text-muted">Add some racing gear to get started!</p>
                     <Link
                       className="tf-btn btn-dark2 animate-btn mt-3"
-                      href="/shop-default"
+                      href="/shop"
                     >
                       Explore Products
                     </Link>
@@ -112,19 +163,30 @@ export default function ShopCart() {
                   <input type="checkbox" className="tf-check" id="checkGift" />
                   <label htmlFor="checkGift" className="label text-dark-4">
                     Add gift wrap. Only
-                    <span className="fw-medium">$10.00.</span> (You can choose
+                    <span className="fw-medium"> $10.00.</span> (You can choose
                     or not)
                   </label>
                 </div>
                 <div className="box-ip-discount">
-                  <input type="text" placeholder="Discount code" />
+                  <input 
+                    type="text" 
+                    placeholder="Discount code" 
+                    value={discountCode}
+                    onChange={(e) => setDiscountCode(e.target.value)}
+                  />
                   <button
                     type="button"
                     className="tf-btn radius-6 btn-out-line-dark-2"
+                    onClick={handleApplyDiscount}
                   >
                     Apply
                   </button>
                 </div>
+                {discountMessage && (
+                  <div className={`alert ${discountMessage.success ? "alert-success" : "alert-danger"} mt-2`}>
+                    {discountMessage.message}
+                  </div>
+                )}
                 <div className="cart-note">
                   <label htmlFor="note" className="text-md fw-medium">
                     Special instructions for seller

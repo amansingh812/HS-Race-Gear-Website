@@ -6,8 +6,8 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata = {
-  title: "Checkout || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Checkout | HS Race Gear - Secure Checkout",
+  description: "Complete your purchase securely with address validation, shipping options, and secure payment processing.",
 };
 export default function page() {
   return (
