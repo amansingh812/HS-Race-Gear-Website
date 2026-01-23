@@ -88,7 +88,16 @@ const orderSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    required: false,  // Not required for guest checkout
+    index: true
+  },
+  isGuest: {
+    type: Boolean,
+    default: false,
+    index: true
+  },
+  guestEmail: {
+    type: String,
     index: true
   },
   customer: {
@@ -201,15 +210,29 @@ orderSchema.virtual('itemCount').get(function() {
 
 // Static: Create from cart
 orderSchema.statics.createFromCart = async function(cart, orderData) {
-  const { shippingAddress, billingAddress, sameAsBilling, shippingMethod, payment, customerNotes, isGift, giftMessage } = orderData;
+  const { shippingAddress, billingAddress, sameAsBilling, shippingMethod, payment, customerNotes, isGift, giftMessage, isGuest = false } = orderData;
   
   if (!cart.items || cart.items.length === 0) {
     throw new Error('Cart is empty');
   }
   
-  const User = mongoose.model('User');
-  const user = await User.findById(cart.user);
-  if (!user) throw new Error('User not found');
+  let user = null;
+  let customerInfo = {};
+  
+  if (isGuest) {
+    // Guest checkout - use shipping address info
+    customerInfo = {
+      name: `${shippingAddress.firstName} ${shippingAddress.lastName}`,
+      email: shippingAddress.email,
+      phone: shippingAddress.phone
+    };
+  } else {
+    // Authenticated user checkout
+    const User = mongoose.model('User');
+    user = await User.findById(cart.user);
+    if (!user) throw new Error('User not found');
+    customerInfo = { name: user.name, email: user.email, phone: user.phone };
+  }
   
   const orderItems = cart.items.map(item => ({
     product: item.product._id || item.product,
@@ -225,19 +248,28 @@ orderSchema.statics.createFromCart = async function(cart, orderData) {
     itemTotal: item.itemTotal
   }));
   
+  // Calculate totals
+  const subtotal = cart.subtotal || orderItems.reduce((sum, item) => sum + item.itemTotal, 0);
+  const shippingCost = shippingMethod?.cost || 0;
+  const taxRate = 0.0825; // 8.25% default tax rate
+  const tax = cart.taxEstimate || Math.round(subtotal * taxRate);
+  const total = subtotal + shippingCost + tax;
+  
   const order = await this.create({
-    user: cart.user,
-    customer: { name: user.name, email: user.email, phone: user.phone },
+    user: isGuest ? null : cart.user,
+    isGuest,
+    guestEmail: isGuest ? shippingAddress.email : null,
+    customer: customerInfo,
     items: orderItems,
     shippingAddress,
     billingAddress: sameAsBilling ? shippingAddress : billingAddress,
     sameAsBilling,
-    subtotal: cart.subtotal,
+    subtotal,
     discount: cart.discount,
-    shippingCost: shippingMethod?.cost || 0,
+    shippingCost,
     shippingMethod: { name: shippingMethod?.name || 'Standard Shipping', carrier: shippingMethod?.carrier, estimatedDays: shippingMethod?.estimatedDays },
-    tax: cart.taxEstimate || 0,
-    total: cart.total + (shippingMethod?.cost || 0),
+    tax,
+    total,
     payment,
     status: payment?.status === 'captured' ? 'confirmed' : 'pending',
     customerNotes,
@@ -285,6 +317,7 @@ orderSchema.methods.toClientJSON = function() {
     _id: this._id.toString(),
     orderNumber: this.orderNumber,
     customer: this.customer,
+    isGuest: this.isGuest,
     items: this.items.map(item => ({
       _id: item._id.toString(),
       productSnapshot: item.productSnapshot,
@@ -300,13 +333,25 @@ orderSchema.methods.toClientJSON = function() {
       status: item.status
     })),
     shippingAddress: this.shippingAddress,
+    billingAddress: this.billingAddress,
+    sameAsBilling: this.sameAsBilling,
+    // Legacy fields (keep for backward compatibility)
     subtotal: this.subtotal,
     discount: this.discount,
     shippingCost: this.shippingCost,
     shippingMethod: this.shippingMethod,
     tax: this.tax,
     total: this.total,
+    // New totals object for frontend components
+    totals: {
+      subtotal: this.subtotal,
+      shipping: this.shippingCost,
+      tax: this.tax,
+      discount: this.discount?.amount || 0,
+      grandTotal: this.total
+    },
     currency: this.currency,
+    payment: this.payment,
     status: this.status,
     statusHistory: this.statusHistory,
     trackingNumber: this.trackingNumber,
@@ -317,6 +362,7 @@ orderSchema.methods.toClientJSON = function() {
     customerNotes: this.customerNotes,
     isGift: this.isGift,
     placedAt: this.placedAt,
+    createdAt: this.createdAt,
     confirmedAt: this.confirmedAt,
     shippedAt: this.shippedAt,
     deliveredAt: this.deliveredAt,

@@ -79,9 +79,9 @@ export default function Nav() {
 
       <li className="menu-item">
         <Link
-          href="/coming-soon"
+          href="/custom-fit"
           className={`item-link ${
-            isMenuActive("/coming-soon") ? "menuActive" : ""
+            isMenuActive("/custom-fit") ? "menuActive" : ""
           }`}
         >
           Custom Fit

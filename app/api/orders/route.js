@@ -61,28 +61,10 @@ export async function GET(request) {
 /**
  * POST /api/orders
  * Create new order from cart
+ * Supports both authenticated users and guest checkout
  */
 export async function POST(request) {
   try {
-    // Verify authentication
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { success: false, message: 'Authentication required' },
-        { status: 401 }
-      );
-    }
-    
-    const token = authHeader.split(' ')[1];
-    const decoded = verifyToken(token);
-    
-    if (!decoded) {
-      return NextResponse.json(
-        { success: false, message: 'Invalid or expired token' },
-        { status: 401 }
-      );
-    }
-    
     const body = await request.json();
     const {
       shippingAddress,
@@ -92,7 +74,9 @@ export async function POST(request) {
       paymentMethod,
       customerNotes,
       isGift,
-      giftMessage
+      giftMessage,
+      isGuestCheckout = false,
+      guestCart  // Cart items for guest checkout
     } = body;
     
     // Validate required fields
@@ -122,15 +106,74 @@ export async function POST(request) {
     
     await dbConnect();
     
-    // Get user's cart
-    const cart = await Cart.findOne({ user: decoded.userId })
-      .populate('items.product', 'name slug price images inventory status customFitPrice');
+    let cart;
+    let userId = null;
+    let isGuest = isGuestCheckout;
     
-    if (!cart || cart.items.length === 0) {
-      return NextResponse.json(
-        { success: false, message: 'Cart is empty' },
-        { status: 400 }
-      );
+    // Check for authenticated user
+    const authHeader = request.headers.get('authorization');
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.split(' ')[1];
+      const decoded = verifyToken(token);
+      if (decoded) {
+        userId = decoded.userId;
+        isGuest = false;
+      }
+    }
+    
+    if (!isGuest && userId) {
+      // Authenticated user - get cart from database
+      cart = await Cart.findOne({ user: userId })
+        .populate('items.product', 'name slug price images inventory status customFitPrice');
+      
+      if (!cart || cart.items.length === 0) {
+        return NextResponse.json(
+          { success: false, message: 'Cart is empty' },
+          { status: 400 }
+        );
+      }
+    } else {
+      // Guest checkout - use cart items from request body
+      if (!guestCart || guestCart.length === 0) {
+        return NextResponse.json(
+          { success: false, message: 'Cart is empty' },
+          { status: 400 }
+        );
+      }
+      
+      // Validate guest cart items and get product data
+      const validatedItems = [];
+      for (const item of guestCart) {
+        const product = await Product.findById(item.productId);
+        if (!product) {
+          return NextResponse.json(
+            { success: false, message: `Product not found: ${item.productId}` },
+            { status: 400 }
+          );
+        }
+        
+        validatedItems.push({
+          product: product,
+          size: item.size,
+          quantity: item.quantity,
+          isCustomFit: item.isCustomFit || false,
+          customFitData: item.customFitData,
+          productSnapshot: {
+            name: product.name,
+            slug: product.slug,
+            price: product.price,
+            image: product.images?.[0]?.url || '/images/placeholder-product.jpg'
+          }
+        });
+      }
+      
+      // Create a temporary cart-like object for guest checkout
+      cart = {
+        items: validatedItems,
+        user: null
+      };
+      
+      isGuest = true;
     }
     
     // Validate stock availability for all items
@@ -139,7 +182,7 @@ export async function POST(request) {
         const sizeInventory = item.product.inventory?.find(inv => inv.size === item.size);
         if (!sizeInventory || sizeInventory.stock < item.quantity) {
           return NextResponse.json(
-            { success: false, message: `Insufficient stock for ${item.productSnapshot?.name} - Size ${item.size}` },
+            { success: false, message: `Insufficient stock for ${item.productSnapshot?.name || item.product.name} - Size ${item.size}` },
             { status: 400 }
           );
         }
@@ -162,7 +205,8 @@ export async function POST(request) {
       payment,
       customerNotes,
       isGift,
-      giftMessage
+      giftMessage,
+      isGuest
     });
     
     // Update inventory for non-custom-fit items
@@ -175,8 +219,10 @@ export async function POST(request) {
       }
     }
     
-    // Clear cart after successful order
-    await cart.clearCart();
+    // Clear cart after successful order (only for authenticated users)
+    if (!isGuest && cart.clearCart) {
+      await cart.clearCart();
+    }
     
     return NextResponse.json({
       success: true,

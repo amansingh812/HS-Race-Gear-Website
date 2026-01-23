@@ -7,29 +7,13 @@ import { verifyToken } from '@/lib/auth';
 /**
  * GET /api/orders/[id]
  * Get single order by ID or order number
+ * Supports both authenticated users and guest order lookup
  */
 export async function GET(request, { params }) {
   try {
-    // Verify authentication
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { success: false, message: 'Authentication required' },
-        { status: 401 }
-      );
-    }
-    
-    const token = authHeader.split(' ')[1];
-    const decoded = verifyToken(token);
-    
-    if (!decoded) {
-      return NextResponse.json(
-        { success: false, message: 'Invalid or expired token' },
-        { status: 401 }
-      );
-    }
-    
     const { id } = await params;
+    const { searchParams } = new URL(request.url);
+    const guestEmail = searchParams.get('email');
     
     await dbConnect();
     
@@ -48,9 +32,73 @@ export async function GET(request, { params }) {
       );
     }
     
+    // Check authorization
+    const authHeader = request.headers.get('authorization');
+    
+    if (order.isGuest) {
+      // Guest order - verify by email
+      if (guestEmail && guestEmail.toLowerCase() === order.guestEmail?.toLowerCase()) {
+        return NextResponse.json({
+          success: true,
+          data: order.toClientJSON()
+        });
+      }
+      
+      // Also allow authenticated admin to view guest orders
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        const token = authHeader.split(' ')[1];
+        const decoded = verifyToken(token);
+        if (decoded) {
+          const user = await User.findById(decoded.userId);
+          if (user?.role === 'admin') {
+            return NextResponse.json({
+              success: true,
+              data: order.toClientJSON()
+            });
+          }
+        }
+      }
+      
+      // If no email provided for guest order, return limited info
+      if (!guestEmail) {
+        return NextResponse.json({
+          success: true,
+          data: {
+            orderNumber: order.orderNumber,
+            status: order.status,
+            createdAt: order.createdAt,
+            totals: order.toClientJSON().totals
+          }
+        });
+      }
+      
+      return NextResponse.json(
+        { success: false, message: 'Email verification required for guest orders' },
+        { status: 401 }
+      );
+    }
+    
+    // Authenticated user order - require valid token
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return NextResponse.json(
+        { success: false, message: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+    
+    const token = authHeader.split(' ')[1];
+    const decoded = verifyToken(token);
+    
+    if (!decoded) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid or expired token' },
+        { status: 401 }
+      );
+    }
+    
     // Check if user owns this order (unless admin)
     const user = await User.findById(decoded.userId);
-    if (order.user.toString() !== decoded.userId && user?.role !== 'admin') {
+    if (order.user?.toString() !== decoded.userId && user?.role !== 'admin') {
       return NextResponse.json(
         { success: false, message: 'Access denied' },
         { status: 403 }

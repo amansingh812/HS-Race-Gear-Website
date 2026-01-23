@@ -124,15 +124,18 @@ export default function Checkout() {
           address2: formData.apartment,
           city: formData.city,
           state: formData.state,
-          postalCode: formData.zipcode,
+          zipCode: formData.zipcode,
           country: formData.country,
           phone: formData.phone,
+          email: formData.email,
         },
-        contactEmail: formData.email,
-        contactPhone: formData.phone,
         paymentMethod: paymentMethod === "credit-card" ? "card" : paymentMethod === "paypal" ? "paypal" : "cod",
-        shippingMethod: shippingMethod,
-        orderNotes: formData.orderNotes,
+        shippingMethod: {
+          name: shippingMethod === "express" ? "Express Shipping" : "Standard Shipping",
+          cost: shippingCost,
+          estimatedDays: shippingMethod === "express" ? "2-3 business days" : "5-7 business days"
+        },
+        customerNotes: formData.orderNotes,
       };
 
       const response = await fetch("/api/orders", {
@@ -147,15 +150,15 @@ export default function Checkout() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to create order");
+        throw new Error(data.message || data.error || "Failed to create order");
       }
 
       // Order created successfully
-      // Clear cart is handled by the API
       await clearCart();
       
       // Redirect to order confirmation page
-      router.push(`/account-orders?success=true&orderNumber=${data.order.orderNumber}`);
+      const orderNumber = data.data?.orderNumber || data.orderNumber;
+      router.push(`/account-orders?success=true&orderNumber=${orderNumber}`);
     } catch (err) {
       console.error("Order error:", err);
       setError(err.message || "Failed to place order. Please try again.");
