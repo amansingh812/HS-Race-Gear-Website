@@ -42,13 +42,23 @@ export default function Nav() {
           href="/"
           className={`item-link ${isMenuActive("/") ? "menuActive" : ""}`}
         >
-          Home
+          HOME
+        </Link>
+      </li>
+
+      <li className="menu-item">
+        <Link
+          href="/custom-fit"
+          className={`item-link ${isMenuActive("/custom-fit") ? "menuActive" : ""
+            }`}
+        >
+          CUSTOM FIT
         </Link>
       </li>
 
       <li className="menu-item">
         <a href="#" className="item-link">
-          Shop
+          SHOP
           <i className="icon icon-arr-down" />
         </a>
         <div className="sub-menu mega-menu mega-shop">
@@ -61,9 +71,8 @@ export default function Nav() {
                     <li key={linkIndex}>
                       <Link
                         href={link.href}
-                        className={`menu-link-text link ${
-                          isMenuActive(link.href) ? "menuActive" : ""
-                        }`}
+                        className={`menu-link-text link ${isMenuActive(link.href) ? "menuActive" : ""
+                          }`}
                       >
                         {link.text}
                       </Link>
@@ -79,34 +88,30 @@ export default function Nav() {
 
       <li className="menu-item">
         <Link
+          href="/coming-soon"
+          className={`item-link ${isMenuActive("/how-it-works") ? "menuActive" : ""
+            }`}
+        >
+          PRICING
+        </Link>
+      </li>
+
+      <li className="menu-item">
+        <Link
+          href="/custom-measurement"
+          className={`item-link ${isMenuActive("/custom-measurement") ? "menuActive" : ""
+            }`}
+        >
+          CUSTOM MEASUREMENT FORM
+        </Link>
+      </li>
+
+      <li className="menu-item">
+        <Link
           href="/custom-fit"
-          className={`item-link ${
-            isMenuActive("/custom-fit") ? "menuActive" : ""
-          }`}
+          className={`item-link ${isMenuActive("/custom-fit") ? "menuActive" : ""}`}
         >
-          Custom Fit
-        </Link>
-      </li>
-
-      <li className="menu-item">
-        <Link
-          href="/coming-soon"
-          className={`item-link ${
-            isMenuActive("/how-it-works") ? "menuActive" : ""
-          }`}
-        >
-          How It Works
-        </Link>
-      </li>
-
-      <li className="menu-item">
-        <Link
-          href="/coming-soon"
-          className={`item-link ${
-            isMenuActive("/certifications") ? "menuActive" : ""
-          }`}
-        >
-          Certifications
+          HOW TO MEASURE
         </Link>
       </li>
 
@@ -115,29 +120,17 @@ export default function Nav() {
           href="/faq"
           className={`item-link ${isMenuActive("/faq") ? "menuActive" : ""}`}
         >
-          FAQ
+          FAQS
         </Link>
       </li>
 
       <li className="menu-item">
         <Link
           href="/about-us"
-          className={`item-link ${
-            isMenuActive("/about-us") ? "menuActive" : ""
-          }`}
+          className={`item-link ${isMenuActive("/about-us") ? "menuActive" : ""
+            }`}
         >
-          About Us
-        </Link>
-      </li>
-
-      <li className="menu-item">
-        <Link
-          href="/contact-us"
-          className={`item-link ${
-            isMenuActive("/contact-us") ? "menuActive" : ""
-          }`}
-        >
-          Contact
+          ABOUT US
         </Link>
       </li>
     </>

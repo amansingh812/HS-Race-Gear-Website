@@ -50,46 +50,38 @@ export default function Header3() {
                   height={40}
                 />
                 <ul className="nav-icon d-flex justify-content-end align-items-center">
-                <li className="nav-search">
-                  <a
-                    href="#search"
-                    data-bs-toggle="modal"
-                    className="nav-icon-item"
-                  >
-                    <i className="icon icon-search" />
-                  </a>
-                </li>
-                <li className="nav-account">
-                  <a
-                    href="#login"
-                    data-bs-toggle="offcanvas"
-                    className="nav-icon-item"
-                  >
-                    <i className="icon icon-user" />
-                  </a>
-                </li>
-                <li className="nav-wishlist">
-                  <Link href={`/wish-list`} className="nav-icon-item">
-                    <i className="icon icon-heart" />
-                    <span className="count-box">
-                      <WishlistLength />
-                    </span>
-                  </Link>
-                </li>
-                <li className="nav-cart">
-                  <a
-                    href="#shoppingCart"
-                    data-bs-toggle="offcanvas"
-                    className="nav-icon-item"
-                  >
-                    <i className="icon icon-cart" />
-                    <span className="count-box">
-                      {" "}
-                      <CartLength />
-                    </span>
-                  </a>
-                </li>
-              </ul>
+                  <li className="nav-search">
+                    <a
+                      href="#search"
+                      data-bs-toggle="modal"
+                      className="nav-icon-item"
+                    >
+                      <i className="icon icon-search" />
+                    </a>
+                  </li>
+                  <li className="nav-cart">
+                    <a
+                      href="#shoppingCart"
+                      data-bs-toggle="offcanvas"
+                      className="nav-icon-item"
+                    >
+                      <i className="icon icon-cart" />
+                      <span className="count-box">
+                        {" "}
+                        <CartLength />
+                      </span>
+                    </a>
+                  </li>
+                  <li className="nav-account">
+                    <a
+                      href="#login"
+                      data-bs-toggle="offcanvas"
+                      className="nav-icon-item"
+                    >
+                      <i className="icon icon-user" />
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -99,7 +91,7 @@ export default function Header3() {
         <div className="container">
           <nav className="box-navigation text-center">
             <ul className="box-nav-menu">
-              <Nav/>
+              <Nav />
             </ul>
           </nav>
         </div>

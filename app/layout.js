@@ -8,6 +8,7 @@ import "@/public/css/bootstrap-select.min.css";
 import "@/public/css/swiper-bundle.min.css";
 import "@/public/css/animate.css";
 import "@/public/css/main.css";
+import "@/public/css/certifications.css";
 import "photoswipe/dist/photoswipe.css";
 import "rc-slider/assets/index.css";
 import { useEffect } from "react";

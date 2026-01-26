@@ -75,9 +75,8 @@ export default function Header1({
               <li className="nav-cart">
                 <a
                   href="#shoppingCart"
-                  data-bs-toggle={`${
-                    pathname == "/cart-drawer-v2" ? "modal" : "offcanvas"
-                  }`}
+                  data-bs-toggle={`${pathname == "/cart-drawer-v2" ? "modal" : "offcanvas"
+                    }`}
                   className="nav-icon-item"
                 >
                   <i className="icon icon-cart" />

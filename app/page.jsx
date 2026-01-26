@@ -1,5 +1,8 @@
 import Footer1 from "@/components/footers/Footer1";
 import Topbar1 from "@/components/headers/Topbar1";
+import Topbar2 from "@/components/headers/Topbar2";
+import Topbar3 from "@/components/headers/Topbar3";
+import Topbar4 from "@/components/headers/Topbar4";
 import Features from "@/components/homes/home-1/Features";
 import PlantFeatures from "@/components/homes/home-plant/Features";
 import PlantBanner from "@/components/homes/home-plant/Banner";
@@ -15,6 +18,7 @@ import VideoBanner from "@/components/homes/home-bicycle/VideoBanner";
 
 
 
+
 export const metadata = {
   title: "Home || H&S Racing Gear - Premium Custom Racing Suits & Motorsport Safety Equipment",
   description: "H&S Racing Gear - Custom-fit FIA approved racing suits, karting gear, and motorsport safety equipment. Made-to-order, trusted by racers worldwide.",
@@ -23,8 +27,8 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-     <Topbar1 />
-     <Header3 />
+      <Topbar1 />
+      <Header3 />
       <Hero />
       <PlantFeatures />
       <PlantBanner />

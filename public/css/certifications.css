@@ -1,0 +1,1475 @@
+/* ============================================
+   CERTIFICATIONS PAGE - CUSTOM STYLES
+   HS Race Gear - SFI Certification UI
+   ============================================ */
+
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+  --cert-primary: #e31837;
+  --cert-primary-dark: #c41430;
+  --cert-secondary: #1a1a2e;
+  --cert-accent: #f39c12;
+  --cert-success: #27ae60;
+  --cert-info: #3498db;
+  --cert-warning: #f1c40f;
+  --cert-danger: #e74c3c;
+  --cert-gradient-primary: linear-gradient(135deg, #e31837 0%, #ff4757 100%);
+  --cert-gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --cert-gradient-success: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  --cert-gradient-info: linear-gradient(135deg, #3498db 0%, #5dade2 100%);
+  --cert-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --cert-shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --cert-border-radius: 16px;
+  --cert-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   SECTION TITLES & HEADERS
+   ============================================ */
+.cert-section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.cert-section-title h2,
+.cert-section-title .section-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--cert-secondary);
+  margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.cert-section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--cert-gradient-primary);
+  border-radius: 2px;
+}
+
+.cert-section-title p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 20px auto 0;
+  line-height: 1.8;
+}
+
+/* ============================================
+   SFI LEVELS EXPLAINED SECTION
+   ============================================ */
+.sfi-levels-section {
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.sfi-levels-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--cert-gradient-primary);
+}
+
+/* Main Level Cards */
+.sfi-level-card {
+  background: #ffffff;
+  border-radius: var(--cert-border-radius);
+  overflow: hidden;
+  box-shadow: var(--cert-shadow);
+  transition: var(--cert-transition);
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.sfi-level-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--cert-shadow-hover);
+}
+
+.sfi-level-card.featured {
+  border: 2px solid var(--cert-primary);
+}
+
+.sfi-level-card.featured::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  top: 20px;
+  right: -35px;
+  background: var(--cert-gradient-primary);
+  color: white;
+  padding: 5px 50px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transform: rotate(45deg);
+  z-index: 10;
+}
+
+.sfi-card-header {
+  padding: 30px;
+  position: relative;
+}
+
+.sfi-card-header.level-5 {
+  background: var(--cert-gradient-primary);
+}
+
+.sfi-card-header.level-1 {
+  background: var(--cert-gradient-info);
+}
+
+.sfi-card-header.level-10 {
+  background: var(--cert-gradient-success);
+}
+
+.sfi-card-header.level-15 {
+  background: var(--cert-gradient-dark);
+}
+
+.sfi-level-badge {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.sfi-level-badge span {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.sfi-card-header h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.sfi-card-header .level-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  backdrop-filter: blur(5px);
+}
+
+.sfi-card-body {
+  padding: 30px;
+}
+
+.sfi-card-body .card-description {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.sfi-card-body h6 {
+  color: var(--cert-secondary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sfi-card-body h6::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: var(--cert-primary);
+  border-radius: 2px;
+}
+
+/* Feature List */
+.sfi-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+
+.sfi-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: var(--cert-transition);
+}
+
+.sfi-feature-list li:last-child {
+  border-bottom: none;
+}
+
+.sfi-feature-list li:hover {
+  background: #fafafa;
+  padding-left: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-right: 10px;
+}
+
+.sfi-feature-list .check-icon {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 50%;
+  background: rgba(39, 174, 96, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.sfi-feature-list .check-icon i {
+  font-size: 12px;
+  color: var(--cert-success);
+}
+
+.sfi-feature-list span {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Card Footer Note */
+.sfi-card-note {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.sfi-card-note p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================
+   QUICK REFERENCE GRID
+   ============================================ */
+.sfi-quick-reference {
+  margin-top: 60px;
+  padding-top: 60px;
+  border-top: 2px dashed #e0e0e0;
+}
+
+.sfi-quick-reference-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sfi-quick-reference-title h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cert-secondary);
+  margin-bottom: 10px;
+}
+
+.sfi-quick-reference-title p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.sfi-ref-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: var(--cert-transition);
+  border: 2px solid transparent;
+  height: 100%;
+}
+
+.sfi-ref-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.sfi-ref-card.highlighted {
+  border-color: var(--cert-primary);
+  background: linear-gradient(180deg, #fff5f7 0%, #ffffff 100%);
+}
+
+.sfi-ref-level {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.sfi-ref-level.level-1 {
+  background: var(--cert-gradient-info);
+}
+
+.sfi-ref-level.level-5 {
+  background: var(--cert-gradient-primary);
+}
+
+.sfi-ref-level.level-10 {
+  background: var(--cert-gradient-success);
+}
+
+.sfi-ref-level.level-15 {
+  background: var(--cert-gradient-dark);
+}
+
+.sfi-ref-card h5 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cert-secondary);
+  margin-bottom: 8px;
+}
+
+.sfi-ref-card .protection-level {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.sfi-ref-card .ref-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Protection Time Indicator */
+.protection-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.protection-time .time-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(243, 156, 18, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.protection-time .time-icon i {
+  color: var(--cert-accent);
+  font-size: 16px;
+}
+
+.protection-time .time-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cert-secondary);
+}
+
+.protection-time .time-label {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* ============================================
+   CERTIFICATION HERO SECTION
+   ============================================ */
+.cert-hero-section {
+  padding: 60px 0 40px;
+  position: relative;
+}
+
+.cert-hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.cert-hero-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.cert-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--cert-secondary);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.cert-hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cert-primary);
+  margin-bottom: 20px;
+}
+
+.cert-hero-description {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.cert-hero-badges {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--cert-transition);
+}
+
+.cert-badge.badge-primary {
+  background: var(--cert-primary);
+  color: #ffffff;
+}
+
+.cert-badge.badge-secondary {
+  background: var(--cert-secondary);
+  color: #ffffff;
+}
+
+.cert-badge:hover {
+  transform: scale(1.05);
+}
+
+.cert-hero-image {
+  border-radius: var(--cert-border-radius);
+  overflow: hidden;
+  box-shadow: var(--cert-shadow);
+}
+
+.cert-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   WHAT IS SFI SECTION
+   ============================================ */
+.what-is-sfi-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.sfi-meaning-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: var(--cert-border-radius);
+  padding: 40px;
+  box-shadow: var(--cert-shadow);
+  height: 100%;
+}
+
+.sfi-meaning-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sfi-meaning-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.sfi-meaning-list li:last-child {
+  border-bottom: none;
+}
+
+.sfi-meaning-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  background: var(--cert-gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sfi-meaning-icon i {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.sfi-meaning-text h6 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cert-secondary);
+  margin-bottom: 5px;
+}
+
+.sfi-meaning-text p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ============================================
+   WHY SFI CERTIFICATION SECTION
+   ============================================ */
+.why-sfi-section {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.why-sfi-card {
+  background: #ffffff;
+  border-radius: var(--cert-border-radius);
+  overflow: hidden;
+  box-shadow: var(--cert-shadow);
+  transition: var(--cert-transition);
+  height: 100%;
+}
+
+.why-sfi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--cert-shadow-hover);
+}
+
+.why-sfi-header {
+  padding: 25px 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.why-sfi-header.level-5 {
+  background: var(--cert-gradient-primary);
+}
+
+.why-sfi-header.level-1 {
+  background: var(--cert-gradient-info);
+}
+
+.why-sfi-header h5 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.why-sfi-header .header-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.why-sfi-header .header-icon i {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.why-sfi-body {
+  padding: 30px;
+}
+
+.why-sfi-body .intro-text {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: var(--cert-transition);
+}
+
+.reason-item:last-child {
+  border-bottom: none;
+}
+
+.reason-item:hover {
+  background: #fafafa;
+  margin-left: -15px;
+  margin-right: -15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.reason-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 10px;
+  background: rgba(39, 174, 96, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reason-icon i {
+  color: var(--cert-success);
+  font-size: 16px;
+}
+
+.reason-content h6 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cert-secondary);
+  margin-bottom: 4px;
+}
+
+.reason-content p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Alert Box */
+.cert-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+.cert-alert.alert-warning {
+  background: linear-gradient(135deg, #fff8e1 0%, #fffde7 100%);
+  border-left: 4px solid var(--cert-accent);
+}
+
+.cert-alert.alert-info {
+  background: linear-gradient(135deg, #e3f2fd 0%, #e8f5fe 100%);
+  border-left: 4px solid var(--cert-info);
+}
+
+.cert-alert-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-alert.alert-warning .cert-alert-icon {
+  background: rgba(243, 156, 18, 0.2);
+}
+
+.cert-alert.alert-warning .cert-alert-icon i {
+  color: var(--cert-accent);
+  font-size: 18px;
+}
+
+.cert-alert p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================
+   RACING SERIES REQUIREMENTS
+   ============================================ */
+.racing-series-section {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.series-card {
+  background: #ffffff;
+  border-radius: var(--cert-border-radius);
+  overflow: hidden;
+  box-shadow: var(--cert-shadow);
+  transition: var(--cert-transition);
+  height: 100%;
+}
+
+.series-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--cert-shadow-hover);
+}
+
+.series-header {
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.series-header.level-5 {
+  background: var(--cert-gradient-primary);
+}
+
+.series-header.level-1 {
+  background: var(--cert-gradient-info);
+}
+
+.series-header .header-badge {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.series-header .header-badge i {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.series-header h5 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.series-body {
+  padding: 30px;
+}
+
+.series-body .intro {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.series-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.series-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: var(--cert-transition);
+}
+
+.series-list li:hover {
+  background: #f0f0f0;
+  transform: translateX(5px);
+}
+
+.series-list li i {
+  font-size: 14px;
+}
+
+.series-list li span {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.series-list.list-primary li i {
+  color: var(--cert-primary);
+}
+
+.series-list.list-info li i {
+  color: var(--cert-info);
+}
+
+.series-footer-note {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 3px solid #ddd;
+}
+
+.series-footer-note p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ============================================
+   VERIFICATION SECTION
+   ============================================ */
+.verification-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.verification-content {
+  padding-right: 40px;
+}
+
+.verification-content h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cert-secondary);
+  margin-bottom: 20px;
+}
+
+.verification-list {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+.verification-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  transition: var(--cert-transition);
+}
+
+.verification-list li:hover {
+  transform: translateX(10px);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.verification-list .verify-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background: var(--cert-gradient-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verification-list .verify-icon i {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.verification-list span {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.verification-image-wrapper {
+  position: relative;
+}
+
+.verification-image {
+  border-radius: var(--cert-border-radius);
+  overflow: hidden;
+  box-shadow: var(--cert-shadow);
+}
+
+.verification-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   COMPLIANCE INFO SECTION
+   ============================================ */
+.compliance-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.compliance-card {
+  background: #ffffff;
+  border-radius: var(--cert-border-radius);
+  overflow: hidden;
+  box-shadow: var(--cert-shadow);
+  transition: var(--cert-transition);
+  height: 100%;
+}
+
+.compliance-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--cert-shadow-hover);
+}
+
+.compliance-header {
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.compliance-header.level-5 {
+  background: var(--cert-gradient-dark);
+}
+
+.compliance-header.level-1 {
+  background: linear-gradient(135deg, #6c757d 0%, #868e96 100%);
+}
+
+.compliance-header .header-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compliance-header .header-icon i {
+  color: #ffffff;
+  font-size: 22px;
+}
+
+.compliance-header h5 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.compliance-body {
+  padding: 30px;
+}
+
+.compliance-body .intro {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.compliance-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.compliance-list .compliance-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: var(--cert-transition);
+}
+
+.compliance-list .compliance-item:hover {
+  background: #f0f0f0;
+  transform: translateX(5px);
+}
+
+.compliance-list .compliance-item i {
+  font-size: 14px;
+}
+
+.compliance-list .compliance-item.primary i {
+  color: var(--cert-success);
+}
+
+.compliance-list .compliance-item.info i {
+  color: var(--cert-info);
+}
+
+.compliance-list .compliance-item span {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* ============================================
+   OUR CERTIFIED SUITS SECTION
+   ============================================ */
+.certified-suits-section {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.commitment-banner {
+  background: var(--cert-gradient-dark);
+  border-radius: var(--cert-border-radius);
+  padding: 40px;
+  margin-bottom: 50px;
+  box-shadow: var(--cert-shadow);
+}
+
+.commitment-banner h4 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.commitment-banner p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+}
+
+.commitment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.commitment-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transition: var(--cert-transition);
+}
+
+.commitment-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+.commitment-item i {
+  color: var(--cert-success);
+  font-size: 16px;
+}
+
+.commitment-item span {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.commitment-notice {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid var(--cert-accent);
+}
+
+.commitment-notice p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.commitment-notice strong {
+  color: var(--cert-accent);
+}
+
+.suits-card {
+  background: #ffffff;
+  border-radius: var(--cert-border-radius);
+  overflow: hidden;
+  box-shadow: var(--cert-shadow);
+  transition: var(--cert-transition);
+  height: 100%;
+}
+
+.suits-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--cert-shadow-hover);
+}
+
+.suits-header {
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.suits-header.level-5 {
+  background: var(--cert-gradient-primary);
+}
+
+.suits-header.level-1 {
+  background: var(--cert-gradient-info);
+}
+
+.suits-header .header-badge {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.suits-header h5 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.suits-body {
+  padding: 30px;
+}
+
+.suits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suits-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: var(--cert-transition);
+}
+
+.suits-list li:last-child {
+  border-bottom: none;
+}
+
+.suits-list li:hover {
+  padding-left: 10px;
+}
+
+.suits-list .suit-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suits-list.list-primary .suit-icon {
+  background: rgba(227, 24, 55, 0.1);
+}
+
+.suits-list.list-primary .suit-icon i {
+  color: var(--cert-primary);
+}
+
+.suits-list.list-info .suit-icon {
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.suits-list.list-info .suit-icon i {
+  color: var(--cert-info);
+}
+
+.suits-list span {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cert-cta-section {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.cta-card {
+  background: var(--cert-gradient-dark);
+  border-radius: var(--cert-border-radius);
+  padding: 60px;
+  text-align: center;
+  box-shadow: var(--cert-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--cert-gradient-primary);
+}
+
+.cta-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  backdrop-filter: blur(10px);
+}
+
+.cta-icon i {
+  font-size: 36px;
+  color: #ffffff;
+}
+
+.cta-card h3 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.cta-card .cta-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.cta-card .cta-subtext {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 35px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--cert-transition);
+}
+
+.cta-btn.btn-primary {
+  background: var(--cert-primary);
+  color: #ffffff;
+  border: 2px solid var(--cert-primary);
+}
+
+.cta-btn.btn-primary:hover {
+  background: var(--cert-primary-dark);
+  border-color: var(--cert-primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(227, 24, 55, 0.4);
+}
+
+.cta-btn.btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.cta-btn.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+@media (max-width: 991px) {
+  .cert-section-title h2 {
+    font-size: 2rem;
+  }
+  
+  .cert-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .sfi-level-card.featured::before {
+    top: 15px;
+    right: -40px;
+    font-size: 10px;
+  }
+  
+  .verification-content {
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+  
+  .commitment-banner {
+    padding: 30px;
+  }
+  
+  .cta-card {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sfi-levels-section {
+    padding: 60px 0;
+  }
+  
+  .cert-section-title h2 {
+    font-size: 1.75rem;
+  }
+  
+  .cert-hero-title {
+    font-size: 2rem;
+  }
+  
+  .cert-hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .sfi-level-badge {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .sfi-level-badge span {
+    font-size: 1.5rem;
+  }
+  
+  .sfi-card-header h3 {
+    font-size: 1.25rem;
+  }
+  
+  .sfi-quick-reference {
+    margin-top: 40px;
+    padding-top: 40px;
+  }
+  
+  .commitment-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-4 {
+  animation-delay: 0.4s;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.cert-mb-60 {
+  margin-bottom: 60px;
+}
+
+.cert-mt-60 {
+  margin-top: 60px;
+}
+
+.cert-pb-80 {
+  padding-bottom: 80px;
+}
+
+.cert-pt-80 {
+  padding-top: 80px;
+}

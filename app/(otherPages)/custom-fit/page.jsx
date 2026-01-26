@@ -2,10 +2,8 @@ import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Breadcumb from "@/components/common/Breadcumb";
-import CustomFitHero from "@/components/otherPages/CustomFitHero";
-import CustomFitProcess from "@/components/otherPages/CustomFitProcess";
-import CustomFitFeatures from "@/components/otherPages/CustomFitFeatures";
-import CustomFitMeasurement from "@/components/otherPages/CustomFitMeasurement";
+import CustomFitFormPage from "@/components/otherPages/CustomFitFormPage";
+
 import React from "react";
 
 export const metadata = {
@@ -20,10 +18,7 @@ export default function page() {
       <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
       <Header1 />
       <Breadcumb pageName="Custom Fit" pageTitle="Custom Fit Racing Suits" />
-      <CustomFitHero />
-      <CustomFitFeatures />
-      <CustomFitProcess />
-      <CustomFitMeasurement />
+      <CustomFitFormPage />
       <Footer1 />
     </>
   );

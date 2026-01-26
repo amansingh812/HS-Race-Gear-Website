@@ -30,122 +30,17 @@ export default function Topbar1() {
                   <i className="icon icon-x" />
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://www.snapchat.com/"
-                  className="social-item social-snapchat"
-                >
-                  <i className="icon icon-snapchat" />
-                </a>
-              </li>
+              
             </ul>
           </div>
           <div className="col-lg-7 col-xl-6 overflow-hidden">
-            <div className="topbar-center marquee-wrapper">
-              <div className="initial-child-container">
-                <div className="marquee-child-item">
-                  <p>Return extended to 60 days</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Life-time Guarantes</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Limited-Time Offer</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                {/* 2 */}
-                <div className="marquee-child-item">
-                  <p>Return extended to 60 days</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Life-time Guarantes</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Limited-Time Offer</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                {/* 3 */}
-                <div className="marquee-child-item">
-                  <p>Return extended to 60 days</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Life-time Guarantes</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Limited-Time Offer</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                {/* 4 */}
-                <div className="marquee-child-item">
-                  <p>Return extended to 60 days</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Life-time Guarantes</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Limited-Time Offer</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                {/* 5 */}
-                <div className="marquee-child-item">
-                  <p>Return extended to 60 days</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Life-time Guarantes</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-                <div className="marquee-child-item">
-                  <p>Limited-Time Offer</p>
-                </div>
-                <div className="marquee-child-item">
-                  <span className="dot" />
-                </div>
-              </div>
-            </div>
           </div>
           <div className="col-lg-3">
             <div className="topbar-right">
-              <div className="box-phone">
-                <i className="icon icon-head-phone" style={{color: "#fff"}} />
-                <a href="tel:123456789" className="phone" style={{color: "#fff"}}>
-                  +1 123 456 789
+              <div className="tf-languages">
+                <i className="icon icon-contact" style={{color: "#fff"}} />
+                <a href="/contact-us" className="phone" style={{color: "#fff"}}>
+                  CONTACT US
                 </a>
               </div>
             </div>
