@@ -7,7 +7,7 @@ import Banner2 from "@/components/homes/home-fashion-02/Banner2";
 import Blogs from "@/components/homes/home-fashion-02/Blogs";
 import Brands from "@/components/common/Brands";
 import Features from "@/components/homes/home-fashion-02/Features";
-import Hero from "@/components/homes/home-fashion-02/Hero";
+import Hero from "@/components/homes/home-fashion-02/HeroF";
 import Products from "@/components/homes/home-fashion-02/Products";
 import Products2 from "@/components/homes/home-fashion-02/Products2";
 import Testimonials from "@/components/homes/home-fashion-02/Testimonials";

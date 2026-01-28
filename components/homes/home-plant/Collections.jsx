@@ -9,9 +9,12 @@ export default function Collections() {
   return (
     <>
       <section>
-        <div className="container">
+        <div className="container mt-5">
           <div className="flat-title wow fadeInUp">
-            <h3 className="title font-7">Shop By Collections</h3>
+            <h3 className="title font-7">Shop By Category</h3>
+            <p className="text-main text-md">
+              Explore our premium racing gear collection, crafted for champions
+            </p>
           </div>
         </div>
         <div className="slider-layout-right wow fadeInUp">
@@ -79,7 +82,7 @@ export default function Collections() {
                 </div>
               </SwiperSlide>
             ))}
-            <div className="d-flex d-xl-none sw-dot-default sw-pagination-cls justify-content-center" />
+            <div className="d-flex sw-dot-default sw-pagination-cls justify-content-center" />
           </Swiper>
         </div>
       </section>

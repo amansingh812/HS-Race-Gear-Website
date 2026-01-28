@@ -3,12 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 export default function Banner() {
   return (
-    <section className="flat-spacing pt-0 pb_xl-0">
+    <section className="flat-spacing pt-0 mt-5 pb_xl-0">
       <div className="container">
         <div className="s2-banner-with-text">
           <div className="banner">
             <Image
-              src="/images/banner/plant-1.png"
+              src="/images/banner/racing-1.png"
               alt="banner"
               className=" ls-is-cached lazyloaded"
               width={900}

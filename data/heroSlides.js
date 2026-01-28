@@ -32,17 +32,17 @@ export const fashionSlides = [
   {
     imgSrc: "/images/slider/fashion/slider-fashion-2-1.png",
     alt: "slider",
-    buttonText: "Shop Men",
+    buttonText: "Suit",
   },
   {
-    imgSrc: "/images/slider/fashion/slider-fashion-2-2.png",
+    imgSrc: "/images/banner/shose.png",
     alt: "slider",
-    buttonText: "Shop Women",
+    buttonText: "Shoes",
   },
   {
     imgSrc: "/images/slider/fashion/slider-fashion-2-3.png",
     alt: "slider",
-    buttonText: "Shop Kid",
+    buttonText: "Gloves",
   },
 ];
 

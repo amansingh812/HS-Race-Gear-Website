@@ -325,6 +325,36 @@ export const categories8 = [
     title: "Leash",
     itemCount: "10 items",
   },
+  
+];
+
+export const categories16 = [
+  {
+    imgSrc: "/images/cls-categories/pet/product-1.jpg",
+    title: "Leash",
+    itemCount: "10 items",
+  },
+  {
+    imgSrc: "/images/cls-categories/pet/product-2.jpg",
+    title: "Accessories",
+    itemCount: "9 items",
+  },
+  {
+    imgSrc: "/images/cls-categories/pet/product-3.jpg",
+    title: "Toys",
+    itemCount: "12 items",
+  },
+  {
+    imgSrc: "/images/cls-categories/pet/product-4.jpg",
+    title: "Foods",
+    itemCount: "13 items",
+  },
+  {
+    imgSrc: "/images/cls-categories/pet/product-1.jpg",
+    title: "Leash",
+    itemCount: "10 items",
+  },
+  
 ];
 
 export const categoryItems2 = [
@@ -521,32 +551,42 @@ export const categoryItems3 = [
   },
 ];
 
-export const categoryItems4 = [
+export const categoryItems4 = [ 
   {
     id: 1,
     imgSrc: "/images/cls-categories/plant/plant-1.jpg",
-    title: "Racing Suits",
+    title: "Custom Racing Suits",
   },
   {
     id: 2,
-    imgSrc: "/images/cls-categories/plant/plant-2.jpg",
-    title: "Karting Gear",
+    imgSrc: "/images/cls-categories/plant/plant-1.png",
+    title: "Custom Karting Suits",
   },
   {
     id: 3,
     imgSrc: "/images/cls-categories/plant/plant-3.jpg",
-    title: "Safety Equipment",
+    title: "Off the Rack Race Suits",
   },
   {
     id: 4,
-    imgSrc: "/images/cls-categories/plant/plant-4.jpg",
-    title: "Accessories",
+    imgSrc: "/images/cls-categories/plant/plant-4.png",
+    title: "Custom Racing Gloves",
   },
   {
     id: 5,
     imgSrc: "/images/cls-categories/plant/plant-5.jpg",
-    title: "Team Wear",
+    title: "Custom Racing Shoes",
   },
+  {
+    id: 6,
+    imgSrc: "/images/cls-categories/plant/plant-5.jpg",
+    title: "Hoodies",
+  },
+  {
+    id: 7,
+    imgSrc: "/images/cls-categories/plant/plant-7.jpg",
+    title: "Shirts",
+  }
 ];
 
 export const categories12 = [

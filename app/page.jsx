@@ -7,6 +7,7 @@ import Features from "@/components/homes/home-1/Features";
 import PlantFeatures from "@/components/homes/home-plant/Features";
 import PlantBanner from "@/components/homes/home-plant/Banner";
 import Hero from "@/components/homes/home-1/Hero";
+import HeroF from "@/components/homes/home-fashion-02/HeroF";
 import Shopgram from "@/components/homes/home-1/Shopgram";
 import Header3 from "@/components/headers/Header3";
 import PlantHero from "@/components/homes/home-plant/Hero";
@@ -15,9 +16,17 @@ import PlantCollections from "@/components/homes/home-plant/Collections";
 import PlantProducts from "@/components/homes/home-plant/Products";
 import PlantTestimonials from "@/components/homes/home-plant/Testimonials";
 import VideoBanner from "@/components/homes/home-bicycle/VideoBanner";
+import Banner2 from "@/components/homes/home-fashion-02/Banner2";
+import Collectionss from "@/components/homes/home-furniture/Collectionss";
+import Collections from "@/components/homes/home-pet-accessories/Collections";
 
 
-
+import {
+  RacingCategories,
+  SpecificationBanner,
+  DetailedSpecs,
+  WhyChooseUs,
+} from "@/components/homes/home-racing";
 
 export const metadata = {
   title: "Home || H&S Racing Gear - Premium Custom Racing Suits & Motorsport Safety Equipment",
@@ -30,16 +39,28 @@ export default function Home() {
       <Topbar1 />
       <Header3 />
       <Hero />
-      <PlantFeatures />
-      <PlantBanner />
-      <PlantHero />
-      <PlantBanner2 />
+      {/* <PlantBanner /> */}
       <PlantCollections />
-      <PlantProducts />
-      <VideoBanner />
-      <PlantTestimonials />
-      <Shopgram />
-      <Features />
+      {/* <Collections /> */}
+
+
+      <Banner2 />
+
+      {/* <Collectionss /> */}
+
+      {/* <PlantBanner2 /> */}
+
+      <HeroF />
+
+
+
+      {/* <SpecificationBanner /> */}
+
+
+      <DetailedSpecs />
+      {/* <RacingCategories /> */}
+      {/* <PlantCollections /> */}
+      <PlantFeatures />
       <Footer1 />
     </>
   );

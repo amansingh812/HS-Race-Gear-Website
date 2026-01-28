@@ -2,7 +2,7 @@ import Footer1 from "@/components/footers/Footer1";
 import Header4 from "@/components/headers/Header4";
 import Topbar2 from "@/components/headers/Topbar2";
 import Categories from "@/components/homes/home-furniture/Categories";
-import Collections from "@/components/homes/home-furniture/Collections";
+import Collections from "@/components/homes/home-furniture/Collectionss";
 import Collections2 from "@/components/homes/home-furniture/Collections2";
 import Featires from "@/components/common/Featires3";
 import Hero from "@/components/homes/home-furniture/Hero";

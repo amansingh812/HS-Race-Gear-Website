@@ -4,7 +4,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
 import Image from "next/image";
-export default function Hero() {
+export default function HeroF() {
   return (
     <div className="tf-slideshow slider-fashion-2">
       <Swiper
