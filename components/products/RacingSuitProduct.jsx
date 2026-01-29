@@ -9,7 +9,7 @@ import Link from 'next/link';
  * 
  * Features:
  * - Size selection with live stock display
- * - Custom fit option with measurement workflow
+ * - Custom Gear option with measurement workflow
  * - Add-on options (arm restraints, foot stirrups, name patches)
  * - Dynamic price calculation
  * - Delivery time estimation

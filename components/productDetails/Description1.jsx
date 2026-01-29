@@ -115,7 +115,7 @@ export default function Description1({ product }) {
               <div className="accordion-body">
                 <div className="custom-fit-info">
                   <p>
-                    This racing suit is available with custom fit options. 
+                    This racing suit is available with custom Gear options. 
                     {product.customFitLeadTime && ` Lead time: ${product.customFitLeadTime}`}
                   </p>
                   {product.customFitPrice > 0 && (

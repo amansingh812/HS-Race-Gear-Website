@@ -9,7 +9,7 @@ const specsData = {
             "FIA 8856-2018 & SFI 3.2A/5 Certified",
             "Premium Nomex® or similar fire-resistant fabric",
             "Multi-layer construction (2-layer to 5-layer options)",
-            "Custom fit tailored to your measurements",
+            "Custom Gear tailored to your measurements",
             "Personalized embroidery & custom designs",
             "Floating arm design for enhanced mobility",
             "Pre-curved sleeves for natural driving position",

@@ -126,7 +126,7 @@ export async function POST(request) {
     // Validate custom fit measurements
     if (isCustomFit && !product.customFitAvailable) {
       return NextResponse.json(
-        { success: false, message: 'Custom fit is not available for this product' },
+        { success: false, message: 'Custom Gear is not available for this product' },
         { status: 400 }
       );
     }

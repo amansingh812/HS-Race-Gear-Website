@@ -52,7 +52,7 @@ export default function Nav() {
           className={`item-link ${isMenuActive("/custom-fit") ? "menuActive" : ""
             }`}
         >
-          CUSTOM FIT
+          CUSTOM GEAR
         </Link>
       </li>
 

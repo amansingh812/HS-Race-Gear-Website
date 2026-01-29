@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
  * 
  * Designed for racing suits with:
  * - Multiple sizes with inventory tracking
- * - Custom fit options with measurement upload
+ * - Custom Gear options with measurement upload
  * - Add-on options (arm restraints, foot stirrups, name patches)
  * - Safety certifications (SFI, FIA)
  * - Multiple product images

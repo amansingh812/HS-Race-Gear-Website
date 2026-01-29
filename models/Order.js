@@ -162,7 +162,7 @@ const orderSchema = new mongoose.Schema({
   deliveredAt: Date,
   estimatedDelivery: { from: Date, to: Date },
   
-  // Custom fit
+  // Custom Gear
   hasCustomFit: { type: Boolean, default: false },
   customFitLeadTime: String,
   

@@ -31,7 +31,7 @@ const cartItemSchema = new mongoose.Schema({
     default: false
   },
   
-  // Custom fit measurements (if applicable)
+  // Custom Gear measurements (if applicable)
   measurements: {
     chest: Number,
     waist: Number,

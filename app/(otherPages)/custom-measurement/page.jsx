@@ -9,7 +9,7 @@ import React from "react";
 export const metadata = {
     title: "Custom Measurement Form | HS Race Gear - Racing Suit Measurements",
     description: "Submit your custom racing suit measurements with our easy-to-use form. Select stitching style, collar type, and provide accurate body measurements for a perfect fit.",
-    keywords: "custom racing suit form, racing suit measurements, custom fit form, body measurements racing suit, SFI racing suit order",
+    keywords: "custom racing suit form, racing suit measurements, custom Gear form, body measurements racing suit, SFI racing suit order",
 };
 
 export default function page() {
