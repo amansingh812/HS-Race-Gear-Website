@@ -1,0 +1,74 @@
+/* Racing Style Header - Slanted/Parallelogram Shapes */
+
+/* Container for the group */
+.racing-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Gap between the red box and black boxes */
+}
+
+/* Common style for the slanted boxes */
+.skew-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px; /* Adjust height as needed */
+  padding: 0 25px;
+  transform: skewX(-20deg); /* THE SLANT */
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* Inner content wrapper to straighten icons/text */
+.skew-content {
+  transform: skewX(20deg); /* UN-SKEW Content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* --- VARIANT 1: The Search Box (Red Outline) --- */
+.skew-box.outline-red {
+  background: transparent;
+  border: 2px solid #dc3545; /* Red color */
+  color: #dc3545;
+}
+.skew-box.outline-red:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+/* --- VARIANT 2: The Dark Boxes (Login & Cart) --- */
+.skew-box.filled-dark {
+  background: #1e2125; /* Dark color */
+  color: #fff;
+  border: none;
+}
+.skew-box.filled-dark:hover {
+  background: #333;
+}
+
+/* Separator line between Login and Cart if you want them joined */
+.skew-box.filled-dark + .skew-box.filled-dark {
+  margin-left: -4px; /* Pull them closer */
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Badge styling */
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 50%;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+}

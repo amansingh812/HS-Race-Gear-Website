@@ -26,11 +26,10 @@ export default function Topbar1() {
                 </a>
               </li>
               <li>
-                <a href="https://x.com/" className="social-item social-x">
-                  <i className="icon icon-x" />
+                <a href="https://www.tiktok.com/" className="social-item social-tiktok">
+                  <i className="icon icon-tiktok" />
                 </a>
               </li>
-              
             </ul>
           </div>
           <div className="col-lg-7 col-xl-6 overflow-hidden">
@@ -38,8 +37,8 @@ export default function Topbar1() {
           <div className="col-lg-3">
             <div className="topbar-right">
               <div className="tf-languages">
-                <i className="icon icon-contact" style={{color: "#fff"}} />
-                <a href="/contact-us" className="phone" style={{color: "#fff"}}>
+                <i className="icon icon-contact" style={{ color: "#fff" }} />
+                <a href="/contact-us" className="phone" style={{ color: "#fff" }}>
                   CONTACT US
                 </a>
               </div>

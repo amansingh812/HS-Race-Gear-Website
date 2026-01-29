@@ -41,6 +41,7 @@ export default function Home() {
       <Hero />
       {/* <PlantBanner /> */}
       <PlantCollections />
+      <RacingCategories />
       {/* <Collections /> */}
 
 
@@ -58,7 +59,7 @@ export default function Home() {
 
 
       <DetailedSpecs />
-      {/* <RacingCategories /> */}
+
       {/* <PlantCollections /> */}
       <PlantFeatures />
       <Footer1 />
