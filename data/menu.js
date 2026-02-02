@@ -328,6 +328,8 @@ export const productMenuItems = [
 export const otherPages = [
   { href: "/about-us", text: "About" },
   { href: "/contact-us", text: "Contact" },
+  { href: "/pricing", text: "Pricing" },
+  { href: "/certifications", text: "Certifications" },
   { href: "/store-location", text: "Store location" },
   { href: "/account-page", text: "My Account" },
   { href: "/faq", text: "FAQ" },

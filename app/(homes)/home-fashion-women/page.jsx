@@ -6,7 +6,7 @@ import Topbar2 from "@/components/headers/Topbar2";
 import Banner from "@/components/homes/home-fashion-women/Banner";
 import Collections from "@/components/homes/home-fashion-women/Collections";
 import Features from "@/components/homes/home-fashion-women/Features";
-import Hero from "@/components/homes/home-fashion-women/Hero";
+import Hero from "@/components/homes/home-fashion-women/HeroFashionWomen";
 import Products from "@/components/homes/home-fashion-women/Products";
 import Shopgram from "@/components/homes/home-fashion-women/Shopgram";
 import Testimonials from "@/components/homes/home-fashion-women/Testimonials";

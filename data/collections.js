@@ -554,37 +554,37 @@ export const categoryItems3 = [
 export const categoryItems4 = [ 
   {
     id: 1,
-    imgSrc: "/images/cls-categories/plant/plant-1.jpg",
+    imgSrc: "/images/cls-categories/plant/categoty__1.png",
     title: "Custom Racing Suits",
   },
   {
     id: 2,
-    imgSrc: "/images/cls-categories/plant/plant-1.png",
+    imgSrc: "/images/cls-categories/plant/category_3.png",
     title: "Custom Karting Suits",
   },
   {
     id: 3,
-    imgSrc: "/images/cls-categories/plant/plant-3.jpg",
+    imgSrc: "/images/cls-categories/plant/off_the_rack.png",
     title: "Off the Rack Race Suits",
   },
   {
     id: 4,
-    imgSrc: "/images/cls-categories/plant/plant-4.png",
+    imgSrc: "/images/cls-categories/plant/category__4.png",
     title: "Custom Racing Gloves",
   },
   {
     id: 5,
-    imgSrc: "/images/cls-categories/plant/plant-5.jpg",
+    imgSrc: "/images/cls-categories/plant/category_shose.png",
     title: "Custom Racing Shoes",
   },
   {
     id: 6,
-    imgSrc: "/images/cls-categories/plant/plant-5.jpg",
+    imgSrc: "/images/cls-categories/plant/category_hoodi.png",
     title: "Hoodies",
   },
   {
     id: 7,
-    imgSrc: "/images/cls-categories/plant/plant-7.jpg",
+    imgSrc: "/images/cls-categories/plant/category_shirt.png",
     title: "Shirts",
   }
 ];
@@ -615,6 +615,35 @@ export const categories12 = [
     height: 773,
   },
 ];
+
+export const customizeCategories = [
+  {
+    name: "Suits",
+    img: "/images/customize/cleaned-suit.png",
+    href: "/custom-fit",
+  },
+  {
+    name: "Gloves",
+    img: "/images/customize/gloves.png",
+    href: "/shop-default",
+  },
+  {
+    name: "Shoes",
+    img: "/images/customize/shoes.png",
+    href: "/shop-default",
+  },
+  {
+    name: "T-shirt",
+    img: "/images/customize/t-shirt.png",
+    href: "/shop-default",
+  },
+  {
+    name: "Hoodie",
+    img: "/images/customize/hoodie.png",
+    href: "/shop-default",
+  },
+];
+
 
 export const categories13 = [
   {

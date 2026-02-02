@@ -57,37 +57,22 @@ export default function Header3() {
                   className="sfi-approved-logo d-none d-lg-block"
                   src="/images/sfi-approved.png"
                   width={100}
-                  height={40}
+                  height={45}
                 />
 
-                {/* NEW RACING STYLE ICONS */}
+
                 <div className="racing-tools">
 
-                  {/* 1. Search - Red Outline */}
                   <a
                     href="#search"
                     data-bs-toggle="modal"
                     className="skew-box outline-red"
                   >
                     <span className="skew-content">
-                      <i className="icon icon-search" style={{ fontSize: '1.2rem' }} />
+                      <i className="icon icon-search" style={{ fontSize: '0.9rem' }} />
                     </span>
                   </a>
 
-                  {/* 2. Login - Dark Filled (Middle) */}
-                  <a
-                    href="#login"
-                    data-bs-toggle="offcanvas"
-                    className="skew-box filled-dark"
-                  >
-                    <span className="skew-content">
-                      {/* Optional: Add text like 'Login' to match 'Get in touch' style */}
-                      <span className="d-none d-lg-block fw-bold text-uppercase fs-6 me-2">Login</span>
-                      <i className="icon icon-user" />
-                    </span>
-                  </a>
-
-                  {/* 3. Cart - Dark Filled (Right) */}
                   <a
                     href="#shoppingCart"
                     data-bs-toggle="offcanvas"
@@ -95,13 +80,26 @@ export default function Header3() {
                   >
                     <span className="skew-content">
                       <i className="icon icon-cart" />
-                      {/* Badge inside skew-content so it doesn't get skewed */}
+
                       <span className="cart-badge">
                         <CartLength />
                       </span>
                     </span>
                   </a>
 
+                  <a
+                    href="#shoppingCart"
+                    data-bs-toggle="offcanvas"
+                    className="skew-box filled-dark"
+                  >
+                    <span className="skew-content">
+                      <i className="icon icon-user" />
+                      {/* Badge inside skew-content so it doesn't get skewed */}
+                      <span className="cart-badge">
+                        <CartLength />
+                      </span>
+                    </span>
+                  </a>
                 </div>
                 {/* End Racing Tools */}
 

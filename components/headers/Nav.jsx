@@ -88,7 +88,7 @@ export default function Nav() {
 
       <li className="menu-item">
         <Link
-          href="/coming-soon"
+          href="/pricing"
           className={`item-link ${isMenuActive("/how-it-works") ? "menuActive" : ""
             }`}
         >

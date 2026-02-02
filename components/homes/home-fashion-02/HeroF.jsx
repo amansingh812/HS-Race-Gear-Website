@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 export default function HeroF() {
   return (
-    <div className="tf-slideshow slider-fashion-2">
+    <div className="tf-slideshow slider-fashion-2" style={{ backgroundColor: "black", padding: "20px 10px" }}>
       <Swiper
         className="swiper tf-sw-slideshow"
         spaceBetween={15}

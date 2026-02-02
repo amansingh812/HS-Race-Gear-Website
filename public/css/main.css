@@ -2820,6 +2820,8 @@ a:focus, a:hover {
   border: 1px solid var(--dark-2);
 }
 
+
+
 .tf-btn.btn-dark3 {
   background-color: var(--text-2);
   color: var(--white);
@@ -2827,9 +2829,9 @@ a:focus, a:hover {
 }
 
 .tf-btn.btn-red {
-  background-color: #df3c01;
+  background-color: #e21b1b;
   color: var(--white);
-  border: 1px solid #df3c01;
+  border: 1px solid #e21b1b;
 }
 
 .tf-btn.btn-sold-out {

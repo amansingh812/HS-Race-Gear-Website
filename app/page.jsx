@@ -1,24 +1,13 @@
 import Footer1 from "@/components/footers/Footer1";
 import Topbar1 from "@/components/headers/Topbar1";
-import Topbar2 from "@/components/headers/Topbar2";
-import Topbar3 from "@/components/headers/Topbar3";
-import Topbar4 from "@/components/headers/Topbar4";
-import Features from "@/components/homes/home-1/Features";
 import PlantFeatures from "@/components/homes/home-plant/Features";
-import PlantBanner from "@/components/homes/home-plant/Banner";
 import Hero from "@/components/homes/home-1/Hero";
 import HeroF from "@/components/homes/home-fashion-02/HeroF";
-import Shopgram from "@/components/homes/home-1/Shopgram";
 import Header3 from "@/components/headers/Header3";
-import PlantHero from "@/components/homes/home-plant/Hero";
-import PlantBanner2 from "@/components/homes/home-plant/Banner2";
 import PlantCollections from "@/components/homes/home-plant/Collections";
-import PlantProducts from "@/components/homes/home-plant/Products";
-import PlantTestimonials from "@/components/homes/home-plant/Testimonials";
-import VideoBanner from "@/components/homes/home-bicycle/VideoBanner";
-import Banner2 from "@/components/homes/home-fashion-02/Banner2";
-import Collectionss from "@/components/homes/home-furniture/Collectionss";
-import Collections from "@/components/homes/home-pet-accessories/Collections";
+import HeroElectronic from "@/components/homes/home-electric-accessories/HeroElectronic";
+import HeroElectronic2 from "@/components/homes/home-electric-accessories/HeroElectronic2";
+
 
 
 import {
@@ -26,6 +15,8 @@ import {
   SpecificationBanner,
   DetailedSpecs,
   WhyChooseUs,
+  DriversSection,
+  CustomizeSection,
 } from "@/components/homes/home-racing";
 
 export const metadata = {
@@ -39,27 +30,19 @@ export default function Home() {
       <Topbar1 />
       <Header3 />
       <Hero />
+      <CustomizeSection />
       {/* <PlantBanner /> */}
-      <PlantCollections />
-      <RacingCategories />
+      {/* <PlantCollections /> */}
       {/* <Collections /> */}
-
-
-      <Banner2 />
-
+      {/* <Banner2 /> */}
       {/* <Collectionss /> */}
-
       {/* <PlantBanner2 /> */}
+      <HeroElectronic />
 
       <HeroF />
-
-
-
+      <DriversSection />
       {/* <SpecificationBanner /> */}
-
-
-      <DetailedSpecs />
-
+      <HeroElectronic2 />
       {/* <PlantCollections /> */}
       <PlantFeatures />
       <Footer1 />

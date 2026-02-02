@@ -1,7 +1,7 @@
 export const slides = [
   {
     bgType: "bg-type-1",
-    imageSrc: "/images/slider/fashion/hero-1.png",
+    imageSrc: "/images/slider/fashion/slider-hs-4.png",
     width: 1920,
     height: 939,
     heading: "Style <br /> Redefined",
@@ -10,7 +10,7 @@ export const slides = [
   },
   {
     bgType: "bg-type-2",
-    imageSrc: "/images/slider/fashion/slider-fashion-2.png",
+    imageSrc: "/images/slider/fashion/hero_girl.png",
     width: 944,
     height: 939,
     heading: "Elegance <br /> Redefined",
@@ -19,7 +19,7 @@ export const slides = [
   },
   {
     bgType: "bg-type-3",
-    imageSrc: "/images/slider/fashion/hero-1.png",
+    imageSrc: "/images/slider/fashion/hero_cars.png",
     width: 1920,
     height: 939,
     heading: "Elevate Your <br /> Wardrobe",
@@ -30,9 +30,9 @@ export const slides = [
 
 export const fashionSlides = [
   {
-    imgSrc: "/images/slider/fashion/slider-fashion-2-1.png",
+    imgSrc: "/images/banner/body.png",
     alt: "slider",
-    buttonText: "Suit",
+    buttonText: "Suit", 
   },
   {
     imgSrc: "/images/banner/shose.png",
@@ -40,11 +40,11 @@ export const fashionSlides = [
     buttonText: "Shoes",
   },
   {
-    imgSrc: "/images/slider/fashion/slider-fashion-2-3.png",
+    imgSrc: "/images/banner/globes.png",
     alt: "slider",
     buttonText: "Gloves",
   },
-];
+]; 
 
 export const slides2 = [
   {
@@ -259,10 +259,31 @@ export const sliderItems3 = [
 
 export const sliderItems4 = [
   {
-    src: "/images/slider/electric-access/slider-electric-1.jpg",
+    src: "/images/slider/electric-access/cleaned-walk_hero.png",
     title: "Elevate Your Fitness Game",
     description:
-      "Stay ahead with the all-new Apple Watch Series 12—track your workouts, monitor health stats, and enjoy seamless connectivity.",
+      "",
+  },
+  {
+    src: "/images/slider/electric-access/slider-electric-2.jpg",
+    title: "Flex Your Power",
+    description:
+      "The Lenovo Flex 5i 2-in-1 offers versatility, power, and precision in one sleek design.",
+  },
+  {
+    src: "/images/slider/electric-access/slider-electric-3.jpg",
+    title: "Unleash Sound Freedom",
+    description:
+      "Experience immersive sound while staying aware of your surroundings with JBL’s open-ear headphone design.",
+  },
+];
+
+export const sliderItems7 = [
+  {
+    src: "/images/slider/electric-access/hero_2.png",
+    title: "Elevate Your Fitness Game",
+    description:
+      "",
   },
   {
     src: "/images/slider/electric-access/slider-electric-2.jpg",

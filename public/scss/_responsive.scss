@@ -3211,6 +3211,9 @@
   .header-default .wrapper-header .nav-icon {
     gap: 10px;
   }
+  .racing-tools {
+    display: none;
+  }
   .header-absolute-2 {
     margin-bottom: -64px;
     &:not(.header-bg) {
@@ -3646,6 +3649,9 @@
   .md-px-0 {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+  .racing-tools {
+    display: none !important;
   }
   .form-buyX-getY {
     .item-product {

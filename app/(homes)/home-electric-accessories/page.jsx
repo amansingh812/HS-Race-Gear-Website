@@ -6,7 +6,7 @@ import Brands from "@/components/homes/home-electric-accessories/Brands";
 import Categories from "@/components/homes/home-electric-accessories/Categories";
 import Collectiions from "@/components/homes/home-electric-accessories/Collectiions";
 import Features from "@/components/homes/home-electric-accessories/Features";
-import Hero from "@/components/homes/home-electric-accessories/Hero";
+import Hero from "@/components/homes/home-electric-accessories/HeroElectronic";
 import Products from "@/components/homes/home-electric-accessories/Products";
 import Products2 from "@/components/homes/home-electric-accessories/Products2";
 import Products3 from "@/components/homes/home-electric-accessories/Products3";
