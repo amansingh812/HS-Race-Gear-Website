@@ -32,7 +32,7 @@ export default function Home() {
       <Hero />
       <CustomizeSection />
       {/* <PlantBanner /> */}
-      {/* <PlantCollections /> */}
+      <PlantCollections />
       {/* <Collections /> */}
       {/* <Banner2 /> */}
       {/* <Collectionss /> */}
@@ -43,6 +43,7 @@ export default function Home() {
       <DriversSection />
       {/* <SpecificationBanner /> */}
       <HeroElectronic2 />
+
       {/* <PlantCollections /> */}
       <PlantFeatures />
       <Footer1 />

@@ -4,51 +4,51 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
 import Image from "next/image";
+
 export default function HeroF() {
   return (
-    <div className="tf-slideshow slider-fashion-2" style={{ backgroundColor: "black", padding: "20px 10px" }}>
-      <Swiper
-        className="swiper tf-sw-slideshow"
-        spaceBetween={15}
-        breakpoints={{
-          0: { slidesPerView: 1.5 },
-          575: {
-            slidesPerView: 1.5,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          992: {
-            slidesPerView: 3,
-          },
-        }}
-        dir="ltr"
-      >
-        {fashionSlides.map((item, index) => (
-          <SwiperSlide className="swiper-slide" key={index}>
-            <div className="fs-cls hover-img">
-              <div className="img-style image">
-                <Image
-                  src={item.imgSrc}
-                  alt={item.alt}
-                  className="lazyload"
-                  width={610}
-                  height={840}
-                />
-              </div>
-              <div className="content">
-                <Link
-                  href={`/shop-default`}
-                  className="tf-btn btn-white hover-icon-2 hover-dark"
-                >
-                  {item.buttonText}
-                  <i className="icon-arrow-right icon" />
-                </Link>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <section className="flat-spacing-3" style={{ backgroundColor: "black" }}>
+      <div className="slider-layout-right">
+        <div className="tf-slideshow slider-fashion-2">
+          <Swiper
+            className="swiper tf-sw-slideshow"
+            spaceBetween={15}
+            breakpoints={{
+              0: { slidesPerView: 1.2, spaceBetween: 12 },
+              480: { slidesPerView: 1.5, spaceBetween: 12 },
+              575: { slidesPerView: 1.5, spaceBetween: 15 },
+              768: { slidesPerView: 2, spaceBetween: 15 },
+              992: { slidesPerView: 3, spaceBetween: 15 },
+            }}
+            dir="ltr"
+          >
+            {fashionSlides.map((item, index) => (
+              <SwiperSlide className="swiper-slide" key={index}>
+                <div className="fs-cls hover-img">
+                  <div className="img-style image">
+                    <Image
+                      src={item.imgSrc}
+                      alt={item.alt}
+                      className="lazyload"
+                      width={610}
+                      height={840}
+                    />
+                  </div>
+                  <div className="content">
+                    <Link
+                      href={`/shop-default`}
+                      className="tf-btn btn-white hover-icon-2 hover-dark"
+                    >
+                      {item.buttonText}
+                      <i className="icon-arrow-right icon" />
+                    </Link>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+    </section>
   );
 }
