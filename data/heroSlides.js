@@ -1,6 +1,7 @@
 export const slides = [
   {
     bgType: "bg-type-1",
+    imageSrc: "/images/slider/fashion/hero_girl.png",
     width: 1920,
     height: 939,
     heading: "Style <br /> Redefined",
