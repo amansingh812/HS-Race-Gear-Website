@@ -33,9 +33,9 @@ export default function CustomFitBenefitsSection() {
   return (
     <section className="flat-spacing-9 bg_grey-7">
       <div className="container">
-        
+
         <div className="tf-grid-layout lg-col-2 gap-30 gap-lg-60 align-items-start">
-          
+
           {/* LEFT COLUMN: Text Content */}
           <div className="benefits-content">
             {/* Tagline */}
@@ -50,7 +50,7 @@ export default function CustomFitBenefitsSection() {
             }}>
               Benefits Of Custom Fit
             </div>
-            
+
             {/* Main Headline */}
             <h2 className="heading-title mb_40" style={{
               fontSize: 'clamp(32px, 5vw, 48px)',
@@ -64,8 +64,8 @@ export default function CustomFitBenefitsSection() {
             {/* List Items */}
             <div className="benefits-list">
               {benefitsData.map((item, index) => (
-                <div 
-                  key={item.id} 
+                <div
+                  key={item.id}
                   className="benefit-item mb_40"
                   style={{
                     display: 'flex',
@@ -81,7 +81,7 @@ export default function CustomFitBenefitsSection() {
                 >
                   {/* Number Badge */}
                   <div className="flex-shrink-0">
-                    <div 
+                    <div
                       className="number-badge"
                       style={{
                         width: '56px',
@@ -111,10 +111,10 @@ export default function CustomFitBenefitsSection() {
                       {item.id}
                     </div>
                   </div>
-                  
+
                   {/* Text Content */}
                   <div style={{ flex: 1 }}>
-                    <h3 
+                    <h3
                       className="benefit-title mb_10"
                       style={{
                         fontSize: '20px',
@@ -125,7 +125,7 @@ export default function CustomFitBenefitsSection() {
                     >
                       {item.title}
                     </h3>
-                    <p 
+                    <p
                       className="benefit-description text_black-3"
                       style={{
                         fontSize: '15px',
@@ -144,7 +144,7 @@ export default function CustomFitBenefitsSection() {
 
           {/* RIGHT COLUMN: Image with Cut Corner Effect */}
           <div className="benefits-image" style={{ position: 'sticky', top: '100px' }}>
-            <div 
+            <div
               className="image-wrapper"
               style={{
                 width: '100%',
@@ -163,19 +163,19 @@ export default function CustomFitBenefitsSection() {
                 overflow: 'hidden'
               }}
             >
-              {/* Placeholder - Replace with actual image */}
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '72px', marginBottom: '20px' }}>🏁</div>
-                <div style={{ fontSize: '18px', fontWeight: '600', color: '#6c757d' }}>
-                  497 × 595
-                </div>
-                <div style={{ fontSize: '14px', marginTop: '10px', color: '#adb5bd' }}>
-                  Custom Fit Suit Image
-                </div>
-              </div>
+              <img
+                src="/images/shop/compare.png"
+                alt="Custom Fit Racing Suit"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center'
+                }}
+              />
 
               {/* Optional: Add decorative corner badge */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: '0',
@@ -191,11 +191,7 @@ export default function CustomFitBenefitsSection() {
             </div>
 
             {/* Optional: Add caption below image */}
-            <div className="mt_20 text-center">
-              <p className="text_black-3" style={{ fontSize: '14px', fontStyle: 'italic' }}>
-                Professional-grade racing suit tailored to your exact measurements
-              </p>
-            </div>
+
           </div>
 
         </div>

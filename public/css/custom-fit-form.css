@@ -1,0 +1,265 @@
+/* ==========================================
+   Custom Fit Form Page Styles
+   ========================================== */
+
+/* Hero Section Image */
+.custom-fit-hero-img {
+    object-fit: cover;
+    height: 100%;
+}
+
+/* ==========================================
+   Warning Banner
+   ========================================== */
+.cf-warning-banner {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ffe5e5;
+}
+
+.cf-warning-header {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    padding: 18px 30px;
+}
+
+.cf-warning-icon {
+    padding: 5px;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #fff;
+}
+
+.cf-warning-title {
+    padding-left: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.cf-warning-body {
+    padding: 32px 36px;
+}
+
+/* Guidelines Grid */
+.cf-guideline-icon {
+    min-width: 40px;
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+    color: #6c757d;
+}
+
+.cf-guideline-text {
+    padding-top: 2px;
+    padding-left: 10px;
+}
+
+.cf-guideline-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: #212529;
+}
+
+.cf-guideline-desc {
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+/* Disclaimer */
+.cf-disclaimer {
+    margin-top: 15px;
+    background: #fff9e6;
+    border-radius: 8px;
+    border-left: 5px solid #ffc107;
+    padding: 14px 18px;
+}
+
+.cf-disclaimer-text {
+    font-size: 13px;
+    color: #856404;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.cf-disclaimer-text strong {
+    font-weight: 600;
+}
+
+/* ==========================================
+   Success Message
+   ========================================== */
+.cf-success-message {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 10px;
+}
+
+.cf-success-icon {
+    font-size: 4rem;
+}
+
+/* ==========================================
+   Measurement Steps
+   ========================================== */
+.cf-measurement-item {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.cf-measurement-image {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    padding: 30px;
+}
+
+.cf-image-placeholder {
+    width: 180px;
+    height: 180px;
+    background: #dee2e6;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    border: 2px dashed #adb5bd;
+}
+
+.cf-placeholder-icon {
+    font-size: 3rem;
+    color: #6c757d;
+}
+
+.cf-placeholder-text {
+    font-size: 14px;
+}
+
+/* Step Badge */
+.cf-step-badge {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cf-step-text {
+    line-height: 1.7;
+}
+
+/* Measurement Input */
+.cf-measurement-input {
+    max-width: 150px;
+    padding: 12px 15px;
+    font-size: 18px;
+    font-weight: 600;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+}
+
+/* Torso Error */
+.cf-torso-error {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    color: #856404;
+}
+
+/* ==========================================
+   Torso Validation
+   ========================================== */
+.cf-torso-validation {
+    border-radius: 10px;
+}
+
+.cf-torso-validation.has-error {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.cf-torso-validation.valid {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.cf-validation-error-text {
+    color: #856404;
+}
+
+.cf-validation-success-text {
+    color: #155724;
+}
+
+/* ==========================================
+   Additional Measurements & Contact Info
+   ========================================== */
+.cf-form-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.cf-form-input {
+    padding: 12px 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+}
+
+.cf-form-textarea {
+    padding: 12px 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.cf-field-description {
+    font-size: 14px;
+}
+
+/* ==========================================
+   Submit Button
+   ========================================== */
+.cf-submit-btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   Help Section
+   ========================================== */
+.cf-contact-icon {
+    font-size: 1.5rem;
+}
+
+.cf-video-placeholder {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 60px 30px;
+    text-align: center;
+    border: 2px dashed #dee2e6;
+}
+
+.cf-video-icon {
+    font-size: 4rem;
+}
