@@ -262,9 +262,8 @@ export default function Footer4() {
                     inbox.
                   </p>
                   <div
-                    className={`tfSubscribeMsg  footer-sub-element ${
-                      showMessage ? "active" : ""
-                    }`}
+                    className={`tfSubscribeMsg  footer-sub-element ${showMessage ? "active" : ""
+                      }`}
                   >
                     {success ? (
                       <p style={{ color: "rgb(52, 168, 83)" }}>

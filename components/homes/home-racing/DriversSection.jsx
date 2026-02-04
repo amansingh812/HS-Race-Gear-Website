@@ -51,57 +51,10 @@ const specsData = {
 
 export default function DriversSection() {
   return (
-    <section className="drivers-section" style={{ backgroundColor: "#000", color: "#fff", padding: "80px 0" }}>
+    <section className="drivers-section" style={{ backgroundColor: "#000", color: "#fff", }}>
       <div className="container">
-        {/* Header Section */}
-        <div className="row">
-          <div className="col-12 text-center mb-5">
-            <div className="drivers-header">
-              <h2
-                className="display-1 fw-black text-uppercase mb-2"
-                style={{
-                  fontStyle: "italic",
-                  lineHeight: "1.1",
-                  color: "#fff",
-                  fontSize: "clamp(2.5rem, 6vw, 4rem)"
-                }}
-              >
-                Proud to <br /> Protect
-              </h2>
-              <p
-                className="h2 fw-bold text-uppercase mt-3 mb-4"
-                style={{
-                  color: "#666",
-                  fontStyle: "italic",
-                  fontSize: "clamp(1.2rem, 3vw, 2rem)"
-                }}
-              >
-                The Best Drivers In The World
-              </p>
-
-              <div className="drivers-description mx-auto" style={{ maxWidth: "600px" }}>
-                <p className="text-muted mb-4" style={{ fontSize: "0.9rem", lineHeight: "1.6" }}>
-                  With our products we support the best drivers of every motorsport category.
-                  Find out about the racing stars who are using HS RACE GEAR today!
-                </p>
-                <Link
-                  href="/drivers"
-                  className="btn btn-outline-light btn-sm text-uppercase px-4 py-2"
-                  style={{
-                    letterSpacing: "2px",
-                    fontSize: "0.8rem",
-                    transition: "all 0.3s ease"
-                  }}
-                >
-                  Discover the drivers →
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Specs Grid */}
-        <div className="row g-4">
+        <div className="row">
           {Object.entries(specsData).map(([key, data]) => (
             <div key={key} className="col-12 col-md-6 col-lg-4">
               <div

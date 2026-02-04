@@ -92,19 +92,25 @@ export default function Footer6() {
               </div>
               <div className="tf-collapse-content">
                 <div className="footer-contact">
-                  <p className="body-mb_12 font-11">
-                    Find a location nearest you.
-                  </p>
-                  <Link
-                    href={`/store-location`}
-                    className="tf-btn btn-line-dark fw-normal mb_12 body-text font-11"
-                  >
-                    <span className="text-sm text-transform-none">
-                      See Our Stores
-                    </span>
-                  </Link>
-                  <p className="body-mb_12 font-11">(64) 8344 1233</p>
-                  <p className="body-text mb_40 font-11">hello@ecomposer.com</p>
+                  <ul className="footer-info">
+                    <li className="item">
+                      <a
+                        target="_blank"
+                        href="https://www.google.com/maps?q=123Yarranst,Punchbowl,NSW2196,Australia"
+                      >
+                        Contact
+                      </a>
+                    </li>
+                    <li className="item">
+                      <a href="tel:18888383022">About</a>
+                    </li>
+                    <li className="item">
+                      Blog
+                    </li>
+                    <li className="item">
+                      Shipping Policy
+                    </li>
+                  </ul>
                   <ul className="tf-social-icon style-white">
                     <li>
                       <a
@@ -124,15 +130,10 @@ export default function Footer6() {
                     </li>
                     <li>
                       <a
-                        href="https://www.snapchat.com/"
-                        className="social-item social-linkedin"
+                        href="https://www.tiktok.com/"
+                        className="social-item social-tiktok"
                       >
-                        <i className="icon icon-linkedin" />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://x.com/" className="social-item social-x">
-                        <i className="icon icon-x" />
+                        <i className="icon icon-tiktok" />
                       </a>
                     </li>
                   </ul>
@@ -225,9 +226,8 @@ export default function Footer6() {
                     potential with us.
                   </p>
                   <div
-                    className={`tfSubscribeMsg  footer-sub-element ${
-                      showMessage ? "active" : ""
-                    }`}
+                    className={`tfSubscribeMsg  footer-sub-element ${showMessage ? "active" : ""
+                      }`}
                   >
                     {success ? (
                       <p style={{ color: "rgb(52, 168, 83)" }}>

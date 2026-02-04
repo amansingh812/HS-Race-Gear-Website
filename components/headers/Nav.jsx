@@ -10,30 +10,44 @@ export default function Nav() {
     return link?.split("/")[1] == pathname.split("/")[1];
   };
 
-  const shopMenuItems = [
-    {
-      heading: "Racing Suits",
-      links: [
-        { text: "Custom Racing Suits", href: "/shop" },
-        { text: "FIA Approved Suits", href: "/shop" },
-        { text: "Karting Suits", href: "/shop" },
-        { text: "Pre-Made Suits", href: "/shop" },
-      ],
-    },
-    {
-      heading: "Accessories",
-      links: [
-        { text: "Racing Gloves", href: "/shop" },
-        { text: "Racing Shoes", href: "/shop" },
-      ],
-    },
-    {
-      heading: "Team Wear",
-      links: [
-        { text: "Team Wear", href: "/shop" },
-      ],
-    },
+  const customGearItems = [
+    { text: "Custom Race Suit", href: "/custom-race-suit" },
+    { text: "Custom Karting Suit", href: "/custom-measurement" },
+    { text: "Custom Power Boating Suit", href: "/custom-measurement" },
+    { text: "Custom Gloves", href: "/custom-measurement" },
+    { text: "Custom Shoes", href: "/custom-measurement" },
   ];
+
+  const shopMenuItems = [
+    { text: "OFF THE RACK RACE SUIT", href: "/custom-measurement" },
+    { text: "CREW SHIRTS", href: "/custom-measurement" },
+    { text: "SUBLIMATED CREW HOODIES", href: "/custom-measurement" },
+  ];
+
+  // const shopMenuItems = [
+  //   {
+  //     heading: "Racing Suits",
+  //     links: [
+  //       { text: "Custom Racing Suits", href: "/shop" },
+  //       { text: "FIA Approved Suits", href: "/shop" },
+  //       { text: "Karting Suits", href: "/shop" },
+  //       { text: "Pre-Made Suits", href: "/shop" },
+  //     ],
+  //   },
+  //   {
+  //     heading: "Accessories",
+  //     links: [
+  //       { text: "Racing Gloves", href: "/shop" },
+  //       { text: "Racing Shoes", href: "/shop" },
+  //     ],
+  //   },
+  //   {
+  //     heading: "Team Wear",
+  //     links: [
+  //       { text: "Team Wear", href: "/shop" },
+  //     ],
+  //   },
+  // ];
 
   return (
     <>
@@ -52,39 +66,53 @@ export default function Nav() {
           className={`item-link ${isMenuActive("/custom-fit") ? "menuActive" : ""
             }`}
         >
-          CUSTOM GEAR
+          DEALS
         </Link>
       </li>
 
-      <li className="menu-item">
+      <li className="menu-item" style={{ position: "relative" }}>
+        <a href="#" className="item-link">
+          CUSTOM GEAR
+          <i className="icon icon-arr-down" />
+        </a>
+        <div className="sub-menu" style={{ position: "absolute", top: "100%", left: 0, backgroundColor: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", zIndex: 1000 }}>
+          <ul className="menu-list" style={{ display: "flex", flexDirection: "column", padding: "2px 0", margin: 0 }}>
+            {customGearItems.map((item, index) => (
+              <li key={index} style={{ listStyle: "none" }}>
+                <Link
+                  href={item.href}
+                  className={`menu-link-text link ${isMenuActive(item.href) ? "menuActive" : ""}`}
+                  style={{ display: "block", padding: "10px 16px", textDecoration: "none", color: "#000", fontSize: "14px", transition: "background-color 0.3s" }}
+                >
+                  {item.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </li >
+
+      <li className="menu-item" style={{ position: "relative" }}>
         <a href="#" className="item-link">
           SHOP
           <i className="icon icon-arr-down" />
         </a>
-        <div className="sub-menu mega-menu mega-shop">
-          <div className="wrapper-sub-menu">
-            {shopMenuItems.map((menuItem, index) => (
-              <div className="mega-menu-item" key={index}>
-                <div className="menu-heading">{menuItem.heading}</div>
-                <ul className="menu-list">
-                  {menuItem.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
-                      <Link
-                        href={link.href}
-                        className={`menu-link-text link ${isMenuActive(link.href) ? "menuActive" : ""
-                          }`}
-                      >
-                        {link.text}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        <div className="sub-menu" style={{ position: "absolute", top: "100%", left: 0, backgroundColor: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", zIndex: 1000 }}>
+          <ul className="menu-list" style={{ display: "flex", flexDirection: "column", padding: "2px 0", margin: 0 }}>
+            {shopMenuItems.map((item, index) => (
+              <li key={index} style={{ listStyle: "none" }}>
+                <Link
+                  href={item.href}
+                  className={`menu-link-text link ${isMenuActive(item.href) ? "menuActive" : ""}`}
+                  style={{ display: "block", padding: "10px 16px", textDecoration: "none", color: "#000", fontSize: "14px", transition: "background-color 0.3s" }}
+                >
+                  {item.text}
+                </Link>
+              </li>
             ))}
-          </div>
-          <Collections />
+          </ul>
         </div>
-      </li>
+      </li >
 
       <li className="menu-item">
         <Link

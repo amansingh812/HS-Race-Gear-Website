@@ -18,6 +18,11 @@ import {
   DriversSection,
   CustomizeSection,
 } from "@/components/homes/home-racing";
+import Footer2 from "@/components/footers/Footer2";
+import Footer3 from "@/components/footers/Footer3";
+import Footer4 from "@/components/footers/Footer4";
+import Footer5 from "@/components/footers/Footer5";
+import Footer6 from "@/components/footers/Footer6";
 
 export const metadata = {
   title: "Home || H&S Racing Gear - Premium Custom Racing Suits & Motorsport Safety Equipment",
@@ -38,15 +43,14 @@ export default function Home() {
       {/* <Collectionss /> */}
       {/* <PlantBanner2 /> */}
       <HeroElectronic />
-
       <HeroF />
       <DriversSection />
       {/* <SpecificationBanner /> */}
       <HeroElectronic2 />
-
       {/* <PlantCollections /> */}
       <PlantFeatures />
-      <Footer1 />
+      <Footer3 />
+
     </>
   );
 }

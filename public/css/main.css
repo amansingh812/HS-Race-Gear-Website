@@ -21037,12 +21037,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     width: 29%;
     padding: 60px 24px;
     padding-left: 0;
-    border-right: 1px solid var(--line);
   }
   .row-footer .s2 {
     width: 42%;
     padding: 60px 32px;
-    border-right: 1px solid var(--line);
   }
   .row-footer .s3 {
     width: 29%;
