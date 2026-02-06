@@ -18,6 +18,25 @@ export default function CustomFitFormPage() {
         notes: ""
     });
 
+    // Map measurement points to their corresponding images
+    const measurementImages = {
+        "A": "1. Chest - A.jpg",
+        "B": "2. Waist - B.jpg",
+        "C": "3. Hip - C.jpg",
+        "D": "4. Thigh - D.jpg",
+        "E": "5. Neck - E.jpg",
+        "F": "6. Shoulder - F.jpg",
+        "G": "7. Back - G.jpg",
+        "H": "8. Sleeve - H.jpg",
+        "I": "9. Bicep - I.jpg",
+        "J": "10. Forearm - J.jpg",
+        "K": "11. Calf - K.jpg",
+        "L": "12. Torso Length 1 - Neck to belly Button - L.jpg",
+        "M": "13. Torso Length 2 - From Belly Button to Crotch - M.jpg",
+        "N": "14. Inseam - From Crotch to Ankle - N.jpg",
+        "O": "15. Suit Height - From Shoulder to Ankle - O.jpg"
+    };
+
     // Validate torso length: L + M + N must equal O
     useEffect(() => {
         const L = parseFloat(measurements.L) || 0;
@@ -79,18 +98,18 @@ export default function CustomFitFormPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="flat-spacing-9 bg_grey-7">
+            <section className="flat-spacing-9 bg_grey-7" style={{ background: '#070707' }}>
                 <div className="container">
                     <div className="tf-grid-layout md-col-2 gap-30 align-items-center">
                         <div className="tf-content-left">
                             <div className="heading">
-                                <h2 className="heading-title mb_20">
-                                    What Is Custom Gear?
+                                <h2 className="heading-title mb_20" style={{ color: '#ffffff', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                                    What Is <span style={{ color: '#FF4D00' }}>Custom Gear</span>?
                                 </h2>
-                                <p className="text_black-2 mb_20">
-                                    Custom Gear means your racing suit is designed and tailored to your <strong>exact body measurements</strong>—not based on generic size charts or standard patterns. This is critical for professional motorsports including Sprint Car, Drag Racing, Circle Track, and any discipline requiring SFI compliance.
+                                <p className="text_black-2 mb_20" style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.8' }}>
+                                    Custom Gear means your racing suit is designed and tailored to your <strong style={{ color: '#FF4D00' }}>exact body measurements</strong>—not based on generic size charts or standard patterns. This is critical for professional motorsports including Sprint Car, Drag Racing, Circle Track, and any discipline requiring SFI compliance.
                                 </p>
-                                <p className="text_black-2 mb_20">
+                                <p className="text_black-2 mb_20" style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.8' }}>
                                     Unlike off-the-rack suits that use approximate sizes, a custom-fit suit ensures every seam, panel, and contour is positioned perfectly for your body. This eliminates bunching, gaps, and restrictions that can affect your performance and safety on the track.
                                 </p>
                             </div>
@@ -176,9 +195,9 @@ export default function CustomFitFormPage() {
                     {formSubmitted ? (
                         <div className="cf-success-message text-center pt-10">
                             <span className="cf-success-icon">✅</span>
-                            <h3 className="mt_20 mb_15">Measurements Submitted Successfully!</h3>
-                            <p className="mb_20">Thank you for submitting your measurements. Our team will review them and contact you within 24 hours.</p>
-                            <Link href="/shop" className="tf-btn btn-fill animate-hover-btn radius-3">
+                            <h3 className="mt_20 mb_15" style={{ color: '#ffffff', fontWeight: '700' }}>Measurements Submitted Successfully!</h3>
+                            <p className="mb_20" style={{ color: 'rgba(255,255,255,0.8)' }}>Thank you for submitting your measurements. Our team will review them and contact you within 24 hours.</p>
+                            <Link href="/shop" className="tf-btn btn-fill animate-hover-btn radius-3" style={{ background: 'linear-gradient(135deg, #FF4D00, #e04400)', color: '#ffffff' }}>
                                 <span>Continue to Design Your Suit</span>
                                 <i className="icon icon-arrow-right" />
                             </Link>
@@ -193,29 +212,29 @@ export default function CustomFitFormPage() {
                                         className="cf-measurement-item mb_40"
                                     >
                                         <div className="tf-grid-layout md-col-2">
-                                            {/* Left Column - Image Placeholder */}
+                                            {/* Left Column - Measurement Image */}
                                             <div className="cf-measurement-image">
-                                                <div className="image-placeholder text-center">
-                                                    <div className="cf-image-placeholder">
-                                                        <span className="cf-placeholder-icon">📏</span>
-                                                    </div>
-                                                    <p className="text_black-3 cf-placeholder-text">
-                                                        Image Placeholder for Point {step.id}
-                                                    </p>
-                                                    <small className="text-muted">{step.imageAlt}</small>
+                                                <div className="measurement-image-wrapper radius-10 overflow-hidden">
+                                                    <img
+                                                        className="lazyload w-100"
+                                                        data-src={`/images/measurement/${measurementImages[step.id]}`}
+                                                        src={`/images/measurement/${measurementImages[step.id]}`}
+                                                        alt={step.imageAlt}
+                                                    />
                                                 </div>
                                             </div>
 
                                             {/* Right Column - Instructions & Input */}
-                                            <div className="measurement-content p-4">
+                                            <div className="measurement-content p-4" style={{ background: 'linear-gradient(170deg, #0f0f0f 0%, #080808 100%)' }}>
                                                 <div className="cf-step-badge mb_15">
                                                     Point {step.id}
                                                 </div>
-                                                <h4 className="mb_15">{step.label}</h4>
-                                                <p className="text_black-3 mb_20 cf-step-text">
+                                                <h4 className="mb_15" style={{ color: '#ffffff', fontWeight: '700' }}>{step.label}</h4>
+                                                <p className="text_black-3 mb_20 cf-step-text" style={{ color: 'rgba(255,255,255,0.7)' }}>
                                                     {step.text}
                                                 </p>
 
+                                                {/* Input Field */}
 
 
                                                 {/* Show torso validation error after Point O */}
@@ -233,7 +252,7 @@ export default function CustomFitFormPage() {
                             {/* Torso Validation Summary */}
                             {(measurements.L || measurements.M || measurements.N || measurements.O) && (
                                 <div className={`cf-torso-validation mb_40 p-4 ${torsoError ? "has-error" : "valid"}`}>
-                                    <h5 className="mb_15">📐 Torso Length Validation Check</h5>
+                                    <h5 className="mb_15" style={{ color: '#ffffff', fontWeight: '700' }}>📐 Torso Length Validation Check</h5>
                                     <div className="d-flex flex-wrap gap-20 align-items-center">
                                         <div>
                                             <span className="fw-6">L (Neck to Belly):</span> {measurements.L || "—"} cm
@@ -276,6 +295,36 @@ export default function CustomFitFormPage() {
                                 <h4 className="mb_20">📞 Contact Information</h4>
 
                                 <div className="tf-grid-layout md-col-2 gap-30">
+                                    <div className="form-group">
+                                        <label className="fw-6 mb_10 d-block">
+                                            Total Height (cm) <span className="text-danger">*</span>
+                                        </label>
+                                        <input
+                                            type="number"
+                                            step="0.1"
+                                            placeholder="Enter your total height in cm"
+                                            value={additionalInfo.totalHeight}
+                                            onChange={(e) => handleAdditionalChange("totalHeight", e.target.value)}
+                                            required
+                                            className="form-control cf-form-input"
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label className="fw-6 mb_10 d-block">
+                                            Weight (kg) <span className="text-danger">*</span>
+                                        </label>
+                                        <input
+                                            type="number"
+                                            step="0.1"
+                                            placeholder="Enter your weight in kg"
+                                            value={additionalInfo.weight}
+                                            onChange={(e) => handleAdditionalChange("weight", e.target.value)}
+                                            required
+                                            className="form-control cf-form-input"
+                                        />
+                                    </div>
+
                                     <div className="form-group">
                                         <label className="fw-6 mb_10 d-block">
                                             Full Name <span className="text-danger">*</span>
@@ -332,6 +381,22 @@ export default function CustomFitFormPage() {
                                 </div>
                             </div>
 
+                            {/* Submit Button */}
+                            <div className="text-center mt_50">
+                                <button
+                                    type="submit"
+                                    className="tf-btn btn-fill animate-hover-btn radius-3 btn-lg"
+                                    disabled={torsoError}
+                                >
+                                    <span>Submit Measurements</span>
+                                    <i className="icon icon-arrow-right" />
+                                </button>
+                                {torsoError && (
+                                    <p className="text-danger mt_15 mb-0">
+                                        Please correct measurement errors before submitting
+                                    </p>
+                                )}
+                            </div>
 
                         </form>
                     )}

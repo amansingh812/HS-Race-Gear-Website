@@ -17,7 +17,7 @@ export default function page() {
     <>
       <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
       <Header1 />
-      <Breadcumb pageName="Custom Gear" pageTitle="Custom Gear Racing Suits" />
+      {/* <Breadcumb pageName="Custom Gear" pageTitle="Custom Gear Racing Suits" /> */}
       <CustomFitFormPage />
       <Footer1 />
     </>

@@ -62,8 +62,8 @@ export default function Nav() {
 
       <li className="menu-item">
         <Link
-          href="/custom-fit"
-          className={`item-link ${isMenuActive("/custom-fit") ? "menuActive" : ""
+          href="/RacegearDeals"
+          className={`item-link ${isMenuActive("/RacegearDeals") ? "menuActive" : ""
             }`}
         >
           DEALS
@@ -116,8 +116,8 @@ export default function Nav() {
 
       <li className="menu-item">
         <Link
-          href="/pricing"
-          className={`item-link ${isMenuActive("/how-it-works") ? "menuActive" : ""
+          href="/StandardPricing"
+          className={`item-link ${isMenuActive("/StandardPricing") ? "menuActive" : ""
             }`}
         >
           PRICING
