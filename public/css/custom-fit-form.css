@@ -1,42 +1,34 @@
 /* ==========================================
-   Custom Fit Form Page Styles - Racing Black Theme
+   Custom Fit Form Page Styles
    ========================================== */
-
-/* Global Dark Theme */
-body {
-    background: #070707;
-    color: #ffffff;
-}
 
 /* Hero Section Image */
 .custom-fit-hero-img {
     object-fit: cover;
     height: 100%;
-    border: 1px solid rgba(255, 77, 0, 0.2);
 }
 
 /* ==========================================
-   Warning Banner - Racing Theme
+   Warning Banner
    ========================================== */
 .cf-warning-banner {
-    background: linear-gradient(170deg, #141414 0%, #0d0804 60%, #1a0a00 100%);
-    border-radius: 20px;
+    background: #fff;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 77, 0, 0.08);
-    border: 1px solid rgba(255, 77, 0, 0.35);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ffe5e5;
 }
 
 .cf-warning-header {
-    background: linear-gradient(135deg, #FF4D00 0%, #e04400 100%);
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
     padding: 18px 30px;
-    border-bottom: 1px solid rgba(255, 77, 0, 0.3);
 }
 
 .cf-warning-icon {
     padding: 5px;
     width: 42px;
     height: 42px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -47,31 +39,27 @@ body {
 
 .cf-warning-title {
     padding-left: 10px;
-    color: #ffffff;
-    font-weight: 700;
+    color: #fff;
+    font-weight: 600;
     font-size: 17px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .cf-warning-body {
     padding: 32px 36px;
-    background: rgba(0, 0, 0, 0.3);
 }
 
-/* Guidelines Grid - Racing Theme */
+/* Guidelines Grid */
 .cf-guideline-icon {
     min-width: 40px;
     height: 40px;
-    background: rgba(255, 77, 0, 0.1);
-    border: 1px solid rgba(255, 77, 0, 0.3);
+    background: #f0f0f0;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     font-size: 20px;
-    color: #FF4D00;
+    color: #6c757d;
 }
 
 .cf-guideline-text {
@@ -80,95 +68,76 @@ body {
 }
 
 .cf-guideline-title {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 15px;
     margin-bottom: 6px;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: #212529;
 }
 
 .cf-guideline-desc {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #6c757d;
     margin-bottom: 0;
 }
 
-/* Disclaimer - Racing Theme */
+/* Disclaimer */
 .cf-disclaimer {
     margin-top: 15px;
-    background: rgba(255, 77, 0, 0.08);
+    background: #fff9e6;
     border-radius: 8px;
-    border-left: 5px solid #FF4D00;
+    border-left: 5px solid #ffc107;
     padding: 14px 18px;
 }
 
 .cf-disclaimer-text {
     font-size: 13px;
-    color: #ffffff;
+    color: #856404;
     line-height: 1.6;
     margin-bottom: 0;
 }
 
 .cf-disclaimer-text strong {
-    font-weight: 700;
-    color: #FF4D00;
+    font-weight: 600;
 }
 
 /* ==========================================
-   Success Message - Racing Theme
+   Success Message
    ========================================== */
 .cf-success-message {
-    background: linear-gradient(170deg, #141414 0%, #0a0a0a 100%);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 10px;
 }
 
 .cf-success-icon {
     font-size: 4rem;
-    color: #22c55e;
 }
 
 /* ==========================================
-   Measurement Steps - Racing Theme
+   Measurement Steps
    ========================================== */
 .cf-measurement-item {
-    background: linear-gradient(170deg, #111111 0%, #0a0a0a 100%);
-    border-radius: 20px;
+    background: #fff;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
-}
-
-.cf-measurement-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 77, 0, 0.05);
-    border-color: rgba(255, 77, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .cf-measurement-image {
-    background: linear-gradient(160deg, #181818, #0c0c0c);
+    
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 280px;
     padding: 20px;
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Measurement Image Wrapper - Racing Theme */
+/* Measurement Image Wrapper */
 .measurement-image-wrapper {
     width: 100%;
     max-width: 400px;
     height: auto;
     margin: 0 auto;
-    border: 1px solid rgba(255, 77, 0, 0.12);
-    border-radius: 16px;
-    overflow: hidden;
-    background: rgba(255, 77, 0, 0.03);
 }
 
 .measurement-image-wrapper img {
@@ -182,251 +151,133 @@ body {
 .cf-image-placeholder {
     width: 180px;
     height: 180px;
-    background: rgba(255, 77, 0, 0.05);
+    background: #dee2e6;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 15px;
-    border: 2px dashed rgba(255, 77, 0, 0.3);
+    border: 2px dashed #adb5bd;
 }
 
 .cf-placeholder-icon {
     font-size: 3rem;
-    color: #FF4D00;
+    color: #6c757d;
 }
 
 .cf-placeholder-text {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
 }
 
-/* Step Badge - Racing Theme */
+/* Step Badge */
 .cf-step-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #FF4D00, #e04400);
-    color: #ffffff;
-    padding: 8px 20px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    box-shadow: 0 4px 20px rgba(255, 77, 0, 0.3);
+    background: #000;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .cf-step-text {
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.8);
 }
 
-/* Measurement Input - Racing Theme */
+/* Measurement Input */
 .cf-measurement-input {
     max-width: 150px;
     padding: 12px 15px;
     font-size: 18px;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 77, 0, 0.3);
-    border-radius: 12px;
-    color: #ffffff;
-    transition: all 0.3s ease;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
 }
 
-.cf-measurement-input:focus {
-    outline: none;
-    border-color: #FF4D00;
-    background: rgba(255, 77, 0, 0.08);
-    box-shadow: 0 0 20px rgba(255, 77, 0, 0.2);
-}
-
-/* Torso Error - Racing Theme */
+/* Torso Error */
 .cf-torso-error {
-    background: rgba(255, 193, 7, 0.1);
-    border: 1px solid rgba(255, 193, 7, 0.4);
-    border-radius: 12px;
-    color: #ffc107;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    color: #856404;
 }
 
 /* ==========================================
-   Torso Validation - Racing Theme
+   Torso Validation
    ========================================== */
 .cf-torso-validation {
-    border-radius: 16px;
-    background: linear-gradient(170deg, #111111 0%, #0a0a0a 100%);
+    border-radius: 10px;
 }
 
 .cf-torso-validation.has-error {
-    background: rgba(255, 193, 7, 0.08);
-    border: 1px solid rgba(255, 193, 7, 0.4);
+    background: #fff3cd;
+    border: 1px solid #ffc107;
 }
 
 .cf-torso-validation.valid {
-    background: rgba(34, 197, 94, 0.08);
-    border: 1px solid rgba(34, 197, 94, 0.4);
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
 }
 
 .cf-validation-error-text {
-    color: #ffc107;
+    color: #856404;
 }
 
 .cf-validation-success-text {
-    color: #22c55e;
+    color: #155724;
 }
 
 /* ==========================================
-   Additional Measurements & Contact Info - Racing Theme
+   Additional Measurements & Contact Info
    ========================================== */
 .cf-form-card {
-    background: linear-gradient(170deg, #111111 0%, #0a0a0a 100%);
-    border-radius: 20px;
+    background: #fff;
+    border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.cf-form-card h4 {
-    color: #ffffff;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .cf-form-input {
     padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 77, 0, 0.3);
-    border-radius: 12px;
-    color: #ffffff;
-    transition: all 0.3s ease;
-}
-
-.cf-form-input:focus {
-    outline: none;
-    border-color: #FF4D00;
-    background: rgba(255, 77, 0, 0.08);
-    box-shadow: 0 0 20px rgba(255, 77, 0, 0.2);
-}
-
-.cf-form-input::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
 }
 
 .cf-form-textarea {
     padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 77, 0, 0.3);
-    border-radius: 12px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
     resize: vertical;
-    color: #ffffff;
-    transition: all 0.3s ease;
-}
-
-.cf-form-textarea:focus {
-    outline: none;
-    border-color: #FF4D00;
-    background: rgba(255, 77, 0, 0.08);
-    box-shadow: 0 0 20px rgba(255, 77, 0, 0.2);
-}
-
-.cf-form-textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
 }
 
 .cf-field-description {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.form-group label {
-    color: #ffffff;
-    font-weight: 600;
 }
 
 /* ==========================================
-   Submit Button - Racing Theme
+   Submit Button
    ========================================== */
 .cf-submit-btn.disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-button[type="submit"] {
-    background: linear-gradient(135deg, #FF4D00, #e04400) !important;
-    border: none !important;
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 2px !important;
-    box-shadow: 0 8px 36px rgba(255, 77, 0, 0.3) !important;
-    transition: all 0.3s ease !important;
-}
-
-button[type="submit"]:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 48px rgba(255, 77, 0, 0.4) !important;
-}
-
-button[type="submit"]:disabled {
-    opacity: 0.4;
+    opacity: 0.6;
     cursor: not-allowed;
 }
 
 /* ==========================================
-   Help Section - Racing Theme
+   Help Section
    ========================================== */
 .cf-contact-icon {
     font-size: 1.5rem;
-    color: #FF4D00;
 }
 
 .cf-video-placeholder {
-    background: linear-gradient(170deg, #111111 0%, #0a0a0a 100%);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 60px 30px;
     text-align: center;
-    border: 2px dashed rgba(255, 77, 0, 0.3);
-    border-radius: 16px;
+    border: 2px dashed #dee2e6;
 }
 
 .cf-video-icon {
     font-size: 4rem;
-    color: #FF4D00;
-}
-
-/* Additional global styles for racing theme */
-h1, h2, h3, h4, h5, h6 {
-    color: #ffffff !important;
-}
-
-p {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.text_black-2, .text_black-3 {
-    color: rgba(255, 255, 255, 0.7) !important;
-}
-
-section {
-    background: #070707 !important;
-}
-
-.bg_grey-7 {
-    background: #070707 !important;
-}
-
-/* Links and anchors */
-a {
-    color: #FF4D00;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #FFB800;
-}
-
-/* Text danger */
-.text-danger {
-    color: #FF4D00 !important;
 }
 
 /* ==========================================

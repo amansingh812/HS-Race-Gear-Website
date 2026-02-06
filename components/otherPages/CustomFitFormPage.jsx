@@ -98,18 +98,18 @@ export default function CustomFitFormPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="flat-spacing-9 bg_grey-7" style={{ background: '#070707' }}>
+            <section className="flat-spacing-9 bg_grey-7">
                 <div className="container">
                     <div className="tf-grid-layout md-col-2 gap-30 align-items-center">
                         <div className="tf-content-left">
                             <div className="heading">
-                                <h2 className="heading-title mb_20" style={{ color: '#ffffff', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                                    What Is <span style={{ color: '#FF4D00' }}>Custom Gear</span>?
+                                <h2 className="heading-title mb_20">
+                                    What Is Custom Gear?
                                 </h2>
-                                <p className="text_black-2 mb_20" style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.8' }}>
-                                    Custom Gear means your racing suit is designed and tailored to your <strong style={{ color: '#FF4D00' }}>exact body measurements</strong>—not based on generic size charts or standard patterns. This is critical for professional motorsports including Sprint Car, Drag Racing, Circle Track, and any discipline requiring SFI compliance.
+                                <p className="text_black-2 mb_20">
+                                    Custom Gear means your racing suit is designed and tailored to your <strong>exact body measurements</strong>—not based on generic size charts or standard patterns. This is critical for professional motorsports including Sprint Car, Drag Racing, Circle Track, and any discipline requiring SFI compliance.
                                 </p>
-                                <p className="text_black-2 mb_20" style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.8' }}>
+                                <p className="text_black-2 mb_20">
                                     Unlike off-the-rack suits that use approximate sizes, a custom-fit suit ensures every seam, panel, and contour is positioned perfectly for your body. This eliminates bunching, gaps, and restrictions that can affect your performance and safety on the track.
                                 </p>
                             </div>
@@ -195,9 +195,9 @@ export default function CustomFitFormPage() {
                     {formSubmitted ? (
                         <div className="cf-success-message text-center pt-10">
                             <span className="cf-success-icon">✅</span>
-                            <h3 className="mt_20 mb_15" style={{ color: '#ffffff', fontWeight: '700' }}>Measurements Submitted Successfully!</h3>
-                            <p className="mb_20" style={{ color: 'rgba(255,255,255,0.8)' }}>Thank you for submitting your measurements. Our team will review them and contact you within 24 hours.</p>
-                            <Link href="/shop" className="tf-btn btn-fill animate-hover-btn radius-3" style={{ background: 'linear-gradient(135deg, #FF4D00, #e04400)', color: '#ffffff' }}>
+                            <h3 className="mt_20 mb_15">Measurements Submitted Successfully!</h3>
+                            <p className="mb_20">Thank you for submitting your measurements. Our team will review them and contact you within 24 hours.</p>
+                            <Link href="/shop" className="tf-btn btn-fill animate-hover-btn radius-3">
                                 <span>Continue to Design Your Suit</span>
                                 <i className="icon icon-arrow-right" />
                             </Link>
@@ -225,12 +225,12 @@ export default function CustomFitFormPage() {
                                             </div>
 
                                             {/* Right Column - Instructions & Input */}
-                                            <div className="measurement-content p-4" style={{ background: 'linear-gradient(170deg, #0f0f0f 0%, #080808 100%)' }}>
+                                            <div className="measurement-content p-4">
                                                 <div className="cf-step-badge mb_15">
                                                     Point {step.id}
                                                 </div>
-                                                <h4 className="mb_15" style={{ color: '#ffffff', fontWeight: '700' }}>{step.label}</h4>
-                                                <p className="text_black-3 mb_20 cf-step-text" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                                                <h4 className="mb_15">{step.label}</h4>
+                                                <p className="text_black-3 mb_20 cf-step-text">
                                                     {step.text}
                                                 </p>
 
@@ -252,7 +252,7 @@ export default function CustomFitFormPage() {
                             {/* Torso Validation Summary */}
                             {(measurements.L || measurements.M || measurements.N || measurements.O) && (
                                 <div className={`cf-torso-validation mb_40 p-4 ${torsoError ? "has-error" : "valid"}`}>
-                                    <h5 className="mb_15" style={{ color: '#ffffff', fontWeight: '700' }}>📐 Torso Length Validation Check</h5>
+                                    <h5 className="mb_15">📐 Torso Length Validation Check</h5>
                                     <div className="d-flex flex-wrap gap-20 align-items-center">
                                         <div>
                                             <span className="fw-6">L (Neck to Belly):</span> {measurements.L || "—"} cm
