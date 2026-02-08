@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import "@/public/css/custom-race-suit.css";
 
 export default function CustomRaceSuitPage() {
     const features = [

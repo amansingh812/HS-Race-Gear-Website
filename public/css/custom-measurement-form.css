@@ -1,0 +1,12 @@
+/* Custom Measurement Form Page Styles */
+
+.measurements-grid .input-group:focus-within {
+  border-color: #b0302b;
+  box-shadow: 0 4px 15px rgba(176, 48, 43, 0.1);
+}
+
+.stitch-card:hover,
+.collar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

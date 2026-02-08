@@ -1,7 +1,8 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
-import StoreLocations from "@/components/otherPages/StoreLocations";
+import StoreLocations from "@/components/hsRaceGear/shop/StoreLocations";
+import "@/public/css/store-locations.css";
 import React from "react";
 import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";

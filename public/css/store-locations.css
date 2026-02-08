@@ -1,0 +1,9 @@
+/* Store Locations Page Styles */
+
+.s-store-location .box-store {
+  transition: box-shadow 0.3s ease;
+}
+
+.s-store-location .box-store:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

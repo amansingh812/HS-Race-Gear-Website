@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
+import "@/public/css/racegear-deals.css";
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#FF4D00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#e21b1b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -14,11 +15,11 @@ const FireIcon = () => (
     <defs>
       <linearGradient id="fire" x1="12" y1="4" x2="12" y2="23" gradientUnits="userSpaceOnUse">
         <stop stopColor="#FF4D00" />
-        <stop offset="1" stopColor="#FFB800" />
+        <stop offset="1" stopColor="#FF4D00" />
       </linearGradient>
       <linearGradient id="fire2" x1="12" y1="12" x2="12" y2="23" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#FFD600" />
-        <stop offset="1" stopColor="#FF8C00" />
+        <stop stopColor="#FF4D00" />
+        <stop offset="1" stopColor="#FF4D00" />
       </linearGradient>
     </defs>
   </svg>
@@ -26,8 +27,8 @@ const FireIcon = () => (
 
 const ShieldIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2L3 7V12C3 17.25 6.75 22.13 12 23C17.25 22.13 21 17.25 21 12V7L12 2Z" stroke="#FF4D00" strokeWidth="1.5" fill="none" />
-    <path d="M9 12L11 14L15 10" stroke="#FF4D00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 2L3 7V12C3 17.25 6.75 22.13 12 23C17.25 22.13 21 17.25 21 12V7L12 2Z" stroke="#e21b1b" strokeWidth="1.5" fill="none" />
+    <path d="M9 12L11 14L15 10" stroke="#e21b1b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -243,11 +244,11 @@ function DealCard({ offer, categoryImage }) {
       style={{
         position: "relative",
         background: offer.badge
-          ? "linear-gradient(165deg, #1a1a1a 0%, #0d0d0d 50%, #1a0a00 100%)"
+          ? "linear-gradient(165deg, #1a1a1a 0%, #0d0d0d 50%, #1a0000 100%)"
           : "linear-gradient(165deg, #141414 0%, #0a0a0a 100%)",
         borderRadius: "16px",
         border: offer.badge
-          ? "1px solid rgba(255, 77, 0, 0.4)"
+          ? "1px solid rgba(226, 27, 27, 0.4)"
           : "1px solid rgba(255, 255, 255, 0.06)",
         overflow: "hidden",
         transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -267,16 +268,16 @@ function DealCard({ offer, categoryImage }) {
             position: "absolute",
             top: "16px",
             right: "16px",
-            background: "linear-gradient(135deg, #FF4D00, #FF8C00)",
+            background: "linear-gradient(135deg, #e21b1b, #c41515)",
             color: "#fff",
-            fontSize: "10px",
+            fontSize: "11px",
             fontWeight: "800",
             letterSpacing: "1.5px",
             padding: "6px 14px",
             borderRadius: "100px",
             zIndex: 10,
-            fontFamily: "'Barlow Condensed', sans-serif",
-            boxShadow: "0 4px 20px rgba(255,77,0,0.4)",
+            fontFamily: "'Poppins', sans-serif",
+            boxShadow: "0 4px 20px rgba(226,27,27,0.4)",
           }}
         >
           {offer.badge}
@@ -367,11 +368,11 @@ function DealCard({ offer, categoryImage }) {
           <FireIcon />
           <span
             style={{
-              color: "#FF4D00",
-              fontSize: "12px",
+              color: "#e21b1b",
+              fontSize: "14px",
               fontWeight: "700",
               letterSpacing: "2px",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
             }}
           >
             {offer.tag}
@@ -381,13 +382,13 @@ function DealCard({ offer, categoryImage }) {
         {/* Title */}
         <h3
           style={{
-            color: "#fff",
-            fontSize: "15px",
+            color: "#ffffff",
+            fontSize: "17px",
             fontWeight: "700",
             lineHeight: "1.5",
             margin: "0 0 20px 0",
-            fontFamily: "'Barlow Condensed', sans-serif",
-            letterSpacing: "0.5px",
+            fontFamily: "'Poppins', sans-serif",
+            letterSpacing: "0.3px",
             textTransform: "uppercase",
             minHeight: "68px",
           }}
@@ -400,20 +401,20 @@ function DealCard({ offer, categoryImage }) {
           <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
             <span
               style={{
-                color: "rgba(255,255,255,0.4)",
-                fontSize: "18px",
+                color: "rgba(255,255,255,0.6)",
+                fontSize: "22px",
                 fontWeight: "600",
-                fontFamily: "'Oswald', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
               }}
             >
               $
             </span>
             <span
               style={{
-                color: "#fff",
-                fontSize: "48px",
+                color: "#ffffff",
+                fontSize: "52px",
                 fontWeight: "700",
-                fontFamily: "'Oswald', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 lineHeight: 1,
                 letterSpacing: "-1px",
               }}
@@ -422,10 +423,10 @@ function DealCard({ offer, categoryImage }) {
             </span>
             <span
               style={{
-                color: "rgba(255,255,255,0.35)",
-                fontSize: "14px",
+                color: "rgba(255,255,255,0.5)",
+                fontSize: "16px",
                 fontWeight: "500",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 marginLeft: "4px",
                 letterSpacing: "1px",
               }}
@@ -464,10 +465,10 @@ function DealCard({ offer, categoryImage }) {
                 display: "flex",
                 alignItems: "flex-start",
                 gap: "10px",
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.6)",
-                lineHeight: "1.4",
-                fontFamily: "'Barlow', sans-serif",
+                fontSize: "14px",
+                color: "rgba(255,255,255,0.75)",
+                lineHeight: "1.5",
+                fontFamily: "'Poppins', sans-serif",
               }}
             >
               <span style={{ flexShrink: 0, marginTop: "2px" }}>
@@ -484,19 +485,19 @@ function DealCard({ offer, categoryImage }) {
             width: "100%",
             padding: "16px 24px",
             background: offer.badge
-              ? "linear-gradient(135deg, #FF4D00, #e04400)"
+              ? "linear-gradient(135deg, #e21b1b, #c41515)"
               : "transparent",
             border: offer.badge
               ? "none"
               : "1.5px solid rgba(226,27,27,0.5)",
             borderRadius: "10px",
-            color: offer.badge ? "#fff" : "#FF4D00",
-            fontSize: "13px",
+            color: offer.badge ? "#fff" : "#e21b1b",
+            fontSize: "14px",
             fontWeight: "700",
             letterSpacing: "2px",
             textTransform: "uppercase",
             cursor: "pointer",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -525,27 +526,25 @@ export default function RacegearDeals() {
         minHeight: "100vh",
         background: "#070707",
         color: "#fff",
-        fontFamily: "'Barlow', sans-serif",
+        fontFamily: "'Poppins', sans-serif",
         position: "relative",
         overflow: "hidden",
       }}
     >
       {/* Google Fonts */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap');
-        
         * { box-sizing: border-box; }
-        
+
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.6; }
         }
-        
+
         @keyframes slideIn {
           from { opacity: 0; transform: translateX(-20px); }
           to { opacity: 1; transform: translateX(0); }
@@ -594,7 +593,7 @@ export default function RacegearDeals() {
           style={{
             width: "60px",
             height: "3px",
-            background: "linear-gradient(to right, #FF4D00, #FF8C00)",
+            background: "linear-gradient(to right, #e21b1b, #c41515)",
             margin: "0 auto 32px",
             borderRadius: "2px",
           }}
@@ -605,8 +604,8 @@ export default function RacegearDeals() {
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
-            background: "rgba(255,77,0,0.08)",
-            border: "1px solid rgba(226,27,27,0.15)",
+            background: "rgba(226,27,27,0.08)",
+            border: "1px solid rgba(226,27,27,0.2)",
             borderRadius: "100px",
             padding: "8px 20px",
             marginBottom: "28px",
@@ -615,12 +614,12 @@ export default function RacegearDeals() {
           <FireIcon />
           <span
             style={{
-              color: "#FF4D00",
-              fontSize: "12px",
+              color: "#e21b1b",
+              fontSize: "14px",
               fontWeight: "700",
               letterSpacing: "3px",
               textTransform: "uppercase",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
             }}
           >
             Fire Deals
@@ -631,8 +630,8 @@ export default function RacegearDeals() {
 
         <p
           style={{
-            color: "rgba(255,255,255,0.5)",
-            fontSize: "16px",
+            color: "rgba(255,255,255,0.65)",
+            fontSize: "18px",
             lineHeight: "1.7",
             maxWidth: "680px",
             margin: "0 auto 40px",
@@ -661,11 +660,11 @@ export default function RacegearDeals() {
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
-                  color: "rgba(255,255,255,0.35)",
-                  fontSize: "12px",
+                  color: "rgba(255,255,255,0.5)",
+                  fontSize: "13px",
                   letterSpacing: "1px",
                   textTransform: "uppercase",
-                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontWeight: "600",
                 }}
               >
@@ -710,14 +709,14 @@ export default function RacegearDeals() {
                     : "rgba(255,255,255,0.02)",
                 color:
                   activeCategory === i
-                    ? "#FF4D00"
-                    : "rgba(255,255,255,0.4)",
-                fontSize: "12px",
+                    ? "#e21b1b"
+                    : "rgba(255,255,255,0.5)",
+                fontSize: "13px",
                 fontWeight: "700",
                 letterSpacing: "1.5px",
                 textTransform: "uppercase",
                 cursor: "pointer",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 transition: "all 0.3s ease",
               }}
             >
@@ -753,18 +752,19 @@ export default function RacegearDeals() {
               style={{
                 width: "4px",
                 height: "32px",
-                background: "linear-gradient(to bottom, #FF4D00, #FF8C00)",
+                background: "linear-gradient(to bottom, #e21b1b, #a01010)",
                 borderRadius: "2px",
               }}
             />
             <h2
               style={{
-                fontFamily: "'Oswald', sans-serif",
-                fontSize: "28px",
-                fontWeight: "600",
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "30px",
+                fontWeight: "700",
                 textTransform: "uppercase",
                 letterSpacing: "1px",
                 margin: 0,
+                color: "#ffffff",
               }}
             >
               {section.category}
@@ -810,24 +810,24 @@ export default function RacegearDeals() {
         />
         <h2
           style={{
-            fontFamily: "'Oswald', sans-serif",
-            fontSize: "clamp(28px, 4vw, 42px)",
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "clamp(30px, 4vw, 46px)",
             fontWeight: "700",
             textTransform: "uppercase",
             margin: "0 0 16px 0",
             position: "relative",
-            color: "white",
+            color: "#ffffff",
           }}
         >
           Ready to Hit the Track?
         </h2>
         <p
           style={{
-            color: "rgba(255,255,255,0.4)",
-            fontSize: "15px",
+            color: "rgba(255,255,255,0.6)",
+            fontSize: "17px",
             maxWidth: "500px",
             margin: "0 auto 32px",
-            lineHeight: "1.6",
+            lineHeight: "1.7",
             position: "relative",
           }}
         >
@@ -838,16 +838,16 @@ export default function RacegearDeals() {
           <button
             style={{
               padding: "18px 48px",
-              background: "linear-gradient(135deg, #FF4D00, #e04400)",
+              background: "linear-gradient(135deg, #e21b1b, #c41515)",
               border: "none",
               borderRadius: "10px",
               color: "#fff",
-              fontSize: "14px",
+              fontSize: "15px",
               fontWeight: "700",
               letterSpacing: "2px",
               textTransform: "uppercase",
               cursor: "pointer",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
@@ -862,13 +862,13 @@ export default function RacegearDeals() {
             background: "transparent",
             border: "1.5px solid rgba(226,27,27,0.5)",
             borderRadius: "10px",
-            color: "#FF4D00",
-            fontSize: "14px",
+            color: "#e21b1b",
+            fontSize: "15px",
             fontWeight: "700",
             letterSpacing: "2px",
             textTransform: "uppercase",
             cursor: "pointer",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             display: "inline-flex",
             alignItems: "center",
             gap: "10px",

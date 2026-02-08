@@ -1,0 +1,64 @@
+/* Custom Race Suit Page Styles */
+
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
+    url("/images/shop/cleaned-custom_gear_Hero.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #ef4444, #ea580c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.red-glow {
+  background: linear-gradient(to left, rgba(127, 29, 29, 0.2), transparent);
+}
+
+.feature-icon {
+  background: rgba(220, 38, 38, 0.2);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  background: #dc2626;
+}
+
+.feature-card:hover .feature-icon svg {
+  color: white;
+}
+
+.step-circle {
+  transition: all 0.3s ease;
+}
+
+.step-circle.active {
+  background: #dc2626;
+}
+
+.step-circle:not(.active) {
+  background: #404040;
+}
+
+@media (min-width: 768px) {
+  .hero-cta-buttons {
+    flex-direction: row !important;
+  }
+}

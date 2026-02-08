@@ -1,19 +1,20 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import "@/public/css/standard-pricing.css";
 
 /* ───────────────────────── SVG Icons ───────────────────────── */
 
 const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <circle cx="8" cy="8" r="7" stroke="#FF4D00" strokeWidth="1.2" fill="rgba(255,77,0,0.06)" />
-    <path d="M5 8.2L7.2 10.4L11 5.6" stroke="#FF4D00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="8" cy="8" r="7" stroke="#e21b1b" strokeWidth="1.2" fill="rgba(226,27,27,0.06)" />
+    <path d="M5 8.2L7.2 10.4L11 5.6" stroke="#e21b1b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 const SpecDot = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-    <rect x="3" y="3" width="8" height="8" rx="2" fill="rgba(255,140,0,0.15)" stroke="rgba(255,140,0,0.4)" strokeWidth="0.8" />
+    <rect x="3" y="3" width="8" height="8" rx="2" fill="rgba(226,27,27,0.15)" stroke="rgba(226,27,27,0.4)" strokeWidth="0.8" />
   </svg>
 );
 
@@ -24,7 +25,7 @@ const ArrowRight = () => (
 );
 
 const TagIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF4D00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e21b1b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
     <line x1="7" y1="7" x2="7.01" y2="7" />
   </svg>
@@ -32,39 +33,39 @@ const TagIcon = () => (
 
 const SuitIcon = () => (
   <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    <path d="M24 4C20 4 16 7 15 10L12 20V40C12 42 14 44 16 44H32C34 44 36 42 36 40V20L33 10C32 7 28 4 24 4Z" stroke="rgba(255,77,0,0.35)" strokeWidth="1.5" fill="rgba(255,77,0,0.04)" />
-    <path d="M18 10C18 10 20 14 24 14C28 14 30 10 30 10" stroke="rgba(255,77,0,0.25)" strokeWidth="1.2" fill="none" />
-    <path d="M20 24H28M20 30H28M20 36H28" stroke="rgba(255,77,0,0.15)" strokeWidth="1" strokeLinecap="round" />
+    <path d="M24 4C20 4 16 7 15 10L12 20V40C12 42 14 44 16 44H32C34 44 36 42 36 40V20L33 10C32 7 28 4 24 4Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
+    <path d="M18 10C18 10 20 14 24 14C28 14 30 10 30 10" stroke="rgba(226,27,27,0.25)" strokeWidth="1.2" fill="none" />
+    <path d="M20 24H28M20 30H28M20 36H28" stroke="rgba(226,27,27,0.15)" strokeWidth="1" strokeLinecap="round" />
   </svg>
 );
 
 const GloveIcon = () => (
   <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    <path d="M16 44V28L12 16C11 13 13 10 16 10V6C16 4 18 2 20 4V10H22V4C22 2 24 0 26 2V10H28V6C28 4 30 2 32 4V10C35 10 37 13 36 16L32 28V44H16Z" stroke="rgba(255,77,0,0.35)" strokeWidth="1.5" fill="rgba(255,77,0,0.04)" />
+    <path d="M16 44V28L12 16C11 13 13 10 16 10V6C16 4 18 2 20 4V10H22V4C22 2 24 0 26 2V10H28V6C28 4 30 2 32 4V10C35 10 37 13 36 16L32 28V44H16Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
   </svg>
 );
 
 const ShoeIcon = () => (
   <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    <path d="M8 32C8 32 10 24 14 22C18 20 22 18 24 16C26 14 30 12 34 14C38 16 42 22 42 26V32C42 34 40 36 38 36H12C10 36 8 34 8 32Z" stroke="rgba(255,77,0,0.35)" strokeWidth="1.5" fill="rgba(255,77,0,0.04)" />
-    <path d="M14 32H38" stroke="rgba(255,77,0,0.2)" strokeWidth="1" strokeDasharray="2 3" />
+    <path d="M8 32C8 32 10 24 14 22C18 20 22 18 24 16C26 14 30 12 34 14C38 16 42 22 42 26V32C42 34 40 36 38 36H12C10 36 8 34 8 32Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
+    <path d="M14 32H38" stroke="rgba(226,27,27,0.2)" strokeWidth="1" strokeDasharray="2 3" />
   </svg>
 );
 
 const KartIcon = () => (
   <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    <circle cx="12" cy="38" r="5" stroke="rgba(255,77,0,0.35)" strokeWidth="1.5" fill="rgba(255,77,0,0.04)" />
-    <circle cx="36" cy="38" r="5" stroke="rgba(255,77,0,0.35)" strokeWidth="1.5" fill="rgba(255,77,0,0.04)" />
-    <path d="M8 30H40L38 22H28L24 12H18L14 22H10L8 30Z" stroke="rgba(255,77,0,0.35)" strokeWidth="1.5" fill="rgba(255,77,0,0.04)" />
-    <path d="M22 22L24 12" stroke="rgba(255,77,0,0.2)" strokeWidth="1" />
+    <circle cx="12" cy="38" r="5" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
+    <circle cx="36" cy="38" r="5" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
+    <path d="M8 30H40L38 22H28L24 12H18L14 22H10L8 30Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
+    <path d="M22 22L24 12" stroke="rgba(226,27,27,0.2)" strokeWidth="1" />
   </svg>
 );
 
 const LayerIcon = ({ layers = 1 }) => (
   <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    {layers >= 1 && <path d="M24 8L6 18L24 28L42 18L24 8Z" stroke="rgba(255,77,0,0.35)" strokeWidth="1.5" fill="rgba(255,77,0,0.04)" />}
-    {layers >= 2 && <path d="M6 24L24 34L42 24" stroke="rgba(255,77,0,0.25)" strokeWidth="1.3" fill="none" />}
-    {layers >= 3 && <path d="M6 30L24 40L42 30" stroke="rgba(255,77,0,0.18)" strokeWidth="1.1" fill="none" />}
+    {layers >= 1 && <path d="M24 8L6 18L24 28L42 18L24 8Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />}
+    {layers >= 2 && <path d="M6 24L24 34L42 24" stroke="rgba(226,27,27,0.25)" strokeWidth="1.3" fill="none" />}
+    {layers >= 3 && <path d="M6 30L24 40L42 30" stroke="rgba(226,27,27,0.18)" strokeWidth="1.1" fill="none" />}
   </svg>
 );
 
@@ -287,11 +288,11 @@ function PricingCard({ item, index }) {
           ? "linear-gradient(170deg, #141414 0%, #0d0804 60%, #1a0a00 100%)"
           : "linear-gradient(170deg, #111111 0%, #0a0a0a 100%)",
         border: item.popular
-          ? "1px solid rgba(255,77,0,0.35)"
+          ? "1px solid rgba(226,27,27,0.35)"
           : "1px solid rgba(255,255,255,0.05)",
         boxShadow: hovered
           ? item.popular
-            ? "0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(255,77,0,0.08), inset 0 1px 0 rgba(255,77,0,0.1)"
+            ? "0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(226,27,27,0.08), inset 0 1px 0 rgba(226,27,27,0.1)"
             : "0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03)"
           : "0 8px 40px rgba(0,0,0,0.3)",
         display: "flex",
@@ -306,7 +307,7 @@ function PricingCard({ item, index }) {
           left: 0,
           right: 0,
           height: "3px",
-          background: "linear-gradient(90deg, transparent, #FF4D00, #FFB800, #FF4D00, transparent)",
+          background: "linear-gradient(90deg, transparent, #e21b1b, #a01010, #e21b1b, transparent)",
           zIndex: 10,
         }} />
       )}
@@ -317,16 +318,16 @@ function PricingCard({ item, index }) {
           position: "absolute",
           top: "20px",
           right: "20px",
-          background: "linear-gradient(135deg, #FF4D00, #FF8C00)",
+          background: "linear-gradient(135deg, #e21b1b, #c41515)",
           color: "#fff",
-          fontSize: "9px",
+          fontSize: "11px",
           fontWeight: "800",
           letterSpacing: "2px",
           padding: "6px 16px",
           borderRadius: "100px",
           zIndex: 10,
-          fontFamily: "'Barlow Condensed', sans-serif",
-          boxShadow: "0 4px 24px rgba(255,77,0,0.4)",
+          fontFamily: "'Poppins', sans-serif",
+          boxShadow: "0 4px 24px rgba(226,27,27,0.4)",
           textTransform: "uppercase",
         }}>
           Most Popular
@@ -352,8 +353,8 @@ function PricingCard({ item, index }) {
             -45deg,
             transparent,
             transparent 40px,
-            rgba(255,77,0,0.015) 40px,
-            rgba(255,77,0,0.015) 41px
+            rgba(226,27,27,0.015) 40px,
+            rgba(226,27,27,0.015) 41px
           )`,
           transform: hovered ? "translate(10px, -10px)" : "translate(0, 0)",
           transition: "transform 1.2s ease",
@@ -370,8 +371,8 @@ function PricingCard({ item, index }) {
             width: "80px",
             height: "80px",
             borderRadius: "20px",
-            border: "1px solid rgba(255,77,0,0.12)",
-            background: "rgba(255,77,0,0.03)",
+            border: "1px solid rgba(226,27,27,0.12)",
+            background: "rgba(226,27,27,0.03)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -381,11 +382,11 @@ function PricingCard({ item, index }) {
             <ProductIcon type={item.icon} />
           </div>
           <p style={{
-            color: "rgba(255,255,255,0.2)",
-            fontSize: "10px",
+            color: "rgba(255,255,255,0.35)",
+            fontSize: "12px",
             letterSpacing: "3px",
             textTransform: "uppercase",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             margin: 0,
           }}>
             Product Image
@@ -421,20 +422,20 @@ function PricingCard({ item, index }) {
             gap: "6px",
             background: "rgba(0,0,0,0.6)",
             backdropFilter: "blur(12px)",
-            border: "1px solid rgba(255,77,0,0.15)",
+            border: "1px solid rgba(226,27,27,0.15)",
             borderRadius: "8px",
             padding: "6px 12px",
           }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L3 7V12C3 17.25 6.75 22.13 12 23C17.25 22.13 21 17.25 21 12V7L12 2Z" stroke="#FF4D00" strokeWidth="1.5" fill="none" />
-              <path d="M9 12L11 14L15 10" stroke="#FF4D00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M12 2L3 7V12C3 17.25 6.75 22.13 12 23C17.25 22.13 21 17.25 21 12V7L12 2Z" stroke="#e21b1b" strokeWidth="1.5" fill="none" />
+              <path d="M9 12L11 14L15 10" stroke="#e21b1b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span style={{
-              color: "#FF4D00",
-              fontSize: "10px",
+              color: "#e21b1b",
+              fontSize: "12px",
               fontWeight: "700",
               letterSpacing: "1.5px",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
             }}>
               {item.certification}
             </span>
@@ -459,11 +460,11 @@ function PricingCard({ item, index }) {
         }}>
           <TagIcon />
           <span style={{
-            color: "rgba(255,255,255,0.35)",
-            fontSize: "10px",
+            color: "rgba(255,255,255,0.55)",
+            fontSize: "12px",
             fontWeight: "700",
             letterSpacing: "2.5px",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             textTransform: "uppercase",
           }}>
             {item.label}
@@ -472,13 +473,13 @@ function PricingCard({ item, index }) {
 
         {/* Title */}
         <h3 style={{
-          color: "#fff",
-          fontSize: "16px",
+          color: "#ffffff",
+          fontSize: "17px",
           fontWeight: "700",
           lineHeight: "1.4",
           margin: "0 0 20px 0",
-          fontFamily: "'Oswald', sans-serif",
-          letterSpacing: "0.5px",
+          fontFamily: "'Poppins', sans-serif",
+          letterSpacing: "0.3px",
           textTransform: "uppercase",
         }}>
           {item.title}
@@ -492,20 +493,20 @@ function PricingCard({ item, index }) {
           marginBottom: "24px",
         }}>
           <span style={{
-            color: item.popular ? "#FF4D00" : "rgba(255,255,255,0.3)",
-            fontSize: "20px",
+            color: item.popular ? "#e21b1b" : "rgba(255,255,255,0.5)",
+            fontSize: "22px",
             fontWeight: "600",
-            fontFamily: "'Oswald', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
           }}>$</span>
           <span style={{
             color: "#fff",
             fontSize: "52px",
             fontWeight: "700",
-            fontFamily: "'Oswald', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             lineHeight: 1,
             letterSpacing: "-2px",
             background: item.popular
-              ? "linear-gradient(135deg, #fff 40%, #FF8C00)"
+              ? "linear-gradient(135deg, #fff 40%, #c41515)"
               : "none",
             WebkitBackgroundClip: item.popular ? "text" : "unset",
             WebkitTextFillColor: item.popular ? "transparent" : "#fff",
@@ -513,10 +514,10 @@ function PricingCard({ item, index }) {
             <AnimatedPrice price={item.price} isVisible={visible} />
           </span>
           <span style={{
-            color: "rgba(255,255,255,0.25)",
-            fontSize: "14px",
+            color: "rgba(255,255,255,0.5)",
+            fontSize: "16px",
             fontWeight: "500",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             marginLeft: "6px",
             letterSpacing: "1.5px",
           }}>USD</span>
@@ -527,7 +528,7 @@ function PricingCard({ item, index }) {
           <div style={{
             height: "1px",
             background: item.popular
-              ? "linear-gradient(to right, rgba(255,77,0,0.25), rgba(255,77,0,0.05), transparent)"
+              ? "linear-gradient(to right, rgba(226,27,27,0.25), rgba(226,27,27,0.05), transparent)"
               : "linear-gradient(to right, rgba(255,255,255,0.06), transparent)",
           }} />
           <span style={{
@@ -536,11 +537,11 @@ function PricingCard({ item, index }) {
             left: "0",
             background: item.popular ? "#0d0804" : "#0a0a0a",
             paddingRight: "12px",
-            fontSize: "9px",
+            fontSize: "11px",
             fontWeight: "700",
             letterSpacing: "2.5px",
-            color: item.popular ? "#FF4D00" : "rgba(255,255,255,0.2)",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            color: item.popular ? "#e21b1b" : "rgba(255,255,255,0.35)",
+            fontFamily: "'Poppins', sans-serif",
             textTransform: "uppercase",
           }}>
             Included
@@ -562,10 +563,10 @@ function PricingCard({ item, index }) {
               display: "flex",
               alignItems: "flex-start",
               gap: "10px",
-              fontSize: "13px",
+              fontSize: "14px",
               color: "#ffffff",
-              lineHeight: "1.4",
-              fontFamily: "'Barlow', sans-serif",
+              lineHeight: "1.5",
+              fontFamily: "'Poppins', sans-serif",
             }}>
               <span style={{ flexShrink: 0, marginTop: "1px" }}><CheckIcon /></span>
               {feat}
@@ -587,11 +588,11 @@ function PricingCard({ item, index }) {
                 left: "0",
                 background: item.popular ? "#0d0804" : "#0a0a0a",
                 paddingRight: "12px",
-                fontSize: "9px",
+                fontSize: "11px",
                 fontWeight: "700",
                 letterSpacing: "2.5px",
-                color: "rgba(255,255,255,0.15)",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                color: "rgba(255,255,255,0.3)",
+                fontFamily: "'Poppins', sans-serif",
                 textTransform: "uppercase",
               }}>
                 Specs
@@ -610,10 +611,10 @@ function PricingCard({ item, index }) {
                   display: "flex",
                   alignItems: "flex-start",
                   gap: "10px",
-                  fontSize: "12px",
+                  fontSize: "13px",
                   color: "#e0e0e0",
-                  lineHeight: "1.4",
-                  fontFamily: "'Barlow', sans-serif",
+                  lineHeight: "1.5",
+                  fontFamily: "'Poppins', sans-serif",
                 }}>
                   <span style={{ flexShrink: 0, marginTop: "1px" }}><SpecDot /></span>
                   {spec}
@@ -629,23 +630,23 @@ function PricingCard({ item, index }) {
           marginTop: "28px",
           padding: "16px 24px",
           background: item.popular
-            ? "linear-gradient(135deg, #FF4D00, #e04400)"
+            ? "linear-gradient(135deg, #e21b1b, #c41515)"
             : "transparent",
-          border: item.popular ? "none" : "1.5px solid rgba(255,77,0,0.4)",
+          border: item.popular ? "none" : "1.5px solid rgba(226,27,27,0.4)",
           borderRadius: "12px",
-          color: item.popular ? "#fff" : "#FF4D00",
-          fontSize: "12px",
+          color: item.popular ? "#fff" : "#e21b1b",
+          fontSize: "14px",
           fontWeight: "700",
           letterSpacing: "2.5px",
           textTransform: "uppercase",
           cursor: "pointer",
-          fontFamily: "'Barlow Condensed', sans-serif",
+          fontFamily: "'Poppins', sans-serif",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           gap: "8px",
           transition: "all 0.3s ease",
-          boxShadow: item.popular ? "0 8px 36px rgba(255,77,0,0.25)" : "none",
+          boxShadow: item.popular ? "0 8px 36px rgba(226,27,27,0.25)" : "none",
         }}>
           Customize Now <ArrowRight />
         </button>
@@ -664,8 +665,8 @@ function CompareBar() {
       padding: "0 24px",
     }}>
       <div style={{
-        background: "linear-gradient(170deg, rgba(255,77,0,0.04), rgba(255,140,0,0.02))",
-        border: "1px solid rgba(255,77,0,0.08)",
+        background: "linear-gradient(170deg, rgba(226,27,27,0.04), rgba(226,27,27,0.02))",
+        border: "1px solid rgba(226,27,27,0.08)",
         borderRadius: "16px",
         padding: "32px 40px",
         display: "flex",
@@ -676,18 +677,18 @@ function CompareBar() {
       }}>
         <div>
           <h3 style={{
-            fontFamily: "'Oswald', sans-serif",
-            fontSize: "20px",
-            fontWeight: "600",
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "22px",
+            fontWeight: "700",
             textTransform: "uppercase",
             margin: "0 0 6px 0",
-            color: "#fff",
+            color: "#ffffff",
           }}>Not sure which suit?</h3>
           <p style={{
-            color: "rgba(255,255,255,0.4)",
-            fontSize: "14px",
+            color: "rgba(255,255,255,0.6)",
+            fontSize: "15px",
             margin: 0,
-            fontFamily: "'Barlow', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
           }}>
             Single Layer for drag & short tracks · Double Layer for most racing · Triple Layer for maximum protection
           </p>
@@ -703,22 +704,22 @@ function CompareBar() {
               minWidth: "90px",
             }}>
               <div style={{
-                fontSize: "13px",
+                fontSize: "14px",
                 fontWeight: "700",
-                color: "#FF4D00",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                color: "#e21b1b",
+                fontFamily: "'Poppins', sans-serif",
                 letterSpacing: "1.5px",
                 marginBottom: "4px",
               }}>{item.label}</div>
               <div style={{
-                fontSize: "11px",
-                color: "rgba(255,255,255,0.3)",
-                fontFamily: "'Barlow', sans-serif",
+                fontSize: "13px",
+                color: "rgba(255,255,255,0.5)",
+                fontFamily: "'Poppins', sans-serif",
               }}>SFI {item.layers}</div>
               <div style={{
-                fontSize: "10px",
-                color: "rgba(255,255,255,0.2)",
-                fontFamily: "'Barlow', sans-serif",
+                fontSize: "12px",
+                color: "rgba(255,255,255,0.35)",
+                fontFamily: "'Poppins', sans-serif",
               }}>Protection: {item.temp}</div>
             </div>
           ))}
@@ -751,35 +752,27 @@ export default function StandardPricing() {
     <div style={{
       minHeight: "100vh",
       background: "#070707",
-      color: "#fff",
-      fontFamily: "'Barlow', sans-serif",
+      color: "#ffffff",
+      fontFamily: "'Poppins', sans-serif",
       position: "relative",
       overflow: "hidden",
     }}>
       {/* Fonts */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap');
         * { box-sizing: border-box; margin: 0; }
         html { scroll-behavior: smooth; }
         body { background: #070707; color: #fff; }
         button:hover { filter: brightness(1.15) !important; }
-        ::selection { background: rgba(255,77,0,0.3); color: #fff; }
-
-        /* Enhanced text contrast on dark backgrounds */
+        ::selection { background: rgba(226,27,27,0.3); color: #fff; }
         h1, h2, h3, h4, h5, h6 { color: #ffffff; }
-        p, span, li { color: #ffffff; }
-        a { color: #FF4D00; text-decoration: none; }
-        a:hover { color: #FFB800; }
-
-        /* Dark background with white text contrast */
-        section { background: transparent; }
-        div[style*="background: linear-gradient"] { color: #ffffff; }
+        a { color: #e21b1b; text-decoration: none; }
+        a:hover { color: #c41515; }
       `}</style>
 
       {/* ─── Background layers ─── */}
       <div style={{
         position: "fixed", inset: 0, pointerEvents: "none",
-        backgroundImage: "radial-gradient(circle at 50% 0%, rgba(255,77,0,0.03) 0%, transparent 50%)",
+        backgroundImage: "radial-gradient(circle at 50% 0%, rgba(226,27,27,0.03) 0%, transparent 50%)",
       }} />
       <div style={{
         position: "fixed", inset: 0, pointerEvents: "none",
@@ -802,7 +795,7 @@ export default function StandardPricing() {
           left: "50%",
           width: "400px",
           height: "400px",
-          background: "radial-gradient(circle, rgba(255,77,0,0.04) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(226,27,27,0.04) 0%, transparent 70%)",
           transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`,
           pointerEvents: "none",
         }} />
@@ -811,7 +804,7 @@ export default function StandardPricing() {
         <div style={{
           width: "48px",
           height: "2px",
-          background: "linear-gradient(to right, #FF4D00, #FF8C00)",
+          background: "linear-gradient(to right, #e21b1b, #c41515)",
           margin: "0 auto 36px",
         }} />
 
@@ -820,25 +813,25 @@ export default function StandardPricing() {
           display: "inline-flex",
           alignItems: "center",
           gap: "8px",
-          background: "rgba(255,77,0,0.06)",
-          border: "1px solid rgba(255,77,0,0.12)",
+          background: "rgba(226,27,27,0.06)",
+          border: "1px solid rgba(226,27,27,0.12)",
           borderRadius: "100px",
           padding: "8px 24px",
           marginBottom: "32px",
         }}>
           <TagIcon />
           <span style={{
-            color: "#FF4D00",
-            fontSize: "11px",
+            color: "#e21b1b",
+            fontSize: "14px",
             fontWeight: "700",
             letterSpacing: "3px",
             textTransform: "uppercase",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
           }}>Standard Pricing</span>
         </div>
 
         {/* <h1 style={{
-          fontFamily: "'Oswald', sans-serif",
+          fontFamily: "'Poppins', sans-serif",
           fontSize: "clamp(38px, 6.5vw, 72px)",
           fontWeight: "700",
           lineHeight: "1.02",
@@ -849,15 +842,15 @@ export default function StandardPricing() {
           <span style={{ color: "#fff" }}>HS Racegear</span>
           <br />
           <span style={{
-            background: "linear-gradient(135deg, #FF4D00 0%, #FFB800 100%)",
+            background: "linear-gradient(135deg, #e21b1b 0%, #a01010 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}>Pricing</span>
         </h1> */}
 
         <p style={{
-          color: "rgba(255,255,255,0.45)",
-          fontSize: "16px",
+          color: "rgba(255,255,255,0.65)",
+          fontSize: "18px",
           lineHeight: "1.75",
           maxWidth: "700px",
           margin: "0 auto 48px",
@@ -885,13 +878,13 @@ export default function StandardPricing() {
               borderRadius: "100px",
               border: "1px solid rgba(255,255,255,0.07)",
               background: "rgba(255,255,255,0.02)",
-              color: "rgba(255,255,255,0.45)",
-              fontSize: "11px",
+              color: "rgba(255,255,255,0.6)",
+              fontSize: "13px",
               fontWeight: "700",
               letterSpacing: "2px",
               textTransform: "uppercase",
               cursor: "pointer",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               textDecoration: "none",
               transition: "all 0.3s ease",
             }}>
@@ -961,7 +954,7 @@ export default function StandardPricing() {
       }}>
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse at center bottom, rgba(255,77,0,0.05) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at center bottom, rgba(226,27,27,0.05) 0%, transparent 60%)",
         }} />
 
         <div style={{
@@ -971,25 +964,26 @@ export default function StandardPricing() {
         }}>
           <div style={{
             width: "48px", height: "2px",
-            background: "linear-gradient(to right, #FF4D00, #FF8C00)",
+            background: "linear-gradient(to right, #e21b1b, #c41515)",
             margin: "0 auto 28px",
           }} />
 
           <h2 style={{
-            fontFamily: "'Oswald', sans-serif",
-            fontSize: "clamp(28px, 4vw, 44px)",
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "clamp(30px, 4vw, 46px)",
             fontWeight: "700",
             textTransform: "uppercase",
             margin: "0 0 14px 0",
+            color: "#ffffff",
           }}>
             Build Your Custom Setup
           </h2>
           <p style={{
-            color: "rgba(255,255,255,0.38)",
-            fontSize: "15px",
+            color: "rgba(255,255,255,0.6)",
+            fontSize: "17px",
             maxWidth: "460px",
             margin: "0 auto 36px",
-            lineHeight: "1.65",
+            lineHeight: "1.7",
           }}>
             Every piece is made to your exact measurements with unlimited revisions.
             Free worldwide shipping on all orders.
@@ -998,35 +992,35 @@ export default function StandardPricing() {
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
             <button style={{
               padding: "17px 44px",
-              background: "linear-gradient(135deg, #FF4D00, #e04400)",
+              background: "linear-gradient(135deg, #e21b1b, #c41515)",
               border: "none",
               borderRadius: "12px",
               color: "#fff",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: "700",
               letterSpacing: "2.5px",
               textTransform: "uppercase",
               cursor: "pointer",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
-              boxShadow: "0 8px 40px rgba(255,77,0,0.3)",
+              boxShadow: "0 8px 40px rgba(226,27,27,0.3)",
             }}>
               Start Customizing <ArrowRight />
             </button>
             <a href="/RacegearDeals" style={{
               padding: "17px 36px",
               background: "transparent",
-              border: "1.5px solid rgba(255,77,0,0.3)",
+              border: "1.5px solid rgba(226,27,27,0.3)",
               borderRadius: "12px",
-              color: "#FF4D00",
-              fontSize: "13px",
+              color: "#e21b1b",
+              fontSize: "15px",
               fontWeight: "700",
               letterSpacing: "2.5px",
               textTransform: "uppercase",
               cursor: "pointer",
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
@@ -1054,27 +1048,28 @@ function SectionHeader({ title, subtitle }) {
       <div style={{
         width: "4px",
         height: "36px",
-        background: "linear-gradient(to bottom, #FF4D00, #FF8C00)",
+        background: "linear-gradient(to bottom, #e21b1b, #c41515)",
         borderRadius: "2px",
         flexShrink: 0,
         marginTop: "2px",
       }} />
       <div>
         <h2 style={{
-          fontFamily: "'Oswald', sans-serif",
-          fontSize: "30px",
-          fontWeight: "600",
+          fontFamily: "'Poppins', sans-serif",
+          fontSize: "32px",
+          fontWeight: "700",
           textTransform: "uppercase",
           letterSpacing: "1px",
           margin: "0 0 4px 0",
+          color: "#ffffff",
         }}>
           {title}
         </h2>
         <p style={{
-          color: "rgba(255,255,255,0.3)",
-          fontSize: "14px",
+          color: "rgba(255,255,255,0.6)",
+          fontSize: "16px",
           margin: 0,
-          fontFamily: "'Barlow', sans-serif",
+          fontFamily: "'Poppins', sans-serif",
         }}>
           {subtitle}
         </p>

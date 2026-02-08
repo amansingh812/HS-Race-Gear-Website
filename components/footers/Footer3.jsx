@@ -72,7 +72,7 @@ export default function Footer3() {
   return (
     <footer
       id="footer"
-      className="footer-default footer-bg xl-pb-70 bg-dark-green-4"
+      className="footer-default footer-bg xl-pb-70 bg-dark-7"
     >
       <div className="footer-top">
         <div className="container">
@@ -207,7 +207,7 @@ export default function Footer3() {
                       <a href="tel:18888383022">BLANKET TEMPLATE</a>
                     </li>
                   </ul>
-                </div> 
+                </div>
               </div>
             </div>
 

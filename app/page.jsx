@@ -11,7 +11,7 @@ import HeroElectronic2 from "@/components/homes/home-electric-accessories/HeroEl
 
 
 import {
-  RacingCategories,
+RacingCategories,
   SpecificationBanner,
   DetailedSpecs,
   WhyChooseUs,

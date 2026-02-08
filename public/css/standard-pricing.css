@@ -1,0 +1,12 @@
+/* Standard Pricing Page Styles */
+
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap");
+
+.standard-pricing-page button:hover {
+  filter: brightness(1.15) !important;
+}
+
+.standard-pricing-page ::selection {
+  background: rgba(255, 77, 0, 0.3);
+  color: #fff;
+}

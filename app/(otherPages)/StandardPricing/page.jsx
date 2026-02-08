@@ -1,7 +1,8 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
-import StandardPricing from "@/components/otherPages/StandardPricing";
+import StandardPricing from "@/components/hsRaceGear/pricing/StandardPricing";
+import "@/public/css/standard-pricing.css";
 import React from "react";
 
 export const metadata = {

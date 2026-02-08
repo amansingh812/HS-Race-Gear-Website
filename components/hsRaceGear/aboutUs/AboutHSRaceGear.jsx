@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import "@/public/css/about-us.css";
 
 export default function AboutHSRaceGear() {
   const coreValues = [

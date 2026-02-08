@@ -2,10 +2,11 @@ import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar1 from "@/components/headers/Topbar1";
 import Topbar2 from "@/components/headers/Topbar2";
-import About from "@/components/otherPages/About";
-import Features from "@/components/otherPages/Features";
-import Features2 from "@/components/otherPages/Features2";
-import Testimonials from "@/components/otherPages/Testimonials";
+import About from "@/components/hsRaceGear/aboutUs/About";
+import Features from "@/components/hsRaceGear/aboutUs/Features";
+import Features2 from "@/components/hsRaceGear/aboutUs/Features2";
+import Testimonials from "@/components/hsRaceGear/aboutUs/Testimonials";
+import "@/public/css/about-us.css";
 import React from "react";
 
 export const metadata = {

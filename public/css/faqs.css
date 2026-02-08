@@ -1,0 +1,9 @@
+/* FAQ Page Styles */
+
+.s-faq .faq-item .name-faq {
+  font-weight: 600;
+}
+
+.s-faq .widget-accordion .accordion-title {
+  cursor: pointer;
+}

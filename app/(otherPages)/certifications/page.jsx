@@ -2,15 +2,15 @@ import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Breadcumb from "@/components/common/Breadcumb";
-import CertificationHero from "@/components/otherPages/certifications/CertificationHero";
-import WhatIsSFI from "@/components/otherPages/certifications/WhatIsSFI";
-import SFILevelsExplained from "@/components/otherPages/certifications/SFILevelsExplained";
-import WhySFICertification from "@/components/otherPages/certifications/WhySFICertification";
-import RacingSeriesRequirements from "@/components/otherPages/certifications/RacingSeriesRequirements";
-import CertificationVerification from "@/components/otherPages/certifications/CertificationVerification";
-import OurCertifiedSuits from "@/components/otherPages/certifications/OurCertifiedSuits";
-import ComplianceInfo from "@/components/otherPages/certifications/ComplianceInfo";
-import CertificationCTA from "@/components/otherPages/certifications/CertificationCTA";
+import CertificationHero from "@/components/hsRaceGear/certifications/CertificationHero";
+import WhatIsSFI from "@/components/hsRaceGear/certifications/WhatIsSFI";
+import SFILevelsExplained from "@/components/hsRaceGear/certifications/SFILevelsExplained";
+import WhySFICertification from "@/components/hsRaceGear/certifications/WhySFICertification";
+import RacingSeriesRequirements from "@/components/hsRaceGear/certifications/RacingSeriesRequirements";
+import CertificationVerification from "@/components/hsRaceGear/certifications/CertificationVerification";
+import OurCertifiedSuits from "@/components/hsRaceGear/certifications/OurCertifiedSuits";
+import ComplianceInfo from "@/components/hsRaceGear/certifications/ComplianceInfo";
+import CertificationCTA from "@/components/hsRaceGear/certifications/CertificationCTA";
 import React from "react";
 
 export const metadata = {

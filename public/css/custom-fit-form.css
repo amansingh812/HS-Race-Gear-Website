@@ -45,7 +45,8 @@
 }
 
 .cf-warning-body {
-    padding: 32px 36px;
+    padding: 50px 36px;
+    margin: 10px !important;
 }
 
 /* Guidelines Grid */

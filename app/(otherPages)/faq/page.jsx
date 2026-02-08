@@ -1,7 +1,8 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
-import Faqs from "@/components/otherPages/Faqs";
+import Faqs from "@/components/hsRaceGear/faqs/Faqs";
+import "@/public/css/faqs.css";
 import React from "react";
 import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";

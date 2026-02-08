@@ -2,7 +2,7 @@ import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Breadcumb from "@/components/common/Breadcumb";
-import CustomFitFormPage from "@/components/otherPages/CustomFitFormPage";
+import CustomFitFormPage from "@/components/hsRaceGear/howToMeasure/CustomFitFormPage";
 
 import React from "react";
 

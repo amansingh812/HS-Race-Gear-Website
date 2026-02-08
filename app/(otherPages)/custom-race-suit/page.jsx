@@ -1,7 +1,8 @@
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
-import CustomRaceSuitPage from "@/components/otherPages/CustomRaceSuitPage";
+import CustomRaceSuitPage from "@/components/hsRaceGear/customGear/CustomRaceSuitPage";
+import "@/public/css/custom-race-suit.css";
 
 import React from "react";
 

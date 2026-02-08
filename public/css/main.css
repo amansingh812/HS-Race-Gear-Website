@@ -1254,6 +1254,10 @@ video {
   background-color: #185136 !important;
 }
 
+.bg-dark-black{
+  background-color: #000000 !important;
+}
+
 .bg-dark-green-2 {
   background-color: #2d613d !important;
 }
@@ -8059,7 +8063,7 @@ button.animate-btn::after,
 }
 
 .header-default .box-nav-menu {
-  gap: 32px;
+  gap: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22121,7 +22125,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 @media (min-width: 1600px) {
   .header-default .box-nav-menu {
-    gap: 40px;
+    gap: 25px;
   }
   .footer-style-2 .footer-col-block.s4 {
     padding: 0px 110px;

@@ -10,7 +10,7 @@ import {
     PricingCTA,
     PricingComparison,
     CustomizationAddons,
-} from "@/components/otherPages/pricing";
+} from "@/components/hsRaceGear/pricing";
 import {
     racingSuitPricing,
     racingGlovesPricing,
