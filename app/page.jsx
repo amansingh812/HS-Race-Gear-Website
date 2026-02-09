@@ -8,10 +8,8 @@ import PlantCollections from "@/components/homes/home-plant/Collections";
 import HeroElectronic from "@/components/homes/home-electric-accessories/HeroElectronic";
 import HeroElectronic2 from "@/components/homes/home-electric-accessories/HeroElectronic2";
 
-
-
 import {
-RacingCategories,
+  RacingCategories,
   SpecificationBanner,
   DetailedSpecs,
   WhyChooseUs,
@@ -50,7 +48,6 @@ export default function Home() {
       {/* <PlantCollections /> */}
       <PlantFeatures />
       <Footer3 />
-
     </>
   );
 }

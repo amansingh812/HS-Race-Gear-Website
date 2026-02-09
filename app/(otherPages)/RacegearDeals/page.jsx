@@ -1,7 +1,8 @@
-import Footer1 from "@/components/footers/Footer1";
+import Footer3 from "@/components/footers/Footer3";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Topbar1 from "@/components/headers/Topbar1";
+
 import RacegearDeals from "@/components/hsRaceGear/deals/RacegearDeals";
 
 import "@/public/css/racegear-deals.css";
@@ -21,7 +22,7 @@ export default function page() {
       <Topbar1 />
       <Header1 />
       <RacegearDeals />
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

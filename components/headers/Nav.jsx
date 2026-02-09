@@ -19,8 +19,8 @@ export default function Nav() {
   ];
 
   const shopMenuItems = [
-    { text: "OFF THE RACK RACE SUIT", href: "/custom-measurement" },
-    { text: "CREW SHIRTS", href: "/custom-measurement" },
+    { text: "OFF THE RACK RACE SUIT", href: "/shop" },
+    { text: "CREW SHIRTS", href: "/shop-collection-list" },
     { text: "SUBLIMATED CREW HOODIES", href: "/custom-measurement" },
   ];
 

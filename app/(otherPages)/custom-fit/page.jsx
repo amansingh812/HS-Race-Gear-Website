@@ -1,4 +1,4 @@
-import Footer1 from "@/components/footers/Footer1";
+import Footer3 from "@/components/footers/Footer3";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Breadcumb from "@/components/common/Breadcumb";
@@ -19,7 +19,7 @@ export default function page() {
       <Header1 />
       {/* <Breadcumb pageName="Custom Gear" pageTitle="Custom Gear Racing Suits" /> */}
       <CustomFitFormPage />
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

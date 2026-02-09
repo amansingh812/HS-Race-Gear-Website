@@ -31,43 +31,6 @@ const TagIcon = () => (
   </svg>
 );
 
-const SuitIcon = () => (
-  <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    <path d="M24 4C20 4 16 7 15 10L12 20V40C12 42 14 44 16 44H32C34 44 36 42 36 40V20L33 10C32 7 28 4 24 4Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
-    <path d="M18 10C18 10 20 14 24 14C28 14 30 10 30 10" stroke="rgba(226,27,27,0.25)" strokeWidth="1.2" fill="none" />
-    <path d="M20 24H28M20 30H28M20 36H28" stroke="rgba(226,27,27,0.15)" strokeWidth="1" strokeLinecap="round" />
-  </svg>
-);
-
-const GloveIcon = () => (
-  <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    <path d="M16 44V28L12 16C11 13 13 10 16 10V6C16 4 18 2 20 4V10H22V4C22 2 24 0 26 2V10H28V6C28 4 30 2 32 4V10C35 10 37 13 36 16L32 28V44H16Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
-  </svg>
-);
-
-const ShoeIcon = () => (
-  <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    <path d="M8 32C8 32 10 24 14 22C18 20 22 18 24 16C26 14 30 12 34 14C38 16 42 22 42 26V32C42 34 40 36 38 36H12C10 36 8 34 8 32Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
-    <path d="M14 32H38" stroke="rgba(226,27,27,0.2)" strokeWidth="1" strokeDasharray="2 3" />
-  </svg>
-);
-
-const KartIcon = () => (
-  <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    <circle cx="12" cy="38" r="5" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
-    <circle cx="36" cy="38" r="5" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
-    <path d="M8 30H40L38 22H28L24 12H18L14 22H10L8 30Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />
-    <path d="M22 22L24 12" stroke="rgba(226,27,27,0.2)" strokeWidth="1" />
-  </svg>
-);
-
-const LayerIcon = ({ layers = 1 }) => (
-  <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-    {layers >= 1 && <path d="M24 8L6 18L24 28L42 18L24 8Z" stroke="rgba(226,27,27,0.35)" strokeWidth="1.5" fill="rgba(226,27,27,0.04)" />}
-    {layers >= 2 && <path d="M6 24L24 34L42 24" stroke="rgba(226,27,27,0.25)" strokeWidth="1.3" fill="none" />}
-    {layers >= 3 && <path d="M6 30L24 40L42 30" stroke="rgba(226,27,27,0.18)" strokeWidth="1.1" fill="none" />}
-  </svg>
-);
 
 /* ───────────────────────── Data ───────────────────────── */
 
@@ -211,20 +174,6 @@ const pricingData = [
   },
 ];
 
-/* ───────────────────────── Icon Map ───────────────────────── */
-
-function ProductIcon({ type }) {
-  switch (type) {
-    case "suit": return <LayerIcon layers={1} />;
-    case "layer2": return <LayerIcon layers={2} />;
-    case "layer3": return <LayerIcon layers={3} />;
-    case "glove": return <GloveIcon />;
-    case "shoe": return <ShoeIcon />;
-    case "kart": return <KartIcon />;
-    default: return <SuitIcon />;
-  }
-}
-
 /* ───────────────────────── Animated Counter ───────────────────────── */
 
 function AnimatedPrice({ price, isVisible }) {
@@ -265,8 +214,6 @@ function PricingCard({ item, index }) {
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
-
-  const isSuit = ["single-layer", "double-layer", "triple-layer"].includes(item.id);
 
   return (
     <div
@@ -334,114 +281,6 @@ function PricingCard({ item, index }) {
         </div>
       )}
 
-      {/* ─── IMAGE PLACEHOLDER ─── */}
-      <div style={{
-        width: "100%",
-        height: isSuit ? "260px" : "220px",
-        background: "linear-gradient(160deg, #181818, #0c0c0c)",
-        position: "relative",
-        overflow: "hidden",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}>
-        {/* Subtle animated diagonal lines */}
-        <div style={{
-          position: "absolute",
-          inset: "-50%",
-          background: `repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 40px,
-            rgba(226,27,27,0.015) 40px,
-            rgba(226,27,27,0.015) 41px
-          )`,
-          transform: hovered ? "translate(10px, -10px)" : "translate(0, 0)",
-          transition: "transform 1.2s ease",
-        }} />
-
-        {/* Center icon placeholder */}
-        <div style={{
-          textAlign: "center",
-          zIndex: 1,
-          transform: hovered ? "scale(1.08)" : "scale(1)",
-          transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-        }}>
-          <div style={{
-            width: "80px",
-            height: "80px",
-            borderRadius: "20px",
-            border: "1px solid rgba(226,27,27,0.12)",
-            background: "rgba(226,27,27,0.03)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "0 auto 14px",
-            backdropFilter: "blur(10px)",
-          }}>
-            <ProductIcon type={item.icon} />
-          </div>
-          <p style={{
-            color: "rgba(255,255,255,0.35)",
-            fontSize: "12px",
-            letterSpacing: "3px",
-            textTransform: "uppercase",
-            fontFamily: "'Poppins', sans-serif",
-            margin: 0,
-          }}>
-            Product Image
-          </p>
-          {/* 
-            Replace placeholder with your image:
-            <img src={item.imagePlaceholder} alt={item.title} 
-              style={{ width:'100%', height:'100%', objectFit:'cover', position:'absolute', inset:0 }} />
-          */}
-        </div>
-
-        {/* Gradient fade */}
-        <div style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "100px",
-          background: item.popular
-            ? "linear-gradient(to top, #0d0804, transparent)"
-            : "linear-gradient(to top, #0a0a0a, transparent)",
-          pointerEvents: "none",
-        }} />
-
-        {/* SFI Certification badge */}
-        {item.certification && (
-          <div style={{
-            position: "absolute",
-            bottom: "16px",
-            left: "20px",
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            background: "rgba(0,0,0,0.6)",
-            backdropFilter: "blur(12px)",
-            border: "1px solid rgba(226,27,27,0.15)",
-            borderRadius: "8px",
-            padding: "6px 12px",
-          }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L3 7V12C3 17.25 6.75 22.13 12 23C17.25 22.13 21 17.25 21 12V7L12 2Z" stroke="#e21b1b" strokeWidth="1.5" fill="none" />
-              <path d="M9 12L11 14L15 10" stroke="#e21b1b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span style={{
-              color: "#e21b1b",
-              fontSize: "12px",
-              fontWeight: "700",
-              letterSpacing: "1.5px",
-              fontFamily: "'Poppins', sans-serif",
-            }}>
-              {item.certification}
-            </span>
-          </div>
-        )}
-      </div>
 
       {/* ─── CONTENT ─── */}
       <div style={{
@@ -657,77 +496,77 @@ function PricingCard({ item, index }) {
 
 /* ───────────────────────── Quick Compare Bar ───────────────────────── */
 
-function CompareBar() {
-  return (
-    <div style={{
-      maxWidth: "1100px",
-      margin: "0 auto 80px",
-      padding: "0 24px",
-    }}>
-      <div style={{
-        background: "linear-gradient(170deg, rgba(226,27,27,0.04), rgba(226,27,27,0.02))",
-        border: "1px solid rgba(226,27,27,0.08)",
-        borderRadius: "16px",
-        padding: "32px 40px",
-        display: "flex",
-        gap: "16px",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        alignItems: "center",
-      }}>
-        <div>
-          <h3 style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: "22px",
-            fontWeight: "700",
-            textTransform: "uppercase",
-            margin: "0 0 6px 0",
-            color: "#ffffff",
-          }}>Not sure which suit?</h3>
-          <p style={{
-            color: "rgba(255,255,255,0.6)",
-            fontSize: "15px",
-            margin: 0,
-            fontFamily: "'Poppins', sans-serif",
-          }}>
-            Single Layer for drag & short tracks · Double Layer for most racing · Triple Layer for maximum protection
-          </p>
-        </div>
-        <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
-          {[
-            { label: "Single", layers: "3.2A/1", temp: "~3 sec" },
-            { label: "Double", layers: "3.2A/5", temp: "~10 sec" },
-            { label: "Triple", layers: "3.2A/5+", temp: "~15 sec" },
-          ].map((item) => (
-            <div key={item.label} style={{
-              textAlign: "center",
-              minWidth: "90px",
-            }}>
-              <div style={{
-                fontSize: "14px",
-                fontWeight: "700",
-                color: "#e21b1b",
-                fontFamily: "'Poppins', sans-serif",
-                letterSpacing: "1.5px",
-                marginBottom: "4px",
-              }}>{item.label}</div>
-              <div style={{
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.5)",
-                fontFamily: "'Poppins', sans-serif",
-              }}>SFI {item.layers}</div>
-              <div style={{
-                fontSize: "12px",
-                color: "rgba(255,255,255,0.35)",
-                fontFamily: "'Poppins', sans-serif",
-              }}>Protection: {item.temp}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+// function CompareBar() {
+//   return (
+//     <div style={{
+//       maxWidth: "1100px",
+//       margin: "0 auto 80px",
+//       padding: "0 24px",
+//     }}>
+//       <div style={{
+//         background: "linear-gradient(170deg, rgba(226,27,27,0.04), rgba(226,27,27,0.02))",
+//         border: "1px solid rgba(226,27,27,0.08)",
+//         borderRadius: "16px",
+//         padding: "32px 40px",
+//         display: "flex",
+//         gap: "16px",
+//         justifyContent: "space-between",
+//         flexWrap: "wrap",
+//         alignItems: "center",
+//       }}>
+//         <div>
+//           <h3 style={{
+//             fontFamily: "'Poppins', sans-serif",
+//             fontSize: "22px",
+//             fontWeight: "700",
+//             textTransform: "uppercase",
+//             margin: "0 0 6px 0",
+//             color: "#ffffff",
+//           }}>Not sure which suit?</h3>
+//           <p style={{
+//             color: "rgba(255,255,255,0.6)",
+//             fontSize: "15px",
+//             margin: 0,
+//             fontFamily: "'Poppins', sans-serif",
+//           }}>
+//             Single Layer for drag & short tracks · Double Layer for most racing · Triple Layer for maximum protection
+//           </p>
+//         </div>
+//         <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
+//           {[
+//             { label: "Single", layers: "3.2A/1", temp: "~3 sec" },
+//             { label: "Double", layers: "3.2A/5", temp: "~10 sec" },
+//             { label: "Triple", layers: "3.2A/5+", temp: "~15 sec" },
+//           ].map((item) => (
+//             <div key={item.label} style={{
+//               textAlign: "center",
+//               minWidth: "90px",
+//             }}>
+//               <div style={{
+//                 fontSize: "14px",
+//                 fontWeight: "700",
+//                 color: "#e21b1b",
+//                 fontFamily: "'Poppins', sans-serif",
+//                 letterSpacing: "1.5px",
+//                 marginBottom: "4px",
+//               }}>{item.label}</div>
+//               <div style={{
+//                 fontSize: "13px",
+//                 color: "rgba(255,255,255,0.5)",
+//                 fontFamily: "'Poppins', sans-serif",
+//               }}>SFI {item.layers}</div>
+//               <div style={{
+//                 fontSize: "12px",
+//                 color: "rgba(255,255,255,0.35)",
+//                 fontFamily: "'Poppins', sans-serif",
+//               }}>Protection: {item.temp}</div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 /* ───────────────────────── Main Page Component ───────────────────────── */
 
@@ -914,7 +753,7 @@ export default function StandardPricing() {
       </section>
 
       {/* ═════════ COMPARE BAR ═════════ */}
-      <CompareBar />
+      {/* <CompareBar /> */}
 
       {/* ═════════ SECTION: ACCESSORIES (2 column) ═════════ */}
       <section id="accessories" style={{
