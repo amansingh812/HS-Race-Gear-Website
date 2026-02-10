@@ -19,9 +19,10 @@ export default function Nav() {
   ];
 
   const shopMenuItems = [
-    { text: "OFF THE RACK RACE SUIT", href: "/shop" },
-    { text: "CREW SHIRTS", href: "/shop-collection-list" },
-    { text: "SUBLIMATED CREW HOODIES", href: "/custom-measurement" },
+    { text: "SHOP ALL", href: "/shop" },
+    { text: "OFF THE RACK RACE SUIT", href: "/shop?category=race-suits" },
+    { text: "CREW SHIRTS", href: "/shop?category=crew-shirts" },
+    { text: "SUBLIMATED CREW HOODIES", href: "/shop?category=hoodies" },
   ];
 
   // const shopMenuItems = [

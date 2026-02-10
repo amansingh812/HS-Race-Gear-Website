@@ -1,16 +1,56 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Footer1 from "@/components/footers/Footer1";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Link from "next/link";
 import ProductCard1 from "@/components/productCards/ProductCard1";
+import { placeholdersByCategory, allPlaceholders } from "@/data/shopPlaceholders";
+import '@/public/css/shop.css';
+
+// Category configuration
+const CATEGORY_CONFIG = {
+  'race-suits': {
+    title: 'Off The Rack Race Suits',
+    description: 'Premium pre-made racing suits with FIA and SFI certifications. Ready to ship in standard sizes.',
+    showCertification: true,
+    showMaterial: true,
+    breadcrumb: 'Race Suits',
+  },
+  'crew-shirts': {
+    title: 'Crew Shirts',
+    description: 'Professional team crew shirts for your pit crew and team. Available in custom sublimated designs.',
+    showCertification: false,
+    showMaterial: false,
+    breadcrumb: 'Crew Shirts',
+  },
+  'hoodies': {
+    title: 'Sublimated Crew Hoodies',
+    description: 'Custom sublimated crew hoodies with full-color printing. Perfect for team branding and comfort.',
+    showCertification: false,
+    showMaterial: false,
+    breadcrumb: 'Hoodies',
+  },
+};
+
+const ALL_CATEGORIES = [
+  { slug: null, label: 'Shop All' },
+  { slug: 'race-suits', label: 'Race Suits' },
+  { slug: 'crew-shirts', label: 'Crew Shirts' },
+  { slug: 'hoodies', label: 'Hoodies' },
+];
 
 export default function ShopClient() {
+  const searchParams = useSearchParams();
+  const categorySlug = searchParams.get('category');
+
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [usingPlaceholders, setUsingPlaceholders] = useState(false);
+  const [resolvedCategoryId, setResolvedCategoryId] = useState(null);
   const [filters, setFilters] = useState({
     category: '',
     certification: '',
@@ -29,28 +69,112 @@ export default function ShopClient() {
     limit: 12,
   });
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  const activeCategoryConfig = categorySlug ? CATEGORY_CONFIG[categorySlug] : null;
+  const pageTitle = activeCategoryConfig?.title || 'Racing Gear Shop';
+  const pageDescription = activeCategoryConfig?.description || 'Premium FIA and SFI certified racing gear for professionals';
+  const showCertificationFilter = activeCategoryConfig?.showCertification ?? true;
+  const showMaterialFilter = activeCategoryConfig?.showMaterial ?? true;
 
+  // Reset filters when category changes
   useEffect(() => {
-    fetchProducts();
-  }, [filters, pagination.currentPage]);
+    setFilters(prev => ({
+      ...prev,
+      category: '',
+      certification: '',
+      material: '',
+      search: '',
+      minPrice: '',
+      maxPrice: '',
+      inStock: false,
+    }));
+    setPagination(prev => ({ ...prev, currentPage: 1 }));
+    setResolvedCategoryId(null);
+  }, [categorySlug]);
+
+  // Resolve category slug to ObjectId
+  useEffect(() => {
+    if (categorySlug) {
+      resolveCategoryId(categorySlug);
+    } else {
+      setResolvedCategoryId(null);
+      fetchCategories();
+      fetchProducts(null);
+    }
+  }, [categorySlug]);
+
+  // Fetch products when filters or pagination change
+  useEffect(() => {
+    if (categorySlug && resolvedCategoryId === null) return; // Wait for category resolution
+    fetchProducts(resolvedCategoryId);
+  }, [filters, pagination.currentPage, resolvedCategoryId]);
+
+  const fetchWithTimeout = async (url, timeoutMs = 6000) => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      return response;
+    } catch (error) {
+      clearTimeout(timeoutId);
+      throw error;
+    }
+  };
+
+  const resolveCategoryId = async (slug) => {
+    try {
+      // Use the slug-based endpoint directly - avoids fetching all categories
+      const response = await fetchWithTimeout(`/api/categories/${slug}`);
+      const data = await response.json();
+      if (data.success && data.data.category) {
+        const cat = data.data.category;
+        setResolvedCategoryId(cat._id?.toString() || cat._id);
+      } else {
+        setResolvedCategoryId('not-found');
+        loadPlaceholders();
+      }
+    } catch (error) {
+      console.error('Error resolving category:', error);
+      setResolvedCategoryId('not-found');
+      loadPlaceholders();
+    }
+  };
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('/api/categories');
+      const response = await fetchWithTimeout('/api/categories?parent=null');
       const data = await response.json();
       if (data.success) {
-        setCategories(data.data.categories.filter(cat => !cat.parent));
+        setCategories(data.data.categories);
       }
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
   };
 
-  const fetchProducts = async () => {
+  const loadPlaceholders = () => {
+    const placeholders = categorySlug
+      ? (placeholdersByCategory[categorySlug] || [])
+      : allPlaceholders;
+    setProducts(placeholders);
+    setUsingPlaceholders(true);
+    setPagination(prev => ({
+      ...prev,
+      totalPages: 1,
+      totalProducts: placeholders.length,
+    }));
+    setLoading(false);
+  };
+
+  const fetchProducts = async (catId) => {
+    if (catId === 'not-found') {
+      loadPlaceholders();
+      return;
+    }
+
     setLoading(true);
+    setUsingPlaceholders(false);
+
     try {
       const params = new URLSearchParams({
         page: pagination.currentPage,
@@ -59,7 +183,13 @@ export default function ShopClient() {
         order: filters.order,
       });
 
-      if (filters.category) params.append('category', filters.category);
+      // Use resolved category ID for filtering
+      if (catId) {
+        params.append('category', catId);
+      } else if (filters.category) {
+        params.append('category', filters.category);
+      }
+
       if (filters.certification) params.append('certification', filters.certification);
       if (filters.material) params.append('material', filters.material);
       if (filters.search) params.append('search', filters.search);
@@ -67,18 +197,18 @@ export default function ShopClient() {
       if (filters.maxPrice) params.append('maxPrice', parseFloat(filters.maxPrice) * 100);
       if (filters.inStock) params.append('inStock', 'true');
 
-      const response = await fetch(`/api/products?${params}`);
+      const response = await fetchWithTimeout(`/api/products?${params}`);
       const data = await response.json();
 
       if (data.success) {
         const transformedProducts = data.data.products.map(p => {
           const primaryImage = p.images?.find(img => img.isPrimary) || p.images?.[0];
           const secondaryImage = p.images?.find(img => !img.isPrimary) || p.images?.[1];
-          
+
           return {
             id: p._id,
-            imgSrc: primaryImage?.url || '/images/products/placeholder.jpg',
-            imgHover: secondaryImage?.url || primaryImage?.url || '/images/products/placeholder.jpg',
+            imgSrc: primaryImage?.url || '/images/products/fashion/product-1.jpg',
+            imgHover: secondaryImage?.url || primaryImage?.url || '/images/products/fashion/product-2.jpg',
             title: p.name,
             price: p.price / 100,
             oldPrice: p.compareAtPrice ? p.compareAtPrice / 100 : null,
@@ -95,17 +225,25 @@ export default function ShopClient() {
           };
         });
 
-        setProducts(transformedProducts);
-        setPagination(prev => ({
-          ...prev,
-          totalPages: data.data.pagination.totalPages,
-          totalProducts: data.data.pagination.totalProducts,
-        }));
+        if (transformedProducts.length === 0) {
+          // No products from API - fall back to placeholders
+          loadPlaceholders();
+        } else {
+          setProducts(transformedProducts);
+          setUsingPlaceholders(false);
+          setPagination(prev => ({
+            ...prev,
+            totalPages: data.data.pagination.totalPages,
+            totalProducts: data.data.pagination.totalProducts || data.data.pagination.totalCount,
+          }));
+          setLoading(false);
+        }
+      } else {
+        loadPlaceholders();
       }
     } catch (error) {
       console.error('Error fetching products:', error);
-    } finally {
-      setLoading(false);
+      loadPlaceholders();
     }
   };
 
@@ -133,20 +271,24 @@ export default function ShopClient() {
     <>
       <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
       <Header1 />
-      
+
       {/* Breadcrumb */}
       <section className="tf-page-title">
         <div className="container">
           <div className="box-title text-center">
-            <h4 className="title">Racing Gear Shop</h4>
+            <h4 className="title">{pageTitle}</h4>
             <div className="breadcrumb-list">
               <Link className="breadcrumb-item" href="/">Home</Link>
               <div className="breadcrumb-item dot"><span /></div>
-              <div className="breadcrumb-item current">Shop</div>
+              <Link className="breadcrumb-item" href="/shop">Shop</Link>
+              {activeCategoryConfig && (
+                <>
+                  <div className="breadcrumb-item dot"><span /></div>
+                  <div className="breadcrumb-item current">{activeCategoryConfig.breadcrumb}</div>
+                </>
+              )}
             </div>
-            <p className="desc text-md text-main">
-              Premium FIA and SFI certified racing gear for professionals
-            </p>
+            <p className="desc text-md text-main">{pageDescription}</p>
           </div>
         </div>
       </section>
@@ -154,6 +296,30 @@ export default function ShopClient() {
       {/* Shop Content */}
       <section className="flat-spacing-24">
         <div className="container">
+          {/* Category Tabs */}
+          <div className="shop-category-tabs">
+            {ALL_CATEGORIES.map((cat) => (
+              <Link
+                key={cat.slug || 'all'}
+                href={cat.slug ? `/shop?category=${cat.slug}` : '/shop'}
+                className={`shop-category-tab ${
+                  categorySlug === cat.slug || (!categorySlug && !cat.slug) ? 'active' : ''
+                }`}
+              >
+                {cat.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Placeholder notice */}
+          {usingPlaceholders && (
+            <div className="shop-category-description">
+              <p>
+                These are sample products for preview purposes. Actual products will be available once they are added through the admin panel.
+              </p>
+            </div>
+          )}
+
           <div className="row">
             {/* Sidebar Filters */}
             <div className="col-lg-3 col-md-4 mb-4">
@@ -174,54 +340,60 @@ export default function ShopClient() {
                     />
                   </div>
 
-                  {/* Category Filter */}
-                  <div className="mb-4">
-                    <label className="form-label fw-bold">Category</label>
-                    <select
-                      className="form-select"
-                      value={filters.category}
-                      onChange={(e) => handleFilterChange('category', e.target.value)}
-                    >
-                      <option value="">All Categories</option>
-                      {categories.map(cat => (
-                        <option key={cat._id} value={cat._id}>
-                          {cat.name} ({cat.productCount || 0})
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                  {/* Category Filter - only show when viewing all */}
+                  {!categorySlug && (
+                    <div className="mb-4">
+                      <label className="form-label fw-bold">Category</label>
+                      <select
+                        className="form-select"
+                        value={filters.category}
+                        onChange={(e) => handleFilterChange('category', e.target.value)}
+                      >
+                        <option value="">All Categories</option>
+                        {categories.map(cat => (
+                          <option key={cat._id} value={cat._id}>
+                            {cat.name} ({cat.productCount || 0})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
 
-                  {/* Certification Filter */}
-                  <div className="mb-4">
-                    <label className="form-label fw-bold">Certification</label>
-                    <select
-                      className="form-select"
-                      value={filters.certification}
-                      onChange={(e) => handleFilterChange('certification', e.target.value)}
-                    >
-                      <option value="">All Certifications</option>
-                      <option value="SFI 3.2A/1">SFI 3.2A/1</option>
-                      <option value="SFI 3.2A/5">SFI 3.2A/5</option>
-                      <option value="FIA 8856-2018">FIA 8856-2018</option>
-                      <option value="None">None</option>
-                    </select>
-                  </div>
+                  {/* Certification Filter - only for race suits or shop all */}
+                  {showCertificationFilter && (
+                    <div className="mb-4">
+                      <label className="form-label fw-bold">Certification</label>
+                      <select
+                        className="form-select"
+                        value={filters.certification}
+                        onChange={(e) => handleFilterChange('certification', e.target.value)}
+                      >
+                        <option value="">All Certifications</option>
+                        <option value="SFI 3.2A/1">SFI 3.2A/1</option>
+                        <option value="SFI 3.2A/5">SFI 3.2A/5</option>
+                        <option value="FIA 8856-2018">FIA 8856-2018</option>
+                        <option value="None">None</option>
+                      </select>
+                    </div>
+                  )}
 
-                  {/* Material Filter */}
-                  <div className="mb-4">
-                    <label className="form-label fw-bold">Material</label>
-                    <select
-                      className="form-select"
-                      value={filters.material}
-                      onChange={(e) => handleFilterChange('material', e.target.value)}
-                    >
-                      <option value="">All Materials</option>
-                      <option value="Nomex">Nomex</option>
-                      <option value="FR Cotton">FR Cotton</option>
-                      <option value="Nomex/Kevlar">Nomex/Kevlar</option>
-                      <option value="Proban">Proban</option>
-                    </select>
-                  </div>
+                  {/* Material Filter - only for race suits or shop all */}
+                  {showMaterialFilter && (
+                    <div className="mb-4">
+                      <label className="form-label fw-bold">Material</label>
+                      <select
+                        className="form-select"
+                        value={filters.material}
+                        onChange={(e) => handleFilterChange('material', e.target.value)}
+                      >
+                        <option value="">All Materials</option>
+                        <option value="Nomex">Nomex</option>
+                        <option value="FR Cotton">FR Cotton</option>
+                        <option value="Nomex/Kevlar">Nomex/Kevlar</option>
+                        <option value="Proban">Proban</option>
+                      </select>
+                    </div>
+                  )}
 
                   {/* Price Range */}
                   <div className="mb-4">
@@ -281,8 +453,9 @@ export default function ShopClient() {
                 <div className="card-body">
                   <div className="row align-items-center">
                     <div className="col-md-6">
-                      <p className="mb-0">
+                      <p className="mb-0 shop-product-count">
                         Showing <strong>{products.length}</strong> of <strong>{pagination.totalProducts}</strong> products
+                        {usingPlaceholders && <span className="text-muted"> (sample)</span>}
                       </p>
                     </div>
                     <div className="col-md-6">
@@ -323,13 +496,17 @@ export default function ShopClient() {
                   </div>
                 </div>
               ) : products.length === 0 ? (
-                <div className="alert alert-info">
-                  No products found. Try adjusting your filters.
+                <div className="shop-empty-state">
+                  <h5>No products found</h5>
+                  <p>Try adjusting your filters or browse a different category.</p>
+                  <Link href="/shop" className="btn btn-outline-primary">
+                    View All Products
+                  </Link>
                 </div>
               ) : (
                 <>
                   <div className="row g-4">
-                    {products.map((product, index) => (
+                    {products.map((product) => (
                       <div key={product.id} className="col-lg-4 col-md-6">
                         <ProductCard1
                           product={product}
@@ -339,8 +516,8 @@ export default function ShopClient() {
                     ))}
                   </div>
 
-                  {/* Pagination */}
-                  {pagination.totalPages > 1 && (
+                  {/* Pagination - hide for placeholder data */}
+                  {!usingPlaceholders && pagination.totalPages > 1 && (
                     <nav className="mt-5">
                       <ul className="pagination justify-content-center">
                         <li className={`page-item ${pagination.currentPage === 1 ? 'disabled' : ''}`}>

@@ -147,7 +147,13 @@ export default function ProductForm({ product = null, isEdit = false }) {
         certificationLevel: formData.certificationLevel && formData.certificationLevel.trim() !== '' ? formData.certificationLevel : null,
         material: formData.material && formData.material.trim() !== '' ? formData.material : null,
         construction: formData.construction && formData.construction.trim() !== '' ? formData.construction : null,
-        inventory: inventory.filter(inv => inv.size && inv.sku && parseInt(inv.stock) > 0),
+        inventory: inventory
+          .filter(inv => inv.size)
+          .map(inv => ({
+            ...inv,
+            sku: inv.sku || `${(formData.name || 'PROD').toUpperCase().replace(/[^A-Z0-9]+/g, '-').slice(0, 20)}-${inv.size}`,
+            stock: parseInt(inv.stock) || 0,
+          })),
         images: images.filter(img => img.url),
         customOptions: customOptions.filter(opt => opt.name && opt.slug),
       };

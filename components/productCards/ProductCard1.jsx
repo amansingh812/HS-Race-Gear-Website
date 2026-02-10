@@ -34,7 +34,7 @@ export default function ProductCard1({
       } ${product.isOutofSale ? "out-of-stock" : ""} ${styleClass}`}
     >
       <div className={`card-product-wrapper ${ratioClass} `}>
-        <Link href={`/product-detail/${product.id}`} className="product-img">
+        <Link href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`} className="product-img">
           <Image
             className="img-product lazyload"
             alt="image-product"
@@ -172,7 +172,7 @@ export default function ProductCard1({
       </div>
       <div className={`card-product-info ${textCenter ? "text-center" : ""} `}>
         <Link
-          href={`/product-detail/${product.id}`}
+          href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`}
           className="name-product link fw-medium text-md"
         >
           {product.title}
