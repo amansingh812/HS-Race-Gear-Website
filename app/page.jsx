@@ -35,7 +35,7 @@ export default function Home() {
       <Hero />
       <CustomizeSection />
       {/* <PlantBanner /> */}
-      <PlantCollections />
+      {/* <PlantCollections /> */}
       {/* <Collections /> */}
       {/* <Banner2 /> */}
       {/* <Collectionss /> */}

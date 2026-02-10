@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useCallback } from "react";
 import { usePathname } from "next/navigation";
 
 const customGearItems = [
@@ -22,6 +22,22 @@ export default function MobileMenu() {
   const pathname = usePathname();
   const isActive = (href) => href?.split("/")[1] === pathname.split("/")[1];
 
+  const closeMenu = useCallback(() => {
+    const el = document.getElementById("mobileMenu");
+    if (!el) return;
+    try {
+      const bootstrap = require("bootstrap");
+      const instance = bootstrap.Offcanvas.getInstance(el);
+      if (instance) instance.hide();
+    } catch (e) {
+      // fallback: remove Bootstrap classes manually
+      el.classList.remove("show");
+      document.body.classList.remove("offcanvas-backdrop");
+      const backdrop = document.querySelector(".offcanvas-backdrop");
+      if (backdrop) backdrop.remove();
+    }
+  }, []);
+
   return (
     <div className="offcanvas offcanvas-start canvas-mb" id="mobileMenu">
       <button
@@ -39,7 +55,7 @@ export default function MobileMenu() {
                 <Link
                   href="/"
                   className={`mb-menu-link ${isActive("/") ? "menuActive" : ""}`}
-                  data-bs-dismiss="offcanvas"
+                  onClick={closeMenu}
                 >
                   <span>HOME</span>
                 </Link>
@@ -50,7 +66,7 @@ export default function MobileMenu() {
                 <Link
                   href="/RacegearDeals"
                   className={`mb-menu-link ${isActive("/RacegearDeals") ? "menuActive" : ""}`}
-                  data-bs-dismiss="offcanvas"
+                  onClick={closeMenu}
                 >
                   <span>DEALS</span>
                 </Link>
@@ -75,7 +91,7 @@ export default function MobileMenu() {
                         <Link
                           href={item.href}
                           className={`sub-nav-link ${isActive(item.href) ? "menuActive" : ""}`}
-                          data-bs-dismiss="offcanvas"
+                          onClick={closeMenu}
                         >
                           {item.text}
                         </Link>
@@ -104,7 +120,7 @@ export default function MobileMenu() {
                         <Link
                           href={item.href}
                           className={`sub-nav-link ${isActive(item.href) ? "menuActive" : ""}`}
-                          data-bs-dismiss="offcanvas"
+                          onClick={closeMenu}
                         >
                           {item.text}
                         </Link>
@@ -119,7 +135,7 @@ export default function MobileMenu() {
                 <Link
                   href="/StandardPricing"
                   className={`mb-menu-link ${isActive("/StandardPricing") ? "menuActive" : ""}`}
-                  data-bs-dismiss="offcanvas"
+                  onClick={closeMenu}
                 >
                   <span>PRICING</span>
                 </Link>
@@ -130,7 +146,7 @@ export default function MobileMenu() {
                 <Link
                   href="/custom-measurement"
                   className={`mb-menu-link ${isActive("/custom-measurement") ? "menuActive" : ""}`}
-                  data-bs-dismiss="offcanvas"
+                  onClick={closeMenu}
                 >
                   <span>CUSTOM MEASUREMENT FORM</span>
                 </Link>
@@ -141,7 +157,7 @@ export default function MobileMenu() {
                 <Link
                   href="/custom-fit"
                   className={`mb-menu-link ${isActive("/custom-fit") ? "menuActive" : ""}`}
-                  data-bs-dismiss="offcanvas"
+                  onClick={closeMenu}
                 >
                   <span>HOW TO MEASURE</span>
                 </Link>
@@ -152,7 +168,7 @@ export default function MobileMenu() {
                 <Link
                   href="/faq"
                   className={`mb-menu-link ${isActive("/faq") ? "menuActive" : ""}`}
-                  data-bs-dismiss="offcanvas"
+                  onClick={closeMenu}
                 >
                   <span>FAQS</span>
                 </Link>
@@ -163,7 +179,7 @@ export default function MobileMenu() {
                 <Link
                   href="/about-us"
                   className={`mb-menu-link ${isActive("/about-us") ? "menuActive" : ""}`}
-                  data-bs-dismiss="offcanvas"
+                  onClick={closeMenu}
                 >
                   <span>ABOUT US</span>
                 </Link>

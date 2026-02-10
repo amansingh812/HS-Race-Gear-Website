@@ -71,19 +71,19 @@ export default function Nav() {
         </Link>
       </li>
 
-      <li className="menu-item" style={{ position: "relative" }}>
+      <li className="menu-item has-dropdown">
         <a href="#" className="item-link">
           CUSTOM GEAR
           <i className="icon icon-arr-down" />
         </a>
-        <div className="sub-menu" style={{ position: "absolute", top: "100%", left: 0, backgroundColor: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", zIndex: 1000 }}>
-          <ul className="menu-list" style={{ display: "flex", flexDirection: "column", padding: "2px 0", margin: 0 }}>
+        <div className="sub-menu hs-nav-dropdown">
+          <p className="hs-dropdown-label">Custom Racing Gear</p>
+          <ul className="hs-dropdown-list">
             {customGearItems.map((item, index) => (
-              <li key={index} style={{ listStyle: "none" }}>
+              <li key={index} className="hs-dropdown-item">
                 <Link
                   href={item.href}
-                  className={`menu-link-text link ${isMenuActive(item.href) ? "menuActive" : ""}`}
-                  style={{ display: "block", padding: "10px 16px", textDecoration: "none", color: "#000", fontSize: "14px", transition: "background-color 0.3s" }}
+                  className={`hs-dropdown-link ${isMenuActive(item.href) ? "menuActive" : ""}`}
                 >
                   {item.text}
                 </Link>
@@ -91,21 +91,21 @@ export default function Nav() {
             ))}
           </ul>
         </div>
-      </li >
+      </li>
 
-      <li className="menu-item" style={{ position: "relative" }}>
+      <li className="menu-item has-dropdown">
         <a href="#" className="item-link">
           SHOP
           <i className="icon icon-arr-down" />
         </a>
-        <div className="sub-menu" style={{ position: "absolute", top: "100%", left: 0, backgroundColor: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", zIndex: 1000 }}>
-          <ul className="menu-list" style={{ display: "flex", flexDirection: "column", padding: "2px 0", margin: 0 }}>
+        <div className="sub-menu hs-nav-dropdown">
+          <p className="hs-dropdown-label">Browse Store</p>
+          <ul className="hs-dropdown-list">
             {shopMenuItems.map((item, index) => (
-              <li key={index} style={{ listStyle: "none" }}>
+              <li key={index} className="hs-dropdown-item">
                 <Link
                   href={item.href}
-                  className={`menu-link-text link ${isMenuActive(item.href) ? "menuActive" : ""}`}
-                  style={{ display: "block", padding: "10px 16px", textDecoration: "none", color: "#000", fontSize: "14px", transition: "background-color 0.3s" }}
+                  className={`hs-dropdown-link ${isMenuActive(item.href) ? "menuActive" : ""}`}
                 >
                   {item.text}
                 </Link>
@@ -113,7 +113,7 @@ export default function Nav() {
             ))}
           </ul>
         </div>
-      </li >
+      </li>
 
       <li className="menu-item">
         <Link

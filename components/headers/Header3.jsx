@@ -88,7 +88,7 @@ export default function Header3() {
                   </a>
 
                   <a
-                    href="#shoppingCart"
+                    href="#login"
                     data-bs-toggle="offcanvas"
                     className="skew-box filled-dark"
                   >
