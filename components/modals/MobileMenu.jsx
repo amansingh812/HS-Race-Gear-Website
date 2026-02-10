@@ -1,27 +1,27 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import {
-  blogMenuItems,
-  demoItems,
-  otherPages,
-  productMenuItems,
-  shopPages,
-} from "@/data/menu";
 import { usePathname } from "next/navigation";
-import LanguageSelect from "../common/LanguageSelect";
-import CurrencySelect from "../common/CurrencySelect";
+
+const customGearItems = [
+  { text: "Custom Race Suit", href: "/custom-race-suit" },
+  { text: "Custom Karting Suit", href: "/custom-measurement" },
+  { text: "Custom Power Boating Suit", href: "/custom-measurement" },
+  { text: "Custom Gloves", href: "/custom-measurement" },
+  { text: "Custom Shoes", href: "/custom-measurement" },
+];
+
+const shopMenuItems = [
+  { text: "SHOP ALL", href: "/shop" },
+  { text: "OFF THE RACK RACE SUIT", href: "/shop?category=race-suits" },
+  { text: "CREW SHIRTS", href: "/shop?category=crew-shirts" },
+  { text: "SUBLIMATED CREW HOODIES", href: "/shop?category=hoodies" },
+];
+
 export default function MobileMenu() {
   const pathname = usePathname();
-  const isMenuActive = (link) => {
-    return link.href?.split("/")[1] == pathname.split("/")[1];
-  };
-  const isMenuParentActive = (menu) => {
-    return menu.some((elm) => isMenuActive(elm));
-  };
-  const isMenuParentActive2 = (menu) => {
-    return menu.some((elm) => isMenuParentActive(elm.links));
-  };
+  const isActive = (href) => href?.split("/")[1] === pathname.split("/")[1];
+
   return (
     <div className="offcanvas offcanvas-start canvas-mb" id="mobileMenu">
       <button
@@ -32,263 +32,157 @@ export default function MobileMenu() {
       <div className="mb-canvas-content">
         <div className="mb-body">
           <div className="mb-content-top">
-            <form className="form-search">
-              <input
-                type="text"
-                placeholder="Search product"
-                className=""
-                name="text"
-                tabIndex={0}
-                defaultValue=""
-                aria-required="true"
-                required
-              />
-              <button type="submit">
-                <i className="icon icon-search" />
-              </button>
-            </form>
             <ul className="nav-ul-mb" id="wrapper-menu-navigation">
+
+              {/* HOME */}
+              <li className="nav-mb-item">
+                <Link
+                  href="/"
+                  className={`mb-menu-link ${isActive("/") ? "menuActive" : ""}`}
+                  data-bs-dismiss="offcanvas"
+                >
+                  <span>HOME</span>
+                </Link>
+              </li>
+
+              {/* DEALS */}
+              <li className="nav-mb-item">
+                <Link
+                  href="/RacegearDeals"
+                  className={`mb-menu-link ${isActive("/RacegearDeals") ? "menuActive" : ""}`}
+                  data-bs-dismiss="offcanvas"
+                >
+                  <span>DEALS</span>
+                </Link>
+              </li>
+
+              {/* CUSTOM GEAR (with sub-items) */}
               <li className="nav-mb-item">
                 <a
-                  href="#dropdown-menu-home"
-                  className={`collapsed mb-menu-link  ${
-                    isMenuParentActive(demoItems) ? "menuActive" : ""
-                  } `}
+                  href="#dropdown-menu-custom-gear"
+                  className="collapsed mb-menu-link"
                   data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-home"
+                  aria-expanded="false"
+                  aria-controls="dropdown-menu-custom-gear"
                 >
-                  <span>Home</span>
+                  <span>CUSTOM GEAR</span>
                   <span className="btn-open-sub" />
                 </a>
-                <div id="dropdown-menu-home" className="collapse">
+                <div id="dropdown-menu-custom-gear" className="collapse">
                   <ul className="sub-nav-menu">
-                    {demoItems.map((link, i) => (
+                    {customGearItems.map((item, i) => (
                       <li key={i}>
                         <Link
-                          href={link.href}
-                          className={`sub-nav-link ${
-                            isMenuActive(link) ? "menuActive" : ""
-                          }`}
+                          href={item.href}
+                          className={`sub-nav-link ${isActive(item.href) ? "menuActive" : ""}`}
+                          data-bs-dismiss="offcanvas"
                         >
-                          {link.name}
+                          {item.text}
                         </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
               </li>
+
+              {/* SHOP (with sub-items) */}
               <li className="nav-mb-item">
                 <a
                   href="#dropdown-menu-shop"
-                  className={`collapsed mb-menu-link  ${
-                    isMenuParentActive2(shopPages) ? "menuActive" : ""
-                  } `}
+                  className="collapsed mb-menu-link"
                   data-bs-toggle="collapse"
-                  aria-expanded="true"
+                  aria-expanded="false"
                   aria-controls="dropdown-menu-shop"
                 >
-                  <span>Shop</span>
+                  <span>SHOP</span>
                   <span className="btn-open-sub" />
                 </a>
                 <div id="dropdown-menu-shop" className="collapse">
                   <ul className="sub-nav-menu">
-                    {shopPages.map((elm, i) => (
-                      <li key={i}>
-                        <a
-                          href={`#sub-shop-layout${i}`}
-                          className={`sub-nav-link collapsed  ${
-                            isMenuParentActive(elm.links) ? "menuActive" : ""
-                          } `}
-                          data-bs-toggle="collapse"
-                          aria-expanded="true"
-                          aria-controls={`sub-shop-layout${i}`}
-                        >
-                          <span>{elm.heading}</span>
-                          <span className="btn-open-sub" />
-                        </a>
-                        <div id={`sub-shop-layout${i}`} className="collapse">
-                          <ul className="sub-nav-menu sub-menu-level-2">
-                            {elm.links.map((link, i) => (
-                              <li key={i}>
-                                <Link
-                                  href={link.href2 ? link.href2 : link.href}
-                                  className={`sub-nav-link  ${
-                                    isMenuActive(link) ? "menuActive" : ""
-                                  }`}
-                                >
-                                  {link.text}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-product"
-                  className={`collapsed mb-menu-link ${
-                    isMenuParentActive2(productMenuItems) ? "menuActive" : ""
-                  } `}
-                  data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-product"
-                >
-                  <span>Products</span>
-                  <span className="btn-open-sub" />
-                </a>
-                <div id="dropdown-menu-product" className="collapse">
-                  <ul className="sub-nav-menu">
-                    {productMenuItems.map((elm, i) => (
-                      <li key={i}>
-                        <a
-                          href={`#sub-product-layout${i}`}
-                          className={`sub-nav-link collapsed  ${
-                            isMenuParentActive(elm.links) ? "menuActive" : ""
-                          } `}
-                          data-bs-toggle="collapse"
-                          aria-expanded="true"
-                          aria-controls={`sub-product-layout${i}`}
-                        >
-                          <span>{elm.heading}</span>
-                          <span className="btn-open-sub" />
-                        </a>
-                        <div id={`sub-product-layout${i}`} className="collapse">
-                          <ul className="sub-nav-menu sub-menu-level-2">
-                            {elm.links.map((link, i) => (
-                              <li key={i}>
-                                <Link
-                                  href={link.href}
-                                  className={`sub-nav-link  ${
-                                    isMenuActive(link) ? "menuActive" : ""
-                                  }`}
-                                >
-                                  {link.text}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-pages"
-                  className={`collapsed mb-menu-link  ${
-                    isMenuParentActive(otherPages) ? "menuActive" : ""
-                  } `}
-                  data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-pages"
-                >
-                  <span>Pages</span>
-                  <span className="btn-open-sub" />
-                </a>
-                <div id="dropdown-menu-pages" className="collapse">
-                  <ul className="sub-nav-menu">
-                    {otherPages.map((link, i) => (
+                    {shopMenuItems.map((item, i) => (
                       <li key={i}>
                         <Link
-                          href={link.href}
-                          className={`sub-nav-link  ${
-                            isMenuActive(link) ? "menuActive" : ""
-                          }`}
+                          href={item.href}
+                          className={`sub-nav-link ${isActive(item.href) ? "menuActive" : ""}`}
+                          data-bs-dismiss="offcanvas"
                         >
-                          {link.text}
+                          {item.text}
                         </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
               </li>
+
+              {/* PRICING */}
               <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-blog"
-                  className={`collapsed mb-menu-link  ${
-                    isMenuParentActive(blogMenuItems) ? "menuActive" : ""
-                  } `}
-                  data-bs-toggle="collapse"
-                  aria-expanded="true"
-                  aria-controls="dropdown-menu-blog"
+                <Link
+                  href="/StandardPricing"
+                  className={`mb-menu-link ${isActive("/StandardPricing") ? "menuActive" : ""}`}
+                  data-bs-dismiss="offcanvas"
                 >
-                  <span>Blog</span>
-                  <span className="btn-open-sub" />
-                </a>
-                <div id="dropdown-menu-blog" className="collapse">
-                  <ul className="sub-nav-menu">
-                    {blogMenuItems.map((link, i) => (
-                      <li key={i}>
-                        <Link
-                          href={link.href}
-                          className={`sub-nav-link  ${
-                            isMenuActive(link) ? "menuActive" : ""
-                          }`}
-                        >
-                          {link.text}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <span>PRICING</span>
+                </Link>
               </li>
+
+              {/* CUSTOM MEASUREMENT FORM */}
               <li className="nav-mb-item">
-                <a
-                  href="https://themeforest.net/user/themesflat"
-                  className="mb-menu-link"
+                <Link
+                  href="/custom-measurement"
+                  className={`mb-menu-link ${isActive("/custom-measurement") ? "menuActive" : ""}`}
+                  data-bs-dismiss="offcanvas"
                 >
-                  Buy Theme
-                </a>
+                  <span>CUSTOM MEASUREMENT FORM</span>
+                </Link>
               </li>
+
+              {/* HOW TO MEASURE */}
+              <li className="nav-mb-item">
+                <Link
+                  href="/custom-fit"
+                  className={`mb-menu-link ${isActive("/custom-fit") ? "menuActive" : ""}`}
+                  data-bs-dismiss="offcanvas"
+                >
+                  <span>HOW TO MEASURE</span>
+                </Link>
+              </li>
+
+              {/* FAQS */}
+              <li className="nav-mb-item">
+                <Link
+                  href="/faq"
+                  className={`mb-menu-link ${isActive("/faq") ? "menuActive" : ""}`}
+                  data-bs-dismiss="offcanvas"
+                >
+                  <span>FAQS</span>
+                </Link>
+              </li>
+
+              {/* ABOUT US */}
+              <li className="nav-mb-item">
+                <Link
+                  href="/about-us"
+                  className={`mb-menu-link ${isActive("/about-us") ? "menuActive" : ""}`}
+                  data-bs-dismiss="offcanvas"
+                >
+                  <span>ABOUT US</span>
+                </Link>
+              </li>
+
             </ul>
           </div>
           <div className="mb-other-content">
-            <div className="group-icon">
-              <Link href={`/wish-list`} className="site-nav-icon">
-                <i className="icon icon-heart" />
-                Wishlist
-              </Link>
-              <a
-                href="#login"
-                data-bs-toggle="offcanvas"
-                className="site-nav-icon"
-              >
-                <i className="icon icon-user" />
-                Login
-              </a>
-            </div>
-            <div className="mb-notice">
-              <Link href={`/contact-us`} className="text-need">
-                Need Help?
-              </Link>
-            </div>
             <div className="mb-contact">
               <p>Address: 123 Yarran st, Punchbowl, NSW 2196, Australia</p>
             </div>
             <ul className="mb-info">
               <li>
-                Email: <b className="fw-medium">clientcare@ecom.com</b>
+                Email: <b className="fw-medium">clientcare@hsracegear.com</b>
               </li>
               <li>
                 Phone: <b className="fw-medium">1.888.838.3022</b>
               </li>
             </ul>
-          </div>
-        </div>
-        <div className="mb-bottom">
-          <div className="bottom-bar-language">
-            <div className="tf-currencies">
-              <CurrencySelect />
-            </div>
-            <div className="tf-languages">
-              <LanguageSelect parentClassName="image-select center style-default type-languages" />
-            </div>
           </div>
         </div>
       </div>
