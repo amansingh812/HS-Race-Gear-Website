@@ -555,38 +555,18 @@ export const categoryItems4 = [
   {
     id: 1,
     imgSrc: "/images/cls-categories/plant/categoty__1.png",
-    title: "Custom Racing Suits",
+    title: "Off the Rack Race Suits",
   },
   {
     id: 2,
     imgSrc: "/images/cls-categories/plant/category_3.png",
-    title: "Custom Karting Suits",
+    title: "Crew Shirts",
   },
   {
     id: 3,
     imgSrc: "/images/cls-categories/plant/off_the_rack.png",
-    title: "Off the Rack Race Suits",
+    title: "Sublmated crew hoodies",
   },
-  {
-    id: 4,
-    imgSrc: "/images/cls-categories/plant/category__4.png",
-    title: "Custom Racing Gloves",
-  },
-  {
-    id: 5,
-    imgSrc: "/images/cls-categories/plant/category_shose.png",
-    title: "Custom Racing Shoes",
-  },
-  {
-    id: 6,
-    imgSrc: "/images/cls-categories/plant/category_hoodi.png",
-    title: "Hoodies",
-  },
-  {
-    id: 7,
-    imgSrc: "/images/cls-categories/plant/category_shirt.png",
-    title: "Shirts",
-  }
 ];
 
 export const categories12 = [

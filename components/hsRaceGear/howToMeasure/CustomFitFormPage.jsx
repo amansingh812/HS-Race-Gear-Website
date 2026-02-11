@@ -139,7 +139,6 @@ export default function CustomFitFormPage() {
                                         <p className="cf-guideline-desc">All measurements must be in CM</p>
                                     </div>
                                 </div>
-
                                 <div className="d-flex gap-16 align-items-start">
                                     <div className="cf-guideline-icon">👕</div>
                                     <div className="cf-guideline-text">

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+
 export default function Faqs() {
   return (
     <section className="s-faq flat-spacing-13">
@@ -31,9 +32,12 @@ export default function Faqs() {
           </div>
           <div className="col-lg-8">
             <ul className="faq-list">
+
+              {/* ======== GENERAL ======== */}
               <li className="faq-item">
                 <p className="name-faq">🔹 General</p>
                 <div className="faq-wrap" id="accordionGeneral">
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title"
@@ -49,7 +53,6 @@ export default function Faqs() {
                     <div
                       id="collapseGeneral1"
                       className="accordion-collapse collapse show"
-                      aria-labelledby="headingOne"
                       data-bs-parent="#accordionGeneral"
                     >
                       <div className="accordion-body widget-desc">
@@ -74,16 +77,16 @@ export default function Faqs() {
                     <div
                       id="collapseGeneral2"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingTwo"
                       data-bs-parent="#accordionGeneral"
                     >
-                      <div className="accordion-body widget-material">
+                      <div className="accordion-body">
                         <p>
                           Nomex® meta-aramid fabric offers inherent fire resistance, meaning the protection does not wash out or degrade over time. It provides excellent heat insulation, breathability, and durability—making it the industry standard for professional racing suits.
                         </p>
                       </div>
                     </div>
                   </div>
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title collapsed"
@@ -99,7 +102,6 @@ export default function Faqs() {
                     <div
                       id="collapseGeneral3"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingThree"
                       data-bs-parent="#accordionGeneral"
                     >
                       <div className="accordion-body">
@@ -109,12 +111,15 @@ export default function Faqs() {
                       </div>
                     </div>
                   </div>
+
                 </div>
               </li>
 
+              {/* ======== ORDERING & CUSTOMIZATION ======== */}
               <li className="faq-item">
-                <p className="name-faq">🛒 Ordering & Customization</p>
+                <p className="name-faq">🛒 Ordering &amp; Customization</p>
                 <div className="faq-wrap" id="accordionOrdering">
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title"
@@ -130,7 +135,6 @@ export default function Faqs() {
                     <div
                       id="collapseOrdering1"
                       className="accordion-collapse collapse show"
-                      aria-labelledby="headingOne"
                       data-bs-parent="#accordionOrdering"
                     >
                       <div className="accordion-body widget-desc">
@@ -140,6 +144,7 @@ export default function Faqs() {
                       </div>
                     </div>
                   </div>
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title collapsed"
@@ -155,16 +160,21 @@ export default function Faqs() {
                     <div
                       id="collapseOrdering2"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingTwo"
                       data-bs-parent="#accordionOrdering"
                     >
-                      <div className="accordion-body widget-material">
-                        <p>
-                          We offer full customization, including: Custom sizing, Color combinations, Driver name & flag, Sponsor and team logos, Stitching and panel layouts.
-                        </p>
+                      <div className="accordion-body">
+                        <p>We offer full customization, including:</p>
+                        <ul>
+                          <li>Custom sizing</li>
+                          <li>Color combinations</li>
+                          <li>Driver name &amp; flag</li>
+                          <li>Sponsor and team logos</li>
+                          <li>Stitching and panel layouts</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title collapsed"
@@ -180,7 +190,6 @@ export default function Faqs() {
                     <div
                       id="collapseOrdering3"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingThree"
                       data-bs-parent="#accordionOrdering"
                     >
                       <div className="accordion-body">
@@ -190,6 +199,7 @@ export default function Faqs() {
                       </div>
                     </div>
                   </div>
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title collapsed"
@@ -205,7 +215,6 @@ export default function Faqs() {
                     <div
                       id="collapseOrdering4"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingFour"
                       data-bs-parent="#accordionOrdering"
                     >
                       <div className="accordion-body">
@@ -215,6 +224,7 @@ export default function Faqs() {
                       </div>
                     </div>
                   </div>
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title collapsed"
@@ -230,7 +240,6 @@ export default function Faqs() {
                     <div
                       id="collapseOrdering5"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingFive"
                       data-bs-parent="#accordionOrdering"
                     >
                       <div className="accordion-body">
@@ -240,120 +249,468 @@ export default function Faqs() {
                       </div>
                     </div>
                   </div>
+
                 </div>
               </li>
 
+              {/* ======== SIZING & FIT ======== */}
               <li className="faq-item">
-                <p className="name-faq">📏 Sizing & Fit</p>
-                <div className="faq-wrap" id="accordionExchange">
+                <p className="name-faq">📏 Sizing &amp; Fit</p>
+                <div className="faq-wrap" id="accordionSizing">
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title"
                       data-bs-toggle="collapse"
-                      data-bs-target="#collapseExchangeOne"
+                      data-bs-target="#collapseSizing1"
                       aria-expanded="true"
-                      aria-controls="collapseExchangeOne"
+                      aria-controls="collapseSizing1"
+                      role="button"
+                    >
+                      <span>How do I ensure the correct size?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseSizing1"
+                      className="accordion-collapse collapse show"
+                      data-bs-parent="#accordionSizing"
+                    >
+                      <div className="accordion-body widget-desc">
+                        <p>
+                          We provide a detailed measurement guide to help you submit accurate body measurements. Our team also reviews measurements to ensure proper fit.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSizing2"
+                      aria-expanded="false"
+                      aria-controls="collapseSizing2"
+                      role="button"
+                    >
+                      <span>Can HS Racegear tailor racing gear for a perfect fit?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseSizing2"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionSizing"
+                    >
+                      <div className="accordion-body">
+                        <p>
+                          Yes. Every custom suit is patterned specifically to your measurements, ensuring comfort, flexibility, and correct safety layering.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSizing3"
+                      aria-expanded="false"
+                      aria-controls="collapseSizing3"
+                      role="button"
+                    >
+                      <span>What if my racing gear doesn't fit properly?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseSizing3"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionSizing"
+                    >
+                      <div className="accordion-body">
+                        <p>
+                          If there is a manufacturing or measurement error on our end, we will work with you to resolve the issue through adjustments or remakes.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSizing4"
+                      aria-expanded="false"
+                      aria-controls="collapseSizing4"
+                      role="button"
+                    >
+                      <span>Do you offer one-piece, two-piece, or jacket-only suits?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseSizing4"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionSizing"
+                    >
+                      <div className="accordion-body">
+                        <p>Yes. HS Racegear offers:</p>
+                        <ul>
+                          <li>One-piece racing suits</li>
+                          <li>Two-piece racing suits</li>
+                          <li>Racing jackets</li>
+                        </ul>
+                        <p>Availability depends on SFI requirements and racing class.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
+
+              {/* ======== MATERIALS & SAFETY ======== */}
+              <li className="faq-item">
+                <p className="name-faq">🧵 Materials &amp; Safety</p>
+                <div className="faq-wrap" id="accordionMaterials">
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseMaterials1"
+                      aria-expanded="true"
+                      aria-controls="collapseMaterials1"
+                      role="button"
+                    >
+                      <span>What materials are used in HS Racegear products?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseMaterials1"
+                      className="accordion-collapse collapse show"
+                      data-bs-parent="#accordionMaterials"
+                    >
+                      <div className="accordion-body widget-desc">
+                        <p>Our products are made using:</p>
+                        <ul>
+                          <li>Nomex® meta-aramid fireproof fabrics</li>
+                          <li>Fire-resistant inner linings (knitted Nomex)</li>
+                          <li>Kevlar® or Nomex® thread</li>
+                          <li>High-quality Nomex zippers</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseMaterials2"
+                      aria-expanded="false"
+                      aria-controls="collapseMaterials2"
+                      role="button"
+                    >
+                      <span>Are HS Racegear products SFI certified?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseMaterials2"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionMaterials"
+                    >
+                      <div className="accordion-body">
+                        <p>
+                          Yes. Our racing suits, gloves, and shoes are manufactured to meet SFI 3.2A safety standards, clearly labeled for inspection.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseMaterials3"
+                      aria-expanded="false"
+                      aria-controls="collapseMaterials3"
+                      role="button"
+                    >
+                      <span>What safety features are included in HS Racegear racing suits?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseMaterials3"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionMaterials"
+                    >
+                      <div className="accordion-body">
+                        <p>Key safety features include:</p>
+                        <ul>
+                          <li>Multi-layer fire protection</li>
+                          <li>Nomex® stretch panels</li>
+                          <li>Reinforced seams</li>
+                          <li>Fire-resistant cuffs and collars</li>
+                          <li>Breathable inner linings</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseMaterials4"
+                      aria-expanded="false"
+                      aria-controls="collapseMaterials4"
+                      role="button"
+                    >
+                      <span>Do I need additional safety gear with my racing suit?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseMaterials4"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionMaterials"
+                    >
+                      <div className="accordion-body">
+                        <p>
+                          Yes. Most racing organizations require SFI-certified underwear, gloves, shoes, socks, and balaclavas depending on the class.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseMaterials5"
+                      aria-expanded="false"
+                      aria-controls="collapseMaterials5"
+                      role="button"
+                    >
+                      <span>How do SFI ratings differ, and which one do I need?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseMaterials5"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionMaterials"
+                    >
+                      <div className="accordion-body">
+                        <ul>
+                          <li><strong>SFI 3.2A/1:</strong> Entry-level fire protection</li>
+                          <li><strong>SFI 3.2A/5:</strong> Multi-layer protection for Top Fuel Dragster, Funny Car, Pro Stock Car, Pro Mod, Pro Stock Motorcycle, Alcohol Dragster, Alcohol Funny Car, Super Comp Dragster, Super Gas Car, Super Street Car, Sprint Car, Winged Sprint Car, Non-Wing Sprint Car, Midget Car, Dirt Late Model, Modified Dirt Car, Micro Sprint, Late Model Stock Car, Super Late Model, Modified Asphalt Car, Legends Car, Super Modified, GT Car, Touring Car, Prototype Car, Formula Car, Time Attack Car, Drift Car, Trophy Truck, Class 1 Buggy, Ultra4 Rock Racer, Rally Car, Hill Climb Car, Time Trial Car</li>
+                        </ul>
+                        <p>Always follow your sanctioning body's minimum requirements.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
+
+              {/* ======== SHIPPING & DELIVERY ======== */}
+              <li className="faq-item">
+                <p className="name-faq">🚚 Shipping &amp; Delivery</p>
+                <div className="faq-wrap" id="accordionShipping">
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseShipping1"
+                      aria-expanded="true"
+                      aria-controls="collapseShipping1"
+                      role="button"
+                    >
+                      <span>How long does custom gear take to arrive?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseShipping1"
+                      className="accordion-collapse collapse show"
+                      data-bs-parent="#accordionShipping"
+                    >
+                      <div className="accordion-body widget-desc">
+                        <p>
+                          Custom SFI racing gear typically takes 4–5 weeks for production. Shipping time varies by location.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseShipping2"
+                      aria-expanded="false"
+                      aria-controls="collapseShipping2"
+                      role="button"
+                    >
+                      <span>What is your shipping policy?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseShipping2"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionShipping"
+                    >
+                      <div className="accordion-body">
+                        <p>
+                          All orders are securely packaged and shipped with tracking. Custom orders ship once production and quality inspection are complete.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseShipping3"
+                      aria-expanded="false"
+                      aria-controls="collapseShipping3"
+                      role="button"
+                    >
+                      <span>Do you ship internationally?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapseShipping3"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionShipping"
+                    >
+                      <div className="accordion-body">
+                        <p>
+                          Yes. HS Racegear ships worldwide, serving racers across the USA, Europe, Australia, and beyond.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
+
+              {/* ======== PRICING & PAYMENT ======== */}
+              <li className="faq-item">
+                <p className="name-faq">💳 Pricing &amp; Payment</p>
+                <div className="faq-wrap" id="accordionPricing">
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapsePricing1"
+                      aria-expanded="true"
+                      aria-controls="collapsePricing1"
+                      role="button"
+                    >
+                      <span>What payment methods do you accept?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapsePricing1"
+                      className="accordion-collapse collapse show"
+                      data-bs-parent="#accordionPricing"
+                    >
+                      <div className="accordion-body widget-desc">
+                        <p>
+                          We accept secure online payments via credit/debit cards, PayPal, Venmo and supported payment gateways shown at checkout.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapsePricing2"
+                      aria-expanded="false"
+                      aria-controls="collapsePricing2"
+                      role="button"
+                    >
+                      <span>How much do custom racing suits cost?</span>
+                      <span className="icon icon-arrow-down" />
+                    </div>
+                    <div
+                      id="collapsePricing2"
+                      className="accordion-collapse collapse"
+                      data-bs-parent="#accordionPricing"
+                    >
+                      <div className="accordion-body">
+                        <p>Pricing depends on:</p>
+                        <ul>
+                          <li>SFI rating</li>
+                          <li>Custom features</li>
+                        </ul>
+                        <p>Each product page displays base pricing, with final cost confirmed before production.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
+
+              {/* ======== RETURNS & EXCHANGES ======== */}
+              <li className="faq-item">
+                <p className="name-faq">🔄 Returns &amp; Exchanges</p>
+                <div className="faq-wrap" id="accordionReturns">
+
+                  <div className="widget-accordion">
+                    <div
+                      className="accordion-title"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseReturns1"
+                      aria-expanded="true"
+                      aria-controls="collapseReturns1"
                       role="button"
                     >
                       <span>What is your return policy?</span>
                       <span className="icon icon-arrow-down" />
                     </div>
                     <div
-                      id="collapseExchangeOne"
+                      id="collapseReturns1"
                       className="accordion-collapse collapse show"
-                      aria-labelledby="headingOne"
-                      data-bs-parent="#accordionExchange"
+                      data-bs-parent="#accordionReturns"
                     >
                       <div className="accordion-body widget-desc">
                         <p>
-                          We accept returns within 14 days of delivery. Items
-                          must be unworn, unwashed, and in their original
-                          condition.
+                          Custom-made racing suits are non-returnable, except in the case of manufacturing defects.
                         </p>
                       </div>
                     </div>
                   </div>
+
                   <div className="widget-accordion">
                     <div
                       className="accordion-title collapsed"
                       data-bs-toggle="collapse"
-                      data-bs-target="#collapseExchangeTwo"
+                      data-bs-target="#collapseReturns2"
                       aria-expanded="false"
-                      aria-controls="collapseExchangeTwo"
+                      aria-controls="collapseReturns2"
                       role="button"
                     >
-                      <span>How do I return an item?</span>
+                      <span>Do you design suits for teams and organizations?</span>
                       <span className="icon icon-arrow-down" />
                     </div>
                     <div
-                      id="collapseExchangeTwo"
+                      id="collapseReturns2"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingTwo"
-                      data-bs-parent="#accordionExchange"
-                    >
-                      <div className="accordion-body widget-material">
-                        <p>
-                          Simply contact our customer service team for a return
-                          authorization, and we’ll provide instructions for
-                          shipping the item back.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="widget-accordion">
-                    <div
-                      className="accordion-title collapsed"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseExchangeThree"
-                      aria-expanded="false"
-                      aria-controls="collapseExchangeThree"
-                      role="button"
-                    >
-                      <span>Are there any items that cannot be returned?</span>
-                      <span className="icon icon-arrow-down" />
-                    </div>
-                    <div
-                      id="collapseExchangeThree"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="headingThree"
-                      data-bs-parent="#accordionExchange"
+                      data-bs-parent="#accordionReturns"
                     >
                       <div className="accordion-body">
                         <p>
-                          Yes, sale items, personalized products, and
-                          undergarments are non-returnable.
+                          Absolutely. We specialize in team-wide custom racewear programs with consistent branding and bulk pricing. (shirts, Hoodies and other crew wear)
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="widget-accordion">
-                    <div
-                      className="accordion-title collapsed"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseExchangeFour"
-                      aria-expanded="false"
-                      aria-controls="collapseExchangeFour"
-                      role="button"
-                    >
-                      <span>When will I receive my refund?</span>
-                      <span className="icon icon-arrow-down" />
-                    </div>
-                    <div
-                      id="collapseExchangeFour"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="headingFour"
-                      data-bs-parent="#accordionExchange"
-                    >
-                      <div className="accordion-body">
-                        <p>
-                          Once your return is received and inspected, we will
-                          process the refund within 5-7 business days.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
               </li>
+
             </ul>
           </div>
         </div>

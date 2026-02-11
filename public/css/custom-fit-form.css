@@ -1,333 +1,439 @@
-/* ==========================================
-   Custom Fit Form Page Styles
-   ========================================== */
+/* ============================================
+   HOW TO MEASURE / CUSTOM FIT PAGE
+   DARK RACING THEME — HS Race Gear
+   ============================================ */
 
-/* Hero Section Image */
-.custom-fit-hero-img {
-    object-fit: cover;
-    height: 100%;
+* { box-sizing: border-box; }
+
+:root {
+  --cf-red: #e21b1b;
+  --cf-red-dark: #c41515;
+  --cf-bg: #070707;
+  --cf-bg2: #0f0f0f;
+  --cf-bg3: #141414;
+  --cf-bg4: #1a1a1a;
+  --cf-border: rgba(255, 255, 255, 0.06);
+  --cf-border-red: rgba(226, 27, 27, 0.3);
+  --cf-white: #ffffff;
+  --cf-white-80: rgba(255, 255, 255, 0.8);
+  --cf-white-60: rgba(255, 255, 255, 0.6);
+  --cf-white-40: rgba(255, 255, 255, 0.4);
+  --cf-font: 'Poppins', sans-serif;
+  --cf-radius: 14px;
+  --cf-transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ==========================================
-   Warning Banner
-   ========================================== */
+/* ============================================
+   SECTION BACKGROUNDS
+   Override template bg_grey-7 within custom-fit
+   ============================================ */
+.flat-spacing-9.bg_grey-7,
+.flat-spacing-1.bg_grey-7,
+.flat-spacing-7.bg_grey-7 {
+  background: var(--cf-bg) !important;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.tf-content-left .heading h2.heading-title {
+  color: var(--cf-white);
+  font-family: var(--cf-font);
+}
+
+.tf-content-left .heading .text_black-2 {
+  color: var(--cf-white-60) !important;
+  font-family: var(--cf-font);
+  line-height: 1.8;
+}
+
+.custom-fit-hero-img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: var(--cf-radius);
+}
+
+/* ============================================
+   WARNING BANNER
+   ============================================ */
 .cf-warning-banner {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid #ffe5e5;
+  background: var(--cf-bg3);
+  border-radius: var(--cf-radius);
+  overflow: hidden;
+  border: 1px solid var(--cf-border-red);
 }
 
 .cf-warning-header {
-    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-    padding: 18px 30px;
+  background: linear-gradient(135deg, var(--cf-red) 0%, var(--cf-red-dark) 100%);
+  padding: 18px 30px;
 }
 
 .cf-warning-icon {
-    padding: 5px;
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: #fff;
+  padding: 5px;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  flex-shrink: 0;
 }
 
 .cf-warning-title {
-    padding-left: 10px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 17px;
+  padding-left: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  font-family: var(--cf-font);
 }
 
 .cf-warning-body {
-    padding: 50px 36px;
-    margin: 10px !important;
+  padding: 40px 36px;
+  margin: 0 !important;
 }
 
-/* Guidelines Grid */
+/* Guideline items */
 .cf-guideline-icon {
-    min-width: 40px;
-    height: 40px;
-    background: #f0f0f0;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 20px;
-    color: #6c757d;
+  min-width: 44px;
+  height: 44px;
+  background: rgba(226, 27, 27, 0.08);
+  border: 1px solid var(--cf-border-red);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
 }
 
 .cf-guideline-text {
-    padding-top: 2px;
-    padding-left: 10px;
+  padding-top: 2px;
+  padding-left: 12px;
 }
 
 .cf-guideline-title {
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 6px;
-    color: #212529;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: var(--cf-white);
+  font-family: var(--cf-font);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .cf-guideline-desc {
-    font-size: 13px;
-    color: #6c757d;
-    margin-bottom: 0;
+  font-size: 13px;
+  color: var(--cf-white-60);
+  margin-bottom: 0;
+  font-family: var(--cf-font);
 }
 
 /* Disclaimer */
 .cf-disclaimer {
-    margin-top: 15px;
-    background: #fff9e6;
-    border-radius: 8px;
-    border-left: 5px solid #ffc107;
-    padding: 14px 18px;
+  margin-top: 24px;
+  background: rgba(226, 27, 27, 0.06);
+  border-radius: 8px;
+  border-left: 3px solid var(--cf-red);
+  padding: 14px 18px;
 }
 
 .cf-disclaimer-text {
-    font-size: 13px;
-    color: #856404;
-    line-height: 1.6;
-    margin-bottom: 0;
+  font-size: 13px;
+  color: var(--cf-white-60);
+  line-height: 1.7;
+  margin-bottom: 0;
+  font-family: var(--cf-font);
 }
 
 .cf-disclaimer-text strong {
-    font-weight: 600;
+  color: var(--cf-red);
+  font-weight: 700;
 }
 
-/* ==========================================
-   Success Message
-   ========================================== */
+/* ============================================
+   SUCCESS MESSAGE
+   ============================================ */
 .cf-success-message {
-    background: #d4edda;
-    border: 1px solid #c3e6cb;
-    border-radius: 10px;
+  background: rgba(226, 27, 27, 0.06);
+  border: 1px solid var(--cf-border-red);
+  border-radius: var(--cf-radius);
+  padding: 60px 40px;
+  color: var(--cf-white);
+  font-family: var(--cf-font);
 }
 
 .cf-success-icon {
-    font-size: 4rem;
+  font-size: 4rem;
+  display: block;
 }
 
-/* ==========================================
-   Measurement Steps
-   ========================================== */
+/* ============================================
+   MEASUREMENT STEPS
+   ============================================ */
 .cf-measurement-item {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  background: var(--cf-bg3);
+  border-radius: var(--cf-radius);
+  overflow: hidden;
+  border: 1px solid var(--cf-border);
+  transition: var(--cf-transition);
+}
+
+.cf-measurement-item:hover {
+  border-color: var(--cf-border-red);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
 }
 
 .cf-measurement-image {
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 280px;
-    padding: 20px;
+  background: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  padding: 20px;
+  background: var(--cf-bg4);
 }
 
 /* Measurement Image Wrapper */
 .measurement-image-wrapper {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto;
 }
 
 .measurement-image-wrapper img {
-    width: 100%;
-    height: auto;
-    max-height: 450px;
-    object-fit: contain;
-    display: block;
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: contain;
+  display: block;
 }
 
-.cf-image-placeholder {
-    width: 180px;
-    height: 180px;
-    background: #dee2e6;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 15px;
-    border: 2px dashed #adb5bd;
+/* Measurement content area */
+.measurement-content {
+  background: var(--cf-bg3);
 }
 
-.cf-placeholder-icon {
-    font-size: 3rem;
-    color: #6c757d;
+.measurement-content h4 {
+  color: var(--cf-white);
+  font-family: var(--cf-font);
 }
 
-.cf-placeholder-text {
-    font-size: 14px;
+.measurement-content .text_black-3 {
+  color: var(--cf-white-60) !important;
+  font-family: var(--cf-font);
+  line-height: 1.8;
 }
 
 /* Step Badge */
 .cf-step-badge {
-    display: inline-block;
-    background: #000;
-    color: #fff;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--cf-red), var(--cf-red-dark));
+  color: #fff;
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--cf-font);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .cf-step-text {
-    line-height: 1.7;
+  line-height: 1.8;
+  color: var(--cf-white-60);
+  font-family: var(--cf-font);
 }
 
-/* Measurement Input */
-.cf-measurement-input {
-    max-width: 150px;
-    padding: 12px 15px;
-    font-size: 18px;
-    font-weight: 600;
-    border: 2px solid #dee2e6;
-    border-radius: 8px;
+/* ============================================
+   BENEFITS SECTION (CustomFitBenefitsSection)
+   ============================================ */
+.benefits-content .tf-badge {
+  background: rgba(226, 27, 27, 0.1) !important;
+  color: var(--cf-red) !important;
+  border: 1px solid var(--cf-border-red) !important;
 }
 
-/* Torso Error */
-.cf-torso-error {
-    background: #fff3cd;
-    border: 1px solid #ffc107;
-    border-radius: 8px;
-    color: #856404;
+.benefits-content .heading-title {
+  color: var(--cf-white) !important;
+  font-family: var(--cf-font);
 }
 
-/* ==========================================
-   Torso Validation
-   ========================================== */
-.cf-torso-validation {
-    border-radius: 10px;
+.benefit-title {
+  color: var(--cf-white) !important;
+  font-family: var(--cf-font);
 }
 
-.cf-torso-validation.has-error {
-    background: #fff3cd;
-    border: 1px solid #ffc107;
+.benefit-description {
+  color: var(--cf-white-60) !important;
+  font-family: var(--cf-font);
 }
 
-.cf-torso-validation.valid {
-    background: #d4edda;
-    border: 1px solid #c3e6cb;
+/* Number badge — override inline styles */
+.number-badge {
+  border-color: var(--cf-border) !important;
+  background: var(--cf-bg3) !important;
+  color: var(--cf-white-60) !important;
 }
 
-.cf-validation-error-text {
-    color: #856404;
-}
-
-.cf-validation-success-text {
-    color: #155724;
-}
-
-/* ==========================================
-   Additional Measurements & Contact Info
-   ========================================== */
+/* ============================================
+   CONTACT / FORM CARD
+   ============================================ */
 .cf-form-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  background: var(--cf-bg3);
+  border-radius: var(--cf-radius);
+  padding: 36px;
+  border: 1px solid var(--cf-border);
 }
 
-.cf-form-input {
-    padding: 12px 15px;
-    border: 2px solid #dee2e6;
-    border-radius: 8px;
+.cf-form-card h4 {
+  color: var(--cf-white);
+  font-family: var(--cf-font);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.cf-form-card label {
+  color: var(--cf-white-80);
+  font-family: var(--cf-font);
+}
+
+.cf-form-card .text-danger {
+  color: var(--cf-red) !important;
+}
+
+.cf-form-input,
+.cf-form-textarea {
+  background: var(--cf-bg4) !important;
+  border: 1px solid var(--cf-border) !important;
+  border-radius: 10px !important;
+  color: var(--cf-white) !important;
+  font-family: var(--cf-font);
+  padding: 12px 16px;
+  transition: var(--cf-transition);
+  width: 100%;
+}
+
+.cf-form-input:focus,
+.cf-form-textarea:focus {
+  border-color: var(--cf-border-red) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(226, 27, 27, 0.08) !important;
+  background: var(--cf-bg3) !important;
+}
+
+.cf-form-input::placeholder,
+.cf-form-textarea::placeholder {
+  color: var(--cf-white-40);
 }
 
 .cf-form-textarea {
-    padding: 12px 15px;
-    border: 2px solid #dee2e6;
-    border-radius: 8px;
-    resize: vertical;
+  resize: vertical;
 }
 
 .cf-field-description {
-    font-size: 14px;
+  font-size: 13px;
+  color: var(--cf-white-40);
+  font-family: var(--cf-font);
 }
 
-/* ==========================================
-   Submit Button
-   ========================================== */
+/* ============================================
+   SUBMIT BUTTON
+   ============================================ */
 .cf-submit-btn.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-/* ==========================================
-   Help Section
-   ========================================== */
-.cf-contact-icon {
-    font-size: 1.5rem;
+/* ============================================
+   TORSO VALIDATION
+   ============================================ */
+.cf-torso-validation {
+  border-radius: 10px;
 }
 
-.cf-video-placeholder {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 60px 30px;
-    text-align: center;
-    border: 2px dashed #dee2e6;
+.cf-torso-validation.has-error {
+  background: rgba(226, 27, 27, 0.08);
+  border: 1px solid var(--cf-border-red);
 }
 
-.cf-video-icon {
-    font-size: 4rem;
+.cf-torso-validation.valid {
+  background: rgba(25, 135, 84, 0.1);
+  border: 1px solid rgba(25, 135, 84, 0.3);
 }
 
-/* ==========================================
-   Responsive Styles
-   ========================================== */
+.cf-validation-error-text {
+  color: var(--cf-red);
+  font-family: var(--cf-font);
+}
 
-/* Tablet and smaller */
+.cf-validation-success-text {
+  color: #4ade80;
+  font-family: var(--cf-font);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 991px) {
-    .measurement-image-wrapper {
-        max-width: 350px;
-    }
+  .measurement-image-wrapper {
+    max-width: 350px;
+  }
 
-    .measurement-image-wrapper img {
-        max-height: 400px;
-    }
+  .measurement-image-wrapper img {
+    max-height: 400px;
+  }
 
-    .cf-measurement-image {
-        min-height: 250px;
-        padding: 15px;
-    }
+  .cf-measurement-image {
+    min-height: 250px;
+    padding: 15px;
+  }
+
+  .cf-form-card {
+    padding: 24px;
+  }
+
+  .cf-warning-body {
+    padding: 28px 24px;
+  }
 }
 
-/* Mobile */
 @media (max-width: 767px) {
-    .measurement-image-wrapper {
-        max-width: 100%;
-    }
+  .measurement-image-wrapper {
+    max-width: 100%;
+  }
 
-    .measurement-image-wrapper img {
-        max-height: 350px;
-    }
+  .measurement-image-wrapper img {
+    max-height: 350px;
+  }
 
-    .cf-measurement-image {
-        min-height: 220px;
-        padding: 10px;
-    }
+  .cf-measurement-image {
+    min-height: 220px;
+    padding: 10px;
+  }
 
-    .cf-measurement-item {
-        margin-bottom: 30px;
-    }
+  .cf-measurement-item {
+    margin-bottom: 20px;
+  }
+
+  .cf-form-card {
+    padding: 20px;
+  }
 }
 
-/* Small mobile */
 @media (max-width: 575px) {
-    .measurement-image-wrapper img {
-        max-height: 300px;
-    }
+  .measurement-image-wrapper img {
+    max-height: 300px;
+  }
 
-    .cf-measurement-image {
-        min-height: 200px;
-    }
+  .cf-measurement-image {
+    min-height: 200px;
+  }
+
+  .cf-warning-body {
+    padding: 20px 16px;
+  }
 }

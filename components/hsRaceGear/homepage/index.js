@@ -1,0 +1,10 @@
+export { default as HeroSection } from "./HeroSection";
+export { default as AnnouncementStrip } from "./AnnouncementStrip";
+export { HeroBannersTop, HeroBannersMiddle } from "./HeroBanners";
+export { default as PromoBanner } from "./PromoBanner";
+export { default as FeaturedProducts } from "./FeaturedProducts";
+export { default as CertificationTrust } from "./CertificationTrust";
+export { default as HomeTestimonials } from "./HomeTestimonials";
+export { default as BlogSection } from "./BlogSection";
+export { default as BrandStory } from "./BrandStory";
+export { default as NewsletterSignup } from "./NewsletterSignup";

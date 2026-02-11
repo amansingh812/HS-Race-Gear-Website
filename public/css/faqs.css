@@ -1,9 +1,307 @@
-/* FAQ Page Styles */
+/* ============================================
+   FAQ PAGE — DARK RACING THEME
+   HS Race Gear
+   ============================================ */
 
-.s-faq .faq-item .name-faq {
-  font-weight: 600;
+* { box-sizing: border-box; }
+
+:root {
+  --faq-red: #e21b1b;
+  --faq-red-dark: #c41515;
+  --faq-bg: #070707;
+  --faq-bg2: #0f0f0f;
+  --faq-bg3: #141414;
+  --faq-border: rgba(255, 255, 255, 0.06);
+  --faq-border-red: rgba(226, 27, 27, 0.3);
+  --faq-white: #ffffff;
+  --faq-white-80: rgba(255, 255, 255, 0.8);
+  --faq-white-60: rgba(255, 255, 255, 0.6);
+  --faq-white-40: rgba(255, 255, 255, 0.4);
+  --faq-font: 'Poppins', sans-serif;
+  --faq-radius: 14px;
+  --faq-transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.s-faq .widget-accordion .accordion-title {
+/* ============================================
+   SECTION WRAPPER
+   ============================================ */
+.s-faq {
+  background: var(--faq-bg);
+  padding: 100px 0;
+  min-height: 100vh;
+}
+
+/* ============================================
+   CONTACT SIDEBAR
+   ============================================ */
+.s-faq .sb-contact {
+  background: var(--faq-bg3);
+  border: 1px solid var(--faq-border);
+  border-radius: var(--faq-radius);
+  padding: 36px 28px;
+  position: sticky;
+  top: 100px;
+}
+
+.s-faq .sb-contact .title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--faq-white);
+  font-family: var(--faq-font);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 16px;
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.s-faq .sb-contact .title::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--faq-red);
+  border-radius: 2px;
+}
+
+.s-faq .sb-contact .sub {
+  font-size: 0.9rem;
+  color: var(--faq-white-60);
+  line-height: 1.75;
+  font-family: var(--faq-font);
+  margin: 0 0 14px;
+}
+
+.s-faq .sb-contact .btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* Override template button styles for dark theme */
+.s-faq .sb-contact .tf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: var(--faq-font);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: var(--faq-transition);
+  border: none;
   cursor: pointer;
+}
+
+.s-faq .sb-contact .btn-fill {
+  background: linear-gradient(135deg, var(--faq-red), var(--faq-red-dark));
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(226, 27, 27, 0.28);
+}
+
+.s-faq .sb-contact .btn-fill:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.s-faq .sb-contact .btn-white {
+  background: transparent;
+  color: var(--faq-white-60);
+  border: 1px solid var(--faq-border);
+}
+
+.s-faq .sb-contact .btn-white:hover {
+  border-color: var(--faq-border-red);
+  color: var(--faq-red);
+  background: rgba(226, 27, 27, 0.06);
+}
+
+/* ============================================
+   FAQ LIST
+   ============================================ */
+.s-faq .faq-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ============================================
+   FAQ ITEM (category group)
+   ============================================ */
+.s-faq .faq-item {
+  border: none;
+}
+
+.s-faq .faq-item .name-faq {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--faq-red);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-family: var(--faq-font);
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ============================================
+   FAQ WRAP (accordion group)
+   ============================================ */
+.s-faq .faq-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ============================================
+   WIDGET ACCORDION
+   ============================================ */
+.s-faq .widget-accordion {
+  background: var(--faq-bg3);
+  border: 1px solid var(--faq-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: var(--faq-transition);
+}
+
+.s-faq .widget-accordion:hover {
+  border-color: var(--faq-border-red);
+}
+
+/* ============================================
+   ACCORDION TITLE
+   ============================================ */
+.s-faq .widget-accordion .accordion-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--faq-white-80);
+  font-family: var(--faq-font);
+  transition: var(--faq-transition);
+  user-select: none;
+  line-height: 1.5;
+}
+
+.s-faq .widget-accordion .accordion-title:hover {
+  color: var(--faq-white);
+}
+
+/* Open state — when accordion is expanded */
+.s-faq .widget-accordion .accordion-title:not(.collapsed) {
+  color: var(--faq-white);
+  border-bottom: 1px solid var(--faq-border);
+}
+
+/* Arrow icon */
+.s-faq .widget-accordion .accordion-title .icon {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--faq-red);
+  transition: transform 0.3s ease;
+}
+
+.s-faq .widget-accordion .accordion-title:not(.collapsed) .icon {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   ACCORDION BODY
+   ============================================ */
+.s-faq .widget-accordion .accordion-body {
+  padding: 18px 22px 20px;
+}
+
+.s-faq .widget-accordion .accordion-body p {
+  font-size: 0.9rem;
+  color: var(--faq-white-60);
+  line-height: 1.8;
+  font-family: var(--faq-font);
+  margin: 0 0 10px;
+}
+
+.s-faq .widget-accordion .accordion-body p:last-child {
+  margin-bottom: 0;
+}
+
+.s-faq .widget-accordion .accordion-body ul {
+  margin: 8px 0 10px 16px;
+  padding: 0;
+}
+
+.s-faq .widget-accordion .accordion-body ul li {
+  font-size: 0.9rem;
+  color: var(--faq-white-60);
+  line-height: 1.75;
+  font-family: var(--faq-font);
+  padding: 2px 0;
+  list-style: none;
+  padding-left: 14px;
+  position: relative;
+}
+
+.s-faq .widget-accordion .accordion-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 5px;
+  height: 5px;
+  background: var(--faq-red);
+  border-radius: 50%;
+}
+
+.s-faq .widget-accordion .accordion-body ul li strong {
+  color: var(--faq-white-80);
+}
+
+/* Active/open accordion highlight */
+.s-faq .widget-accordion:has(.accordion-title:not(.collapsed)) {
+  border-color: var(--faq-border-red);
+  box-shadow: 0 0 0 1px rgba(226, 27, 27, 0.1);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 991px) {
+  .s-faq {
+    padding: 70px 0;
+  }
+
+  .s-faq .sb-contact {
+    position: static;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .s-faq {
+    padding: 60px 0;
+  }
+
+  .s-faq .widget-accordion .accordion-title {
+    padding: 15px 16px;
+    font-size: 0.9rem;
+  }
+
+  .s-faq .widget-accordion .accordion-body {
+    padding: 14px 16px 16px;
+  }
 }

@@ -4,44 +4,21 @@ import Link from "next/link";
 import Image from "next/image";
 
 const categories = [
+
     {
         id: 1,
-        title: "Custom Racing Suits",
-        image: "/images/cls-categories/racing/custom-racing-suits.jpg",
-        link: "/shop-default",
-    },
-    {
-        id: 2,
-        title: "Custom Karting Suits",
-        image: "/images/cls-categories/racing/custom-karting-suits.jpg",
-        link: "/shop-default",
-    },
-    {
-        id: 3,
         title: "Off the Rack Race Suits",
         image: "/images/cls-categories/racing/off-rack-suits.jpg",
         link: "/shop-default",
     },
     {
-        id: 4,
-        title: "Custom Racing Gloves",
-        image: "/images/cls-categories/racing/custom-gloves.jpg",
-        link: "/shop-default",
-    },
-    {
-        id: 5,
-        title: "Custom Racing Shoes",
-        image: "/images/cls-categories/racing/custom-shoes.jpg",
-        link: "/shop-default",
-    },
-    {
-        id: 6,
+        id: 2,
         title: "Hoodies",
         image: "/images/cls-categories/racing/hoodies.jpg",
         link: "/shop-default",
     },
     {
-        id: 7,
+        id: 3,
         title: "Shirts",
         image: "/images/cls-categories/racing/shirts.jpg",
         link: "/shop-default",
@@ -51,10 +28,10 @@ const categories = [
 export default function RacingCategories() {
     return (
         <section className="flat-spacing-3">
-            <div className="container"> 
+            <div className="container">
                 {/* Section Title */}
                 <div className="flat-title text-center wow fadeInUp mb-5">
-                    <h3 className="title font-7 fw-bold">Shop By Category</h3>
+                    <h2 className="title font-7 fw-bold">Shop By Category</h2>
                     <p className="text-main text-md">
                         Explore our premium racing gear collection, crafted for champions
                     </p>

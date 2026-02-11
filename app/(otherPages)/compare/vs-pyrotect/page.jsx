@@ -1,0 +1,27 @@
+import Footer3 from "@/components/footers/Footer3";
+import Header1 from "@/components/headers/Header1";
+import Topbar2 from "@/components/headers/Topbar2";
+import Breadcumb from "@/components/common/Breadcumb";
+import VsPyrotectContent from "@/components/hsRaceGear/compare/vsPyrotect/VsPyrotectContent";
+import "@/public/css/vs-pyrotect.css";
+import React from "react";
+
+export const metadata = {
+  title: "HS Racegear vs Pyrotect – Custom SFI Suits Comparison | HS Race Gear",
+  description:
+    "Compare HS Racegear vs Pyrotect race suits. Custom SFI-certified suits starting at $289 vs ~$995. Faster production, more design freedom, premium Nomex® materials included.",
+  keywords:
+    "HS Racegear vs Pyrotect, Pyrotect alternative, custom SFI race suits, NHRA drag racing suit, affordable SFI fire suit",
+};
+
+export default function VsPyrotectPage() {
+  return (
+    <>
+      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
+      <Header1 />
+      <Breadcumb pageName="Compare" pageTitle="HS Racegear vs Pyrotect" />
+      <VsPyrotectContent />
+      <Footer3 />
+    </>
+  );
+}

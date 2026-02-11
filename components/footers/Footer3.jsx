@@ -133,28 +133,24 @@ export default function Footer3() {
               <div className="tf-collapse-content">
                 <div className="footer-contact">
                   <ul className="footer-info">
+
                     <li className="item">
-                      <a
-                        target="_blank"
-                        href="https://www.google.com/maps?q=123Yarranst,Punchbowl,NSW2196,Australia"
-                      >
-                        CONTACT US
-                      </a>
+                      <Link href="/contact-us">CONTACT US</Link>
                     </li>
                     <li className="item">
-                      <a href="tel:18888383022">ABOUT</a>
+                      <Link href="/about-us">ABOUT</Link>
                     </li>
                     <li className="item">
                       BLOG
                     </li>
                     <li className="item">
-                      PRIVACY POLICY
+                      <Link href="/privacy-policy">PRIVACY POLICY</Link>
                     </li>
                     <li className="item">
-                      TERMS & SERVICES
+                      <Link href="/term-and-condition">TERMS & SERVICES</Link>
                     </li>
                     <li className="item">
-                      SHIPPING POLICY
+                      <Link href="/shipping-policy">SHIPPING POLICY</Link>
                     </li>
                   </ul>
                 </div>
@@ -169,20 +165,14 @@ export default function Footer3() {
                 <div className="footer-contact">
                   <ul className="footer-info">
                     <li className="item">
-                      <a
-                        target="_blank"
-                        href="https://www.google.com/maps?q=123Yarranst,Punchbowl,NSW2196,Australia"
-                      >
-                        FAQS
-                      </a>
+                      <Link href="/faq">FAQ</Link>
                     </li>
                     <li className="item">
-                      <a href="tel:18888383022">PAYMENT METHODS</a>
+                      <Link href="/payment-methods">PAYMENT METHODS</Link>
                     </li>
                     <li className="item">
                       RETURN POLICY
                     </li>
-
                   </ul>
                 </div>
               </div>
@@ -219,15 +209,13 @@ export default function Footer3() {
                 <div className="footer-contact">
                   <ul className="footer-info">
                     <li className="item">
-                      <a
-                        target="_blank"
-                        href="https://www.google.com/maps?q=123Yarranst,Punchbowl,NSW2196,Australia"
-                      >
-                        MORE MOCKUPS
-                      </a>
+                      <Link href="/suit-maintenance">SUIT MAINTAINENCE</Link>
                     </li>
                     <li className="item">
-                      <a href="tel:18888383022">BLANKET TEMPLATE</a>
+                      <a href="tel:18888383022">CERTIFICATIONS</a>
+                    </li>
+                    <li className="item">
+                      <a href="tel:18888383022">HOW TO MEASURE</a>
                     </li>
                   </ul>
                 </div>
@@ -236,7 +224,7 @@ export default function Footer3() {
 
             <div className="footer-col-block s1">
               <div className="footer-heading footer-heading-mobile text-xl fw-medium">
-                COMPANY
+                COMPARE
               </div>
               <div className="tf-collapse-content">
                 <div className="footer-contact">
@@ -246,23 +234,20 @@ export default function Footer3() {
                         target="_blank"
                         href="https://www.google.com/maps?q=123Yarranst,Punchbowl,NSW2196,Australia"
                       >
-                        CONTACT US
+                        V/S K1
                       </a>
                     </li>
                     <li className="item">
-                      <a href="tel:18888383022">ABOUT</a>
+                      <Link href="/compare/vs-rush">V/S RUSH</Link>
                     </li>
                     <li className="item">
-                      BLOG
+                      V/S VELOCITY
                     </li>
                     <li className="item">
-                      PRIVACY POLICY
+                      <Link href="/compare/vs-pyrotect">V/S PYROTECT</Link>
                     </li>
                     <li className="item">
-                      TERMS & SERVICES
-                    </li>
-                    <li className="item">
-                      SHIPPING POLICY
+                      <Link href="/compare/vs-simpson">V/S SIMPSON</Link>
                     </li>
                   </ul>
                 </div>

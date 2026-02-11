@@ -1,9 +1,578 @@
-/* About Us Page Styles */
+/* ============================================
+   ABOUT US PAGE — DARK RACING THEME
+   HS Race Gear
+   ============================================ */
 
-.hover-lift:hover {
-  transform: translateY(-5px);
+* { box-sizing: border-box; }
+
+:root {
+  --about-red: #e21b1b;
+  --about-red-dark: #c41515;
+  --about-bg: #070707;
+  --about-bg2: #0f0f0f;
+  --about-bg3: #141414;
+  --about-border: rgba(255, 255, 255, 0.06);
+  --about-border-red: rgba(226, 27, 27, 0.3);
+  --about-white: #ffffff;
+  --about-white-60: rgba(255, 255, 255, 0.6);
+  --about-white-40: rgba(255, 255, 255, 0.4);
+  --about-font: 'Poppins', sans-serif;
+  --about-radius: 16px;
+  --about-transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hover-shadow:hover {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+/* ============================================
+   SHARED SECTION HEADER
+   ============================================ */
+.about-section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.about-section-tag {
+  display: inline-block;
+  color: var(--about-red);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: var(--about-font);
+  margin-bottom: 16px;
+}
+
+.about-section-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--about-white);
+  font-family: var(--about-font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 16px;
+  position: relative;
+  display: block;
+}
+
+.about-section-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--about-red);
+  border-radius: 2px;
+  margin: 12px auto 0;
+}
+
+.about-section-desc {
+  font-size: 1.05rem;
+  color: var(--about-white-60);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-family: var(--about-font);
+}
+
+/* ============================================
+   SHARED BUTTONS
+   ============================================ */
+.about-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--about-red), var(--about-red-dark));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: var(--about-font);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: var(--about-transition);
+  box-shadow: 0 8px 30px rgba(226, 27, 27, 0.3);
+}
+
+.about-btn-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.about-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background: transparent;
+  border: 1.5px solid var(--about-border-red);
+  color: var(--about-red);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: var(--about-font);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: var(--about-transition);
+}
+
+.about-btn-outline:hover {
+  background: rgba(226, 27, 27, 0.08);
+  color: var(--about-red);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.about-hero {
+  min-height: 90vh;
+  background: var(--about-bg);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 80px;
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(226, 27, 27, 0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.about-hero-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.about-hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  animation: aboutFadeUp 0.8s ease-out both;
+}
+
+@keyframes aboutFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.about-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(226, 27, 27, 0.08);
+  border: 1px solid var(--about-border-red);
+  border-radius: 100px;
+  padding: 8px 20px;
+  color: var(--about-red);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-family: var(--about-font);
+  margin-bottom: 28px;
+}
+
+.about-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--about-red);
+  border-radius: 50%;
+  animation: aboutPulse 2s infinite;
+}
+
+@keyframes aboutPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.about-hero-title {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800;
+  color: var(--about-white);
+  font-family: var(--about-font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+
+.about-hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--about-red);
+  font-weight: 600;
+  font-family: var(--about-font);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.about-hero-desc {
+  font-size: 1.05rem;
+  color: var(--about-white-60);
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 auto 36px;
+  font-family: var(--about-font);
+}
+
+.about-hero-desc strong {
+  color: var(--about-white);
+}
+
+.about-hero-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   STATS SECTION
+   ============================================ */
+.about-stats-section {
+  background: var(--about-bg2);
+  border-top: 1px solid var(--about-border);
+  border-bottom: 1px solid var(--about-border);
+  padding: 56px 0;
+}
+
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.about-stat-card {
+  text-align: center;
+  padding: 24px 16px;
+  border-right: 1px solid var(--about-border);
+}
+
+.about-stat-card:last-child {
+  border-right: none;
+}
+
+.about-stat-value {
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--about-red);
+  font-family: var(--about-font);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.about-stat-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--about-white-40);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: var(--about-font);
+}
+
+/* ============================================
+   MISSION SECTION
+   ============================================ */
+.about-mission-section {
+  background: var(--about-bg);
+  padding: 100px 0;
+}
+
+.about-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.about-pillar-card {
+  background: var(--about-bg3);
+  border: 1px solid var(--about-border);
+  border-radius: var(--about-radius);
+  padding: 36px 28px;
+  transition: var(--about-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--about-red), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-pillar-card:hover {
+  border-color: var(--about-border-red);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.about-pillar-card:hover::before {
+  opacity: 1;
+}
+
+.about-pillar-icon {
+  font-size: 2.2rem;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.about-pillar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--about-white);
+  font-family: var(--about-font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 12px;
+}
+
+.about-pillar-desc {
+  font-size: 0.9rem;
+  color: var(--about-white-60);
+  line-height: 1.7;
+  font-family: var(--about-font);
+  margin: 0;
+}
+
+/* ============================================
+   PROCESS SECTION
+   ============================================ */
+.about-process-section {
+  background: var(--about-bg2);
+  padding: 100px 0;
+}
+
+.about-process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-process-card {
+  background: var(--about-bg3);
+  border: 1px solid var(--about-border);
+  border-radius: var(--about-radius);
+  padding: 36px 28px;
+  position: relative;
+  transition: var(--about-transition);
+}
+
+.about-process-card:hover {
+  border-color: var(--about-border-red);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.about-process-step {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--about-red);
+  font-family: var(--about-font);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.about-process-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--about-white);
+  font-family: var(--about-font);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 12px;
+}
+
+.about-process-desc {
+  font-size: 0.9rem;
+  color: var(--about-white-60);
+  line-height: 1.7;
+  font-family: var(--about-font);
+  margin: 0;
+}
+
+/* ============================================
+   RACING SERIES SECTION
+   ============================================ */
+.about-series-section {
+  background: var(--about-bg);
+  padding: 100px 0;
+}
+
+.about-series-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-series-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--about-bg3);
+  border: 1px solid var(--about-border);
+  border-radius: 100px;
+  padding: 10px 22px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--about-font);
+  transition: var(--about-transition);
+  letter-spacing: 0.5px;
+}
+
+.about-series-tag:hover {
+  border-color: var(--about-border-red);
+  color: var(--about-white);
+  background: rgba(226, 27, 27, 0.05);
+}
+
+.about-series-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--about-red);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.about-cta-section {
+  background: var(--about-bg2);
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--about-border);
+}
+
+.about-cta-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(226, 27, 27, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-cta-inner {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-cta-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--about-white);
+  font-family: var(--about-font);
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  letter-spacing: 1px;
+}
+
+.about-cta-desc {
+  font-size: 1.05rem;
+  color: var(--about-white-60);
+  line-height: 1.8;
+  margin: 0 0 36px;
+  font-family: var(--about-font);
+}
+
+.about-cta-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.about-cta-badges {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.about-cta-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--about-white-40);
+  font-family: var(--about-font);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.about-cta-badge::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--about-red);
+  border-radius: 50%;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1199px) {
+  .about-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 991px) {
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-stat-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .about-stat-card:nth-child(3) {
+    border-right: 1px solid var(--about-border);
+  }
+
+  .about-stat-card:nth-child(1),
+  .about-stat-card:nth-child(2) {
+    border-bottom: 1px solid var(--about-border);
+  }
+
+  .about-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .about-hero {
+    padding: 100px 0 60px;
+    min-height: auto;
+  }
+
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-process-grid {
+    grid-template-columns: 1fr;
+  }
 }
