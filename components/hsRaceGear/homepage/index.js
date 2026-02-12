@@ -8,3 +8,4 @@ export { default as HomeTestimonials } from "./HomeTestimonials";
 export { default as BlogSection } from "./BlogSection";
 export { default as BrandStory } from "./BrandStory";
 export { default as NewsletterSignup } from "./NewsletterSignup";
+export { default as ProductSpecsSection } from "./ProductSpecsSection";

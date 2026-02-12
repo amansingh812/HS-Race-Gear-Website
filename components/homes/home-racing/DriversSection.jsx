@@ -8,8 +8,7 @@ const specsData = {
     icon: "icon-user",
     specs: [
       "Constructed with a durable Meta Para Aramid Nomex® outer shell for top-tier protection",
-      "SFI 3.2A/1 Certified",
-      "SFI 3.2A/5 Certified",
+      "SFI 3.2A/1 & 3.2A/5 Certified",
       "Premium Nomex® inner lining designed for maximum safety and fire resistance",
       "Tailored fit for comfort and precision on every body type",
       "Enhanced lower back/ stretch panel to provide extra support during long races",
@@ -23,14 +22,14 @@ const specsData = {
     title: "Shoes Specifications",
     icon: "icon-box",
     specs: [
-      "Premium cowhide leather outer shell for durability and classic style",
-      "Meta Aramid Nomex® inner lining for fire-resistant protection",
-      "Comfortable rubber sole designed for long-lasting support",
-      "High-grip rubber outsole for precise control on pedals",
-      "Included size label for easy sizing and identification",
-      "SFI 3.3/5 certification tag for verified safety compliance",
-      "Available in multiple colors to match your style or suit",
-      "Unlimited logo options for personal or team branding",
+      "Premium cowhide leather outer shell",
+      "Fire-resistant Nomex® inner lining",
+      "Comfortable long-lasting rubber sole",
+      "High-grip outsole for precise pedal control",
+      "SFI 3.3/5 certified for safety",
+      "Available in multiple color options",
+      "Size label for easy identification",
+      "Custom logo branding available"
     ],
   },
   gloves: {

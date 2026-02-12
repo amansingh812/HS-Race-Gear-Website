@@ -48,6 +48,7 @@ const dealsData = [
         title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX SFI CERTIFIED GLOVES",
         price: 649,
         badge: null,
+        image: "/images/deals/offer-1-suit-gloves.png",
         features: [
           "SFI 3.2A/1 certified single-layer fire suit",
           "SFI 3.3/5 Free gloves included",
@@ -69,6 +70,7 @@ const dealsData = [
         title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX SFI CERTIFIED GLOVES + NOMEX SFI CERTIFIED SHOES",
         price: 729,
         badge: "BEST VALUE",
+        image: "/images/deals/offer-3-double-suit-gloves.png",
         features: [
           "SFI 3.2A/1 certified single-layer fire suit",
           "SFI 3.3/5 Free gloves included",
@@ -284,7 +286,7 @@ function DealCard({ offer, categoryImage }) {
         </div>
       )}
 
-      {/* Image Placeholder */}
+      {/* Image */}
       <div
         style={{
           width: "100%",
@@ -297,48 +299,60 @@ function DealCard({ offer, categoryImage }) {
           overflow: "hidden",
         }}
       >
-        {/* Decorative grid overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "linear-gradient(rgba(226,27,27,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(226,27,27,0.03) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-        {/* Placeholder content */}
-        <div style={{ textAlign: "center", zIndex: 1, padding: "20px" }}>
-          <div
+        {offer.image ? (
+          <img
+            src={offer.image}
+            alt={offer.tag}
             style={{
-              width: "72px",
-              height: "72px",
-              borderRadius: "50%",
-              border: "2px solid rgba(226,27,27,0.2)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 16px",
-              background: "rgba(226,27,27,0.05)",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
             }}
-          >
-            <ShieldIcon />
-          </div>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.25)",
-              fontSize: "11px",
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              margin: 0,
-            }}
-          >
-            Product Image
-          </p>
-          {/* Uncomment below and remove placeholder when images are ready */}
-          {/* <img src={categoryImage} alt={offer.tag} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> */}
-        </div>
+          />
+        ) : (
+          <>
+            {/* Decorative grid overlay (fallback) */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage:
+                  "linear-gradient(rgba(226,27,27,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(226,27,27,0.03) 1px, transparent 1px)",
+                backgroundSize: "40px 40px",
+              }}
+            />
+            {/* Placeholder content (fallback) */}
+            <div style={{ textAlign: "center", zIndex: 1, padding: "20px" }}>
+              <div
+                style={{
+                  width: "72px",
+                  height: "72px",
+                  borderRadius: "50%",
+                  border: "2px solid rgba(226,27,27,0.2)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "0 auto 16px",
+                  background: "rgba(226,27,27,0.05)",
+                }}
+              >
+                <ShieldIcon />
+              </div>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.25)",
+                  fontSize: "11px",
+                  letterSpacing: "3px",
+                  textTransform: "uppercase",
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  margin: 0,
+                }}
+              >
+                Product Image
+              </p>
+            </div>
+          </>
+        )}
         {/* Gradient fade at bottom */}
         <div
           style={{

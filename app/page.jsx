@@ -8,6 +8,7 @@ import {
   HeroBannersMiddle,
   PromoBanner,
   FeaturedProducts,
+  ProductSpecsSection,
   HomeTestimonials,
   BlogSection,
   BrandStory,
@@ -35,9 +36,9 @@ export default function Home() {
       <CustomizeSection />
       <PromoBanner />
       <FeaturedProducts />
+      <ProductSpecsSection />
       <HeroBannersMiddle />
       <HomeTestimonials />
-      {/* <DriversSection /> */}
       <BlogSection />
       <BrandStory />
       <NewsletterSignup />

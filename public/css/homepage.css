@@ -1174,3 +1174,227 @@
     font-size: 0.9rem;
   }
 }
+
+/* ============================================
+   Product Specs Section — Gear Highlights
+   ============================================ */
+
+/* Section wrapper */
+.gear-section {
+  padding: 90px 0 100px;
+  background: #050505;
+  color: #fff;
+}
+
+/* Header */
+.gear-section__header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.gear-section__label {
+  display: inline-block;
+  background: #e21b1b;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+}
+
+.gear-section__title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.gear-section__title span {
+  color: #e21b1b;
+}
+
+.gear-section__sub {
+  font-size: 1rem;
+  color: #999;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Grid */
+.gear-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* Card */
+.gear-card {
+  position: relative;
+  height: 525px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #111;
+  border: 1px solid #222;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gear-card:hover,
+.gear-card--active {
+  border-color: #e21b1b;
+  box-shadow: 0 0 30px rgba(226, 27, 27, 0.2);
+}
+
+/* Image */
+.gear-image {
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.gear-card:hover .gear-image,
+.gear-card--active .gear-image {
+  transform: scale(1.08);
+}
+
+/* Default label (always visible) */
+.gear-card__default {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 20px 24px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+}
+
+.gear-card__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Glass overlay */
+.gear-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  padding: 28px 26px;
+  z-index: 3;
+
+  background: rgba(5, 5, 5, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 14px;
+}
+
+.gear-overlay__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+/* SFI Badge */
+.sfi-badge {
+  display: inline-block;
+  background: #e21b1b;
+  padding: 4px 11px;
+  font-size: 0.72rem;
+  border-radius: 4px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #fff;
+  width: fit-content;
+}
+
+/* Specs list */
+.gear-specs {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gear-specs li {
+  font-size: 0.88rem;
+  color: #ddd;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.gear-specs__icon {
+  color: #e21b1b;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* CTA Button */
+.gear-cta-btn {
+  display: inline-block;
+  background: #e21b1b;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  width: fit-content;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.gear-cta-btn:hover {
+  background: #c51515;
+  color: #fff;
+  transform: translateX(3px);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .gear-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .gear-section {
+    padding: 60px 0 70px;
+  }
+
+  .gear-section__title {
+    font-size: 1.9rem;
+  }
+
+  .gear-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .gear-card {
+    height: 440px;
+  }
+}
