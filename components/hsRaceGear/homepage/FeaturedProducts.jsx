@@ -3,32 +3,36 @@ import Link from "next/link";
 
 const products = [
   {
-    name: "Custom Racing Suit",
+    name: "HS Pro 1 SFI Race Suit",
     price: "$599",
     originalPrice: "$749",
     badge: "SFI Certified",
-    link: "/custom-race-suit",
+    link: "/shop/hs-pro-1-sfi-race-suit",
+    image: "https://res.cloudinary.com/drygcfes5/image/upload/v1771064344/M3_scqyog.png",
   },
   {
-    name: "Racing Shoes",
+    name: "HS Super SFI Race suit",
     price: "$179",
     originalPrice: null,
     badge: "SFI 3.3/5",
-    link: "/shop-default",
+    link: "shop/hs-super-sfi-race-suit",
+    image: "https://res.cloudinary.com/drygcfes5/image/upload/v1771064344/M1_eg60vm.png",
   },
   {
-    name: "Crew Shirt",
+    name: "HS Rush SFI Race suit",
     price: "$69",
     originalPrice: null,
     badge: "New",
-    link: "/shop-default",
+    link: "/shop/hs-rush-sfi-race-suit",
+    image: "https://res.cloudinary.com/drygcfes5/image/upload/v1771064344/M5_ouwfdw.png",
   },
   {
-    name: "Racing Hoodie",
+    name: "HS Ace SFI Race suit",
     price: "$89",
     originalPrice: null,
     badge: "New",
-    link: "/shop-default",
+    link: "/shop/hs-ace-sfi-race-suit",
+    image: "https://res.cloudinary.com/drygcfes5/image/upload/v1771064344/M2_owokil.png",
   },
 ];
 
@@ -48,9 +52,13 @@ export default function FeaturedProducts() {
             <div key={index} className="product-card">
               <div className="product-card__image">
                 <span className="product-card__badge">{product.badge}</span>
-                <div className="img-placeholder--light img-placeholder">
-                  400 x 500
-                </div>
+                {product.image ? (
+                  <img src={product.image} alt={product.name} className="product-card__img" />
+                ) : (
+                  <div className="img-placeholder--light img-placeholder">
+                    400 x 500
+                  </div>
+                )}
               </div>
               <div className="product-card__body">
                 <h3 className="product-card__name">{product.name}</h3>

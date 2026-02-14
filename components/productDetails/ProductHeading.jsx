@@ -6,10 +6,10 @@ export default function ProductHeading({ product }) {
   // Calculate stock availability
   const totalStock = product.inventory?.reduce((sum, inv) => sum + (inv.stock || 0), 0) || 0;
   const inStock = totalStock > 0 && product.status === 'active';
-  
+
   // Calculate discount percentage
   const hasDiscount = product.compareAtPrice && product.compareAtPrice > product.price;
-  const discountPercentage = hasDiscount 
+  const discountPercentage = hasDiscount
     ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
     : 0;
 
@@ -19,7 +19,7 @@ export default function ProductHeading({ product }) {
         <span className="brand-product">{product.category.name}</span>
       )}
       <h5 className="product-name fw-medium">{product.name || 'Product'}</h5>
-      
+      {/*       
       {inStock ? (
         <div className="product-price">
           <div className="display-sm price-new price-on-sale">
@@ -40,8 +40,8 @@ export default function ProductHeading({ product }) {
             ${product.price?.toFixed(2) || '0.00'}
           </div>
         </div>
-      )}
-      
+      )} */}
+
       {inStock ? (
         <div className="product-stock">
           <span className="stock in-stock">In Stock</span>

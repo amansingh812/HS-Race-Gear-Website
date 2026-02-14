@@ -7,7 +7,6 @@ import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Link from "next/link";
 import ProductCard1 from "@/components/productCards/ProductCard1";
-import { placeholdersByCategory, allPlaceholders } from "@/data/shopPlaceholders";
 import '@/public/css/shop.css';
 
 // Category configuration
@@ -49,7 +48,6 @@ export default function ShopClient() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [usingPlaceholders, setUsingPlaceholders] = useState(false);
   const [resolvedCategoryId, setResolvedCategoryId] = useState(null);
   const [filters, setFilters] = useState({
     category: '',
@@ -123,7 +121,6 @@ export default function ShopClient() {
 
   const resolveCategoryId = async (slug) => {
     try {
-      // Use the slug-based endpoint directly - avoids fetching all categories
       const response = await fetchWithTimeout(`/api/categories/${slug}`);
       const data = await response.json();
       if (data.success && data.data.category) {
@@ -131,12 +128,14 @@ export default function ShopClient() {
         setResolvedCategoryId(cat._id?.toString() || cat._id);
       } else {
         setResolvedCategoryId('not-found');
-        loadPlaceholders();
+        setProducts([]);
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error resolving category:', error);
       setResolvedCategoryId('not-found');
-      loadPlaceholders();
+      setProducts([]);
+      setLoading(false);
     }
   };
 
@@ -152,28 +151,12 @@ export default function ShopClient() {
     }
   };
 
-  const loadPlaceholders = () => {
-    const placeholders = categorySlug
-      ? (placeholdersByCategory[categorySlug] || [])
-      : allPlaceholders;
-    setProducts(placeholders);
-    setUsingPlaceholders(true);
-    setPagination(prev => ({
-      ...prev,
-      totalPages: 1,
-      totalProducts: placeholders.length,
-    }));
-    setLoading(false);
-  };
-
   const fetchProducts = async (catId) => {
     if (catId === 'not-found') {
-      loadPlaceholders();
       return;
     }
 
     setLoading(true);
-    setUsingPlaceholders(false);
 
     try {
       const params = new URLSearchParams({
@@ -225,25 +208,21 @@ export default function ShopClient() {
           };
         });
 
-        if (transformedProducts.length === 0) {
-          // No products from API - fall back to placeholders
-          loadPlaceholders();
-        } else {
-          setProducts(transformedProducts);
-          setUsingPlaceholders(false);
-          setPagination(prev => ({
-            ...prev,
-            totalPages: data.data.pagination.totalPages,
-            totalProducts: data.data.pagination.totalProducts || data.data.pagination.totalCount,
-          }));
-          setLoading(false);
-        }
+        setProducts(transformedProducts);
+        setPagination(prev => ({
+          ...prev,
+          totalPages: data.data.pagination.totalPages,
+          totalProducts: data.data.pagination.totalProducts || data.data.pagination.totalCount,
+        }));
+        setLoading(false);
       } else {
-        loadPlaceholders();
+        setProducts([]);
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error fetching products:', error);
-      loadPlaceholders();
+      setProducts([]);
+      setLoading(false);
     }
   };
 
@@ -310,15 +289,6 @@ export default function ShopClient() {
               </Link>
             ))}
           </div>
-
-          {/* Placeholder notice */}
-          {usingPlaceholders && (
-            <div className="shop-category-description">
-              <p>
-                These are sample products for preview purposes. Actual products will be available once they are added through the admin panel.
-              </p>
-            </div>
-          )}
 
           <div className="row">
             {/* Sidebar Filters */}
@@ -455,7 +425,6 @@ export default function ShopClient() {
                     <div className="col-md-6">
                       <p className="mb-0 shop-product-count">
                         Showing <strong>{products.length}</strong> of <strong>{pagination.totalProducts}</strong> products
-                        {usingPlaceholders && <span className="text-muted"> (sample)</span>}
                       </p>
                     </div>
                     <div className="col-md-6">
@@ -516,8 +485,7 @@ export default function ShopClient() {
                     ))}
                   </div>
 
-                  {/* Pagination - hide for placeholder data */}
-                  {!usingPlaceholders && pagination.totalPages > 1 && (
+                  {pagination.totalPages > 1 && (
                     <nav className="mt-5">
                       <ul className="pagination justify-content-center">
                         <li className={`page-item ${pagination.currentPage === 1 ? 'disabled' : ''}`}>

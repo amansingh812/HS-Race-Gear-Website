@@ -16,7 +16,12 @@ export default function Details1({ product }) {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [customFit, setCustomFit] = useState(false);
-  
+  const [driverName, setDriverName] = useState("");
+  const [selectedLayer, setSelectedLayer] = useState("single");
+  const [showSizeChart, setShowSizeChart] = useState(false);
+
+  const LAYER_PRICES = { single: 395, double: 595 };
+
   const {
     addProductToCart,
     isAddedToCartProducts,
@@ -27,12 +32,12 @@ export default function Details1({ product }) {
     cartProducts,
     updateQuantity,
   } = useContextElement();
-  
+
   const { user } = useAuth();
 
   // Get available sizes from inventory
   const availableSizes = product.inventory?.filter(inv => inv.stock > 0 && inv.isAvailable) || [];
-  
+
   // Set default size if available
   useEffect(() => {
     if (availableSizes.length > 0 && !selectedSize) {
@@ -42,13 +47,14 @@ export default function Details1({ product }) {
 
   // Calculate total price
   const calculateTotalPrice = () => {
-    let total = product.price || 0;
-    
+    // Base price comes from layer selection
+    let total = LAYER_PRICES[selectedLayer];
+
     // Add custom fit price
     if (customFit && product.customFitAvailable && product.customFitPrice) {
       total += product.customFitPrice;
     }
-    
+
     // Add custom options prices
     selectedOptions.forEach(optionSlug => {
       const option = product.customOptions?.find(opt => opt.slug === optionSlug);
@@ -56,19 +62,15 @@ export default function Details1({ product }) {
         total += option.price || 0;
       }
     });
-    
+
     return total;
   };
 
   const totalPrice = calculateTotalPrice();
-  const hasDiscount = product.compareAtPrice && product.compareAtPrice > product.price;
-  const discountPercentage = hasDiscount 
-    ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
-    : 0;
 
   const handleOptionToggle = (optionSlug) => {
-    setSelectedOptions(prev => 
-      prev.includes(optionSlug) 
+    setSelectedOptions(prev =>
+      prev.includes(optionSlug)
         ? prev.filter(s => s !== optionSlug)
         : [...prev, optionSlug]
     );
@@ -112,6 +114,60 @@ export default function Details1({ product }) {
                 )}
                 <div className="tf-product-info-list other-image-zoom">
                   <ProductHeading product={product} />
+
+                  {/* Size Chart Button */}
+                  <div className="mb-3">
+                    <button
+                      type="button"
+                      className="tf-btn hover-primary"
+                      onClick={() => setShowSizeChart(true)}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: 8 }}>
+                        <path d="M2 9h20M2 15h20M9 3v18M15 3v18" />
+                      </svg>
+                      Size Chart
+                    </button>
+                  </div>
+
+                  {/* Size Chart Modal */}
+                  {showSizeChart && (
+                    <div
+                      style={{
+                        position: "fixed", inset: 0, background: "rgba(0,0,0,0.65)",
+                        zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center",
+                      }}
+                      onClick={() => setShowSizeChart(false)}
+                    >
+                      <div
+                        style={{
+                          background: "#fff", borderRadius: 8, padding: 24, maxWidth: "90vw",
+                          maxHeight: "90vh", overflow: "auto", position: "relative",
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setShowSizeChart(false)}
+                          style={{
+                            position: "absolute", top: 12, right: 14, background: "none",
+                            border: "none", fontSize: 22, cursor: "pointer", lineHeight: 1,
+                          }}
+                          aria-label="Close"
+                        >
+                          &times;
+                        </button>
+                        <h5 style={{ marginBottom: 16, fontWeight: 700 }}>Size Chart</h5>
+                        <Image
+                          src="/images/deals/off_the_rack_race_suits.jpg"
+                          alt="Size Chart"
+                          width={700}
+                          height={500}
+                          style={{ width: "100%", height: "auto", display: "block" }}
+                        />
+                      </div>
+                    </div>
+                  )}
+
                   {/* Racing Specifications */}
                   {(product.certification || product.certificationLevel || product.material || product.construction) && (
                     <div className="tf-product-specifications mb-3">
@@ -119,25 +175,25 @@ export default function Details1({ product }) {
                       <ul className="list-unstyled">
                         {product.certification && (
                           <li className="mb-1">
-                            <span className="text-muted">Certification:</span> 
+                            <span className="text-muted">Certification:</span>
                             <span className="fw-medium ms-2">{product.certification}</span>
                           </li>
                         )}
                         {product.certificationLevel && (
                           <li className="mb-1">
-                            <span className="text-muted">Level:</span> 
+                            <span className="text-muted">Level:</span>
                             <span className="fw-medium ms-2">{product.certificationLevel}</span>
                           </li>
                         )}
                         {product.material && (
                           <li className="mb-1">
-                            <span className="text-muted">Material:</span> 
+                            <span className="text-muted">Material:</span>
                             <span className="fw-medium ms-2">{product.material}</span>
                           </li>
                         )}
                         {product.construction && (
                           <li className="mb-1">
-                            <span className="text-muted">Construction:</span> 
+                            <span className="text-muted">Construction:</span>
                             <span className="fw-medium ms-2">{product.construction}</span>
                           </li>
                         )}
@@ -181,7 +237,7 @@ export default function Details1({ product }) {
                           onChange={(e) => setCustomFit(e.target.checked)}
                         />
                         <label className="form-check-label" htmlFor="customFit">
-                          Custom Fit Available 
+                          Custom Fit Available
                           {product.customFitPrice > 0 && (
                             <span className="text-muted ms-2">
                               (+${(product.customFitPrice / 100).toFixed(2)})
@@ -226,18 +282,62 @@ export default function Details1({ product }) {
                     </div>
                   )}
 
+                  {/* Driver Name */}
+                  <div className="tf-product-driver-name mb-3">
+                    <label htmlFor="driverName" style={{ fontWeight: 600, fontSize: "0.95rem", marginBottom: 6, display: "block" }}>
+                      Driver Name
+                    </label>
+                    <input
+                      id="driverName"
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter driver name (printed on suit)"
+                      value={driverName}
+                      onChange={(e) => setDriverName(e.target.value)}
+                      style={{ maxWidth: 340 }}
+                    />
+                  </div>
+
+                  {/* Single / Double Layer Selection */}
+                  <div className="tf-product-layer-select mb-3">
+                    <h6 style={{ fontWeight: 700, marginBottom: 10 }}>Select Layer:</h6>
+                    <div style={{ display: "flex", gap: 12 }}>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedLayer("single")}
+                        style={{
+                          flex: 1, padding: "14px 10px", border: selectedLayer === "single" ? "2px solid #222" : "1px solid #ccc",
+                          borderRadius: 6, background: selectedLayer === "single" ? "#222" : "#fff",
+                          color: selectedLayer === "single" ? "#fff" : "#222",
+                          cursor: "pointer", transition: "all 0.2s",
+                        }}
+                      >
+                        <div style={{ fontWeight: 700, fontSize: "1rem" }}>SINGLE LAYER</div>
+                        <div style={{ fontSize: "0.85rem", marginTop: 4, opacity: 0.85 }}>$395 USD</div>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedLayer("double")}
+                        style={{
+                          flex: 1, padding: "14px 10px", border: selectedLayer === "double" ? "2px solid #222" : "1px solid #ccc",
+                          borderRadius: 6, background: selectedLayer === "double" ? "#222" : "#fff",
+                          color: selectedLayer === "double" ? "#fff" : "#222",
+                          cursor: "pointer", transition: "all 0.2s",
+                        }}
+                      >
+                        <div style={{ fontWeight: 700, fontSize: "1rem" }}>DOUBLE LAYER</div>
+                        <div style={{ fontSize: "0.85rem", marginTop: 4, opacity: 0.85 }}>$595 USD</div>
+                      </button>
+                    </div>
+                  </div>
+
                   {/* Price Display */}
                   <div className="tf-product-price mb-3">
                     <div className="d-flex align-items-center gap-2">
-                      <h3 className="mb-0">${(totalPrice / 100).toFixed(2)}</h3>
-                      {hasDiscount && (
-                        <>
-                          <span className="text-decoration-line-through text-muted">
-                            ${(product.compareAtPrice / 100).toFixed(2)}
-                          </span>
-                          <span className="badge bg-danger">{discountPercentage}% OFF</span>
-                        </>
-                      )}
+                      <h3 className="mb-0">${totalPrice.toFixed(2)} USD</h3>
+                      <span style={{ fontSize: "0.82rem", color: "#888" }}>
+                        ({selectedLayer === "single" ? "Single Layer" : "Double Layer"})
+                      </span>
                     </div>
                   </div>
 
@@ -248,8 +348,8 @@ export default function Details1({ product }) {
                         quantity={
                           isAddedToCartProducts(product._id)
                             ? cartProducts.filter(
-                                (elm) => elm.id == product._id
-                              )[0]?.quantity || quantity
+                              (elm) => elm.id == product._id
+                            )[0]?.quantity || quantity
                             : quantity
                         }
                         setQuantity={(qty) => {
@@ -269,28 +369,28 @@ export default function Details1({ product }) {
                               size: selectedSize,
                               customFit,
                               selectedOptions,
+                              driverName,
+                              layer: selectedLayer,
                               price: totalPrice
                             });
                           } else {
                             alert('Please select a size');
                           }
                         }}
-                        className={`tf-btn hover-primary btn-add-to-cart ${
-                          availableSizes.length === 0 ? 'disabled' : ''
-                        }`}
+                        className={`tf-btn hover-primary btn-add-to-cart ${availableSizes.length === 0 ? 'disabled' : ''
+                          }`}
                       >
-                        {availableSizes.length === 0 
+                        {availableSizes.length === 0
                           ? "Out of Stock"
                           : isAddedToCartProducts(product._id)
-                          ? "Already Added"
-                          : "Add to cart"}
+                            ? "Already Added"
+                            : "Add to cart"}
                       </a>
                     </div>
                     <a
                       href="#"
-                      className={`tf-btn btn-primary w-100 animate-btn ${
-                        availableSizes.length === 0 ? 'disabled' : ''
-                      }`}
+                      className={`tf-btn btn-primary w-100 animate-btn ${availableSizes.length === 0 ? 'disabled' : ''
+                        }`}
                       onClick={(e) => {
                         if (availableSizes.length === 0) {
                           e.preventDefault();
@@ -302,7 +402,7 @@ export default function Details1({ product }) {
                     <Link
                       href={`/checkout`}
                       className="more-choose-payment link"
-                    > 
+                    >
                       More payment options
                     </Link>
                   </div>
@@ -310,9 +410,8 @@ export default function Details1({ product }) {
                   <div className="tf-product-extra-link">
                     <a
                       onClick={() => addToWishlist(product._id)}
-                      className={`product-extra-icon link btn-add-wishlist ${
-                        isAddedtoWishlist(product._id) ? "added-wishlist" : ""
-                      } `}
+                      className={`product-extra-icon link btn-add-wishlist ${isAddedtoWishlist(product._id) ? "added-wishlist" : ""
+                        } `}
                     >
                       <i className="icon add icon-heart" />
                       <span className="add">Add to wishlist</span>
