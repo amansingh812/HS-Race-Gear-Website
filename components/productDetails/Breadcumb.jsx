@@ -15,14 +15,14 @@ export default function Breadcumb({ product }) {
               </div>
               <div className="breadcrumb-item current">
                 {" "}
-                {product?.title ? product?.title : "Linen Blend Pants"}
+                {product?.name || product?.title || "Product"}
               </div>
             </div>
             <div className="breadcrumb-prev-next">
               <a href="#" className="breadcrumb-prev">
                 <i className="icon icon-arr-left" />
               </a>
-              <Link href={`/shop-default`} className="breadcrumb-back">
+              <Link href={`/shop`} className="breadcrumb-back">
                 <i className="icon icon-shop" />
               </Link>
               <a href="#" className="breadcrumb-next">

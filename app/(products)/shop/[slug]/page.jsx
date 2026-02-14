@@ -1,5 +1,6 @@
 import connectDB from '@/lib/mongodb';
 import Product from '@/models/Product';
+import '@/models/Category';
 import Details1 from '@/components/productDetails/Details1';
 import Description1 from '@/components/productDetails/Description1';
 import Header1 from '@/components/headers/Header1';
