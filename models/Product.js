@@ -258,14 +258,34 @@ const productSchema = new mongoose.Schema({
 });
 
 // Indexes for performance
-productSchema.index({ slug: 1 });
-productSchema.index({ category: 1 });
-productSchema.index({ status: 1, isVisible: 1 });
+//
+// REMOVED: productSchema.index({ slug: 1 })
+//   slug has unique:true in the field definition above, which already creates
+//   a unique index. Calling productSchema.index({ slug: 1 }) again is a duplicate
+//   and triggers the Mongoose "Duplicate schema index" warning. Removed here.
+//
+// COMPOUND indexes — MongoDB can use the leftmost prefix of a compound index
+// for any query that matches those fields, so these replace the old single-field
+// indexes for status/category/isFeatured.
+
+// Default shop page: { status: 'active', isVisible: true } sorted newest first
+productSchema.index({ status: 1, isVisible: 1, createdAt: -1 });
+
+// Category filter page (most common user path)
+productSchema.index({ status: 1, isVisible: 1, category: 1, createdAt: -1 });
+
+// Homepage featured products
+productSchema.index({ isFeatured: 1, status: 1, isVisible: 1 });
+
+// Price range filter
 productSchema.index({ price: 1 });
+
+// Certification & material filter dropdowns
 productSchema.index({ certification: 1 });
 productSchema.index({ material: 1 });
+
+// Full-text search (used when ?search= param is present)
 productSchema.index({ name: 'text', description: 'text' });
-productSchema.index({ isFeatured: 1, status: 1 });
 
 // Virtual for primary image
 productSchema.virtual('primaryImage').get(function() {

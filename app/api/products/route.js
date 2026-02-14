@@ -122,9 +122,24 @@ export async function GET(request) {
     const sortOrder = searchParams.get('order') === 'asc' ? 1 : -1;
     const sort = { [sortField]: sortOrder };
     
-    // Execute query
+    // Only fetch fields the shop page actually needs — excludes heavy fields
+    // like description, specifications, metaKeywords, costPrice, etc.
+    const shopProjection = {
+      name: 1, slug: 1, shortDescription: 1,
+      price: 1, compareAtPrice: 1,
+      certification: 1, material: 1, construction: 1,
+      customFitAvailable: 1,
+      isFeatured: 1, isNewArrival: 1,
+      status: 1, isVisible: 1,
+      'images.url': 1, 'images.altText': 1, 'images.isPrimary': 1,
+      'inventory.size': 1, 'inventory.stock': 1, 'inventory.sku': 1, 'inventory.isAvailable': 1,
+      category: 1, subcategory: 1,
+      viewCount: 1,
+    };
+
+    // Execute query — countDocuments reuses the same index scan, both run in parallel
     const [products, totalCount] = await Promise.all([
-      Product.find(filter)
+      Product.find(filter, shopProjection)
         .populate('category', 'name slug')
         .populate('subcategory', 'name slug')
         .sort(sort)
@@ -182,20 +197,28 @@ export async function GET(request) {
     const hasNextPage = page < totalPages;
     const hasPrevPage = page > 1;
     
-    return Response.json({
-      success: true,
-      data: {
-        products: serializedProducts,
-        pagination: {
-          currentPage: page,
-          totalPages,
-          totalCount,
-          limit,
-          hasNextPage,
-          hasPrevPage
+    return Response.json(
+      {
+        success: true,
+        data: {
+          products: serializedProducts,
+          pagination: {
+            currentPage: page,
+            totalPages,
+            totalCount,
+            limit,
+            hasNextPage,
+            hasPrevPage
+          }
+        }
+      },
+      {
+        headers: {
+          // CDN + browser cache: serve instantly for 60s, revalidate in background for 300s
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
         }
       }
-    });
+    );
 
   } catch (error) {
     logger.error('Error fetching products:', error);

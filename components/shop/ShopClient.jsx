@@ -459,10 +459,29 @@ export default function ShopClient() {
 
               {/* Products */}
               {loading ? (
-                <div className="d-flex justify-content-center p-5">
-                  <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </div>
+                <div className="row g-4">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div key={i} className="col-lg-4 col-md-6">
+                      <div className="card border-0" style={{ background: 'transparent' }}>
+                        <div style={{
+                          background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+                          backgroundSize: '200% 100%',
+                          animation: 'shimmer 1.4s infinite',
+                          borderRadius: 8,
+                          height: 320,
+                          marginBottom: 12,
+                        }} />
+                        <div style={{ height: 18, width: '75%', background: '#f0f0f0', borderRadius: 4, marginBottom: 8, animation: 'shimmer 1.4s infinite' }} />
+                        <div style={{ height: 16, width: '40%', background: '#f0f0f0', borderRadius: 4, animation: 'shimmer 1.4s infinite' }} />
+                      </div>
+                    </div>
+                  ))}
+                  <style>{`
+                    @keyframes shimmer {
+                      0% { background-position: 200% 0; }
+                      100% { background-position: -200% 0; }
+                    }
+                  `}</style>
                 </div>
               ) : products.length === 0 ? (
                 <div className="shop-empty-state">
