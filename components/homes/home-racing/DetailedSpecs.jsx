@@ -6,7 +6,7 @@ const specsData = {
         title: "Suit Specifications",
         icon: "icon-user",
         specs: [
-            "FIA 8856-2018 & SFI 3.2A/5 Certified",
+            "SFI 3.2A/5 Certified",
             "Premium Nomex® or similar fire-resistant fabric",
             "Multi-layer construction (2-layer to 5-layer options)",
             "Custom Gear tailored to your measurements",
@@ -20,7 +20,7 @@ const specsData = {
         title: "Shoes Specifications",
         icon: "icon-box",
         specs: [
-            "FIA 8856-2018 Approved",
+            "SFI 3.3/5 Certified",
             "Lightweight construction (under 300g)",
             "Fire-resistant suede & leather upper",
             "Thin rubber sole for pedal sensitivity",
@@ -34,7 +34,7 @@ const specsData = {
         title: "Gloves Specifications",
         icon: "icon-delivery",
         specs: [
-            "FIA 8856-2018 & SFI 3.3/5 Certified",
+            "SFI 3.3/5 Certified",
             "External seams for maximum comfort",
             "Silicone grip pattern on palm & fingers",
             "Pre-curved finger design",

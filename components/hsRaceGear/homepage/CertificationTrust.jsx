@@ -3,8 +3,7 @@ import Link from "next/link";
 
 const certifications = [
   { name: "SFI Foundation", desc: "SFI 3.2A/1 & 3.2A/5" },
-  { name: "FIA", desc: "FIA 8856-2018" },
-  { name: "CIK-FIA", desc: "Karting Homologation" },
+  { name: "SFI 3.3/5", desc: "Gloves & Shoes" },
   { name: "Nomex", desc: "Fire-Resistant Fabric" },
 ];
 
@@ -35,7 +34,7 @@ export default function CertificationTrust() {
 
         <p className="cert-trust__text">
           At HS Race Gear, safety is not optional — it is foundational. All our racing suits,
-          gloves, and shoes are independently tested and certified to meet SFI and FIA standards,
+          gloves, and shoes are independently tested and certified to meet SFI standards,
           giving you confidence every time you get behind the wheel.
         </p>
 

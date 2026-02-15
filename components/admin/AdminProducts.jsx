@@ -179,7 +179,7 @@ export default function AdminProducts() {
                 <option value="">All Certifications</option>
                 <option value="SFI 3.2A/1">SFI 3.2A/1</option>
                 <option value="SFI 3.2A/5">SFI 3.2A/5</option>
-                <option value="FIA 8856-2018">FIA 8856-2018</option>
+                <option value="SFI 3.2A/15">SFI 3.2A/15</option>
                 <option value="None">None</option>
               </select>
             </div>

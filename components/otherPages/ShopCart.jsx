@@ -47,14 +47,43 @@ export default function ShopCart() {
     return product.finalPrice || product.price || product.productSnapshot?.price || 0;
   };
 
-  // Get product link
+  // Get product link — prefer slug for clean URLs
   const getProductLink = (product) => {
+    const slug = product.slug || product.productSnapshot?.slug;
+    if (slug) return `/shop/${slug}`;
     return `/product-detail/${product.id || product._id || product.productId}`;
   };
+
+  const freeShippingThreshold = 100;
+  const amountLeft = Math.max(0, freeShippingThreshold - totalPrice);
+  const progressPercent = Math.min(100, (totalPrice / freeShippingThreshold) * 100);
 
   return (
     <div className="flat-spacing-2 pt-0">
       <div className="container">
+        {/* Free shipping progress */}
+        <div className="row justify-content-center mb-4">
+          <div className="col-xl-4 col-sm-8">
+            <div className="tf-cart-head text-center">
+              <p className="text-xl-3 title text-dark-4">
+                {amountLeft > 0 ? (
+                  <>Spend <span className="fw-medium">${amountLeft.toFixed(2)}</span> more to get <span className="fw-medium">Free Shipping</span></>
+                ) : (
+                  <span className="fw-medium" style={{ color: "#c8102e" }}>🎉 You&apos;ve unlocked Free Shipping!</span>
+                )}
+              </p>
+              <div className="progress-sold tf-progress-ship">
+                <div
+                  className="value"
+                  style={{ width: `${progressPercent}%` }}
+                  data-progress={Math.round(progressPercent)}
+                >
+                  <i className="icon icon-car" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="col-xl-8">
             <div className="tf-page-cart-main">
@@ -100,10 +129,20 @@ export default function ShopCart() {
                                 {getProductTitle(product)}
                               </Link>
                               <div className="variants">
-                                {product.size && `Size: ${product.size}`}
+                                {product.size && <span>Size: {product.size}</span>}
+                                {product.layer && (
+                                  <span className="ms-2 text-capitalize">
+                                    {product.layer === "double" ? "Double Layer" : "Single Layer"}
+                                  </span>
+                                )}
                                 {product.isCustomFit && (
                                   <span className="badge bg-primary-subtle text-primary ms-2">
                                     Custom Fit
+                                  </span>
+                                )}
+                                {product.driverName && (
+                                  <span className="ms-2 text-muted" style={{ fontSize: "0.82rem" }}>
+                                    Driver: {product.driverName}
                                   </span>
                                 )}
                               </div>

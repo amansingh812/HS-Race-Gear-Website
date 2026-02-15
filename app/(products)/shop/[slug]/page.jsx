@@ -4,7 +4,7 @@ import '@/models/Category';
 import Details1 from '@/components/productDetails/Details1';
 import Description1 from '@/components/productDetails/Description1';
 import Header1 from '@/components/headers/Header1';
-import Footer1 from '@/components/footers/Footer1';
+import Footer3 from '@/components/footers/Footer3';
 import Topbar2 from '@/components/headers/Topbar2';
 import Breadcumb from '@/components/productDetails/Breadcumb';
 import { notFound } from 'next/navigation';
@@ -67,7 +67,7 @@ export default async function ProductDetailPage({ params }) {
         <Breadcumb product={serializedProduct} />
         <Details1 product={serializedProduct} />
         <Description1 product={serializedProduct} />
-        <Footer1 paddingBottom />
+        <Footer3 paddingBottom />
       </>
     );
   } catch (error) {

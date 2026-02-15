@@ -3,8 +3,8 @@ import ShopClient from '@/components/shop/ShopClient';
 
 export const metadata = {
   title: 'Shop Racing Gear | HS Race Gear',
-  description: 'Browse our collection of premium racing suits, crew shirts, and sublimated hoodies. FIA and SFI certified racing gear for professionals and enthusiasts.',
-  keywords: 'racing suits, crew shirts, sublimated hoodies, racing accessories, FIA certified, SFI certified, Nomex suits',
+  description: 'Browse our collection of premium racing suits, crew shirts, and sublimated hoodies. SFI certified racing gear for professionals and enthusiasts.',
+  keywords: 'racing suits, crew shirts, sublimated hoodies, racing accessories, SFI certified, Nomex suits',
 };
 
 export default function ShopPage() {

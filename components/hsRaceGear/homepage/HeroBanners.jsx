@@ -15,7 +15,7 @@ const topBanners = [
     label: "Exclusive Offers",
     heading: "Unbeatable Deals on Racing Gear",
     description:
-      "Save big on SFI & FIA certified suits, gloves, shoes and accessories. Limited-time offers you don't want to miss.",
+      "Save big on SFI certified suits, gloves, shoes and accessories. Limited-time offers you don't want to miss.",
     cta: "View Deals",
     link: "/RacegearDeals",
     image: "/images/home/hero_deals.png",

@@ -17,7 +17,9 @@ const cartItemSchema = new mongoose.Schema({
     slug: String,
     price: Number,
     image: String,
-    certification: String
+    certification: String,
+    layer: String,
+    driverName: String,
   },
   
   // Selected options
@@ -330,21 +332,32 @@ cartSchema.statics.getOrCreateCart = async function(userId) {
 cartSchema.methods.toClientJSON = function() {
   return {
     _id: this._id.toString(),
-    items: this.items.map(item => ({
-      _id: item._id.toString(),
-      product: item.product?._id?.toString() || item.product?.toString(),
-      productSnapshot: item.productSnapshot,
-      size: item.size,
-      isCustomFit: item.isCustomFit,
-      measurements: item.measurements,
-      selectedOptions: item.selectedOptions,
-      quantity: item.quantity,
-      basePrice: item.basePrice,
-      customFitPrice: item.customFitPrice,
-      optionsPrice: item.optionsPrice,
-      itemTotal: item.itemTotal,
-      addedAt: item.addedAt
-    })),
+    items: this.items.map(item => {
+      // Get the best available image — prefer snapshot, fall back to live product images
+      const snapshotImage = item.productSnapshot?.image;
+      const liveImage = item.product?.images?.find(img => img.isPrimary)?.url
+        || item.product?.images?.[0]?.url;
+      const resolvedImage = snapshotImage || liveImage;
+
+      return {
+        _id: item._id.toString(),
+        product: item.product?._id?.toString() || item.product?.toString(),
+        productSnapshot: {
+          ...item.productSnapshot?.toObject?.() || item.productSnapshot,
+          image: resolvedImage,
+        },
+        size: item.size,
+        isCustomFit: item.isCustomFit,
+        measurements: item.measurements,
+        selectedOptions: item.selectedOptions,
+        quantity: item.quantity,
+        basePrice: item.basePrice,
+        customFitPrice: item.customFitPrice,
+        optionsPrice: item.optionsPrice,
+        itemTotal: item.itemTotal,
+        addedAt: item.addedAt
+      };
+    }),
     subtotal: this.subtotal,
     discount: this.discount,
     shippingEstimate: this.shippingEstimate,

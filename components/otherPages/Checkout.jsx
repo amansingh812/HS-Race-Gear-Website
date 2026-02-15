@@ -588,7 +588,12 @@ export default function Checkout() {
                         <figure className="img-product">
                           <Image
                             alt="product"
-                            src={product.imgSrc}
+                            src={
+                              product.imgSrc ||
+                              product.images?.[0]?.url ||
+                              product.productSnapshot?.image ||
+                              "/images/products/default.jpg"
+                            }
                             width={144}
                             height={188}
                           />
@@ -597,7 +602,7 @@ export default function Checkout() {
                         <div className="content">
                           <div className="info">
                             <p className="name text-sm fw-medium">
-                              {product.title}
+                              {product.title || product.name || product.productSnapshot?.name || "Product"}
                             </p>
                             <span className="variant">
                               {product.size || "Standard"}
@@ -605,7 +610,7 @@ export default function Checkout() {
                             </span>
                           </div>
                           <span className="price text-sm fw-medium">
-                            ${((product.finalPrice || product.price) * product.quantity).toFixed(2)}
+                            ${((product.finalPrice || product.price || product.productSnapshot?.price || 0) * product.quantity).toFixed(2)}
                           </span>
                         </div>
                       </li>
@@ -614,7 +619,7 @@ export default function Checkout() {
                 ) : (
                   <div className="p-4">
                     Your Cart is empty.{" "}
-                    <Link className="tf-btn btn-dark2 animate-btn mt-3" href="/shop-default">
+                    <Link className="tf-btn btn-dark2 animate-btn mt-3" href="/shop">
                       Explore Products
                     </Link>
                   </div>

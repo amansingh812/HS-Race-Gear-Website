@@ -13,8 +13,7 @@ export default function BrandStory() {
             HS Race Gear is a leading provider of custom-fit, SFI-certified racing suits, gloves,
             shoes, and motorsport accessories. With over a decade of experience in the racing
             industry, we specialize in crafting made-to-order racing gear using premium Nomex
-            fire-resistant materials that meet SFI 3.2A/1, SFI 3.2A/5, SFI 3.3/5, and FIA
-            8856-2018 safety standards.
+            fire-resistant materials that meet SFI 3.2A/1, SFI 3.2A/5, and SFI 3.3/5 safety standards.
           </p>
           <p className="brand-story__text">
             Whether you are a professional drag racer, a karting competitor, or a weekend track day
@@ -26,7 +25,7 @@ export default function BrandStory() {
           <p className="brand-story__text">
             Trusted by racers across the United States and beyond, HS Race Gear combines safety,
             quality, and personalization in every product. From single-layer SFI-rated suits to
-            multi-layer FIA-approved race wear, we deliver premium motorsport safety equipment
+            multi-layer SFI-certified race wear, we deliver premium motorsport safety equipment
             with fast turnaround times and expert support available 24/7.
           </p>
           <Link href="/about-us" className="brand-story__cta">

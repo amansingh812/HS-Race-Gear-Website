@@ -16,7 +16,7 @@ const heroSlides = [
     image: "/images/home/hs_hero_1.png",
   },
   {
-    heading: "SFI & FIA Certified Racing Gear",
+    heading: "SFI Certified Racing Gear",
     subtitle:
       "From gloves to shoes, every piece meets the highest international safety standards for professional motorsport.",
     cta: "Shop Now",

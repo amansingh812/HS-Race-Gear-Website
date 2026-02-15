@@ -15,9 +15,9 @@ const articles = [
   {
     tag: "Certification",
     date: "January 22, 2026",
-    title: "Understanding SFI vs FIA Certifications: A Complete Guide",
+    title: "Understanding SFI Certifications: A Complete Guide",
     excerpt:
-      "Not sure whether you need SFI or FIA certification? This guide breaks down the differences, requirements, and which standard applies to your racing series.",
+      "Not sure which SFI certification you need? This guide breaks down the SFI standards, requirements, and which level applies to your racing series.",
     link: "#",
     image: "/images/home/blog_1.png",
   },

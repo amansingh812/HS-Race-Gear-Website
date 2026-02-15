@@ -58,20 +58,24 @@ export default function Context({ children }) {
 
       if (response.ok) {
         const data = await response.json();
-        if (data.cart && data.cart.items) {
+        const cartData = data.data || data.cart;
+        if (cartData && cartData.items) {
           // Transform cart items to match frontend format
-          const items = data.cart.items.map((item) => ({
+          const items = cartData.items.map((item) => ({
             id: item.product?._id || item.product,
             cartItemId: item._id,
-            title: item.productSnapshot?.title || item.product?.title || "Product",
-            imgSrc: item.productSnapshot?.imgSrc || item.product?.imgSrc || "/images/products/default.jpg",
-            price: item.pricing?.originalPrice || item.productSnapshot?.price || 0,
-            finalPrice: item.pricing?.finalPrice || item.productSnapshot?.salePrice || item.productSnapshot?.price || 0,
+            title: item.productSnapshot?.name || item.productSnapshot?.title || "Product",
+            imgSrc: item.productSnapshot?.image || item.productSnapshot?.imgSrc || "/images/products/default.jpg",
+            slug: item.productSnapshot?.slug,
+            price: item.basePrice || item.productSnapshot?.price || 0,
+            finalPrice: (item.basePrice || 0) + (item.customFitPrice || 0) + (item.optionsPrice || 0),
             quantity: item.quantity,
             size: item.size,
             isCustomFit: item.isCustomFit,
             measurements: item.measurements,
             selectedOptions: item.selectedOptions,
+            layer: item.productSnapshot?.layer,
+            driverName: item.productSnapshot?.driverName,
           }));
           setCartProducts(items);
           localStorage.setItem("cartList", JSON.stringify(items));
@@ -118,6 +122,9 @@ export default function Context({ children }) {
               isCustomFit: item.isCustomFit,
               measurements: item.measurements,
               selectedOptions: item.selectedOptions,
+              price: item.finalPrice || item.price,
+              layer: item.layer,
+              driverName: item.driverName,
             }),
           });
         }
@@ -142,15 +149,13 @@ export default function Context({ children }) {
   }, []);
 
   const isAddedToCartProducts = (id) => {
-    if (cartProducts.filter((elm) => elm.id == id)[0]) {
-      return true;
-    }
-    return false;
+    const strId = String(id);
+    return cartProducts.some((elm) => String(elm.id) === strId);
   };
 
   // Add product to cart (supports both authenticated and guest)
   const addProductToCart = async (id, qty = 1, options = {}, isModal = true) => {
-    const { size, isCustomFit, measurements, selectedOptions } = options;
+    const { size, isCustomFit, measurements, selectedOptions, price, layer, driverName } = options;
 
     if (isAuthenticated) {
       // Add to database cart
@@ -170,6 +175,9 @@ export default function Context({ children }) {
             isCustomFit,
             measurements,
             selectedOptions,
+            price,
+            layer,
+            driverName,
           }),
         });
 
@@ -190,22 +198,49 @@ export default function Context({ children }) {
       }
     } else {
       // Guest cart - use local storage
-      if (!isAddedToCartProducts(id)) {
-        const product = allProducts.find((elm) => elm.id == id);
-        if (product) {
-          const item = {
-            ...product,
-            quantity: qty,
-            size,
-            isCustomFit,
-            measurements,
-            selectedOptions,
-            finalPrice: product.salePrice || product.price,
-          };
-          setCartProducts((pre) => [...pre, item]);
-          if (isModal) {
-            openCartModal();
+      // First check static products data
+      let product = allProducts.find((elm) => elm.id == id);
+
+      // If not found in static data, fetch from API (for MongoDB products)
+      if (!product) {
+        try {
+          const response = await fetch(`/api/products/${id}`);
+          if (response.ok) {
+            const data = await response.json();
+            const p = data.product || data;
+            product = {
+              id: p._id || p.id,
+              title: p.name || p.title,
+              imgSrc: p.images?.[0]?.url || "/images/products/default.jpg",
+              imgHover: p.images?.[1]?.url || p.images?.[0]?.url || "/images/products/default.jpg",
+              price: p.price || 0,
+              salePrice: p.salePrice,
+              slug: p.slug,
+            };
           }
+        } catch (err) {
+          console.error("Error fetching product for guest cart:", err);
+        }
+      }
+
+      if (product && !isAddedToCartProducts(id)) {
+        const finalPrice = price || product.salePrice || product.price || 0;
+        const item = {
+          ...product,
+          id: String(id),
+          quantity: qty,
+          size,
+          isCustomFit,
+          measurements,
+          selectedOptions,
+          layer,
+          driverName,
+          price: finalPrice,
+          finalPrice,
+        };
+        setCartProducts((pre) => [...pre, item]);
+        if (isModal) {
+          openCartModal();
         }
       }
     }
@@ -226,7 +261,7 @@ export default function Context({ children }) {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            action: "updateQuantity",
+            operation: "updateQuantity",
             itemId: cartItem?.cartItemId,
             quantity: qty,
           }),
@@ -242,14 +277,13 @@ export default function Context({ children }) {
       }
     } else {
       // Guest cart
+      const strId = String(id);
       if (isAddedToCartProducts(id)) {
-        let item = cartProducts.filter((elm) => elm.id == id)[0];
-        let items = [...cartProducts];
-        const itemIndex = items.indexOf(item);
-
-        item.quantity = qty / 1;
-        items[itemIndex] = item;
-        setCartProducts(items);
+        setCartProducts((prev) =>
+          prev.map((elm) =>
+            String(elm.id) === strId ? { ...elm, quantity: qty / 1 } : elm
+          )
+        );
       }
     }
   };
@@ -268,7 +302,6 @@ export default function Context({ children }) {
             Authorization: `Bearer ${token}`,
           },
         });
-
         if (response.ok) {
           await syncCartWithDatabase();
         }
@@ -279,7 +312,8 @@ export default function Context({ children }) {
       }
     } else {
       // Guest cart
-      setCartProducts((pre) => pre.filter((elm) => elm.id != id));
+      const strId = String(id);
+      setCartProducts((pre) => pre.filter((elm) => String(elm.id) !== strId));
     }
   };
 
@@ -297,7 +331,7 @@ export default function Context({ children }) {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            action: "clear",
+            operation: "clear",
           }),
         });
 
@@ -332,7 +366,7 @@ export default function Context({ children }) {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          action: "applyDiscount",
+          operation: "applyDiscount",
           discountCode: code,
         }),
       });

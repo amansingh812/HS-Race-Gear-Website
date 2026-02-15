@@ -7,7 +7,7 @@ const specItems = [
     {
         id: 1,
         title: "Racing Suits",
-        description: "Custom-fit FIA/SFI certified suits",
+        description: "Custom-fit SFI certified suits",
         image: "/images/banner/racing/suit-banner.jpg",
         link: "/custom-fit",
     },

@@ -1,0 +1,264 @@
+/* =============================================================
+   HS Race Gear — Cart, Wishlist & Checkout Racing Theme
+   Brand color: #c8102e (racing red)
+   ============================================================= */
+
+/* ── Free-shipping progress bar accent ── */
+.tf-cart-head .tf-progress-ship .value {
+  background-color: #c8102e;
+}
+
+.tf-cart-head p .fw-medium {
+  color: #c8102e;
+}
+
+/* ── Cart table ── */
+.table-page-cart thead tr th {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #888;
+  border-bottom: 2px solid #c8102e;
+  padding-bottom: 10px;
+}
+
+.tf-cart-item .remove-cart {
+  color: #c8102e;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tf-cart-item .remove-cart:hover {
+  color: #a00c24;
+}
+
+/* ── Empty cart / wishlist state ── */
+.cart-empty-state,
+.wishlist-empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.cart-empty-state i,
+.wishlist-empty-state i {
+  font-size: 56px;
+  color: #c8102e;
+  opacity: 0.4;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* ── Discount code box ── */
+.box-ip-discount input:focus {
+  border-color: #c8102e;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.1);
+}
+
+.box-ip-discount .tf-btn.btn-out-line-dark-2:hover {
+  background: #c8102e;
+  border-color: #c8102e;
+  color: #fff;
+}
+
+/* ── Cart sidebar summary ── */
+.checkout-cart-box .cart-head .total-discount .total {
+  color: #c8102e;
+}
+
+.checkout-cart-box .checkout-btn .tf-btn.btn-dark2 {
+  background: #c8102e;
+  border-color: #c8102e;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.checkout-cart-box .checkout-btn .tf-btn.btn-dark2:hover {
+  background: #a00c24;
+  border-color: #a00c24;
+}
+
+/* ── Shipping estimate box ── */
+.shipping-cart-box input:focus {
+  border-color: #c8102e;
+  box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.1);
+}
+
+.shipping-cart-box .tf-btn.btn-dark2 {
+  background: #111;
+  border-color: #111;
+  letter-spacing: 1px;
+}
+
+.shipping-cart-box .tf-btn.btn-dark2:hover {
+  background: #c8102e;
+  border-color: #c8102e;
+}
+
+/* ── Breadcrumb racing accent ── */
+.tf-breadcrumb .breadcrumb-list .item-breadcrumb.dot span {
+  background-color: #c8102e;
+}
+
+/* ── Checkout form ── */
+.box-ip-checkout .title,
+.box-ip-contact .title .text-xl,
+.box-ip-shipping .title,
+.box-ip-payment .title .text-lg {
+  position: relative;
+  padding-left: 14px;
+}
+
+.box-ip-checkout .title::before,
+.box-ip-contact .title .text-xl::before,
+.box-ip-shipping .title::before,
+.box-ip-payment .title .text-lg::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 100%;
+  background: #c8102e;
+  border-radius: 2px;
+}
+
+.tf-field-input:focus,
+.tf-checkout-cart-main input:focus,
+.tf-checkout-cart-main select:focus,
+.tf-checkout-cart-main textarea:focus {
+  border-color: #c8102e !important;
+  box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.1);
+}
+
+/* Radio buttons - shipping & payment */
+.check-ship input[type="radio"]:checked,
+.payment-header input[type="radio"]:checked {
+  accent-color: #c8102e;
+}
+
+.check-ship:has(input:checked),
+.payment-header:has(input:checked) {
+  border-color: #c8102e;
+  background: rgba(200, 16, 46, 0.04);
+}
+
+/* Payment method box border */
+.payment-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.payment-item:has(input:checked) {
+  border-color: #c8102e;
+}
+
+/* ── Order summary sidebar ── */
+.order-box .title {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  color: #888;
+  border-bottom: 2px solid #c8102e;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.order-box .subtotal {
+  border-top: 2px solid #111;
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.order-box .subtotal .total-price-order {
+  color: #c8102e;
+}
+
+/* Place order button */
+.btn-order .tf-btn.btn-dark2 {
+  background: #c8102e;
+  border-color: #c8102e;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  padding: 14px 20px;
+  text-transform: uppercase;
+}
+
+.btn-order .tf-btn.btn-dark2:hover:not(:disabled) {
+  background: #a00c24;
+  border-color: #a00c24;
+}
+
+.btn-order .tf-btn.btn-dark2:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Quantity badge on order item image ── */
+.order-item .img-product .quantity {
+  background: #c8102e;
+}
+
+/* ── Wishlist grid section title ── */
+.s-title-page .s-title {
+  position: relative;
+  display: inline-block;
+}
+
+.s-title-page .s-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #c8102e;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* ── Alert overrides ── */
+.alert-warning {
+  border-left: 4px solid #c8102e;
+}
+
+/* ── Loading spinner accent ── */
+.spinner-border.text-primary {
+  color: #c8102e !important;
+}
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  .table-page-cart thead {
+    display: none;
+  }
+
+  .tf-cart-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  .tf-cart-item td::before {
+    content: attr(data-cart-title);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+    color: #888;
+  }
+
+  .btn-order .tf-btn.btn-dark2 {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}

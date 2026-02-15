@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Footer1 from "@/components/footers/Footer1";
+import Footer3 from '../footers/Footer3';
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Link from "next/link";
@@ -13,7 +13,7 @@ import '@/public/css/shop.css';
 const CATEGORY_CONFIG = {
   'race-suits': {
     title: 'Off The Rack Race Suits',
-    description: 'Premium pre-made racing suits with FIA and SFI certifications. Ready to ship in standard sizes.',
+    description: 'Premium pre-made racing suits with SFI certifications. Ready to ship in standard sizes.',
     showCertification: true,
     showMaterial: true,
     breadcrumb: 'Race Suits',
@@ -69,7 +69,7 @@ export default function ShopClient() {
 
   const activeCategoryConfig = categorySlug ? CATEGORY_CONFIG[categorySlug] : null;
   const pageTitle = activeCategoryConfig?.title || 'Racing Gear Shop';
-  const pageDescription = activeCategoryConfig?.description || 'Premium FIA and SFI certified racing gear for professionals';
+  const pageDescription = activeCategoryConfig?.description || 'Premium SFI certified racing gear for professionals';
   const showCertificationFilter = activeCategoryConfig?.showCertification ?? true;
   const showMaterialFilter = activeCategoryConfig?.showMaterial ?? true;
 
@@ -281,9 +281,8 @@ export default function ShopClient() {
               <Link
                 key={cat.slug || 'all'}
                 href={cat.slug ? `/shop?category=${cat.slug}` : '/shop'}
-                className={`shop-category-tab ${
-                  categorySlug === cat.slug || (!categorySlug && !cat.slug) ? 'active' : ''
-                }`}
+                className={`shop-category-tab ${categorySlug === cat.slug || (!categorySlug && !cat.slug) ? 'active' : ''
+                  }`}
               >
                 {cat.label}
               </Link>
@@ -341,7 +340,7 @@ export default function ShopClient() {
                         <option value="">All Certifications</option>
                         <option value="SFI 3.2A/1">SFI 3.2A/1</option>
                         <option value="SFI 3.2A/5">SFI 3.2A/5</option>
-                        <option value="FIA 8856-2018">FIA 8856-2018</option>
+                        <option value="SFI 3.2A/15">SFI 3.2A/15</option>
                         <option value="None">None</option>
                       </select>
                     </div>
@@ -548,7 +547,7 @@ export default function ShopClient() {
         </div>
       </section>
 
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

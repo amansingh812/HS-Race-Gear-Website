@@ -71,7 +71,7 @@ export default function ProductSpecsSection() {
             Race-Ready <span>Equipment</span>
           </h2>
           <p className="gear-section__sub">
-            SFI & FIA certified gear engineered for performance and protection
+            SFI certified gear engineered for performance and protection
           </p>
         </div>
 

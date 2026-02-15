@@ -100,7 +100,7 @@ export default function ProductGrid({
                 <option value="">All</option>
                 <option value="SFI 3.2A/1">SFI 3.2A/1</option>
                 <option value="SFI 3.2A/5">SFI 3.2A/5</option>
-                <option value="FIA 8856-2018">FIA 8856-2018</option>
+                <option value="SFI 3.2A/15">SFI 3.2A/15</option>
               </select>
             </div>
             <div className="col-md-2">

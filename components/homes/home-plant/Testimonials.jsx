@@ -21,7 +21,7 @@ const testimonials = [
     title: "Championship Quality!",
     desc: "I recently purchased a complete racing suit package, and the attention to detail is incredible. Feels great and looks even better on the podium.",
     author: "David L.",
-    item: "FIA Approved Racing Suit",
+    item: "SFI Certified Racing Suit",
   },
 ];
 export default function Testimonials() {

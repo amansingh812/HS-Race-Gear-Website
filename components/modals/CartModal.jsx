@@ -37,8 +37,10 @@ export default function CartModal() {
     return product.finalPrice || product.price || product.productSnapshot?.price || 0;
   };
 
-  // Get product link
+  // Get product link — prefer slug for clean URLs
   const getProductLink = (product) => {
+    const slug = product.slug || product.productSnapshot?.slug;
+    if (slug) return `/shop/${slug}`;
     return `/product-detail/${product.id || product._id || product.productId}`;
   };
 

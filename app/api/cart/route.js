@@ -83,7 +83,10 @@ export async function POST(request) {
       quantity = 1,
       isCustomFit = false,
       measurements,
-      selectedOptions = []
+      selectedOptions = [],
+      price,      // client-provided price (layer price: $395/$595)
+      layer,      // "single" or "double"
+      driverName, // driver name for personalisation
     } = body;
     
     // Validate required fields
@@ -131,8 +134,8 @@ export async function POST(request) {
       );
     }
     
-    // Calculate prices
-    const basePrice = product.price;
+    // Calculate prices — use client-provided price (layer price) when given
+    const basePrice = price && price > 0 ? price : product.price;
     const customFitPrice = isCustomFit ? (product.customFitPrice || 0) : 0;
     
     // Calculate options price
@@ -165,9 +168,11 @@ export async function POST(request) {
       productSnapshot: {
         name: product.name,
         slug: product.slug,
-        price: product.price,
+        price: basePrice,
         image: primaryImage?.url,
-        certification: product.certification
+        certification: product.certification,
+        layer: layer || 'single',
+        driverName: driverName || '',
       },
       size,
       isCustomFit,

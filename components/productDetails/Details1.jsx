@@ -6,12 +6,13 @@ import Image from "next/image";
 import { useContextElement } from "@/context/Context";
 import { useAuth } from "@/context/AuthContext";
 import QuantitySelect from "../common/QuantitySelect";
-import StickyProducts from "./StickyProducts";
+import { useRouter } from "next/navigation";
 
 import ProductHeading from "./ProductHeading";
 import BoughtTogether from "./BoughtTogether";
 
 export default function Details1({ product }) {
+  const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -25,10 +26,6 @@ export default function Details1({ product }) {
   const {
     addProductToCart,
     isAddedToCartProducts,
-    addToWishlist,
-    isAddedtoWishlist,
-    addToCompareItem,
-    isAddedtoCompareItem,
     cartProducts,
     updateQuantity,
   } = useContextElement();
@@ -204,25 +201,17 @@ export default function Details1({ product }) {
                   {/* Size Selection */}
                   <div className="tf-product-variant mb-3">
                     <h6 className="fw-bold mb-2">Select Size:</h6>
-                    <div className="btn-group" role="group">
-                      {availableSizes.length > 0 ? (
-                        availableSizes.map((inv) => (
-                          <button
-                            key={inv.size}
-                            type="button"
-                            className={`btn btn-outline-dark ${selectedSize === inv.size ? 'active' : ''}`}
-                            onClick={() => setSelectedSize(inv.size)}
-                          >
-                            {inv.size}
-                            <small className="d-block text-muted" style={{ fontSize: '0.7rem' }}>
-                              {inv.stock} left
-                            </small>
-                          </button>
-                        ))
-                      ) : (
-                        <p className="text-danger">Out of stock</p>
-                      )}
-                    </div>
+                    <select
+                      className="form-select"
+                      style={{ maxWidth: 220 }}
+                      value={selectedSize}
+                      onChange={(e) => setSelectedSize(e.target.value)}
+                    >
+                      <option value="">-- Select a Size --</option>
+                      {["7XS", "6XS", "5XS", "4XS", "3XS", "2XS", "XS", "S", "M", "L", "XL", "2XL", "3XL"].map((size) => (
+                        <option key={size} value={size}>{size}</option>
+                      ))}
+                    </select>
                   </div>
 
                   {/* Custom Fit Option */}
@@ -291,7 +280,7 @@ export default function Details1({ product }) {
                       id="driverName"
                       type="text"
                       className="form-control"
-                      placeholder="Enter driver name (printed on suit)"
+                      placeholder="Enter driver name "
                       value={driverName}
                       onChange={(e) => setDriverName(e.target.value)}
                       style={{ maxWidth: 340 }}
@@ -364,7 +353,7 @@ export default function Details1({ product }) {
                         href="#shoppingCart"
                         data-bs-toggle="offcanvas"
                         onClick={() => {
-                          if (availableSizes.length > 0 && selectedSize) {
+                          if (selectedSize) {
                             addProductToCart(product._id, quantity, {
                               size: selectedSize,
                               customFit,
@@ -377,28 +366,31 @@ export default function Details1({ product }) {
                             alert('Please select a size');
                           }
                         }}
-                        className={`tf-btn hover-primary btn-add-to-cart ${availableSizes.length === 0 ? 'disabled' : ''
-                          }`}
+                        className={`tf-btn hover-primary btn-add-to-cart`}
                       >
-                        {availableSizes.length === 0
-                          ? "Out of Stock"
-                          : isAddedToCartProducts(product._id)
-                            ? "Already Added"
-                            : "Add to cart"}
+                        {isAddedToCartProducts(product._id)
+                          ? "Already Added"
+                          : "Add to cart"}
                       </a>
                     </div>
-                    <a
-                      href="#"
-                      className={`tf-btn btn-primary w-100 animate-btn ${availableSizes.length === 0 ? 'disabled' : ''
-                        }`}
-                      onClick={(e) => {
-                        if (availableSizes.length === 0) {
-                          e.preventDefault();
-                        }
+                    <button
+                      type="button"
+                      className={`tf-btn btn-primary w-100 animate-btn`}
+                      onClick={async () => {
+                        if (!selectedSize) { alert('Please select a size'); return; }
+                        await addProductToCart(product._id, quantity, {
+                          size: selectedSize,
+                          customFit,
+                          selectedOptions,
+                          driverName,
+                          layer: selectedLayer,
+                          price: totalPrice,
+                        }, false);
+                        router.push('/checkout');
                       }}
                     >
                       Buy it now
-                    </a>
+                    </button>
                     <Link
                       href={`/checkout`}
                       className="more-choose-payment link"
@@ -408,27 +400,6 @@ export default function Details1({ product }) {
                   </div>
                   {/* Product Actions */}
                   <div className="tf-product-extra-link">
-                    <a
-                      onClick={() => addToWishlist(product._id)}
-                      className={`product-extra-icon link btn-add-wishlist ${isAddedtoWishlist(product._id) ? "added-wishlist" : ""
-                        } `}
-                    >
-                      <i className="icon add icon-heart" />
-                      <span className="add">Add to wishlist</span>
-                      <i className="icon added icon-trash" />
-                      <span className="added">Remove from wishlist</span>
-                    </a>
-                    <a
-                      href="#compare"
-                      data-bs-toggle="modal"
-                      onClick={() => addToCompareItem(product._id)}
-                      className="product-extra-icon link"
-                    >
-                      <i className="icon icon-compare2" />
-                      {isAddedtoCompareItem(product._id)
-                        ? "Already compared"
-                        : "Add to Compare"}
-                    </a>
                     <a
                       href="#askQuestion"
                       data-bs-toggle="modal"
@@ -568,7 +539,6 @@ export default function Details1({ product }) {
           </div>
         </div>
       </div>
-      <StickyProducts />
     </section>
   );
 }

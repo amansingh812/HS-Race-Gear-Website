@@ -329,7 +329,7 @@ export const sliderItems6 = [
     id: 1,
     imgSrc: "/images/slider/plant/slider-plant-1.jpg",
     title: "Premium Racing Gear",
-    subtitle: "Custom-fit FIA approved racing suits for professional racers.",
+    subtitle: "Custom-fit SFI certified racing suits for professional racers.",
   },
   {
     id: 2,

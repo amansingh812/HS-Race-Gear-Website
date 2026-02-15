@@ -92,20 +92,18 @@ export default function Products() {
                         </a>
                       </li>
                       <li
-                        className={`wishlist ${
-                          isAddedtoWishlist(product.id) ? "addwishlist" : ""
-                        }`}
+                        className={`wishlist ${isAddedtoWishlist(product.id) ? "addwishlist" : ""
+                          }`}
                       >
                         <a
                           onClick={() => addToWishlist(product.id)}
                           className="hover-tooltip tooltip-left box-icon"
                         >
                           <span
-                            className={`icon ${
-                              isAddedtoWishlist(product.id)
+                            className={`icon ${isAddedtoWishlist(product.id)
                                 ? "icon-trash"
                                 : "icon-heart2"
-                            } `}
+                              } `}
                           />
                           <span className="tooltip">
                             {isAddedtoWishlist(product.id)
@@ -149,18 +147,16 @@ export default function Products() {
                           product.discount.map((item, index) => (
                             <span
                               key={index}
-                              className={`on-sale-item ${
-                                item == "Trending" ? "trending" : ""
-                              } `}
+                              className={`on-sale-item ${item == "Trending" ? "trending" : ""
+                                } `}
                             >
                               {item}
                             </span>
                           ))
                         ) : (
                           <span
-                            className={`on-sale-item ${
-                              product.discount == "Trending" ? "trending" : ""
-                            } `}
+                            className={`on-sale-item ${product.discount == "Trending" ? "trending" : ""
+                              } `}
                           >
                             {product.discount}
                           </span>

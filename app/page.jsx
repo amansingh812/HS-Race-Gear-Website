@@ -18,11 +18,11 @@ import Footer3 from "@/components/footers/Footer3";
 import "@/public/css/homepage.css";
 
 export const metadata = {
-  title: "HS Race Gear — Custom SFI & FIA Certified Racing Suits, Gloves & Shoes",
+  title: "HS Race Gear — Custom SFI Certified Racing Suits, Gloves & Shoes",
   description:
-    "HS Race Gear offers custom-fit, SFI & FIA certified racing suits, gloves, shoes, and motorsport safety equipment. Made-to-order with unlimited customization. Trusted by racers worldwide.",
+    "HS Race Gear offers custom-fit, SFI certified racing suits, gloves, shoes, and motorsport safety equipment. Made-to-order with unlimited customization. Trusted by racers worldwide.",
   keywords:
-    "custom racing suits, SFI certified racing gear, FIA racing suits, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suits, motorsport safety equipment",
+    "custom racing suits, SFI certified racing gear, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suits, motorsport safety equipment",
 };
 
 export default function Home() {
@@ -38,7 +38,7 @@ export default function Home() {
       <FeaturedProducts />
       <ProductSpecsSection />
       <HeroBannersMiddle />
-      <HomeTestimonials />
+      {/* <HomeTestimonials /> */}
       <BlogSection />
       <BrandStory />
       <NewsletterSignup />

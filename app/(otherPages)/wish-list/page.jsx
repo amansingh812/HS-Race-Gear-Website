@@ -4,9 +4,10 @@ import Topbar2 from "@/components/headers/Topbar2";
 import Wishlist from "@/components/otherPages/Wishlist";
 import Link from "next/link";
 import React from "react";
+import "@/public/css/cart-checkout.css";
 export const metadata = {
-  title: "Wish list || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "My Wishlist | HS Race Gear",
+  description: "Your saved racing gear wishlist. Keep track of your favorite SFI certified racing equipment.",
 };
 export default function page() {
   return (
@@ -27,7 +28,15 @@ export default function page() {
                 <span />
               </li>
               <li className="item-breadcrumb">
-                <span className="text">Account</span>
+                <Link href={`/shop`} className="text">
+                  Shop
+                </Link>
+              </li>
+              <li className="item-breadcrumb dot">
+                <span />
+              </li>
+              <li className="item-breadcrumb">
+                <span className="text">My Wishlist</span>
               </li>
             </ul>
           </div>

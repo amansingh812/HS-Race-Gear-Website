@@ -1,4 +1,4 @@
-import Footer1 from "@/components/footers/Footer1";
+import Footer3 from "@/components/footers/Footer3";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import RelatedProducts from "@/components/otherPages/RelatedProducts";
@@ -6,9 +6,10 @@ import ShopCart from "@/components/otherPages/ShopCart";
 import React from "react";
 import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";
+import "@/public/css/cart-checkout.css";
 export const metadata = {
-  title: "View Cart || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Shopping Cart | HS Race Gear",
+  description: "Review your racing gear cart before checkout. Premium SFI certified racing equipment.",
 };
 export default function page() {
   return (
@@ -17,35 +18,10 @@ export default function page() {
       <Header1 />
       <>
         <Breadcumb pageName="Cart" pageTitle="Shopping Cart" />
-
-        {/* /Title Page */}
-        <div className="flat-spacing-24">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-xl-4 col-sm-8">
-                <div className="tf-cart-head text-center">
-                  <p className="text-xl-3 title text-dark-4">
-                    Spend <span className="fw-medium">$100</span> more to get
-                    <span className="fw-medium">Free Shipping</span>
-                  </p>
-                  <div className="progress-sold tf-progress-ship">
-                    <div
-                      className="value"
-                      style={{ width: "60%" }}
-                      data-progress={60}
-                    >
-                      <i className="icon icon-car" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </>
       <ShopCart />
       <RelatedProducts />
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 const products = [
   {
     name: "HS Pro 1 SFI Race Suit",
-    price: "$599",
+    price: "$395",
     originalPrice: "$749",
     badge: "SFI Certified",
     link: "/shop/hs-pro-1-sfi-race-suit",
@@ -12,7 +12,7 @@ const products = [
   },
   {
     name: "HS Super SFI Race suit",
-    price: "$179",
+    price: "$395",
     originalPrice: null,
     badge: "SFI 3.3/5",
     link: "shop/hs-super-sfi-race-suit",
@@ -20,7 +20,7 @@ const products = [
   },
   {
     name: "HS Rush SFI Race suit",
-    price: "$69",
+    price: "$395",
     originalPrice: null,
     badge: "New",
     link: "/shop/hs-rush-sfi-race-suit",
@@ -28,7 +28,7 @@ const products = [
   },
   {
     name: "HS Ace SFI Race suit",
-    price: "$89",
+    price: "$395",
     originalPrice: null,
     badge: "New",
     link: "/shop/hs-ace-sfi-race-suit",

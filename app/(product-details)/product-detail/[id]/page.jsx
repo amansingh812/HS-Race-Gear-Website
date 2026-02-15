@@ -1,4 +1,4 @@
-import Footer1 from "@/components/footers/Footer1";
+import Footer3 from "@/components/footers/Footer3";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Breadcumb from "@/components/productDetails/Breadcumb";
@@ -58,7 +58,7 @@ export default async function ProductDetailPage({ params }) {
         <Breadcumb product={serializedProduct} />
         <Details1 product={serializedProduct} />
         <Description1 product={serializedProduct} />
-        <Footer1 paddingBottom />
+        <Footer3 paddingBottom />
       </>
     );
   } catch (error) {

@@ -1,9 +1,10 @@
-import Footer1 from "@/components/footers/Footer1";
+import Footer3 from "@/components/footers/Footer3";
 import Header1 from "@/components/headers/Header1";
 import Topbar2 from "@/components/headers/Topbar2";
 import Checkout from "@/components/otherPages/Checkout";
 import Link from "next/link";
 import React from "react";
+import "@/public/css/cart-checkout.css";
 
 export const metadata = {
   title: "Checkout | HS Race Gear - Secure Checkout",
@@ -28,6 +29,14 @@ export default function page() {
                 <span />
               </li>
               <li className="item-breadcrumb">
+                <Link href={`/view-cart`} className="text">
+                  Cart
+                </Link>
+              </li>
+              <li className="item-breadcrumb dot">
+                <span />
+              </li>
+              <li className="item-breadcrumb">
                 <span className="text">Checkout</span>
               </li>
             </ul>
@@ -45,7 +54,7 @@ export default function page() {
         {/* /Title Page */}
       </>
       <Checkout />
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }
