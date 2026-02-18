@@ -1,0 +1,217 @@
+/* Custom Power Boat Racing Suit Page Styles */
+
+.powerboat-hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
+    url("/images/powerboat/powerboat-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.powerboat-glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.powerboat-glass-panel:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+}
+
+.powerboat-gradient-text {
+  background: linear-gradient(to right, #ef4444, #ea580c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.powerboat-red-glow {
+  background: linear-gradient(to left, rgba(127, 29, 29, 0.2), transparent);
+}
+
+.powerboat-feature-icon {
+  background: rgba(220, 38, 38, 0.2);
+  transition: all 0.3s ease;
+}
+
+.powerboat-feature-card:hover .powerboat-feature-icon {
+  background: #dc2626;
+}
+
+.powerboat-feature-card:hover .powerboat-feature-icon svg {
+  color: white;
+}
+
+/* Mockup Slider */
+.powerboat-mockup-slider {
+  overflow: hidden;
+  padding: 48px 0;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.powerboat-mockup-track {
+  display: flex;
+  gap: 32px;
+  animation: powerboat-scroll 25s linear infinite;
+  width: max-content;
+}
+
+.powerboat-mockup-track:hover {
+  animation-play-state: paused;
+}
+
+.powerboat-mockup-item {
+  flex-shrink: 0;
+  width: 220px;
+  height: 300px;
+  border-radius: 12px;
+  border: 1px solid #404040;
+  overflow: hidden;
+  background: #262626;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.powerboat-mockup-item:hover {
+  border-color: #dc2626;
+  transform: scale(1.03);
+}
+
+.powerboat-mockup-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes powerboat-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Process Section */
+.powerboat-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.powerboat-process-card {
+  text-align: center;
+  padding: 32px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.powerboat-process-card:hover {
+  border-color: rgba(220, 38, 38, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.powerboat-process-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #dc2626;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+/* Rating Comparison Cards */
+.powerboat-rating-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.powerboat-rating-card {
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.powerboat-rating-card:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  transform: translateY(-4px);
+}
+
+.powerboat-rating-card.advanced {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.05);
+}
+
+/* Measure CTA Section */
+.powerboat-measure-cta {
+  background: linear-gradient(135deg, #171717 0%, #0a0a0a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 64px;
+  text-align: center;
+}
+
+/* Material Detail Grid */
+.powerboat-material-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.powerboat-material-card {
+  padding: 28px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.powerboat-material-card:hover {
+  border-color: rgba(220, 38, 38, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+  .powerboat-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .powerboat-measure-cta {
+    padding: 40px 24px;
+  }
+
+  .powerboat-hero-cta-buttons {
+    flex-direction: column !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .powerboat-hero-cta-buttons {
+    flex-direction: row !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .powerboat-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .powerboat-mockup-item {
+    width: 180px;
+    height: 250px;
+  }
+}

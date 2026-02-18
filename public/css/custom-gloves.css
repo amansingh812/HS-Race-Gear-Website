@@ -1,0 +1,200 @@
+/* Custom Gloves Page Styles */
+
+.gloves-hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
+    url("/images/gloves/gloves-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gloves-glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gloves-glass-panel:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+}
+
+.gloves-gradient-text {
+  background: linear-gradient(to right, #ef4444, #ea580c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gloves-red-glow {
+  background: linear-gradient(to left, rgba(127, 29, 29, 0.2), transparent);
+}
+
+.gloves-feature-icon {
+  background: rgba(220, 38, 38, 0.2);
+  transition: all 0.3s ease;
+}
+
+.gloves-feature-card:hover .gloves-feature-icon {
+  background: #dc2626;
+}
+
+.gloves-feature-card:hover .gloves-feature-icon svg {
+  color: white;
+}
+
+/* Glove Mockup Slider */
+.gloves-mockup-slider {
+  overflow: hidden;
+  padding: 48px 0;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gloves-mockup-track {
+  display: flex;
+  gap: 32px;
+  animation: gloves-scroll 25s linear infinite;
+  width: max-content;
+}
+
+.gloves-mockup-track:hover {
+  animation-play-state: paused;
+}
+
+.gloves-mockup-item {
+  flex-shrink: 0;
+  width: 240px;
+  height: 240px;
+  border-radius: 12px;
+  border: 1px solid #404040;
+  overflow: hidden;
+  background: #262626;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.gloves-mockup-item:hover {
+  border-color: #dc2626;
+  transform: scale(1.03);
+}
+
+.gloves-mockup-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes gloves-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Process Section */
+.gloves-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.gloves-process-card {
+  text-align: center;
+  padding: 32px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.gloves-process-card:hover {
+  border-color: rgba(220, 38, 38, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gloves-process-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #dc2626;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+/* Material Detail Grid */
+.gloves-material-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.gloves-material-card {
+  padding: 28px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.gloves-material-card:hover {
+  border-color: rgba(220, 38, 38, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Pricing Card */
+.gloves-pricing-card {
+  padding: 40px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.gloves-pricing-card:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  transform: translateY(-4px);
+}
+
+.gloves-pricing-card.featured {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.05);
+}
+
+@media (max-width: 768px) {
+  .gloves-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gloves-hero-cta-buttons {
+    flex-direction: column !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .gloves-hero-cta-buttons {
+    flex-direction: row !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .gloves-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gloves-mockup-item {
+    width: 190px;
+    height: 190px;
+  }
+}

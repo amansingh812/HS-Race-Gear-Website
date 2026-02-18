@@ -1,0 +1,209 @@
+/* Custom Karting Suit Page Styles */
+
+.karting-hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
+    url("/images/karting/karting-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.karting-glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.karting-glass-panel:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+}
+
+.karting-gradient-text {
+  background: linear-gradient(to right, #ef4444, #ea580c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.karting-red-glow {
+  background: linear-gradient(to left, rgba(127, 29, 29, 0.2), transparent);
+}
+
+.karting-feature-icon {
+  background: rgba(220, 38, 38, 0.2);
+  transition: all 0.3s ease;
+}
+
+.karting-feature-card:hover .karting-feature-icon {
+  background: #dc2626;
+}
+
+.karting-feature-card:hover .karting-feature-icon svg {
+  color: white;
+}
+
+.karting-step-circle {
+  transition: all 0.3s ease;
+}
+
+.karting-step-circle.active {
+  background: #dc2626;
+}
+
+.karting-step-circle:not(.active) {
+  background: #404040;
+}
+
+/* Suit Mockup Slider */
+.karting-mockup-slider {
+  overflow: hidden;
+  padding: 48px 0;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.karting-mockup-track {
+  display: flex;
+  gap: 32px;
+  animation: karting-scroll 25s linear infinite;
+  width: max-content;
+}
+
+.karting-mockup-track:hover {
+  animation-play-state: paused;
+}
+
+.karting-mockup-item {
+  flex-shrink: 0;
+  width: 220px;
+  height: 300px;
+  border-radius: 12px;
+  border: 1px solid #404040;
+  overflow: hidden;
+  background: #262626;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.karting-mockup-item:hover {
+  border-color: #dc2626;
+  transform: scale(1.03);
+}
+
+.karting-mockup-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes karting-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Process Section */
+.karting-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.karting-process-card {
+  text-align: center;
+  padding: 32px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.karting-process-card:hover {
+  border-color: rgba(220, 38, 38, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.karting-process-number {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #dc2626;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+/* Pricing Cards */
+.karting-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.karting-pricing-card {
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.karting-pricing-card:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  transform: translateY(-4px);
+}
+
+.karting-pricing-card.featured {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.05);
+}
+
+/* Measure CTA Section */
+.karting-measure-cta {
+  background: linear-gradient(135deg, #171717 0%, #0a0a0a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 64px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .karting-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .karting-measure-cta {
+    padding: 40px 24px;
+  }
+
+  .karting-hero-cta-buttons {
+    flex-direction: column !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .karting-hero-cta-buttons {
+    flex-direction: row !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .karting-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .karting-mockup-item {
+    width: 180px;
+    height: 250px;
+  }
+}
