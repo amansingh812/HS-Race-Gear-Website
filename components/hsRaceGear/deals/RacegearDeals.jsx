@@ -48,7 +48,7 @@ const dealsData = [
         title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX SFI CERTIFIED GLOVES",
         price: 649,
         badge: null,
-        image: "/images/deals/offer-1-suit-gloves.png",
+        image: "/images/deals/offer-1-suit-gloves.webp",
         features: [
           "SFI 3.2A/1 certified single-layer fire suit",
           "SFI 3.3/5 Free gloves included",
@@ -70,7 +70,7 @@ const dealsData = [
         title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX SFI CERTIFIED GLOVES + NOMEX SFI CERTIFIED SHOES",
         price: 729,
         badge: "BEST VALUE",
-        image: "/images/deals/offer-3-double-suit-gloves.png",
+        image: "/images/deals/offer-3-double-suit-gloves.webp",
         features: [
           "SFI 3.2A/1 certified single-layer fire suit",
           "SFI 3.3/5 Free gloves included",
@@ -230,10 +230,10 @@ const dealsData = [
 ];
 
 const categoryImages = {
-  "CUSTOM SINGLE LAYER SUIT": "/images/deals/single-layer-suit.jpg",
-  "CUSTOM DOUBLE LAYER SUIT": "/images/deals/double-layer-suit.jpg",
-  "CUSTOM TRIPLE LAYER SUIT": "/images/deals/triple-layer-suit.jpg",
-  "CUSTOM KARTING SUIT": "/images/deals/karting-suit.jpg",
+  "CUSTOM SINGLE LAYER SUIT": "/images/deals/single-layer-suit.webp",
+  "CUSTOM DOUBLE LAYER SUIT": "/images/deals/double-layer-suit.webp",
+  "CUSTOM TRIPLE LAYER SUIT": "/images/deals/triple-layer-suit.webp",
+  "CUSTOM KARTING SUIT": "/images/deals/karting-suit.webp",
 };
 
 function DealCard({ offer, categoryImage }) {

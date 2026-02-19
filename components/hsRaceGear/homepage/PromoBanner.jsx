@@ -15,7 +15,7 @@ export default function PromoBanner() {
         {/* Image */}
         <div className="promo-banner__image">
           <Image
-            src="/images/home/left-side image.png"
+            src="/images/home/left-side image.webp"
             alt="Custom Race Suit"
             width={960}
             height={600}

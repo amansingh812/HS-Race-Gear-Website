@@ -18,7 +18,7 @@ const topBanners = [
       "Save big on SFI certified suits, gloves, shoes and accessories. Limited-time offers you don't want to miss.",
     cta: "View Deals",
     link: "/RacegearDeals",
-    image: "/images/home/hero_deals.png",
+    image: "/images/home/hero_deals.webp",
     // placeholder dimensions for the image you need to add
     placeholder: "960 × 700",
   },
@@ -30,7 +30,7 @@ const topBanners = [
       "Unlimited color combinations, custom embroidery, and a perfect fit built from your measurements. Stand out on the track.",
     cta: "Start Designing",
     link: "/custom-race-suit",
-    image: "/images/home/hero_custom_suit.png",
+    image: "/images/home/hero_custom_suit.webp",
     placeholder: "960 × 700",
   },
 ];
@@ -50,7 +50,7 @@ const middleBanners = [
       "Explore our competitive pricing tiers — from entry-level to pro. No hidden fees. Get exactly what you pay for.",
     cta: "See Pricing",
     link: "/StandardPricing",
-    image: "/images/home/hero_pricing.png",
+    image: "/images/home/hero_pricing.webp",
     placeholder: "960 × 700",
   },
   {
@@ -61,7 +61,7 @@ const middleBanners = [
       "From drag racing to karting, find the perfect suit from our ready-to-ship and custom-order catalog.",
     cta: "Shop Race Suits",
     link: "/shop?category=race-suits",
-    image: "/images/home/hero_shop.png",
+    image: "/images/home/hero_shop.webp",
     placeholder: "960 × 700",
   },
 ];

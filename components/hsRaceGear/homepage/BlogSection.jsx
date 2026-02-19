@@ -10,7 +10,7 @@ const articles = [
     excerpt:
       "From drag racing to road course, each discipline has unique requirements. Learn what certifications and features matter most for your type of racing.",
     link: "#",
-    image: "/images/home/blog2.png",
+    image: "/images/home/blog2.webp",
   },
   {
     tag: "Certification",
@@ -19,7 +19,7 @@ const articles = [
     excerpt:
       "Not sure which SFI certification you need? This guide breaks down the SFI standards, requirements, and which level applies to your racing series.",
     link: "#",
-    image: "/images/home/blog_1.png",
+    image: "/images/home/blog_1.webp",
   },
   {
     tag: "Custom Fit",
@@ -28,7 +28,7 @@ const articles = [
     excerpt:
       "A perfectly fitted racing suit is more than comfort — it's safety. Follow these measurement tips to ensure your custom suit fits flawlessly.",
     link: "#",
-    image: "/images/home/blog3.png",
+    image: "/images/home/blog3.webp",
   },
 ];
 

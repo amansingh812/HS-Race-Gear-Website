@@ -164,7 +164,7 @@ export default function CustomFitBenefitsSection() {
               }}
             >
               <img
-                src="/images/shop/compare.png"
+                src="/images/shop/compare.webp"
                 alt="Custom Fit Racing Suit"
                 style={{
                   width: '100%',

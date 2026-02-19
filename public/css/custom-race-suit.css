@@ -2,7 +2,7 @@
 
 .hero-section {
   background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
-    url("/images/shop/cleaned-custom_gear_Hero.png");
+    url("/images/shop/cleaned-custom_gear_Hero.webp");
   background-size: cover;
   background-position: center;
   min-height: 100vh;

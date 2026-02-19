@@ -109,12 +109,12 @@ export default function CustomPowerboatSuitPage() {
     ];
 
     const suitMockups = [
-        { src: "/images/powerboat/mockup-1.jpg", alt: "Custom Power Boat Suit Design 1" },
-        { src: "/images/powerboat/mockup-2.jpg", alt: "Custom Power Boat Suit Design 2" },
-        { src: "/images/powerboat/mockup-3.jpg", alt: "Custom Power Boat Suit Design 3" },
-        { src: "/images/powerboat/mockup-4.jpg", alt: "Custom Power Boat Suit Design 4" },
-        { src: "/images/powerboat/mockup-5.jpg", alt: "Custom Power Boat Suit Design 5" },
-        { src: "/images/powerboat/mockup-6.jpg", alt: "Custom Power Boat Suit Design 6" },
+        { src: "/images/powerboat/mockup-1.webp", alt: "Custom Power Boat Suit Design 1" },
+        { src: "/images/powerboat/mockup-2.webp", alt: "Custom Power Boat Suit Design 2" },
+        { src: "/images/powerboat/mockup-3.webp", alt: "Custom Power Boat Suit Design 3" },
+        { src: "/images/powerboat/mockup-4.webp", alt: "Custom Power Boat Suit Design 4" },
+        { src: "/images/powerboat/mockup-5.webp", alt: "Custom Power Boat Suit Design 5" },
+        { src: "/images/powerboat/mockup-6.webp", alt: "Custom Power Boat Suit Design 6" },
     ];
 
     return (
@@ -321,7 +321,7 @@ export default function CustomPowerboatSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/powerboat/powerboat-detail.jpg"
+                                src="/images/powerboat/powerboat-detail.webp"
                                 alt="Custom Power Boat Racing Suit Detail"
                                 width={400}
                                 height={500}
@@ -655,7 +655,7 @@ export default function CustomPowerboatSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/powerboat/powerboat-custom.jpg"
+                                src="/images/powerboat/powerboat-custom.webp"
                                 alt="Custom power boat suit branding options"
                                 width={400}
                                 height={400}
@@ -740,7 +740,7 @@ export default function CustomPowerboatSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/powerboat/powerboat-safety.jpg"
+                                src="/images/powerboat/powerboat-safety.webp"
                                 alt="Power boat racing fire safety"
                                 width={400}
                                 height={500}
@@ -776,7 +776,7 @@ export default function CustomPowerboatSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/powerboat/powerboat-events.jpg"
+                                src="/images/powerboat/powerboat-events.webp"
                                 alt="Power boat racing events worldwide"
                                 width={400}
                                 height={400}
@@ -970,7 +970,7 @@ export default function CustomPowerboatSuitPage() {
             <section style={{
                 padding: "96px 0",
                 backgroundColor: "#0a0a0a",
-                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.jpg')",
+                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}>

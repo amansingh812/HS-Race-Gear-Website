@@ -285,7 +285,7 @@ export default function Footer6() {
                   alt="payment"
                   width={80}
                   height={50}
-                  src="/images/payment/EximBank.png"
+                  src="/images/payment/EximBank.webp"
                 />
               </li>
               <li className="item">
@@ -293,7 +293,7 @@ export default function Footer6() {
                   alt="payment"
                   width={90}
                   height={64}
-                  src="/images/payment/ApplePay.png"
+                  src="/images/payment/ApplePay.webp"
                 />
               </li>
               <li className="item">
@@ -301,7 +301,7 @@ export default function Footer6() {
                   alt="payment"
                   width={90}
                   height={64}
-                  src="/images/payment/DinersClub.png"
+                  src="/images/payment/DinersClub.webp"
                 />
               </li>
               <li className="item">
@@ -309,7 +309,7 @@ export default function Footer6() {
                   alt="payment"
                   width={80}
                   height={50}
-                  src="/images/payment/Discover.png"
+                  src="/images/payment/Discover.webp"
                 />
               </li>
               <li className="item">
@@ -317,7 +317,7 @@ export default function Footer6() {
                   alt="payment"
                   width={90}
                   height={64}
-                  src="/images/payment/GooglePay.png"
+                  src="/images/payment/GooglePay.webp"
                 />
               </li>
               <li className="item">
@@ -325,7 +325,7 @@ export default function Footer6() {
                   alt="payment"
                   width={80}
                   height={50}
-                  src="/images/payment/Mastercard-2.png"
+                  src="/images/payment/Mastercard-2.webp"
                 />
               </li>
               <li className="item">
@@ -333,7 +333,7 @@ export default function Footer6() {
                   alt="payment"
                   width={90}
                   height={64}
-                  src="/images/payment/Mastercard.png"
+                  src="/images/payment/Mastercard.webp"
                 />
               </li>
               <li className="item">
@@ -341,7 +341,7 @@ export default function Footer6() {
                   alt="payment"
                   width={80}
                   height={50}
-                  src="/images/payment/Shop.png"
+                  src="/images/payment/Shop.webp"
                 />
               </li>
               <li className="item">
@@ -349,7 +349,7 @@ export default function Footer6() {
                   alt="payment"
                   width={80}
                   height={50}
-                  src="/images/payment/UnionPay.png"
+                  src="/images/payment/UnionPay.webp"
                 />
               </li>
               <li className="item">
@@ -357,7 +357,7 @@ export default function Footer6() {
                   alt="payment"
                   width={90}
                   height={64}
-                  src="/images/payment/Visa.png"
+                  src="/images/payment/Visa.webp"
                 />
               </li>
             </ul>

@@ -2,7 +2,7 @@
 
 .gloves-hero-section {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
-    url("/images/gloves/gloves-hero.jpg");
+    url("/images/gloves/gloves-hero.webp");
   background-size: cover;
   background-position: center;
   min-height: 100vh;

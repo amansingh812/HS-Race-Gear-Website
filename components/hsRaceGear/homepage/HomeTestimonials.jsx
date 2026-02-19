@@ -7,21 +7,21 @@ const testimonials = [
       "The quality of my custom SFI racing suit exceeded all expectations. Perfect fit, fast delivery, and the team's support was outstanding.",
     name: "Mike R.",
     role: "Professional Drag Racer",
-    avatar: "/images/home/people1.png",
+    avatar: "/images/home/people1.webp",
   },
   {
     quote:
       "I've tried several racing gear brands, but nothing compares to the custom fit from HS Race Gear. The Nomex material feels premium and the suit fits like a glove.",
     name: "Sarah T.",
     role: "Club Racer & Track Day Enthusiast",
-    avatar: "/images/home/people2.png",
+    avatar: "/images/home/people2.webp",
   },
   {
     quote:
       "Our entire karting team switched to HS Race Gear last season. The custom team branding, matching suits, and personalized embroidery are top notch.",
     name: "David K.",
     role: "Karting Team Manager",
-    avatar: "/images/home/people3.png",
+    avatar: "/images/home/people3.webp",
   },
 ];
 

@@ -155,7 +155,7 @@ export default function Details1({ product }) {
                         </button>
                         <h5 style={{ marginBottom: 16, fontWeight: 700 }}>Size Chart</h5>
                         <Image
-                          src="/images/deals/off_the_rack_race_suits.jpg"
+                          src="/images/deals/off_the_rack_race_suits.webp"
                           alt="Size Chart"
                           width={700}
                           height={500}
@@ -453,7 +453,7 @@ export default function Details1({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/Visa.png"
+                          src="/images/payment/Visa.webp"
                           width={90}
                           height={64}
                         />
@@ -461,7 +461,7 @@ export default function Details1({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/DinersClub.png"
+                          src="/images/payment/DinersClub.webp"
                           width={90}
                           height={64}
                         />
@@ -469,7 +469,7 @@ export default function Details1({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/Mastercard.png"
+                          src="/images/payment/Mastercard.webp"
                           width={90}
                           height={64}
                         />
@@ -477,7 +477,7 @@ export default function Details1({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/Stripe.png"
+                          src="/images/payment/Stripe.webp"
                           width={90}
                           height={64}
                         />
@@ -485,7 +485,7 @@ export default function Details1({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/PayPal.png"
+                          src="/images/payment/PayPal.webp"
                           width={90}
                           height={64}
                         />
@@ -493,7 +493,7 @@ export default function Details1({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/GooglePay.png"
+                          src="/images/payment/GooglePay.webp"
                           width={90}
                           height={64}
                         />
@@ -501,7 +501,7 @@ export default function Details1({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/ApplePay.png"
+                          src="/images/payment/ApplePay.webp"
                           width={90}
                           height={64}
                         />

@@ -462,7 +462,7 @@ export default function Checkout() {
                             width={41}
                             height={12}
                             alt="card"
-                            src="/images/payment/visa-2.png"
+                            src="/images/payment/visa-2.webp"
                           />
                         </fieldset>
                         {formErrors.cardNumber && (
@@ -542,7 +542,7 @@ export default function Checkout() {
                           width={78}
                           height={20}
                           alt="paypal"
-                          src="/images/payment/paypal-2.png"
+                          src="/images/payment/paypal-2.webp"
                         />
                       </span>
                     </label>
@@ -592,7 +592,7 @@ export default function Checkout() {
                               product.imgSrc ||
                               product.images?.[0]?.url ||
                               product.productSnapshot?.image ||
-                              "/images/products/default.jpg"
+                              "/images/products/default.webp"
                             }
                             width={144}
                             height={188}

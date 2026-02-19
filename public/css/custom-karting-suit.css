@@ -2,7 +2,7 @@
 
 .karting-hero-section {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
-    url("/images/karting/karting-hero.jpg");
+    url("/images/karting/karting-hero.webp");
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -79,7 +79,7 @@
 
 .karting-mockup-item {
   flex-shrink: 0;
-  width: 220px;
+  width: 442px;
   height: 300px;
   border-radius: 12px;
   border: 1px solid #404040;

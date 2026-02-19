@@ -2,7 +2,7 @@
 
 .powerboat-hero-section {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
-    url("/images/powerboat/powerboat-hero.jpg");
+    url("/images/powerboat/powerboat-hero.webp");
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -67,8 +67,8 @@
 
 .powerboat-mockup-item {
   flex-shrink: 0;
-  width: 220px;
-  height: 300px;
+  width: 472px;
+  height: 333px;
   border-radius: 12px;
   border: 1px solid #404040;
   overflow: hidden;

@@ -49,7 +49,7 @@ export default function Features() {
                   Description: Close-up of SFI certified racing suit showing quality stitching,
                   SFI certification patch, or racer wearing HS Race Gear. Should emphasize quality and safety. */}
               <Image
-                src="/images/section/about-2.jpg"
+                src="/images/section/about-2.webp"
                 alt="HS Race Gear SFI Certified Racing Suit Quality Detail"
                 className="lazyload w-100 h-100 object-fit-cover"
                 width={586}

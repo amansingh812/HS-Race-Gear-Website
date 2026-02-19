@@ -283,7 +283,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/EximBank.png"
+                  src="/images/payment/EximBank.webp"
                   width={80}
                   height={50}
                 />
@@ -291,7 +291,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/ApplePay.png"
+                  src="/images/payment/ApplePay.webp"
                   width={90}
                   height={64}
                 />
@@ -299,7 +299,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/DinersClub.png"
+                  src="/images/payment/DinersClub.webp"
                   width={90}
                   height={64}
                 />
@@ -307,7 +307,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/Discover.png"
+                  src="/images/payment/Discover.webp"
                   width={80}
                   height={50}
                 />
@@ -315,7 +315,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/GooglePay.png"
+                  src="/images/payment/GooglePay.webp"
                   width={90}
                   height={64}
                 />
@@ -323,7 +323,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/Mastercard-2.png"
+                  src="/images/payment/Mastercard-2.webp"
                   width={80}
                   height={50}
                 />
@@ -331,7 +331,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/Mastercard.png"
+                  src="/images/payment/Mastercard.webp"
                   width={90}
                   height={64}
                 />
@@ -339,7 +339,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/Shop.png"
+                  src="/images/payment/Shop.webp"
                   width={80}
                   height={50}
                 />
@@ -347,7 +347,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/UnionPay.png"
+                  src="/images/payment/UnionPay.webp"
                   width={80}
                   height={50}
                 />
@@ -355,7 +355,7 @@ export default function Footer7() {
               <li className="item">
                 <Image
                   alt="payment"
-                  src="/images/payment/Visa.png"
+                  src="/images/payment/Visa.webp"
                   width={90}
                   height={64}
                 />

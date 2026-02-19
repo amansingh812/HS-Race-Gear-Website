@@ -25,7 +25,7 @@ export default function Cartmodal3() {
     return product.imgSrc || 
            product.images?.[0]?.url || 
            product.productSnapshot?.image ||
-           "/images/products/default.jpg";
+           "/images/products/default.webp";
   };
 
   const getProductTitle = (product) => {

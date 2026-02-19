@@ -13,7 +13,7 @@ const heroSlides = [
     cta: "Design Your Suit",
     link: "/custom-race-suit",
     isH1: true,
-    image: "/images/home/hs_hero_1.png",
+    image: "/images/home/hs_hero_1.webp",
   },
   {
     heading: "SFI Certified Racing Gear",
@@ -22,7 +22,7 @@ const heroSlides = [
     cta: "Shop Now",
     link: "/shop-default",
     isH1: false,
-    image: "/images/home/hs_hero_2.png",
+    image: "/images/home/hs_hero_2.webp",
   },
   {
     heading: "Precision Fit. Maximum Protection.",

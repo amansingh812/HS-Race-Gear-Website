@@ -23,7 +23,7 @@ const products = [
   },
   {
     title: "Racing Shoes",
-    image: "/images/home/shose.png",
+    image: "/images/home/shose.webp",
     link: "/shop?category=shoes",
     sfi: "SFI 3.3/5",
     specs: [
@@ -39,7 +39,7 @@ const products = [
   },
   {
     title: "Racing Gloves",
-    image: "/images/home/globes.png",
+    image: "/images/home/globes.webp",
     link: "/shop?category=gloves",
     sfi: "SFI 3.3/5",
     specs: [

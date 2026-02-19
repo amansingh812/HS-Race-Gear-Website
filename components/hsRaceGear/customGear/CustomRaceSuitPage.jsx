@@ -61,7 +61,7 @@ export default function CustomRaceSuitPage() {
             {/* Custom CSS */}
             <style jsx>{`
         .hero-section {
-          background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('/images/shop/cleaned-custom_gear_Hero.png');
+          background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('/images/shop/cleaned-custom_gear_Hero.webp');
           background-size: cover;
           background-position: center;
           min-height: 100vh;
@@ -295,7 +295,7 @@ export default function CustomRaceSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shop/suit_tailor.png"
+                                src="/images/shop/suit_tailor.webp"
                                 alt="Custom Race Suit Showcase"
                                 width={400}
                                 height={500}
@@ -454,7 +454,7 @@ export default function CustomRaceSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shop/side_hero_sfi.png"
+                                src="/images/shop/side_hero_sfi.webp"
                                 alt="Custom Race Suit Showcase"
                                 width={400}
                                 height={500}
@@ -473,7 +473,7 @@ export default function CustomRaceSuitPage() {
             <section style={{
                 padding: "96px 0",
                 backgroundColor: "#0a0a0a",
-                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.jpg')",
+                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}>

@@ -34,7 +34,7 @@ export default function ShopCart() {
     return product.imgSrc || 
            product.images?.[0]?.url || 
            product.productSnapshot?.image ||
-           "/images/products/default.jpg";
+           "/images/products/default.webp";
   };
 
   // Get product title

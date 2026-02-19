@@ -19,21 +19,21 @@ export default function CustomFitFormPage() {
 
     // Map measurement points to their corresponding images
     const measurementImages = {
-        "A": "1. Chest - A.jpg",
-        "B": "2. Waist - B.jpg",
-        "C": "3. Hip - C.jpg",
-        "D": "4. Thigh - D.jpg",
-        "E": "5. Neck - E.jpg",
-        "F": "6. Shoulder - F.jpg",
-        "G": "7. Back - G.jpg",
-        "H": "8. Sleeve - H.jpg",
-        "I": "9. Bicep - I.jpg",
-        "J": "10. Forearm - J.jpg",
-        "K": "11. Calf - K.jpg",
-        "L": "12. Torso Length 1 - Neck to belly Button - L.jpg",
-        "M": "13. Torso Length 2 - From Belly Button to Crotch - M.jpg",
-        "N": "14. Inseam - From Crotch to Ankle - N.jpg",
-        "O": "15. Suit Height - From Shoulder to Ankle - O.jpg"
+        "A": "1. Chest - A.webp",
+        "B": "2. Waist - B.webp",
+        "C": "3. Hip - C.webp",
+        "D": "4. Thigh - D.webp",
+        "E": "5. Neck - E.webp",
+        "F": "6. Shoulder - F.webp",
+        "G": "7. Back - G.webp",
+        "H": "8. Sleeve - H.webp",
+        "I": "9. Bicep - I.webp",
+        "J": "10. Forearm - J.webp",
+        "K": "11. Calf - K.webp",
+        "L": "12. Torso Length 1 - Neck to belly Button - L.webp",
+        "M": "13. Torso Length 2 - From Belly Button to Crotch - M.webp",
+        "N": "14. Inseam - From Crotch to Ankle - N.webp",
+        "O": "15. Suit Height - From Shoulder to Ankle - O.webp"
     };
 
     const handleMeasurementChange = (id, value) => {
@@ -91,8 +91,8 @@ export default function CustomFitFormPage() {
                             <div className="img-custom-fit radius-10 overflow-hidden">
                                 <img
                                     className="lazyload w-100 custom-fit-hero-img"
-                                    data-src="/images/shop/custom-fit-hero.png"
-                                    src="/images/shop/custom-fit-hero.png"
+                                    data-src="/images/shop/custom-fit-hero.webp"
+                                    src="/images/shop/custom-fit-hero.webp"
                                     alt="Custom Fit Racing Suit Measurement"
                                 />
                             </div>

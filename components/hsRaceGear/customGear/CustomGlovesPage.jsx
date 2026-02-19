@@ -136,11 +136,11 @@ export default function CustomGlovesPage() {
     ];
 
     const gloveMockups = [
-        { src: "/images/gloves/mockup-1.jpg", alt: "Custom Racing Glove Design 1" },
-        { src: "/images/gloves/mockup-2.jpg", alt: "Custom Racing Glove Design 2" },
-        { src: "/images/gloves/mockup-3.jpg", alt: "Custom Racing Glove Design 3" },
-        { src: "/images/gloves/mockup-4.jpg", alt: "Custom Racing Glove Design 4" },
-        { src: "/images/gloves/mockup-5.jpg", alt: "Custom Racing Glove Design 5" },
+        { src: "/images/gloves/mockup-1.webp", alt: "Custom Racing Glove Design 1" },
+        { src: "/images/gloves/mockup-2.webp", alt: "Custom Racing Glove Design 2" },
+        { src: "/images/gloves/mockup-3.webp", alt: "Custom Racing Glove Design 3" },
+        { src: "/images/gloves/mockup-4.webp", alt: "Custom Racing Glove Design 4" },
+        { src: "/images/gloves/mockup-5.webp", alt: "Custom Racing Glove Design 5" },
     ];
 
     return (
@@ -347,7 +347,7 @@ export default function CustomGlovesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/gloves/gloves-detail.jpg"
+                                src="/images/gloves/gloves-detail.webp"
                                 alt="SFI Certified Racing Gloves Detail"
                                 width={400}
                                 height={500}
@@ -547,7 +547,7 @@ export default function CustomGlovesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/gloves/gloves-action.jpg"
+                                src="/images/gloves/gloves-action.webp"
                                 alt="Racing gloves in action on steering wheel"
                                 width={400}
                                 height={500}
@@ -583,7 +583,7 @@ export default function CustomGlovesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/gloves/gloves-users.jpg"
+                                src="/images/gloves/gloves-users.webp"
                                 alt="Racing glove customization options"
                                 width={400}
                                 height={400}
@@ -802,7 +802,7 @@ export default function CustomGlovesPage() {
             <section style={{
                 padding: "96px 0",
                 backgroundColor: "#0a0a0a",
-                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.jpg')",
+                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}>

@@ -79,12 +79,12 @@ export default function CustomKartingSuitPage() {
     ];
 
     const suitMockups = [
-        { src: "/images/karting/mockup-1.jpg", alt: "Custom Karting Suit Design 1" },
-        { src: "/images/karting/mockup-2.jpg", alt: "Custom Karting Suit Design 2" },
-        { src: "/images/karting/mockup-3.jpg", alt: "Custom Karting Suit Design 3" },
-        { src: "/images/karting/mockup-4.jpg", alt: "Custom Karting Suit Design 4" },
-        { src: "/images/karting/mockup-5.jpg", alt: "Custom Karting Suit Design 5" },
-        { src: "/images/karting/mockup-6.jpg", alt: "Custom Karting Suit Design 6" },
+        { src: "/images/karting/mockup-1.webp", alt: "Custom Karting Suit Design 1" },
+        { src: "/images/karting/mockup-2.webp", alt: "Custom Karting Suit Design 2" },
+        { src: "/images/karting/mockup-3.webp", alt: "Custom Karting Suit Design 3" },
+        { src: "/images/karting/mockup-4.webp", alt: "Custom Karting Suit Design 4" },
+        { src: "/images/karting/mockup-5.webp", alt: "Custom Karting Suit Design 5" },
+        { src: "/images/karting/mockup-6.webp", alt: "Custom Karting Suit Design 6" },
     ];
 
     return (
@@ -294,7 +294,7 @@ export default function CustomKartingSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/karting/karting-detail.jpg"
+                                src="/images/karting/karting-detail.webp"
                                 alt="Custom Karting Suit Detail"
                                 width={400}
                                 height={500}
@@ -448,7 +448,7 @@ export default function CustomKartingSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/karting/karting-sublimation.jpg"
+                                src="/images/karting/karting-sublimation.webp"
                                 alt="Sublimation Printing on Karting Suit"
                                 width={400}
                                 height={400}
@@ -727,7 +727,7 @@ export default function CustomKartingSuitPage() {
                 </div>
             </section>
 
-            {/* Where These Suits Are Used */}
+            Where These Suits Are Used
             <section style={{ padding: "96px 0", backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
                 <div className="karting-red-glow" style={{
                     position: "absolute",
@@ -800,7 +800,7 @@ export default function CustomKartingSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/karting/karting-action.jpg"
+                                src="/images/karting/karting-action.webp"
                                 alt="Karting suit in action on track"
                                 width={400}
                                 height={500}
@@ -883,7 +883,7 @@ export default function CustomKartingSuitPage() {
             <section style={{
                 padding: "96px 0",
                 backgroundColor: "#0a0a0a",
-                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.jpg')",
+                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}>

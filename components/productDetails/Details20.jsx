@@ -153,7 +153,7 @@ export default function Details20({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/Visa.png"
+                          src="/images/payment/Visa.webp"
                           width={90}
                           height={64}
                         />
@@ -161,7 +161,7 @@ export default function Details20({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/DinersClub.png"
+                          src="/images/payment/DinersClub.webp"
                           width={90}
                           height={64}
                         />
@@ -169,7 +169,7 @@ export default function Details20({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/Mastercard.png"
+                          src="/images/payment/Mastercard.webp"
                           width={90}
                           height={64}
                         />
@@ -177,7 +177,7 @@ export default function Details20({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/Stripe.png"
+                          src="/images/payment/Stripe.webp"
                           width={90}
                           height={64}
                         />
@@ -185,7 +185,7 @@ export default function Details20({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/PayPal.png"
+                          src="/images/payment/PayPal.webp"
                           width={90}
                           height={64}
                         />
@@ -193,7 +193,7 @@ export default function Details20({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/GooglePay.png"
+                          src="/images/payment/GooglePay.webp"
                           width={90}
                           height={64}
                         />
@@ -201,7 +201,7 @@ export default function Details20({ product }) {
                       <li className="card-item">
                         <Image
                           alt="card"
-                          src="/images/payment/ApplePay.png"
+                          src="/images/payment/ApplePay.webp"
                           width={90}
                           height={64}
                         />

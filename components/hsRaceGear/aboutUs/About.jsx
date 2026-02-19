@@ -27,7 +27,7 @@ export default function About() {
               Description: Wide banner image featuring HS Race Gear racing suits in action, 
               pit crew scene, or professional product display. Should convey speed, safety, and quality. */}
           <Image
-            src="/images/section/about.jpg"
+            src="/images/section/about.webp"
             alt="HS Race Gear SFI Certified Racing Suits and Motorsports Apparel"
             className="lazyload"
             width={1440}

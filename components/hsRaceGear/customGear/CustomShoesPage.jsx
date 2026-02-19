@@ -118,19 +118,19 @@ export default function CustomShoesPage() {
     ];
 
     const shoeMockups = [
-        { src: "/images/shoes/mockup-1.jpg", alt: "Custom Racing Shoe Design 1" },
-        { src: "/images/shoes/mockup-2.jpg", alt: "Custom Racing Shoe Design 2" },
-        { src: "/images/shoes/mockup-3.jpg", alt: "Custom Racing Shoe Design 3" },
-        { src: "/images/shoes/mockup-4.jpg", alt: "Custom Racing Shoe Design 4" },
-        { src: "/images/shoes/mockup-5.jpg", alt: "Custom Racing Shoe Design 5" },
-        { src: "/images/shoes/mockup-6.jpg", alt: "Custom Racing Shoe Design 6" },
+        { src: "/images/shoes/mockup-1.webp", alt: "Custom Racing Shoe Design 1" },
+        { src: "/images/shoes/mockup-2.webp", alt: "Custom Racing Shoe Design 2" },
+        { src: "/images/shoes/mockup-3.webp", alt: "Custom Racing Shoe Design 3" },
+        { src: "/images/shoes/mockup-4.webp", alt: "Custom Racing Shoe Design 4" },
+        { src: "/images/shoes/mockup-5.webp", alt: "Custom Racing Shoe Design 5" },
+        { src: "/images/shoes/mockup-6.webp", alt: "Custom Racing Shoe Design 6" },
     ];
 
     return (
         <>
             {/* Hero Section */}
             <section className="shoes-hero-section" style={{
-                backgroundImage: "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/shoes/hero_shoes.jpg')",
+                backgroundImage: "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/shoes/hero_shoes.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundAttachment: "fixed"
@@ -337,7 +337,7 @@ export default function CustomShoesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shoes/shoes-detail.jpg"
+                                src="/images/shoes/shoes-detail.webp"
                                 alt="SFI Certified Racing Shoes Detail"
                                 width={400}
                                 height={500}
@@ -542,7 +542,7 @@ export default function CustomShoesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shoes/shoes-action.jpg"
+                                src="/images/shoes/shoes-action.webp"
                                 alt="Racing shoes in action on pedals"
                                 width={400}
                                 height={500}
@@ -578,7 +578,7 @@ export default function CustomShoesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shoes/shoes-users.png"
+                                src="/images/shoes/shoes-users.webp"
                                 alt="Racing shoe customization options"
                                 width={400}
                                 height={400}
@@ -801,7 +801,7 @@ export default function CustomShoesPage() {
             <section style={{
                 padding: "96px 0",
                 backgroundColor: "#0a0a0a",
-                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.jpg')",
+                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}>
