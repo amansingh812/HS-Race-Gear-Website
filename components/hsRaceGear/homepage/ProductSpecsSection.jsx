@@ -7,7 +7,7 @@ import Link from "next/link";
 const products = [
   {
     title: "Racing Suit",
-    image: "images/home/suit_desc.png",
+    image: "images/home/SuitBanner.png",
     link: "/custom-race-suit",
     sfi: "SFI 3.2A/5",
     specs: [
@@ -23,7 +23,7 @@ const products = [
   },
   {
     title: "Racing Shoes",
-    image: "/images/home/shose.webp",
+    image: "/images/home/ShoesBanner.png",
     link: "/shop?category=shoes",
     sfi: "SFI 3.3/5",
     specs: [
@@ -39,7 +39,8 @@ const products = [
   },
   {
     title: "Racing Gloves",
-    image: "/images/home/globes.webp",
+
+    image: "/images/home/GlovesBanner.png",
     link: "/shop?category=gloves",
     sfi: "SFI 3.3/5",
     specs: [
