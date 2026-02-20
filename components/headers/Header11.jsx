@@ -29,7 +29,7 @@ export default function Header11() {
                 <Image
                   alt="logo"
                   className="logo"
-                  src="/images/logo/logo.svg"
+                  src="/images/logo/logo.png"
                   width={148}
                   height={44}
                 />

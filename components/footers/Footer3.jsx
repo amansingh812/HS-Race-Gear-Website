@@ -78,11 +78,11 @@ export default function Footer3() {
         <div className="container">
           <div className="footer-top-wrap">
             <div className="footer-logo">
-              <Link href={`/home-plant`}>
+              <Link href={`/`}>
                 <Image
                   className="logo"
-                  alt="logo"
-                  src="/images/logo/logo-white.svg"
+                  alt="HS Race Gear"
+                  src="/images/logo/logo.png"
                   width={148}
                   height={44}
                 />

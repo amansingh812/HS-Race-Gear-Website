@@ -73,15 +73,14 @@
   font-style: normal;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 767px) {
   .racing-tools {
-    display: none;
+    gap: 4px;
   }
-}
 
-@media (max-width: 767px){
-  .racing-tools {
-    display: none;
+  .skew-box {
+    height: 28px;
+    padding: 0 12px;
   }
 }
 

@@ -3,14 +3,12 @@ import React from "react";
 import Nav from "./Nav";
 import Link from "next/link";
 import CartLength from "../common/CartLength";
-import WishlistLength from "../common/WishlistLength";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+
 export default function Header1({
   parentClass = "header-default",
   fullWidth = false,
 }) {
-  const pathname = usePathname();
   return (
     <header id="header" className={parentClass}>
       <div className={fullWidth ? "container-full" : "container"}>
@@ -28,9 +26,9 @@ export default function Header1({
           <div className="col-xl-2 col-md-4 col-6">
             <Link href={`/`} className="logo-header">
               <Image
-                alt="logo"
+                alt="HS Race Gear"
                 className="logo"
-                src="/images/logo/logo.svg"
+                src="/images/logo/logo.png"
                 width={148}
                 height={44}
               />
@@ -44,48 +42,42 @@ export default function Header1({
             </nav>
           </div>
           <div className="col-xl-2 col-md-4 col-3">
-            <ul className="nav-icon d-flex justify-content-end align-items-center">
-              <li className="nav-search">
+            <div className="d-flex justify-content-end align-items-center">
+              <div className="racing-tools">
                 <a
                   href="#search"
                   data-bs-toggle="modal"
-                  className="nav-icon-item"
+                  className="skew-box outline-red"
                 >
-                  <i className="icon icon-search" />
+                  <span className="skew-content">
+                    <i className="icon icon-search" style={{ fontSize: '0.9rem' }} />
+                  </span>
                 </a>
-              </li>
-              <li className="nav-account">
+
+                <a
+                  href="#shoppingCart"
+                  data-bs-toggle="offcanvas"
+                  className="skew-box filled-dark"
+                >
+                  <span className="skew-content">
+                    <i className="icon icon-cart" />
+                    <span className="cart-badge">
+                      <CartLength />
+                    </span>
+                  </span>
+                </a>
+
                 <a
                   href="#login"
                   data-bs-toggle="offcanvas"
-                  aria-controls="login"
-                  className="nav-icon-item"
+                  className="skew-box filled-dark"
                 >
-                  <i className="icon icon-user" />
-                </a>
-              </li>
-              <li className="nav-wishlist">
-                <Link href={`/wish-list`} className="nav-icon-item">
-                  <i className="icon icon-heart" />
-                  <span className="count-box">
-                    <WishlistLength />
-                  </span>
-                </Link>
-              </li>
-              <li className="nav-cart">
-                <a
-                  href="#shoppingCart"
-                  data-bs-toggle={`${pathname == "/cart-drawer-v2" ? "modal" : "offcanvas"
-                    }`}
-                  className="nav-icon-item"
-                >
-                  <i className="icon icon-cart" />
-                  <span className="count-box">
-                    <CartLength />
+                  <span className="skew-content">
+                    <i className="icon icon-user" />
                   </span>
                 </a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

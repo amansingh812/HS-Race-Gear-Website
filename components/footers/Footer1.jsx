@@ -88,8 +88,8 @@ export default function Footer1({
               <Link href={`/`}>
                 <Image
                   className="logo"
-                  alt="logo"
-                  src="/images/logo/logo.svg"
+                  alt="HS Race Gear"
+                  src="/images/logo/logo.png"
                   width={148}
                   height={44}
                 />

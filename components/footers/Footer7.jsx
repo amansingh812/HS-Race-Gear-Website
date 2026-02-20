@@ -81,7 +81,7 @@ export default function Footer7() {
                   <Image
                     className="logo"
                     alt="logo"
-                    src="/images/logo/logo.svg"
+                    src="/images/logo/logo.png"
                     width={128}
                     height={33}
                   />

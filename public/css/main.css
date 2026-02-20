@@ -8467,7 +8467,7 @@ button.animate-btn::after,
 }
 
 .logo-header img {
-  width: 128px;
+  width: 81px;
 }
 
 .header-medium .header-bottom .menu-item {
@@ -9349,7 +9349,7 @@ header.header-bg {
 }
 
 .footer-logo {
-  max-width: 157px;
+  max-width: 75px;
   width: 100%;
 }
 
@@ -22692,7 +22692,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     padding-bottom: 24px;
   }
   .logo-header img {
-    width: 110px;
+    width: 81px;
   }
   .form-default fieldset label {
     font-size: 14px;
@@ -22733,7 +22733,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     height: 400px;
   }
   .footer-logo {
-    max-width: 108px;
+    max-width: 60px;
   }
   .s3-banner-with-text .content-with-text,
   .s2-banner-with-text .content-with-text {

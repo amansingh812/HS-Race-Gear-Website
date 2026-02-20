@@ -32,7 +32,7 @@ export default function Header14() {
                   className="logo logo-dark"
                   width={128}
                   height={33}
-                  src="/images/logo/logo.svg"
+                  src="/images/logo/logo.png"
                 />
                 <Image
                   alt="logo"

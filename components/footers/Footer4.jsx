@@ -83,7 +83,7 @@ export default function Footer4() {
                     alt="logo"
                     width={128}
                     height={33}
-                    src="/images/logo/logo.svg"
+                    src="/images/logo/logo.png"
                   />
                 </Link>
               </div>

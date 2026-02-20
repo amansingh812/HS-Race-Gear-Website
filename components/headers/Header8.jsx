@@ -27,7 +27,7 @@ export default function Header8() {
                 <Image
                   alt="logo"
                   className="logo logo-dark"
-                  src="/images/logo/logo.svg"
+                  src="/images/logo/logo.png"
                   width={148}
                   height={44}
                 />

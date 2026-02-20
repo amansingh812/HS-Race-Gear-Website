@@ -1,13 +1,10 @@
 import React from "react";
 import Nav from "./Nav";
 import Link from "next/link";
-import LanguageSelect from "../common/LanguageSelect";
-import CurrencySelect from "../common/CurrencySelect";
-import WishlistLength from "../common/WishlistLength";
+
 import CartLength from "../common/CartLength";
 import Image from "next/image";
-import Nav2 from "./Nav2";
-import Nav3 from "./Nav3";
+
 export default function Header3() {
   return (
     <header id="header" className="header-default header-absolute-2">
@@ -29,19 +26,15 @@ export default function Header3() {
 
             {/* Logo Section */}
             <div className="col-xl-2 col-md-4 col-6">
-              {/* Temporarily replace image logo with text */}
-              {/*
-              <Link href={`/home-electronic`} className="logo-header">
+              <Link href={`/`} className="logo-header">
                 <Image
-                  alt="logo"
+                  alt="HS Race Gear"
                   className="logo"
-                  src="/images/logo/logo.svg"
+                  src="/images/logo/logo.png"
                   width={148}
                   height={44}
                 />
               </Link>
-              */}
-              <div className="logo-text h5 fw-bold">H&amp;S Racegear</div>
             </div>
 
             {/* Middle Spacer */}
