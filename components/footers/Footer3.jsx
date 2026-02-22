@@ -76,7 +76,7 @@ export default function Footer3() {
     >
       <div className="footer-top">
         <div className="container">
-          <div className="footer-top-wrap">
+          <div className="footer-top-wrap d-flex flex-wrap justify-content-between align-items-center" style={{ gap: '20px' }}>
             <div className="footer-logo">
               <Link href={`/`}>
                 <Image
@@ -88,185 +88,15 @@ export default function Footer3() {
                 />
               </Link>
             </div>
-            <ul className="tf-social-icon style-large">
-              <li>
-                <a
-                  href="https://www.facebook.com/"
-                  className="social-item social-facebook"
-                >
-                  <i className="icon icon-fb" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/"
-                  className="social-item social-instagram"
-                >
-                  <i className="icon icon-instagram" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.snapchat.com/"
-                  className="social-item social-linkedin"
-                >
-                  <i className="icon icon-linkedin" />
-                </a>
-              </li>
-              <li>
-                <a href="https://x.com/" className="social-item social-x">
-                  <i className="icon icon-x" />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="footer-body">
-        <div className="container">
-          <div className="row-footer">
 
-            <div className="footer-col-block s1">
-              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
-                COMPANY
-              </div>
-              <div className="tf-collapse-content">
-                <div className="footer-contact">
-                  <ul className="footer-info">
+            {/* NEWSLETTER */}
+            <div className="footer-inner-wrap footer-col-block s2" style={{ maxWidth: "450px", textAlign: "left", width: "100%", margin: 0 }}>
 
-                    <li className="item">
-                      <Link href="/contact-us">CONTACT US</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="/about-us">ABOUT</Link>
-                    </li>
-                    <li className="item">
-                      BLOG
-                    </li>
-                    <li className="item">
-                      <Link href="/privacy-policy">PRIVACY POLICY</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="/term-and-condition">TERMS & SERVICES</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="/shipping-policy">SHIPPING POLICY</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="footer-col-block s1">
-              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
-                SUPPORT
-              </div>
-              <div className="tf-collapse-content">
-                <div className="footer-contact">
-                  <ul className="footer-info">
-                    <li className="item">
-                      <Link href="/faq">FAQ</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="/payment-methods">PAYMENT METHODS</Link>
-                    </li>
-                    <li className="item">
-                      RETURN POLICY
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="footer-col-block s1">
-              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
-                DOWNLOAD
-              </div>
-              <div className="tf-collapse-content">
-                <div className="footer-contact">
-                  <ul className="footer-info">
-                    <li className="item">
-                      <a
-                        target="_blank"
-                        href="https://www.google.com/maps?q=123Yarranst,Punchbowl,NSW2196,Australia"
-                      >
-                        MORE MOCKUPS
-                      </a>
-                    </li>
-                    <li className="item">
-                      <a href="tel:18888383022">BLANKET TEMPLATE</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="footer-col-block s1">
-              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
-                ABOUT SUIT
-              </div>
-              <div className="tf-collapse-content">
-                <div className="footer-contact">
-                  <ul className="footer-info">
-                    <li className="item">
-                      <Link href="/suit-maintenance">SUIT MAINTAINENCE</Link>
-                    </li>
-                    <li className="item">
-                      <a href="tel:18888383022">CERTIFICATIONS</a>
-                    </li>
-                    <li className="item">
-                      <a href="tel:18888383022">HOW TO MEASURE</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="footer-col-block s1">
-              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
-                COMPARE
-              </div>
-              <div className="tf-collapse-content">
-                <div className="footer-contact">
-                  <ul className="footer-info">
-                    <li className="item">
-                      <a
-                        target="_blank"
-                        href="https://www.google.com/maps?q=123Yarranst,Punchbowl,NSW2196,Australia"
-                      >
-                        V/S K1
-                      </a>
-                    </li>
-                    <li className="item">
-                      <Link href="/compare/vs-rush">V/S RUSH</Link>
-                    </li>
-                    <li className="item">
-                      V/S VELOCITY
-                    </li>
-                    <li className="item">
-                      <Link href="/compare/vs-pyrotect">V/S PYROTECT</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="/compare/vs-simpson">V/S SIMPSON</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* <div className="footer-inner-wrap footer-col-block s2">
-              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
-                Subscribe Newsletter
-              </div>
-              <div className="tf-collapse-content">
+              <div className="tf-collapse-content" style={{ display: "block", height: "auto" }}>
                 <div className="footer-newsletter">
-                  <p>
-                    We invite you to register to read the latest news, offers
-                    and events about our company. We promise not spam your
-                    inbox.
-                  </p>
+
                   <div
-                    className={`tfSubscribeMsg  footer-sub-element ${showMessage ? "active" : ""
+                    className={`tfSubscribeMsg footer-sub-element ${showMessage ? "active" : ""
                       }`}
                   >
                     {success ? (
@@ -327,7 +157,176 @@ export default function Footer3() {
                   </form>
                 </div>
               </div>
-            </div> */}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="footer-body">
+        <div className="container">
+          <div className="row-footer">
+
+            {/* COMPANY */}
+            <div className="footer-col-block s1">
+              <div className="footer-logo">
+                <Link href={`/`}>
+                  <Image
+                    className="logo"
+                    alt="HS Race Gear"
+                    src="/images/logo/logo.png"
+                    width={148}
+                    height={44}
+                  />
+                </Link>
+              </div>
+              {/* <div className="tf-collapse-content">
+                <div className="footer-contact">
+                  <ul className="footer-info">
+                    <li className="item">
+                      <Link href="/contact-us">CONTACT US</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/about-us">ABOUT</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/blog">BLOG</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/privacy-policy">PRIVACY POLICY</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/term-and-condition">TERMS & SERVICES</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/shipping-policy">SHIPPING POLICY</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div> */}
+            </div>
+
+            {/* COMPANY */}
+            <div className="footer-col-block s1">
+              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
+                COMPANY
+              </div>
+              <div className="tf-collapse-content">
+                <div className="footer-contact">
+                  <ul className="footer-info">
+                    <li className="item">
+                      <Link href="/contact-us">CONTACT US</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/about-us">ABOUT</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/blog">BLOG</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/privacy-policy">PRIVACY POLICY</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/term-and-condition">TERMS & SERVICES</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/shipping-policy">SHIPPING POLICY</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* SUPPORT */}
+            <div className="footer-col-block s1">
+              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
+                SUPPORT
+              </div>
+              <div className="tf-collapse-content">
+                <div className="footer-contact">
+                  <ul className="footer-info">
+                    <li className="item">
+                      <Link href="/faqs">FAQ</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/payment-methods">PAYMENT METHODS</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/return-policy">RETURN POLICY</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* DOWNLOAD */}
+            <div className="footer-col-block s1">
+              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
+                DOWNLOAD
+              </div>
+              <div className="tf-collapse-content">
+                <div className="footer-contact">
+                  <ul className="footer-info">
+                    <li className="item">
+                      <a href="#">MORE MOCKUPS</a>
+                    </li>
+                    <li className="item">
+                      <a href="#">BLANKET TEMPLATE</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* ABOUT SUIT */}
+            <div className="footer-col-block s1">
+              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
+                ABOUT SUIT
+              </div>
+              <div className="tf-collapse-content">
+                <div className="footer-contact">
+                  <ul className="footer-info">
+                    <li className="item">
+                      <Link href="/suit-maintenance">SUIT MAINTENANCE</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/certifications">CERTIFICATIONS</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/custom-fit">HOW TO MEASURE</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* COMPARE */}
+            <div className="footer-col-block s1">
+              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
+                COMPARE
+              </div>
+              <div className="tf-collapse-content">
+                <div className="footer-contact">
+                  <ul className="footer-info">
+                    <li className="item">
+                      <Link href="/compare/vs-k1">V/S K1</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/compare/vs-rush">V/S RUSH</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/compare/vs-velocity">V/S VELOCITY</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/compare/vs-pyrotect">V/S PYROTECT</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/compare/vs-simpson">V/S SIMPSON</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
 
           </div>
         </div>
@@ -336,12 +335,40 @@ export default function Footer3() {
         <div className="container">
           <div className="footer-bottom-wrap">
             <p>
-              Copyright © 2025 by <span className="fw-medium">Vineta.</span> All
+              Copyright © 2026 by <span className="fw-medium">HS Race Gear.</span> All
               Rights Reserved.
             </p>
-            <div className="box-right">
-              <Link href={`/privacy-policy`}>Privacy Policy</Link>
-              <Link href={`/term-and-condition`}>Term of Use</Link>
+            <div className="box-right d-flex align-items-center" style={{ gap: '15px' }}>
+              <div className="d-flex align-items-center" style={{ gap: '15px' }}>
+                <Link href={`/privacy-policy`}>Privacy Policy</Link>
+                <Link href={`/term-and-condition`}>Term of Use</Link>
+              </div>
+              <ul className="tf-social-icon style-large m-0" style={{ gap: '10px' }}>
+                <li>
+                  <a
+                    href="https://www.facebook.com/"
+                    className="social-item social-facebook"
+                  >
+                    <i className="icon icon-fb" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/"
+                    className="social-item social-instagram"
+                  >
+                    <i className="icon icon-instagram" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.tiktok.com/"
+                    className="social-item social-tiktok"
+                  >
+                    <i className="icon icon-tiktok" />
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

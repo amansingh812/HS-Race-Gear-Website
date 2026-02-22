@@ -48,7 +48,7 @@ const dealsData = [
         title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX SFI CERTIFIED GLOVES",
         price: 649,
         badge: null,
-        image: "/images/deals/offer-1-suit-gloves.webp",
+        image: "/images/deals/offeer-1.webp",
         features: [
           "SFI 3.2A/1 certified single-layer fire suit",
           "SFI 3.3/5 Free gloves included",
@@ -70,7 +70,7 @@ const dealsData = [
         title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX SFI CERTIFIED GLOVES + NOMEX SFI CERTIFIED SHOES",
         price: 729,
         badge: "BEST VALUE",
-        image: "/images/deals/offer-3-double-suit-gloves.webp",
+        image: "/images/deals/offer-2.webp",
         features: [
           "SFI 3.2A/1 certified single-layer fire suit",
           "SFI 3.3/5 Free gloves included",
@@ -98,6 +98,7 @@ const dealsData = [
         title: "DOUBLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX GLOVES",
         price: 749,
         badge: null,
+        image: "/images/deals/offer-3.webp",
         features: [
           "SFI 3.2A/5 certified double-layer suit",
           "SFI 3.3/5 Free gloves included",
@@ -119,6 +120,7 @@ const dealsData = [
         title: "DOUBLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX GLOVES + CUSTOM NOMEX SHOES",
         price: 829,
         badge: "MOST POPULAR",
+        image: "/images/deals/offer-4.webp",
         features: [
           "SFI 3.2A/5 certified double-layer fire suit",
           "SFI 3.3/5 Free gloves included",
@@ -146,6 +148,7 @@ const dealsData = [
         title: "TRIPLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX GLOVES",
         price: 849,
         badge: null,
+        image: "/images/deals/offer-5.webp",
         features: [
           "SFI 3.2A/5 certified triple-layer suit",
           "SFI 3.3/5 Free gloves included",
@@ -167,6 +170,7 @@ const dealsData = [
         title: "TRIPLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX GLOVES + CUSTOM NOMEX SHOES",
         price: 929,
         badge: "PRO CHOICE",
+        image: "/images/deals/offer-6.webp",
         features: [
           "SFI 3.2A/5 certified triple-layer fire suit",
           "SFI 3.3/5 Free gloves included",
@@ -194,6 +198,7 @@ const dealsData = [
         title: "CUSTOM KARTING SUIT + CUSTOM GLOVES",
         price: 315,
         badge: null,
+        image: "/images/deals/offer-7.webp",
         features: [
           "Unlimited color options",
           "Free Karting Gloves Included",
@@ -212,6 +217,7 @@ const dealsData = [
         title: "CUSTOM KARTING SUIT + CUSTOM GLOVES + CUSTOM SHOES",
         price: 415,
         badge: "BUNDLE DEAL",
+        image: "/images/deals/offer-8.webp",
         features: [
           "Unlimited color options",
           "Free Karting Gloves Included",
@@ -229,14 +235,8 @@ const dealsData = [
   },
 ];
 
-const categoryImages = {
-  "CUSTOM SINGLE LAYER SUIT": "/images/deals/single-layer-suit.webp",
-  "CUSTOM DOUBLE LAYER SUIT": "/images/deals/double-layer-suit.webp",
-  "CUSTOM TRIPLE LAYER SUIT": "/images/deals/triple-layer-suit.webp",
-  "CUSTOM KARTING SUIT": "/images/deals/karting-suit.webp",
-};
 
-function DealCard({ offer, categoryImage }) {
+function DealCard({ offer }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -798,7 +798,6 @@ export default function RacegearDeals() {
               <DealCard
                 key={offer.id}
                 offer={offer}
-                categoryImage={categoryImages[section.category]}
               />
             ))}
           </div>
