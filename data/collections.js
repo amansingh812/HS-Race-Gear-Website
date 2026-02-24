@@ -325,7 +325,7 @@ export const categories8 = [
     title: "Leash",
     itemCount: "10 items",
   },
-  
+
 ];
 
 export const categories16 = [
@@ -354,7 +354,7 @@ export const categories16 = [
     title: "Leash",
     itemCount: "10 items",
   },
-  
+
 ];
 
 export const categoryItems2 = [
@@ -551,7 +551,7 @@ export const categoryItems3 = [
   },
 ];
 
-export const categoryItems4 = [ 
+export const categoryItems4 = [
   {
     id: 1,
     imgSrc: "/images/cls-categories/plant/categoty__1.png",
@@ -600,27 +600,27 @@ export const customizeCategories = [
   {
     name: "Suits",
     img: "/images/customize/cleaned-suit.png",
-    href: "/custom-fit",
+    href: "/custom-race-suit",
   },
   {
     name: "Gloves",
     img: "/images/customize/gloves.png",
-    href: "/shop-default",
+    href: "/custom-gloves",
   },
   {
     name: "Shoes",
     img: "/images/customize/shoes.png",
-    href: "/shop-default",
+    href: "/custom-shoes",
   },
   {
     name: "T-shirt",
     img: "/images/customize/t-shirt.png",
-    href: "/shop-default",
+    href: "/shop",
   },
   {
     name: "Hoodie",
     img: "/images/customize/hoodie.png",
-    href: "/shop-default",
+    href: "/shop",
   },
 ];
 

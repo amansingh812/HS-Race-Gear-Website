@@ -20,7 +20,7 @@ const heroSlides = [
     subtitle:
       "From gloves to shoes, every piece meets the highest international safety standards for professional motorsport.",
     cta: "Shop Now",
-    link: "/shop-default",
+    link: "/shop",
     isH1: false,
     image: "/images/home/hs_hero_2.webp",
   },

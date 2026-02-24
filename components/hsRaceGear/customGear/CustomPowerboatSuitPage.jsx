@@ -173,7 +173,7 @@ export default function CustomPowerboatSuitPage() {
                             justifyContent: "center",
                             alignItems: "center"
                         }} className="powerboat-hero-cta-buttons">
-                            <Link href="/custom-measurement" style={{
+                            <Link href="/custom-powerboat-suit/order" style={{
                                 display: "inline-flex",
                                 alignItems: "center",
                                 gap: "10px",
@@ -946,7 +946,7 @@ export default function CustomPowerboatSuitPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </Link>
-                            <Link href="/custom-measurement" style={{
+                            <Link href="/custom-powerboat-suit/order" style={{
                                 display: "inline-flex",
                                 alignItems: "center",
                                 gap: "10px",
@@ -998,7 +998,7 @@ export default function CustomPowerboatSuitPage() {
                         justifyContent: "center",
                         alignItems: "center"
                     }}>
-                        <Link href="/custom-measurement" style={{
+                        <Link href="/custom-powerboat-suit/order" style={{
                             display: "inline-flex",
                             alignItems: "center",
                             gap: "10px",

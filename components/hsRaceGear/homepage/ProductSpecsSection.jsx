@@ -24,7 +24,7 @@ const products = [
   {
     title: "Racing Shoes",
     image: "/images/home/ShoesBanner.png",
-    link: "/shop?category=shoes",
+    link: "/custom-shoes",
     sfi: "SFI 3.3/5",
     specs: [
       "Premium cowhide leather outer shell",
@@ -41,7 +41,7 @@ const products = [
     title: "Racing Gloves",
 
     image: "/images/home/GlovesBanner.png",
-    link: "/shop?category=gloves",
+    link: "/custom-gloves",
     sfi: "SFI 3.3/5",
     specs: [
       "2-layer Nomex® construction for fire protection",

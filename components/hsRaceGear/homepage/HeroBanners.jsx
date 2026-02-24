@@ -60,7 +60,7 @@ const middleBanners = [
     description:
       "From drag racing to karting, find the perfect suit from our ready-to-ship and custom-order catalog.",
     cta: "Shop Race Suits",
-    link: "/shop?category=race-suits",
+    link: "/shop",
     image: "/images/home/hero_shop.webp",
     placeholder: "960 × 700",
   },

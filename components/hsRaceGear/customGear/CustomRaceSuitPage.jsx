@@ -161,7 +161,7 @@ export default function CustomRaceSuitPage() {
                             justifyContent: "center",
                             alignItems: "center"
                         }} className="hero-cta-buttons">
-                            <Link href="/custom-measurement" style={{
+                            <Link href="/custom-race-suit/order" style={{
                                 display: "inline-flex",
                                 alignItems: "center",
                                 gap: "10px",
@@ -501,7 +501,7 @@ export default function CustomRaceSuitPage() {
                         justifyContent: "center",
                         alignItems: "center"
                     }}>
-                        <Link href="/custom-measurement" style={{
+                        <Link href="/custom-race-suit/order" style={{
                             display: "inline-flex",
                             alignItems: "center",
                             gap: "10px",

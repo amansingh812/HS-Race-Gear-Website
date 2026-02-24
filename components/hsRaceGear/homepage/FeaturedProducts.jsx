@@ -15,7 +15,7 @@ const products = [
     price: "$395",
     originalPrice: null,
     badge: "SFI 3.3/5",
-    link: "shop/hs-super-sfi-race-suit",
+    link: "/shop/hs-super-sfi-race-suit",
     image: "https://res.cloudinary.com/drygcfes5/image/upload/v1771064344/M1_eg60vm.png",
   },
   {
