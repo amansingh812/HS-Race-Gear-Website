@@ -601,6 +601,12 @@ export const customizeCategories = [
     name: "Suits",
     img: "/images/customize/cleaned-suit.png",
     href: "/custom-race-suit",
+    subOptions: [
+      { name: "Custom Racing Suit", href: "/custom-race-suit" },
+      { name: "Custom Karting Suit", href: "/custom-karting-suit" },
+      { name: "Custom Power Boating Suit", href: "/custom-powerboat-suit" },
+      { name: "Off The Rack Suit", href: "/shop" },
+    ],
   },
   {
     name: "Gloves",

@@ -1,587 +1,485 @@
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
-// Form Data
-const stitchingStyles = [
-    { id: "cross-stitch", name: "Cross Stitch", image: "/images/placeholder-stitch.png" },
-    { id: "v-angle-stitch", name: "V & Angle Stitch", image: "/images/placeholder-stitch.png" },
-    { id: "diagonal-stitch", name: "Diagonal Stitch", image: "/images/placeholder-stitch.png" },
-    { id: "straight-stitch", name: "Straight Stitch", image: "/images/placeholder-stitch.png" },
-];
-
-const collarStyles = [
-    { id: "large-velcro", name: "Large w/ Velcro", image: "/images/placeholder-collar.png" },
-    { id: "banded-v-velcro", name: "Banded V w/ Velcro", image: "/images/placeholder-collar.png" },
-    { id: "tapered-v", name: "Tapered V", image: "/images/placeholder-collar.png" },
-    { id: "euro-collar", name: "Euro Collar", image: "/images/placeholder-collar.png" },
-];
-
-const legCuffOptions = [
-    { id: "boot-cut", name: "Boot Cut" },
-    { id: "euro-cut", name: "Euro Cut" },
-];
-
-const measurementFields = [
-    { id: "chest", label: "Chest Circumference", placeholder: "CM" },
-    { id: "waist", label: "Waist Circumference", placeholder: "CM" },
-    { id: "hip", label: "Hip Circumference", placeholder: "CM" },
-    { id: "thigh", label: "Thigh Circumference", placeholder: "CM" },
-    { id: "neck", label: "Neck Circumference", placeholder: "CM" },
-    { id: "shoulder", label: "Shoulder Width", placeholder: "CM" },
-    { id: "backWidth", label: "Back Width", placeholder: "CM" },
-    { id: "sleeve", label: "Sleeve Length", placeholder: "CM" },
-    { id: "bicep", label: "Bicep Circumference", placeholder: "CM" },
-    { id: "forearm", label: "Forearm Circumference", placeholder: "CM" },
-    { id: "calf", label: "Calf Circumference", placeholder: "CM" },
-    { id: "neckToBelly", label: "Neck to Belly Button", placeholder: "CM" },
-    { id: "bellyToCrotch", label: "Belly to Crotch", placeholder: "CM" },
-    { id: "inseam", label: "Inseam Length", placeholder: "CM" },
-    { id: "suitHeight", label: "Full Suit Height", placeholder: "CM" },
-    { id: "height", label: "Total Height (Head to Ankle)", placeholder: "CM" },
-    { id: "weight", label: "Weight", placeholder: "KG" },
-];
+const PDF_URL = "/pdf/custom-measurements-form.pdf";
+// API route returns PDF with Content-Disposition: attachment — bypasses browser download blocker
+const DOWNLOAD_URL = "/api/download-measurement-form";
 
 export default function CustomMeasurementForm() {
-    const [formData, setFormData] = useState({
-        // Customer Info
-        fullName: "",
-        email: "",
-        phone: "",
-        // Options
-        suitType: "one-piece",
-        stitchingStyle: "",
-        collarStyle: "",
-        legCuff: "boot-cut",
-        // Measurements
-        measurements: {},
-        // Notes
-        specialNotes: "",
-    });
 
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
+  // Auto-download: window.location.href pointing to an attachment response
+  // is the only method that reliably triggers a download without a user gesture
+  // across all modern browsers (Chrome, Firefox, Safari, Edge).
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.location.href = DOWNLOAD_URL;
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
 
-    const handleInputChange = (field, value) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
-        if (formErrors[field]) {
-            setFormErrors(prev => ({ ...prev, [field]: null }));
-        }
-    };
+  const handleDownload = () => {
+    window.location.href = DOWNLOAD_URL;
+  };
 
-    const handleMeasurementChange = (field, value) => {
-        setFormData(prev => ({
-            ...prev,
-            measurements: { ...prev.measurements, [field]: value }
-        }));
-    };
+  return (
+    <div
+      style={{
+        backgroundColor: "#0a0a0a",
+        minHeight: "100vh",
+        color: "#fff",
+      }}
+    >
+      {/* Header Section */}
+      <section
+        style={{
+          padding: "48px 0 32px",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "900px",
+            margin: "0 auto",
+            padding: "0 24px",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-block",
+              padding: "6px 18px",
+              border: "1px solid rgba(220, 38, 38, 0.4)",
+              borderRadius: "9999px",
+              background: "rgba(220, 38, 38, 0.1)",
+              color: "#f87171",
+              fontSize: "11px",
+              fontWeight: "700",
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              marginBottom: "20px",
+            }}
+          >
+            Measurement Form
+          </div>
 
-    const validateForm = () => {
-        const errors = {};
-        if (!formData.fullName.trim()) errors.fullName = "Full name is required";
-        if (!formData.email.trim()) errors.email = "Email is required";
-        if (!formData.stitchingStyle) errors.stitchingStyle = "Please select a stitching style";
-        if (!formData.collarStyle) errors.collarStyle = "Please select a collar style";
+          <h1
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+              fontWeight: "800",
+              color: "#fff",
+              marginBottom: "16px",
+              textTransform: "uppercase",
+              lineHeight: "1.1",
+            }}
+          >
+            Custom Measurements Form
+          </h1>
 
-        // Check required measurements
-        const requiredMeasurements = ["chest", "waist", "hip", "neck", "shoulder", "sleeve", "height", "weight"];
-        requiredMeasurements.forEach(field => {
-            if (!formData.measurements[field]) {
-                errors[`measurement_${field}`] = "Required";
-            }
-        });
+          <p
+            style={{
+              color: "#9ca3af",
+              fontSize: "1.05rem",
+              maxWidth: "600px",
+              margin: "0 auto 32px",
+              lineHeight: "1.7",
+            }}
+          >
+            Your form is downloading automatically. Print it out, fill in your
+            measurements, and send it back to us to get your perfect custom fit.
+          </p>
 
-        setFormErrors(errors);
-        return Object.keys(errors).length === 0;
-    };
+          {/* Action Buttons */}
+          <div
+            style={{
+              display: "flex",
+              gap: "16px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginBottom: "16px",
+            }}
+          >
+            <button
+              onClick={handleDownload}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                backgroundColor: "#dc2626",
+                color: "#fff",
+                padding: "16px 32px",
+                borderRadius: "10px",
+                fontWeight: "700",
+                fontSize: "15px",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#b91c1c";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow =
+                  "0 8px 25px rgba(220, 38, 38, 0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#dc2626";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download PDF
+            </button>
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!validateForm()) {
-            alert("Please fill in all required fields.");
-            return;
-        }
+            <a
+              href={PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                padding: "16px 32px",
+                borderRadius: "10px",
+                fontWeight: "700",
+                fontSize: "15px",
+                border: "2px solid #333",
+                color: "#aaa",
+                textDecoration: "none",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                background: "transparent",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#555";
+                e.currentTarget.style.color = "#fff";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "#333";
+                e.currentTarget.style.color = "#aaa";
+              }}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+              Open in New Tab
+            </a>
+          </div>
 
-        setIsSubmitting(true);
-
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        console.log("Form Data:", formData);
-        setSubmitted(true);
-        setIsSubmitting(false);
-    };
-
-    if (submitted) {
-        return (
-            <section className="flat-spacing-9">
-                <div className="container">
-                    <div className="text-center p-5" style={{
-                        background: "#d4edda",
-                        border: "1px solid #c3e6cb",
-                        borderRadius: "12px",
-                        maxWidth: "600px",
-                        margin: "0 auto"
-                    }}>
-                        <span style={{ fontSize: "4rem" }}>✅</span>
-                        <h3 className="mt_20 mb_15">Measurements Submitted Successfully!</h3>
-                        <p className="text_black-3 mb_20">
-                            Thank you for submitting your custom suit measurements. Our team will review them and contact you within 24 hours.
-                        </p>
-                        <Link href="/shop" className="tf-btn btn-fill animate-hover-btn radius-3">
-                            <span>Continue Shopping</span>
-                            <i className="icon icon-arrow-right" />
-                        </Link>
-                    </div>
-                </div>
-            </section>
-        );
-    }
-
-    return (
-        <div className="flat-spacing-9">
-            <div className="container">
-                <form onSubmit={handleSubmit}>
-
-                    {/* Form Header */}
-                    <div className="form-header mb_40" style={{
-                        background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
-                        padding: "40px",
-                        borderRadius: "12px",
-                        color: "#fff"
-                    }}>
-                        <h1 style={{ color: "#b0302b", marginBottom: "20px", fontSize: "28px" }}>
-                            🏁 Custom Racing Suit Measurement Form
-                        </h1>
-                        <p className="mb_30" style={{ opacity: 0.9 }}>
-                            Complete this form with accurate measurements for your custom-tailored racing suit.
-                        </p>
-
-                        <div className="tf-grid-layout md-col-3 gap-20">
-                            <fieldset className="tf-field style-2 style-3">
-                                <input
-                                    className={`tf-field-input tf-input ${formErrors.fullName ? "is-invalid" : ""}`}
-                                    type="text"
-                                    placeholder=" "
-                                    value={formData.fullName}
-                                    onChange={(e) => handleInputChange("fullName", e.target.value)}
-                                    style={{ background: "#fff" }}
-                                />
-                                <label className="tf-field-label">Full Name *</label>
-                            </fieldset>
-
-                            <fieldset className="tf-field style-2 style-3">
-                                <input
-                                    className={`tf-field-input tf-input ${formErrors.email ? "is-invalid" : ""}`}
-                                    type="email"
-                                    placeholder=" "
-                                    value={formData.email}
-                                    onChange={(e) => handleInputChange("email", e.target.value)}
-                                    style={{ background: "#fff" }}
-                                />
-                                <label className="tf-field-label">Email Address *</label>
-                            </fieldset>
-
-                            <fieldset className="tf-field style-2 style-3">
-                                <input
-                                    className="tf-field-input tf-input"
-                                    type="tel"
-                                    placeholder=" "
-                                    value={formData.phone}
-                                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                                    style={{ background: "#fff" }}
-                                />
-                                <label className="tf-field-label">Phone Number</label>
-                            </fieldset>
-                        </div>
-                    </div>
-
-                    {/* Suit Type Selection */}
-                    <div className="option-section mb_30" style={{
-                        background: "#b0302b",
-                        color: "#fff",
-                        borderRadius: "8px",
-                        overflow: "hidden"
-                    }}>
-                        <div className="option-header" style={{
-                            padding: "20px 25px",
-                            borderBottom: "1px solid rgba(255,255,255,0.2)"
-                        }}>
-                            <h3 style={{ margin: 0, fontSize: "18px" }}>Suit Configuration</h3>
-                        </div>
-
-                        <div className="option-row" style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            padding: "15px 25px",
-                            borderBottom: "1px solid rgba(255,255,255,0.2)"
-                        }}>
-                            <span>Suit Type</span>
-                            <div className="d-flex gap-20">
-                                <label className="d-flex align-items-center gap-10" style={{ cursor: "pointer" }}>
-                                    <input
-                                        type="radio"
-                                        name="suitType"
-                                        value="one-piece"
-                                        checked={formData.suitType === "one-piece"}
-                                        onChange={(e) => handleInputChange("suitType", e.target.value)}
-                                    />
-                                    <span>1-Piece</span>
-                                </label>
-                                <label className="d-flex align-items-center gap-10" style={{ cursor: "pointer" }}>
-                                    <input
-                                        type="radio"
-                                        name="suitType"
-                                        value="two-piece"
-                                        checked={formData.suitType === "two-piece"}
-                                        onChange={(e) => handleInputChange("suitType", e.target.value)}
-                                    />
-                                    <span>2-Piece</span>
-                                </label>
-                                <label className="d-flex align-items-center gap-10" style={{ cursor: "pointer" }}>
-                                    <input
-                                        type="radio"
-                                        name="suitType"
-                                        value="jacket"
-                                        checked={formData.suitType === "jacket"}
-                                        onChange={(e) => handleInputChange("suitType", e.target.value)}
-                                    />
-                                    <span>Jacket Only</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div className="option-row" style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            padding: "15px 25px"
-                        }}>
-                            <span>Leg Cuff Style</span>
-                            <div className="d-flex gap-20">
-                                {legCuffOptions.map((option) => (
-                                    <label key={option.id} className="d-flex align-items-center gap-10" style={{ cursor: "pointer" }}>
-                                        <input
-                                            type="radio"
-                                            name="legCuff"
-                                            value={option.id}
-                                            checked={formData.legCuff === option.id}
-                                            onChange={(e) => handleInputChange("legCuff", e.target.value)}
-                                        />
-                                        <span>{option.name}</span>
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Stitching Style */}
-                    <section className="section mb_40">
-                        <h2 className="mb_20" style={{ fontSize: "22px", fontWeight: "700" }}>
-                            Stitching Style <span style={{ color: "#b0302b" }}>*</span>
-                        </h2>
-                        {formErrors.stitchingStyle && (
-                            <p className="text-danger mb_15">{formErrors.stitchingStyle}</p>
-                        )}
-
-                        <div className="stitch-grid" style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-                            gap: "20px"
-                        }}>
-                            {stitchingStyles.map((style) => (
-                                <label
-                                    key={style.id}
-                                    className="stitch-card"
-                                    style={{
-                                        border: formData.stitchingStyle === style.id ? "3px solid #b0302b" : "2px solid #dee2e6",
-                                        borderRadius: "12px",
-                                        padding: "20px",
-                                        textAlign: "center",
-                                        cursor: "pointer",
-                                        transition: "all 0.3s ease",
-                                        background: formData.stitchingStyle === style.id ? "#fff5f5" : "#fff",
-                                        boxShadow: formData.stitchingStyle === style.id ? "0 4px 15px rgba(176, 48, 43, 0.2)" : "0 2px 8px rgba(0,0,0,0.05)"
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            height: "140px",
-                                            background: "#f8f9fa",
-                                            borderRadius: "8px",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            marginBottom: "12px",
-                                            border: "1px dashed #dee2e6"
-                                        }}
-                                    >
-                                        <span style={{ fontSize: "2.5rem" }}>🧵</span>
-                                    </div>
-                                    <input
-                                        type="radio"
-                                        name="stitchingStyle"
-                                        value={style.id}
-                                        checked={formData.stitchingStyle === style.id}
-                                        onChange={(e) => handleInputChange("stitchingStyle", e.target.value)}
-                                        style={{ display: "none" }}
-                                    />
-                                    <span style={{
-                                        fontWeight: "600",
-                                        fontSize: "14px",
-                                        color: formData.stitchingStyle === style.id ? "#b0302b" : "#333"
-                                    }}>
-                                        {style.name}
-                                    </span>
-                                </label>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Collar Style */}
-                    <section className="section mb_40">
-                        <h2 className="mb_20" style={{ fontSize: "22px", fontWeight: "700" }}>
-                            Collar Style <span style={{ color: "#b0302b" }}>*</span>
-                        </h2>
-                        {formErrors.collarStyle && (
-                            <p className="text-danger mb_15">{formErrors.collarStyle}</p>
-                        )}
-
-                        <div className="collar-grid" style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-                            gap: "20px"
-                        }}>
-                            {collarStyles.map((collar) => (
-                                <label
-                                    key={collar.id}
-                                    className="collar-card"
-                                    style={{
-                                        border: formData.collarStyle === collar.id ? "3px solid #b0302b" : "2px solid #dee2e6",
-                                        borderRadius: "12px",
-                                        padding: "20px",
-                                        textAlign: "center",
-                                        cursor: "pointer",
-                                        transition: "all 0.3s ease",
-                                        background: formData.collarStyle === collar.id ? "#fff5f5" : "#fff",
-                                        boxShadow: formData.collarStyle === collar.id ? "0 4px 15px rgba(176, 48, 43, 0.2)" : "0 2px 8px rgba(0,0,0,0.05)"
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            height: "100px",
-                                            background: "#f8f9fa",
-                                            borderRadius: "8px",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            marginBottom: "12px",
-                                            border: "1px dashed #dee2e6"
-                                        }}
-                                    >
-                                        <span style={{ fontSize: "2rem" }}>👔</span>
-                                    </div>
-                                    <input
-                                        type="radio"
-                                        name="collarStyle"
-                                        value={collar.id}
-                                        checked={formData.collarStyle === collar.id}
-                                        onChange={(e) => handleInputChange("collarStyle", e.target.value)}
-                                        style={{ display: "none" }}
-                                    />
-                                    <span style={{
-                                        fontWeight: "600",
-                                        fontSize: "14px",
-                                        color: formData.collarStyle === collar.id ? "#b0302b" : "#333"
-                                    }}>
-                                        {collar.name}
-                                    </span>
-                                </label>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Measurement Guide Image */}
-                    <section className="measurement-guide mb_40">
-                        <h2 className="mb_20 text-center" style={{ fontSize: "22px", fontWeight: "700" }}>
-                            📏 Measurement Guide
-                        </h2>
-                        <div style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            marginBottom: "30px"
-                        }}>
-                            <div style={{
-                                width: "100%",
-                                maxWidth: "700px",
-                                height: "450px",
-                                background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
-                                borderRadius: "12px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                flexDirection: "column",
-                                border: "2px dashed #dee2e6"
-                            }}>
-                                <span style={{ fontSize: "5rem", marginBottom: "20px" }}>📐</span>
-                                <p style={{ fontSize: "18px", fontWeight: "600", color: "#6c757d" }}>
-                                    Measurement Guide Image
-                                </p>
-                                <p style={{ fontSize: "14px", color: "#adb5bd" }}>
-                                    600 × 500 px
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Warning Banner */}
-                        <div style={{
-                            background: "linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)",
-                            border: "1px solid #ffc107",
-                            borderRadius: "10px",
-                            padding: "20px 25px",
-                            marginBottom: "30px"
-                        }}>
-                            <div className="d-flex gap-15 align-items-start">
-                                <span style={{ fontSize: "1.5rem" }}>⚠️</span>
-                                <div>
-                                    <strong style={{ color: "#856404" }}>Important Measurement Guidelines:</strong>
-                                    <ul style={{ margin: "10px 0 0 0", paddingLeft: "20px", color: "#856404" }}>
-                                        <li>Have someone else take your measurements for accuracy</li>
-                                        <li>All measurements must be in <strong>Centimeters (CM)</strong></li>
-                                        <li>Do NOT add any allowance – we will do that for you</li>
-                                        <li>HS Racegear is not responsible for measurement errors</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Measurements Grid */}
-                    <section className="measurements-section mb_40">
-                        <h2 className="mb_30 text-center" style={{ fontSize: "22px", fontWeight: "700" }}>
-                            📋 Body Measurements
-                        </h2>
-
-                        <div className="measurements-grid" style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                            gap: "20px"
-                        }}>
-                            {measurementFields.map((field) => (
-                                <div
-                                    key={field.id}
-                                    className="input-group"
-                                    style={{
-                                        background: "#fff",
-                                        padding: "20px",
-                                        borderRadius: "10px",
-                                        border: formErrors[`measurement_${field.id}`] ? "2px solid #dc3545" : "1px solid #dee2e6",
-                                        boxShadow: "0 2px 8px rgba(0,0,0,0.04)"
-                                    }}
-                                >
-                                    <label style={{
-                                        display: "block",
-                                        fontSize: "14px",
-                                        fontWeight: "600",
-                                        marginBottom: "10px",
-                                        color: "#333"
-                                    }}>
-                                        {field.label}
-                                        {["chest", "waist", "hip", "neck", "shoulder", "sleeve", "height", "weight"].includes(field.id) && (
-                                            <span style={{ color: "#b0302b" }}> *</span>
-                                        )}
-                                    </label>
-                                    <div className="d-flex align-items-center gap-10">
-                                        <input
-                                            type="number"
-                                            step="0.1"
-                                            min="0"
-                                            placeholder="0.0"
-                                            value={formData.measurements[field.id] || ""}
-                                            onChange={(e) => handleMeasurementChange(field.id, e.target.value)}
-                                            style={{
-                                                flex: 1,
-                                                padding: "12px 15px",
-                                                fontSize: "16px",
-                                                fontWeight: "600",
-                                                border: "2px solid #e9ecef",
-                                                borderRadius: "8px",
-                                                transition: "border-color 0.3s ease"
-                                            }}
-                                        />
-                                        <span style={{
-                                            padding: "12px 15px",
-                                            background: "#f8f9fa",
-                                            borderRadius: "8px",
-                                            fontWeight: "600",
-                                            color: "#6c757d",
-                                            minWidth: "50px",
-                                            textAlign: "center"
-                                        }}>
-                                            {field.placeholder}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Special Notes */}
-                    <section className="notes-section mb_40">
-                        <h2 className="mb_20" style={{ fontSize: "22px", fontWeight: "700" }}>
-                            📝 Special Notes / Requirements
-                        </h2>
-                        <textarea
-                            placeholder="Any special requirements, preferences, or notes for your custom suit..."
-                            value={formData.specialNotes}
-                            onChange={(e) => handleInputChange("specialNotes", e.target.value)}
-                            rows="4"
-                            style={{
-                                width: "100%",
-                                padding: "15px 20px",
-                                fontSize: "15px",
-                                border: "2px solid #e9ecef",
-                                borderRadius: "10px",
-                                resize: "vertical"
-                            }}
-                        />
-                    </section>
-
-                    {/* Submit Button */}
-                    <div className="text-center">
-                        <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="tf-btn btn-fill animate-hover-btn radius-3"
-                            style={{
-                                background: "#b0302b",
-                                padding: "18px 60px",
-                                fontSize: "18px",
-                                fontWeight: "700",
-                                opacity: isSubmitting ? 0.7 : 1,
-                                cursor: isSubmitting ? "not-allowed" : "pointer"
-                            }}
-                        >
-                            {isSubmitting ? (
-                                <span>Submitting...</span>
-                            ) : (
-                                <>
-                                    <span>🏁 Submit Measurements</span>
-                                    <i className="icon icon-arrow-right" />
-                                </>
-                            )}
-                        </button>
-                        <p className="mt_20 text_black-3" style={{ fontSize: "14px" }}>
-                            By submitting, you confirm all measurements are accurate. Our team will contact you within 24 hours.
-                        </p>
-                    </div>
-                </form>
-            </div>
+          {/* Auto-download notice */}
+          <p
+            style={{
+              fontSize: "13px",
+              color: "#555",
+              marginBottom: "0",
+            }}
+          >
+            Didn&apos;t start? Click &quot;Download PDF&quot; above.
+          </p>
         </div>
-    );
+      </section>
+
+      {/* PDF Viewer */}
+      <section
+        style={{
+          padding: "0 24px 64px",
+          maxWidth: "1000px",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            borderRadius: "14px",
+            overflow: "hidden",
+            border: "1px solid rgba(255, 255, 255, 0.06)",
+            background: "rgba(255, 255, 255, 0.03)",
+          }}
+        >
+          {/* Viewer toolbar */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "14px 20px",
+              background: "rgba(255, 255, 255, 0.04)",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#f87171"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              <span
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  color: "#ccc",
+                }}
+              >
+                HS-Race-Gear-Custom-Measurements-Form.pdf
+              </span>
+            </div>
+            <button
+              onClick={handleDownload}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "8px 16px",
+                borderRadius: "8px",
+                border: "1px solid rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.05)",
+                color: "#aaa",
+                fontSize: "13px",
+                fontWeight: "600",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(220, 38, 38, 0.15)";
+                e.currentTarget.style.color = "#f87171";
+                e.currentTarget.style.borderColor = "rgba(220, 38, 38, 0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                e.currentTarget.style.color = "#aaa";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+              }}
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download
+            </button>
+          </div>
+
+          {/* Embedded PDF */}
+          <div
+            style={{
+              width: "100%",
+              height: "85vh",
+              minHeight: "600px",
+              background: "#1a1a1a",
+            }}
+          >
+            <iframe
+              src={`${PDF_URL}#toolbar=1&navpanes=0&scrollbar=1`}
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+              title="Custom Measurements Form"
+            />
+          </div>
+        </div>
+
+        {/* Instructions Below Viewer */}
+        <div
+          style={{
+            marginTop: "40px",
+            padding: "28px",
+            background: "rgba(255, 255, 255, 0.03)",
+            border: "1px solid rgba(255, 255, 255, 0.06)",
+            borderRadius: "14px",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "16px",
+              fontWeight: "700",
+              color: "#fff",
+              marginBottom: "16px",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+            }}
+          >
+            How to Submit Your Measurements
+          </h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {[
+              {
+                num: "1",
+                title: "Download & Print",
+                desc: "Download the PDF and print it out.",
+              },
+              {
+                num: "2",
+                title: "Fill In Measurements",
+                desc: "Use a measuring tape and fill in all fields accurately in CM.",
+              },
+              {
+                num: "3",
+                title: "Send It Back",
+                desc: "Email the completed form to info@hsracegear.com",
+              },
+            ].map((step) => (
+              <div
+                key={step.num}
+                style={{
+                  display: "flex",
+                  gap: "14px",
+                  alignItems: "flex-start",
+                }}
+              >
+                <div
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "50%",
+                    background: "#dc2626",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: "800",
+                    fontSize: "14px",
+                    color: "#fff",
+                    flexShrink: 0,
+                  }}
+                >
+                  {step.num}
+                </div>
+                <div>
+                  <div
+                    style={{
+                      fontWeight: "700",
+                      color: "#e5e5e5",
+                      marginBottom: "4px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {step.title}
+                  </div>
+                  <div style={{ fontSize: "13px", color: "#777", lineHeight: "1.5" }}>
+                    {step.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "48px",
+            paddingBottom: "32px",
+          }}
+        >
+          <p
+            style={{
+              color: "#666",
+              fontSize: "14px",
+              marginBottom: "20px",
+            }}
+          >
+            Need help with your measurements?
+          </p>
+          <div
+            style={{
+              display: "flex",
+              gap: "16px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Link
+              href="/custom-fit"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "14px 28px",
+                background: "transparent",
+                border: "2px solid #333",
+                borderRadius: "10px",
+                color: "#aaa",
+                fontWeight: "700",
+                fontSize: "14px",
+                textDecoration: "none",
+                transition: "all 0.3s ease",
+              }}
+            >
+              View Measurement Guide
+            </Link>
+            <Link
+              href="/contact-us"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "14px 28px",
+                background: "transparent",
+                border: "2px solid #333",
+                borderRadius: "10px",
+                color: "#aaa",
+                fontWeight: "700",
+                fontSize: "14px",
+                textDecoration: "none",
+                transition: "all 0.3s ease",
+              }}
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
