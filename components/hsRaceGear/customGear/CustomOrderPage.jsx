@@ -55,22 +55,27 @@ const SHOES_MOCKUPS = Array.from({ length: 7 }, (_, i) => ({
 }));
 
 const COLORS = [
-  { name: "Racing Red", hex: "#DC2626" },
-  { name: "Midnight Black", hex: "#111111" },
-  { name: "Pure White", hex: "#FAFAFA" },
-  { name: "Electric Blue", hex: "#2563EB" },
-  { name: "Flame Orange", hex: "#EA580C" },
-  { name: "Neon Yellow", hex: "#FACC15" },
-  { name: "Forest Green", hex: "#16A34A" },
-  { name: "Royal Purple", hex: "#7C3AED" },
-  { name: "Silver", hex: "#A1A1AA" },
-  { name: "Hot Pink", hex: "#EC4899" },
-  { name: "Teal", hex: "#14B8A6" },
-  { name: "Navy", hex: "#1E3A5F" },
-  { name: "Charcoal", hex: "#374151" },
-  { name: "Gold", hex: "#D4A017" },
-  { name: "Lime", hex: "#84CC16" },
-  { name: "Burgundy", hex: "#7F1D1D" },
+  { name: "Bright Red",    hex: "#dc2626" },
+  { name: "Maroon",        hex: "#7f1d1d" },
+  { name: "Black",         hex: "#000000" },
+  { name: "Teal",          hex: "#14b8a6" },
+  { name: "White",         hex: "#ffffff", light: true },
+  { name: "Royal Blue",    hex: "#0d3e92" },
+  { name: "Sky Blue",      hex: "#327eec" },
+  { name: "Navy Blue",     hex: "#00054f" },
+  { name: "Orange",        hex: "#ea580c" },
+  { name: "Flo Orange",    hex: "#fe360f" },
+  { name: "Yellow",        hex: "#facc15", light: true },
+  { name: "Flo Yellow",    hex: "#c6f700", light: true },
+  { name: "Green",         hex: "#16a34a" },
+  { name: "Flo Green",     hex: "#6beb0c", light: true },
+  { name: "Pink",          hex: "#f511b7" },
+  { name: "Purple",        hex: "#8b428f" },
+  { name: "Golden",        hex: "#d4a017" },
+  { name: "Grey",          hex: "#808080" },
+  { name: "Dark Grey",     hex: "#374151" },
+  { name: "Medium Grey",   hex: "#6b7280" },
+  { name: "Filament Grey", hex: "#d4d4d4", light: true },
 ];
 
 /* ============================================
@@ -242,7 +247,7 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
                     onKeyDown={(e) => e.key === "Enter" && onChange(area.key, color)}
                   >
                     <div className="color-swatch-check">
-                      <CheckIcon size={14} color={color.hex === "#FAFAFA" || color.hex === "#FACC15" ? "#000" : "#fff"} />
+                      <CheckIcon size={14} color={color.light ? "#000" : "#fff"} />
                     </div>
                   </div>
                 ))}

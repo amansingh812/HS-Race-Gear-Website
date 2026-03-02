@@ -8,7 +8,7 @@ export default function Contact() {
           <div className="col-lg-12">
             <div className="wg-map">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27294.62418958524!2d151.25730233429948!3d-33.82005608618041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ab8bc95a137f%3A0x358f04a7f6f5f6a6!2sGrotto%20Point%20Lighthouse!5e0!3m2!1sen!2s!4v1733976867160!5m2!1sen!2s"
+                src="https://maps.google.com/maps?q=59+Kondazian+St,+Watertown+MA+02472&output=embed"
                 className="map"
                 style={{ border: "none" }}
                 allowFullScreen=""
@@ -31,34 +31,26 @@ export default function Contact() {
                     Address:{" "}
                     <a
                       className="link"
-                      href="https://www.google.com/maps?q=15Yarranst,Punchbowl,NSW,Australia"
+                      href="https://maps.google.com/?q=59+Kondazian+St,+Watertown+MA+02472"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      15 Yarran st, Punchbowl, NSW, Australia
+                      59 Kondazian St, Watertown MA, 02472
                     </a>
                   </p>
                 </li>
                 <li>
                   <p>
                     Phone number:{" "}
-                    <a className="link" href="tel:123456">
-                      {" "}
-                      +1 234 567{" "}
-                    </a>
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Email:{" "}
-                    <a className="link" href="mailto:contact@vineta.com">
-                      contact@vineta.com
+                    <a className="link" href="tel:+16173196993">
+                      +1 (617) 319 6993
                     </a>
                   </p>
                 </li>
                 <li>
                   <p>
                     Open:{" "}
-                    <span className="text-main"> 8am - 7pm, Mon - Sat </span>
+                    <span className="text-main">Mon – Sat, 9am – 6pm EST</span>
                   </p>
                 </li>
               </ul>

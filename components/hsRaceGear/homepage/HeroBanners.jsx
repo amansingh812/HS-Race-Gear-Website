@@ -25,11 +25,11 @@ const topBanners = [
   {
     id: "custom-suit",
     label: "Made For You",
-    heading: "Design Your Custom Race Suit",
+    heading: "Design Your Custom Karting Suit",
     description:
       "Unlimited color combinations, custom embroidery, and a perfect fit built from your measurements. Stand out on the track.",
     cta: "Start Designing",
-    link: "/custom-race-suit",
+    link: "/custom-karting-suit",
     image: "/images/home/hero_custom_suit.webp",
     placeholder: "960 × 700",
   },
