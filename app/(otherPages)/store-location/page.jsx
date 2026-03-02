@@ -1,6 +1,6 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import StoreLocations from "@/components/hsRaceGear/shop/StoreLocations";
 import "@/public/css/store-locations.css";
 import React from "react";
@@ -13,11 +13,11 @@ export const metadata = {
 export default function page() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
       <Breadcumb pageName="Store Locations" pageTitle="Store Locations" />
       <StoreLocations />
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import Footer3 from "@/components/footers/Footer3";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import CustomRaceSuitPage from "@/components/hsRaceGear/customGear/CustomRaceSuitPage";
 import "@/public/css/custom-race-suit.css";
 
@@ -15,8 +15,8 @@ export const metadata = {
 export default function page() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
       <CustomRaceSuitPage />
       <Footer3 />
     </>

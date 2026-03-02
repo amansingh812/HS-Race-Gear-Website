@@ -10,3 +10,16 @@
   background: rgba(255, 77, 0, 0.3);
   color: #fff;
 }
+
+/* Force only header-top to have white background (same as RacegearDeals) */
+body:has(.standard-pricing-page) #header .header-top {
+  background-color: #fff !important;
+}
+
+body:has(.standard-pricing-page) #header .header-top .mobile-menu {
+  color: var(--dark) !important;
+}
+
+body:has(.standard-pricing-page) #header .header-top .nav-icon-item {
+  color: var(--dark) !important;
+}

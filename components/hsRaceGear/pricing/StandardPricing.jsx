@@ -588,7 +588,7 @@ export default function StandardPricing() {
   const karting = pricingData.filter((p) => p.id === "karting");
 
   return (
-    <div style={{
+    <div className="standard-pricing-page" style={{
       minHeight: "100vh",
       background: "#070707",
       color: "#ffffff",
