@@ -31,7 +31,7 @@ const benefitsData = [
 
 export default function CustomFitBenefitsSection() {
   return (
-    <section className="flat-spacing-9 bg_grey-7">
+    <section className="flat-spacing-9 bg_grey-7 cf-section-benefits">
       <div className="container">
 
         <div className="tf-grid-layout lg-col-2 gap-30 gap-lg-60 align-items-start">
@@ -39,14 +39,16 @@ export default function CustomFitBenefitsSection() {
           {/* LEFT COLUMN: Text Content */}
           <div className="benefits-content">
             {/* Tagline */}
-            <div className="tf-badge bg-dark text-white mb_15" style={{
+            <div className="tf-badge mb_15" style={{
               display: 'inline-block',
               padding: '8px 20px',
               fontSize: '12px',
               fontWeight: '700',
               textTransform: 'uppercase',
               letterSpacing: '1.5px',
-              borderRadius: '4px'
+              borderRadius: '4px',
+              background: '#e21b1b',
+              color: '#fff'
             }}>
               Benefits Of Custom Fit
             </div>
@@ -56,7 +58,8 @@ export default function CustomFitBenefitsSection() {
               fontSize: 'clamp(32px, 5vw, 48px)',
               lineHeight: '1.2',
               fontWeight: '700',
-              marginBottom: '50px'
+              marginBottom: '50px',
+              color: '#111'
             }}>
               Why Choose Custom-Tailored Racing Suits?
             </h2>
@@ -98,14 +101,14 @@ export default function CustomFitBenefitsSection() {
                         color: '#000'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#000';
-                        e.currentTarget.style.background = '#000';
+                        e.currentTarget.style.borderColor = '#e21b1b';
+                        e.currentTarget.style.background = '#e21b1b';
                         e.currentTarget.style.color = '#fff';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.borderColor = '#dee2e6';
                         e.currentTarget.style.background = '#fff';
-                        e.currentTarget.style.color = '#000';
+                        e.currentTarget.style.color = '#111';
                       }}
                     >
                       {item.id}
@@ -184,8 +187,8 @@ export default function CustomFitBenefitsSection() {
                   height: '0',
                   borderStyle: 'solid',
                   borderWidth: '0 80px 80px 0',
-                  borderColor: 'transparent #000 transparent transparent',
-                  opacity: 0.05
+                  borderColor: 'transparent #e21b1b transparent transparent',
+                  opacity: 0.15
                 }}
               />
             </div>

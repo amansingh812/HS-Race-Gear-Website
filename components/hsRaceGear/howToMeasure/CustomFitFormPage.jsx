@@ -71,7 +71,7 @@ export default function CustomFitFormPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="flat-spacing-9 bg_grey-7">
+            <section className="flat-spacing-9 bg_grey-7 cf-section-hero">
                 <div className="container">
                     <div className="tf-grid-layout md-col-2 gap-30 align-items-center">
                         <div className="tf-content-left">
@@ -102,7 +102,7 @@ export default function CustomFitFormPage() {
             </section>
 
             {/* Warning Banner */}
-            <section className="flat-spacing-9 bg_grey-7">
+            <section className="flat-spacing-9 bg_grey-7 cf-section-warning">
                 <div className="container">
                     <div className="cf-warning-banner mb_50">
                         {/* Header */}
@@ -160,7 +160,7 @@ export default function CustomFitFormPage() {
             </section>
 
             {/* Measurement Form */}
-            <section id="measurement-form" className="flat-spacing-1 bg_grey-7">
+            <section id="measurement-form" className="flat-spacing-1 bg_grey-7 cf-section-form">
                 <div className="container">
                     {formSubmitted ? (
                         <div className="cf-success-message text-center pt-10">

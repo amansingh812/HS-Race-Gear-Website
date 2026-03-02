@@ -1,66 +1,150 @@
 /* ============================================
    HOW TO MEASURE / CUSTOM FIT PAGE
-   DARK RACING THEME — HS Race Gear
+   BALANCED RACING THEME — HS Race Gear
+   Alternating light/dark sections to match
+   the overall site theme.
    ============================================ */
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 :root {
   --cf-red: #e21b1b;
   --cf-red-dark: #c41515;
-  --cf-bg: #070707;
-  --cf-bg2: #0f0f0f;
-  --cf-bg3: #141414;
-  --cf-bg4: #1a1a1a;
-  --cf-border: rgba(255, 255, 255, 0.06);
-  --cf-border-red: rgba(226, 27, 27, 0.3);
-  --cf-white: #ffffff;
-  --cf-white-80: rgba(255, 255, 255, 0.8);
-  --cf-white-60: rgba(255, 255, 255, 0.6);
-  --cf-white-40: rgba(255, 255, 255, 0.4);
+  --cf-dark: #0a0a0a;
+  --cf-dark2: #111111;
+  --cf-dark3: #161616;
+  --cf-light: #ffffff;
+  --cf-light2: #f8f8f8;
+  --cf-light3: #f0f0f0;
+  --cf-border-light: rgba(0, 0, 0, 0.08);
+  --cf-border-dark: rgba(255, 255, 255, 0.08);
+  --cf-border-red: rgba(226, 27, 27, 0.25);
+  --cf-text-dark: #111111;
+  --cf-text-muted: #555555;
+  --cf-text-light: rgba(255, 255, 255, 0.8);
+  --cf-text-light-muted: rgba(255, 255, 255, 0.55);
   --cf-font: 'Poppins', sans-serif;
   --cf-radius: 14px;
-  --cf-transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --cf-transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes cfFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cfFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cfSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cfPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(226, 27, 27, 0.25);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(226, 27, 27, 0);
+  }
 }
 
 /* ============================================
    SECTION BACKGROUNDS
-   Override template bg_grey-7 within custom-fit
+   Override template bg_grey-7 within custom-fit.
+   Alternate: dark hero → light warning → light form → light benefits
    ============================================ */
-.flat-spacing-9.bg_grey-7,
-.flat-spacing-1.bg_grey-7,
-.flat-spacing-7.bg_grey-7 {
-  background: var(--cf-bg) !important;
+
+/* Hero section — DARK (matches site header/nav) */
+.cf-section-hero {
+  background: var(--cf-dark) !important;
+}
+
+/* Warning banner section — LIGHT */
+.cf-section-warning {
+  background: var(--cf-light2) !important;
+}
+
+/* Measurement form section — LIGHT */
+.cf-section-form {
+  background: var(--cf-light) !important;
+}
+
+/* Benefits section — LIGHT (grey tint) */
+.cf-section-benefits {
+  background: var(--cf-light2) !important;
 }
 
 /* ============================================
-   HERO SECTION
+   HERO SECTION  (stays dark — premium look)
    ============================================ */
 .tf-content-left .heading h2.heading-title {
-  color: var(--cf-white);
+  color: #fff;
   font-family: var(--cf-font);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: cfFadeUp 0.7s ease-out both;
 }
 
 .tf-content-left .heading .text_black-2 {
-  color: var(--cf-white-60) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
   font-family: var(--cf-font);
   line-height: 1.8;
+  animation: cfFadeUp 0.7s ease-out 0.15s both;
+}
+
+.tf-content-left .heading .text_black-2 strong {
+  color: var(--cf-red);
 }
 
 .custom-fit-hero-img {
   object-fit: cover;
   height: 100%;
   border-radius: var(--cf-radius);
+  animation: cfFadeIn 0.9s ease-out 0.25s both;
 }
 
 /* ============================================
-   WARNING BANNER
+   WARNING BANNER  (light section, red accent)
    ============================================ */
 .cf-warning-banner {
-  background: var(--cf-bg3);
+  background: var(--cf-light);
   border-radius: var(--cf-radius);
   overflow: hidden;
   border: 1px solid var(--cf-border-red);
+  box-shadow: 0 4px 24px rgba(226, 27, 27, 0.06);
+  animation: cfFadeUp 0.6s ease-out both;
 }
 
 .cf-warning-header {
@@ -72,7 +156,7 @@
   padding: 5px;
   width: 42px;
   height: 42px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -91,22 +175,29 @@
 }
 
 .cf-warning-body {
-  padding: 40px 36px;
+  padding: 36px 36px;
   margin: 0 !important;
+  background: var(--cf-light);
 }
 
-/* Guideline items */
+/* Guideline items — light theme */
 .cf-guideline-icon {
-  min-width: 44px;
-  height: 44px;
-  background: rgba(226, 27, 27, 0.08);
-  border: 1px solid var(--cf-border-red);
-  border-radius: 10px;
+  min-width: 48px;
+  height: 48px;
+  background: rgba(226, 27, 27, 0.07);
+  border: 1px solid rgba(226, 27, 27, 0.15);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   font-size: 20px;
+  transition: var(--cf-transition);
+}
+
+.cf-guideline-icon:hover {
+  background: rgba(226, 27, 27, 0.12);
+  transform: scale(1.05);
 }
 
 .cf-guideline-text {
@@ -118,23 +209,24 @@
   font-weight: 700;
   font-size: 14px;
   margin-bottom: 4px;
-  color: var(--cf-white);
+  color: var(--cf-text-dark);
   font-family: var(--cf-font);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .cf-guideline-desc {
-  font-size: 13px;
-  color: var(--cf-white-60);
+  font-size: 13.5px;
+  color: var(--cf-text-muted);
   margin-bottom: 0;
   font-family: var(--cf-font);
+  line-height: 1.5;
 }
 
 /* Disclaimer */
 .cf-disclaimer {
   margin-top: 24px;
-  background: rgba(226, 27, 27, 0.06);
+  background: rgba(226, 27, 27, 0.04);
   border-radius: 8px;
   border-left: 3px solid var(--cf-red);
   padding: 14px 18px;
@@ -142,7 +234,7 @@
 
 .cf-disclaimer-text {
   font-size: 13px;
-  color: var(--cf-white-60);
+  color: var(--cf-text-muted);
   line-height: 1.7;
   margin-bottom: 0;
   font-family: var(--cf-font);
@@ -157,12 +249,21 @@
    SUCCESS MESSAGE
    ============================================ */
 .cf-success-message {
-  background: rgba(226, 27, 27, 0.06);
-  border: 1px solid var(--cf-border-red);
+  background: var(--cf-light);
+  border: 1px solid rgba(25, 135, 84, 0.2);
   border-radius: var(--cf-radius);
   padding: 60px 40px;
-  color: var(--cf-white);
+  color: var(--cf-text-dark);
   font-family: var(--cf-font);
+  animation: cfFadeUp 0.5s ease-out both;
+}
+
+.cf-success-message h3 {
+  color: var(--cf-text-dark);
+}
+
+.cf-success-message p {
+  color: var(--cf-text-muted);
 }
 
 .cf-success-icon {
@@ -171,29 +272,92 @@
 }
 
 /* ============================================
-   MEASUREMENT STEPS
+   MEASUREMENT STEPS  (light cards)
    ============================================ */
 .cf-measurement-item {
-  background: var(--cf-bg3);
+  background: var(--cf-light);
   border-radius: var(--cf-radius);
   overflow: hidden;
-  border: 1px solid var(--cf-border);
+  border: 1px solid var(--cf-border-light);
   transition: var(--cf-transition);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  animation: cfFadeUp 0.5s ease-out both;
 }
 
 .cf-measurement-item:hover {
   border-color: var(--cf-border-red);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 40px rgba(226, 27, 27, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Stagger measurement card animations */
+.cf-measurement-item:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.cf-measurement-item:nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.cf-measurement-item:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.cf-measurement-item:nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+.cf-measurement-item:nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+.cf-measurement-item:nth-child(6) {
+  animation-delay: 0.25s;
+}
+
+.cf-measurement-item:nth-child(7) {
+  animation-delay: 0.3s;
+}
+
+.cf-measurement-item:nth-child(8) {
+  animation-delay: 0.35s;
+}
+
+.cf-measurement-item:nth-child(9) {
+  animation-delay: 0.4s;
+}
+
+.cf-measurement-item:nth-child(10) {
+  animation-delay: 0.45s;
+}
+
+.cf-measurement-item:nth-child(11) {
+  animation-delay: 0.5s;
+}
+
+.cf-measurement-item:nth-child(12) {
+  animation-delay: 0.55s;
+}
+
+.cf-measurement-item:nth-child(13) {
+  animation-delay: 0.6s;
+}
+
+.cf-measurement-item:nth-child(14) {
+  animation-delay: 0.65s;
+}
+
+.cf-measurement-item:nth-child(15) {
+  animation-delay: 0.7s;
 }
 
 .cf-measurement-image {
-  background: #ffffff !important;
+
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 280px;
   padding: 20px;
-  background: var(--cf-bg4);
 }
 
 /* Measurement Image Wrapper */
@@ -210,20 +374,26 @@
   max-height: 450px;
   object-fit: contain;
   display: block;
+  transition: transform 0.4s ease;
 }
 
-/* Measurement content area */
+.cf-measurement-item:hover .measurement-image-wrapper img {
+  transform: scale(1.03);
+}
+
+/* Measurement content area — light theme */
 .measurement-content {
-  background: var(--cf-bg3);
+  background: var(--cf-light);
 }
 
 .measurement-content h4 {
-  color: var(--cf-white);
+  color: var(--cf-text-dark);
   font-family: var(--cf-font);
+  font-weight: 700;
 }
 
 .measurement-content .text_black-3 {
-  color: var(--cf-white-60) !important;
+  color: var(--cf-text-muted) !important;
   font-family: var(--cf-font);
   line-height: 1.8;
 }
@@ -240,64 +410,75 @@
   font-family: var(--cf-font);
   letter-spacing: 1px;
   text-transform: uppercase;
+  animation: cfPulse 2.5s ease-in-out infinite;
 }
 
 .cf-step-text {
   line-height: 1.8;
-  color: var(--cf-white-60);
+  color: var(--cf-text-muted);
   font-family: var(--cf-font);
 }
 
 /* ============================================
    BENEFITS SECTION (CustomFitBenefitsSection)
+   — Light background, dark text
    ============================================ */
 .benefits-content .tf-badge {
-  background: rgba(226, 27, 27, 0.1) !important;
-  color: var(--cf-red) !important;
-  border: 1px solid var(--cf-border-red) !important;
+  background: var(--cf-red) !important;
+  color: #fff !important;
+  border: none !important;
 }
 
 .benefits-content .heading-title {
-  color: var(--cf-white) !important;
+  color: var(--cf-text-dark) !important;
   font-family: var(--cf-font);
 }
 
 .benefit-title {
-  color: var(--cf-white) !important;
+  color: var(--cf-text-dark) !important;
   font-family: var(--cf-font);
 }
 
 .benefit-description {
-  color: var(--cf-white-60) !important;
+  color: var(--cf-text-muted) !important;
   font-family: var(--cf-font);
 }
 
-/* Number badge — override inline styles */
+/* Number badge — override inline styles for light theme */
 .number-badge {
-  border-color: var(--cf-border) !important;
-  background: var(--cf-bg3) !important;
-  color: var(--cf-white-60) !important;
+  border-color: #dee2e6 !important;
+  background: #fff !important;
+  color: var(--cf-text-dark) !important;
+  transition: var(--cf-transition);
+}
+
+.number-badge:hover {
+  border-color: var(--cf-red) !important;
+  background: var(--cf-red) !important;
+  color: #fff !important;
 }
 
 /* ============================================
-   CONTACT / FORM CARD
+   CONTACT / FORM CARD  (dark section for contrast)
    ============================================ */
 .cf-form-card {
-  background: var(--cf-bg3);
+  background: var(--cf-dark2);
   border-radius: var(--cf-radius);
-  padding: 36px;
-  border: 1px solid var(--cf-border);
+  padding: 40px;
+  border: 1px solid var(--cf-border-dark);
+  animation: cfFadeUp 0.5s ease-out both;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .cf-form-card h4 {
-  color: var(--cf-white);
+  color: #fff;
   font-family: var(--cf-font);
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 
 .cf-form-card label {
-  color: var(--cf-white-80);
+  color: rgba(255, 255, 255, 0.8);
   font-family: var(--cf-font);
 }
 
@@ -307,27 +488,27 @@
 
 .cf-form-input,
 .cf-form-textarea {
-  background: var(--cf-bg4) !important;
-  border: 1px solid var(--cf-border) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 10px !important;
-  color: var(--cf-white) !important;
+  color: #fff !important;
   font-family: var(--cf-font);
-  padding: 12px 16px;
+  padding: 13px 18px;
   transition: var(--cf-transition);
   width: 100%;
 }
 
 .cf-form-input:focus,
 .cf-form-textarea:focus {
-  border-color: var(--cf-border-red) !important;
+  border-color: var(--cf-red) !important;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(226, 27, 27, 0.08) !important;
-  background: var(--cf-bg3) !important;
+  box-shadow: 0 0 0 3px rgba(226, 27, 27, 0.12) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
 }
 
 .cf-form-input::placeholder,
 .cf-form-textarea::placeholder {
-  color: var(--cf-white-40);
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .cf-form-textarea {
@@ -336,13 +517,17 @@
 
 .cf-field-description {
   font-size: 13px;
-  color: var(--cf-white-40);
+  color: rgba(255, 255, 255, 0.4);
   font-family: var(--cf-font);
 }
 
 /* ============================================
    SUBMIT BUTTON
    ============================================ */
+.tf-btn.btn-fill.animate-hover-btn {
+  transition: var(--cf-transition);
+}
+
 .cf-submit-btn.disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -356,13 +541,13 @@
 }
 
 .cf-torso-validation.has-error {
-  background: rgba(226, 27, 27, 0.08);
+  background: rgba(226, 27, 27, 0.06);
   border: 1px solid var(--cf-border-red);
 }
 
 .cf-torso-validation.valid {
-  background: rgba(25, 135, 84, 0.1);
-  border: 1px solid rgba(25, 135, 84, 0.3);
+  background: rgba(25, 135, 84, 0.08);
+  border: 1px solid rgba(25, 135, 84, 0.25);
 }
 
 .cf-validation-error-text {
@@ -371,7 +556,7 @@
 }
 
 .cf-validation-success-text {
-  color: #4ade80;
+  color: #22c55e;
   font-family: var(--cf-font);
 }
 
@@ -393,7 +578,7 @@
   }
 
   .cf-form-card {
-    padding: 24px;
+    padding: 28px;
   }
 
   .cf-warning-body {
@@ -420,7 +605,12 @@
   }
 
   .cf-form-card {
-    padding: 20px;
+    padding: 22px;
+  }
+
+  /* Reduce stagger delays on mobile for faster page feel */
+  .cf-measurement-item:nth-child(n) {
+    animation-delay: 0s;
   }
 }
 
@@ -435,5 +625,9 @@
 
   .cf-warning-body {
     padding: 20px 16px;
+  }
+
+  .cf-form-card {
+    padding: 18px;
   }
 }
