@@ -8,8 +8,8 @@ import Products2 from "@/components/products/Products2";
 import React from "react";
 
 export const metadata = {
-  title: "Shop Left Sidebar || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Shop Left Sidebar || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

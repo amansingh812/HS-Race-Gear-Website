@@ -8,8 +8,8 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata = {
-  title: "Shop Collection List || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Shop Collection List || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

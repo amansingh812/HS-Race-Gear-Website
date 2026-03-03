@@ -11,8 +11,8 @@ import React from "react";
 
 export const metadata = {
   title:
-    "Shop Sub Collections 02 || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+    "Shop Sub Collections 02 || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

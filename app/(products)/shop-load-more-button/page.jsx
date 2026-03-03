@@ -8,8 +8,8 @@ import React from "react";
 
 export const metadata = {
   title:
-    "Shop Load More Button || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+    "Shop Load More Button || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

@@ -2,7 +2,6 @@
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
-import Collections from "./Collections";
 
 export default function Nav() {
   const pathname = usePathname();

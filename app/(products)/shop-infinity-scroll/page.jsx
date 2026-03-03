@@ -7,8 +7,8 @@ import Products7 from "@/components/products/Products7";
 import React from "react";
 
 export const metadata = {
-  title: "Shop Infinity Scroll || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Shop Infinity Scroll || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

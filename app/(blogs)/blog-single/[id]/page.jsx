@@ -7,8 +7,8 @@ import { allBlogs } from "@/data/blogs";
 import React from "react";
 
 export const metadata = {
-  title: "Blog Single || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Blog Single || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default async function BlogDetailsPage1({ params }) {
   const { id } = await params;

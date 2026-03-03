@@ -100,7 +100,7 @@ export async function POST(request) {
 
         <p style="font-size: 14px; color: #888; line-height: 1.6;">
           If you have any questions in the meantime, feel free to reply to this email or contact us at
-          <a href="mailto:info@hsracegear.com" style="color: #f87171;">info@hsracegear.com</a>.
+          <a href="mailto:hsracegear@gmail.com" style="color: #f87171;">hsracegear@gmail.com</a>.
         </p>
         <p style="font-size: 14px; color: #888; margin-top: 24px;">
           — The HS Race Gear Team
@@ -115,7 +115,7 @@ export async function POST(request) {
     const smtpPort = process.env.SMTP_PORT || 587;
     const smtpUser = process.env.SMTP_USER;
     const smtpPass = process.env.SMTP_PASS;
-    const businessEmail = process.env.BUSINESS_EMAIL || "info@hsracegear.com";
+    const businessEmail = process.env.BUSINESS_EMAIL || "hsracegear@gmail.com";
 
     if (smtpHost && smtpUser && smtpPass) {
       const transporter = nodemailer.createTransport({

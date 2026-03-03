@@ -344,7 +344,7 @@ export default function Footer1({
         <div className="container">
           <div className="footer-bottom-wrap">
             <p className="text-dark">
-              Copyright © 2025 by <span className="fw-medium">Vineta.</span> All
+              Copyright © 2026 by <span className="fw-medium">HS Race Gear.</span> All
               Rights Reserved.
             </p>
             <ul className="tf-payment">

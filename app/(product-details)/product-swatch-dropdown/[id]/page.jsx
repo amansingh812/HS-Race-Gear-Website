@@ -10,8 +10,8 @@ import { allProducts } from "@/data/products";
 import React from "react";
 
 export const metadata = {
-  title: "Product Details || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Product Details || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default async function ProductDetailPage({ params }) {
   const { id } = await params;

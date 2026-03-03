@@ -7,8 +7,8 @@ import React from "react";
 import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";
 export const metadata = {
-  title: "Faq || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Faq || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

@@ -13,8 +13,8 @@ import Shopgram from "@/components/homes/home-1/Shopgram";
 import Testimonials from "@/components/homes/home-1/Testimonials";
 import Newsletter from "@/components/modals/Newsletter";
 export const metadata = {
-  title: "Cart Drawer v2 || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Cart Drawer v2 || HS Race Gear",
+  description: "HS Race Gear",
 };
 
 export default function Home() {

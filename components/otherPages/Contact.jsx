@@ -1,6 +1,34 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState(null); // null | "sending" | "success" | "error"
+
+  const handleChange = (e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section className="s-contact flat-spacing-13">
       <div className="container">
@@ -95,32 +123,63 @@ export default function Contact() {
                 form below and we look forward to hearing from you soon.
               </p>
               <div className="form-contact-wrap">
-                <form action="#" className="form-default">
+                <form onSubmit={handleSubmit} className="form-default">
                   <div className="wrap">
                     <div className="cols">
                       <fieldset>
-                        <label htmlFor="username">Your name*</label>
+                        <label htmlFor="name">Your name*</label>
                         <input
-                          id="username"
+                          id="name"
                           type="text"
-                          name="username"
+                          name="name"
+                          value={form.name}
+                          onChange={handleChange}
                           required
                         />
                       </fieldset>
                       <fieldset>
                         <label htmlFor="email">Your email*</label>
-                        <input id="email" type="email" name="email" required />
+                        <input
+                          id="email"
+                          type="email"
+                          name="email"
+                          value={form.email}
+                          onChange={handleChange}
+                          required
+                        />
                       </fieldset>
                     </div>
                     <div className="cols">
                       <fieldset className="textarea">
-                        <label htmlFor="mess">Message</label>
-                        <textarea id="mess" required defaultValue={""} />
+                        <label htmlFor="message">Message*</label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={form.message}
+                          onChange={handleChange}
+                          required
+                        />
                       </fieldset>
                     </div>
+
+                    {status === "success" && (
+                      <p style={{ color: "#22c55e", marginBottom: "12px", fontSize: "14px" }}>
+                        Message sent! We'll get back to you within 24 hours.
+                      </p>
+                    )}
+                    {status === "error" && (
+                      <p style={{ color: "#ef4444", marginBottom: "12px", fontSize: "14px" }}>
+                        Something went wrong. Please try again or email us directly at hsracegear@gmail.com.
+                      </p>
+                    )}
+
                     <div className="button-submit">
-                      <button className="tf-btn animate-btn" type="submit">
-                        Send
+                      <button
+                        className="tf-btn animate-btn"
+                        type="submit"
+                        disabled={status === "sending"}
+                      >
+                        {status === "sending" ? "Sending..." : "Send"}
                       </button>
                     </div>
                   </div>

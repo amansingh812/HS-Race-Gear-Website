@@ -10,8 +10,8 @@ import React from "react";
 
 export const metadata = {
   title:
-    "Shop Horaizontal Filter || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+    "Shop Horaizontal Filter || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

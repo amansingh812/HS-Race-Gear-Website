@@ -9,8 +9,8 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata = {
-  title: "Blog Grid 01 || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Blog Grid 01 || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

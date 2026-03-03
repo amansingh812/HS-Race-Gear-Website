@@ -14,8 +14,8 @@ import Testimonials from "@/components/homes/home-1/Testimonials";
 
 import Cookie from "@/components/modals/Cookie";
 export const metadata = {
-  title: "Cookies || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Cookies || HS Race Gear",
+  description: "HS Race Gear",
 };
 
 export default function Home() {

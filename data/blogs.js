@@ -240,7 +240,7 @@ export const blogPosts4 = [
     description:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorImg: "/images/avatar/blog-author-4.jpg",
-    author: "Vinetant",
+    author: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     categoryClass: "type-bag",
@@ -253,7 +253,7 @@ export const blogPosts4 = [
     description:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorImg: "/images/avatar/blog-author-6.jpg",
-    author: "Vinetant",
+    author: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     categoryClass: "type-life",
@@ -266,7 +266,7 @@ export const blogPosts4 = [
     description:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorImg: "/images/avatar/blog-author-1.jpg",
-    author: "Vinetant",
+    author: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     categoryClass: "type-life",
@@ -279,7 +279,7 @@ export const blogPosts4 = [
     description:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorImg: "/images/avatar/blog-author-4.jpg",
-    author: "Vinetant",
+    author: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     categoryClass: "type-life",
@@ -326,7 +326,7 @@ export const blogPosts5 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand the test of time. These essentials form the backbone of any wardrobe...",
     authorAvatar: "/images/avatar/blog-author-1.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
   },
@@ -339,7 +339,7 @@ export const blogPosts5 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand the test of time. These essentials form the backbone of any wardrobe...",
     authorAvatar: "/images/avatar/blog-author-2.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
   },
@@ -352,7 +352,7 @@ export const blogPosts5 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand the test of time. These essentials form the backbone of any wardrobe...",
     authorAvatar: "/images/avatar/blog-author-3.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
   },
@@ -368,7 +368,7 @@ export const blogPostsStyle2 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-1.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 684,
@@ -383,7 +383,7 @@ export const blogPostsStyle2 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-2.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 684,
@@ -398,7 +398,7 @@ export const blogPostsStyle2 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-3.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 684,
@@ -413,7 +413,7 @@ export const blogPostsStyle2 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-4.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 684,
@@ -431,7 +431,7 @@ export const blogPostsLarge = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-1.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -446,7 +446,7 @@ export const blogPostsLarge = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-2.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -461,7 +461,7 @@ export const blogPostsLarge = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-3.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -476,7 +476,7 @@ export const blogPostsLarge = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-4.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -491,7 +491,7 @@ export const blogPostsLarge = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-5.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -506,7 +506,7 @@ export const blogPostsLarge = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-6.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -524,7 +524,7 @@ export const blogPosts6 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-1.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -539,7 +539,7 @@ export const blogPosts6 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-2.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -554,7 +554,7 @@ export const blogPosts6 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-3.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -569,7 +569,7 @@ export const blogPosts6 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-4.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -584,7 +584,7 @@ export const blogPosts6 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-5.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -599,7 +599,7 @@ export const blogPosts6 = [
     excerpt:
       "When it comes to fashion, trends come and go, but there are certain pieces that stand...",
     authorAvatar: "/images/avatar/blog-author-6.jpg",
-    authorName: "Vinetant",
+    authorName: "HS Race Gear",
     date: "Sep 19 2024",
     comments: "3 comments",
     width: 928,
@@ -674,7 +674,7 @@ export const blogPosts7 = [
   {
     id: 68,
     image: "/images/blog/blog-11.jpg",
-    author: "Vineta",
+    author: "HS Race Gear",
     date: "Mar 10, 2025",
     comments: "02 Comments",
     title: "5 Ways to Style Your Handmade Bag This Season",

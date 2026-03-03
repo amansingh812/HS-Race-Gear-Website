@@ -7,8 +7,8 @@ import Products5 from "@/components/products/Products5";
 import React from "react";
 
 export const metadata = {
-  title: "Shop Grid 3 Columns || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Shop Grid 3 Columns || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

@@ -8,8 +8,8 @@ import React from "react";
 import Breadcumb from "@/components/common/Breadcumb";
 
 export const metadata = {
-  title: "Blog List 02 || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Blog List 02 || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

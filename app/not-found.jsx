@@ -5,8 +5,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 export const metadata = {
-  title: "Page Not Found || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Page Not Found || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

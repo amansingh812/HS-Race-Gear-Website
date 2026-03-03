@@ -9,8 +9,8 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata = {
-  title: "Shop Sub Collection || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Shop Sub Collection || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

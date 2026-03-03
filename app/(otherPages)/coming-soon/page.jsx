@@ -5,8 +5,8 @@ import React from "react";
 import Link from "next/link";
 import CountdownTimer from "@/components/common/Countdown";
 export const metadata = {
-  title: "Comming Soon || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Comming Soon || HS Race Gear",
+  description: "HS Race Gear",
 };
 export default function page() {
   return (

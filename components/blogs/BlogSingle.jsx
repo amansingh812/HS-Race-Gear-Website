@@ -32,7 +32,7 @@ export default function BlogSingle({ blog }) {
                 />
               </div>
               <p className="entry_name">
-                Post by <span className="fw-medium"> Vinetant </span>
+                Post by <span className="fw-medium"> HS Race Gear </span>
               </p>
             </li>
             <li className="br-line" />

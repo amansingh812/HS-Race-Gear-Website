@@ -13,8 +13,8 @@ import Shopgram from "@/components/homes/home-1/Shopgram";
 import Testimonials from "@/components/homes/home-1/Testimonials";
 import BeforeLeave from "@/components/modals/BeforeLeave";
 export const metadata = {
-  title: "Before Leave || Vineta - Multipurpose React Nextjs eCommerce",
-  description: "Vineta - Multipurpose React Nextjs eCommerce",
+  title: "Before Leave || HS Race Gear",
+  description: "HS Race Gear",
 };
 
 export default function Home() {

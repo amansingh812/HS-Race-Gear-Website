@@ -7,7 +7,7 @@ export default function Address() {
   const [addresses, setAddresses] = useState([
     {
       id: 1,
-      firstName: "Vinetant",
+      firstName: "HS Race Gear",
       lastName: "Pham",
       company: "Company",
       address1: "16 Yarran st",
@@ -17,11 +17,11 @@ export default function Address() {
       zipCode: "2196",
       phone: "+61 1234 3435",
       isDefault: false,
-      email: "account@vineta.com",
+      email: "hsracegear@gmail.com",
     },
     {
       id: 2,
-      firstName: "Vinetant",
+      firstName: "HS Race Gear",
       lastName: "Pham",
       company: "Company",
       address1: "17 Yarran st",
@@ -31,7 +31,7 @@ export default function Address() {
       zipCode: "2196",
       phone: "+61 1234 3435",
       isDefault: false,
-      email: "account@vineta.com",
+      email: "hsracegear@gmail.com",
     },
   ]);
 
