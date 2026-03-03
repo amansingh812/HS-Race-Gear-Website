@@ -4,12 +4,14 @@ import Topbar1 from "@/components/headers/Topbar1";
 import StoreLocations from "@/components/hsRaceGear/shop/StoreLocations";
 import "@/public/css/store-locations.css";
 import React from "react";
-import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";
+
 export const metadata = {
-  title: "Store Location || HS Race Gear",
-  description: "HS Race Gear",
+  title: "Store Location | HS Race Gear — Watertown, MA",
+  description:
+    "Visit HS Race Gear at 59 Kondazian St, Watertown MA 02472. Open Mon–Sat, 9am–6pm EST. Custom racing suit fittings available by appointment.",
 };
+
 export default function page() {
   return (
     <>

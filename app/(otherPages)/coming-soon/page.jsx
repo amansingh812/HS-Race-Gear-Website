@@ -1,18 +1,21 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import React from "react";
 import Link from "next/link";
 import CountdownTimer from "@/components/common/Countdown";
+
 export const metadata = {
-  title: "Comming Soon || HS Race Gear",
-  description: "HS Race Gear",
+  title: "Coming Soon | HS Race Gear",
+  description:
+    "Something exciting is on the way from HS Race Gear. Stay tuned for new custom racing gear, products, and more.",
 };
+
 export default function page() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
       <section className="s-coming-soon">
         <div className="container">
           <div className="row">
@@ -20,7 +23,7 @@ export default function page() {
               <div className="wg-coming-soon">
                 <p className="title text-center">Coming Soon!</p>
                 <p className="text-md sub text-main text-center">
-                  We couldn’t find the page you were looking for. We suggest
+                  We couldn't find the page you were looking for. We suggest
                   <br />
                   you return to homepage
                 </p>
@@ -71,7 +74,7 @@ export default function page() {
         </div>
       </section>
 
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

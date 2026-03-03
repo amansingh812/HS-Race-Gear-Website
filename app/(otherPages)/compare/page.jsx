@@ -1,19 +1,21 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import Compare from "@/components/otherPages/Compare";
 import Link from "next/link";
 import React from "react";
 
 export const metadata = {
-  title: "Compare || HS Race Gear",
-  description: "HS Race Gear",
+  title: "Compare Racing Suits | HS Race Gear",
+  description:
+    "Compare HS Race Gear custom racing suits with leading brands. See how our SFI-certified suits stack up on quality, fit, price, and customization options.",
 };
+
 export default function page() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
       <>
         {/* Breadcrumb */}
         <div className="tf-breadcrumb">
@@ -43,7 +45,7 @@ export default function page() {
         {/* /Title Page */}
       </>
       <Compare />
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

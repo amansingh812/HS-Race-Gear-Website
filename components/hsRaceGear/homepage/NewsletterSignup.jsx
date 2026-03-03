@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
 
 export default function NewsletterSignup() {
   const [status, setStatus] = useState(null); // null | 'success' | 'error'
@@ -10,11 +9,12 @@ export default function NewsletterSignup() {
     const email = e.target.email.value;
 
     try {
-      const response = await axios.post(
-        "https://express-brevomail.vercel.app/api/contacts",
-        { email }
-      );
-      if ([200, 201].includes(response.status)) {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
         setStatus("success");
         e.target.reset();
       } else {

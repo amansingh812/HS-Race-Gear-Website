@@ -1,18 +1,20 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+
 export const metadata = {
   title: "Page Not Found || HS Race Gear",
-  description: "HS Race Gear",
+  description: "The page you're looking for couldn't be found. Return to HS Race Gear to explore our custom racing suits and gear.",
 };
+
 export default function page() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 parentClass="tf-topbar bg-dark-5 topbar-bg" />
+      <Header3 />
       <section className="flat-spacing">
         <div className="container">
           <div className="row">
@@ -21,7 +23,7 @@ export default function page() {
                 <div className="image">
                   <Image
                     src="/images/banner/404.png"
-                    alt={404}
+                    alt="404 - Page Not Found"
                     className="lazyload"
                     width={472}
                     height={472}
@@ -29,7 +31,7 @@ export default function page() {
                 </div>
                 <p className="title">Whoops!</p>
                 <p className="text-md sub text-main">
-                  We couldn’t find the page you were looking for.
+                  We couldn't find the page you were looking for.
                 </p>
                 <div className="bot">
                   <Link href={`/`} className="tf-btn btn-fill animate-btn">
@@ -42,7 +44,7 @@ export default function page() {
         </div>
       </section>
 
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

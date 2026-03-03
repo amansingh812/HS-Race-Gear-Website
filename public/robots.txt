@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Block admin and API routes from crawlers
+Disallow: /api/
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /view-cart/
+Disallow: /wish-list/
+Disallow: /compare/
+Disallow: /coming-soon/
+
+# Sitemap location (update domain before going live)
+Sitemap: https://hsracegear.com/sitemap.xml

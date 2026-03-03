@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
+
 export default function Footer3() {
   const [success, setSuccess] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
@@ -15,32 +15,32 @@ export default function Footer3() {
   };
 
   const sendEmail = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
     const email = e.target.email.value;
 
     try {
-      const response = await axios.post(
-        "https://express-brevomail.vercel.app/api/contacts",
-        {
-          email,
-        }
-      );
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
-      if ([200, 201].includes(response.status)) {
-        e.target.reset(); // Reset the form
-        setSuccess(true); // Set success state
+      if (response.ok) {
+        e.target.reset();
+        setSuccess(true);
         handleShowMessage();
       } else {
-        setSuccess(false); // Handle unexpected responses
+        setSuccess(false);
         handleShowMessage();
       }
     } catch (error) {
-      console.error("Error:", error.response?.data || "An error occurred");
-      setSuccess(false); // Set error state
+      console.error("Error:", error);
+      setSuccess(false);
       handleShowMessage();
-      e.target.reset(); // Reset the form
+      e.target.reset();
     }
   };
+
   useEffect(() => {
     const headings = document.querySelectorAll(".footer-heading-mobile");
 
@@ -61,13 +61,12 @@ export default function Footer3() {
       heading.addEventListener("click", toggleOpen);
     });
 
-    // Clean up event listeners when the component unmounts
     return () => {
       headings.forEach((heading) => {
         heading.removeEventListener("click", toggleOpen);
       });
     };
-  }, []); // Empty dependency array means this will run only once on mount
+  }, []);
 
   return (
     <footer
@@ -169,25 +168,6 @@ export default function Footer3() {
               </div>
             </div>
 
-            {/* DOWNLOAD */}
-            <div className="footer-col-block s1">
-              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
-                DOWNLOAD
-              </div>
-              <div className="tf-collapse-content">
-                <div className="footer-contact">
-                  <ul className="footer-info">
-                    <li className="item">
-                      <Link href="/more-mockups">MORE MOCKUPS</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="/blanket-template">BLANKET TEMPLATE</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
             {/* ABOUT SUIT */}
             <div className="footer-col-block s1">
               <div className="footer-heading footer-heading-mobile text-xl fw-medium">
@@ -204,6 +184,25 @@ export default function Footer3() {
                     </li>
                     <li className="item">
                       <Link href="/custom-fit">HOW TO MEASURE</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* DOWNLOAD */}
+            <div className="footer-col-block s1">
+              <div className="footer-heading footer-heading-mobile text-xl fw-medium">
+                DOWNLOAD
+              </div>
+              <div className="tf-collapse-content">
+                <div className="footer-contact">
+                  <ul className="footer-info">
+                    <li className="item">
+                      <Link href="/more-mockups">MORE MOCKUPS</Link>
+                    </li>
+                    <li className="item">
+                      <Link href="/blanket-template">BLANKET TEMPLATE</Link>
                     </li>
                   </ul>
                 </div>
@@ -237,8 +236,6 @@ export default function Footer3() {
                 </div>
               </div>
             </div>
-
-
 
           </div>
         </div>
