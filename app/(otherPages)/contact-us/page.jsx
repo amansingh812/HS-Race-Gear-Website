@@ -2,19 +2,18 @@ import Footer3 from "@/components/footers/Footer3";
 import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
 import Contact from "@/components/otherPages/Contact";
-import React from "react";
-import Link from "next/link";
-import Breadcumb from "@/components/common/Breadcumb";
+import "@/public/css/contact-us.css";
+
 export const metadata = {
-  title: "Contact Us || HS Race Gear",
-  description: "HS Race Gear",
+  title: "Contact Us | HS Race Gear",
+  description: "Get in touch with the HS Race Gear team for custom orders, sizing help, pricing enquiries, and more. We respond within 24 hours.",
 };
-export default function page() {
+
+export default function ContactPage() {
   return (
     <>
       <Topbar1 />
       <Header3 />
-      <Breadcumb pageName="Contact Us" pageTitle="Contact Us" />
       <Contact />
       <Footer3 />
     </>

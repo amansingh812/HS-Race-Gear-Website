@@ -97,7 +97,7 @@ export default function Footer3() {
               <ul style={{ listStyle: "none", padding: 0, margin: "18px 0 0", display: "flex", flexDirection: "column", gap: "12px" }}>
                 <li style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: "3px" }}>
-                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
                   </svg>
                   <a
                     href="https://maps.google.com/?q=59+Kondazian+St,+Watertown+MA+02472"
@@ -110,7 +110,7 @@ export default function Footer3() {
                 </li>
                 <li style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.09a16 16 0 0 0 8 8l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.5z"/>
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.09a16 16 0 0 0 8 8l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.5z" />
                   </svg>
                   <a
                     href="tel:+16173196993"
@@ -140,12 +140,6 @@ export default function Footer3() {
                       <Link href="/blog">BLOG</Link>
                     </li>
                     <li className="item">
-                      <Link href="/privacy-policy">PRIVACY POLICY</Link>
-                    </li>
-                    <li className="item">
-                      <Link href="/term-and-condition">TERMS & SERVICES</Link>
-                    </li>
-                    <li className="item">
                       <Link href="/shipping-policy">SHIPPING POLICY</Link>
                     </li>
                   </ul>
@@ -162,7 +156,7 @@ export default function Footer3() {
                 <div className="footer-contact">
                   <ul className="footer-info">
                     <li className="item">
-                      <Link href="/faqs">FAQ</Link>
+                      <Link href="/faq">FAQ</Link>
                     </li>
                     <li className="item">
                       <Link href="/payment-methods">PAYMENT METHODS</Link>
@@ -184,10 +178,10 @@ export default function Footer3() {
                 <div className="footer-contact">
                   <ul className="footer-info">
                     <li className="item">
-                      <a href="#">MORE MOCKUPS</a>
+                      <Link href="/more-mockups">MORE MOCKUPS</Link>
                     </li>
                     <li className="item">
-                      <a href="#">BLANKET TEMPLATE</a>
+                      <Link href="/blanket-template">BLANKET TEMPLATE</Link>
                     </li>
                   </ul>
                 </div>
@@ -258,8 +252,8 @@ export default function Footer3() {
             </p>
             <div className="box-right d-flex align-items-center" style={{ gap: '15px' }}>
               <div className="d-flex align-items-center" style={{ gap: '15px' }}>
-                <Link href={`/privacy-policy`}>Privacy Policy</Link>
-                <Link href={`/term-and-condition`}>Term of Use</Link>
+                <Link href={`/privacy-policy`}>PRIVACY POLICY</Link>
+                <Link href={`/term-and-condition`}>TERMS & SERVICES</Link>
               </div>
               <ul className="tf-social-icon style-large m-0" style={{ gap: '10px' }}>
                 <li>

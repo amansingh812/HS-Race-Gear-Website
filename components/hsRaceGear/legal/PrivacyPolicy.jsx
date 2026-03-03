@@ -1,165 +1,167 @@
 import React from "react";
+import Link from "next/link";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="vs-doc-wrapper">
-      <div className="container">
-        <article className="vs-doc">
-
-          <h1 className="vs-doc-title">Privacy Policy</h1>
-
-          <hr className="vs-doc-divider" />
-
-          <h2>1. Information We Collect</h2>
-
-          <h3>Personal Information You Provide</h3>
-          <p>When you place an order, create an account, or contact us, we may collect:</p>
-          <ul>
-            <li>Name</li>
-            <li>Billing and shipping address</li>
-            <li>Email address</li>
-            <li>Phone number</li>
-            <li>Account login credentials</li>
-            <li>Order and purchase history</li>
-            <li>Payment details (processed securely by third-party payment providers)</li>
-          </ul>
-          <p className="vs-doc-note">
-            HS Racegear does NOT store your credit card information. All payments are processed
-            through secure payment gateways.
+    <>
+      {/* HERO */}
+      <section className="contact-hero">
+        <div className="container">
+          <p className="contact-breadcrumb">
+            <Link href="/">Home</Link>
+            <span className="contact-breadcrumb-sep">/</span>
+            <span className="contact-breadcrumb-current">Privacy Policy</span>
           </p>
-
-          <h3>Automatically Collected Information</h3>
-          <p>When you browse our website, we may automatically collect:</p>
-          <ul>
-            <li>IP address</li>
-            <li>Browser type and device information</li>
-            <li>Pages visited and time spent on the site</li>
-            <li>Referring URLs</li>
-            <li>Cookies and similar tracking technologies</li>
-          </ul>
-          <p>
-            This data helps us improve site performance, security, and user experience.
+          <span className="contact-hero-tag">Legal</span>
+          <h1 className="contact-hero-title">
+            Privacy<br /><span>Policy</span>
+          </h1>
+          <p className="contact-hero-subtitle">
+            Learn how HS RaceGear collects, uses, and protects your personal information when you shop on our store.
           </p>
+        </div>
+      </section>
 
-          <hr className="vs-doc-divider" />
+      {/* CONTENT */}
+      <section className="hs-doc-section">
+        <div className="container">
+          <div className="hs-doc-content">
 
-          <h2>2. How We Use Your Information</h2>
-          <p>We use your information to:</p>
-          <ul>
-            <li>Process and fulfill orders</li>
-            <li>Communicate order updates and customer support responses</li>
-            <li>Prevent fraud and unauthorized transactions</li>
-            <li>Improve our website, products, and services</li>
-            <li>Send marketing emails or promotions (you may opt out at any time)</li>
-            <li>Maintain internal records and legal compliance</li>
-          </ul>
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">1. Information We Collect</h2>
+              <div className="hs-doc-card">
+                <h3 className="hs-doc-card-title">Personal Information You Provide</h3>
+                <p className="hs-doc-card-text">When you place an order, create an account, or contact us, we may collect:</p>
+                <ul className="hs-doc-list">
+                  <li>Name</li>
+                  <li>Billing and shipping address</li>
+                  <li>Email address</li>
+                  <li>Phone number</li>
+                  <li>Account login credentials</li>
+                  <li>Order and purchase history</li>
+                  <li>Payment details (processed securely by third-party payment providers)</li>
+                </ul>
+              </div>
+              <div className="hs-doc-card hs-doc-card-note">
+                <p className="hs-doc-card-text">HS Racegear does NOT store your credit card information. All payments are processed through secure payment gateways.</p>
+              </div>
+              <div className="hs-doc-card">
+                <h3 className="hs-doc-card-title">Automatically Collected Information</h3>
+                <p className="hs-doc-card-text">When you browse our website, we may automatically collect:</p>
+                <ul className="hs-doc-list">
+                  <li>IP address</li>
+                  <li>Browser type and device information</li>
+                  <li>Pages visited and time spent on the site</li>
+                  <li>Referring URLs</li>
+                  <li>Cookies and similar tracking technologies</li>
+                </ul>
+                <p className="hs-doc-card-text">This data helps us improve site performance, security, and user experience.</p>
+              </div>
+            </div>
 
-          <hr className="vs-doc-divider" />
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">2. How We Use Your Information</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">We use your information to:</p>
+                <ul className="hs-doc-list">
+                  <li>Process and fulfill orders</li>
+                  <li>Communicate order updates and customer support responses</li>
+                  <li>Prevent fraud and unauthorized transactions</li>
+                  <li>Improve our website, products, and services</li>
+                  <li>Send marketing emails or promotions (you may opt out at any time)</li>
+                  <li>Maintain internal records and legal compliance</li>
+                </ul>
+              </div>
+            </div>
 
-          <h2>3. Cookies &amp; Tracking Technologies</h2>
-          <p>HS Racegear uses cookies to:</p>
-          <ul>
-            <li>Keep items in your shopping cart</li>
-            <li>Remember login sessions</li>
-            <li>Analyze website traffic and performance</li>
-            <li>Improve personalized user experience</li>
-          </ul>
-          <p>
-            You may disable cookies through your browser settings. However, some features of the
-            site may not function properly without them.
-          </p>
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">3. Cookies &amp; Tracking Technologies</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">HS Racegear uses cookies to:</p>
+                <ul className="hs-doc-list">
+                  <li>Keep items in your shopping cart</li>
+                  <li>Remember login sessions</li>
+                  <li>Analyze website traffic and performance</li>
+                  <li>Improve personalized user experience</li>
+                </ul>
+                <p className="hs-doc-card-text">
+                  You may disable cookies through your browser settings. However, some features of the site may not function properly without them.
+                </p>
+              </div>
+            </div>
 
-          <hr className="vs-doc-divider" />
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">4. Sharing Your Information</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">We do not sell, rent, or trade your personal information. We may share your information only with:</p>
+                <ul className="hs-doc-list">
+                  <li>Payment processors (for secure transactions)</li>
+                  <li>Shipping and fulfillment partners</li>
+                  <li>Website hosting and analytics providers</li>
+                  <li>Legal or regulatory authorities when required by law</li>
+                </ul>
+                <p className="hs-doc-card-text">All third parties are required to protect your information and use it only for authorized purposes.</p>
+              </div>
+            </div>
 
-          <h2>4. Sharing Your Information</h2>
-          <p>We do not sell, rent, or trade your personal information.</p>
-          <p>We may share your information only with:</p>
-          <ul>
-            <li>Payment processors (for secure transactions)</li>
-            <li>Shipping and fulfillment partners</li>
-            <li>Website hosting and analytics providers</li>
-            <li>Legal or regulatory authorities when required by law</li>
-          </ul>
-          <p>
-            All third parties are required to protect your information and use it only for
-            authorized purposes.
-          </p>
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">5. Marketing Communications</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">If you opt in, we may send you emails or messages about new products, special offers, and promotions. You can unsubscribe at any time using the link provided in our emails. We never share your email address with third parties for marketing.</p>
+              </div>
+            </div>
 
-          <hr className="vs-doc-divider" />
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">6. Data Security</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">We implement industry-standard security measures. While no online system is 100% secure, we take reasonable steps to protect your information both online and offline.</p>
+              </div>
+            </div>
 
-          <h2>5. Marketing Communications</h2>
-          <p>If you opt in, we may send you emails or messages about:</p>
-          <ul>
-            <li>New products</li>
-            <li>Special offers</li>
-            <li>Promotions or updates</li>
-          </ul>
-          <p>
-            You can unsubscribe at any time using the link provided in our emails. We never share
-            your email address with third parties for marketing.
-          </p>
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">7. Your Rights &amp; Choices</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">You have the right to:</p>
+                <ul className="hs-doc-list">
+                  <li>Access the personal data we hold about you</li>
+                  <li>Request corrections to inaccurate information</li>
+                  <li>Request deletion of your personal data</li>
+                  <li>Opt out of marketing communications</li>
+                </ul>
+                <p className="hs-doc-card-text">To exercise these rights, contact us using the information below.</p>
+              </div>
+            </div>
 
-          <hr className="vs-doc-divider" />
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">8–10. Additional Policies</h2>
+              <div className="hs-doc-card">
+                <h3 className="hs-doc-card-title">Third-Party Links</h3>
+                <p className="hs-doc-card-text">Our website may contain links to third-party websites. HS Racegear is not responsible for the privacy practices or content of those sites.</p>
+              </div>
+              <div className="hs-doc-card">
+                <h3 className="hs-doc-card-title">Legal Disclosure</h3>
+                <p className="hs-doc-card-text">We may disclose personal information if required to do so by law, court order, or legal process, or to protect our rights, customers, or the integrity of our business.</p>
+              </div>
+              <div className="hs-doc-card">
+                <h3 className="hs-doc-card-title">Changes to This Policy</h3>
+                <p className="hs-doc-card-text">We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+              </div>
+            </div>
 
-          <h2>6. Data Security</h2>
-          <p>We implement industry-standard security measures.</p>
-          <p>
-            While no online system is 100% secure, we take reasonable steps to protect your
-            information both online and offline.
-          </p>
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">11. Contact Us</h2>
+              <div className="hs-doc-card hs-doc-card-note">
+                <p className="hs-doc-card-text">
+                  If you have any questions or concerns regarding this Privacy Policy, please contact us:<br /><br />
+                  HS RaceGear<br />
+                  📧 Email: <a href="mailto:admin@hsracegear.com" style={{ color: '#e21b1b' }}>admin@hsracegear.com</a>
+                </p>
+              </div>
+            </div>
 
-          <hr className="vs-doc-divider" />
-
-          <h2>7. Your Rights &amp; Choices</h2>
-          <p>You have the right to:</p>
-          <ul>
-            <li>Access the personal data we hold about you</li>
-            <li>Request corrections to inaccurate information</li>
-            <li>Request deletion of your personal data</li>
-            <li>Opt out of marketing communications</li>
-          </ul>
-          <p>To exercise these rights, contact us using the information below.</p>
-
-          <hr className="vs-doc-divider" />
-
-          <h2>8. Third-Party Links</h2>
-          <p>
-            Our website may contain links to third-party websites. HS Racegear is not responsible
-            for the privacy practices or content of those sites. We encourage you to review their
-            privacy policies.
-          </p>
-
-          <hr className="vs-doc-divider" />
-
-          <h2>9. Legal Disclosure</h2>
-          <p>
-            We may disclose personal information if required to do so by law, court order, or
-            legal process, or to protect our rights, customers, or the integrity of our business.
-          </p>
-
-          <hr className="vs-doc-divider" />
-
-          <h2>10. Changes to This Policy</h2>
-          <p>
-            We may update this Privacy Policy from time to time. Any changes will be posted on
-            this page with an updated revision date.
-          </p>
-
-          <hr className="vs-doc-divider" />
-
-          <h2>11. Contact Us</h2>
-          <p>
-            If you have any questions, concerns, or requests regarding this Privacy Policy, please
-            contact us:
-          </p>
-          <p>
-            HS RaceGear<br />
-            📧 Email:{" "}
-            <a href="mailto:admin@hsracegear.com">admin@hsracegear.com</a>
-          </p>
-
-        </article>
-      </div>
-    </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

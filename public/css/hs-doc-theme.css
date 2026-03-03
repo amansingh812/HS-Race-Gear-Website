@@ -1,0 +1,183 @@
+/* ============================================
+   HS RACE GEAR — DARK DOCUMENT THEME
+   Used by: Suit Maintenance, Payment Methods, etc.
+   ============================================ */
+
+/* ============================================
+   DOCUMENT BODY
+   ============================================ */
+.hs-doc-section {
+    background: var(--contact-bg, #070707);
+    padding: 72px 0 100px;
+}
+
+.hs-doc-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   DOCUMENT BLOCK  (group of cards under a heading)
+   ============================================ */
+.hs-doc-block {
+    margin-bottom: 48px;
+}
+
+.hs-doc-block:last-child {
+    margin-bottom: 0;
+}
+
+.hs-doc-heading {
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0 0 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+}
+
+.hs-doc-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #e21b1b, transparent);
+}
+
+/* ============================================
+   DOCUMENT CARD
+   ============================================ */
+.hs-doc-card {
+    background: #0f0f0f;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 28px 24px;
+    margin-bottom: 16px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.hs-doc-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #e21b1b, transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.hs-doc-card:hover {
+    border-color: rgba(226, 27, 27, 0.2);
+    transform: translateY(-2px);
+}
+
+.hs-doc-card:hover::before {
+    opacity: 1;
+}
+
+.hs-doc-card:last-child {
+    margin-bottom: 0;
+}
+
+/* ---- Warning variant ---- */
+.hs-doc-card.hs-doc-card-warning {
+    border-color: rgba(226, 27, 27, 0.25);
+    background: rgba(226, 27, 27, 0.04);
+}
+
+.hs-doc-card.hs-doc-card-warning::before {
+    opacity: 1;
+    background: linear-gradient(90deg, #e21b1b, #c41515, transparent);
+    height: 3px;
+}
+
+/* ---- Note/info variant ---- */
+.hs-doc-card.hs-doc-card-note {
+    border-left: 3px solid #e21b1b;
+    background: rgba(226, 27, 27, 0.03);
+}
+
+.hs-doc-card.hs-doc-card-note::before {
+    display: none;
+}
+
+/* ============================================
+   CARD TITLE & TEXT
+   ============================================ */
+.hs-doc-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e21b1b;
+    font-family: 'Poppins', sans-serif;
+    margin: 0 0 10px;
+    letter-spacing: 0.5px;
+}
+
+.hs-doc-card-text {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.75;
+    margin: 0 0 12px;
+}
+
+.hs-doc-card-text:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   DOCUMENT LIST (inside cards)
+   ============================================ */
+.hs-doc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+}
+
+.hs-doc-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.hs-doc-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e21b1b;
+}
+
+.hs-doc-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+    .hs-doc-section {
+        padding: 48px 0 72px;
+    }
+
+    .hs-doc-card {
+        padding: 22px 18px;
+    }
+}

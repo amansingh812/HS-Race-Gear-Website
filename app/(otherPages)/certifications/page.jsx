@@ -1,16 +1,10 @@
 import Footer3 from "@/components/footers/Footer3";
 import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
-import Breadcumb from "@/components/common/Breadcumb";
 import CertificationHero from "@/components/hsRaceGear/certifications/CertificationHero";
-import WhatIsSFI from "@/components/hsRaceGear/certifications/WhatIsSFI";
-import SFILevelsExplained from "@/components/hsRaceGear/certifications/SFILevelsExplained";
-import WhySFICertification from "@/components/hsRaceGear/certifications/WhySFICertification";
-import RacingSeriesRequirements from "@/components/hsRaceGear/certifications/RacingSeriesRequirements";
-import CertificationVerification from "@/components/hsRaceGear/certifications/CertificationVerification";
-import OurCertifiedSuits from "@/components/hsRaceGear/certifications/OurCertifiedSuits";
-import ComplianceInfo from "@/components/hsRaceGear/certifications/ComplianceInfo";
-import CertificationCTA from "@/components/hsRaceGear/certifications/CertificationCTA";
+import CertificationsContent from "@/components/hsRaceGear/certifications/CertificationsContent";
+import "@/public/css/contact-us.css";
+import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
 export const metadata = {
@@ -24,16 +18,8 @@ export default function page() {
     <>
       <Topbar1 />
       <Header3 />
-      <Breadcumb pageName="Certifications" pageTitle="SFI Approved Certification" />
       <CertificationHero />
-      <WhatIsSFI />
-      <SFILevelsExplained />
-      <WhySFICertification />
-      <RacingSeriesRequirements />
-      <CertificationVerification />
-      <OurCertifiedSuits />
-      <ComplianceInfo />
-      <CertificationCTA />
+      <CertificationsContent />
       <Footer3 />
     </>
   );

@@ -1,9 +1,9 @@
 import Footer3 from "@/components/footers/Footer3";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
-import Breadcumb from "@/components/common/Breadcumb";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import PaymentMethods from "@/components/hsRaceGear/legal/PaymentMethods";
-import "@/public/css/vs-pyrotect.css";
+import "@/public/css/contact-us.css";
+import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
 export const metadata = {
@@ -15,9 +15,8 @@ export const metadata = {
 export default function PaymentMethodsPage() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
-      <Breadcumb pageName="Support" pageTitle="Payment Methods" />
+      <Topbar1 />
+      <Header3 />
       <PaymentMethods />
       <Footer3 />
     </>
