@@ -161,7 +161,7 @@ export default function CustomKartingSuitPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </Link>
-                            <Link href="/custom-fit" className="karting-glass-panel" style={{
+                            <Link href="/custom-measurement" className="glass-panel" style={{
                                 display: "inline-block",
                                 color: "#fff",
                                 padding: "16px 32px",
@@ -171,7 +171,7 @@ export default function CustomKartingSuitPage() {
                                 textDecoration: "none",
                                 transition: "background-color 0.3s ease"
                             }}>
-                                View Size Chart
+                                Custom Measurement
                             </Link>
                         </div>
                     </div>

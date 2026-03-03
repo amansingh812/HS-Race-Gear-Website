@@ -1,10 +1,51 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import "@/public/css/custom-shoes.css";
 
+/* ── Shoes Size Chart Modal ── */
+function ShoesSizeChartModal({ onClose }) {
+    return (
+        <div onClick={onClose} style={{
+            position: "fixed", inset: 0, zIndex: 9999,
+            background: "rgba(0,0,0,0.88)", display: "flex",
+            alignItems: "center", justifyContent: "center", padding: "16px"
+        }}>
+            <div onClick={e => e.stopPropagation()} style={{
+                background: "#111", border: "1px solid rgba(226,27,27,0.35)",
+                borderRadius: "16px", padding: "20px",
+                maxWidth: "780px", width: "100%", position: "relative"
+            }}>
+                {/* Close */}
+                <button onClick={onClose} style={{
+                    position: "absolute", top: "12px", right: "12px",
+                    background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.15)",
+                    color: "#fff", width: "34px", height: "34px", borderRadius: "50%",
+                    cursor: "pointer", fontSize: "15px", display: "flex",
+                    alignItems: "center", justifyContent: "center", zIndex: 10,
+                    lineHeight: 1
+                }}>✕</button>
+
+                {/* Chart Image */}
+                <Image
+                    src="/images/chart/shoes_size.jpg"
+                    alt="Custom Shoes Size Chart"
+                    width={1080}
+                    height={595}
+                    style={{
+                        width: "100%", height: "auto",
+                        borderRadius: "10px", display: "block"
+                    }}
+                    priority
+                />
+            </div>
+        </div>
+    );
+}
+
 export default function CustomShoesPage() {
+    const [showSizeChart, setShowSizeChart] = useState(false);
     const features = [
         {
             icon: (
@@ -205,18 +246,22 @@ export default function CustomShoesPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </Link>
-                            <Link href="/custom-fit" className="shoes-glass-panel" style={{
-                                display: "inline-block",
+                            <button onClick={() => setShowSizeChart(true)} className="shoes-glass-panel" style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "8px",
                                 color: "#fff",
                                 padding: "16px 32px",
                                 borderRadius: "6px",
                                 fontWeight: "700",
                                 fontSize: "16px",
-                                textDecoration: "none",
+                                background: "transparent",
+                                border: "none",
+                                cursor: "pointer",
                                 transition: "background-color 0.3s ease"
                             }}>
-                                View Size Chart
-                            </Link>
+                                📏 View Size Chart
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -857,6 +902,9 @@ export default function CustomShoesPage() {
                     </div>
                 </div>
             </section>
+
+            {/* Size Chart Modal */}
+            {showSizeChart && <ShoesSizeChartModal onClose={() => setShowSizeChart(false)} />}
         </>
     );
 }

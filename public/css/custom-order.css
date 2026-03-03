@@ -298,30 +298,30 @@
 
 .mockup-card {
   position: relative;
-  aspect-ratio: 3/4;
   background: rgba(255, 255, 255, 0.03);
   border: 2px solid rgba(255, 255, 255, 0.06);
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* No fixed aspect-ratio — card height adapts to the image */
 }
 
 .mockup-card:hover {
   border-color: rgba(220, 38, 38, 0.4);
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 .mockup-card.selected {
   border-color: #dc2626;
   box-shadow: 0 0 30px rgba(220, 38, 38, 0.25), 0 12px 40px rgba(0, 0, 0, 0.5);
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .mockup-card-image {
   width: 100%;
-  height: 100%;
+  /* height follows the image naturally */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -330,12 +330,15 @@
   font-weight: 800;
   color: rgba(255, 255, 255, 0.15);
   position: relative;
+  /* Minimum height for placeholder cards with no image */
+  min-height: 120px;
 }
 
 .mockup-card-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;          /* natural height — no cropping */
+  display: block;
+  object-fit: unset;     /* let the image define its own ratio */
 }
 
 .mockup-card-label {
@@ -343,9 +346,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 12px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
-  font-size: 13px;
+  padding: 10px 12px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.88));
+  font-size: 12px;
   font-weight: 600;
   color: #ccc;
   text-align: center;
@@ -463,6 +466,79 @@
   font-size: 12px;
   color: #aaa;
   font-weight: 600;
+}
+
+/* ---- Selected Colors Row (multi-select) ---- */
+.color-selected-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 700px;
+  margin: 0 auto 24px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.color-selected-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+.color-selected-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+}
+
+.color-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 4px 10px 4px 6px;
+  font-size: 12px;
+  color: #ddd;
+  font-weight: 600;
+}
+
+.color-chip-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.color-chip-name {
+  font-size: 11px;
+  color: #ccc;
+}
+
+.color-chip-remove {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0;
+  line-height: 1;
+  margin-left: 2px;
+  transition: color 0.2s;
+}
+
+.color-chip-remove:hover {
+  color: #e21b1b;
 }
 
 /* ---- Customer Info Form ---- */

@@ -56,6 +56,15 @@ export default function CustomRaceSuitPage() {
         }
     ];
 
+    const suitMockups = [
+        { src: "/images/powerboat/mockup-1.webp", alt: "Custom Race Suit Design 1" },
+        { src: "/images/powerboat/mockup-2.webp", alt: "Custom Race Suit Design 2" },
+        { src: "/images/powerboat/mockup-3.webp", alt: "Custom Race Suit Design 3" },
+        { src: "/images/powerboat/mockup-4.webp", alt: "Custom Race Suit Design 4" },
+        { src: "/images/powerboat/mockup-5.webp", alt: "Custom Race Suit Design 5" },
+        { src: "/images/powerboat/mockup-6.webp", alt: "Custom Race Suit Design 6" },
+    ];
+
     return (
         <>
             {/* Custom CSS */}
@@ -179,7 +188,7 @@ export default function CustomRaceSuitPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </Link>
-                            <Link href="/custom-fit" className="glass-panel" style={{
+                            <Link href="/custom-measurement" className="glass-panel" style={{
                                 display: "inline-block",
                                 color: "#fff",
                                 padding: "16px 32px",
@@ -189,10 +198,27 @@ export default function CustomRaceSuitPage() {
                                 textDecoration: "none",
                                 transition: "background-color 0.3s ease"
                             }}>
-                                View Size Chart
+                                Custom Measurement
                             </Link>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* Sliding Mockups Section */}
+            <section className="race-suit-mockup-slider">
+                <div className="race-suit-mockup-track">
+                    {[...suitMockups, ...suitMockups].map((mockup, index) => (
+                        <div key={index} className="race-suit-mockup-item">
+                            <Image
+                                src={mockup.src}
+                                alt={mockup.alt}
+                                width={472}
+                                height={333}
+                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                            />
+                        </div>
+                    ))}
                 </div>
             </section>
 

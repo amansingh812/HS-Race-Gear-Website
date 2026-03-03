@@ -194,66 +194,90 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
 }
 
 /* ---- Color Selection ---- */
+const MAX_PRIMARY_COLORS = 4;
+
 function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
-  const colorAreas = [
-    { key: "primary", label: "Primary Color" },
-    { key: "secondary", label: "Secondary Color" },
-    { key: "accent", label: "Accent / Stripe Color" },
-  ];
+  const selected = selections.primary || [];
+
+  // Build preview gradient from selected colors
+  const previewStyle = () => {
+    if (selected.length === 0) return "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)";
+    if (selected.length === 1) return selected[0].hex;
+    const step = 100 / selected.length;
+    const stops = selected.map((c, i) => `${c.hex} ${i * step}%, ${c.hex} ${(i + 1) * step}%`).join(", ");
+    return `linear-gradient(135deg, ${stops})`;
+  };
 
   return (
     <div className="step-content">
       <div className="step-header">
         <div className="step-badge">Step {currentStep} of {totalSteps}</div>
         <h2 className="step-title">Choose Your Colors</h2>
-        <p className="step-subtitle">Select up to 3 colors for your custom gear. Our designer will create a mockup based on your choices.</p>
+        <p className="step-subtitle">
+          Select up to <strong>{MAX_PRIMARY_COLORS} primary colors</strong> for your custom gear. Our designer will create a mockup based on your choices.
+        </p>
       </div>
       <div className="color-selection-area">
         {/* Color Preview */}
-        <div
-          className="color-preview"
-          style={{
-            background: selections.primary
-              ? `linear-gradient(135deg, ${selections.primary.hex} 0%, ${selections.primary.hex} 40%, ${selections.secondary?.hex || "#222"} 40%, ${selections.secondary?.hex || "#222"} 70%, ${selections.accent?.hex || "#333"} 70%, ${selections.accent?.hex || "#333"} 100%)`
-              : "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
-          }}
-        >
-          {!selections.primary && (
+        <div className="color-preview" style={{ background: previewStyle() }}>
+          {selected.length === 0 && (
             <div className="color-preview-label">Select colors below</div>
           )}
         </div>
 
+        {/* Selected swatches row */}
+        {selected.length > 0 && (
+          <div className="color-selected-row">
+            <span className="color-selected-label">Selected ({selected.length}/{MAX_PRIMARY_COLORS}):</span>
+            <div className="color-selected-chips">
+              {selected.map((c) => (
+                <div key={c.hex} className="color-chip">
+                  <span className="color-chip-dot" style={{ backgroundColor: c.hex }} />
+                  <span className="color-chip-name">{c.name}</span>
+                  <button
+                    className="color-chip-remove"
+                    onClick={() => onChange("primary", c)}
+                    title={`Remove ${c.name}`}
+                  >✕</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="color-sections">
-          {colorAreas.map((area) => (
-            <div key={area.key}>
-              <div className="color-section-title">
-                {area.label}
-                {selections[area.key] && (
-                  <span className="color-name-tag" style={{ marginLeft: 12 }}>
-                    {selections[area.key].name}
-                  </span>
-                )}
-              </div>
-              <div className="color-swatches">
-                {COLORS.map((color) => (
+          <div>
+            <div className="color-section-title">
+              Primary Color
+              {selected.length >= MAX_PRIMARY_COLORS && (
+                <span className="color-name-tag" style={{ marginLeft: 12, color: "#e21b1b" }}>
+                  Max {MAX_PRIMARY_COLORS} selected
+                </span>
+              )}
+            </div>
+            <div className="color-swatches">
+              {COLORS.map((color) => {
+                const isSelected = selected.some((c) => c.hex === color.hex);
+                const isDisabled = !isSelected && selected.length >= MAX_PRIMARY_COLORS;
+                return (
                   <div
-                    key={color.hex + area.key}
-                    className={`color-swatch ${selections[area.key]?.hex === color.hex ? "selected" : ""}`}
-                    style={{ backgroundColor: color.hex }}
-                    onClick={() => onChange(area.key, color)}
-                    title={color.name}
+                    key={color.hex}
+                    className={`color-swatch ${isSelected ? "selected" : ""} ${isDisabled ? "disabled" : ""}`}
+                    style={{ backgroundColor: color.hex, opacity: isDisabled ? 0.35 : 1, cursor: isDisabled ? "not-allowed" : "pointer" }}
+                    onClick={() => !isDisabled && onChange("primary", color)}
+                    title={isDisabled ? `Max ${MAX_PRIMARY_COLORS} colors reached` : color.name}
                     role="button"
                     tabIndex={0}
-                    onKeyDown={(e) => e.key === "Enter" && onChange(area.key, color)}
+                    onKeyDown={(e) => e.key === "Enter" && !isDisabled && onChange("primary", color)}
                   >
                     <div className="color-swatch-check">
                       <CheckIcon size={14} color={color.light ? "#000" : "#fff"} />
                     </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>
@@ -331,15 +355,12 @@ function CustomerInfoForm({ info, onChange, errors, onSubmit, isSubmitting, curr
           )}
           <div className="order-summary-item">
             <span className="order-summary-label">Colors</span>
-            <span className="order-summary-value" style={{ display: "flex", gap: 6, alignItems: "center" }}>
-              {orderData.colors?.primary && (
-                <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.primary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />
-              )}
-              {orderData.colors?.secondary && (
-                <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.secondary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />
-              )}
-              {orderData.colors?.accent && (
-                <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.accent.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />
+            <span className="order-summary-value" style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
+              {(orderData.colors?.primary || []).map((c) => (
+                <span key={c.hex} title={c.name} style={{ width: 18, height: 18, borderRadius: 4, background: c.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />
+              ))}
+              {(!orderData.colors?.primary || orderData.colors.primary.length === 0) && (
+                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.8rem" }}>None selected</span>
               )}
             </span>
           </div>
@@ -395,7 +416,7 @@ export default function CustomOrderPage() {
   const [suitMockup, setSuitMockup] = useState(null);
   const [glovesMockup, setGlovesMockup] = useState(null);
   const [shoesMockup, setShoesMockup] = useState(null);
-  const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
+  const [colors, setColors] = useState({ primary: [] });
   const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "" });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -422,7 +443,17 @@ export default function CustomOrderPage() {
   const currentStepId = steps[currentStep]?.id;
 
   const handleColorChange = useCallback((area, color) => {
-    setColors((prev) => ({ ...prev, [area]: color }));
+    if (area !== "primary") return;
+    setColors((prev) => {
+      const current = prev.primary || [];
+      const alreadySelected = current.some((c) => c.hex === color.hex);
+      if (alreadySelected) {
+        // Deselect — remove it
+        return { primary: current.filter((c) => c.hex !== color.hex) };
+      }
+      if (current.length >= MAX_PRIMARY_COLORS) return prev; // max reached
+      return { primary: [...current, color] };
+    });
   }, []);
 
   const handleCustomerInfoChange = useCallback((field, value) => {
@@ -446,7 +477,7 @@ export default function CustomOrderPage() {
       case "suit": return !!suitMockup;
       case "gloves": return !!glovesMockup;
       case "shoes": return !!shoesMockup;
-      case "colors": return !!colors.primary;
+      case "colors": return colors.primary.length > 0;
       case "info": return true;
       default: return false;
     }

@@ -57,8 +57,67 @@
   background: #404040;
 }
 
+/* Mockup Slider */
+.race-suit-mockup-slider {
+  overflow: hidden;
+  padding: 48px 0;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.race-suit-mockup-track {
+  display: flex;
+  gap: 32px;
+  animation: race-suit-scroll 25s linear infinite;
+  width: max-content;
+}
+
+.race-suit-mockup-track:hover {
+  animation-play-state: paused;
+}
+
+.race-suit-mockup-item {
+  flex-shrink: 0;
+  width: 472px;
+  height: 333px;
+  border-radius: 12px;
+  border: 1px solid #404040;
+  overflow: hidden;
+  background: #262626;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.race-suit-mockup-item:hover {
+  border-color: #dc2626;
+  transform: scale(1.03);
+}
+
+.race-suit-mockup-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes race-suit-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @media (min-width: 768px) {
   .hero-cta-buttons {
     flex-direction: row !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .race-suit-mockup-item {
+    width: 180px;
+    height: 250px;
   }
 }
