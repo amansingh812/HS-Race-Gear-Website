@@ -15,7 +15,7 @@ export default function AdditionalInfo() {
           <td className="tb-attr-value">
             <p>White, Black, Brown</p>
           </td>
-        </tr>
+        </tr> 
         <tr className="tb-attr-item">
           <th className="tb-attr-label">Brand</th>
           <td className="tb-attr-value">

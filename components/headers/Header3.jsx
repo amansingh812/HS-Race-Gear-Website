@@ -8,11 +8,42 @@ import Image from "next/image";
 export default function Header3() {
   return (
     <header id="header" className="header-default header-absolute-2">
-      <div className="header-top">
+      {/* Mobile Logo Bar — visible only on small screens */}
+      <div className="mobile-logo-bar d-md-none">
+        <a
+          href="#mobileMenu"
+          className="mobile-menu-trigger"
+          data-bs-toggle="offcanvas"
+          aria-controls="mobileMenu"
+        >
+          <i className="icon icon-categories1" />
+        </a>
+        <div className="mobile-logo-center">
+          <Link href="/" className="mobile-hs-logo">
+            <Image
+              alt="HS Race Gear"
+              src="/images/logo/logo.png"
+              width={120}
+              height={36}
+            />
+          </Link>
+          <div className="mobile-logo-divider" />
+          <Image
+            alt="SFI Approved"
+            className="mobile-sfi-logo"
+            src="/images/sfi-approved.png"
+            width={60}
+            height={28}
+          />
+        </div>
+      </div>
+
+      {/* Desktop Header Row — hidden on mobile */}
+      <div className="header-top d-none d-md-block">
         <div className="container">
           <div className="row wrapper-header align-items-center">
 
-            {/* Mobile Menu Trigger */}
+            {/* Mobile Menu Trigger — tablet only */}
             <div className="col-md-4 col-3 d-xl-none">
               <a
                 href="#mobileMenu"
@@ -41,7 +72,7 @@ export default function Header3() {
             <div className="col-xl-5 d-none d-xl-block"></div>
 
             {/* RIGHT SIDE - RACING STYLE DESIGN */}
-            <div className="col-xl-5 col-md-4 col-3 ">
+            <div className="col-xl-5 col-md-4 col-3">
               <div className="header-right-content d-flex justify-content-end align-items-center gap-5">
 
                 {/* SFI Logo */}
@@ -52,7 +83,6 @@ export default function Header3() {
                   width={100}
                   height={45}
                 />
-
 
                 <div className="racing-tools">
 

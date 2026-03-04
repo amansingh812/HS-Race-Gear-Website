@@ -1,138 +1,432 @@
-/* Shop Page Styles */
+/* ===================================================
+   HS Race Gear — Shop Page Dark Racing Theme
+   =================================================== */
 
-/* Category Tab Navigation */
+/* ---- Page Background ---- */
+.flat-spacing-24 {
+  background: #0a0a0a;
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.tf-page-title {
+  background: #111;
+  padding: 80px 0 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tf-page-title .title {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tf-page-title .desc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+}
+
+.tf-page-title .breadcrumb-item {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+}
+
+.tf-page-title .breadcrumb-item.current {
+  color: #e21b1b;
+}
+
+.tf-page-title .breadcrumb-item.link:hover {
+  color: #e21b1b;
+}
+
+/* ---- Category Tab Navigation ---- */
 .shop-category-tabs {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
-  padding: 0;
-  list-style: none;
+  margin-bottom: 28px;
 }
 
 .shop-category-tab {
   display: inline-block;
-  padding: 10px 20px;
-  border: 2px solid #e0e0e0;
+  padding: 10px 22px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
   border-radius: 30px;
-  background: #fff;
-  color: #333;
-  font-size: 14px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   white-space: nowrap;
 }
 
 .shop-category-tab:hover {
-  border-color: #c8102e;
-  color: #c8102e;
+  border-color: #e21b1b;
+  color: #e21b1b;
   text-decoration: none;
+  background: rgba(226, 27, 27, 0.08);
 }
 
 .shop-category-tab.active {
-  background: #c8102e;
-  border-color: #c8102e;
+  background: #e21b1b;
+  border-color: #e21b1b;
   color: #fff;
 }
 
-/* Shop page title area */
-.shop-page-header {
-  text-align: center;
-  margin-bottom: 10px;
+/* ---- Filter Sidebar Card ---- */
+.shop-filter-card {
+  background: #161616 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px !important;
 }
 
-.shop-page-header .title {
-  font-size: 28px;
+.shop-filter-card-header {
+  background: #1e1e1e !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 16px 20px !important;
+}
+
+.shop-filter-card-header h5 {
+  color: #fff !important;
+  font-size: 15px;
   font-weight: 700;
-  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.shop-filter-card .card-body {
+  padding: 20px;
+}
+
+/* Filter labels */
+.shop-filter-card .form-label {
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
   margin-bottom: 8px;
 }
 
-.shop-page-header .desc {
-  color: #666;
-  font-size: 16px;
+/* Form controls in sidebar */
+.shop-filter-card .form-control,
+.shop-filter-card .form-select {
+  background: #111 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 9px 12px;
+  transition: border-color 0.2s;
 }
 
-/* Placeholder product badge */
-.placeholder-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: #ff9800;
+.shop-filter-card .form-control:focus,
+.shop-filter-card .form-select:focus {
+  border-color: #e21b1b !important;
+  box-shadow: 0 0 0 2px rgba(226, 27, 27, 0.18) !important;
+  background: #111 !important;
+  color: #fff !important;
+}
+
+.shop-filter-card .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.shop-filter-card .form-select option {
+  background: #1a1a1a;
   color: #fff;
-  font-size: 11px;
+}
+
+/* Checkbox */
+.shop-filter-card .form-check-input {
+  background-color: #111;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.shop-filter-card .form-check-input:checked {
+  background-color: #e21b1b;
+  border-color: #e21b1b;
+}
+
+.shop-filter-card .form-check-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 14px;
+}
+
+/* Clear All button */
+.shop-clear-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 4px;
-  z-index: 5;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-/* Sidebar filter section */
-.shop-filter-section {
-  margin-bottom: 20px;
+.shop-clear-btn:hover {
+  border-color: #e21b1b;
+  color: #e21b1b;
+  background: rgba(226, 27, 27, 0.08);
 }
 
-.shop-filter-section .filter-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+/* ---- Toolbar Card ---- */
+.shop-toolbar-card {
+  background: #161616 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px !important;
 }
 
-/* Product count badge */
+.shop-toolbar-body {
+  padding: 14px 20px !important;
+}
+
 .shop-product-count {
-  font-size: 14px;
-  color: #666;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .shop-product-count strong {
-  color: #1a1a1a;
+  color: #fff;
 }
 
-/* Empty state */
+.shop-toolbar-card .form-select {
+  background: #111 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.shop-toolbar-card .form-select:focus {
+  border-color: #e21b1b !important;
+  box-shadow: 0 0 0 2px rgba(226, 27, 27, 0.18) !important;
+}
+
+.shop-toolbar-card .form-select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ---- Skeleton Loading ---- */
+.shop-skeleton-card {
+  background: transparent;
+}
+
+.shop-skeleton-img {
+  background: linear-gradient(90deg, #1a1a1a 25%, #242424 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shopShimmer 1.4s infinite;
+  border-radius: 8px;
+  height: 320px;
+  margin-bottom: 12px;
+}
+
+.shop-skeleton-line {
+  height: 16px;
+  background: linear-gradient(90deg, #1a1a1a 25%, #242424 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shopShimmer 1.4s infinite;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+@keyframes shopShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ---- Empty State ---- */
 .shop-empty-state {
   text-align: center;
-  padding: 60px 20px;
+  padding: 70px 20px;
 }
 
 .shop-empty-state h5 {
   font-size: 20px;
-  font-weight: 600;
-  color: #333;
+  font-weight: 700;
+  color: #fff;
   margin-bottom: 12px;
 }
 
 .shop-empty-state p {
-  color: #666;
+  color: rgba(255, 255, 255, 0.45);
   font-size: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
-/* Category description */
+.shop-view-all-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #e21b1b;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.shop-view-all-btn:hover {
+  background: #c41616;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ---- Pagination ---- */
+.shop-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.shop-page-btn {
+  padding: 9px 16px;
+  border-radius: 6px;
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 42px;
+  text-align: center;
+}
+
+.shop-page-btn:hover:not(.disabled) {
+  border-color: #e21b1b;
+  color: #e21b1b;
+  background: rgba(226, 27, 27, 0.1);
+}
+
+.shop-page-btn.active {
+  background: #e21b1b;
+  border-color: #e21b1b;
+  color: #fff;
+}
+
+.shop-page-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ---- Product Card Dark Overrides ---- */
+.card-product {
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.card-product:hover {
+  border-color: rgba(226, 27, 27, 0.4);
+  transform: translateY(-3px);
+}
+
+.card-product .card-product-info {
+  padding: 14px 14px 16px;
+  background: #161616;
+}
+
+.card-product .name-product {
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.card-product .name-product:hover {
+  color: #e21b1b !important;
+}
+
+.card-product .price-wrap {
+  margin: 0;
+}
+
+.card-product .price-new {
+  color: #e21b1b !important;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.card-product .price-old {
+  color: rgba(255, 255, 255, 0.35) !important;
+  text-decoration: line-through;
+  font-size: 13px;
+}
+
+/* Sale badge */
+.card-product .on-sale-item {
+  background: #e21b1b;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+
+/* Hover action icons */
+.card-product .box-icon {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.card-product .box-icon:hover {
+  background: #e21b1b;
+  border-color: #e21b1b;
+  color: #fff;
+}
+
+/* ---- Category Description ---- */
 .shop-category-description {
-  background: #f8f9fa;
+  background: #161616;
   border-radius: 8px;
   padding: 16px 20px;
   margin-bottom: 24px;
-  border-left: 4px solid #c8102e;
+  border-left: 4px solid #e21b1b;
 }
 
 .shop-category-description p {
   margin: 0;
-  color: #555;
+  color: rgba(255, 255, 255, 0.55);
   font-size: 14px;
   line-height: 1.6;
 }
 
-/* Responsive adjustments */
+/* ---- Responsive ---- */
 @media (max-width: 991px) {
   .shop-category-tabs {
     justify-content: center;
@@ -154,7 +448,7 @@
     font-size: 11px;
   }
 
-  .shop-page-header .title {
+  .tf-page-title .title {
     font-size: 22px;
   }
 }

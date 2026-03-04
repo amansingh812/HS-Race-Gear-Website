@@ -34,11 +34,18 @@ const PACKAGES = [
   },
 ];
 
-const SUIT_MOCKUPS = Array.from({ length: 29 }, (_, i) => ({
-  id: `suit-${i + 1}`,
-  name: `Design ${i + 1}`,
-  number: i + 1,
-}));
+// Images available for race suit mockups (reusing karting suit designs)
+const EXISTING_SUIT_IMAGES = [1, 2, 3, 4, 5, 7, 8, 10, 11];
+const SUIT_MOCKUPS = Array.from({ length: 29 }, (_, i) => {
+  const num = i + 1;
+  const hasImage = EXISTING_SUIT_IMAGES.includes(num);
+  return {
+    id: `suit-${num}`,
+    name: `Design ${num}`,
+    number: num,
+    image: hasImage ? `/images/karting/mockup-${num}.webp` : null,
+  };
+});
 
 const GLOVES_MOCKUPS = Array.from({ length: 5 }, (_, i) => ({
   id: `gloves-${i + 1}`,
@@ -55,26 +62,26 @@ const SHOES_MOCKUPS = Array.from({ length: 7 }, (_, i) => ({
 }));
 
 const COLORS = [
-  { name: "Bright Red",    hex: "#dc2626" },
-  { name: "Maroon",        hex: "#7f1d1d" },
-  { name: "Black",         hex: "#000000" },
-  { name: "Teal",          hex: "#14b8a6" },
-  { name: "White",         hex: "#ffffff", light: true },
-  { name: "Royal Blue",    hex: "#0d3e92" },
-  { name: "Sky Blue",      hex: "#327eec" },
-  { name: "Navy Blue",     hex: "#00054f" },
-  { name: "Orange",        hex: "#ea580c" },
-  { name: "Flo Orange",    hex: "#fe360f" },
-  { name: "Yellow",        hex: "#facc15", light: true },
-  { name: "Flo Yellow",    hex: "#c6f700", light: true },
-  { name: "Green",         hex: "#16a34a" },
-  { name: "Flo Green",     hex: "#6beb0c", light: true },
-  { name: "Pink",          hex: "#f511b7" },
-  { name: "Purple",        hex: "#8b428f" },
-  { name: "Golden",        hex: "#d4a017" },
-  { name: "Grey",          hex: "#808080" },
-  { name: "Dark Grey",     hex: "#374151" },
-  { name: "Medium Grey",   hex: "#6b7280" },
+  { name: "Bright Red", hex: "#dc2626" },
+  { name: "Maroon", hex: "#7f1d1d" },
+  { name: "Black", hex: "#000000" },
+  { name: "Teal", hex: "#14b8a6" },
+  { name: "White", hex: "#ffffff", light: true },
+  { name: "Royal Blue", hex: "#0d3e92" },
+  { name: "Sky Blue", hex: "#327eec" },
+  { name: "Navy Blue", hex: "#00054f" },
+  { name: "Orange", hex: "#ea580c" },
+  { name: "Flo Orange", hex: "#fe360f" },
+  { name: "Yellow", hex: "#facc15", light: true },
+  { name: "Flo Yellow", hex: "#c6f700", light: true },
+  { name: "Green", hex: "#16a34a" },
+  { name: "Flo Green", hex: "#6beb0c", light: true },
+  { name: "Pink", hex: "#f511b7" },
+  { name: "Purple", hex: "#8b428f" },
+  { name: "Golden", hex: "#d4a017" },
+  { name: "Grey", hex: "#808080" },
+  { name: "Dark Grey", hex: "#374151" },
+  { name: "Medium Grey", hex: "#6b7280" },
   { name: "Filament Grey", hex: "#d4d4d4", light: true },
 ];
 
@@ -572,16 +579,14 @@ export default function CustomOrderPage() {
                 style={{ cursor: index < currentStep ? "pointer" : "default" }}
               >
                 <div
-                  className={`progress-step-number ${
-                    index === currentStep ? "active" : index < currentStep ? "completed" : ""
-                  }`}
+                  className={`progress-step-number ${index === currentStep ? "active" : index < currentStep ? "completed" : ""
+                    }`}
                 >
                   {index < currentStep ? <CheckIcon size={16} /> : index + 1}
                 </div>
                 <span
-                  className={`progress-step-label ${
-                    index === currentStep ? "active" : index < currentStep ? "completed" : ""
-                  }`}
+                  className={`progress-step-label ${index === currentStep ? "active" : index < currentStep ? "completed" : ""
+                    }`}
                 >
                   {step.label}
                 </span>

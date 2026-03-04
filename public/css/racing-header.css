@@ -82,6 +82,97 @@
     height: 28px;
     padding: 0 12px;
   }
+
+  /* Hide the top bar on mobile */
+  .tf-topbar {
+    display: none !important;
+  }
+
+  /* Override global header white background — mobile logo bar provides its own dark bg */
+  header,
+  header.header-default,
+  header.header-default.header-absolute-2,
+  header.header-bg {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ===========================
+   MOBILE LOGO BAR
+   =========================== */
+.mobile-logo-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 2px solid #e21b1b;
+  padding: 10px 16px;
+  position: relative;
+  z-index: 100;
+}
+
+/* Hamburger trigger */
+.mobile-menu-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #e21b1b;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.mobile-menu-trigger:hover,
+.mobile-menu-trigger:active {
+  background: #c41616;
+  color: #fff;
+}
+
+/* Center logo group */
+.mobile-logo-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.mobile-hs-logo {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-hs-logo img {
+  height: 32px !important;
+  width: auto !important;
+}
+
+/* Vertical divider between logos */
+.mobile-logo-divider {
+  width: 1.5px;
+  height: 24px;
+  background: #e21b1b;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+.mobile-sfi-logo {
+  height: 24px !important;
+  width: auto !important;
+  opacity: 0.85;
+}
+
+/* On mobile, make header non-absolute so hero stays below it */
+@media (max-width: 767px) {
+  .header-default.header-absolute-2 {
+    position: relative !important;
+  }
 }
 
 /* ===========================

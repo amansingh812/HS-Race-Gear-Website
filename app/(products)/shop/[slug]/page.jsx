@@ -3,9 +3,10 @@ import Product from '@/models/Product';
 import '@/models/Category';
 import Details1 from '@/components/productDetails/Details1';
 import Description1 from '@/components/productDetails/Description1';
-import Header1 from '@/components/headers/Header1';
+import Header3 from '@/components/headers/Header3';
 import Footer3 from '@/components/footers/Footer3';
-import Topbar2 from '@/components/headers/Topbar2';
+import Topbar1 from '@/components/headers/Topbar1';
+import '@/public/css/product-detail.css';
 import Breadcumb from '@/components/productDetails/Breadcumb';
 import { notFound } from 'next/navigation';
 
@@ -62,8 +63,8 @@ export default async function ProductDetailPage({ params }) {
 
     return (
       <>
-        <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-        <Header1 />
+        <Topbar1 />
+        <Header3 />
         <Breadcumb product={serializedProduct} />
         <Details1 product={serializedProduct} />
         <Description1 product={serializedProduct} />

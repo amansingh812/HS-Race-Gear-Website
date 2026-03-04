@@ -79,25 +79,6 @@ export default function Description1({ product }) {
           </div>
         )}
 
-        <div className="widget-accordion wd-product-descriptions">
-          <div
-            className="accordion-title collapsed"
-            data-bs-target="#returnPolicies"
-            data-bs-toggle="collapse"
-            aria-expanded="true"
-            aria-controls="returnPolicies"
-            role="button"
-          >
-            <span>Return Policies</span>
-            <span className="icon icon-arrow-down" />
-          </div>
-          <div id="returnPolicies" className="collapse">
-            <div className="accordion-body">
-              <ReturnPolicies />
-            </div>
-          </div>
-        </div>
-
         {product.customFitAvailable && (
           <div className="widget-accordion wd-product-descriptions">
             <div
@@ -115,7 +96,7 @@ export default function Description1({ product }) {
               <div className="accordion-body">
                 <div className="custom-fit-info">
                   <p>
-                    This racing suit is available with custom Gear options. 
+                    This racing suit is available with custom Gear options.
                     {product.customFitLeadTime && ` Lead time: ${product.customFitLeadTime}`}
                   </p>
                   {product.customFitPrice > 0 && (
@@ -137,7 +118,7 @@ export default function Description1({ product }) {
           </div>
         )}
 
-        <div className="widget-accordion wd-product-descriptions">
+        {/* <div className="widget-accordion wd-product-descriptions">
           <div
             className="accordion-title collapsed"
             data-bs-target="#reviews"
@@ -154,7 +135,7 @@ export default function Description1({ product }) {
               <Reviews product={product} />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

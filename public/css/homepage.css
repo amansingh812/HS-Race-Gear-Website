@@ -144,6 +144,12 @@
 }
 
 @media (max-width: 575px) {
+
+  /* Hero sits flush below the mobile logo bar — no gap */
+  .hero-racing {
+    margin-top: 45px;
+  }
+
   .hero-racing__slide {
     height: 55vh;
     min-height: 350px;
@@ -1460,7 +1466,8 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  flex-shrink: 0; /* never compress — always visible */
+  flex-shrink: 0;
+  /* never compress — always visible */
 }
 
 .gear-overlay__title {
@@ -1493,14 +1500,15 @@
   padding: 0;
   margin: 0;
   flex: 1;
-  min-height: 0; /* crucial: lets flex child shrink below its content size */
+  min-height: 0;
+  /* crucial: lets flex child shrink below its content size */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   gap: 0;
   scrollbar-width: thin;
-  scrollbar-color: rgba(226,27,27,0.4) transparent;
+  scrollbar-color: rgba(226, 27, 27, 0.4) transparent;
 }
 
 .gear-specs::-webkit-scrollbar {
@@ -1512,7 +1520,7 @@
 }
 
 .gear-specs::-webkit-scrollbar-thumb {
-  background: rgba(226,27,27,0.5);
+  background: rgba(226, 27, 27, 0.5);
   border-radius: 2px;
 }
 
@@ -1551,7 +1559,8 @@
   text-decoration: none;
   letter-spacing: 0.3px;
   width: fit-content;
-  flex-shrink: 0; /* never compress — always visible */
+  flex-shrink: 0;
+  /* never compress — always visible */
   margin-top: 8px;
   transition: background 0.25s ease, transform 0.2s ease;
 }
@@ -1674,6 +1683,7 @@
 
 /* On touch devices: always show the overlay (tapped state) */
 @media (hover: none) {
+
   /* Overlay is always visible on touch, triggered by tap (active class via JS) */
   .gear-card--active .gear-overlay {
     display: flex;

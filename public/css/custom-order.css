@@ -583,6 +583,20 @@
   border-color: #dc2626;
   background: rgba(220, 38, 38, 0.05);
   box-shadow: 0 0 20px rgba(220, 38, 38, 0.1);
+  color: #fff;
+}
+
+/* ---- Autofill overrides (prevents browser turning inputs black/white on autofill) ---- */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff;
+  /* Use a large inset box-shadow to fake the dark background since background-color can't override autofill */
+  box-shadow: inset 0 0 0 1000px rgba(30, 10, 10, 0.95) !important;
+  border-color: #dc2626 !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-input.error {

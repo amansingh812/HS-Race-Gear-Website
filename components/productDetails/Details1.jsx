@@ -18,10 +18,27 @@ export default function Details1({ product }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [customFit, setCustomFit] = useState(false);
   const [driverName, setDriverName] = useState("");
-  const [selectedLayer, setSelectedLayer] = useState("single");
   const [showSizeChart, setShowSizeChart] = useState(false);
+  const [selectedLayer, setSelectedLayer] = useState("single");
 
-  const LAYER_PRICES = { single: 395, double: 595 };
+  // Detect if this is an off-the-rack race suit (show layer toggle)
+  const isSuit = product.category?.slug === "race-suits";
+
+  // Determine the correct size chart image and title based on product category
+  const getSizeChartInfo = () => {
+    const categorySlug = product.category?.slug || "";
+    if (categorySlug === "hoodies" || product.title?.toLowerCase().includes("hoodie")) {
+      return { src: "/images/chart/hoodie_size_chart.jpg", alt: "Hoodie Size Chart", title: "Hoodie Size Chart" };
+    }
+    if (categorySlug === "crew-shirts" || product.title?.toLowerCase().includes("shirt")) {
+      return { src: "/images/chart/shirt_size_chart.jpg", alt: "Shirt Size Chart", title: "Shirt Size Chart" };
+    }
+    return { src: "/images/deals/off_the_rack_race_suits.webp", alt: "Size Chart", title: "Size Chart" };
+  };
+  const sizeChartInfo = getSizeChartInfo();
+
+  // Base price: DB stores prices in cents, divide by 100 to get dollars
+  const basePrice = (product.price || 0) / 100;
 
   const {
     addProductToCart,
@@ -42,21 +59,21 @@ export default function Details1({ product }) {
     }
   }, [availableSizes, selectedSize]);
 
-  // Calculate total price
+  // Calculate total price from base price + layer multiplier (suits only) + add-ons
   const calculateTotalPrice = () => {
-    // Base price comes from layer selection
-    let total = LAYER_PRICES[selectedLayer];
+    // For race suits: double layer = 2× base price
+    let total = isSuit && selectedLayer === "double" ? basePrice * 2 : basePrice;
 
     // Add custom fit price
     if (customFit && product.customFitAvailable && product.customFitPrice) {
-      total += product.customFitPrice;
+      total += product.customFitPrice / 100;
     }
 
     // Add custom options prices
     selectedOptions.forEach(optionSlug => {
       const option = product.customOptions?.find(opt => opt.slug === optionSlug);
       if (option) {
-        total += option.price || 0;
+        total += (option.price || 0) / 100;
       }
     });
 
@@ -153,10 +170,10 @@ export default function Details1({ product }) {
                         >
                           &times;
                         </button>
-                        <h5 style={{ marginBottom: 16, fontWeight: 700 }}>Size Chart</h5>
+                        <h5 style={{ marginBottom: 16, fontWeight: 700 }}>{sizeChartInfo.title}</h5>
                         <Image
-                          src="/images/deals/off_the_rack_race_suits.webp"
-                          alt="Size Chart"
+                          src={sizeChartInfo.src}
+                          alt={sizeChartInfo.alt}
                           width={700}
                           height={500}
                           style={{ width: "100%", height: "auto", display: "block" }}
@@ -213,6 +230,49 @@ export default function Details1({ product }) {
                       ))}
                     </select>
                   </div>
+
+                  {/* Layer Selection — race suits only */}
+                  {isSuit && (
+                    <div className="tf-product-variant mb-3">
+                      <h6 className="fw-bold mb-2">Select Layer:</h6>
+                      <div className="d-flex flex-column gap-2" style={{ maxWidth: 300 }}>
+                        {[
+                          { value: "single", label: "Single Layer", price: basePrice },
+                          { value: "double", label: "Double Layer", price: basePrice * 2 },
+                        ].map(({ value, label, price }) => (
+                          <button
+                            key={value}
+                            type="button"
+                            onClick={() => setSelectedLayer(value)}
+                            style={{
+                              padding: "10px 20px",
+                              borderRadius: 6,
+                              border: selectedLayer === value ? "2px solid #e21b1b" : "2px solid rgba(255,255,255,0.2)",
+                              background: selectedLayer === value ? "rgba(226,27,27,0.12)" : "transparent",
+                              color: selectedLayer === value ? "#e21b1b" : "#fff",
+                              fontWeight: 600,
+                              cursor: "pointer",
+                              fontSize: "0.9rem",
+                              transition: "all 0.2s",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                              width: "100%",
+                            }}
+                          >
+                            <span>{label}</span>
+                            <span style={{
+                              fontSize: "0.85rem",
+                              fontWeight: 700,
+                              color: selectedLayer === value ? "#e21b1b" : "rgba(255,255,255,0.6)",
+                            }}>
+                              ${price.toFixed(2)}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Custom Fit Option */}
                   {product.customFitAvailable && (
@@ -287,46 +347,15 @@ export default function Details1({ product }) {
                     />
                   </div>
 
-                  {/* Single / Double Layer Selection */}
-                  <div className="tf-product-layer-select mb-3">
-                    <h6 style={{ fontWeight: 700, marginBottom: 10 }}>Select Layer:</h6>
-                    <div style={{ display: "flex", gap: 12 }}>
-                      <button
-                        type="button"
-                        onClick={() => setSelectedLayer("single")}
-                        style={{
-                          flex: 1, padding: "14px 10px", border: selectedLayer === "single" ? "2px solid #222" : "1px solid #ccc",
-                          borderRadius: 6, background: selectedLayer === "single" ? "#222" : "#fff",
-                          color: selectedLayer === "single" ? "#fff" : "#222",
-                          cursor: "pointer", transition: "all 0.2s",
-                        }}
-                      >
-                        <div style={{ fontWeight: 700, fontSize: "1rem" }}>SINGLE LAYER</div>
-                        <div style={{ fontSize: "0.85rem", marginTop: 4, opacity: 0.85 }}>$395 USD</div>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setSelectedLayer("double")}
-                        style={{
-                          flex: 1, padding: "14px 10px", border: selectedLayer === "double" ? "2px solid #222" : "1px solid #ccc",
-                          borderRadius: 6, background: selectedLayer === "double" ? "#222" : "#fff",
-                          color: selectedLayer === "double" ? "#fff" : "#222",
-                          cursor: "pointer", transition: "all 0.2s",
-                        }}
-                      >
-                        <div style={{ fontWeight: 700, fontSize: "1rem" }}>DOUBLE LAYER</div>
-                        <div style={{ fontSize: "0.85rem", marginTop: 4, opacity: 0.85 }}>$595 USD</div>
-                      </button>
-                    </div>
-                  </div>
-
                   {/* Price Display */}
                   <div className="tf-product-price mb-3">
-                    <div className="d-flex align-items-center gap-2">
+                    <div className="d-flex align-items-center gap-2 flex-wrap">
                       <h3 className="mb-0">${totalPrice.toFixed(2)} USD</h3>
-                      <span style={{ fontSize: "0.82rem", color: "#888" }}>
-                        ({selectedLayer === "single" ? "Single Layer" : "Double Layer"})
-                      </span>
+                      {product.compareAtPrice && product.compareAtPrice > product.price && (
+                        <span style={{ fontSize: "0.9rem", color: "#999", textDecoration: "line-through" }}>
+                          ${(product.compareAtPrice / 100).toFixed(2)} USD
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -359,7 +388,6 @@ export default function Details1({ product }) {
                               customFit,
                               selectedOptions,
                               driverName,
-                              layer: selectedLayer,
                               price: totalPrice
                             });
                           } else {
@@ -383,7 +411,6 @@ export default function Details1({ product }) {
                           customFit,
                           selectedOptions,
                           driverName,
-                          layer: selectedLayer,
                           price: totalPrice,
                         }, false);
                         router.push('/checkout');

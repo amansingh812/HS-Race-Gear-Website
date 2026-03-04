@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Footer3 from '../footers/Footer3';
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import Link from "next/link";
 import ProductCard1 from "@/components/productCards/ProductCard1";
 import '@/public/css/shop.css';
@@ -248,8 +248,8 @@ export default function ShopClient() {
 
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
 
       {/* Breadcrumb */}
       <section className="tf-page-title">
@@ -292,8 +292,8 @@ export default function ShopClient() {
           <div className="row">
             {/* Sidebar Filters */}
             <div className="col-lg-3 col-md-4 mb-4">
-              <div className="card shadow-sm">
-                <div className="card-header bg-white">
+              <div className="card shop-filter-card">
+                <div className="card-header shop-filter-card-header">
                   <h5 className="mb-0">Filters</h5>
                 </div>
                 <div className="card-body">
@@ -406,7 +406,7 @@ export default function ShopClient() {
                   </div>
 
                   <button
-                    className="btn btn-outline-secondary w-100"
+                    className="shop-clear-btn w-100"
                     onClick={clearFilters}
                   >
                     Clear All Filters
@@ -418,8 +418,8 @@ export default function ShopClient() {
             {/* Products Grid */}
             <div className="col-lg-9 col-md-8">
               {/* Toolbar */}
-              <div className="card shadow-sm mb-4">
-                <div className="card-body">
+              <div className="card shop-toolbar-card mb-4">
+                <div className="card-body shop-toolbar-body">
                   <div className="row align-items-center">
                     <div className="col-md-6">
                       <p className="mb-0 shop-product-count">
@@ -461,32 +461,19 @@ export default function ShopClient() {
                 <div className="row g-4">
                   {Array.from({ length: 6 }).map((_, i) => (
                     <div key={i} className="col-lg-4 col-md-6">
-                      <div className="card border-0" style={{ background: 'transparent' }}>
-                        <div style={{
-                          background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-                          backgroundSize: '200% 100%',
-                          animation: 'shimmer 1.4s infinite',
-                          borderRadius: 8,
-                          height: 320,
-                          marginBottom: 12,
-                        }} />
-                        <div style={{ height: 18, width: '75%', background: '#f0f0f0', borderRadius: 4, marginBottom: 8, animation: 'shimmer 1.4s infinite' }} />
-                        <div style={{ height: 16, width: '40%', background: '#f0f0f0', borderRadius: 4, animation: 'shimmer 1.4s infinite' }} />
+                      <div className="shop-skeleton-card">
+                        <div className="shop-skeleton-img" />
+                        <div className="shop-skeleton-line" style={{ width: '75%' }} />
+                        <div className="shop-skeleton-line" style={{ width: '40%' }} />
                       </div>
                     </div>
                   ))}
-                  <style>{`
-                    @keyframes shimmer {
-                      0% { background-position: 200% 0; }
-                      100% { background-position: -200% 0; }
-                    }
-                  `}</style>
                 </div>
               ) : products.length === 0 ? (
                 <div className="shop-empty-state">
                   <h5>No products found</h5>
                   <p>Try adjusting your filters or browse a different category.</p>
-                  <Link href="/shop" className="btn btn-outline-primary">
+                  <Link href="/shop" className="shop-view-all-btn">
                     View All Products
                   </Link>
                 </div>
@@ -505,36 +492,33 @@ export default function ShopClient() {
 
                   {pagination.totalPages > 1 && (
                     <nav className="mt-5">
-                      <ul className="pagination justify-content-center">
-                        <li className={`page-item ${pagination.currentPage === 1 ? 'disabled' : ''}`}>
+                      <ul className="shop-pagination">
+                        <li>
                           <button
-                            className="page-link"
+                            className={`shop-page-btn ${pagination.currentPage === 1 ? 'disabled' : ''}`}
                             onClick={() => setPagination(prev => ({ ...prev, currentPage: prev.currentPage - 1 }))}
                             disabled={pagination.currentPage === 1}
                           >
-                            Previous
+                            ← Prev
                           </button>
                         </li>
                         {[...Array(pagination.totalPages)].map((_, i) => (
-                          <li
-                            key={i}
-                            className={`page-item ${pagination.currentPage === i + 1 ? 'active' : ''}`}
-                          >
+                          <li key={i}>
                             <button
-                              className="page-link"
+                              className={`shop-page-btn ${pagination.currentPage === i + 1 ? 'active' : ''}`}
                               onClick={() => setPagination(prev => ({ ...prev, currentPage: i + 1 }))}
                             >
                               {i + 1}
                             </button>
                           </li>
                         ))}
-                        <li className={`page-item ${pagination.currentPage === pagination.totalPages ? 'disabled' : ''}`}>
+                        <li>
                           <button
-                            className="page-link"
+                            className={`shop-page-btn ${pagination.currentPage === pagination.totalPages ? 'disabled' : ''}`}
                             onClick={() => setPagination(prev => ({ ...prev, currentPage: prev.currentPage + 1 }))}
                             disabled={pagination.currentPage === pagination.totalPages}
                           >
-                            Next
+                            Next →
                           </button>
                         </li>
                       </ul>
