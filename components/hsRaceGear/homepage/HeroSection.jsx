@@ -31,7 +31,7 @@ const heroSlides = [
     cta: "Get Measured",
     link: "/custom-measurement",
     isH1: false,
-    image: "/images/slider/fashion/hero_cars.png",
+    image: "/images/slider/fashion/hero_cars.webp",
   },
 ];
 

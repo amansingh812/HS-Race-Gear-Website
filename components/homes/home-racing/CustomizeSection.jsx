@@ -299,11 +299,12 @@ export default function CustomizeSection() {
       />
 
       <section
+        className="customize-section"
         style={{
           background: "#0a0a0a",
           padding: "80px 0 90px",
           position: "relative",
-          overflow: "hidden",
+          overflow: "clip",
         }}
       >
         {/* Subtle diagonal racing stripes */}
@@ -337,7 +338,7 @@ export default function CustomizeSection() {
           }}
         >
           {/* ── Header ── */}
-          <div style={{ marginBottom: "52px" }}>
+          <div style={{ marginBottom: "52px" }} className="customize-header">
             <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "14px" }}>
               <div style={{ width: "40px", height: "3px", background: "#dc2626" }} />
               <span style={{ color: "#f87171", fontSize: "11px", fontWeight: "700", letterSpacing: "4px", textTransform: "uppercase" }}>
@@ -373,11 +374,11 @@ export default function CustomizeSection() {
               const cardInner = (
                 <div
                   className="customize-card"
-                  style={{ position: "relative", overflow: "visible", cursor: "pointer" }}
+                  style={{ position: "relative", overflow: "visible", cursor: "pointer", height: "100%" }}
                   {...(hasSubs
                     ? {
-                        onClick: (e) => { e.preventDefault(); setModalOpen(true); },
-                      }
+                      onClick: (e) => { e.preventDefault(); setModalOpen(true); },
+                    }
                     : {})}
                 >
                   {/* Skewed background */}
@@ -457,7 +458,7 @@ export default function CustomizeSection() {
                     </div>
 
                     {/* Image */}
-                    <div style={{ width: "100%", aspectRatio: "3/4", position: "relative", marginBottom: "20px", overflow: "hidden" }}>
+                    <div className="card-img-wrap" style={{ width: "100%", aspectRatio: "3/4", position: "relative", marginBottom: "20px", overflow: "hidden" }}>
                       <Image
                         src={category.img}
                         alt={category.name}
@@ -510,20 +511,45 @@ export default function CustomizeSection() {
 
               /* Suits → button, others → Link */
               return hasSubs ? (
-                <div key={index} style={{ textDecoration: "none", display: "block" }}>
+                <div key={index} style={{ textDecoration: "none", display: "block", width: "100%" }}>
                   {cardInner}
                 </div>
               ) : (
-                <Link key={index} href={category.href} style={{ textDecoration: "none" }}>
+                <Link key={index} href={category.href} style={{ textDecoration: "none", display: "block", width: "100%" }}>
                   {cardInner}
                 </Link>
               );
             })}
           </div>
+
+          {/* Mobile scroll hint */}
+          <div className="scroll-hint-bar">
+            <span style={{
+              color: "rgba(255,255,255,0.3)",
+              fontSize: "11px",
+              fontWeight: "600",
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}>
+              Swipe to explore
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </span>
+          </div>
         </div>
 
         {/* ── Styles ── */}
         <style jsx>{`
+          /* Scroll hint - hidden on desktop */
+          .scroll-hint-bar {
+            display: none;
+          }
+
           /* Desktop: 5 columns */
           @media (max-width: 1200px) {
             .customize-grid {
@@ -542,30 +568,70 @@ export default function CustomizeSection() {
 
           /* Mobile: horizontal scroll */
           @media (max-width: 767px) {
+            .customize-section {
+              padding: 50px 0 60px !important;
+              overflow: visible !important;
+            }
+            .customize-header {
+              margin-bottom: 32px !important;
+            }
             .customize-grid {
               display: flex !important;
               overflow-x: auto !important;
+              overflow-y: visible !important;
               scroll-snap-type: x mandatory;
-              gap: 16px !important;
+              gap: 12px !important;
               margin: 0 -24px !important;
-              padding: 0 24px 30px 24px !important;
+              padding: 0 24px 16px 24px !important;
               -webkit-overflow-scrolling: touch;
               scrollbar-width: none;
               -ms-overflow-style: none;
+              touch-action: pan-x;
             }
             .customize-grid::-webkit-scrollbar {
               display: none;
             }
             .customize-grid > * {
-              flex: 0 0 72%;
-              max-width: 280px;
-              scroll-snap-align: center;
+              flex: 0 0 44%;
+              min-width: 155px;
+              max-width: 200px;
+              scroll-snap-align: start;
             }
             .customize-card .card-skew-bg {
               transform: skewX(-2deg) !important;
             }
             .customize-card .card-accent-stripe {
               transform: skewX(-2deg) !important;
+            }
+            /* Mobile card content adjustments — force uniform card size */
+            .customize-card > div:last-child {
+              padding: 16px 12px 14px !important;
+            }
+            .customize-card .card-img-wrap {
+              aspect-ratio: unset !important;
+              height: 130px !important;
+              margin-bottom: 12px !important;
+            }
+            .customize-card .card-title {
+              font-size: 11px !important;
+              letter-spacing: 1px !important;
+            }
+            .customize-card .card-arrow {
+              width: 14px !important;
+              height: 14px !important;
+            }
+            .scroll-hint-bar {
+              display: flex !important;
+              justify-content: center;
+              padding-top: 16px;
+            }
+          }
+
+          /* Small mobile: slightly larger cards */
+          @media (max-width: 400px) {
+            .customize-grid > * {
+              flex: 0 0 46% !important;
+              min-width: 145px !important;
             }
           }
 
