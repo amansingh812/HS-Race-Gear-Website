@@ -42,6 +42,9 @@ export const metadata = {
     description: "Custom SFI-certified racing suits built to your exact measurements.",
     images: ["https://hsracegear.com/images/og-image.jpg"],
   },
+  verification: {
+    google: "i715xGvcRmYOKhbA14Cdp49UcJ3fWE8XI5st--vYq4A",
+  },
   icons: {
     icon: [
       { url: "/images/favicon/favicon.ico", sizes: "any" },
