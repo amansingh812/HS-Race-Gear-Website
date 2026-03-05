@@ -7,7 +7,7 @@ import Link from "next/link";
 const products = [
   {
     title: "Racing Suit",
-    image: "images/home/SuitBanner.png",
+    image: "/images/home/SuitBanner.png",
     link: "/custom-race-suit",
     sfi: "SFI 3.2A/1 & 3.2A/5",
     specs: [
