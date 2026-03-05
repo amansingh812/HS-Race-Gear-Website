@@ -8,6 +8,7 @@ import "@/public/css/compare.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/blog" },
   title: "Blog | HS Race Gear — Racing Guides, Safety Tips & Gear Advice",
   description:
     "Expert articles on custom racing suits, SFI certifications, how to choose the right racewear, and getting the perfect custom fit. Knowledge built for serious drivers.",

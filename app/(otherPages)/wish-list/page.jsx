@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 import "@/public/css/cart-checkout.css";
 export const metadata = {
+  alternates: { canonical: "/wish-list" },
   title: "My Wishlist | HS Race Gear",
   description: "Your saved racing gear wishlist. Keep track of your favorite SFI certified racing equipment.",
 };

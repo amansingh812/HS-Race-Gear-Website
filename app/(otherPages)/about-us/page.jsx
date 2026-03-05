@@ -11,6 +11,7 @@ import "@/public/css/about-us.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/about-us" },
   title: "About Us - HS Race Gear | Premium SFI Certified Racing Suits & Motorsports Apparel",
   description: "Discover HS Race Gear - Over 10 years providing premium SFI certified racing suits, custom racegear, and fire-resistant motorsports apparel. Safety first, quality always.",
   keywords: "SFI certified racing suits, custom racegear, fire-resistant racing gear, motorsports apparel, SFI 3.2A/1, racing safety equipment",

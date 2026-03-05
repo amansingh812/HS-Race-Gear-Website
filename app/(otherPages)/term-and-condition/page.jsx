@@ -7,6 +7,7 @@ import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/term-and-condition" },
   title: "Terms & Conditions | HS Race Gear",
   description:
     "Read the Terms and Conditions for HS RaceGear. Covers online store terms, billing, product policies, liability, and more.",

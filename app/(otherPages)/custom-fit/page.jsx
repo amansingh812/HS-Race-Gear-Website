@@ -7,6 +7,7 @@ import CustomFitFormPage from "@/components/hsRaceGear/howToMeasure/CustomFitFor
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/custom-fit" },
   title: "Custom Gear Racing Suits | HS Race Gear - Tailored to Your Measurements",
   description: "Get a perfect fit with HS Race Gear custom-tailored racing suits. Designed to your exact body measurements for maximum comfort, safety, and performance on the track.",
   keywords: "custom Gear racing suits, tailored racing gear, custom measurements, racing suit sizing, personalized racing suits, made-to-measure racing gear",

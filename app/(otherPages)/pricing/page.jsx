@@ -20,6 +20,7 @@ import {
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/pricing" },
     title: "Racing Gear Pricing – SFI Certified Suits, Gloves & Safety Gear | HS Race Gear",
     description:
         "Explore competitive pricing for professional SFI-certified racing suits, gloves, shoes, and safety gear. Custom-fit racing suits starting at $299 with free shipping on orders over $300.",

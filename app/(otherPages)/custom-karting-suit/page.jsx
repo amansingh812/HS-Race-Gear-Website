@@ -7,6 +7,7 @@ import "@/public/css/custom-karting-suit.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/custom-karting-suit" },
   title: "Custom Karting Suits | HS Race Gear - Sublimated Karting Suits",
   description:
     "Custom-made sublimated karting suits designed for comfort, performance, and personal style. Full-coverage sublimation printing with unlimited colors, tailored to your measurements.",

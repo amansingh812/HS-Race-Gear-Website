@@ -7,6 +7,7 @@ import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/shipping-policy" },
   title: "Shipping Policy | HS Race Gear",
   description:
     "Learn how HS Racegear packages and ships your custom SFI race suits, gloves, and shoes. Every order is carefully prepared and tracked.",

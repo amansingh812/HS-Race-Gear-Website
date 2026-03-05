@@ -5,6 +5,7 @@ import React from "react";
 import "@/public/css/hs-doc-theme.css";
 
 export const metadata = {
+  alternates: { canonical: "/return-policy" },
   title: "Return & Refund Policy | HS Race Gear",
   description:
     "Read the HS Race Gear Return and Refund Policy. Learn about our return window, conditions for returns, refund processing times, and how to initiate a return.",

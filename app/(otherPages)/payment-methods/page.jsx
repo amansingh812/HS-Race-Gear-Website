@@ -7,6 +7,7 @@ import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/payment-methods" },
   title: "Payment Methods | HS Race Gear",
   description:
     "HS Racegear accepts Stripe (Visa, Mastercard, Amex), Google Pay, Apple Pay, and PayPal. All payments are secure and processed through trusted payment gateways.",

@@ -7,6 +7,7 @@ import "@/public/css/custom-gloves.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/custom-gloves" },
   title: "Custom Racing Gloves | HS Race Gear - SFI 3.3A/5 Certified",
   description:
     "SFI 3.3A/5 certified Nomex® racing gloves with silicone grip palm, two-layer fire protection, and custom team branding. Engineered for control and safety.",

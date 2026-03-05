@@ -7,6 +7,7 @@ import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/more-mockups" },
     title: "More Mockups | HS Race Gear - Download Racing Suit Design Templates",
     description:
         "Download additional racing suit mockup templates from HS Race Gear. Visualize your custom design before ordering with our detailed design templates.",

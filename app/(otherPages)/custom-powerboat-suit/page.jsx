@@ -7,6 +7,7 @@ import "@/public/css/custom-powerboat-suit.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/custom-powerboat-suit" },
   title:
     "Custom Power Boat Racing Suits | HS Race Gear - SFI 3.2A/1 & 3.2A/5 Certified",
   description:

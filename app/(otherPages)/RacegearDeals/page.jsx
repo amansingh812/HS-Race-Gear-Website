@@ -10,6 +10,7 @@ import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";
 
 export const metadata = {
+  alternates: { canonical: "/RacegearDeals" },
   title: "Racegear Deals | HS Race Gear",
   description: "Check out our amazing deals on SFI-certified race suits, gloves, and shoes. Limited time offers on custom race gear.",
 };

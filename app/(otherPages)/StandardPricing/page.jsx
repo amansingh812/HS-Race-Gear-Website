@@ -6,6 +6,7 @@ import "@/public/css/standard-pricing.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/StandardPricing" },
   title: "Standard Pricing | HS Race Gear",
   description: "Explore our standard pricing for SFI-certified race suits, gloves, and shoes. Fully customizable race gear with unlimited colors and logos.",
 };

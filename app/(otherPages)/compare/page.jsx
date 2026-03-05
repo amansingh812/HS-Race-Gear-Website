@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/compare" },
   title: "Compare Racing Suits | HS Race Gear",
   description:
     "Compare HS Race Gear custom racing suits with leading brands. See how our SFI-certified suits stack up on quality, fit, price, and customization options.",

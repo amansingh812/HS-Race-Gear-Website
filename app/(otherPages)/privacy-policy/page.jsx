@@ -7,6 +7,7 @@ import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "/privacy-policy" },
   title: "Privacy Policy | HS Race Gear",
   description:
     "Read the HS RaceGear Privacy Policy. Learn how we collect, use, and protect your personal information when you shop on hsracegear.com.",

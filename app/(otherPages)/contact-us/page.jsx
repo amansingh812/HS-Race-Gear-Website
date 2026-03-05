@@ -5,6 +5,7 @@ import Contact from "@/components/otherPages/Contact";
 import "@/public/css/contact-us.css";
 
 export const metadata = {
+  alternates: { canonical: "/contact-us" },
   title: "Contact Us | HS Race Gear",
   description: "Get in touch with the HS Race Gear team for custom orders, sizing help, pricing enquiries, and more. We respond within 24 hours.",
 };

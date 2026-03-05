@@ -6,6 +6,7 @@ import Link from "next/link";
 import CountdownTimer from "@/components/common/Countdown";
 
 export const metadata = {
+  alternates: { canonical: "/coming-soon" },
   title: "Coming Soon | HS Race Gear",
   description:
     "Something exciting is on the way from HS Race Gear. Stay tuned for new custom racing gear, products, and more.",

@@ -8,6 +8,7 @@ import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";
 import "@/public/css/cart-checkout.css";
 export const metadata = {
+  alternates: { canonical: "/view-cart" },
   title: "Shopping Cart | HS Race Gear",
   description: "Review your racing gear cart before checkout. Premium SFI certified racing equipment.",
 };

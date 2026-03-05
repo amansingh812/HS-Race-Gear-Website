@@ -7,6 +7,7 @@ import React from "react";
 import "@/public/css/cart-checkout.css";
 
 export const metadata = {
+  alternates: { canonical: "/checkout" },
   title: "Checkout | HS Race Gear - Secure Checkout",
   description: "Complete your purchase securely with address validation, shipping options, and secure payment processing.",
 };
