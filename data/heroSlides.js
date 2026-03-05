@@ -1,7 +1,7 @@
 export const slides = [
   {
     bgType: "bg-type-1",
-    imageSrc: "/images/slider/fashion/hero-4.png",
+    imageSrc: "/images/slider/fashion/hero-4.webp",
     
     width: 1920,
     height: 939,
@@ -11,7 +11,7 @@ export const slides = [
   },
   {
     bgType: "bg-type-2",
-    imageSrc: "/images/slider/fashion/hero_girl.png",
+    imageSrc: "/images/slider/fashion/hero_girl.webp",
     width: 944,
     height: 939,
     heading: "Elegance <br /> Redefined",
@@ -20,7 +20,7 @@ export const slides = [
   },
   {
     bgType: "bg-type-3",
-    imageSrc: "/images/slider/fashion/hero_cars.png",
+    imageSrc: "/images/slider/fashion/hero_cars.webp",
     width: 1920,
     height: 939,
     heading: "Elevate Your <br /> Wardrobe",

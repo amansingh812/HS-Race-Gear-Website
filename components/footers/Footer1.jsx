@@ -89,7 +89,7 @@ export default function Footer1({
                 <Image
                   className="logo"
                   alt="HS Race Gear"
-                  src="/images/logo/logo.png"
+                  src="/images/logo/logo.webp"
                   width={148}
                   height={44}
                 />

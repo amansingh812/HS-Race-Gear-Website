@@ -1,5 +1,6 @@
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Albert Sans';
   font-style: italic;
   font-weight: 100 900;
@@ -9,6 +10,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Albert Sans';
   font-style: italic;
   font-weight: 100 900;
@@ -18,6 +20,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Albert Sans';
   font-style: normal;
   font-weight: 100 900;
@@ -27,6 +30,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Albert Sans';
   font-style: normal;
   font-weight: 100 900;
@@ -36,6 +40,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'DM Sans';
   font-style: italic;
   font-weight: 100 1000;
@@ -45,6 +50,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'DM Sans';
   font-style: italic;
   font-weight: 100 1000;
@@ -54,6 +60,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 100 1000;
@@ -63,6 +70,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 100 1000;
@@ -72,6 +80,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Playfair Display';
   font-style: italic;
   font-weight: 400 900;
@@ -81,6 +90,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Playfair Display';
   font-style: italic;
   font-weight: 400 900;
@@ -90,6 +100,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Playfair Display';
   font-style: italic;
   font-weight: 400 900;
@@ -99,6 +110,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Playfair Display';
   font-style: italic;
   font-weight: 400 900;
@@ -108,6 +120,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Playfair Display';
   font-style: normal;
   font-weight: 400 900;
@@ -117,6 +130,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Playfair Display';
   font-style: normal;
   font-weight: 400 900;
@@ -126,6 +140,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Playfair Display';
   font-style: normal;
   font-weight: 400 900;
@@ -135,6 +150,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Playfair Display';
   font-style: normal;
   font-weight: 400 900;
@@ -144,6 +160,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 100;
@@ -153,6 +170,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 100;
@@ -162,6 +180,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 200;
@@ -171,6 +190,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 200;
@@ -180,6 +200,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 300;
@@ -189,6 +210,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 300;
@@ -198,6 +220,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 400;
@@ -207,6 +230,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 400;
@@ -216,6 +240,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 500;
@@ -225,6 +250,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 500;
@@ -234,6 +260,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 600;
@@ -243,6 +270,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 600;
@@ -252,6 +280,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 700;
@@ -261,6 +290,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 700;
@@ -270,6 +300,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 800;
@@ -279,6 +310,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 800;
@@ -288,6 +320,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 900;
@@ -297,6 +330,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: italic;
   font-weight: 900;
@@ -306,6 +340,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 100;
@@ -315,6 +350,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 100;
@@ -324,6 +360,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 200;
@@ -333,6 +370,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 200;
@@ -342,6 +380,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 300;
@@ -351,6 +390,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 300;
@@ -360,6 +400,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -369,6 +410,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -378,6 +420,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -387,6 +430,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
@@ -396,6 +440,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -405,6 +450,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
@@ -414,6 +460,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
@@ -423,6 +470,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
@@ -432,6 +480,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 800;
@@ -441,6 +490,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 800;
@@ -450,6 +500,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 900;
@@ -459,6 +510,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 900;
@@ -469,6 +521,7 @@
 
 /* Oswald */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -478,6 +531,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -487,6 +541,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -496,6 +551,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -505,6 +561,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -516,6 +573,7 @@
 /* Grandstander */
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Grandstander';
   font-style: italic;
   font-weight: 100 900;
@@ -525,6 +583,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Grandstander';
   font-style: italic;
   font-weight: 100 900;
@@ -534,6 +593,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Grandstander';
   font-style: italic;
   font-weight: 100 900;
@@ -543,6 +603,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Grandstander';
   font-style: normal;
   font-weight: 100 900;
@@ -552,6 +613,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Grandstander';
   font-style: normal;
   font-weight: 100 900;
@@ -561,6 +623,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Grandstander';
   font-style: normal;
   font-weight: 100 900;
@@ -570,6 +633,7 @@
 }
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -579,6 +643,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -588,6 +653,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -597,6 +663,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -606,6 +673,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 200 700;
@@ -616,6 +684,7 @@
 
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Jost';
   font-style: italic;
   font-weight: 100 900;
@@ -625,6 +694,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Jost';
   font-style: italic;
   font-weight: 100 900;
@@ -634,6 +704,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Jost';
   font-style: italic;
   font-weight: 100 900;
@@ -643,6 +714,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Jost';
   font-style: normal;
   font-weight: 100 900;
@@ -652,6 +724,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Jost';
   font-style: normal;
   font-weight: 100 900;
@@ -661,6 +734,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Jost';
   font-style: normal;
   font-weight: 100 900;
@@ -671,6 +745,7 @@
 
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Agbalumo';
   font-style: normal;
   font-weight: 400;
@@ -680,6 +755,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Agbalumo';
   font-style: normal;
   font-weight: 400;
@@ -689,6 +765,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Agbalumo';
   font-style: normal;
   font-weight: 400;
@@ -698,6 +775,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Agbalumo';
   font-style: normal;
   font-weight: 400;
@@ -708,6 +786,7 @@
 
 /* open sans */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -718,6 +797,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -728,6 +808,7 @@
 }
 /* greek-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -738,6 +819,7 @@
 }
 /* greek */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -748,6 +830,7 @@
 }
 /* hebrew */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -758,6 +841,7 @@
 }
 /* math */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -768,6 +852,7 @@
 }
 /* symbols */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -778,6 +863,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -788,6 +874,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -798,6 +885,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300 800;
@@ -808,6 +896,7 @@
 }
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -818,6 +907,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -828,6 +918,7 @@
 }
 /* greek-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -838,6 +929,7 @@
 }
 /* greek */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -848,6 +940,7 @@
 }
 /* hebrew */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -858,6 +951,7 @@
 }
 /* math */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -868,6 +962,7 @@
 }
 /* symbols */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -878,6 +973,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -888,6 +984,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -898,6 +995,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300 800;
@@ -909,6 +1007,7 @@
 
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 100;
@@ -918,6 +1017,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 100;
@@ -927,6 +1027,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 100;
@@ -936,6 +1037,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 200;
@@ -945,6 +1047,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 200;
@@ -954,6 +1057,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 200;
@@ -963,6 +1067,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 300;
@@ -972,6 +1077,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 300;
@@ -981,6 +1087,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 300;
@@ -990,6 +1097,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 400;
@@ -999,6 +1107,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 400;
@@ -1008,6 +1117,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 400;
@@ -1017,6 +1127,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 500;
@@ -1026,6 +1137,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 500;
@@ -1035,6 +1147,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 500;
@@ -1044,6 +1157,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 600;
@@ -1053,6 +1167,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 600;
@@ -1062,6 +1177,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 600;
@@ -1071,6 +1187,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 700;
@@ -1080,6 +1197,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 700;
@@ -1089,6 +1207,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 700;
@@ -1098,6 +1217,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 800;
@@ -1107,6 +1227,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 800;
@@ -1116,6 +1237,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 800;
@@ -1125,6 +1247,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 900;
@@ -1134,6 +1257,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 900;
@@ -1143,6 +1267,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: italic;
   font-weight: 900;
@@ -1152,6 +1277,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 100;
@@ -1161,6 +1287,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 100;
@@ -1170,6 +1297,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 100;
@@ -1179,6 +1307,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 200;
@@ -1188,6 +1317,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 200;
@@ -1197,6 +1327,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 200;
@@ -1206,6 +1337,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 300;
@@ -1215,6 +1347,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 300;
@@ -1224,6 +1357,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 300;
@@ -1233,6 +1367,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 400;
@@ -1242,6 +1377,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 400;
@@ -1251,6 +1387,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 400;
@@ -1260,6 +1397,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 500;
@@ -1269,6 +1407,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 500;
@@ -1278,6 +1417,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 500;
@@ -1287,6 +1427,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 600;
@@ -1296,6 +1437,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 600;
@@ -1305,6 +1447,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 600;
@@ -1314,6 +1457,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 700;
@@ -1323,6 +1467,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 700;
@@ -1332,6 +1477,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 700;
@@ -1341,6 +1487,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 800;
@@ -1350,6 +1497,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 800;
@@ -1359,6 +1507,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 800;
@@ -1368,6 +1517,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 900;
@@ -1377,6 +1527,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 900;
@@ -1386,6 +1537,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Be Vietnam Pro';
   font-style: normal;
   font-weight: 900;
@@ -1396,6 +1548,7 @@
 /* Nunito */
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: italic;
   font-weight: 200 1000;
@@ -1405,6 +1558,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: italic;
   font-weight: 200 1000;
@@ -1414,6 +1568,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: italic;
   font-weight: 200 1000;
@@ -1423,6 +1578,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: italic;
   font-weight: 200 1000;
@@ -1432,6 +1588,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: italic;
   font-weight: 200 1000;
@@ -1441,6 +1598,7 @@
 }
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 200 1000;
@@ -1450,6 +1608,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 200 1000;
@@ -1459,6 +1618,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 200 1000;
@@ -1468,6 +1628,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 200 1000;
@@ -1477,6 +1638,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 200 1000;
@@ -1488,6 +1650,7 @@
 /* Manrope */
 /* cyrillic-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 200 800;
@@ -1497,6 +1660,7 @@
 }
 /* cyrillic */
 @font-face {
+  font-display: swap;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 200 800;
@@ -1506,6 +1670,7 @@
 }
 /* greek */
 @font-face {
+  font-display: swap;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 200 800;
@@ -1515,6 +1680,7 @@
 }
 /* vietnamese */
 @font-face {
+  font-display: swap;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 200 800;
@@ -1524,6 +1690,7 @@
 }
 /* latin-ext */
 @font-face {
+  font-display: swap;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 200 800;
@@ -1533,6 +1700,7 @@
 }
 /* latin */
 @font-face {
+  font-display: swap;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 200 800;

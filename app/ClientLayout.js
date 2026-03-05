@@ -132,7 +132,9 @@ export default function RootLayout({ children }) {
         <NextAuthProvider>
           <AuthProvider>
             <Context>
-              {children}
+              <main id="main-content">
+                {children}
+              </main>
               <DemoModal />
               <CartComponent />
               <Compare />

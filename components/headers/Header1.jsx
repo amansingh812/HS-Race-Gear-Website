@@ -28,7 +28,7 @@ export default function Header1({
               <Image
                 alt="HS Race Gear"
                 className="logo"
-                src="/images/logo/logo.png"
+                src="/images/logo/logo.webp"
                 width={148}
                 height={44}
               />
