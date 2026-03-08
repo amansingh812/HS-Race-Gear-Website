@@ -4,7 +4,7 @@ import Topbar1 from "@/components/headers/Topbar1";
 import CustomOrderPage from "@/components/hsRaceGear/customGear/CustomOrderPage";
 import "@/public/css/custom-order.css";
 
-import React from "react";
+import React, { Suspense } from "react";
 
 export const metadata = {
   title: "Start Custom Order | HS Race Gear - Custom Racing Suits",
@@ -17,7 +17,9 @@ export default function page() {
     <>
       <Topbar1 />
       <Header3 />
-      <CustomOrderPage />
+      <Suspense fallback={<div style={{ minHeight: "100vh", background: "#070707" }} />}>
+        <CustomOrderPage />
+      </Suspense>
       <Footer3 />
     </>
   );
