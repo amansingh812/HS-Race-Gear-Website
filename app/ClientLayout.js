@@ -34,7 +34,6 @@ import ShareModal from "@/components/modals/ShareModal";
 
 import CartComponent from "@/components/modals/CartComponent";
 import DbSidebar from "@/components/modals/DbSidebar";
-import RtlToggler from "@/components/common/RtlToggler";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -150,7 +149,6 @@ export default function RootLayout({ children }) {
               <DbSidebar />
             </Context>
             <ScrollTop />
-            <RtlToggler />
           </AuthProvider>
         </NextAuthProvider>
       </body>

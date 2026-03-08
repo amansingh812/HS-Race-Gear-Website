@@ -147,7 +147,7 @@ export default function CustomRaceSuitPage() {
                             textTransform: "uppercase"
                         }}>
                             Precision Tailored.<br />
-                            Maximum <span className="gradient-text">Safety.</span>
+                            Maximum <span style={{ color: "#dc2626" }}>Safety.</span>
                         </h1>
 
                         {/* Subheading */}
@@ -198,7 +198,7 @@ export default function CustomRaceSuitPage() {
                                 textDecoration: "none",
                                 transition: "background-color 0.3s ease"
                             }}>
-                                Custom Measurement
+                                Custom Measurement Form
                             </Link>
                         </div>
                     </div>
@@ -396,7 +396,7 @@ export default function CustomRaceSuitPage() {
                                     textDecoration: "none",
                                     transition: "all 0.3s ease"
                                 }}>
-                                    Watch Measurement Video
+                                    HOW TO MEASURE
                                 </Link>
                             </div>
                         </div>

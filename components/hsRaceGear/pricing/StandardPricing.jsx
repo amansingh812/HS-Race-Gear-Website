@@ -1,7 +1,34 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import "@/public/css/standard-pricing.css";
+
+/* ── Highlight every occurrence of "Free" in green ── */
+const highlightFree = (text) => {
+  const parts = text.split(/(free)/i);
+  return parts.map((part, i) =>
+    /^free$/i.test(part) ? (
+      <span
+        key={i}
+        style={{
+          color: "#00e676",
+          fontWeight: "800",
+          background: "rgba(0,230,118,0.10)",
+          borderRadius: "4px",
+          padding: "0 4px",
+          letterSpacing: "0.4px",
+          textTransform: "uppercase",
+          fontSize: "12px",
+        }}
+      >
+        FREE
+      </span>
+    ) : (
+      part
+    )
+  );
+};
 
 /* ───────────────────────── SVG Icons ───────────────────────── */
 
@@ -39,6 +66,7 @@ const pricingData = [
     id: "single-layer",
     label: "SINGLE LAYER SUIT",
     title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT",
+    packageId: "single-suit",
     price: 549,
     icon: "suit",
     imagePlaceholder: "/images/pricing/single-layer-suit.jpg",
@@ -63,6 +91,7 @@ const pricingData = [
     id: "double-layer",
     label: "DOUBLE LAYER SUIT",
     title: "DOUBLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT",
+    packageId: "double-suit",
     price: 649,
     icon: "layer2",
     imagePlaceholder: "/images/pricing/double-layer-suit.jpg",
@@ -88,6 +117,7 @@ const pricingData = [
     id: "triple-layer",
     label: "TRIPLE LAYER SUIT",
     title: "TRIPLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT",
+    packageId: "triple-suit",
     price: 749,
     icon: "layer3",
     imagePlaceholder: "/images/pricing/triple-layer-suit.jpg",
@@ -112,6 +142,7 @@ const pricingData = [
     id: "gloves",
     label: "RACING GLOVES",
     title: "CUSTOM SFI RATED NOMEX GLOVES",
+    packageId: "single-suit-gloves",
     price: 189,
     icon: "glove",
     imagePlaceholder: "/images/pricing/racing-gloves.jpg",
@@ -134,6 +165,7 @@ const pricingData = [
     id: "shoes",
     label: "RACING SHOES",
     title: "CUSTOM SFI RATED NOMEX SHOES",
+    packageId: "single-suit-gloves-shoes",
     price: 285,
     icon: "shoe",
     imagePlaceholder: "/images/pricing/racing-shoes.jpg",
@@ -155,6 +187,7 @@ const pricingData = [
     id: "karting",
     label: "KARTING SUIT",
     title: "CUSTOM KARTING SUIT",
+    packageId: "karting-suit-gloves",
     price: 289,
     icon: "kart",
     imagePlaceholder: "/images/pricing/karting-suit.jpg",
@@ -408,7 +441,7 @@ function PricingCard({ item, index }) {
               fontFamily: "'Poppins', sans-serif",
             }}>
               <span style={{ flexShrink: 0, marginTop: "1px" }}><CheckIcon /></span>
-              {feat}
+              {highlightFree(feat)}
             </li>
           ))}
         </ul>
@@ -456,39 +489,42 @@ function PricingCard({ item, index }) {
                   fontFamily: "'Poppins', sans-serif",
                 }}>
                   <span style={{ flexShrink: 0, marginTop: "1px" }}><SpecDot /></span>
-                  {spec}
+                  {highlightFree(spec)}
                 </li>
               ))}
             </ul>
           </>
         )}
 
-        {/* CTA Button */}
-        <button style={{
-          width: "100%",
-          marginTop: "28px",
-          padding: "16px 24px",
-          background: item.popular
-            ? "linear-gradient(135deg, #e21b1b, #c41515)"
-            : "transparent",
-          border: item.popular ? "none" : "1.5px solid rgba(226,27,27,0.4)",
-          borderRadius: "12px",
-          color: item.popular ? "#fff" : "#e21b1b",
-          fontSize: "14px",
-          fontWeight: "700",
-          letterSpacing: "2.5px",
-          textTransform: "uppercase",
-          cursor: "pointer",
-          fontFamily: "'Poppins', sans-serif",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "8px",
-          transition: "all 0.3s ease",
-          boxShadow: item.popular ? "0 8px 36px rgba(226,27,27,0.25)" : "none",
-        }}>
+        {/* CTA Button — uniform red for all cards */}
+        <Link
+          href={`/custom-race-suit/order?package=${item.packageId}`}
+          style={{
+            width: "100%",
+            marginTop: "28px",
+            padding: "16px 24px",
+            background: "linear-gradient(135deg, #e21b1b, #c41515)",
+            border: "none",
+            borderRadius: "12px",
+            color: "#ffffff",
+            fontSize: "14px",
+            fontWeight: "700",
+            letterSpacing: "2.5px",
+            textTransform: "uppercase",
+            cursor: "pointer",
+            fontFamily: "'Poppins', sans-serif",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8px",
+            transition: "all 0.3s ease",
+            boxShadow: "0 8px 36px rgba(226,27,27,0.25)",
+            textDecoration: "none",
+            minHeight: "56px",
+          }}
+        >
           Customize Now <ArrowRight />
-        </button>
+        </Link>
       </div>
     </div>
   );
@@ -785,89 +821,144 @@ export default function StandardPricing() {
         ))}
       </section>
 
-      {/* ═════════ BOTTOM CTA ═════════ */}
-      <section style={{
-        padding: "80px 24px 120px",
-        textAlign: "center",
-        position: "relative",
-      }}>
+      {/* ═════════ BUNDLE & SAVE + CONTACT ═════════ */}
+      <section style={{ padding: "60px 24px 120px", position: "relative" }}>
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse at center bottom, rgba(226,27,27,0.05) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at center, rgba(226,27,27,0.03) 0%, transparent 65%)",
         }} />
 
         <div style={{
-          maxWidth: "600px",
+          maxWidth: "1100px",
           margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gap: "24px",
           position: "relative",
         }}>
+
+          {/* ── Bundle & Save card ── */}
           <div style={{
-            width: "48px", height: "2px",
-            background: "linear-gradient(to right, #e21b1b, #c41515)",
-            margin: "0 auto 28px",
-          }} />
-
-          <h2 style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: "clamp(30px, 4vw, 46px)",
-            fontWeight: "700",
-            textTransform: "uppercase",
-            margin: "0 0 14px 0",
-            color: "#ffffff",
+            background: "linear-gradient(155deg, #141414 0%, #0d0804 60%, #1a0a00 100%)",
+            border: "1px solid rgba(226,27,27,0.3)",
+            borderRadius: "20px",
+            padding: "40px 36px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
           }}>
-            Build Your Custom Setup
-          </h2>
-          <p style={{
-            color: "rgba(255,255,255,0.6)",
-            fontSize: "17px",
-            maxWidth: "460px",
-            margin: "0 auto 36px",
-            lineHeight: "1.7",
-          }}>
-            Every piece is made to your exact measurements with unlimited revisions.
-            Free worldwide shipping on all orders.
-          </p>
-
-          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-            <button style={{
-              padding: "17px 44px",
+            <div style={{
+              width: "44px", height: "44px",
+              borderRadius: "12px",
+              background: "rgba(226,27,27,0.1)",
+              border: "1px solid rgba(226,27,27,0.2)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e21b1b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+              </svg>
+            </div>
+            <h3 style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "22px", fontWeight: "700",
+              textTransform: "uppercase", letterSpacing: "0.5px",
+              color: "#fff", margin: 0,
+            }}>
+              Bundle &amp; Save More
+            </h3>
+            <p style={{
+              color: "rgba(255,255,255,0.6)",
+              fontSize: "15px", lineHeight: "1.7",
+              fontFamily: "'Poppins', sans-serif", margin: 0,
+            }}>
+              Pair your suit with SFI-certified gloves and shoes in one order and save. Our deal packages include {highlightFree("free")} shipping, {highlightFree("free")} mockups, and {highlightFree("free")} embroidery — all bundled at a lower price.
+            </p>
+            <Link href="/RacegearDeals" style={{
+              marginTop: "8px",
+              padding: "14px 28px",
               background: "linear-gradient(135deg, #e21b1b, #c41515)",
-              border: "none",
-              borderRadius: "12px",
+              borderRadius: "10px",
               color: "#fff",
-              fontSize: "15px",
-              fontWeight: "700",
-              letterSpacing: "2.5px",
-              textTransform: "uppercase",
-              cursor: "pointer",
+              fontSize: "14px", fontWeight: "700",
+              letterSpacing: "2px", textTransform: "uppercase",
               fontFamily: "'Poppins', sans-serif",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              boxShadow: "0 8px 40px rgba(226,27,27,0.3)",
-            }}>
-              Start Customizing <ArrowRight />
-            </button>
-            <a href="/RacegearDeals" style={{
-              padding: "17px 36px",
-              background: "transparent",
-              border: "1.5px solid rgba(226,27,27,0.3)",
-              borderRadius: "12px",
-              color: "#e21b1b",
-              fontSize: "15px",
-              fontWeight: "700",
-              letterSpacing: "2.5px",
-              textTransform: "uppercase",
-              cursor: "pointer",
-              fontFamily: "'Poppins', sans-serif",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
+              display: "inline-flex", alignItems: "center", gap: "8px",
               textDecoration: "none",
+              boxShadow: "0 6px 28px rgba(226,27,27,0.25)",
+              alignSelf: "flex-start",
             }}>
-              View Deals
-            </a>
+              View Bundle Deals <ArrowRight />
+            </Link>
           </div>
+
+          {/* ── Have Questions card ── */}
+          <div style={{
+            background: "linear-gradient(155deg, #111111 0%, #0a0a0a 100%)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: "20px",
+            padding: "40px 36px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+          }}>
+            <div style={{
+              width: "44px", height: "44px",
+              borderRadius: "12px",
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+            </div>
+            <h3 style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "22px", fontWeight: "700",
+              textTransform: "uppercase", letterSpacing: "0.5px",
+              color: "#fff", margin: 0,
+            }}>
+              Have Questions?
+            </h3>
+            <p style={{
+              color: "rgba(255,255,255,0.6)",
+              fontSize: "15px", lineHeight: "1.7",
+              fontFamily: "'Poppins', sans-serif", margin: 0,
+            }}>
+              Not sure which suit or package is right for your racing discipline? Our team is happy to help you choose the right gear, certifications, and fit for your needs.
+            </p>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "8px" }}>
+              <Link href="/faqs" style={{
+                padding: "14px 28px",
+                background: "transparent",
+                border: "1.5px solid rgba(255,255,255,0.12)",
+                borderRadius: "10px",
+                color: "rgba(255,255,255,0.75)",
+                fontSize: "14px", fontWeight: "700",
+                letterSpacing: "2px", textTransform: "uppercase",
+                fontFamily: "'Poppins', sans-serif",
+                display: "inline-flex", alignItems: "center", gap: "8px",
+                textDecoration: "none",
+              }}>
+                Browse FAQs <ArrowRight />
+              </Link>
+              <Link href="/about-us" style={{
+                padding: "14px 28px",
+                background: "transparent",
+                border: "1.5px solid rgba(255,255,255,0.12)",
+                borderRadius: "10px",
+                color: "rgba(255,255,255,0.75)",
+                fontSize: "14px", fontWeight: "700",
+                letterSpacing: "2px", textTransform: "uppercase",
+                fontFamily: "'Poppins', sans-serif",
+                display: "inline-flex", alignItems: "center", gap: "8px",
+                textDecoration: "none",
+              }}>
+                About Us <ArrowRight />
+              </Link>
+            </div>
+          </div>
+
         </div>
       </section>
     </div>

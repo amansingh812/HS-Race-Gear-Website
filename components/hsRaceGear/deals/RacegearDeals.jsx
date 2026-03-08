@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import "@/public/css/racegear-deals.css";
 
 const CheckIcon = () => (
@@ -38,6 +39,32 @@ const ArrowRight = () => (
   </svg>
 );
 
+// Wraps every occurrence of "Free" (case-insensitive) with a green highlight
+const highlightFree = (text) => {
+  const parts = text.split(/(free)/i);
+  return parts.map((part, i) =>
+    /^free$/i.test(part) ? (
+      <span
+        key={i}
+        style={{
+          color: "#00e676",
+          fontWeight: "800",
+          background: "rgba(0,230,118,0.10)",
+          borderRadius: "4px",
+          padding: "0 4px",
+          letterSpacing: "0.4px",
+          textTransform: "uppercase",
+          fontSize: "12px",
+        }}
+      >
+        FREE
+      </span>
+    ) : (
+      part
+    )
+  );
+};
+
 const dealsData = [
   {
     category: "CUSTOM SINGLE LAYER SUIT",
@@ -48,6 +75,7 @@ const dealsData = [
         title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX SFI CERTIFIED GLOVES",
         price: 649,
         badge: null,
+        packageId: "single-suit-gloves",
         image: "/images/deals/offeer-1.webp",
         features: [
           "SFI 3.2A/1 certified single-layer fire suit",
@@ -70,6 +98,7 @@ const dealsData = [
         title: "SINGLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX SFI CERTIFIED GLOVES + NOMEX SFI CERTIFIED SHOES",
         price: 729,
         badge: "BEST VALUE",
+        packageId: "single-suit-gloves-shoes",
         image: "/images/deals/offer-2.webp",
         features: [
           "SFI 3.2A/1 certified single-layer fire suit",
@@ -98,6 +127,7 @@ const dealsData = [
         title: "DOUBLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX GLOVES",
         price: 749,
         badge: null,
+        packageId: "double-suit-gloves",
         image: "/images/deals/offer-3.webp",
         features: [
           "SFI 3.2A/5 certified double-layer suit",
@@ -120,6 +150,7 @@ const dealsData = [
         title: "DOUBLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX GLOVES + CUSTOM NOMEX SHOES",
         price: 829,
         badge: "MOST POPULAR",
+        packageId: "double-suit-gloves-shoes",
         image: "/images/deals/offer-4.webp",
         features: [
           "SFI 3.2A/5 certified double-layer fire suit",
@@ -148,6 +179,7 @@ const dealsData = [
         title: "TRIPLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX GLOVES",
         price: 849,
         badge: null,
+        packageId: "triple-suit-gloves",
         image: "/images/deals/offer-5.webp",
         features: [
           "SFI 3.2A/5 certified triple-layer suit",
@@ -170,6 +202,7 @@ const dealsData = [
         title: "TRIPLE LAYER NOMEX CUSTOM SFI CERTIFIED RACE SUIT + CUSTOM NOMEX GLOVES + CUSTOM NOMEX SHOES",
         price: 929,
         badge: "PRO CHOICE",
+        packageId: "triple-suit-gloves-shoes",
         image: "/images/deals/offer-6.webp",
         features: [
           "SFI 3.2A/5 certified triple-layer fire suit",
@@ -198,6 +231,7 @@ const dealsData = [
         title: "CUSTOM KARTING SUIT + CUSTOM GLOVES",
         price: 315,
         badge: null,
+        packageId: "karting-suit-gloves",
         image: "/images/deals/offer-7.webp",
         features: [
           "Unlimited color options",
@@ -217,6 +251,7 @@ const dealsData = [
         title: "CUSTOM KARTING SUIT + CUSTOM GLOVES + CUSTOM SHOES",
         price: 415,
         badge: "BUNDLE DEAL",
+        packageId: "karting-suit-gloves-shoes",
         image: "/images/deals/offer-8.webp",
         features: [
           "Unlimited color options",
@@ -488,24 +523,21 @@ function DealCard({ offer }) {
               <span style={{ flexShrink: 0, marginTop: "2px" }}>
                 <CheckIcon />
               </span>
-              {feature}
+              {highlightFree(feature)}
             </li>
           ))}
         </ul>
 
-        {/* CTA Button */}
-        <button
+        {/* CTA Button — uniform red for all cards */}
+        <Link
+          href={`/custom-race-suit/order?package=${offer.packageId}`}
           style={{
             width: "100%",
             padding: "16px 24px",
-            background: offer.badge
-              ? "linear-gradient(135deg, #e21b1b, #c41515)"
-              : "transparent",
-            border: offer.badge
-              ? "none"
-              : "1.5px solid rgba(226,27,27,0.5)",
+            background: "linear-gradient(135deg, #e21b1b, #c41515)",
+            border: "none",
             borderRadius: "10px",
-            color: offer.badge ? "#fff" : "#e21b1b",
+            color: "#ffffff",
             fontSize: "14px",
             fontWeight: "700",
             letterSpacing: "2px",
@@ -517,13 +549,13 @@ function DealCard({ offer }) {
             justifyContent: "center",
             gap: "8px",
             transition: "all 0.3s ease",
-            boxShadow: offer.badge
-              ? "0 8px 30px rgba(226,27,27,0.25)"
-              : "none",
+            boxShadow: "0 8px 30px rgba(226,27,27,0.25)",
+            textDecoration: "none",
+            minHeight: "56px",
           }}
         >
           Customize Now <ArrowRight />
-        </button>
+        </Link>
       </div>
     </div>
   );
@@ -683,7 +715,7 @@ export default function RacegearDeals() {
                 }}
               >
                 <ShieldIcon />
-                {badge}
+                {highlightFree(badge)}
               </div>
             )
           )}
@@ -844,8 +876,8 @@ export default function RacegearDeals() {
             position: "relative",
           }}
         >
-          Get your fully customized, SFI-certified racegear today. Free
-          unlimited mockup revisions included.
+          Get your fully customized, SFI-certified racegear today.{" "}
+          {highlightFree("Free")} unlimited mockup revisions included.
         </p>
         <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
           <button

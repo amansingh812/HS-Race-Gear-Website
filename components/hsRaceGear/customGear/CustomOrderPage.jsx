@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import "@/public/css/custom-order.css";
 
 /* ============================================
@@ -30,6 +31,13 @@ const PACKAGES = [
       { id: "single-suit-gloves-shoes", name: "Single Layer Custom SFI Rated Suit + Custom Gloves + Custom Shoes", price: 729, includes: ["suit", "gloves", "shoes"] },
       { id: "double-suit-gloves-shoes", name: "Double Layer Custom SFI Rated Suit + Custom Gloves + Custom Shoes", price: 829, includes: ["suit", "gloves", "shoes"] },
       { id: "triple-suit-gloves-shoes", name: "Triple Layer Custom SFI Rated Suit + Custom Gloves + Custom Shoes", price: 929, includes: ["suit", "gloves", "shoes"] },
+    ],
+  },
+  {
+    category: "CUSTOM KARTING SUIT",
+    items: [
+      { id: "karting-suit-gloves", name: "Custom Karting Suit + Custom Gloves", price: 315, includes: ["suit", "gloves"] },
+      { id: "karting-suit-gloves-shoes", name: "Custom Karting Suit + Custom Gloves + Custom Shoes", price: 415, includes: ["suit", "gloves", "shoes"] },
     ],
   },
 ];
@@ -418,6 +426,7 @@ function SuccessScreen() {
    MAIN COMPONENT
    ============================================ */
 export default function CustomOrderPage() {
+  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [suitMockup, setSuitMockup] = useState(null);
@@ -428,6 +437,19 @@ export default function CustomOrderPage() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // Pre-select package from URL param (e.g. ?package=single-suit-gloves)
+  // and jump straight to mockup selection (Step 2)
+  useEffect(() => {
+    const paramId = searchParams.get("package");
+    if (!paramId) return;
+    const allPackages = PACKAGES.flatMap((cat) => cat.items);
+    const match = allPackages.find((p) => p.id === paramId);
+    if (match) {
+      setSelectedPackage(match);
+      setCurrentStep(1); // skip to mockup selection
+    }
+  }, [searchParams]);
 
   // Determine which steps are needed based on the selected package
   const steps = useMemo(() => {

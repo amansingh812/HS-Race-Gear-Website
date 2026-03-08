@@ -112,9 +112,9 @@ function SuitsModal({ isOpen, onClose, options }) {
                 onClick={onClose}
                 aria-label="Close"
                 style={{
-                  background: "transparent",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  color: "#888",
+                  background: "#1a1a1a",
+                  border: "1px solid rgba(220,38,38,0.6)",
+                  color: "#dc2626",
                   width: "40px",
                   height: "40px",
                   display: "flex",
@@ -122,15 +122,13 @@ function SuitsModal({ isOpen, onClose, options }) {
                   justifyContent: "center",
                   cursor: "pointer",
                   flexShrink: 0,
-                  clipPath: "polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)",
-                  transition: "border-color 0.2s, color 0.2s",
+                  borderRadius: "6px",
+                  fontSize: "22px",
+                  fontWeight: "bold",
+                  lineHeight: 1,
                 }}
-                className="modal-close-btn"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
+                ✕
               </button>
             </div>
 
@@ -250,8 +248,10 @@ function SuitsModal({ isOpen, onClose, options }) {
 
       <style jsx>{`
         .modal-close-btn:hover {
-          border-color: rgba(220,38,38,0.5) !important;
-          color: #fff !important;
+          background: #2a1010 !important;
+          border-color: #ef4444 !important;
+          color: #f87171 !important;
+          box-shadow: 0 0 12px rgba(220,38,38,0.3);
         }
         .suit-option-row:hover .row-fill {
           opacity: 1 !important;

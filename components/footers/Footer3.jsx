@@ -85,9 +85,10 @@ export default function Footer3() {
                   <Image
                     className="logo"
                     alt="HS Race Gear"
-                    src="/images/logo/logo.webp"
+                    src="/images/logo/logo4.png"
                     width={148}
-                    height={44}
+                    height={99}
+                    quality={100}
                   />
                 </Link>
               </div>

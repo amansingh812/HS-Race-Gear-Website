@@ -18,7 +18,6 @@ export default function Nav() {
   ];
 
   const shopMenuItems = [
-    { text: "SHOP ALL", href: "/shop" },
     { text: "OFF THE RACK RACE SUIT", href: "/shop?category=race-suits" },
     { text: "CREW SHIRTS", href: "/shop?category=crew-shirts" },
     { text: "SUBLIMATED CREW HOODIES", href: "/shop?category=hoodies" },
@@ -76,7 +75,6 @@ export default function Nav() {
           <i className="icon icon-arr-down" />
         </a>
         <div className="sub-menu hs-nav-dropdown">
-          <p className="hs-dropdown-label">Custom Racing Gear</p>
           <ul className="hs-dropdown-list">
             {customGearItems.map((item, index) => (
               <li key={index} className="hs-dropdown-item">
@@ -98,7 +96,6 @@ export default function Nav() {
           <i className="icon icon-arr-down" />
         </a>
         <div className="sub-menu hs-nav-dropdown">
-          <p className="hs-dropdown-label">Browse Store</p>
           <ul className="hs-dropdown-list">
             {shopMenuItems.map((item, index) => (
               <li key={index} className="hs-dropdown-item">

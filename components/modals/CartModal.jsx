@@ -21,10 +21,10 @@ export default function CartModal() {
 
   // Get product image - handle both API and local format
   const getProductImage = (product) => {
-    return product.imgSrc || 
-           product.images?.[0]?.url || 
-           product.productSnapshot?.image ||
-           "/images/products/default.webp";
+    return product.imgSrc ||
+      product.images?.[0]?.url ||
+      product.productSnapshot?.image ||
+      "/images/products/default.webp";
   };
 
   // Get product title
@@ -160,11 +160,11 @@ export default function CartModal() {
                     </Link>
                   </div>
                 )}
-                
+
               </div>
             </div>
             <div className="tf-mini-cart-bottom">
-              <div className="tf-mini-cart-tool">
+              {/* <div className="tf-mini-cart-tool">
                 <div
                   className="tf-mini-cart-tool-btn btn-add-gift"
                   onClick={() => setOpenTool((pre) => (pre == 1 ? -1 : 1))}
@@ -193,7 +193,7 @@ export default function CartModal() {
                   <i className="icon icon-car" />
                   <div className="text-xxs">Shipping</div>
                 </div>
-              </div>
+              </div> */}
               <div className="tf-mini-cart-bottom-wrap">
                 <div className="tf-cart-totals-discounts">
                   <div className="tf-cart-total text-xl fw-medium">Total:</div>
@@ -244,9 +244,8 @@ export default function CartModal() {
               </div>
             </div>
             <div
-              className={`tf-mini-cart-tool-openable add-gift ${
-                openTool == 1 ? "open" : ""
-              }`}
+              className={`tf-mini-cart-tool-openable add-gift ${openTool == 1 ? "open" : ""
+                }`}
             >
               <div
                 className="overplay tf-mini-cart-tool-close"
@@ -278,9 +277,8 @@ export default function CartModal() {
               </form>
             </div>
             <div
-              className={`tf-mini-cart-tool-openable add-note  ${
-                openTool == 2 ? "open" : ""
-              }`}
+              className={`tf-mini-cart-tool-openable add-note  ${openTool == 2 ? "open" : ""
+                }`}
             >
               <div
                 className="overplay tf-mini-cart-tool-close"
@@ -316,9 +314,8 @@ export default function CartModal() {
               </form>
             </div>
             <div
-              className={`tf-mini-cart-tool-openable coupon  ${
-                openTool == 3 ? "open" : ""
-              }`}
+              className={`tf-mini-cart-tool-openable coupon  ${openTool == 3 ? "open" : ""
+                }`}
             >
               <div
                 className="overplay tf-mini-cart-tool-close"
@@ -349,9 +346,8 @@ export default function CartModal() {
               </form>
             </div>
             <div
-              className={`tf-mini-cart-tool-openable estimate-shipping  ${
-                openTool == 4 ? "open" : ""
-              }`}
+              className={`tf-mini-cart-tool-openable estimate-shipping  ${openTool == 4 ? "open" : ""
+                }`}
             >
               <div
                 className="overplay tf-mini-cart-tool-close"

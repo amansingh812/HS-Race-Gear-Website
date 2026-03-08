@@ -259,3 +259,31 @@
   color: #dc3545 !important;
   border-left-color: #dc3545;
 }
+
+/* ── Quickview modal close button ── */
+.modal-quick-view .modal-content {
+  position: relative;
+}
+
+.modal-quick-view .icon-close-popup {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 200;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff !important;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modal-quick-view .icon-close-popup:hover {
+  background: #e21b1b;
+  color: #ffffff !important;
+}

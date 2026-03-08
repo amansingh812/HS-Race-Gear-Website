@@ -8,7 +8,6 @@ import Link from "next/link";
 import { useContextElement } from "@/context/Context";
 import QuantitySelect from "../common/QuantitySelect";
 import Image from "next/image";
-import { useState } from "react";
 
 export default function ShopCart() {
   const {
@@ -16,18 +15,8 @@ export default function ShopCart() {
     totalPrice,
     updateQuantity,
     removeFromCart,
-    applyDiscount,
     cartLoading,
   } = useContextElement();
-
-  const [discountCode, setDiscountCode] = useState("");
-  const [discountMessage, setDiscountMessage] = useState(null);
-
-  const handleApplyDiscount = async () => {
-    if (!discountCode.trim()) return;
-    const result = await applyDiscount(discountCode);
-    setDiscountMessage(result);
-  };
 
   // Get product image - handle both API and local format
   const getProductImage = (product) => {
@@ -198,40 +187,6 @@ export default function ShopCart() {
                     </Link>
                   </div>
                 )}
-                <div className="check-gift">
-                  <input type="checkbox" className="tf-check" id="checkGift" />
-                  <label htmlFor="checkGift" className="label text-dark-4">
-                    Add gift wrap. Only
-                    <span className="fw-medium"> $10.00.</span> (You can choose
-                    or not)
-                  </label>
-                </div>
-                <div className="box-ip-discount">
-                  <input 
-                    type="text" 
-                    placeholder="Discount code" 
-                    value={discountCode}
-                    onChange={(e) => setDiscountCode(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="tf-btn radius-6 btn-out-line-dark-2"
-                    onClick={handleApplyDiscount}
-                  >
-                    Apply
-                  </button>
-                </div>
-                {discountMessage && (
-                  <div className={`alert ${discountMessage.success ? "alert-success" : "alert-danger"} mt-2`}>
-                    {discountMessage.message}
-                  </div>
-                )}
-                <div className="cart-note">
-                  <label htmlFor="note" className="text-md fw-medium">
-                    Special instructions for seller
-                  </label>
-                  <textarea id="note" defaultValue={""} />
-                </div>
               </form>
               <div className="fl-iconbox wow fadeInUp">
                 <Swiper
@@ -285,35 +240,6 @@ export default function ShopCart() {
           </div>
           <div className="col-xl-4">
             <div className="tf-page-cart-sidebar">
-              <form className="cart-box shipping-cart-box">
-                <div className="text-lg title fw-medium">
-                  Shipping estimates
-                </div>
-                <fieldset className="field">
-                  <label htmlFor="country" className="text-sm">
-                    Country
-                  </label>
-                  <input type="text" id="country" placeholder="United State" />
-                </fieldset>
-                <fieldset className="field">
-                  <label htmlFor="state" className="text-sm">
-                    State/Provineta
-                  </label>
-                  <input type="text" id="state" placeholder="State/Provineta" />
-                </fieldset>
-                <fieldset className="field">
-                  <label htmlFor="code" className="text-sm">
-                    Zipcode
-                  </label>
-                  <input type="text" id="code" placeholder={41000} />
-                </fieldset>
-                <button
-                  type="button"
-                  className="tf-btn btn-dark2 animate-btn w-100"
-                >
-                  Estimate
-                </button>
-              </form>
               <form
                 onSubmit={(e) => e.preventDefault()}
                 className="cart-box checkout-cart-box"

@@ -189,14 +189,14 @@ export default function MobileMenu() {
           </div>
           <div className="mb-other-content">
             <div className="mb-contact">
-              <p>Address: 123 Yarran st, Punchbowl, NSW 2196, Australia</p>
+              <p>Address: 59 Kondazian St, Watertown MA, 02472</p>
             </div>
             <ul className="mb-info">
               <li>
                 Email: <b className="fw-medium">clientcare@hsracegear.com</b>
               </li>
               <li>
-                Phone: <b className="fw-medium">1.888.838.3022</b>
+                Phone: <b className="fw-medium">+1 (617) 319 6993</b>
               </li>
             </ul>
           </div>

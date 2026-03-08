@@ -22,9 +22,10 @@ export default function Header3() {
           <Link href="/" className="mobile-hs-logo">
             <Image
               alt="HS Race Gear"
-              src="/images/logo/logo.webp"
+              src="/images/logo/logo4.png"
               width={120}
-              height={36}
+              height={80}
+              quality={100}
             />
           </Link>
           <div className="mobile-logo-divider" />
@@ -61,9 +62,10 @@ export default function Header3() {
                 <Image
                   alt="HS Race Gear"
                   className="logo"
-                  src="/images/logo/logo.webp"
+                  src="/images/logo/logo4.png"
                   width={148}
-                  height={44}
+                  height={99}
+                  quality={100}
                 />
               </Link>
             </div>
