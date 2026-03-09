@@ -495,63 +495,113 @@ export default function CustomRaceSuitPage() {
                 </div>
             </section>
 
-            {/* CTA Section */}
-            <section style={{
-                padding: "96px 0",
-                backgroundColor: "#0a0a0a",
-                backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
-                backgroundSize: "cover",
-                backgroundPosition: "center"
-            }}>
-                <div className="container" style={{ maxWidth: "800px", padding: "0 24px", margin: "0 auto", textAlign: "center" }}>
-                    <h2 style={{
-                        fontSize: "clamp(1.75rem, 4vw, 3rem)",
-                        fontWeight: "700",
-                        color: "#fff",
-                        marginBottom: "24px"
-                    }}>
-                        Ready to Get Your Custom Suit?
-                    </h2>
-                    <p style={{
-                        color: "#9ca3af",
-                        fontSize: "1.125rem",
-                        marginBottom: "40px",
-                        lineHeight: "1.7"
-                    }}>
-                        Join thousands of professional drivers who trust HS Race Gear for their custom racing suits. Start your order today.
-                    </p>
+            {/* Team Orders & Support Section */}
+            <section style={{ padding: "80px 0", backgroundColor: "#0a0a0a" }}>
+                <div className="container" style={{ maxWidth: "1100px", padding: "0 24px", margin: "0 auto" }}>
                     <div style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "16px",
-                        justifyContent: "center",
-                        alignItems: "center"
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                        gap: "28px"
                     }}>
-                        <Link href="/custom-race-suit/order" style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "10px",
-                            backgroundColor: "#dc2626",
-                            color: "#fff",
-                            padding: "18px 40px",
-                            borderRadius: "6px",
-                            fontWeight: "700",
-                            fontSize: "18px",
-                            textDecoration: "none",
-                            transition: "background-color 0.3s ease"
+                        {/* Card 1 — Team & Bulk Orders */}
+                        <div style={{
+                            background: "linear-gradient(135deg, rgba(220,38,38,0.12) 0%, rgba(220,38,38,0.04) 100%)",
+                            border: "1px solid rgba(220,38,38,0.3)",
+                            borderRadius: "16px",
+                            padding: "40px 36px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "16px"
                         }}>
-                            Order Now
-                            <svg style={{ width: "20px", height: "20px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </Link>
-                        <Link href="/contact-us" style={{
-                            color: "#9ca3af",
-                            textDecoration: "none",
-                            fontSize: "14px"
+                            <div style={{
+                                width: "48px", height: "48px", borderRadius: "12px",
+                                background: "rgba(220,38,38,0.2)", display: "flex",
+                                alignItems: "center", justifyContent: "center"
+                            }}>
+                                <svg width="24" height="24" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <h3 style={{ fontSize: "1.4rem", fontWeight: "700", color: "#fff", margin: 0 }}>
+                                Team & Bulk Orders
+                            </h3>
+                            <p style={{ color: "#9ca3af", lineHeight: "1.7", margin: 0, fontSize: "1rem" }}>
+                                Outfitting a full team? We offer exclusive pricing for 3+ suits, co-ordinated team branding, and a dedicated order manager to handle everything from design to delivery.
+                            </p>
+                            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
+                                {["Matching team livery & logos", "Volume discounts from 3 suits", "Priority production & shipping"].map((item, i) => (
+                                    <li key={i} style={{ display: "flex", alignItems: "center", gap: "10px", color: "#d1d5db", fontSize: "0.92rem" }}>
+                                        <svg width="16" height="16" fill="none" stroke="#22c55e" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link href="/RacegearDeals" style={{
+                                display: "inline-flex", alignItems: "center", gap: "8px",
+                                marginTop: "8px", color: "#ef4444", fontWeight: "700",
+                                textDecoration: "none", fontSize: "0.95rem"
+                            }}>
+                                View Team Deals
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </Link>
+                        </div>
+
+                        {/* Card 2 — Have Questions */}
+                        <div style={{
+                            background: "rgba(255,255,255,0.03)",
+                            border: "1px solid rgba(255,255,255,0.1)",
+                            borderRadius: "16px",
+                            padding: "40px 36px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "16px"
                         }}>
-                            Have questions? Contact our team
-                        </Link>
+                            <div style={{
+                                width: "48px", height: "48px", borderRadius: "12px",
+                                background: "rgba(255,255,255,0.08)", display: "flex",
+                                alignItems: "center", justifyContent: "center"
+                            }}>
+                                <svg width="24" height="24" fill="none" stroke="#d1d5db" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                </svg>
+                            </div>
+                            <h3 style={{ fontSize: "1.4rem", fontWeight: "700", color: "#fff", margin: 0 }}>
+                                Have Questions?
+                            </h3>
+                            <p style={{ color: "#9ca3af", lineHeight: "1.7", margin: 0, fontSize: "1rem" }}>
+                                Not sure which suit is right for your racing series, or need help with certification requirements? Our gear specialists are ready to help you find the perfect fit.
+                            </p>
+                            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
+                                {["SFI certification guidance", "Sizing & measurement support", "Design & colour consultations"].map((item, i) => (
+                                    <li key={i} style={{ display: "flex", alignItems: "center", gap: "10px", color: "#d1d5db", fontSize: "0.92rem" }}>
+                                        <svg width="16" height="16" fill="none" stroke="#22c55e" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "8px" }}>
+                                <Link href="/faqs" style={{
+                                    display: "inline-flex", alignItems: "center", gap: "8px",
+                                    color: "#fff", fontWeight: "700", textDecoration: "none", fontSize: "0.95rem"
+                                }}>
+                                    Browse FAQs
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </Link>
+                                <Link href="/contact-us" style={{
+                                    color: "#9ca3af", textDecoration: "none", fontSize: "0.88rem"
+                                }}>
+                                    Or contact us directly →
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

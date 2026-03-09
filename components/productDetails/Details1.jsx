@@ -183,7 +183,7 @@ export default function Details1({ product }) {
                   )}
 
                   {/* Racing Specifications */}
-                  {(product.certification || product.certificationLevel || product.material || product.construction) && (
+                  {(product.certification || product.certificationLevel || product.construction) && (
                     <div className="tf-product-specifications mb-3">
                       <h6 className="fw-bold mb-2">Racing Specifications:</h6>
                       <ul className="list-unstyled">
@@ -197,12 +197,6 @@ export default function Details1({ product }) {
                           <li className="mb-1">
                             <span className="text-muted">Level:</span>
                             <span className="fw-medium ms-2">{product.certificationLevel}</span>
-                          </li>
-                        )}
-                        {product.material && (
-                          <li className="mb-1">
-                            <span className="text-muted">Material:</span>
-                            <span className="fw-medium ms-2">{product.material}</span>
                           </li>
                         )}
                         {product.construction && (

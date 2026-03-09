@@ -29,7 +29,7 @@ export default function Description1({ product }) {
         </div>
 
         {/* Racing Specifications Section */}
-        {(product.certification || product.material || product.features?.length > 0) && (
+        {(product.certification || product.features?.length > 0) && (
           <div className="widget-accordion wd-product-descriptions">
             <div
               className="accordion-title collapsed"
@@ -51,15 +51,6 @@ export default function Description1({ product }) {
                       <p>{product.certification}</p>
                       {product.certificationLevel && (
                         <p className="text-muted">Level: {product.certificationLevel}</p>
-                      )}
-                    </div>
-                  )}
-                  {product.material && (
-                    <div className="spec-item mb-3">
-                      <h6 className="fw-bold">Material</h6>
-                      <p>{product.material}</p>
-                      {product.construction && (
-                        <p className="text-muted">Construction: {product.construction}</p>
                       )}
                     </div>
                   )}

@@ -53,21 +53,51 @@ export default function AboutHSRaceGear() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
+            "@id": "https://hsracegear.com/#organization",
             "name": "HS Race Gear",
-            "description": "Premium SFI certified racing suits and custom motorsports apparel",
+            "alternateName": "HS Racegear",
+            "description": "Leading provider of custom-fit, SFI-certified racing suits, gloves, shoes, and motorsport accessories with over a decade of experience",
             "url": "https://hsracegear.com",
-            "logo": "https://hsracegear.com/logo.png",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://hsracegear.com/images/logo/logo.webp",
+              "width": 148,
+              "height": 44
+            },
+            "image": "https://hsracegear.com/images/logo/logo.webp",
             "foundingDate": "2014",
             "areaServed": "Worldwide",
             "slogan": "Driven by Safety. Fueled by Passion.",
-            "offers": {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "SFI Certified Racing Suits",
-                "category": "Motorsports Safety Equipment"
-              }
-            }
+            "telephone": "+1-617-319-6993",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "59 Kondazian St",
+              "addressLocality": "Watertown",
+              "addressRegion": "MA",
+              "postalCode": "02472",
+              "addressCountry": "US"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-617-319-6993",
+              "contactType": "customer service",
+              "availableLanguage": "English",
+              "areaServed": "Worldwide"
+            },
+            "sameAs": [
+              "https://www.facebook.com/hsracegear",
+              "https://www.instagram.com/hsracegear",
+              "https://www.tiktok.com/@hsracegear"
+            ],
+            "knowsAbout": [
+              "Custom Racing Suits",
+              "SFI Certified Fire Suits",
+              "Nomex Racing Gear",
+              "Karting Suits",
+              "Racing Gloves",
+              "Racing Shoes",
+              "Motorsport Safety Equipment"
+            ]
           })
         }}
       />

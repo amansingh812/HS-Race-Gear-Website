@@ -275,7 +275,6 @@ export default function ProductForm({ product = null, isEdit = false }) {
                     <option value="">None</option>
                     <option value="SFI 3.2A/1">SFI 3.2A/1</option>
                     <option value="SFI 3.2A/5">SFI 3.2A/5</option>
-                    <option value="SFI 3.2A/15">SFI 3.2A/15</option>
                   </select>
                 </div>
 
@@ -293,22 +292,6 @@ export default function ProductForm({ product = null, isEdit = false }) {
                     <option value="SFI-15">SFI Level 15</option>
                     <option value="SFI-3.3/5">SFI 3.3/5</option>
                     <option value="SFI-5.1">SFI 5.1</option>
-                  </select>
-                </div>
-
-                <div className="col-md-6 mb-3">
-                  <label className="form-label">Material <span className="text-muted">(Optional)</span></label>
-                  <select
-                    name="material"
-                    className="form-select"
-                    value={formData.material}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">None</option>
-                    <option value="Nomex">Nomex</option>
-                    <option value="FR Cotton">FR Cotton</option>
-                    <option value="Nomex/Kevlar">Nomex/Kevlar</option>
-                    <option value="Proban">Proban</option>
                   </select>
                 </div>
 
