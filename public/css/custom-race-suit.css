@@ -1,7 +1,7 @@
 /* Custom Race Suit Page Styles */
 
 .hero-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)),
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.6)),
     url("/images/shop/cleaned-custom_gear_Hero.webp");
   background-size: cover;
   background-position: center;
@@ -79,13 +79,16 @@
 
 .race-suit-mockup-item {
   flex-shrink: 0;
-  width: 472px;
-  height: 333px;
+  width: 340px;
+  aspect-ratio: 842 / 595;
   border-radius: 12px;
   border: 1px solid #404040;
   overflow: hidden;
-  background: #262626;
+  background: #1a1a1a;
   transition: border-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .race-suit-mockup-item:hover {
@@ -96,7 +99,8 @@
 .race-suit-mockup-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 8px;
 }
 
 @keyframes race-suit-scroll {
@@ -117,7 +121,32 @@
 
 @media (max-width: 480px) {
   .race-suit-mockup-item {
-    width: 180px;
-    height: 250px;
+    width: 200px;
+    aspect-ratio: 842 / 595;
   }
+}
+
+/* SFI Rating Comparison */
+.race-suit-rating-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.race-suit-rating-card {
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.race-suit-rating-card:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  transform: translateY(-4px);
+}
+
+.race-suit-rating-card.advanced {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.05);
 }

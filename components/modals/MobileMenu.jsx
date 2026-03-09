@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 
 const customGearItems = [
   { text: "Custom Race Suit", href: "/custom-race-suit" },
-  { text: "Custom Karting Suit", href: "/custom-measurement" },
-  { text: "Custom Power Boating Suit", href: "/custom-measurement" },
-  { text: "Custom Gloves", href: "/custom-measurement" },
-  { text: "Custom Shoes", href: "/custom-measurement" },
+  { text: "Custom Karting Suit", href: "/custom-karting-suit" },
+  { text: "Custom Power Boating Suit", href: "/custom-powerboat-suit" },
+  { text: "Custom Gloves", href: "/custom-gloves" },
+  { text: "Custom Shoes", href: "/custom-shoes" },
 ];
 
 const shopMenuItems = [

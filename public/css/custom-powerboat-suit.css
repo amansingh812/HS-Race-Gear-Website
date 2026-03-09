@@ -1,7 +1,7 @@
 /* Custom Power Boat Racing Suit Page Styles */
 
 .powerboat-hero-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.6)),
     url("/images/powerboat/powerboat-hero.webp");
   background-size: cover;
   background-position: center;
@@ -67,13 +67,16 @@
 
 .powerboat-mockup-item {
   flex-shrink: 0;
-  width: 472px;
-  height: 333px;
+  width: 340px;
+  aspect-ratio: 842 / 595;
   border-radius: 12px;
   border: 1px solid #404040;
   overflow: hidden;
-  background: #262626;
+  background: #1a1a1a;
   transition: border-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .powerboat-mockup-item:hover {
@@ -84,7 +87,8 @@
 .powerboat-mockup-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 8px;
 }
 
 @keyframes powerboat-scroll {
@@ -211,7 +215,7 @@
   }
 
   .powerboat-mockup-item {
-    width: 180px;
-    height: 250px;
+    width: 200px;
+    aspect-ratio: 842 / 595;
   }
 }

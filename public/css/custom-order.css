@@ -321,24 +321,24 @@
 
 .mockup-card-image {
   width: 100%;
-  /* height follows the image naturally */
+  aspect-ratio: 842 / 595;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: #1a1a1a;
   font-size: 2.5rem;
   font-weight: 800;
   color: rgba(255, 255, 255, 0.15);
   position: relative;
-  /* Minimum height for placeholder cards with no image */
-  min-height: 120px;
+  overflow: hidden;
 }
 
 .mockup-card-image img {
   width: 100%;
-  height: auto;          /* natural height — no cropping */
+  height: 100%;
   display: block;
-  object-fit: unset;     /* let the image define its own ratio */
+  object-fit: contain;
+  padding: 6px;
 }
 
 .mockup-card-label {

@@ -255,10 +255,10 @@ export default function CustomShoesPage() {
                                 borderRadius: "6px",
                                 fontWeight: "700",
                                 fontSize: "16px",
-                                background: "transparent",
-                                border: "none",
+                                background: "rgba(255,255,255,0.07)",
+                                border: "2px solid rgba(255,255,255,0.4)",
                                 cursor: "pointer",
-                                transition: "background-color 0.3s ease"
+                                transition: "all 0.3s ease"
                             }}>
                                 📏 View Size Chart
                             </button>
@@ -617,7 +617,7 @@ export default function CustomShoesPage() {
                             backgroundColor: "#262626",
                             borderRadius: "12px",
                             border: "1px solid #404040",
-                            display: "flex", 
+                            display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             overflow: "hidden"
@@ -843,7 +843,7 @@ export default function CustomShoesPage() {
             </section>
 
             {/* Final CTA Section */}
-            <section style={{
+            {/* <section style={{
                 padding: "96px 0",
                 backgroundColor: "#0a0a0a",
                 backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
@@ -901,7 +901,7 @@ export default function CustomShoesPage() {
                         </Link>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Size Chart Modal */}
             {showSizeChart && <ShoesSizeChartModal onClose={() => setShowSizeChart(false)} />}

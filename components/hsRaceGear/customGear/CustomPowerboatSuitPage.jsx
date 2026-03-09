@@ -201,7 +201,7 @@ export default function CustomPowerboatSuitPage() {
                                 textDecoration: "none",
                                 transition: "background-color 0.3s ease"
                             }}>
-                                Custom Measurement
+                                Custom Measurement form
                             </Link>
                         </div>
                     </div>
@@ -557,14 +557,15 @@ export default function CustomPowerboatSuitPage() {
                                 <div style={{ color: "#ef4444", marginBottom: "16px" }}>
                                     {material.icon}
                                 </div>
-                                <h3 style={{
-                                    fontSize: "1.15rem",
+                                <h4 style={{
+                                    fontSize: "1.12rem",
                                     fontWeight: "700",
                                     color: "#fff",
-                                    marginBottom: "10px"
+                                    marginBottom: "10px",
+                                    lineHeight: "30px ",
                                 }}>
                                     {material.title}
-                                </h3>
+                                </h4>
                                 <p style={{
                                     color: "#9ca3af",
                                     fontSize: "14px",
@@ -946,7 +947,7 @@ export default function CustomPowerboatSuitPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </Link>
-                            <Link href="/custom-powerboat-suit/order" style={{
+                            {/* <Link href="/custom-powerboat-suit/order" style={{
                                 display: "inline-flex",
                                 alignItems: "center",
                                 gap: "10px",
@@ -960,14 +961,14 @@ export default function CustomPowerboatSuitPage() {
                                 transition: "all 0.3s ease"
                             }}>
                                 Submit Measurements
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Final CTA Section */}
-            <section style={{
+            {/* <section style={{
                 padding: "96px 0",
                 backgroundColor: "#0a0a0a",
                 backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
@@ -1025,7 +1026,7 @@ export default function CustomPowerboatSuitPage() {
                         </Link>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </>
     );
 }

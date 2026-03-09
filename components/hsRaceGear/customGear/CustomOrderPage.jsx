@@ -209,7 +209,7 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
 }
 
 /* ---- Color Selection ---- */
-const MAX_PRIMARY_COLORS = 4;
+// No maximum color limit
 
 function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
   const selected = selections.primary || [];
@@ -229,7 +229,7 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
         <div className="step-badge">Step {currentStep} of {totalSteps}</div>
         <h2 className="step-title">Choose Your Colors</h2>
         <p className="step-subtitle">
-          Select up to <strong>{MAX_PRIMARY_COLORS} primary colors</strong> for your custom gear. Our designer will create a mockup based on your choices.
+          Select as many colors as you like for your custom gear. Our designer will create a mockup based on your choices.
         </p>
       </div>
       <div className="color-selection-area">
@@ -243,7 +243,7 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
         {/* Selected swatches row */}
         {selected.length > 0 && (
           <div className="color-selected-row">
-            <span className="color-selected-label">Selected ({selected.length}/{MAX_PRIMARY_COLORS}):</span>
+            <span className="color-selected-label">Selected ({selected.length}):</span>
             <div className="color-selected-chips">
               {selected.map((c) => (
                 <div key={c.hex} className="color-chip">
@@ -264,26 +264,20 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
           <div>
             <div className="color-section-title">
               Primary Color
-              {selected.length >= MAX_PRIMARY_COLORS && (
-                <span className="color-name-tag" style={{ marginLeft: 12, color: "#e21b1b" }}>
-                  Max {MAX_PRIMARY_COLORS} selected
-                </span>
-              )}
             </div>
             <div className="color-swatches">
               {COLORS.map((color) => {
                 const isSelected = selected.some((c) => c.hex === color.hex);
-                const isDisabled = !isSelected && selected.length >= MAX_PRIMARY_COLORS;
                 return (
                   <div
                     key={color.hex}
-                    className={`color-swatch ${isSelected ? "selected" : ""} ${isDisabled ? "disabled" : ""}`}
-                    style={{ backgroundColor: color.hex, opacity: isDisabled ? 0.35 : 1, cursor: isDisabled ? "not-allowed" : "pointer" }}
-                    onClick={() => !isDisabled && onChange("primary", color)}
-                    title={isDisabled ? `Max ${MAX_PRIMARY_COLORS} colors reached` : color.name}
+                    className={`color-swatch ${isSelected ? "selected" : ""}`}
+                    style={{ backgroundColor: color.hex, cursor: "pointer" }}
+                    onClick={() => onChange("primary", color)}
+                    title={color.name}
                     role="button"
                     tabIndex={0}
-                    onKeyDown={(e) => e.key === "Enter" && !isDisabled && onChange("primary", color)}
+                    onKeyDown={(e) => e.key === "Enter" && onChange("primary", color)}
                   >
                     <div className="color-swatch-check">
                       <CheckIcon size={14} color={color.light ? "#000" : "#fff"} />
@@ -480,7 +474,6 @@ export default function CustomOrderPage() {
         // Deselect — remove it
         return { primary: current.filter((c) => c.hex !== color.hex) };
       }
-      if (current.length >= MAX_PRIMARY_COLORS) return prev; // max reached
       return { primary: [...current, color] };
     });
   }, []);

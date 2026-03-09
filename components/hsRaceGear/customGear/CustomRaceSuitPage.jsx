@@ -70,7 +70,7 @@ export default function CustomRaceSuitPage() {
             {/* Custom CSS */}
             <style jsx>{`
         .hero-section {
-          background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('/images/shop/cleaned-custom_gear_Hero.webp');
+          background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.6)), url('/images/shop/cleaned-custom_gear_Hero.webp');
           background-size: cover;
           background-position: center;
           min-height: 100vh;
@@ -404,6 +404,130 @@ export default function CustomRaceSuitPage() {
                 </div>
             </section>
 
+            {/* SFI Rating Comparison Section */}
+            <section style={{ padding: "96px 0", backgroundColor: "#171717" }}>
+                <div className="container" style={{ maxWidth: "1200px", padding: "0 24px", margin: "0 auto" }}>
+                    <div style={{ textAlign: "center", marginBottom: "64px" }}>
+                        <h2 style={{
+                            fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                            fontWeight: "700",
+                            color: "#fff",
+                            marginBottom: "16px"
+                        }}>
+                            Choose Your Protection Level
+                        </h2>
+                        <div style={{
+                            height: "4px",
+                            width: "80px",
+                            backgroundColor: "#dc2626",
+                            margin: "0 auto 24px"
+                        }}></div>
+                        <p style={{
+                            color: "#9ca3af",
+                            fontSize: "1.1rem",
+                            maxWidth: "600px",
+                            margin: "0 auto"
+                        }}>
+                            Two SFI certification levels to match your racing series requirements.
+                        </p>
+                    </div>
+
+                    <div className="race-suit-rating-grid">
+                        {/* SFI 3.2A/1 */}
+                        <div className="race-suit-rating-card">
+                            <div style={{
+                                display: "inline-block",
+                                padding: "4px 12px",
+                                marginBottom: "16px",
+                                backgroundColor: "rgba(239, 68, 68, 0.1)",
+                                borderRadius: "6px",
+                                color: "#f87171",
+                                fontSize: "11px",
+                                fontWeight: "700",
+                                letterSpacing: "1px",
+                                textTransform: "uppercase"
+                            }}>
+                                Entry Level
+                            </div>
+                            <h3 style={{ fontSize: "1.5rem", fontWeight: "700", color: "#fff", marginBottom: "8px" }}>
+                                SFI 3.2A/1
+                            </h3>
+                            <p style={{ color: "#9ca3af", fontSize: "14px", marginBottom: "24px", lineHeight: "1.6" }}>
+                                Minimum 3 seconds of direct flame protection. Entry-level fire protection for motorsports.
+                            </p>
+                            <ul style={{ listStyle: "none", padding: 0 }}>
+                                {[
+                                    "Club-level & weekend racing events",
+                                    "Stock car & modified racing",
+                                    "Local track championships",
+                                    "Training sessions & test days"
+                                ].map((item, index) => (
+                                    <li key={index} style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        marginBottom: "10px",
+                                        color: "#d1d5db",
+                                        fontSize: "14px"
+                                    }}>
+                                        <svg style={{ width: "16px", height: "16px", color: "#22c55e", flexShrink: 0 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* SFI 3.2A/5 */}
+                        <div className="race-suit-rating-card advanced">
+                            <div style={{
+                                display: "inline-block",
+                                padding: "4px 12px",
+                                marginBottom: "16px",
+                                backgroundColor: "rgba(220, 38, 38, 0.2)",
+                                borderRadius: "6px",
+                                color: "#f87171",
+                                fontSize: "11px",
+                                fontWeight: "700",
+                                letterSpacing: "1px",
+                                textTransform: "uppercase"
+                            }}>
+                                Advanced — Recommended
+                            </div>
+                            <h3 style={{ fontSize: "1.5rem", fontWeight: "700", color: "#fff", marginBottom: "8px" }}>
+                                SFI 3.2A/5
+                            </h3>
+                            <p style={{ color: "#9ca3af", fontSize: "14px", marginBottom: "24px", lineHeight: "1.6" }}>
+                                Minimum 10 seconds of flame protection. Advanced multi-layer Nomex® construction.
+                            </p>
+                            <ul style={{ listStyle: "none", padding: 0 }}>
+                                {[
+                                    "Sprint car & drag racing",
+                                    "Late model & pro-level competition",
+                                    "Sanctioned national series events",
+                                    "High-horsepower & extreme performance"
+                                ].map((item, index) => (
+                                    <li key={index} style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        marginBottom: "10px",
+                                        color: "#d1d5db",
+                                        fontSize: "14px"
+                                    }}>
+                                        <svg style={{ width: "16px", height: "16px", color: "#22c55e", flexShrink: 0 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Fabric Technology Section */}
             <section style={{ padding: "96px 0", backgroundColor: "#171717" }}>
                 <div className="container" style={{ maxWidth: "1200px", padding: "0 24px", margin: "0 auto" }}>
@@ -494,6 +618,8 @@ export default function CustomRaceSuitPage() {
                     </div>
                 </div>
             </section>
+
+
 
             {/* Team Orders & Support Section */}
             <section style={{ padding: "80px 0", backgroundColor: "#0a0a0a" }}>

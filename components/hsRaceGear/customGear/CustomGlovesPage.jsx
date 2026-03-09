@@ -267,10 +267,10 @@ export default function CustomGlovesPage() {
                                 borderRadius: "6px",
                                 fontWeight: "700",
                                 fontSize: "16px",
-                                background: "transparent",
-                                border: "none",
+                                background: "rgba(255,255,255,0.07)",
+                                border: "2px solid rgba(255,255,255,0.4)",
                                 cursor: "pointer",
-                                transition: "background-color 0.3s ease"
+                                transition: "all 0.3s ease"
                             }}>
                                 📏 View Size Chart
                             </button>
@@ -844,7 +844,7 @@ export default function CustomGlovesPage() {
             </section>
 
             {/* Final CTA Section */}
-            <section style={{
+            {/* <section style={{
                 padding: "96px 0",
                 backgroundColor: "#0a0a0a",
                 backgroundImage: "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('/images/shop/action-racing.webp')",
@@ -902,7 +902,7 @@ export default function CustomGlovesPage() {
                         </Link>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Size Chart Modal */}
             {showSizeChart && <GlovesSizeChartModal onClose={() => setShowSizeChart(false)} />}
