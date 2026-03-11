@@ -4,19 +4,19 @@ export default function Description({ product }) {
   return (
     <>
       {product.description && (
-        <div className="item mb-4">
+        <div className="item mb-3">
           <p>{product.description}</p>
         </div>
       )}
 
       {product.shortDescription && (
-        <div className="item mb-4">
+        <div className="item mb-3">
           <p className="fw-medium">{product.shortDescription}</p>
         </div>
       )}
 
       {product.material && (
-        <div className="item mb-4">
+        <div className="item mb-3">
           <p className="fw-medium title">Material Composition</p>
           <ul>
             <li>{product.material}</li>
@@ -27,7 +27,7 @@ export default function Description({ product }) {
       )}
 
       {product.certification && (
-        <div className="item mb-4">
+        <div className="item mb-3">
           <p className="fw-medium title">Safety Certifications</p>
           <ul>
             <li>{product.certification}</li>
@@ -40,7 +40,7 @@ export default function Description({ product }) {
       )}
 
       {product.features && product.features.length > 0 && (
-        <div className="item mb-4">
+        <div className="item mb-3">
           <p className="fw-medium title">Key Features</p>
           <ul>
             {product.features.map((feature, index) => (
@@ -51,7 +51,7 @@ export default function Description({ product }) {
       )}
 
       {product.brand && (
-        <div className="item mb-4">
+        <div className="item mb-3">
           <p className="fw-medium title">About {product.brand}</p>
           <p>
             {product.brand} is committed to providing high-quality racing gear 

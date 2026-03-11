@@ -10,14 +10,14 @@ export default function VsVelocityContent() {
                     <p className="contact-breadcrumb">
                         <Link href="/">Home</Link>
                         <span className="contact-breadcrumb-sep">/</span>
-                        <span className="contact-breadcrumb-current">HS Racegear vs Velocity</span>
+                        <span className="contact-breadcrumb-current">HS Racegear vs Velocita</span>
                     </p>
                     <span className="contact-hero-tag">Compare</span>
                     <h1 className="contact-hero-title">
-                        HS Racegear<br /><span>vs Velocity Racing Gear</span>
+                        HS Racegear<br /><span>vs Velocita Racing Gear</span>
                     </h1>
                     <p className="contact-hero-subtitle">
-                        Drivers comparing racing suit options deserve clear, honest answers. See how HS Racegear stacks up against Velocity Racing Gear for custom SFI-certified suits.
+                        Drivers comparing racing suit options deserve clear, honest answers. See how HS Racegear stacks up against Velocita Racing Gear for custom SFI-certified suits.
                     </p>
                 </div>
             </section>
@@ -47,7 +47,7 @@ export default function VsVelocityContent() {
                             <div className="hs-doc-card">
                                 <ul className="hs-doc-list">
                                     <li><strong>HS Racegear:</strong> Custom SFI race suits start at $289</li>
-                                    <li><strong>Velocity Racing Gear:</strong> Pricing varies by product line and region</li>
+                                    <li><strong>Velocita Racing Gear:</strong> Pricing varies by product line and region</li>
                                 </ul>
                                 <p className="hs-doc-card-text">HS Racegear offers transparent, accessible pricing with custom sizing included — no surprises at checkout.</p>
                             </div>

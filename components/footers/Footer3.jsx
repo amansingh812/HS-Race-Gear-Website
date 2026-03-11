@@ -203,7 +203,7 @@ export default function Footer3() {
                       <Link href="/more-mockups">MORE MOCKUPS</Link>
                     </li>
                     <li className="item">
-                      <Link href="/blanket-template">BLANKET TEMPLATE</Link>
+                      <Link href="/blanket-template">BLANK TEMPLATE</Link>
                     </li>
                   </ul>
                 </div>
@@ -225,7 +225,7 @@ export default function Footer3() {
                       <Link href="/compare/vs-rush">V/S RUSH</Link>
                     </li>
                     <li className="item">
-                      <Link href="/compare/vs-velocity">V/S VELOCITY</Link>
+                      <Link href="/compare/vs-velocity">V/S Velocita</Link>
                     </li>
                     <li className="item">
                       <Link href="/compare/vs-pyrotect">V/S PYROTECT</Link>

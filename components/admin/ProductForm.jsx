@@ -287,11 +287,8 @@ export default function ProductForm({ product = null, isEdit = false }) {
                     onChange={handleInputChange}
                   >
                     <option value="">None</option>
-                    <option value="SFI-1">SFI Level 1</option>
-                    <option value="SFI-5">SFI Level 5</option>
-                    <option value="SFI-15">SFI Level 15</option>
-                    <option value="SFI-3.3/5">SFI 3.3/5</option>
-                    <option value="SFI-5.1">SFI 5.1</option>
+                    <option value="SFI-1">SFI Level 1 (3.2A/1)</option>
+                    <option value="SFI-5">SFI Level 5 (3.2A/5)</option>
                   </select>
                 </div>
 
@@ -309,6 +306,7 @@ export default function ProductForm({ product = null, isEdit = false }) {
                     <option value="Triple-layer">Triple-layer</option>
                   </select>
                 </div>
+
               </div>
             </div>
           </div>

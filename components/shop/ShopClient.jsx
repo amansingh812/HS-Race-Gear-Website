@@ -340,29 +340,10 @@ export default function ShopClient() {
                         <option value="">All Certifications</option>
                         <option value="SFI 3.2A/1">SFI 3.2A/1</option>
                         <option value="SFI 3.2A/5">SFI 3.2A/5</option>
-                        <option value="SFI 3.2A/15">SFI 3.2A/15</option>
-                        <option value="None">None</option>
                       </select>
                     </div>
                   )}
 
-                  {/* Material Filter - only for race suits or shop all */}
-                  {showMaterialFilter && (
-                    <div className="mb-4">
-                      <label className="form-label fw-bold">Material</label>
-                      <select
-                        className="form-select"
-                        value={filters.material}
-                        onChange={(e) => handleFilterChange('material', e.target.value)}
-                      >
-                        <option value="">All Materials</option>
-                        <option value="Nomex">Nomex</option>
-                        <option value="FR Cotton">FR Cotton</option>
-                        <option value="Nomex/Kevlar">Nomex/Kevlar</option>
-                        <option value="Proban">Proban</option>
-                      </select>
-                    </div>
-                  )}
 
                   {/* Price Range */}
                   <div className="mb-4">

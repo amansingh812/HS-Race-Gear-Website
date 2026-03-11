@@ -14,11 +14,6 @@ export default function ProductCard1({
   const [currentImage, setCurrentImage] = useState(product.imgSrc);
 
   const {
-    addToWishlist,
-    isAddedtoWishlist,
-    addToCompareItem,
-    isAddedtoCompareItem,
-    setQuickViewItem,
     addProductToCart,
     isAddedToCartProducts,
   } = useContextElement();
@@ -29,9 +24,8 @@ export default function ProductCard1({
 
   return (
     <div
-      className={`card-product ${
-        product.sizes?.length > 0 ? "card-product-size" : ""
-      } ${product.isOutofSale ? "out-of-stock" : ""} ${styleClass}`}
+      className={`card-product ${product.sizes?.length > 0 ? "card-product-size" : ""
+        } ${product.isOutofSale ? "out-of-stock" : ""} ${styleClass}`}
     >
       <div className={`card-product-wrapper ${ratioClass} `}>
         <Link href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`} className="product-img">
@@ -88,56 +82,14 @@ export default function ProductCard1({
                   </a>
                 </li>
               )}
-              <li
-                className={`wishlist ${
-                  isAddedtoWishlist(product.id) ? "addwishlist" : ""
-                }`}
-              >
-                <a
-                  onClick={() => addToWishlist(product.id)}
-                  className={`hover-tooltip tooltip-${tooltipDirection} box-icon`}
-                >
-                  <span
-                    className={`icon ${
-                      isAddedtoWishlist(product.id)
-                        ? "icon-trash"
-                        : "icon-heart2"
-                    } `}
-                  />
-                  <span className="tooltip">
-                    {" "}
-                    {isAddedtoWishlist(product.id)
-                      ? "Remove Wishlist"
-                      : "Add to Wishlist"}
-                  </span>
-                </a>
-              </li>
               <li>
-                <a
-                  href="#quickView"
-                  data-bs-toggle="modal"
-                  onClick={() => setQuickViewItem(product)}
-                  className={`hover-tooltip tooltip-${tooltipDirection} box-icon quickview`}
+                <Link
+                  href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`}
+                  className={`hover-tooltip tooltip-${tooltipDirection} box-icon`}
                 >
                   <span className="icon icon-view" />
-                  <span className="tooltip">Quick View</span>
-                </a>
-              </li>
-              <li className="compare">
-                <a
-                  href="#compare"
-                  onClick={() => addToCompareItem(product.id)}
-                  data-bs-toggle="modal"
-                  className={`hover-tooltip tooltip-${tooltipDirection} box-icon`}
-                >
-                  <span className="icon icon-compare" />
-                  <span className="tooltip">
-                    {" "}
-                    {isAddedtoCompareItem(product.id)
-                      ? "Already compared"
-                      : "Add to Compare"}
-                  </span>
-                </a>
+                  <span className="tooltip">View Details</span>
+                </Link>
               </li>
             </ul>
             {styleClass.includes("style-3") && (
@@ -191,15 +143,13 @@ export default function ProductCard1({
         </p>
         {product.colors?.length > 0 && (
           <ul
-            className={`list-color-product ${
-              textCenter ? "justify-content-center" : ""
-            } `}
+            className={`list-color-product ${textCenter ? "justify-content-center" : ""
+              } `}
           >
             {product.colors.map((color, index) => (
               <li
-                className={`list-color-item color-swatch hover-tooltip tooltip-bot ${
-                  currentImage == color.img ? "active" : ""
-                } ${color.value == "bg-white" ? "line" : ""}`}
+                className={`list-color-item color-swatch hover-tooltip tooltip-bot ${currentImage == color.img ? "active" : ""
+                  } ${color.value == "bg-white" ? "line" : ""}`}
                 key={index}
                 onMouseOver={() => setCurrentImage(color.img)}
               >

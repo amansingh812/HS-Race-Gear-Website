@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 
 const PDF_URL = "/pdf/custom-measurements-form.pdf";
@@ -8,15 +8,6 @@ const DOWNLOAD_URL = "/api/download-measurement-form";
 
 export default function CustomMeasurementForm() {
 
-  // Auto-download: window.location.href pointing to an attachment response
-  // is the only method that reliably triggers a download without a user gesture
-  // across all modern browsers (Chrome, Firefox, Safari, Edge).
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      window.location.href = DOWNLOAD_URL;
-    }, 600);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleDownload = () => {
     window.location.href = DOWNLOAD_URL;
@@ -28,6 +19,7 @@ export default function CustomMeasurementForm() {
         backgroundColor: "#0a0a0a",
         minHeight: "100vh",
         color: "#fff",
+        paddingTop: "100px",
       }}
     >
       {/* Header Section */}
@@ -84,8 +76,7 @@ export default function CustomMeasurementForm() {
               lineHeight: "1.7",
             }}
           >
-            Your form is downloading automatically. Print it out, fill in your
-            measurements, and send it back to us to get your perfect custom fit.
+            Print out the form, fill in your measurements, and send it back to us to get your perfect custom fit.
           </p>
 
           {/* Action Buttons */}
@@ -189,16 +180,7 @@ export default function CustomMeasurementForm() {
             </a>
           </div>
 
-          {/* Auto-download notice */}
-          <p
-            style={{
-              fontSize: "13px",
-              color: "#555",
-              marginBottom: "0",
-            }}
-          >
-            Didn&apos;t start? Click &quot;Download PDF&quot; above.
-          </p>
+
         </div>
       </section>
 

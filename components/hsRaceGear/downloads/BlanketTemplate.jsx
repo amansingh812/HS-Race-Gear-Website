@@ -10,11 +10,11 @@ export default function BlanketTemplate() {
                     <p className="contact-breadcrumb">
                         <Link href="/">Home</Link>
                         <span className="contact-breadcrumb-sep">/</span>
-                        <span className="contact-breadcrumb-current">Blanket Template</span>
+                        <span className="contact-breadcrumb-current">Blank Template</span>
                     </p>
                     <span className="contact-hero-tag">Downloads</span>
                     <h1 className="contact-hero-title">
-                        Blanket Design<br /><span>Template</span>
+                        Blank Design<br /><span>Template</span>
                     </h1>
                     <p className="contact-hero-subtitle">
                         Download our blank racing suit template to start designing your custom suit from scratch.
@@ -29,11 +29,11 @@ export default function BlanketTemplate() {
                     <div className="hs-doc-content">
 
                         <div className="hs-doc-block">
-                            <h2 className="hs-doc-heading">About the Blanket Template</h2>
+                            <h2 className="hs-doc-heading">About the Blank Template</h2>
 
                             <div className="hs-doc-card">
                                 <p className="hs-doc-card-text">
-                                    The Blanket Template is a clean, blank design layout of our racing suit. It includes
+                                    The Blank Template is a clean, blank design layout of our racing suit. It includes
                                     all panel outlines, seam lines, and design zones without any pre-applied graphics.
                                     Use this template to create your custom design from the ground up.
                                 </p>

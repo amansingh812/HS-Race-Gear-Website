@@ -24,13 +24,20 @@ export default function Details1({ product }) {
   // Detect if this is an off-the-rack race suit (show layer toggle)
   const isSuit = product.category?.slug === "race-suits";
 
+  // Detect apparel items that don't need driver name
+  const isApparel = ["hoodies", "crew-shirts"].includes(product.category?.slug) ||
+    product.title?.toLowerCase().includes("hoodie") ||
+    product.title?.toLowerCase().includes("t-shirt") ||
+    product.name?.toLowerCase().includes("hoodie") ||
+    product.name?.toLowerCase().includes("t-shirt");
+
   // Determine the correct size chart image and title based on product category
   const getSizeChartInfo = () => {
     const categorySlug = product.category?.slug || "";
-    if (categorySlug === "hoodies" || product.title?.toLowerCase().includes("hoodie")) {
+    if (categorySlug === "hoodies" || product.name?.toLowerCase().includes("hoodie")) {
       return { src: "/images/chart/hoodie_size_chart.jpg", alt: "Hoodie Size Chart", title: "Hoodie Size Chart" };
     }
-    if (categorySlug === "crew-shirts" || product.title?.toLowerCase().includes("shirt")) {
+    if (categorySlug === "crew-shirts" || product.name?.toLowerCase().includes("shirt")) {
       return { src: "/images/chart/shirt_size_chart.jpg", alt: "Shirt Size Chart", title: "Shirt Size Chart" };
     }
     return { src: "/images/deals/off_the_rack_race_suits.webp", alt: "Size Chart", title: "Size Chart" };
@@ -130,7 +137,7 @@ export default function Details1({ product }) {
                   <ProductHeading product={product} />
 
                   {/* Size Chart Button */}
-                  <div className="mb-3">
+                  <div className="mb-2">
                     <button
                       type="button"
                       className="tf-btn hover-primary"
@@ -325,8 +332,8 @@ export default function Details1({ product }) {
                     </div>
                   )}
 
-                  {/* Driver Name */}
-                  <div className="tf-product-driver-name mb-3">
+                  {/* Driver Name — hidden for apparel (hoodies, t-shirts) */}
+                  {!isApparel && <div className="tf-product-driver-name mb-3">
                     <label htmlFor="driverName" style={{ fontWeight: 600, fontSize: "0.95rem", marginBottom: 6, display: "block" }}>
                       Driver Name
                     </label>
@@ -339,7 +346,7 @@ export default function Details1({ product }) {
                       onChange={(e) => setDriverName(e.target.value)}
                       style={{ maxWidth: 340 }}
                     />
-                  </div>
+                  </div>}
 
                   {/* Price Display */}
                   <div className="tf-product-price mb-3">
@@ -395,7 +402,7 @@ export default function Details1({ product }) {
                           : "Add to cart"}
                       </a>
                     </div>
-                    <button
+                    {/* <button
                       type="button"
                       className={`tf-btn btn-primary w-100 animate-btn`}
                       onClick={async () => {
@@ -417,10 +424,10 @@ export default function Details1({ product }) {
                       className="more-choose-payment link"
                     >
                       More payment options
-                    </Link>
+                    </Link> */}
                   </div>
                   {/* Product Actions */}
-                  <div className="tf-product-extra-link">
+                  {/* <div className="tf-product-extra-link">
                     <a
                       href="#askQuestion"
                       data-bs-toggle="modal"
@@ -437,116 +444,7 @@ export default function Details1({ product }) {
                       <i className="icon icon-share" />
                       Share
                     </a>
-                  </div>
-
-                  {/* Product Meta */}
-                  <ul className="tf-product-cate-sku text-md">
-                    {selectedInventory?.sku && (
-                      <li className="item-cate-sku">
-                        <span className="label">SKU:</span>
-                        <span className="value">{selectedInventory.sku}</span>
-                      </li>
-                    )}
-                    <li className="item-cate-sku">
-                      <span className="label">Category:</span>
-                      <span className="value">
-                        {product.category?.name || 'Racing Suits'}
-                        {product.subcategory && `, ${product.subcategory.name}`}
-                      </span>
-                    </li>
-                    <li className="item-cate-sku">
-                      <span className="label">Brand:</span>
-                      <span className="value">{product.brand || 'HS Race Gear'}</span>
-                    </li>
-                    {product.certification && (
-                      <li className="item-cate-sku">
-                        <span className="label">Safety Rating:</span>
-                        <span className="value">{product.certification}</span>
-                      </li>
-                    )}
-                  </ul>
-
-                  <div className="tf-product-trust-seal text-center">
-                    <p className="text-md text-dark-2 text-seal fw-medium">
-                      Guarantee Safe Checkout:
-                    </p>
-                    <ul className="list-card">
-                      <li className="card-item">
-                        <Image
-                          alt="card"
-                          src="/images/payment/Visa.webp"
-                          width={90}
-                          height={64}
-                        />
-                      </li>
-                      <li className="card-item">
-                        <Image
-                          alt="card"
-                          src="/images/payment/DinersClub.webp"
-                          width={90}
-                          height={64}
-                        />
-                      </li>
-                      <li className="card-item">
-                        <Image
-                          alt="card"
-                          src="/images/payment/Mastercard.webp"
-                          width={90}
-                          height={64}
-                        />
-                      </li>
-                      <li className="card-item">
-                        <Image
-                          alt="card"
-                          src="/images/payment/Stripe.webp"
-                          width={90}
-                          height={64}
-                        />
-                      </li>
-                      <li className="card-item">
-                        <Image
-                          alt="card"
-                          src="/images/payment/PayPal.webp"
-                          width={90}
-                          height={64}
-                        />
-                      </li>
-                      <li className="card-item">
-                        <Image
-                          alt="card"
-                          src="/images/payment/GooglePay.webp"
-                          width={90}
-                          height={64}
-                        />
-                      </li>
-                      <li className="card-item">
-                        <Image
-                          alt="card"
-                          src="/images/payment/ApplePay.webp"
-                          width={90}
-                          height={64}
-                        />
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="tf-product-delivery-return">
-                    <div className="product-delivery">
-                      <div className="icon icon-car2" />
-                      <p className="text-md">
-                        Estimated delivery time:
-                        <span className="fw-medium">
-                          3-5 days international
-                        </span>
-                      </p>
-                    </div>
-                    <div className="product-delivery">
-                      <div className="icon icon-shipping3" />
-                      <p className="text-md">
-                        Free shipping on
-                        <span className="fw-medium">all orders over $150</span>
-                      </p>
-                    </div>
-                  </div>
+                  </div> */}
                 </div>
                 {/* <div className="tf-product-fbt">
                   <div className="title text-xl fw-medium">

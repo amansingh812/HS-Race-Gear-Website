@@ -7,11 +7,11 @@ import Reviews from "./Reviews";
 
 export default function Description1({ product }) {
   return (
-    <section className="flat-spacing pt-0">
+    <section className="flat-spacing pt-0" style={{ paddingBottom: 20 }}>
       <div className="container">
         <div className="widget-accordion wd-product-descriptions">
           <div
-            className="accordion-title collapsed"
+            className="accordion-title"
             data-bs-target="#description"
             data-bs-toggle="collapse"
             aria-expanded="true"
@@ -21,7 +21,7 @@ export default function Description1({ product }) {
             <span>Description</span>
             <span className="icon icon-arrow-down" />
           </div>
-          <div id="description" className="collapse">
+          <div id="description" className="collapse show">
             <div className="accordion-body widget-desc">
               <Description product={product} />
             </div>

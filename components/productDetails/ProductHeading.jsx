@@ -76,7 +76,7 @@ export default function ProductHeading({ product }) {
                   fill="#EA5513"
                 />
               </svg>
-              <span className="text-dark">Only {totalStock} items left!</span>
+              <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 13 }}>Only {totalStock} items left!</span>
             </>
           )}
         </div>

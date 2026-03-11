@@ -20,10 +20,10 @@ export default function ShopCart() {
 
   // Get product image - handle both API and local format
   const getProductImage = (product) => {
-    return product.imgSrc || 
-           product.images?.[0]?.url || 
-           product.productSnapshot?.image ||
-           "/images/products/default.webp";
+    return product.imgSrc ||
+      product.images?.[0]?.url ||
+      product.productSnapshot?.image ||
+      "/images/products/default.webp";
   };
 
   // Get product title
@@ -188,7 +188,7 @@ export default function ShopCart() {
                   </div>
                 )}
               </form>
-              <div className="fl-iconbox wow fadeInUp">
+              {/* <div className="fl-iconbox wow fadeInUp">
                 <Swiper
                   dir="ltr"
                   className="swiper tf-swiper sw-auto"
@@ -235,7 +235,7 @@ export default function ShopCart() {
                   ))}
                 </Swiper>
                 <div className="d-flex d-xl-none sw-dot-default sw-pagination-iconbox justify-content-center" />
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="col-xl-4">
@@ -405,62 +405,6 @@ export default function ShopCart() {
                   </div>
                 </div>
               </form>
-              <div className="cart-box testimonial-cart-box">
-                <Swiper
-                  dir="ltr"
-                  className="swiper tf-swiper"
-                  {...{
-                    slidesPerView: 1,
-                    spaceBetween: 12,
-                    speed: 800,
-                    pagination: {
-                      el: ".sw-pagination-iconbox",
-                      clickable: true,
-                    },
-                    navigation: {
-                      clickable: true,
-                      nextEl: ".nav-next-tes",
-                      prevEl: ".nav-prev-tes",
-                    },
-                  }}
-                  modules={[Pagination, Navigation]}
-                >
-                  {testimonials12.map((testimonial, index) => (
-                    <SwiperSlide className="swiper-slide" key={index}>
-                      <div className="box-testimonial-main">
-                        <span className="quote icon-quote5" />
-                        <div className="content">
-                          <div className="list-star-default">
-                            {[...Array(5)].map((_, i) => (
-                              <i className="icon-star" key={i} />
-                            ))}
-                          </div>
-                          <p className="text-review text-md text-main">
-                            {testimonial.review}
-                          </p>
-                          <div className="box-author">
-                            <div className="img">
-                              <Image
-                                alt="author"
-                                src={testimonial.imgSrc}
-                                width={testimonial.imgWidth}
-                                height={testimonial.imgHeight}
-                              />
-                            </div>
-                            <span className="name text-sm fw-medium">
-                              {testimonial.name}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                  <div className="box-nav-swiper">
-                    <div className="swiper-button-prev nav-swiper nav-prev-tes" />
-                    <div className="swiper-button-next nav-swiper nav-next-tes" />
-                  </div>
-                </Swiper>
-              </div>
             </div>
           </div>
         </div>

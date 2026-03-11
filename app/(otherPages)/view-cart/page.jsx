@@ -21,7 +21,7 @@ export default function page() {
         <Breadcumb pageName="Cart" pageTitle="Shopping Cart" />
       </>
       <ShopCart />
-      <RelatedProducts />
+
       <Footer3 />
     </>
   );

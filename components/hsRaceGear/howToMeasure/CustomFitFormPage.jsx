@@ -92,7 +92,7 @@ export default function CustomFitFormPage() {
                                 <img
                                     className="lazyload w-100 custom-fit-hero-img"
                                     data-src="/images/shop/custom-fit-hero.webp"
-                                    src="/images/shop/custom-fit-hero.webp"
+                                    src="/images/shop/custom-fit-hero.png"
                                     alt="Custom Fit Racing Suit Measurement"
                                 />
                             </div>
@@ -135,8 +135,9 @@ export default function CustomFitFormPage() {
                                 <div className="d-flex gap-16 align-items-start">
                                     <div className="cf-guideline-icon">📏</div>
                                     <div className="cf-guideline-text">
-                                        <p className="cf-guideline-title">Use Centimeters Only</p>
-                                        <p className="cf-guideline-desc">All measurements must be in CM</p>
+                                        <p className="cf-guideline-title">Use inches
+                                            Only</p>
+                                        <p className="cf-guideline-desc">All measurements must be in inches</p>
                                     </div>
                                 </div>
                                 <div className="d-flex gap-16 align-items-start">

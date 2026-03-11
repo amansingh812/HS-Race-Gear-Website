@@ -16873,6 +16873,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .tf-cart-head .title {
+  margin-top: 35px;
   margin-bottom: 35px;
 }
 

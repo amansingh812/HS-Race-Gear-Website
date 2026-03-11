@@ -26,7 +26,6 @@ function GlovesSizeChartModal({ onClose }) {
                     alignItems: "center", justifyContent: "center", zIndex: 10,
                     lineHeight: 1
                 }}>✕</button>
-
                 {/* Chart Image */}
                 <Image
                     src="/images/chart/shoes_chart.jpg"
@@ -628,7 +627,7 @@ export default function CustomGlovesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/gloves/gloves-users.webp"
+                                src="/images/gloves/gloves-users.png"
                                 alt="Racing glove customization options"
                                 width={400}
                                 height={400}
