@@ -291,8 +291,8 @@ function DealCard({ offer }) {
         transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         transform: hovered ? "translateY(-8px)" : "translateY(0)",
         boxShadow: hovered
-          ? "0 32px 64px rgba(0,0,0,0.5), 0 0 40px rgba(255,77,0,0.08)"
-          : "0 8px 32px rgba(0,0,0,0.3)",
+          ? "0 10px 30px rgba(0,0,0,0.5)"
+          : "0 4px 15px rgba(0,0,0,0.3)",
         flex: "1 1 380px",
         maxWidth: "480px",
         minWidth: "340px",
@@ -388,19 +388,6 @@ function DealCard({ offer }) {
             </div>
           </>
         )}
-        {/* Gradient fade at bottom */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "80px",
-            background: offer.badge
-              ? "linear-gradient(to top, #0d0d0d, transparent)"
-              : "linear-gradient(to top, #0a0a0a, transparent)",
-          }}
-        />
       </div>
 
       {/* Content */}

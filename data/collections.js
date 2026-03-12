@@ -605,7 +605,7 @@ export const customizeCategories = [
       { name: "Custom Racing Suit", href: "/custom-race-suit" },
       { name: "Custom Karting Suit", href: "/custom-karting-suit" },
       { name: "Custom Power Boating Suit", href: "/custom-powerboat-suit" },
-      { name: "Off The Rack Suit", href: "/shop" },
+      { name: "Off The Rack Suit", href: "/shop?category=race-suits" },
     ],
   },
   {

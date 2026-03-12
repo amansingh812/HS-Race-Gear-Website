@@ -5,10 +5,10 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const POPULAR = [
-  { label: "Race Suits", href: "/shop?category=race-suits" },
-  { label: "Karting Suit", href: "/custom-race-suit" },
-  { label: "hoodi", href: "/custom-gloves" },
-  { label: "shirt", href: "/custom-shoes" },
+  { label: "Race Suits",   href: "/shop?category=race-suits" },
+  { label: "Karting Suit", href: "/custom-karting-suit" },
+  { label: "Hoodie",       href: "/shop?category=hoodies" },
+  { label: "T-Shirt",      href: "/shop?category=crew-shirts" },
 ];
 
 export default function SearchModal() {
@@ -103,15 +103,31 @@ export default function SearchModal() {
       <div className="modal-dialog modal-fullscreen">
         <div className="modal-content hs-search-content">
 
-          {/* Close */}
+          {/* Close Button */}
           <button
             className="hs-search-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            style={{
+              position: "fixed",
+              top: "20px",
+              right: "20px",
+              zIndex: 9999,
+              background: "transparent",
+              border: "none",
+              color: "#ffffff",
+              fontSize: "32px",
+              cursor: "pointer",
+              padding: 0,
+              width: "auto",
+              height: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              lineHeight: 1,
+            }}
           >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M1 1L17 17M17 1L1 17" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-            </svg>
+            ✕
           </button>
 
           <div className="container">
@@ -147,14 +163,14 @@ export default function SearchModal() {
                   <p className="hs-search-label">Popular Searches</p>
                   <div className="hs-search-tags">
                     {POPULAR.map((item) => (
-                      <Link
+                      <button
                         key={item.label}
-                        href={item.href}
+                        type="button"
                         className="hs-search-tag"
-                        data-bs-dismiss="modal"
+                        onClick={() => closeAndNavigate(item.href)}
                       >
                         {item.label}
-                      </Link>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -240,26 +256,8 @@ export default function SearchModal() {
           color: #fff;
         }
 
-        .hs-search-close {
-          position: fixed;
-          top: 24px;
-          right: 28px;
-          z-index: 10;
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.08);
-          border: 1px solid rgba(255,255,255,0.15);
-          color: #fff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: background 0.2s, border-color 0.2s;
-        }
         .hs-search-close:hover {
-          background: rgba(226,27,27,0.2);
-          border-color: #e21b1b;
+          opacity: 0.7;
         }
 
         .hs-search-inner {
@@ -349,6 +347,8 @@ export default function SearchModal() {
           font-size: 13px;
           font-weight: 600;
           text-decoration: none;
+          cursor: pointer;
+          font-family: inherit;
           transition: all 0.2s;
         }
         .hs-search-tag:hover {

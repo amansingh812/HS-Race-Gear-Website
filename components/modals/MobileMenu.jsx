@@ -19,6 +19,23 @@ const shopMenuItems = [
 ];
 
 export default function MobileMenu() {
+  const FireIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '4px', verticalAlign: 'middle', marginTop: '-2px' }}>
+      <path d="M12 23C16.5 23 20 19.5 20 15C20 11 17 8.5 15 7C14.5 10 13 11.5 11.5 11.5C11.5 11.5 12.5 8 10 4C8.5 6 6 8 5 10.5C4 13 4 15 4 15C4 19.5 7.5 23 12 23Z" fill="url(#mobile-fire1)" stroke="none" />
+      <path d="M12 23C14.5 23 16.5 21 16.5 18.5C16.5 16 15 14.5 14 13.5C13.7 15 13 16 12 16C12 16 12.5 14.5 11 12C10 13.5 9 14.5 8.5 16C8 17.5 8 18.5 8 18.5C8 21 9.5 23 12 23Z" fill="url(#mobile-fire2)" stroke="none" />
+      <defs>
+        <linearGradient id="mobile-fire1" x1="12" y1="4" x2="12" y2="23" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FF4D00" />
+          <stop offset="1" stopColor="#FF4D00" />
+        </linearGradient>
+        <linearGradient id="mobile-fire2" x1="12" y1="12" x2="12" y2="23" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FF4D00" />
+          <stop offset="1" stopColor="#FF4D00" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+
   const pathname = usePathname();
   const isActive = (href) => href?.split("/")[1] === pathname.split("/")[1];
 
@@ -68,7 +85,7 @@ export default function MobileMenu() {
                   className={`mb-menu-link ${isActive("/RacegearDeals") ? "menuActive" : ""}`}
                   onClick={closeMenu}
                 >
-                  <span>DEALS</span>
+                  <span><FireIcon /> FIRE DEALS</span>
                 </Link>
               </li>
 
@@ -187,19 +204,7 @@ export default function MobileMenu() {
 
             </ul>
           </div>
-          <div className="mb-other-content">
-            <div className="mb-contact">
-              <p>Address: 59 Kondazian St, Watertown MA, 02472</p>
-            </div>
-            <ul className="mb-info">
-              <li>
-                Email: <b className="fw-medium">clientcare@hsracegear.com</b>
-              </li>
-              <li>
-                Phone: <b className="fw-medium">+1 (617) 319 6993</b>
-              </li>
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>

@@ -250,6 +250,7 @@ function PricingCard({ item, index }) {
 
   return (
     <div
+      id={item.id}
       ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -498,7 +499,17 @@ function PricingCard({ item, index }) {
 
         {/* CTA Button — uniform red for all cards */}
         <Link
-          href={`/custom-race-suit/order?package=${item.packageId}`}
+          href={
+            item.id === "gloves" ? "/custom-gloves/order" :
+            item.id === "shoes" ? "/custom-shoes/order" :
+            item.id === "karting" ? "/custom-karting-suit/order" :
+            `/custom-race-suit/order?package=${item.packageId}`
+          }
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              sessionStorage.setItem("pricing-scroll-to", item.id);
+            }
+          }}
           style={{
             width: "100%",
             marginTop: "28px",
@@ -613,6 +624,20 @@ export default function StandardPricing() {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Restore scroll position to the card the user came from
+  useEffect(() => {
+    const target = sessionStorage.getItem("pricing-scroll-to");
+    if (!target) return;
+    sessionStorage.removeItem("pricing-scroll-to");
+    // Small delay to let the page render fully before scrolling
+    setTimeout(() => {
+      const el = document.getElementById(target);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 300);
   }, []);
 
   const suits = pricingData.filter((p) =>
@@ -855,7 +880,7 @@ export default function StandardPricing() {
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e21b1b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" /><line x1="7" y1="7" x2="7.01" y2="7" />
               </svg>
             </div>
             <h3 style={{
@@ -909,7 +934,7 @@ export default function StandardPricing() {
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
               </svg>
             </div>
             <h3 style={{

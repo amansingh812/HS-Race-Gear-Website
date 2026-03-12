@@ -4,497 +4,427 @@ import Link from "next/link";
 import "@/public/css/custom-order.css";
 
 /* ============================================
-   DATA — Custom Shoes Order
+   DATA
    ============================================ */
 
-const PACKAGES = [
-  {
-    category: "CUSTOM SHOES",
-    items: [
-      { id: "custom-shoes", name: "Custom Shoes", price: 285, includes: ["shoes"] },
-    ],
-  },
-];
-
-const SHOES_MOCKUPS = Array.from({ length: 7 }, (_, i) => ({
-  id: `shoes-${i + 1}`,
-  name: `Design ${i + 1}`,
-  number: i + 1,
-  image: `/images/shoes/mockup-${i + 1}.webp`,
+const SHOES_MOCKUPS = Array.from({ length: 5 }, (_, i) => ({
+    id: `shoes-${i + 1}`,
+    name: `Design ${i + 1}`,
+    number: i + 1,
+    image: `/images/shoes/mockup-${i + 1}.webp`,
 }));
 
 const SHOE_SIZES = [
-  { id: "us-5", label: "US 5 / EU 37" },
-  { id: "us-5.5", label: "US 5.5 / EU 37.5" },
-  { id: "us-6", label: "US 6 / EU 38" },
-  { id: "us-6.5", label: "US 6.5 / EU 39" },
-  { id: "us-7", label: "US 7 / EU 40" },
-  { id: "us-7.5", label: "US 7.5 / EU 40.5" },
-  { id: "us-8", label: "US 8 / EU 41" },
-  { id: "us-8.5", label: "US 8.5 / EU 42" },
-  { id: "us-9", label: "US 9 / EU 42.5" },
-  { id: "us-9.5", label: "US 9.5 / EU 43" },
-  { id: "us-10", label: "US 10 / EU 44" },
-  { id: "us-10.5", label: "US 10.5 / EU 44.5" },
-  { id: "us-11", label: "US 11 / EU 45" },
-  { id: "us-11.5", label: "US 11.5 / EU 45.5" },
-  { id: "us-12", label: "US 12 / EU 46" },
-  { id: "us-13", label: "US 13 / EU 47" },
-  { id: "us-14", label: "US 14 / EU 48" },
+    "US 5 / EU 37",
+    "US 5.5 / EU 37.5",
+    "US 6 / EU 38",
+    "US 6.5 / EU 39",
+    "US 7 / EU 40",
+    "US 7.5 / EU 40.5",
+    "US 8 / EU 41",
+    "US 8.5 / EU 42",
+    "US 9 / EU 42.5",
+    "US 9.5 / EU 43",
+    "US 10 / EU 44",
+    "US 10.5 / EU 44.5",
+    "US 11 / EU 45",
+    "US 11.5 / EU 45.5",
+    "US 12 / EU 46",
+    "US 13 / EU 47",
+    "US 14 / EU 48",
 ];
 
 const COLORS = [
-  { name: "Bright Red",    hex: "#dc2626" },
-  { name: "Maroon",        hex: "#7f1d1d" },
-  { name: "Black",         hex: "#000000" },
-  { name: "Teal",          hex: "#14b8a6" },
-  { name: "White",         hex: "#ffffff", light: true },
-  { name: "Royal Blue",    hex: "#0d3e92" },
-  { name: "Sky Blue",      hex: "#327eec" },
-  { name: "Navy Blue",     hex: "#00054f" },
-  { name: "Orange",        hex: "#ea580c" },
-  { name: "Flo Orange",    hex: "#fe360f" },
-  { name: "Yellow",        hex: "#facc15", light: true },
-  { name: "Flo Yellow",    hex: "#c6f700", light: true },
-  { name: "Green",         hex: "#16a34a" },
-  { name: "Flo Green",     hex: "#6beb0c", light: true },
-  { name: "Pink",          hex: "#f511b7" },
-  { name: "Purple",        hex: "#8b428f" },
-  { name: "Golden",        hex: "#d4a017" },
-  { name: "Grey",          hex: "#808080" },
-  { name: "Dark Grey",     hex: "#374151" },
-  { name: "Medium Grey",   hex: "#6b7280" },
-  { name: "Filament Grey", hex: "#d4d4d4", light: true },
+    { name: "Bright Red",     hex: "#dc2626" },
+    { name: "Maroon",         hex: "#7f1d1d" },
+    { name: "Black",          hex: "#000000" },
+    { name: "Teal",           hex: "#14b8a6" },
+    { name: "White",          hex: "#ffffff", light: true },
+    { name: "Royal Blue",     hex: "#0d3e92" },
+    { name: "Sky Blue",       hex: "#327eec" },
+    { name: "Navy Blue",      hex: "#00054f" },
+    { name: "Orange",         hex: "#ea580c" },
+    { name: "Flo Orange",     hex: "#fe360f" },
+    { name: "Yellow",         hex: "#facc15", light: true },
+    { name: "Flo Yellow",     hex: "#c6f700", light: true },
+    { name: "Green",          hex: "#16a34a" },
+    { name: "Flo Green",      hex: "#6beb0c", light: true },
+    { name: "Pink",           hex: "#f511b7" },
+    { name: "Purple",         hex: "#8b428f" },
+    { name: "Golden",         hex: "#d4a017" },
+    { name: "Grey",           hex: "#808080" },
+    { name: "Dark Grey",      hex: "#374151" },
+    { name: "Medium Grey",    hex: "#6b7280" },
+    { name: "Filament Grey",  hex: "#d4d4d4", light: true },
 ];
+
+const PRICE = 285;
 
 /* ============================================
    ICONS
    ============================================ */
 const CheckIcon = ({ size = 18, color = "#fff" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M5 13l4 4L19 7" />
-  </svg>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 13l4 4L19 7" />
+    </svg>
 );
 
 const ArrowRight = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M5 12h14M12 5l7 7-7 7" />
-  </svg>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
 );
 
 const ArrowLeft = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M19 12H5M12 19l-7-7 7-7" />
-  </svg>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+    </svg>
 );
 
 /* ============================================
-   STEP COMPONENTS
+   STEP 1 — Shoes Design
    ============================================ */
-
-function PackageSelection({ selected, onSelect }) {
-  return (
-    <div className="step-content">
-      <div className="step-header">
-        <div className="step-badge">Step 1</div>
-        <h2 className="step-title">Custom Shoes</h2>
-        <p className="step-subtitle">SFI 3.3A/5 certified racing shoes with precision pedal control, custom fit and design.</p>
-      </div>
-      <div className="package-categories">
-        {PACKAGES.map((cat) => (
-          <div key={cat.category}>
-            <div className="package-category-title">{cat.category}</div>
-            <div className="package-cards">
-              {cat.items.map((pkg) => (
-                <div
-                  key={pkg.id}
-                  className={`package-card ${selected?.id === pkg.id ? "selected" : ""}`}
-                  onClick={() => onSelect(pkg)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && onSelect(pkg)}
-                >
-                  <div className="package-card-info">
-                    <div className="package-radio">
-                      <div className="package-radio-dot" />
-                    </div>
-                    <div className="package-card-name">
-                      Custom <strong>Shoes</strong>
-                    </div>
-                  </div>
-                  <div className="package-card-price">
-                    ${pkg.price}<span>USD</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function MockupSelection({ mockups, selected, onSelect, currentStep, totalSteps }) {
-  return (
-    <div className="step-content">
-      <div className="step-header">
-        <div className="step-badge">Step {currentStep} of {totalSteps}</div>
-        <h2 className="step-title">Select Your Shoes Design</h2>
-        <p className="step-subtitle">Browse our 7 custom racing shoe designs and pick your favorite.</p>
-      </div>
-      <div className="mockup-grid">
-        {mockups.map((mockup) => (
-          <div
-            key={mockup.id}
-            className={`mockup-card ${selected?.id === mockup.id ? "selected" : ""}`}
-            onClick={() => onSelect(mockup)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && onSelect(mockup)}
-          >
-            <div className="mockup-card-image">
-              {mockup.image ? (
-                <img src={mockup.image} alt={mockup.name} loading="lazy" />
-              ) : (
-                <span>{String(mockup.number).padStart(2, "0")}</span>
-              )}
+    return (
+        <div className="step-content">
+            <div className="step-header">
+                <div className="step-badge">Step {currentStep} of {totalSteps}</div>
+                <h2 className="step-title">Select Your Shoes Design</h2>
+                <p className="step-subtitle">Browse our custom racing shoe designs and pick your favourite.</p>
             </div>
-            <div className="mockup-card-label">{mockup.name}</div>
-            <div className="mockup-card-check">
-              <CheckIcon size={16} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function SizeSelection({ selected, onSelect, currentStep, totalSteps }) {
-  return (
-    <div className="step-content">
-      <div className="step-header">
-        <div className="step-badge">Step {currentStep} of {totalSteps}</div>
-        <h2 className="step-title">Select Your Size</h2>
-        <p className="step-subtitle">Choose the size that fits you best. US and EU sizing available.</p>
-      </div>
-      <div style={{ maxWidth: 600, margin: "0 auto", paddingBottom: 48 }}>
-        <div className="package-cards">
-          {SHOE_SIZES.map((size) => (
-            <div
-              key={size.id}
-              className={`package-card ${selected?.id === size.id ? "selected" : ""}`}
-              onClick={() => onSelect(size)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === "Enter" && onSelect(size)}
-            >
-              <div className="package-card-info">
-                <div className="package-radio">
-                  <div className="package-radio-dot" />
-                </div>
-                <div className="package-card-name" style={{ fontWeight: 600 }}>
-                  {size.label}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
-  const colorAreas = [
-    { key: "primary", label: "Primary Color" },
-    { key: "secondary", label: "Secondary Color" },
-    { key: "accent", label: "Accent Color" },
-  ];
-
-  return (
-    <div className="step-content">
-      <div className="step-header">
-        <div className="step-badge">Step {currentStep} of {totalSteps}</div>
-        <h2 className="step-title">Choose Your Colors</h2>
-        <p className="step-subtitle">Select colors for your custom shoes. Our designer will create a mockup based on your choices.</p>
-      </div>
-      <div className="color-selection-area">
-        <div
-          className="color-preview"
-          style={{
-            maxWidth: 300,
-            aspectRatio: "4/3",
-            background: selections.primary
-              ? `linear-gradient(135deg, ${selections.primary.hex} 0%, ${selections.primary.hex} 40%, ${selections.secondary?.hex || "#222"} 40%, ${selections.secondary?.hex || "#222"} 70%, ${selections.accent?.hex || "#333"} 70%, ${selections.accent?.hex || "#333"} 100%)`
-              : "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
-          }}
-        >
-          {!selections.primary && (
-            <div className="color-preview-label">Select colors below</div>
-          )}
-        </div>
-
-        <div className="color-sections">
-          {colorAreas.map((area) => (
-            <div key={area.key}>
-              <div className="color-section-title">
-                {area.label}
-                {selections[area.key] && (
-                  <span className="color-name-tag" style={{ marginLeft: 12 }}>
-                    {selections[area.key].name}
-                  </span>
-                )}
-              </div>
-              <div className="color-swatches">
-                {COLORS.map((color) => (
-                  <div
-                    key={color.hex + area.key}
-                    className={`color-swatch ${selections[area.key]?.hex === color.hex ? "selected" : ""}`}
-                    style={{ backgroundColor: color.hex }}
-                    onClick={() => onChange(area.key, color)}
-                    title={color.name}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => e.key === "Enter" && onChange(area.key, color)}
-                  >
-                    <div className="color-swatch-check">
-                      <CheckIcon size={14} color={color.light ? "#000" : "#fff"} />
+            <div className="mockup-grid">
+                {mockups.map((mockup) => (
+                    <div
+                        key={mockup.id}
+                        className={`mockup-card ${selected?.id === mockup.id ? "selected" : ""}`}
+                        onClick={() => onSelect(mockup)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === "Enter" && onSelect(mockup)}
+                    >
+                        <div className="mockup-card-image">
+                            {mockup.image ? (
+                                <img src={mockup.image} alt={mockup.name} loading="lazy" />
+                            ) : (
+                                <span>{String(mockup.number).padStart(2, "0")}</span>
+                            )}
+                        </div>
+                        <div className="mockup-card-label">{mockup.name}</div>
+                        <div className="mockup-card-check">
+                            <CheckIcon size={16} />
+                        </div>
                     </div>
-                  </div>
                 ))}
-              </div>
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
+/* ============================================
+   STEP 2 — Colours
+   ============================================ */
+function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
+    const colorAreas = [
+        { key: "primary",   label: "Primary Color" },
+        { key: "secondary", label: "Secondary Color" },
+        { key: "accent",    label: "Accent Color" },
+    ];
+
+    return (
+        <div className="step-content">
+            <div className="step-header">
+                <div className="step-badge">Step {currentStep} of {totalSteps}</div>
+                <h2 className="step-title">Choose Your Colours</h2>
+                <p className="step-subtitle">Select colours for your custom shoes. Our designer will create a mockup based on your choices.</p>
+            </div>
+            <div className="color-selection-area">
+                <div
+                    className="color-preview"
+                    style={{
+                        maxWidth: 300,
+                        aspectRatio: "4/3",
+                        background: selections.primary
+                            ? `linear-gradient(135deg, ${selections.primary.hex} 0%, ${selections.primary.hex} 40%, ${selections.secondary?.hex || "#222"} 40%, ${selections.secondary?.hex || "#222"} 70%, ${selections.accent?.hex || "#333"} 70%, ${selections.accent?.hex || "#333"} 100%)`
+                            : "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+                    }}
+                >
+                    {!selections.primary && (
+                        <div className="color-preview-label">Select colours below</div>
+                    )}
+                </div>
+
+                <div className="color-sections">
+                    {colorAreas.map((area) => (
+                        <div key={area.key}>
+                            <div className="color-section-title">
+                                {area.label}
+                                {selections[area.key] && (
+                                    <span className="color-name-tag" style={{ marginLeft: 12 }}>
+                                        {selections[area.key].name}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="color-swatches">
+                                {COLORS.map((color) => (
+                                    <div
+                                        key={color.hex + area.key}
+                                        className={`color-swatch ${selections[area.key]?.hex === color.hex ? "selected" : ""}`}
+                                        style={{ backgroundColor: color.hex }}
+                                        onClick={() => onChange(area.key, color)}
+                                        title={color.name}
+                                        role="button"
+                                        tabIndex={0}
+                                        onKeyDown={(e) => e.key === "Enter" && onChange(area.key, color)}
+                                    >
+                                        <div className="color-swatch-check">
+                                            <CheckIcon size={14} color={color.light ? "#000" : "#fff"} />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* ============================================
+   STEP 3 — Your Information (+ Size)
+   ============================================ */
 function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, totalSteps, orderData }) {
-  return (
-    <div className="step-content">
-      <div className="step-header">
-        <div className="step-badge">Step {currentStep} of {totalSteps}</div>
-        <h2 className="step-title">Your Information</h2>
-        <p className="step-subtitle">Enter your contact details. A dedicated designer will reach out within 24 hours with your custom mockup.</p>
-      </div>
-      <div className="customer-form">
-        <div className="form-group">
-          <label className="form-label">Full Name</label>
-          <input type="text" className={`form-input ${errors.name ? "error" : ""}`} placeholder="Enter your full name" value={info.name} onChange={(e) => onChange("name", e.target.value)} />
-          {errors.name && <div className="form-error">{errors.name}</div>}
-        </div>
-        <div className="form-group">
-          <label className="form-label">Email Address</label>
-          <input type="email" className={`form-input ${errors.email ? "error" : ""}`} placeholder="Enter your email address" value={info.email} onChange={(e) => onChange("email", e.target.value)} />
-          {errors.email && <div className="form-error">{errors.email}</div>}
-        </div>
-        <div className="form-group">
-          <label className="form-label">Contact Number</label>
-          <input type="tel" className={`form-input ${errors.phone ? "error" : ""}`} placeholder="Enter your phone number" value={info.phone} onChange={(e) => onChange("phone", e.target.value)} />
-          {errors.phone && <div className="form-error">{errors.phone}</div>}
-        </div>
+    return (
+        <div className="step-content">
+            <div className="step-header">
+                <div className="step-badge">Step {currentStep} of {totalSteps}</div>
+                <h2 className="step-title">Your Information</h2>
+                <p className="step-subtitle">Enter your details and shoe size. A designer will contact you within 24 hours with your custom mockup.</p>
+            </div>
+            <div className="customer-form">
+                <div className="form-group">
+                    <label className="form-label">Full Name</label>
+                    <input type="text" className={`form-input ${errors.name ? "error" : ""}`} placeholder="Enter your full name" value={info.name} onChange={(e) => onChange("name", e.target.value)} />
+                    {errors.name && <div className="form-error">{errors.name}</div>}
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Email Address</label>
+                    <input type="email" className={`form-input ${errors.email ? "error" : ""}`} placeholder="Enter your email address" value={info.email} onChange={(e) => onChange("email", e.target.value)} />
+                    {errors.email && <div className="form-error">{errors.email}</div>}
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Contact Number</label>
+                    <input type="tel" className={`form-input ${errors.phone ? "error" : ""}`} placeholder="Enter your phone number" value={info.phone} onChange={(e) => onChange("phone", e.target.value)} />
+                    {errors.phone && <div className="form-error">{errors.phone}</div>}
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Shoe Size</label>
+                    <select
+                        className={`form-input ${errors.size ? "error" : ""}`}
+                        value={info.size}
+                        onChange={(e) => onChange("size", e.target.value)}
+                        style={{ cursor: "pointer" }}
+                    >
+                        <option value="">Select your shoe size</option>
+                        {SHOE_SIZES.map((s) => (
+                            <option key={s} value={s}>{s}</option>
+                        ))}
+                    </select>
+                    {errors.size && <div className="form-error">{errors.size}</div>}
+                </div>
 
-        <div className="order-summary">
-          <div className="order-summary-title">Order Summary</div>
-          <div className="order-summary-item">
-            <span className="order-summary-label">Product</span>
-            <span className="order-summary-value">{orderData.package?.name || "—"}</span>
-          </div>
-          <div className="order-summary-item">
-            <span className="order-summary-label">Design</span>
-            <span className="order-summary-value">{orderData.shoesMockup?.name || "—"}</span>
-          </div>
-          <div className="order-summary-item">
-            <span className="order-summary-label">Size</span>
-            <span className="order-summary-value">{orderData.shoeSize?.label || "—"}</span>
-          </div>
-          <div className="order-summary-item">
-            <span className="order-summary-label">Colors</span>
-            <span className="order-summary-value" style={{ display: "flex", gap: 6, alignItems: "center" }}>
-              {orderData.colors?.primary && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.primary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
-              {orderData.colors?.secondary && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.secondary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
-              {orderData.colors?.accent && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.accent.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
-            </span>
-          </div>
-          <div className="order-summary-total">
-            <span className="order-summary-total-label">Total</span>
-            <span className="order-summary-total-price">${orderData.package?.price || 0} USD</span>
-          </div>
+                <div className="order-summary">
+                    <div className="order-summary-title">Order Summary</div>
+                    <div className="order-summary-item">
+                        <span className="order-summary-label">Product</span>
+                        <span className="order-summary-value">Custom Shoes</span>
+                    </div>
+                    <div className="order-summary-item">
+                        <span className="order-summary-label">Design</span>
+                        <span className="order-summary-value">{orderData.mockup?.name || "—"}</span>
+                    </div>
+                    <div className="order-summary-item">
+                        <span className="order-summary-label">Size</span>
+                        <span className="order-summary-value">{info.size || "—"}</span>
+                    </div>
+                    <div className="order-summary-item">
+                        <span className="order-summary-label">Colours</span>
+                        <span className="order-summary-value" style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                            {orderData.colors?.primary && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.primary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
+                            {orderData.colors?.secondary && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.secondary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
+                            {orderData.colors?.accent && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.accent.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
+                        </span>
+                    </div>
+                    <div className="order-summary-total">
+                        <span className="order-summary-total-label">Total</span>
+                        <span className="order-summary-total-price">${PRICE} USD</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
+/* ============================================
+   SUCCESS SCREEN
+   ============================================ */
 function SuccessScreen() {
-  return (
-    <div className="success-screen">
-      <div className="success-icon">
-        <CheckIcon size={42} color="#16a34a" />
-      </div>
-      <h2 className="success-title">Order Submitted!</h2>
-      <p className="success-message">
-        Thank you for your custom shoes order! A dedicated designer will contact you within 24 hours with a mockup of your product. Check your email for confirmation details.
-      </p>
-      <Link href="/custom-shoes" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "16px 32px", background: "#dc2626", borderRadius: 10, color: "#fff", fontWeight: 700, fontSize: 15, textDecoration: "none" }}>
-        Back to Custom Shoes
-      </Link>
-    </div>
-  );
+    return (
+        <div className="success-screen">
+            <div className="success-icon">
+                <CheckIcon size={42} color="#16a34a" />
+            </div>
+            <h2 className="success-title">Order Submitted!</h2>
+            <p className="success-message">
+                Thank you for your custom shoes order! A dedicated designer will contact you within 24 hours with a mockup of your product. Check your email for confirmation details.
+            </p>
+            <Link href="/custom-shoes" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "16px 32px", background: "#dc2626", borderRadius: 10, color: "#fff", fontWeight: 700, fontSize: 15, textDecoration: "none" }}>
+                Back to Custom Shoes
+            </Link>
+        </div>
+    );
 }
 
 /* ============================================
    MAIN COMPONENT
    ============================================ */
 export default function ShoesOrderPage() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [selectedPackage, setSelectedPackage] = useState(null);
-  const [shoesMockup, setShoesMockup] = useState(null);
-  const [shoeSize, setShoeSize] = useState(null);
-  const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
-  const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "" });
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+    const [currentStep, setCurrentStep] = useState(0);
+    const [selectedMockup, setSelectedMockup] = useState(null);
+    const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
+    const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", size: "" });
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
-  const steps = useMemo(() => [
-    { id: "package", label: "Package" },
-    { id: "design", label: "Design" },
-    { id: "size", label: "Size" },
-    { id: "colors", label: "Colors" },
-    { id: "info", label: "Your Info" },
-  ], []);
+    const steps = useMemo(() => [
+        { id: "design", label: "Shoes Design" },
+        { id: "colors", label: "Colours" },
+        { id: "info",   label: "Your Info" },
+    ], []);
 
-  const totalSteps = steps.length;
-  const currentStepId = steps[currentStep]?.id;
+    const totalSteps = steps.length;
+    const currentStepId = steps[currentStep]?.id;
 
-  const handleColorChange = useCallback((area, color) => {
-    setColors((prev) => ({ ...prev, [area]: color }));
-  }, []);
+    const handleColorChange = useCallback((area, color) => {
+        setColors((prev) => ({ ...prev, [area]: color }));
+    }, []);
 
-  const handleCustomerInfoChange = useCallback((field, value) => {
-    setCustomerInfo((prev) => ({ ...prev, [field]: value }));
-    setFormErrors((prev) => ({ ...prev, [field]: null }));
-  }, []);
+    const handleCustomerInfoChange = useCallback((field, value) => {
+        setCustomerInfo((prev) => ({ ...prev, [field]: value }));
+        setFormErrors((prev) => ({ ...prev, [field]: null }));
+    }, []);
 
-  const validateForm = () => {
-    const errors = {};
-    if (!customerInfo.name.trim()) errors.name = "Please enter your name";
-    if (!customerInfo.email.trim()) errors.email = "Please enter your email";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerInfo.email)) errors.email = "Please enter a valid email";
-    if (!customerInfo.phone.trim()) errors.phone = "Please enter your phone number";
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
+    const validateForm = () => {
+        const errors = {};
+        if (!customerInfo.name.trim()) errors.name = "Please enter your name";
+        if (!customerInfo.email.trim()) errors.email = "Please enter your email";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerInfo.email)) errors.email = "Please enter a valid email";
+        if (!customerInfo.phone.trim()) errors.phone = "Please enter your phone number";
+        if (!customerInfo.size) errors.size = "Please select a shoe size";
+        setFormErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
 
-  const canProceed = () => {
-    switch (currentStepId) {
-      case "package": return !!selectedPackage;
-      case "design": return !!shoesMockup;
-      case "size": return !!shoeSize;
-      case "colors": return !!colors.primary;
-      case "info": return true;
-      default: return false;
+    const canProceed = () => {
+        switch (currentStepId) {
+            case "design": return !!selectedMockup;
+            case "colors": return !!colors.primary;
+            case "info":   return true;
+            default:       return false;
+        }
+    };
+
+    const handleNext = async () => {
+        if (currentStepId === "info") {
+            if (!validateForm()) return;
+            await handleSubmit();
+            return;
+        }
+        if (currentStep < totalSteps - 1) {
+            setCurrentStep((prev) => prev + 1);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    };
+
+    const handleBack = () => {
+        if (currentStep > 0) {
+            setCurrentStep((prev) => prev - 1);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    };
+
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+        try {
+            const orderData = {
+                productType: "custom-shoes",
+                mockup: selectedMockup,
+                colors,
+                size: customerInfo.size,
+                customer: { name: customerInfo.name, email: customerInfo.email, phone: customerInfo.phone },
+            };
+
+            const res = await fetch("/api/custom-order", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderData),
+            });
+
+            if (!res.ok) throw new Error("Failed to submit order");
+            setIsSuccess(true);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } catch (err) {
+            console.error("Order submission error:", err);
+            alert("There was an error submitting your order. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    if (isSuccess) {
+        return <div className="custom-order-page"><SuccessScreen /></div>;
     }
-  };
 
-  const handleNext = async () => {
-    if (currentStepId === "info") {
-      if (!validateForm()) return;
-      await handleSubmit();
-      return;
-    }
-    if (currentStep < totalSteps - 1) {
-      setCurrentStep((prev) => prev + 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+    const orderDataForSummary = { mockup: selectedMockup, colors };
 
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep((prev) => prev - 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    try {
-      const orderData = {
-        productType: "custom-shoes",
-        package: selectedPackage,
-        shoesMockup,
-        shoeSize,
-        colors,
-        customer: customerInfo,
-      };
-
-      const res = await fetch("/api/custom-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),
-      });
-
-      if (!res.ok) throw new Error("Failed to submit order");
-      setIsSuccess(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (err) {
-      console.error("Order submission error:", err);
-      alert("There was an error submitting your order. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  if (isSuccess) {
-    return <div className="custom-order-page"><SuccessScreen /></div>;
-  }
-
-  const orderDataForSummary = { package: selectedPackage, shoesMockup, shoeSize, colors };
-
-  return (
-    <div className="custom-order-page">
-      {/* Progress Bar */}
-      <div className="order-progress-bar">
-        <div className="progress-steps">
-          {steps.map((step, index) => (
-            <React.Fragment key={step.id}>
-              <div className="progress-step" onClick={() => { if (index < currentStep) setCurrentStep(index); }} style={{ cursor: index < currentStep ? "pointer" : "default" }}>
-                <div className={`progress-step-number ${index === currentStep ? "active" : index < currentStep ? "completed" : ""}`}>
-                  {index < currentStep ? <CheckIcon size={16} /> : index + 1}
+    return (
+        <div className="custom-order-page">
+            {/* Progress Bar */}
+            <div className="order-progress-bar">
+                <div className="progress-steps">
+                    {steps.map((step, index) => (
+                        <React.Fragment key={step.id}>
+                            <div className="progress-step" onClick={() => { if (index < currentStep) setCurrentStep(index); }} style={{ cursor: index < currentStep ? "pointer" : "default" }}>
+                                <div className={`progress-step-number ${index === currentStep ? "active" : index < currentStep ? "completed" : ""}`}>
+                                    {index < currentStep ? <CheckIcon size={16} /> : index + 1}
+                                </div>
+                                <span className={`progress-step-label ${index === currentStep ? "active" : index < currentStep ? "completed" : ""}`}>
+                                    {step.label}
+                                </span>
+                            </div>
+                            {index < steps.length - 1 && (
+                                <div className={`progress-connector ${index < currentStep ? "completed" : ""}`} />
+                            )}
+                        </React.Fragment>
+                    ))}
                 </div>
-                <span className={`progress-step-label ${index === currentStep ? "active" : index < currentStep ? "completed" : ""}`}>
-                  {step.label}
-                </span>
-              </div>
-              {index < steps.length - 1 && (
-                <div className={`progress-connector ${index < currentStep ? "completed" : ""}`} />
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
+            </div>
 
-      <div className="custom-order-container">
-        {currentStepId === "package" && <PackageSelection selected={selectedPackage} onSelect={setSelectedPackage} />}
-        {currentStepId === "design" && <MockupSelection mockups={SHOES_MOCKUPS} selected={shoesMockup} onSelect={setShoesMockup} currentStep={currentStep + 1} totalSteps={totalSteps} />}
-        {currentStepId === "size" && <SizeSelection selected={shoeSize} onSelect={setShoeSize} currentStep={currentStep + 1} totalSteps={totalSteps} />}
-        {currentStepId === "colors" && <ColorSelection selections={colors} onChange={handleColorChange} currentStep={currentStep + 1} totalSteps={totalSteps} />}
-        {currentStepId === "info" && <CustomerInfoForm info={customerInfo} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
+            <div className="custom-order-container">
+                {currentStepId === "design" && <MockupSelection mockups={SHOES_MOCKUPS} selected={selectedMockup} onSelect={setSelectedMockup} currentStep={currentStep + 1} totalSteps={totalSteps} />}
+                {currentStepId === "colors" && <ColorSelection selections={colors} onChange={handleColorChange} currentStep={currentStep + 1} totalSteps={totalSteps} />}
+                {currentStepId === "info"   && <CustomerInfoForm info={customerInfo} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
 
-        <div className="step-navigation">
-          {currentStep > 0 ? (
-            <button className="btn-back" onClick={handleBack}><ArrowLeft /> Back</button>
-          ) : <div />}
-          <button className={`btn-next ${currentStepId === "info" ? "btn-submit" : ""}`} onClick={handleNext} disabled={!canProceed() || isSubmitting}>
-            {isSubmitting ? (<><div className="spinner" /> Submitting...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
-          </button>
+                <div className="step-navigation">
+                    {currentStep > 0 ? (
+                        <button className="btn-back" onClick={handleBack}><ArrowLeft /> Back</button>
+                    ) : <div />}
+                    <button className={`btn-next ${currentStepId === "info" ? "btn-submit" : ""}`} onClick={handleNext} disabled={!canProceed() || isSubmitting}>
+                        {isSubmitting ? (<><div className="spinner" /> Submitting...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }

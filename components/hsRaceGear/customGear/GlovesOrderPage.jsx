@@ -4,17 +4,8 @@ import Link from "next/link";
 import "@/public/css/custom-order.css";
 
 /* ============================================
-   DATA — Custom Gloves Order
+   DATA
    ============================================ */
-
-const PACKAGES = [
-    {
-        category: "CUSTOM GLOVES",
-        items: [
-            { id: "custom-gloves", name: "Custom Gloves", price: 115, includes: ["gloves"] },
-        ],
-    },
-];
 
 const GLOVES_MOCKUPS = Array.from({ length: 5 }, (_, i) => ({
     id: `gloves-${i + 1}`,
@@ -23,15 +14,7 @@ const GLOVES_MOCKUPS = Array.from({ length: 5 }, (_, i) => ({
     image: `/images/gloves/mockup-${i + 1}.webp`,
 }));
 
-const GLOVE_SIZES = [
-    { id: "xs", label: "XS" },
-    { id: "s", label: "S" },
-    { id: "m", label: "M" },
-    { id: "l", label: "L" },
-    { id: "xl", label: "XL" },
-    { id: "xxl", label: "XXL" },
-    { id: "xxxl", label: "XXXL" },
-];
+const GLOVE_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 
 const COLORS = [
     { name: "Bright Red", hex: "#dc2626" },
@@ -57,6 +40,8 @@ const COLORS = [
     { name: "Filament Grey", hex: "#d4d4d4", light: true },
 ];
 
+const PRICE = 115;
+
 /* ============================================
    ICONS
    ============================================ */
@@ -79,59 +64,15 @@ const ArrowLeft = () => (
 );
 
 /* ============================================
-   STEP COMPONENTS
+   STEP 1 — Gloves Design
    ============================================ */
-
-function PackageSelection({ selected, onSelect }) {
-    return (
-        <div className="step-content">
-            <div className="step-header">
-                <div className="step-badge">Step 1</div>
-                <h2 className="step-title">Custom Gloves</h2>
-                <p className="step-subtitle">SFI 3.3A/5 certified two-layer Nomex® racing gloves with silicone grip palm and custom branding.</p>
-            </div>
-            <div className="package-categories">
-                {PACKAGES.map((cat) => (
-                    <div key={cat.category}>
-                        <div className="package-category-title">{cat.category}</div>
-                        <div className="package-cards">
-                            {cat.items.map((pkg) => (
-                                <div
-                                    key={pkg.id}
-                                    className={`package-card ${selected?.id === pkg.id ? "selected" : ""}`}
-                                    onClick={() => onSelect(pkg)}
-                                    role="button"
-                                    tabIndex={0}
-                                    onKeyDown={(e) => e.key === "Enter" && onSelect(pkg)}
-                                >
-                                    <div className="package-card-info">
-                                        <div className="package-radio">
-                                            <div className="package-radio-dot" />
-                                        </div>
-                                        <div className="package-card-name">
-                                            Custom <strong>Gloves</strong>
-                                        </div>
-                                    </div>
-                                    <div className="package-card-price">
-                                        ${pkg.price}<span>USD</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-}
-
 function MockupSelection({ mockups, selected, onSelect, currentStep, totalSteps }) {
     return (
         <div className="step-content">
             <div className="step-header">
                 <div className="step-badge">Step {currentStep} of {totalSteps}</div>
                 <h2 className="step-title">Select Your Gloves Design</h2>
-                <p className="step-subtitle">Browse our 5 custom racing glove designs and pick your favorite.</p>
+                <p className="step-subtitle">Browse our custom racing glove designs and pick your favourite.</p>
             </div>
             <div className="mockup-grid">
                 {mockups.map((mockup) => (
@@ -161,41 +102,9 @@ function MockupSelection({ mockups, selected, onSelect, currentStep, totalSteps 
     );
 }
 
-function SizeSelection({ selected, onSelect, currentStep, totalSteps }) {
-    return (
-        <div className="step-content">
-            <div className="step-header">
-                <div className="step-badge">Step {currentStep} of {totalSteps}</div>
-                <h2 className="step-title">Select Your Size</h2>
-                <p className="step-subtitle">Choose the glove size that fits you best.</p>
-            </div>
-            <div style={{ maxWidth: 600, margin: "0 auto", paddingBottom: 48 }}>
-                <div className="package-cards">
-                    {GLOVE_SIZES.map((size) => (
-                        <div
-                            key={size.id}
-                            className={`package-card ${selected?.id === size.id ? "selected" : ""}`}
-                            onClick={() => onSelect(size)}
-                            role="button"
-                            tabIndex={0}
-                            onKeyDown={(e) => e.key === "Enter" && onSelect(size)}
-                        >
-                            <div className="package-card-info">
-                                <div className="package-radio">
-                                    <div className="package-radio-dot" />
-                                </div>
-                                <div className="package-card-name" style={{ fontWeight: 600 }}>
-                                    {size.label}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
-
+/* ============================================
+   STEP 2 — Colours
+   ============================================ */
 function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
     const colorAreas = [
         { key: "primary", label: "Primary Color" },
@@ -207,8 +116,8 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
         <div className="step-content">
             <div className="step-header">
                 <div className="step-badge">Step {currentStep} of {totalSteps}</div>
-                <h2 className="step-title">Choose Your Colors</h2>
-                <p className="step-subtitle">Select colors for your custom gloves. Our designer will create a mockup based on your choices.</p>
+                <h2 className="step-title">Choose Your Colours</h2>
+                <p className="step-subtitle">Select colours for your custom gloves. Our designer will create a mockup based on your choices.</p>
             </div>
             <div className="color-selection-area">
                 <div
@@ -222,7 +131,7 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
                     }}
                 >
                     {!selections.primary && (
-                        <div className="color-preview-label">Select colors below</div>
+                        <div className="color-preview-label">Select colours below</div>
                     )}
                 </div>
 
@@ -263,13 +172,16 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
     );
 }
 
+/* ============================================
+   STEP 3 — Your Information (+ Size)
+   ============================================ */
 function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, totalSteps, orderData }) {
     return (
         <div className="step-content">
             <div className="step-header">
                 <div className="step-badge">Step {currentStep} of {totalSteps}</div>
                 <h2 className="step-title">Your Information</h2>
-                <p className="step-subtitle">Enter your contact details. A dedicated designer will reach out within 24 hours with your custom mockup.</p>
+                <p className="step-subtitle">Enter your details and size. A designer will contact you within 24 hours with your custom mockup.</p>
             </div>
             <div className="customer-form">
                 <div className="form-group">
@@ -287,23 +199,38 @@ function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, t
                     <input type="tel" className={`form-input ${errors.phone ? "error" : ""}`} placeholder="Enter your phone number" value={info.phone} onChange={(e) => onChange("phone", e.target.value)} />
                     {errors.phone && <div className="form-error">{errors.phone}</div>}
                 </div>
+                <div className="form-group">
+                    <label className="form-label">Glove Size</label>
+                    <select
+                        className={`form-input ${errors.size ? "error" : ""}`}
+                        value={info.size}
+                        onChange={(e) => onChange("size", e.target.value)}
+                        style={{ cursor: "pointer" }}
+                    >
+                        <option value="">Select your size</option>
+                        {GLOVE_SIZES.map((s) => (
+                            <option key={s} value={s}>{s}</option>
+                        ))}
+                    </select>
+                    {errors.size && <div className="form-error">{errors.size}</div>}
+                </div>
 
                 <div className="order-summary">
                     <div className="order-summary-title">Order Summary</div>
                     <div className="order-summary-item">
                         <span className="order-summary-label">Product</span>
-                        <span className="order-summary-value">{orderData.package?.name || "—"}</span>
+                        <span className="order-summary-value">Custom Gloves</span>
                     </div>
                     <div className="order-summary-item">
                         <span className="order-summary-label">Design</span>
-                        <span className="order-summary-value">{orderData.glovesMockup?.name || "—"}</span>
+                        <span className="order-summary-value">{orderData.mockup?.name || "—"}</span>
                     </div>
                     <div className="order-summary-item">
                         <span className="order-summary-label">Size</span>
-                        <span className="order-summary-value">{orderData.gloveSize?.label || "—"}</span>
+                        <span className="order-summary-value">{info.size || "—"}</span>
                     </div>
                     <div className="order-summary-item">
-                        <span className="order-summary-label">Colors</span>
+                        <span className="order-summary-label">Colours</span>
                         <span className="order-summary-value" style={{ display: "flex", gap: 6, alignItems: "center" }}>
                             {orderData.colors?.primary && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.primary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
                             {orderData.colors?.secondary && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.secondary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
@@ -312,7 +239,7 @@ function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, t
                     </div>
                     <div className="order-summary-total">
                         <span className="order-summary-total-label">Total</span>
-                        <span className="order-summary-total-price">${orderData.package?.price || 0} USD</span>
+                        <span className="order-summary-total-price">${PRICE} USD</span>
                     </div>
                 </div>
             </div>
@@ -320,6 +247,9 @@ function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, t
     );
 }
 
+/* ============================================
+   SUCCESS SCREEN
+   ============================================ */
 function SuccessScreen() {
     return (
         <div className="success-screen">
@@ -342,20 +272,16 @@ function SuccessScreen() {
    ============================================ */
 export default function GlovesOrderPage() {
     const [currentStep, setCurrentStep] = useState(0);
-    const [selectedPackage, setSelectedPackage] = useState(null);
-    const [glovesMockup, setGlovesMockup] = useState(null);
-    const [gloveSize, setGloveSize] = useState(null);
+    const [selectedMockup, setSelectedMockup] = useState(null);
     const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
-    const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "" });
+    const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", size: "" });
     const [formErrors, setFormErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
     const steps = useMemo(() => [
-        { id: "package", label: "Package" },
-        { id: "design", label: "Design" },
-        { id: "size", label: "Size" },
-        { id: "colors", label: "Colors" },
+        { id: "design", label: "Gloves Design" },
+        { id: "colors", label: "Colours" },
         { id: "info", label: "Your Info" },
     ], []);
 
@@ -377,15 +303,14 @@ export default function GlovesOrderPage() {
         if (!customerInfo.email.trim()) errors.email = "Please enter your email";
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerInfo.email)) errors.email = "Please enter a valid email";
         if (!customerInfo.phone.trim()) errors.phone = "Please enter your phone number";
+        if (!customerInfo.size) errors.size = "Please select a glove size";
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
     };
 
     const canProceed = () => {
         switch (currentStepId) {
-            case "package": return !!selectedPackage;
-            case "design": return !!glovesMockup;
-            case "size": return !!gloveSize;
+            case "design": return !!selectedMockup;
             case "colors": return !!colors.primary;
             case "info": return true;
             default: return false;
@@ -416,11 +341,10 @@ export default function GlovesOrderPage() {
         try {
             const orderData = {
                 productType: "custom-gloves",
-                package: selectedPackage,
-                glovesMockup,
-                gloveSize,
+                mockup: selectedMockup,
                 colors,
-                customer: customerInfo,
+                size: customerInfo.size,
+                customer: { name: customerInfo.name, email: customerInfo.email, phone: customerInfo.phone },
             };
 
             const res = await fetch("/api/custom-order", {
@@ -444,7 +368,7 @@ export default function GlovesOrderPage() {
         return <div className="custom-order-page"><SuccessScreen /></div>;
     }
 
-    const orderDataForSummary = { package: selectedPackage, glovesMockup, gloveSize, colors };
+    const orderDataForSummary = { mockup: selectedMockup, colors };
 
     return (
         <div className="custom-order-page">
@@ -470,9 +394,7 @@ export default function GlovesOrderPage() {
             </div>
 
             <div className="custom-order-container">
-                {currentStepId === "package" && <PackageSelection selected={selectedPackage} onSelect={setSelectedPackage} />}
-                {currentStepId === "design" && <MockupSelection mockups={GLOVES_MOCKUPS} selected={glovesMockup} onSelect={setGlovesMockup} currentStep={currentStep + 1} totalSteps={totalSteps} />}
-                {currentStepId === "size" && <SizeSelection selected={gloveSize} onSelect={setGloveSize} currentStep={currentStep + 1} totalSteps={totalSteps} />}
+                {currentStepId === "design" && <MockupSelection mockups={GLOVES_MOCKUPS} selected={selectedMockup} onSelect={setSelectedMockup} currentStep={currentStep + 1} totalSteps={totalSteps} />}
                 {currentStepId === "colors" && <ColorSelection selections={colors} onChange={handleColorChange} currentStep={currentStep + 1} totalSteps={totalSteps} />}
                 {currentStepId === "info" && <CustomerInfoForm info={customerInfo} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
 

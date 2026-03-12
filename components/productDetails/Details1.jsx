@@ -68,8 +68,8 @@ export default function Details1({ product }) {
 
   // Calculate total price from base price + layer multiplier (suits only) + add-ons
   const calculateTotalPrice = () => {
-    // For race suits: double layer = 2× base price
-    let total = isSuit && selectedLayer === "double" ? basePrice * 2 : basePrice;
+    // For race suits: single layer = 395, double layer = 595
+    let total = isSuit ? (selectedLayer === "double" ? 595 : 395) : basePrice;
 
     // Add custom fit price
     if (customFit && product.customFitAvailable && product.customFitPrice) {
@@ -238,8 +238,8 @@ export default function Details1({ product }) {
                       <h6 className="fw-bold mb-2">Select Layer:</h6>
                       <div className="d-flex flex-column gap-2" style={{ maxWidth: 300 }}>
                         {[
-                          { value: "single", label: "Single Layer", price: basePrice },
-                          { value: "double", label: "Double Layer", price: basePrice * 2 },
+                          { value: "single", label: "Single Layer", price: 395 },
+                          { value: "double", label: "Double Layer", price: 595 },
                         ].map(({ value, label, price }) => (
                           <button
                             key={value}
