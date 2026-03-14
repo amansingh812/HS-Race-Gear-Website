@@ -22,7 +22,7 @@
 }
 
 .shoes-gradient-text {
-  background: linear-gradient(to right, #ef4444, #ea580c);
+  background: linear-gradient(to right, #dc2626, #ef4444);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -107,6 +107,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

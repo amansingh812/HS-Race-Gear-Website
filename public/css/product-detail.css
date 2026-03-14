@@ -332,90 +332,227 @@
   font-weight: 500;
 }
 
-/* ---- Description / Accordion Section ---- */
+/* ---- Description / Accordion Section — Racing Theme ---- */
 .flat-single-product .flat-spacing {
   padding-top: 0 !important;
   padding-bottom: 30px;
+  position: relative;
 }
 
+/* Container wrapper for all accordions */
+.flat-single-product .flat-spacing>.container {
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%);
+  border: 1px solid rgba(226, 27, 27, 0.12);
+  border-radius: 12px;
+  padding: 28px 28px 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top racing stripe accent */
+.flat-single-product .flat-spacing>.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #e21b1b 20%, #e21b1b 80%, transparent);
+  opacity: 0.8;
+}
+
+/* Each accordion panel */
 .flat-single-product .widget-accordion.wd-product-descriptions {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 3px solid transparent;
   margin-bottom: 0;
+  padding-left: 16px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  border-radius: 0 6px 6px 0;
 }
 
+.flat-single-product .widget-accordion.wd-product-descriptions:last-child {
+  border-bottom: none;
+}
+
+/* Red left border on hover */
+.flat-single-product .widget-accordion.wd-product-descriptions:hover {
+  border-left-color: #e21b1b;
+  background: rgba(226, 27, 27, 0.03);
+}
+
+/* Accordion title / header */
 .flat-single-product .widget-accordion .accordion-title {
   color: #fff;
   font-size: 15px;
   font-weight: 700;
-  padding: 14px 0;
+  padding: 16px 0;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.25s ease;
+  letter-spacing: 0.3px;
+}
+
+.flat-single-product .widget-accordion .accordion-title:hover span:first-child {
+  color: #e21b1b;
 }
 
 .flat-single-product .widget-accordion .accordion-title span:first-child {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  transition: color 0.25s ease;
+}
+
+/* Expanded state — red left border stays visible */
+.flat-single-product .widget-accordion .accordion-title:not(.collapsed) {
+  border-left-color: #e21b1b;
 }
 
 .flat-single-product .widget-accordion .accordion-title .icon {
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 11px;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
+.flat-single-product .widget-accordion .accordion-title:not(.collapsed) .icon {
+  color: #e21b1b;
+}
+
+/* Accordion body */
 .flat-single-product .widget-accordion .accordion-body {
-  padding: 0 0 16px;
+  padding: 4px 0 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 /* Description text */
 .flat-single-product .widget-desc p,
 .flat-single-product .accordion-body p {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.72);
   font-size: 14px;
-  line-height: 1.7;
-  margin-bottom: 10px;
+  line-height: 1.8;
+  margin-bottom: 12px;
 }
 
+/* Sub-section titles (Material Composition, Safety Certifications, etc.) */
 .flat-single-product .accordion-body .fw-medium,
 .flat-single-product .accordion-body .fw-medium.title {
   color: #e21b1b !important;
-  font-size: 13px;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+/* Red dash before sub-titles */
+.flat-single-product .accordion-body .fw-medium.title::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 2px;
+  background: #e21b1b;
+  flex-shrink: 0;
+}
+
+/* Lists */
 .flat-single-product .accordion-body ul {
-  padding-left: 20px;
-  margin-bottom: 10px;
+  padding-left: 0;
+  margin-bottom: 14px;
+  list-style: none;
 }
 
 .flat-single-product .accordion-body ul li {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.68);
   font-size: 14px;
-  line-height: 1.7;
-  padding: 2px 0;
+  line-height: 1.8;
+  padding: 5px 0 5px 22px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+/* Red chevron bullet marker */
+.flat-single-product .accordion-body ul li::before {
+  content: "›";
+  position: absolute;
+  left: 4px;
+  top: 5px;
+  color: #e21b1b;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.flat-single-product .accordion-body ul li:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.flat-single-product .accordion-body ol {
+  padding-left: 18px;
+  margin-bottom: 14px;
 }
 
 .flat-single-product .accordion-body ol li {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.68);
   font-size: 14px;
-  line-height: 1.7;
-  padding: 2px 0;
+  line-height: 1.8;
+  padding: 4px 0;
+}
+
+.flat-single-product .accordion-body ol li::marker {
+  color: #e21b1b;
+  font-weight: 700;
 }
 
 .flat-single-product .accordion-body .text-muted {
-  color: rgba(255, 255, 255, 0.45) !important;
+  color: rgba(255, 255, 255, 0.42) !important;
+  font-size: 13px;
+  font-style: italic;
 }
 
 .flat-single-product .accordion-body h6 {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   font-size: 14px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .flat-single-product .accordion-body strong {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+}
+
+/* Specifications content cards */
+.specifications-content .spec-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px !important;
+  transition: border-color 0.2s ease;
+}
+
+.specifications-content .spec-item:hover {
+  border-color: rgba(226, 27, 27, 0.25);
+}
+
+/* Custom fit info card */
+.custom-fit-info {
+  background: rgba(226, 27, 27, 0.04);
+  border: 1px solid rgba(226, 27, 27, 0.15);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.custom-fit-info p,
+.custom-fit-info li {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 /* Specifications content inside accordion */

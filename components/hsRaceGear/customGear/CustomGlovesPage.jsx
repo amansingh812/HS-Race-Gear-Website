@@ -186,7 +186,12 @@ export default function CustomGlovesPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="gloves-hero-section">
+            <section className="gloves-hero-section" style={{
+                backgroundImage: "linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)), url('/images/gloves/gloves-hero.webp')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundAttachment: "fixed"
+            }}>
                 <div className="container" style={{ maxWidth: "1200px", padding: "0 24px" }}>
                     <div style={{ textAlign: "center", maxWidth: "900px", margin: "0 auto" }}>
                         {/* Badge */}
@@ -266,8 +271,8 @@ export default function CustomGlovesPage() {
                                 borderRadius: "6px",
                                 fontWeight: "700",
                                 fontSize: "16px",
-                                background: "rgba(255,255,255,0.07)",
-                                border: "2px solid rgba(255,255,255,0.4)",
+                                background: "rgba(255,255,255,0.18)",
+                                border: "2px solid rgba(255,255,255,0.85)",
                                 cursor: "pointer",
                                 transition: "all 0.3s ease"
                             }}>

@@ -171,7 +171,7 @@ export default function CustomShoesPage() {
         <>
             {/* Hero Section */}
             <section className="shoes-hero-section" style={{
-                backgroundImage: "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/shoes/hero_shoes.webp')",
+                backgroundImage: "linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)), url('/images/shoes/hero_shoes.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundAttachment: "fixed"
@@ -255,8 +255,8 @@ export default function CustomShoesPage() {
                                 borderRadius: "6px",
                                 fontWeight: "700",
                                 fontSize: "16px",
-                                background: "rgba(255,255,255,0.07)",
-                                border: "2px solid rgba(255,255,255,0.4)",
+                                background: "rgba(255,255,255,0.18)",
+                                border: "2px solid rgba(255,255,255,0.85)",
                                 cursor: "pointer",
                                 transition: "all 0.3s ease"
                             }}>

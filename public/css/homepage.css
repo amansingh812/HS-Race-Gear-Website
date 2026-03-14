@@ -1451,6 +1451,7 @@
   height: 100%;
   padding: 26px 26px 22px;
   z-index: 3;
+  overflow: hidden;
 
   background: rgba(5, 5, 5, 0.88);
   backdrop-filter: blur(12px);
@@ -1573,64 +1574,104 @@
 
 /* ---- Responsive ---- */
 
-/* Tablet landscape: 2 columns */
+/* Tablet landscape: still 3 columns, just tighter */
 @media (max-width: 1024px) {
   .gear-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
 
   .gear-card {
-    height: 560px;
-  }
-}
-
-/* Tablet portrait: 2 columns, compact */
-@media (max-width: 768px) {
-  .gear-section {
-    padding: 70px 0 80px;
-  }
-
-  .gear-section__title {
-    font-size: 2rem;
-  }
-
-  .gear-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  .gear-card {
-    height: 600px;
+    height: 500px;
   }
 
   .gear-overlay {
-    padding: 20px 18px 18px;
+    padding: 20px 16px 16px;
   }
 
   .gear-overlay__title {
-    font-size: 1.15rem;
-    margin-bottom: 2px;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
   }
 
   .gear-specs li {
-    font-size: 0.77rem;
+    font-size: 0.74rem;
     padding: 3px 0;
     line-height: 1.35;
     gap: 6px;
   }
 
   .gear-cta-btn {
-    padding: 8px 14px;
+    padding: 9px 14px;
     font-size: 0.8rem;
     margin-top: 6px;
   }
 }
 
-/* Mobile: single column, tall enough for all content */
+/* Tablet portrait: 3 columns, more compact */
+@media (max-width: 768px) {
+  .gear-section {
+    padding: 60px 0 70px;
+  }
+
+  .gear-section__title {
+    font-size: 1.9rem;
+  }
+
+  .gear-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .gear-card {
+    height: 460px;
+  }
+
+  .gear-overlay {
+    padding: 16px 12px 14px;
+  }
+
+  .gear-overlay__title {
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+
+  .sfi-badge {
+    font-size: 0.6rem;
+    padding: 2px 7px;
+    margin-bottom: 4px;
+  }
+
+  .gear-specs {
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .gear-specs li {
+    font-size: 0.7rem;
+    padding: 3px 0;
+    line-height: 1.3;
+    gap: 5px;
+  }
+
+  .gear-specs__icon {
+    font-size: 0.65rem;
+    margin-top: 1px;
+  }
+
+  .gear-cta-btn {
+    padding: 7px 12px;
+    font-size: 0.75rem;
+    margin-top: 6px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Mobile: single column — each card gets full width, taller */
 @media (max-width: 600px) {
   .gear-section {
-    padding: 56px 0 64px;
+    padding: 48px 0 56px;
   }
 
   .gear-section__title {
@@ -1639,11 +1680,11 @@
 
   .gear-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
   .gear-card {
-    height: 580px;
+    height: 520px;
   }
 
   .gear-overlay {
@@ -1652,12 +1693,13 @@
 
   .gear-overlay__title {
     font-size: 1.2rem;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
 
   .sfi-badge {
     font-size: 0.66rem;
     padding: 3px 9px;
+    margin-bottom: 6px;
   }
 
   .gear-specs {
@@ -1668,7 +1710,7 @@
   .gear-specs li {
     font-size: 0.79rem;
     padding: 5px 0;
-    line-height: 1.38;
+    line-height: 1.4;
     gap: 7px;
   }
 
