@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function BlanketTemplate() {
     return (
@@ -49,6 +50,28 @@ export default function BlanketTemplate() {
                                     <li>Collar and chest zone detail</li>
                                     <li>Design placement guidelines</li>
                                 </ul>
+                            </div>
+                        </div>
+
+                        {/* Mockup Image */}
+                        <div className="hs-doc-block">
+                            <div style={{
+                                textAlign: "center",
+                                padding: "40px 0"
+                            }}>
+                                <Image
+                                    src="/assets/images/customize/mockup_blanket.jpeg"
+                                    alt="Blank Template Mockup"
+                                    width={600}
+                                    height={400}
+                                    style={{
+                                        width: "100%",
+                                        height: "auto",
+                                        borderRadius: "8px",
+                                        maxWidth: "600px"
+                                    }}
+                                    priority
+                                />
                             </div>
                         </div>
 
