@@ -493,6 +493,13 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+/* Override default dot bullet from main.css */
+.flat-single-product .wd-product-descriptions .item ul li::before {
+  background-color: transparent !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 .flat-single-product .accordion-body ol {
   padding-left: 18px;
   margin-bottom: 14px;

@@ -92,8 +92,8 @@ export default async function ProductDetailPage({ params }) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://hsracegear.com" },
-        { "@type": "ListItem", "position": 2, "name": "Shop",  "item": "https://hsracegear.com/shop" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hsracegear.com" },
+        { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://hsracegear.com/shop" },
         { "@type": "ListItem", "position": 3, "name": serializedProduct.name, "item": productUrl }
       ]
     };
@@ -112,7 +112,9 @@ export default async function ProductDetailPage({ params }) {
         <Header3 />
         <Breadcumb product={serializedProduct} />
         <Details1 product={serializedProduct} />
-        <Description1 product={serializedProduct} />
+        <div className="flat-single-product">
+          <Description1 product={serializedProduct} />
+        </div>
         <Footer3 paddingBottom />
       </>
     );

@@ -365,7 +365,6 @@ export default function CustomizeSection() {
 
           {/* ── Cards ── */}
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "20px" }}
             className="customize-grid"
           >
             {customizeCategories.map((category, index) => {
@@ -510,12 +509,14 @@ export default function CustomizeSection() {
               );
 
               /* Suits → button, others → Link */
+              const isLastItem = index === customizeCategories.length - 1;
+              const lastClass = isLastItem ? 'last-grid-item' : '';
               return hasSubs ? (
-                <div key={index} style={{ textDecoration: "none", display: "block", width: "100%" }}>
+                <div key={index} className={lastClass} style={{ textDecoration: "none", display: "block" }}>
                   {cardInner}
                 </div>
               ) : (
-                <Link key={index} href={category.href} style={{ textDecoration: "none", display: "block", width: "100%" }}>
+                <Link key={index} href={category.href} className={lastClass} style={{ textDecoration: "none", display: "block" }}>
                   {cardInner}
                 </Link>
               );
@@ -550,6 +551,13 @@ export default function CustomizeSection() {
             display: none;
           }
 
+          /* Default desktop grid */
+          .customize-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+          }
+
           /* Desktop: 5 columns */
           @media (max-width: 1200px) {
             .customize-grid {
@@ -566,7 +574,7 @@ export default function CustomizeSection() {
             }
           }
 
-          /* Mobile: horizontal scroll */
+          /* Mobile: 2-column fixed grid, 2-2-1 with last centered */
           @media (max-width: 767px) {
             .customize-section {
               padding: 50px 0 60px !important;
@@ -576,26 +584,21 @@ export default function CustomizeSection() {
               margin-bottom: 32px !important;
             }
             .customize-grid {
-              display: flex !important;
-              overflow-x: auto !important;
-              overflow-y: visible !important;
-              scroll-snap-type: x mandatory;
-              gap: 12px !important;
-              margin: 0 -24px !important;
-              padding: 0 24px 16px 24px !important;
-              -webkit-overflow-scrolling: touch;
-              scrollbar-width: none;
-              -ms-overflow-style: none;
-              touch-action: pan-x;
-            }
-            .customize-grid::-webkit-scrollbar {
-              display: none;
+              display: grid !important;
+              grid-template-columns: repeat(2, 1fr) !important;
+              justify-content: center !important;
+              gap: 14px !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              overflow: visible !important;
             }
             .customize-grid > * {
-              flex: 0 0 44%;
-              min-width: 155px;
-              max-width: 200px;
-              scroll-snap-align: start;
+              width: 100% !important;
+            }
+            .customize-grid > .last-grid-item {
+              grid-column: 1 / -1;
+              width: 50% !important;
+              margin: 0 auto !important;
             }
             .customize-card .card-skew-bg {
               transform: skewX(-2deg) !important;
@@ -603,13 +606,13 @@ export default function CustomizeSection() {
             .customize-card .card-accent-stripe {
               transform: skewX(-2deg) !important;
             }
-            /* Mobile card content adjustments — force uniform card size */
+            /* Mobile card content adjustments */
             .customize-card > div:last-child {
               padding: 16px 12px 14px !important;
             }
             .customize-card .card-img-wrap {
               aspect-ratio: unset !important;
-              height: 130px !important;
+              height: 140px !important;
               margin-bottom: 12px !important;
             }
             .customize-card .card-title {
@@ -621,17 +624,17 @@ export default function CustomizeSection() {
               height: 14px !important;
             }
             .scroll-hint-bar {
-              display: flex !important;
-              justify-content: center;
-              padding-top: 16px;
+              display: none !important;
             }
           }
 
-          /* Small mobile: slightly larger cards */
+          /* Small mobile */
           @media (max-width: 400px) {
-            .customize-grid > * {
-              flex: 0 0 46% !important;
-              min-width: 145px !important;
+            .customize-grid {
+              gap: 10px !important;
+            }
+            .customize-card .card-img-wrap {
+              height: 120px !important;
             }
           }
 
