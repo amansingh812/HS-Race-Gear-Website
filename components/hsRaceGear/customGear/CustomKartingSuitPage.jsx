@@ -119,8 +119,8 @@ export default function CustomKartingSuitPage() {
                             color: "#fff",
                             textTransform: "uppercase"
                         }}>
-                            Custom Karting<br />
-                            <span className="karting-gradient-text">Suits.</span>
+                            Performance &<br />
+                            Maximum <span style={{ color: "#dc2626" }}>Safety.</span>
                         </h1>
 
                         {/* Subheading */}
@@ -161,7 +161,7 @@ export default function CustomKartingSuitPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </Link>
-                            <Link href="/custom-measurement" className="glass-panel" style={{
+                            <Link href="/custom-measurement" className="karting-glass-panel karting-secondary-btn" style={{
                                 display: "inline-block",
                                 color: "#fff",
                                 padding: "16px 32px",
@@ -169,9 +169,9 @@ export default function CustomKartingSuitPage() {
                                 fontWeight: "700",
                                 fontSize: "16px",
                                 textDecoration: "none",
-                                transition: "background-color 0.3s ease"
+                                transition: "all 0.3s ease"
                             }}>
-                                Custom Measurement
+                                Custom Measurement Form
                             </Link>
                         </div>
                     </div>

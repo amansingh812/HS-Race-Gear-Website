@@ -80,7 +80,6 @@
 .pswp__container,
 .pswp__item,
 .pswp__content,
-.pswp__img,
 .pswp__zoom-wrap {
 	position: absolute;
 	top: 0;
@@ -89,10 +88,21 @@
 	height: 100%;
 }
 
-.pswp__img,
-.pswp__zoom-wrap {
+.pswp__img {
 	width: auto;
 	height: auto;
+	max-width: 100vw;
+	max-height: calc(100vh - 80px);
+	object-fit: contain;
+	display: block;
+}
+
+.pswp__zoom-wrap {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .pswp--click-to-zoom.pswp--zoom-allowed .pswp__img {

@@ -149,6 +149,24 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
       pswpModule: () => import("photoswipe"),
     });
 
+    // Read actual natural dimensions from the img element so images are never squashed
+    lightbox.addFilter("domItemData", (itemData, element, linkEl) => {
+      const img = linkEl?.querySelector("img");
+      if (img && img.naturalWidth > 0 && img.naturalHeight > 0) {
+        itemData.w = img.naturalWidth;
+        itemData.h = img.naturalHeight;
+      } else if (img) {
+        // image not yet decoded — measure it once loaded
+        const tempImg = new window.Image();
+        tempImg.onload = () => {
+          itemData.w = tempImg.naturalWidth;
+          itemData.h = tempImg.naturalHeight;
+        };
+        tempImg.src = img.src;
+      }
+      return itemData;
+    });
+
     lightbox.init();
 
     // Store the lightbox instance in the ref for later use
@@ -209,8 +227,6 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
                 href={elm.imgSrc}
                 target="_blank"
                 className="item"
-                data-pswp-width="552px"
-                data-pswp-height="827px"
               >
                 <Image
                   className="tf-image-zoom lazyload"

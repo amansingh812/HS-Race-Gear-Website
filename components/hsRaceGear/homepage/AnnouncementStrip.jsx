@@ -4,7 +4,7 @@ const trustItems = [
   {
     icon: "icon-shipping",
     title: "Free Shipping",
-    subtitle: "On orders over $150",
+    subtitle: "for custom suits",
   },
   {
     icon: "icon-return",

@@ -382,6 +382,24 @@ export default function SearchModal() {
           flex-direction: column;
           gap: 4px;
           margin-bottom: 20px;
+          max-height: 60vh;
+          overflow-y: auto;
+          padding-right: 8px;
+        }
+
+        /* Custom scrollbar styling */
+        .hs-search-results::-webkit-scrollbar {
+          width: 6px;
+        }
+        .hs-search-results::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .hs-search-results::-webkit-scrollbar-thumb {
+          background: rgba(226,27,27,0.4);
+          border-radius: 3px;
+        }
+        .hs-search-results::-webkit-scrollbar-thumb:hover {
+          background: rgba(226,27,27,0.6);
         }
 
         .hs-search-result-item {

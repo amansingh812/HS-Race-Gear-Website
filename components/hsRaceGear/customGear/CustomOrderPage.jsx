@@ -33,13 +33,6 @@ const PACKAGES = [
       { id: "triple-suit-gloves-shoes", name: "Triple Layer Custom SFI Rated Suit + Custom Gloves + Custom Shoes", price: 929, includes: ["suit", "gloves", "shoes"] },
     ],
   },
-  {
-    category: "CUSTOM KARTING SUIT",
-    items: [
-      { id: "karting-suit-gloves", name: "Custom Karting Suit + Custom Gloves", price: 315, includes: ["suit", "gloves"] },
-      { id: "karting-suit-gloves-shoes", name: "Custom Karting Suit + Custom Gloves + Custom Shoes", price: 415, includes: ["suit", "gloves", "shoes"] },
-    ],
-  },
 ];
 
 // Images available for race suit mockups (reusing karting suit designs)

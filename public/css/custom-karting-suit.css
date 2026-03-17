@@ -172,6 +172,17 @@
   background: rgba(220, 38, 38, 0.05);
 }
 
+/* Secondary Button Styling */
+.karting-secondary-btn {
+  transition: all 0.3s ease;
+}
+
+.karting-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #dc2626 !important;
+  color: #fff !important;
+}
+
 /* Measure CTA Section */
 .karting-measure-cta {
   background: linear-gradient(135deg, #171717 0%, #0a0a0a 100%);

@@ -467,3 +467,82 @@
     font-size: 22px;
   }
 }
+
+/* ---- SEO Content Section ---- */
+.shop-seo-section {
+  padding: 64px 0;
+  background: #0f0f0f;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.shop-seo-content {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.shop-seo-heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.shop-seo-subheading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-top: 36px;
+  margin-bottom: 14px;
+  padding-left: 12px;
+  border-left: 3px solid #dc2626;
+}
+
+.shop-seo-text {
+  color: #9ca3af;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.shop-seo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.shop-seo-list li {
+  color: #9ca3af;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  padding: 4px 0 4px 20px;
+  position: relative;
+}
+
+.shop-seo-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #dc2626;
+}
+
+.shop-seo-list li strong {
+  color: #d1d5db;
+}
+
+@media (max-width: 768px) {
+  .shop-seo-section {
+    padding: 40px 0;
+  }
+
+  .shop-seo-heading {
+    font-size: 1.4rem;
+  }
+
+  .shop-seo-subheading {
+    font-size: 1.05rem;
+  }
+}

@@ -3,6 +3,7 @@ import Product from '@/models/Product';
 import '@/models/Category';
 import Details1 from '@/components/productDetails/Details1';
 import Description1 from '@/components/productDetails/Description1';
+import RaceSuitSeoDescription from '@/components/productDetails/RaceSuitSeoDescription';
 import Header3 from '@/components/headers/Header3';
 import Footer3 from '@/components/footers/Footer3';
 import Topbar1 from '@/components/headers/Topbar1';
@@ -112,9 +113,13 @@ export default async function ProductDetailPage({ params }) {
         <Header3 />
         <Breadcumb product={serializedProduct} />
         <Details1 product={serializedProduct} />
-        <div className="flat-single-product">
-          <Description1 product={serializedProduct} />
-        </div>
+        {serializedProduct.category?.slug === 'race-suits' ? (
+          <RaceSuitSeoDescription />
+        ) : (
+          <div className="flat-single-product">
+            <Description1 product={serializedProduct} />
+          </div>
+        )}
         <Footer3 paddingBottom />
       </>
     );

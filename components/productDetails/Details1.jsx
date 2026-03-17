@@ -69,7 +69,7 @@ export default function Details1({ product }) {
   // Calculate total price from base price + layer multiplier (suits only) + add-ons
   const calculateTotalPrice = () => {
     // For race suits: single layer = 395, double layer = 595
-    let total = isSuit ? (selectedLayer === "double" ? 595 : 395) : basePrice;
+    let total = isSuit ? (selectedLayer === "double" ? 429 : 329) : basePrice;
 
     // Add custom fit price
     if (customFit && product.customFitAvailable && product.customFitPrice) {
@@ -226,9 +226,27 @@ export default function Details1({ product }) {
                       onChange={(e) => setSelectedSize(e.target.value)}
                     >
                       <option value="">-- Select a Size --</option>
-                      {["7XS", "6XS", "5XS", "4XS", "3XS", "2XS", "XS", "S", "M", "L", "XL", "2XL", "3XL"].map((size) => (
-                        <option key={size} value={size}>{size}</option>
-                      ))}
+                      {(() => {
+                        const isHoodie = product.category?.slug === "hoodies" ||
+                          product.name?.toLowerCase().includes("hoodie") ||
+                          product.title?.toLowerCase().includes("hoodie");
+
+                        const isTshirt = product.category?.slug === "crew-shirts" ||
+                          product.name?.toLowerCase().includes("shirt") ||
+                          product.title?.toLowerCase().includes("shirt");
+
+                        let sizes = ["7XS", "6XS", "5XS", "4XS", "3XS", "2XS", "XS", "S", "M", "L", "XL", "2XL", "3XL"]; // Default suit sizes
+
+                        if (isHoodie) {
+                          sizes = ["YS", "YM", "YL", "YXL", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"];
+                        } else if (isTshirt) {
+                          sizes = ["YS", "YM", "YL", "YXL", "XS", "S", "M", "L", "XL", "2XL", "3XL"];
+                        }
+
+                        return sizes.map((size) => (
+                          <option key={size} value={size}>{size}</option>
+                        ));
+                      })()}
                     </select>
                   </div>
 
@@ -238,8 +256,8 @@ export default function Details1({ product }) {
                       <h6 className="fw-bold mb-2">Select Layer:</h6>
                       <div className="d-flex flex-column gap-2" style={{ maxWidth: 300 }}>
                         {[
-                          { value: "single", label: "Single Layer", price: 395 },
-                          { value: "double", label: "Double Layer", price: 595 },
+                          { value: "single", label: "Single Layer", price: 329 },
+                          { value: "double", label: "Double Layer", price: 429 },
                         ].map(({ value, label, price }) => (
                           <button
                             key={value}
