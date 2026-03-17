@@ -48,6 +48,7 @@ export default function ShopClient() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const [resolvedCategoryId, setResolvedCategoryId] = useState(null);
   const [filters, setFilters] = useState({
     category: '',
@@ -91,6 +92,7 @@ export default function ShopClient() {
 
   // Resolve category slug to ObjectId
   useEffect(() => {
+    setIsPageLoading(true);
     if (categorySlug) {
       resolveCategoryId(categorySlug);
     } else {
@@ -130,12 +132,14 @@ export default function ShopClient() {
         setResolvedCategoryId('not-found');
         setProducts([]);
         setLoading(false);
+        setIsPageLoading(false);
       }
     } catch (error) {
       console.error('Error resolving category:', error);
       setResolvedCategoryId('not-found');
       setProducts([]);
       setLoading(false);
+      setIsPageLoading(false);
     }
   };
 
@@ -217,14 +221,17 @@ export default function ShopClient() {
           totalProducts: data.data.pagination.totalProducts || data.data.pagination.totalCount,
         }));
         setLoading(false);
+        setIsPageLoading(false);
       } else {
         setProducts([]);
         setLoading(false);
+        setIsPageLoading(false);
       }
     } catch (error) {
       console.error('Error fetching products:', error);
       setProducts([]);
       setLoading(false);
+      setIsPageLoading(false);
     }
   };
 
@@ -250,6 +257,13 @@ export default function ShopClient() {
 
   return (
     <>
+      {isPageLoading && (
+        <div className="preload preload-container">
+          <div className="preload-logo">
+            <div className="spinner"></div>
+          </div>
+        </div>
+      )}
       <Topbar1 />
       <Header3 />
 
@@ -514,7 +528,7 @@ export default function ShopClient() {
         </div>
       </section>
 
-     
+
       <Footer3 />
     </>
   );
