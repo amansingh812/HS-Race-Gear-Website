@@ -18451,7 +18451,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .breadcrumb-wrap {
-  padding: 32px 0px 27px;
+  padding: 53px 0 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
