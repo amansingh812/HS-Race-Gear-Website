@@ -606,7 +606,7 @@ export default function CustomKartingSuitPage() {
                             </Link>
                         </div>
 
-                        {/* Offer 1 */}
+                        {/* Offer 7 */}
                         <div className="karting-pricing-card">
                             <div style={{
                                 display: "inline-block",
@@ -620,20 +620,24 @@ export default function CustomKartingSuitPage() {
                                 letterSpacing: "1px",
                                 textTransform: "uppercase"
                             }}>
-                                Karting Offer 1
+                                Offer 7
                             </div>
                             <h3 style={{ fontSize: "1.5rem", fontWeight: "700", color: "#fff", marginBottom: "8px" }}>
-                                Team Package
+                                Custom Karting Suit + Custom Gloves
                             </h3>
                             <p style={{ color: "#9ca3af", fontSize: "14px", marginBottom: "24px", lineHeight: "1.6" }}>
-                                Perfect for karting teams and academies. Bulk pricing with matching team designs.
+                                Complete karting package with a fully custom sublimation suit and matching custom gloves, tailored to your exact measurements.
                             </p>
                             <ul style={{ listStyle: "none", padding: 0, marginBottom: "24px" }}>
                                 {[
-                                    "Matching team design",
-                                    "Individual driver customization",
-                                    "Bulk team pricing",
-                                    "Consistent branding across team"
+                                    "Free Karting Gloves Included",
+                                    "Unlimited color options",
+                                    "Free Unlimited Sublimation",
+                                    "Free Unlimited embroidery",
+                                    "Free Unlimited mockup changes",
+                                    "Lightweight construction",
+                                    "Made to your measurements",
+                                    "Comfort-focused lower back"
                                 ].map((item, index) => (
                                     <li key={index} style={{
                                         display: "flex",
@@ -650,22 +654,22 @@ export default function CustomKartingSuitPage() {
                                     </li>
                                 ))}
                             </ul>
-                            <Link href="/RacegearDeals" style={{
+                            <Link href="/RacegearDeals?category=CUSTOM%20KARTING%20SUIT" style={{
                                 display: "block",
                                 textAlign: "center",
                                 padding: "14px 28px",
-                                border: "2px solid #fff",
+                                backgroundColor: "#dc2626",
                                 borderRadius: "6px",
                                 color: "#fff",
                                 fontWeight: "700",
                                 textDecoration: "none",
-                                transition: "all 0.3s ease"
+                                transition: "background-color 0.3s ease"
                             }}>
-                                View Deals
+                                View Deal
                             </Link>
                         </div>
 
-                        {/* Offer 2 */}
+                        {/* Offer 8 */}
                         <div className="karting-pricing-card">
                             <div style={{
                                 display: "inline-block",
@@ -679,20 +683,25 @@ export default function CustomKartingSuitPage() {
                                 letterSpacing: "1px",
                                 textTransform: "uppercase"
                             }}>
-                                Karting Offer 2
+                                Offer 8 · Bundle Deal
                             </div>
                             <h3 style={{ fontSize: "1.5rem", fontWeight: "700", color: "#fff", marginBottom: "8px" }}>
-                                Junior Karting Suit
+                                Custom Karting Suit + Custom Gloves + Custom Shoes
                             </h3>
                             <p style={{ color: "#9ca3af", fontSize: "14px", marginBottom: "24px", lineHeight: "1.6" }}>
-                                Designed for young drivers in junior development leagues and youth karting programs.
+                                The ultimate karting bundle — custom suit, gloves, and shoes all in one package, tailored to your measurements.
                             </p>
                             <ul style={{ listStyle: "none", padding: 0, marginBottom: "24px" }}>
                                 {[
-                                    "Youth-sized custom fit",
-                                    "Full sublimation design",
-                                    "Lightweight & comfortable",
-                                    "Growth-friendly sizing options"
+                                    "Free Karting Gloves Included",
+                                    "Free Karting Shoes Included",
+                                    "Unlimited color options",
+                                    "Free Unlimited Sublimation",
+                                    "Free Unlimited embroidery",
+                                    "Free Unlimited mockup changes",
+                                    "Lightweight construction",
+                                    "Made to your measurements",
+                                    "Comfort-focused lower back"
                                 ].map((item, index) => (
                                     <li key={index} style={{
                                         display: "flex",
@@ -709,18 +718,18 @@ export default function CustomKartingSuitPage() {
                                     </li>
                                 ))}
                             </ul>
-                            <Link href="/RacegearDeals" style={{
+                            <Link href="/RacegearDeals?category=CUSTOM%20KARTING%20SUIT" style={{
                                 display: "block",
                                 textAlign: "center",
                                 padding: "14px 28px",
-                                border: "2px solid #fff",
+                                backgroundColor: "#dc2626",
                                 borderRadius: "6px",
                                 color: "#fff",
                                 fontWeight: "700",
                                 textDecoration: "none",
-                                transition: "all 0.3s ease"
+                                transition: "background-color 0.3s ease"
                             }}>
-                                View Deals
+                                View Deal
                             </Link>
                         </div>
                     </div>

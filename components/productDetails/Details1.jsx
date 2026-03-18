@@ -89,6 +89,14 @@ export default function Details1({ product }) {
 
   const totalPrice = calculateTotalPrice();
 
+  // Get compare-at price based on selected layer for race suits
+  const getCompareAtPrice = () => {
+    if (isSuit) {
+      return selectedLayer === "double" ? 69900 : 59900; // Store in cents: $699 and $599
+    }
+    return product.compareAtPrice;
+  };
+
   const handleOptionToggle = (optionSlug) => {
     setSelectedOptions(prev =>
       prev.includes(optionSlug)
@@ -117,6 +125,7 @@ export default function Details1({ product }) {
               </div>
             </div>
             {/* /Product Images */}
+
             {/* Product Info */}
             <div className="col-md-6">
               <div className="tf-zoom-main" />
@@ -152,32 +161,17 @@ export default function Details1({ product }) {
 
                   {/* Size Chart Modal */}
                   {showSizeChart && (
-                    <div
-                      style={{
-                        position: "fixed", inset: 0, background: "rgba(0,0,0,0.65)",
-                        zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center",
-                      }}
-                      onClick={() => setShowSizeChart(false)}
-                    >
-                      <div
-                        style={{
-                          background: "#fff", borderRadius: 8, padding: 24, maxWidth: "90vw",
-                          maxHeight: "90vh", overflow: "auto", position: "relative",
-                        }}
-                        onClick={(e) => e.stopPropagation()}
-                      >
+                    <div className="hs-modal-overlay" onClick={() => setShowSizeChart(false)}>
+                      <div className="hs-modal-content" onClick={(e) => e.stopPropagation()}>
                         <button
                           type="button"
+                          className="hs-modal-close"
                           onClick={() => setShowSizeChart(false)}
-                          style={{
-                            position: "absolute", top: 12, right: 14, background: "none",
-                            border: "none", fontSize: 22, cursor: "pointer", lineHeight: 1,
-                          }}
                           aria-label="Close"
                         >
                           &times;
                         </button>
-                        <h5 style={{ marginBottom: 16, fontWeight: 700 }}>{sizeChartInfo.title}</h5>
+                        <h5 className="hs-modal-title">{sizeChartInfo.title}</h5>
                         <Image
                           src={sizeChartInfo.src}
                           alt={sizeChartInfo.alt}
@@ -370,11 +364,14 @@ export default function Details1({ product }) {
                   <div className="tf-product-price mb-3">
                     <div className="d-flex align-items-center gap-2 flex-wrap">
                       <h3 className="mb-0">${totalPrice.toFixed(2)} USD</h3>
-                      {product.compareAtPrice && product.compareAtPrice > product.price && (
-                        <span style={{ fontSize: "0.9rem", color: "#999", textDecoration: "line-through" }}>
-                          ${(product.compareAtPrice / 100).toFixed(2)} USD
-                        </span>
-                      )}
+                      {(() => {
+                        const comparePrice = getCompareAtPrice();
+                        return comparePrice && comparePrice > (totalPrice * 100) && (
+                          <span style={{ fontSize: "0.9rem", color: "#999", textDecoration: "line-through" }}>
+                            ${(comparePrice / 100).toFixed(2)} USD
+                          </span>
+                        );
+                      })()}
                     </div>
                   </div>
 

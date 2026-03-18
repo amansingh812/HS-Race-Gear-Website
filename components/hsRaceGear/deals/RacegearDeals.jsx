@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import "@/public/css/racegear-deals.css";
 
@@ -323,6 +324,7 @@ function DealCard({ offer }) {
 
       {/* Image */}
       <div
+        className="deal-card-img-wrap"
         style={{
           width: "100%",
           height: "280px",
@@ -550,8 +552,20 @@ function DealCard({ offer }) {
 
 export default function RacegearDeals() {
   const [activeCategory, setActiveCategory] = useState(0);
+  const searchParams = useSearchParams();
 
   const categories = dealsData.map((d) => d.category);
+
+  // Set active category from URL query param on mount
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam) {
+      const categoryIndex = categories.indexOf(categoryParam);
+      if (categoryIndex !== -1) {
+        setActiveCategory(categoryIndex);
+      }
+    }
+  }, [searchParams, categories]);
 
   return (
     <div
