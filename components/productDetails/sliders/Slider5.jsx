@@ -171,15 +171,11 @@ export default function Slider5({
       </Swiper>
       <div className="flat-wrap-media-product">
         <Swiper
-          modules={[Thumbs, Navigation]}
+          modules={[Thumbs]}
           dir="ltr"
           className="swiper"
           id="gallery-swiper-started"
           thumbs={{ swiper: thumbSwiper }}
-          navigation={{
-            prevEl: ".snbp1",
-            nextEl: ".snbn1",
-          }}
           style={{ overflow: "hidden" }}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => {
@@ -216,8 +212,7 @@ export default function Slider5({
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="swiper-button-next nav-swiper thumbs-next snbn1" />
-        <div className="swiper-button-prev nav-swiper thumbs-prev snbp1" />
+
       </div>
     </>
   );

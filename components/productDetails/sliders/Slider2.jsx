@@ -170,7 +170,7 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
       {isMobile ? (
         <div className="hs-gallery-mobile">
           <Swiper
-            modules={[Navigation, Pagination]}
+            modules={[Pagination]}
             dir="ltr"
             className="hs-mobile-swiper"
             id="gallery-swiper-started"
@@ -178,10 +178,6 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
               el: ".hs-mobile-pagination",
               clickable: true,
               dynamicBullets: items.length > 7,
-            }}
-            navigation={{
-              prevEl: ".hs-mob-prev",
-              nextEl: ".hs-mob-next",
             }}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={(swiper) => {
@@ -209,13 +205,6 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
             ))}
           </Swiper>
 
-          {/* Mobile nav arrows */}
-          <button className="hs-mob-prev hs-mob-nav" aria-label="Previous image">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <button className="hs-mob-next hs-mob-nav" aria-label="Next image">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
 
           {/* Pagination dots */}
           <div className="hs-mobile-pagination" />
@@ -252,15 +241,11 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
         <>
           <div className="flat-wrap-media-product">
             <Swiper
-              modules={[Thumbs, Navigation]}
+              modules={[Thumbs]}
               dir="ltr"
               className="swiper tf-product-media-main"
               id="gallery-swiper-started"
               thumbs={{ swiper: thumbSwiper }}
-              navigation={{
-                prevEl: ".snbp1",
-                nextEl: ".snbn1",
-              }}
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={(swiper) => {
                 if (items[swiper.activeIndex]) {
@@ -290,8 +275,7 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="swiper-button-next nav-swiper thumbs-next snbn1" />
-            <div className="swiper-button-prev nav-swiper thumbs-prev snbp1" />
+
           </div>
           <Swiper
             dir="ltr"
