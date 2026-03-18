@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useContextElement } from "@/context/Context";
 import CountdownTimer from "../common/Countdown";
 import Image from "next/image";
+
 export default function ProductCard1({
   product,
   styleClass = "style-1",
@@ -22,146 +23,148 @@ export default function ProductCard1({
     setCurrentImage(product.imgSrc);
   }, [product]);
 
+  const isOutOfStock = product.isOutofSale;
+  const hasSize = product.sizes?.length > 0;
+  const hasColors = product.colors?.length > 0;
+  const isStyle3 = styleClass.includes("style-3");
+
   return (
-    <div
-      className={`card-product ${product.sizes?.length > 0 ? "card-product-size" : ""
-        } ${product.isOutofSale ? "out-of-stock" : ""} ${styleClass}`}
-    >
-      <div className={`card-product-wrapper ${ratioClass} `}>
-        <Link href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`} className="product-img">
+    <div className={`hs-product-card ${hasSize ? "hs-has-sizes" : ""} ${isOutOfStock ? "hs-out-of-stock" : ""} ${styleClass}`}>
+      {/* Image Container */}
+      <div className={`hs-card-img-wrap ${ratioClass}`}>
+        <Link
+          href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`}
+          className="hs-card-img-link"
+        >
           <Image
-            className="img-product lazyload"
-            alt="image-product"
+            className="hs-card-img"
+            alt={product.title}
             src={currentImage}
             width={513}
             height={729}
           />
           <Image
-            className="img-hover lazyload"
-            data-src={product.imgHover}
-            alt="image-product"
+            className="hs-card-hover-img"
+            alt={product.title}
             src={product.imgHover}
             width={513}
             height={729}
           />
         </Link>
+
+        {/* Badge - Sale Label, Trending, or Countdown */}
         {product.saleLabel && (
-          <div className="on-sale-wrap">
-            <span className="on-sale-item">{product.saleLabel}</span>
+          <div className="hs-card-badge hs-badge-sale">
+            <span>{product.saleLabel}</span>
           </div>
         )}
-        {product.isTrending && (
-          <div className="on-sale-wrap">
-            <span className="on-sale-item trending">Trending</span>
+
+        {product.isTrending && !product.saleLabel && (
+          <div className="hs-card-badge hs-badge-trending">
+            <span>Trending</span>
           </div>
         )}
+
         {product.countdownTimer && (
-          <div className="countdown-box">
-            <span className="js-countdown">
+          <div className="hs-card-badge hs-badge-countdown">
+            <span className="hs-countdown-timer">
               <CountdownTimer style={1} />
             </span>
           </div>
         )}
-        {!product.isOutofSale && (
-          <>
-            <ul className="list-product-btn">
-              {!styleClass.includes("style-3") && (
-                <li>
-                  <a
-                    href="#shoppingCart"
-                    data-bs-toggle="offcanvas"
-                    onClick={() => addProductToCart(product.id)}
-                    className={`hover-tooltip tooltip-${tooltipDirection} box-icon`}
-                  >
-                    <span className="icon icon-cart2" />
-                    <span className="tooltip">
-                      {isAddedToCartProducts(product.id)
-                        ? "Already Added"
-                        : "Add to Cart"}
-                    </span>
-                  </a>
-                </li>
-              )}
-              <li>
-                <Link
-                  href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`}
-                  className={`hover-tooltip tooltip-${tooltipDirection} box-icon`}
-                >
-                  <span className="icon icon-view" />
-                  <span className="tooltip">View Details</span>
-                </Link>
-              </li>
-            </ul>
-            {styleClass.includes("style-3") && (
-              <div className="product-btn-main">
+
+        {/* Action Buttons Overlay */}
+        {!isOutOfStock && (
+          <div className="hs-card-actions">
+            {!isStyle3 && (
+              <>
                 <a
                   href="#shoppingCart"
                   data-bs-toggle="offcanvas"
-                  className="btn-main-product"
                   onClick={() => addProductToCart(product.id)}
+                  className="hs-card-action-btn hs-btn-cart hover-tooltip"
+                  title={isAddedToCartProducts(product.id) ? "Already Added" : "Add to Cart"}
                 >
                   <span className="icon icon-cart2" />
-                  <span className="text-md fw-medium">
-                    {" "}
-                    {isAddedToCartProducts(product.id)
-                      ? "Already Added"
-                      : "Add to Cart"}{" "}
-                  </span>
                 </a>
-              </div>
+
+                <Link
+                  href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`}
+                  className="hs-card-action-btn hs-btn-view hover-tooltip"
+                  title="View Details"
+                >
+                  <span className="icon icon-view" />
+                </Link>
+              </>
             )}
-            {product.sizes?.length > 0 && (
-              <ul className="size-box">
-                {product.sizes.map((size, index) => (
-                  <li className="size-item text-xs text-white" key={index}>
-                    {size}
-                  </li>
-                ))}
-              </ul>
+
+            {isStyle3 && (
+              <a
+                href="#shoppingCart"
+                data-bs-toggle="offcanvas"
+                className="hs-btn-add-to-cart"
+                onClick={() => addProductToCart(product.id)}
+              >
+                <span className="icon icon-cart2" />
+                <span className="text-md fw-medium">
+                  {isAddedToCartProducts(product.id) ? "Already Added" : "Add to Cart"}
+                </span>
+              </a>
             )}
-          </>
+          </div>
+        )}
+
+        {/* Size Display */}
+        {hasSize && (
+          <div className="hs-card-sizes">
+            <ul className="hs-size-list">
+              {product.sizes.map((size, index) => (
+                <li className="hs-size-item" key={index}>
+                  {size}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
-      <div className={`card-product-info ${textCenter ? "text-center" : ""} `}>
+
+      {/* Product Info */}
+      <div className={`hs-card-info ${textCenter ? "hs-text-center" : ""}`}>
         <Link
           href={product.slug ? `/shop/${product.slug}` : `/product-detail/${product.id}`}
-          className="name-product link fw-medium text-md"
+          className="hs-card-title"
         >
           {product.title}
         </Link>
-        <p className="price-wrap fw-medium">
-          <span
-            className={`price-new ${product.oldPrice ? "text-primary" : ""} `}
-          >
+
+        <div className="hs-card-price">
+          <span className="hs-price-current">
             ${product.price.toFixed(2)}
-          </span>{" "}
+          </span>
           {product.oldPrice && (
-            <span className="price-old text-dark">
+            <span className="hs-price-old">
               ${product.oldPrice.toFixed(2)}
             </span>
-          )}{" "}
-        </p>
-        {product.colors?.length > 0 && (
-          <ul
-            className={`list-color-product ${textCenter ? "justify-content-center" : ""
-              } `}
-          >
+          )}
+        </div>
+
+        {/* Color Swatches */}
+        {hasColors && (
+          <ul className={`hs-card-colors ${textCenter ? "hs-centered" : ""}`}>
             {product.colors.map((color, index) => (
               <li
-                className={`list-color-item color-swatch hover-tooltip tooltip-bot ${currentImage == color.img ? "active" : ""
-                  } ${color.value == "bg-white" ? "line" : ""}`}
+                className={`hs-color-swatch ${currentImage === color.img ? "hs-active" : ""} ${color.value === "bg-white" ? "hs-white-border" : ""}`}
                 key={index}
                 onMouseOver={() => setCurrentImage(color.img)}
+                title={color.label}
               >
-                <span className="tooltip color-filter">{color.label}</span>
-                <span className={`swatch-value ${color.value}`} />
+                <span className={`hs-swatch-color ${color.value}`} />
                 <Image
-                  className="lazyload"
-                  data-src={color.img}
-                  alt="image-product"
+                  className="hs-swatch-img"
+                  alt={color.label}
                   src={color.img}
-                  width="684"
-                  height="972"
+                  width={684}
+                  height={972}
                 />
               </li>
             ))}

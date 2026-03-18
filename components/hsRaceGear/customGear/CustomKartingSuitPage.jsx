@@ -727,7 +727,7 @@ export default function CustomKartingSuitPage() {
                 </div>
             </section>
 
-            Where These Suits Are Used
+
             <section style={{ padding: "96px 0", backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
                 <div className="karting-red-glow" style={{
                     position: "absolute",
