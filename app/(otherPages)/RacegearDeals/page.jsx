@@ -5,7 +5,7 @@ import Topbar1 from "@/components/headers/Topbar1";
 import RacegearDeals from "@/components/hsRaceGear/deals/RacegearDeals";
 
 import "@/public/css/racegear-deals.css";
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";
 
@@ -18,10 +18,11 @@ export const metadata = {
 export default function page() {
   return (
     <>
-
       <Topbar1 />
       <Header3 />
-      <RacegearDeals />
+      <Suspense fallback={null}>
+        <RacegearDeals />
+      </Suspense>
       <Footer3 />
     </>
   );
