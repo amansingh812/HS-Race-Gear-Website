@@ -45,7 +45,10 @@ export const metadata = {
     images: ["https://hsracegear.com/images/og-image.jpg"],
   },
   verification: {
-    google: "i715xGvcRmYOKhbA14Cdp49UcJ3fWE8XI5st--vYq4A",
+    google: [
+      "i715xGvcRmYOKhbA14Cdp49UcJ3fWE8XI5st--vYq4A",
+      "Xwrq_X5m9YirTxqRHgSSsAaFAqZFpiDTdnYFBB5Wpqk",
+    ],
   },
   icons: {
     icon: [
