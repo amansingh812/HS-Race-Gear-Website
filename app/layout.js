@@ -1,7 +1,7 @@
 import ClientLayout from "./ClientLayout";
 
 export const metadata = {
-  metadataBase: new URL("https://hsracegear.com"),
+  metadataBase: new URL("https://www.hsracegear.com"),
   alternates: { canonical: "/" },
   title: {
     default: "HS Race Gear — Custom SFI Certified Racing Suits, Gloves & Shoes",

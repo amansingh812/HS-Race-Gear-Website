@@ -2,7 +2,7 @@ import connectDB from "@/lib/mongodb";
 import Product from "@/models/Product";
 
 export default async function sitemap() {
-  const baseUrl = "https://hsracegear.com";
+  const baseUrl = "https://www.hsracegear.com";
   const now = new Date().toISOString();
 
   // Static Pages
