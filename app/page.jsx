@@ -69,9 +69,9 @@ const localBusinessSchema = {
     "closes": "18:00",
   },
   "sameAs": [
-    "https://www.facebook.com/hsracegear",
-    "https://www.instagram.com/hsracegear",
-    "https://www.tiktok.com/@hsracegear",
+    "https://www.facebook.com/profile.php?id=61580765382460",
+    "https://www.instagram.com/hsracegear/",
+    "https://www.tiktok.com/@hsracipk5hl",
   ],
   "foundingDate": "2014",
   "knowsAbout": [

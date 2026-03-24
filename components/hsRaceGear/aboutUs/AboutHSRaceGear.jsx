@@ -85,9 +85,9 @@ export default function AboutHSRaceGear() {
               "areaServed": "Worldwide"
             },
             "sameAs": [
-              "https://www.facebook.com/hsracegear",
-              "https://www.instagram.com/hsracegear",
-              "https://www.tiktok.com/@hsracegear"
+              "https://www.facebook.com/profile.php?id=61580765382460",
+              "https://www.instagram.com/hsracegear/",
+              "https://www.tiktok.com/@hsracipk5hl"
             ],
             "knowsAbout": [
               "Custom Racing Suits",

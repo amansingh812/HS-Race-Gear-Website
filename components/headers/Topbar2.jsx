@@ -14,16 +14,20 @@ export default function Topbar2({
             <ul className="topbar-left tf-social-icon">
               <li>
                 <a
-                  href="https://www.facebook.com/"
+                  href="https://www.facebook.com/profile.php?id=61580765382460"
                   className="social-item social-facebook"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <i className="icon icon-fb" />
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/hsracegear/"
                   className="social-item social-instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <i className="icon icon-instagram" />
                 </a>
