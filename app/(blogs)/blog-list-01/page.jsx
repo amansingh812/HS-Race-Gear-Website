@@ -1,21 +1,22 @@
 import Blogs1 from "@/components/blogs/Blogs1";
 import BlogSidebar from "@/components/blogs/BlogSidebar";
 import Collections from "@/components/blogs/Collections";
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import React from "react";
 import Link from "next/link";
 import Breadcumb from "@/components/common/Breadcumb";
 export const metadata = {
-  title: "Blog List 01 || HS Race Gear",
-  description: "HS Race Gear",
+  title: "Blog | HS Race Gear",
+  description: "Racing guides, safety tips and gear advice from HS Race Gear.",
+  robots: { index: false, follow: false }, // Redirect handles this — kept as backup noindex
 };
 export default function page() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
       <Breadcumb pageName="Blogs" pageTitle="Blogs" />
 
       <Collections />
@@ -36,7 +37,7 @@ export default function page() {
           </div>
         </div>
       </section>
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

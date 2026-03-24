@@ -1,14 +1,81 @@
 User-agent: *
 Allow: /
 
-# Block admin and API routes from crawlers
+# --- Block admin, API, and checkout routes ---
 Disallow: /api/
 Disallow: /admin/
 Disallow: /checkout/
 Disallow: /view-cart/
 Disallow: /wish-list/
-Disallow: /compare/
 Disallow: /coming-soon/
+Disallow: /before-you-leave/
+Disallow: /blanket-template/
+Disallow: /cart-drawer-v2/
+Disallow: /cart-empty/
+Disallow: /more-mockups/
 
-# Sitemap location (update domain before going live)
-Sitemap: https://hsracegear.com/sitemap.xml
+# --- Block account/dashboard pages (private, logged-in only) ---
+Disallow: /account-addresses/
+Disallow: /account-orders/
+Disallow: /account-page/
+
+# --- Block template blog pages (real blog is at /blog) ---
+Disallow: /blog-list-01/
+Disallow: /blog-list-02/
+Disallow: /blog-grid-01/
+Disallow: /blog-grid-02/
+Disallow: /blog-single/
+
+# --- Block template shop/product pages (real shop is at /shop) ---
+Disallow: /shop-default/
+Disallow: /shop-collection-list/
+Disallow: /shop-filter-hidden/
+Disallow: /shop-filter-sidebar/
+Disallow: /shop-fullwidth/
+Disallow: /shop-grid-3-columns/
+Disallow: /shop-horizontal-filter/
+Disallow: /shop-infinity-scroll/
+Disallow: /shop-left-sidebar/
+Disallow: /shop-load-more-button/
+Disallow: /shop-right-sidebar/
+Disallow: /shop-sub-collection/
+Disallow: /shop-sub-collection-02/
+Disallow: /product-style-01/
+Disallow: /product-style-02/
+Disallow: /product-style-03/
+
+# --- Block template product detail pages (real product is at /shop/[slug]) ---
+Disallow: /product-3d/
+Disallow: /product-affiliate/
+Disallow: /product-bottom-thumbnail/
+Disallow: /product-buyx-gety/
+Disallow: /product-countdown-timer/
+Disallow: /product-description-accordions/
+Disallow: /product-description-side-accordions/
+Disallow: /product-description-tab/
+Disallow: /product-description-vertical/
+Disallow: /product-detail/
+Disallow: /product-drawer-sidebar/
+Disallow: /product-external-zoom/
+Disallow: /product-grid/
+Disallow: /product-grid-02/
+Disallow: /product-group/
+Disallow: /product-inner-circle-zoom/
+Disallow: /product-inner-zoom/
+Disallow: /product-no-zoom/
+Disallow: /product-open-lightbox/
+Disallow: /product-out-of-stock/
+Disallow: /product-pickup-available/
+Disallow: /product-right-thumbnail/
+Disallow: /product-stacked/
+Disallow: /product-swatch-dropdown/
+Disallow: /product-swatch-dropdown-color/
+Disallow: /product-swatch-image/
+Disallow: /product-swatch-image-square/
+Disallow: /product-together/
+Disallow: /product-video/
+Disallow: /product-volume-discount/
+Disallow: /product-volume-discount-thumbnail/
+
+# Sitemap location
+Sitemap: https://www.hsracegear.com/sitemap.xml

@@ -1,23 +1,24 @@
 import Breadcumb from "@/components/common/Breadcumb";
 import Address from "@/components/dashboard/Address";
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 
 import React from "react";
 
 export const metadata = {
-  title: "Accout Address || HS Race Gear",
-  description: "HS Race Gear",
+  title: "My Addresses | HS Race Gear",
+  description: "Manage your saved shipping addresses.",
+  robots: { index: false, follow: false }, // Private page — do not index in Google
 };
 export default function page() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
       <Breadcumb pageName="Addresses" pageTitle="Addresses" />
       <Address />
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

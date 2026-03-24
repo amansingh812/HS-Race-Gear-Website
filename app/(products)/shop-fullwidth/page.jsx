@@ -1,6 +1,6 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 
 import Breadcumb from "@/components/products/Breadcumb";
 import Features2 from "@/components/products/Features2";
@@ -15,13 +15,13 @@ export const metadata = {
 export default function page() {
   return (
     <>
-      <Topbar2 fullWidth parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 fullWidth />
+      <Topbar1 />
+      <Header3 />
       <Breadcumb fullWidth />
 
       <Products1 fullWidth />
       <Features2 fullWidth />
-      <Footer1 fullWidth />
+      <Footer3 />
     </>
   );
 }

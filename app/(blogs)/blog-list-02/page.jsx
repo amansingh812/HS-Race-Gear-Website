@@ -1,9 +1,9 @@
 import Blogs2 from "@/components/blogs/Blogs2";
 import Link from "next/link";
 import Sidebar2 from "@/components/blogs/Sidebar2";
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import React from "react";
 import Breadcumb from "@/components/common/Breadcumb";
 
@@ -14,8 +14,8 @@ export const metadata = {
 export default function page() {
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
       <Breadcumb pageName="Blogs" pageTitle="Blogs" />
 
       <div className="btn-sidebar-mb d-lg-none right">
@@ -35,7 +35,7 @@ export default function page() {
           </div>
         </div>
       </section>
-      <Footer1 />
+      <Footer3 />
     </>
   );
 }

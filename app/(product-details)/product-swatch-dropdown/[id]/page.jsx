@@ -1,6 +1,6 @@
-import Footer1 from "@/components/footers/Footer1";
-import Header1 from "@/components/headers/Header1";
-import Topbar2 from "@/components/headers/Topbar2";
+import Footer3 from "@/components/footers/Footer3";
+import Header3 from "@/components/headers/Header3";
+import Topbar1 from "@/components/headers/Topbar1";
 import Breadcumb from "@/components/productDetails/Breadcumb";
 import Description1 from "@/components/productDetails/Description1";
 import Details13 from "@/components/productDetails/Details13";
@@ -19,14 +19,14 @@ export default async function ProductDetailPage({ params }) {
   const product = allProducts.filter((p) => p.id == id)[0] || allProducts[0];
   return (
     <>
-      <Topbar2 parentClass="tf-topbar bg-dark-5 topbar-bg" />
-      <Header1 />
+      <Topbar1 />
+      <Header3 />
       <Breadcumb product={product} />
       <Details13 product={product} />
       <Description1 />
       <RecommendedProdtcts />
       <RecentlyViewedProducts />
-      <Footer1 paddingBottom />
+      <Footer3 paddingBottom />
     </>
   );
 }
