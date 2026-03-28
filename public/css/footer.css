@@ -1,0 +1,231 @@
+/* ── HS Race Gear Footer Styles ── */
+
+/* ── Newsletter Overlap Section ── */
+/* Split bg: top half = page bg, bottom half = footer dark bg */
+.hs-newsletter-overlap {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(
+    to bottom,
+    var(--newsletter-top-bg, transparent) 50%,
+    #222222 50%
+  );
+  padding: 0 24px;
+}
+
+/* Footer doesn't need extra top padding since newsletter is outside it */
+#footer.bg-dark-7 {
+  padding-top: 0;
+}
+
+.hs-newsletter-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border-radius: 16px;
+  padding: 36px 40px;
+}
+
+.hs-newsletter-text {
+  flex-shrink: 0;
+}
+
+.hs-newsletter-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 4px;
+}
+
+.hs-newsletter-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.hs-newsletter-form {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 520px;
+  gap: 12px;
+}
+
+.hs-newsletter-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 10px 4px;
+  font-size: 15px;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.hs-newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hs-newsletter-input:focus {
+  border-bottom-color: #fff;
+}
+
+.hs-newsletter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.hs-newsletter-btn:hover {
+  background: #000;
+  transform: translateY(-1px);
+}
+
+/* ── Bottom Bar ── */
+.hs-footer-bottom-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hs-footer-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.hs-footer-bottom-left a {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.hs-footer-bottom-left a:hover {
+  color: #fff;
+}
+
+.hs-footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hs-follow-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.hs-footer-social {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hs-footer-social li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.hs-footer-social li a:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hs-newsletter-overlap {
+    padding: 0 16px;
+  }
+
+  .hs-newsletter-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 16px;
+    border-radius: 12px;
+  }
+
+  .hs-newsletter-title {
+    font-size: 1.1rem;
+    white-space: normal;
+  }
+
+  .hs-newsletter-form {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hs-newsletter-input {
+    font-size: 14px;
+  }
+
+  .hs-newsletter-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .hs-footer-bottom-wrap {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .hs-footer-bottom-left {
+    gap: 16px;
+  }
+
+  .hs-footer-bottom-right {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hs-newsletter-inner {
+    padding: 20px 16px;
+  }
+
+  .hs-newsletter-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hs-newsletter-input {
+    width: 100%;
+  }
+
+  .hs-newsletter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -205,7 +205,7 @@ export default function Home() {
       {/* <HomeTestimonials /> */}
       <BlogSection />
       <BrandStory />
-      <NewsletterSignup />
+      {/* <NewsletterSignup /> */}
       <Footer3 />
     </>
   );

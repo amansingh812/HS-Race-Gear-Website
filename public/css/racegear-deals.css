@@ -1,5 +1,10 @@
 /* Racegear Deals Page Styles */
 
+/* Override newsletter overlap top color to match this page's dark bg */
+.hs-newsletter-overlap {
+  --newsletter-top-bg: #070707;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap");
 
 @keyframes fadeInUp {
