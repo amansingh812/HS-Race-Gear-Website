@@ -321,7 +321,7 @@ export default function CustomRaceSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shop/suit_tailor.webp"
+                                src="/images/shop/suit_tailor.png"
                                 alt="Custom Race Suit Showcase"
                                 width={400}
                                 height={500}

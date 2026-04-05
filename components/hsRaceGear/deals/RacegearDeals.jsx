@@ -233,7 +233,7 @@ const dealsData = [
         price: 315,
         badge: null,
         packageId: "karting-suit-gloves",
-        image: "/images/deals/offer-7.webp",
+        image: "/images/deals/offer-7.png",
         features: [
           "Unlimited color options",
           "Free Karting Gloves Included",

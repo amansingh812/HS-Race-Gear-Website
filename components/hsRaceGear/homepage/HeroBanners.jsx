@@ -30,7 +30,7 @@ const topBanners = [
       "Unlimited color combinations, custom embroidery, and a perfect fit built from your measurements. Stand out on the track.",
     cta: "Start Designing",
     link: "/custom-karting-suit",
-    image: "/images/home/hero_custom_suit.webp",
+    image: "/images/home/hero_custom_suit.png",
     placeholder: "960 × 700",
   },
 ];
@@ -50,7 +50,7 @@ const middleBanners = [
       "Explore our competitive pricing tiers — from entry-level to pro. No hidden fees. Get exactly what you pay for.",
     cta: "See Pricing",
     link: "/StandardPricing",
-    image: "/images/home/hero_pricing.webp",
+    image: "/images/home/hero_pricing.png",
     placeholder: "960 × 700",
   },
   {
@@ -61,7 +61,7 @@ const middleBanners = [
       "From drag racing to karting, find the perfect suit from our ready-to-ship and custom-order catalog.",
     cta: "Shop Race Suits",
     link: "/shop",
-    image: "/images/home/hero_shop.webp",
+    image: "/images/home/hero_shop.png",
     placeholder: "960 × 700",
   },
 ];

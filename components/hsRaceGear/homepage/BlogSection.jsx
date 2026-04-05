@@ -28,7 +28,7 @@ const articles = [
     excerpt:
       "A perfectly fitted racing suit is more than comfort — it's safety. Follow these measurement tips to ensure your custom suit fits flawlessly.",
     link: "/blog/perfect-custom-fit-racing-suit",
-    image: "/images/home/blog3.webp",
+    image: "/images/home/blog3.png",
   },
 ];
 

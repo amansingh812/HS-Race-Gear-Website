@@ -2303,6 +2303,7 @@ a:hover {
 }
 
 #goTop {
+  display: none !important;
   position: fixed;
   padding: 0;
   bottom: 90px;

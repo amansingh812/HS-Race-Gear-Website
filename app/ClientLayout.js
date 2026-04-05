@@ -27,6 +27,7 @@ import Context from "@/context/Context";
 import { AuthProvider } from "@/context/AuthContext";
 import NextAuthProvider from "@/components/providers/NextAuthProvider";
 import ScrollTop from "@/components/common/ScrollTop";
+import WhatsAppFloat from "@/components/common/WhatsAppFloat";
 import { usePathname } from "next/navigation";
 import SizeGuide from "@/components/modals/SizeGuide";
 import QuestionModal from "@/components/modals/QuestionModal";
@@ -148,6 +149,7 @@ export default function RootLayout({ children }) {
               <ShareModal />
               <DbSidebar />
             </Context>
+            <WhatsAppFloat />
             <ScrollTop />
           </AuthProvider>
         </NextAuthProvider>

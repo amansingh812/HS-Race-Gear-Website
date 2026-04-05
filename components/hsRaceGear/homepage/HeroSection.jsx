@@ -22,7 +22,7 @@ const heroSlides = [
     cta: "Shop Now",
     link: "/shop",
     isH1: false,
-    image: "/images/home/hs_hero_2.webp",
+    image: "/images/home/hs_hero_2.png",
   },
   {
     heading: "Precision Fit. Maximum Protection.",

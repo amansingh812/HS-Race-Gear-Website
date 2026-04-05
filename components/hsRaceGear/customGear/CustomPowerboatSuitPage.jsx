@@ -321,7 +321,7 @@ export default function CustomPowerboatSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/powerboat/powerboat-detail.webp"
+                                src="/images/powerboat/powerboat-detail.png"
                                 alt="Custom Power Boat Racing Suit Detail"
                                 width={400}
                                 height={500}
@@ -741,7 +741,7 @@ export default function CustomPowerboatSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/powerboat/powerboat-safety.webp"
+                                src="/images/powerboat/powerboat-safety.png"
                                 alt="Power boat racing fire safety"
                                 width={400}
                                 height={500}

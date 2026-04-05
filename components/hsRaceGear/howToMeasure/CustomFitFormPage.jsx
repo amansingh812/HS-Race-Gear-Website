@@ -92,7 +92,7 @@ export default function CustomFitFormPage() {
                                 <img
                                     className="lazyload w-100 custom-fit-hero-img"
                                     data-src="/images/shop/custom-fit-hero.webp"
-                                    src="/images/shop/custom-fit-hero.png"
+                                    src="/images/shop/Custom_form.png"
                                     alt="Custom Fit Racing Suit Measurement"
                                 />
                             </div>

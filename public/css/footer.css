@@ -10,7 +10,7 @@
     var(--newsletter-top-bg, transparent) 50%,
     #222222 50%
   );
-  padding: 0 24px;
+  padding: 0 190px;
 }
 
 /* Footer doesn't need extra top padding since newsletter is outside it */
@@ -162,6 +162,19 @@
   transform: translateY(-2px);
 }
 
+/* ── Copyright Bar ── */
+.footer-copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hs-copyright-text {
+  padding: 20px 0;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  text-align: center;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .hs-newsletter-overlap {
@@ -227,5 +240,49 @@
   .hs-newsletter-btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* ── WhatsApp Floating Button ── */
+.hs-whatsapp-float {
+  position: fixed;
+  bottom: 100px;
+  right: 40px;
+  width: 44px;
+  height: 44px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.hs-whatsapp-float.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hs-whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.5);
+}
+
+@media (max-width: 768px) {
+  .hs-whatsapp-float {
+    right: 20px;
+    bottom: 130px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .hs-whatsapp-float svg {
+    width: 20px;
+    height: 20px;
   }
 }

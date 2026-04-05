@@ -7,7 +7,7 @@ const BLOG_POSTS = [
     slug: "perfect-custom-fit-racing-suit",
     tag: "Custom Fit",
     icon: "🏎️",
-    image: "/images/home/blog3.webp",
+    image: "/images/home/blog3.png",
     title: "5 Essential Tips for Getting the Perfect Custom Fit Racing Suit",
     excerpt:
       "Precision matters. Even small measuring mistakes can affect performance, comfort, and compliance. Here are five essential tips to get your custom suit right every time.",
