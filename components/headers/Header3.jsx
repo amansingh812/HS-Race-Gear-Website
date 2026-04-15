@@ -24,7 +24,7 @@ export default function Header3() {
               alt="HS Race Gear"
               src="/images/logo/logo4.png"
               width={120}
-              height={80}
+              height={64}
               quality={100}
             />
           </Link>
@@ -64,7 +64,7 @@ export default function Header3() {
                   className="logo"
                   src="/images/logo/logo4.png"
                   width={148}
-                  height={99}
+                  height={79}
                   quality={100}
                 />
               </Link>

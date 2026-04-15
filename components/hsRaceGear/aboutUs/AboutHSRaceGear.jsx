@@ -62,7 +62,7 @@ export default function AboutHSRaceGear() {
               "@type": "ImageObject",
               "url": "https://hsracegear.com/images/logo/logo.webp",
               "width": 148,
-              "height": 44
+              "height": 79
             },
             "image": "https://hsracegear.com/images/logo/logo.webp",
             "foundingDate": "2014",

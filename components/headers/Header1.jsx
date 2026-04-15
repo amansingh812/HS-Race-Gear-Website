@@ -30,7 +30,7 @@ export default function Header1({
                 className="logo"
                 src="/images/logo/logo4.png"
                 width={148}
-                height={99}
+                height={79}
                 quality={100}
               />
             </Link>

@@ -1396,7 +1396,7 @@
 /* Card */
 .gear-card {
   position: relative;
-  height: 525px;
+  height: 630px;
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
@@ -1582,7 +1582,7 @@
   }
 
   .gear-card {
-    height: 500px;
+    height: 580px;
   }
 
   .gear-overlay {
@@ -1624,7 +1624,7 @@
   }
 
   .gear-card {
-    height: 460px;
+    height: 520px;
   }
 
   .gear-overlay {
@@ -1684,7 +1684,7 @@
   }
 
   .gear-card {
-    height: 520px;
+    height: 580px;
   }
 
   .gear-overlay {
@@ -1735,7 +1735,7 @@
 /* Very small phones */
 @media (max-width: 380px) {
   .gear-card {
-    height: 560px;
+    height: 620px;
   }
 
   .gear-overlay {
