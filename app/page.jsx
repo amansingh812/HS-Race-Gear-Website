@@ -31,8 +31,8 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   "@id": "https://hsracegear.com/#localbusiness",
   "name": "HS Race Gear",
-  "image": "https://hsracegear.com/images/logo/logo.webp",
-  "logo": "https://hsracegear.com/images/logo/logo.webp",
+  "image": "https://hsracegear.com/images/logo/logo.png",
+  "logo": "https://hsracegear.com/images/logo/logo.png",
   "description":
     "HS Race Gear is a leading provider of custom-fit, SFI-certified racing suits, gloves, shoes, and motorsport accessories. Over a decade of experience crafting made-to-order racing gear using premium Nomex fire-resistant materials.",
   "url": "https://hsracegear.com",

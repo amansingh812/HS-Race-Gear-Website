@@ -8502,7 +8502,7 @@ button.animate-btn::after,
 }
 
 .logo-header img {
-  width: 81px;
+  width: 75px;
 }
 
 .header-medium .header-bottom .menu-item {
@@ -23598,7 +23598,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
   }
 
   .logo-header img {
-    width: 81px;
+    width: 75px;
   }
 
   .form-default fieldset label {

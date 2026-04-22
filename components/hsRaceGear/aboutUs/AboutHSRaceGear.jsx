@@ -60,11 +60,11 @@ export default function AboutHSRaceGear() {
             "url": "https://hsracegear.com",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://hsracegear.com/images/logo/logo.webp",
-              "width": 148,
-              "height": 79
+              "url": "https://hsracegear.com/images/logo/logo.png",
+              "width": 80,
+              "height": 80
             },
-            "image": "https://hsracegear.com/images/logo/logo.webp",
+            "image": "https://hsracegear.com/images/logo/logo.png",
             "foundingDate": "2014",
             "areaServed": "Worldwide",
             "slogan": "Driven by Safety. Fueled by Passion.",
