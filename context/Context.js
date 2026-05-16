@@ -12,10 +12,13 @@ export const useContextElement = () => {
 
 export default function Context({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
-  const [wishList, setWishList] = useState([1, 2, 3]);
-  const [compareItem, setCompareItem] = useState([1, 2, 3]);
-  const [quickViewItem, setQuickViewItem] = useState(allProducts[0]);
-  const [quickAddItem, setQuickAddItem] = useState(1);
+  // Defaults previously seeded demo Turtleneck T-shirt + products [1,2,3]
+  // into wishList/compareItem/quickViewItem, which leaked into the rendered
+  // DOM on every page. Initialized to empty/null for SEO cleanup (2026-05-16).
+  const [wishList, setWishList] = useState([]);
+  const [compareItem, setCompareItem] = useState([]);
+  const [quickViewItem, setQuickViewItem] = useState(null);
+  const [quickAddItem, setQuickAddItem] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartLoading, setCartLoading] = useState(false);
   const [cartError, setCartError] = useState(null);

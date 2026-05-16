@@ -53,18 +53,18 @@ export default function AboutHSRaceGear() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "@id": "https://hsracegear.com/#organization",
+            "@id": "https://www.hsracegear.com/#organization",
             "name": "HS Race Gear",
             "alternateName": "HS Racegear",
             "description": "Leading provider of custom-fit, SFI-certified racing suits, gloves, shoes, and motorsport accessories with over a decade of experience",
-            "url": "https://hsracegear.com",
+            "url": "https://www.hsracegear.com",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://hsracegear.com/images/logo/logo.png",
+              "url": "https://www.hsracegear.com/images/logo/logo.png",
               "width": 80,
               "height": 80
             },
-            "image": "https://hsracegear.com/images/logo/logo.png",
+            "image": "https://www.hsracegear.com/images/logo/logo.png",
             "foundingDate": "2014",
             "areaServed": "Worldwide",
             "slogan": "Driven by Safety. Fueled by Passion.",

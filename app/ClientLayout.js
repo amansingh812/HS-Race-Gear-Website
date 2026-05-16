@@ -1,5 +1,7 @@
 "use client";
-import DemoModal from "@/components/modals/DemoModal";
+// DemoModal removed during SEO cleanup — was leaking the "Ultimate React
+// Nextjs Template" demo menu (home-fashion, home-pod, home-pickleball, etc.)
+// into the rendered DOM of every page.
 
 import "@/public/fonts/fonts.css";
 import "@/public/fonts/font-icons.css";
@@ -135,7 +137,6 @@ export default function RootLayout({ children }) {
               <main id="main-content">
                 {children}
               </main>
-              <DemoModal />
               <CartComponent />
               <Compare />
               <Login />

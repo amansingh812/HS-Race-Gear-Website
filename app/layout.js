@@ -24,14 +24,14 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://hsracegear.com",
+    url: "https://www.hsracegear.com",
     siteName: "HS Race Gear",
     title: "HS Race Gear — Custom SFI Certified Racing Suits",
     description:
       "Custom SFI-certified racing suits, gloves, and shoes built to your exact measurements. Professional motorsports gear made in the USA.",
     images: [
       {
-        url: "https://hsracegear.com/images/og-image.jpg",
+        url: "https://www.hsracegear.com/images/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "HS Race Gear Custom Racing Suits",
@@ -42,7 +42,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "HS Race Gear — Custom Racing Suits",
     description: "Custom SFI-certified racing suits built to your exact measurements.",
-    images: ["https://hsracegear.com/images/og-image.jpg"],
+    images: ["https://www.hsracegear.com/images/og-image.jpg"],
   },
   verification: {
     google: [

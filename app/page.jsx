@@ -29,13 +29,13 @@ export const metadata = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://hsracegear.com/#localbusiness",
+  "@id": "https://www.hsracegear.com/#localbusiness",
   "name": "HS Race Gear",
-  "image": "https://hsracegear.com/images/logo/logo.png",
-  "logo": "https://hsracegear.com/images/logo/logo.png",
+  "image": "https://www.hsracegear.com/images/logo/logo.png",
+  "logo": "https://www.hsracegear.com/images/logo/logo.png",
   "description":
     "HS Race Gear is a leading provider of custom-fit, SFI-certified racing suits, gloves, shoes, and motorsport accessories. Over a decade of experience crafting made-to-order racing gear using premium Nomex fire-resistant materials.",
-  "url": "https://hsracegear.com",
+  "url": "https://www.hsracegear.com",
   "telephone": "+1-617-319-6993",
   "email": "info@hsracegear.com",
   "address": {
@@ -133,17 +133,17 @@ const localBusinessSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://hsracegear.com/#website",
+  "@id": "https://www.hsracegear.com/#website",
   "name": "HS Race Gear",
-  "url": "https://hsracegear.com",
+  "url": "https://www.hsracegear.com",
   "description":
     "Custom-fit, SFI certified racing suits, gloves, shoes, and motorsport safety equipment",
-  "publisher": { "@id": "https://hsracegear.com/#localbusiness" },
+  "publisher": { "@id": "https://www.hsracegear.com/#localbusiness" },
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://hsracegear.com/shop?search={search_term_string}",
+      "urlTemplate": "https://www.hsracegear.com/shop?search={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -163,14 +163,14 @@ const siteNavigationSchema = {
     "About Us",
   ],
   "url": [
-    "https://hsracegear.com/custom-race-suit",
-    "https://hsracegear.com/custom-gloves",
-    "https://hsracegear.com/custom-shoes",
-    "https://hsracegear.com/shop",
-    "https://hsracegear.com/StandardPricing",
-    "https://hsracegear.com/custom-fit",
-    "https://hsracegear.com/faqs",
-    "https://hsracegear.com/about-us",
+    "https://www.hsracegear.com/custom-race-suit",
+    "https://www.hsracegear.com/custom-gloves",
+    "https://www.hsracegear.com/custom-shoes",
+    "https://www.hsracegear.com/shop",
+    "https://www.hsracegear.com/StandardPricing",
+    "https://www.hsracegear.com/custom-fit",
+    "https://www.hsracegear.com/faq",
+    "https://www.hsracegear.com/about-us",
   ],
 };
 

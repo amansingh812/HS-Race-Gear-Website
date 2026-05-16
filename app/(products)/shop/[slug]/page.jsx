@@ -62,8 +62,8 @@ export default async function ProductDetailPage({ params }) {
     // Convert MongoDB ObjectIds and Dates to plain objects
     const serializedProduct = JSON.parse(JSON.stringify(product));
 
-    const productUrl = `https://hsracegear.com/shop/${slug}`;
-    const imageUrl = serializedProduct.images?.[0]?.url || 'https://hsracegear.com/images/og-image.jpg';
+    const productUrl = `https://www.hsracegear.com/shop/${slug}`;
+    const imageUrl = serializedProduct.images?.[0]?.url || 'https://www.hsracegear.com/images/og-image.jpg';
     const price = serializedProduct.salePrice || serializedProduct.price || '0';
     const categoryName = serializedProduct.category?.name || 'Racing Gear';
 
@@ -93,8 +93,8 @@ export default async function ProductDetailPage({ params }) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hsracegear.com" },
-        { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://hsracegear.com/shop" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hsracegear.com" },
+        { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://www.hsracegear.com/shop" },
         { "@type": "ListItem", "position": 3, "name": serializedProduct.name, "item": productUrl }
       ]
     };

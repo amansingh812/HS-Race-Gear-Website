@@ -26,7 +26,7 @@ export async function POST(request) {
           Thanks for subscribing to the HS Race Gear newsletter! You'll be the first to hear about exclusive deals, new product launches, and racing tips.
         </p>
         <p style="font-size: 14px; color: #888; margin-top: 24px;">
-          Questions? Call us at <a href="tel:+16173196993" style="color: #f87171;">+1 (617) 319 6993</a> or visit <a href="https://hsracegear.com" style="color: #f87171;">hsracegear.com</a>.
+          Questions? Call us at <a href="tel:+16173196993" style="color: #f87171;">+1 (617) 319 6993</a> or visit <a href="https://www.hsracegear.com" style="color: #f87171;">hsracegear.com</a>.
         </p>
         <p style="font-size: 14px; color: #555; margin-top: 24px;">— The HS Race Gear Team</p>
       </div>

@@ -19,6 +19,15 @@ export default function Quickview() {
     cartProducts,
     updateQuantity,
   } = useContextElement();
+
+  // Defensive: quickViewItem defaults to null now (previously seeded with the
+  // demo Turtleneck product). Render an empty modal shell when nothing is
+  // selected so we don't leak demo content into the DOM or crash on .imgSrc.
+  if (!quickViewItem) {
+    return (
+      <div className="modal fade modalCentered modal-quick-view" id="quickView" />
+    );
+  }
   return (
     <div className="modal fade modalCentered modal-quick-view" id="quickView">
       <div className="modal-dialog modal-dialog-centered">
