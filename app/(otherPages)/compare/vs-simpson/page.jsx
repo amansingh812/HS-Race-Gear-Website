@@ -14,9 +14,23 @@ export const metadata = {
     "HS Racegear vs Simpson, Simpson Racing alternative, custom SFI race suits, drag racing suit, affordable SFI fire suit, sprint car suit",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hsracegear.com" },
+    { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://www.hsracegear.com/compare" },
+    { "@type": "ListItem", "position": 3, "name": "HS Racegear vs Simpson Racing", "item": "https://www.hsracegear.com/compare/vs-simpson" }
+  ]
+};
+
 export default function VsSimpsonPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Topbar1 />
       <Header3 />
       <VsSimpsonContent />

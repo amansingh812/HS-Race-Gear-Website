@@ -15,9 +15,23 @@ export const metadata = {
     "HS Racegear vs K1 RaceGear, K1 RaceGear alternative, custom SFI race suits, racing suit comparison, Nomex racing suit",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hsracegear.com" },
+    { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://www.hsracegear.com/compare" },
+    { "@type": "ListItem", "position": 3, "name": "HS Racegear vs K1 RaceGear", "item": "https://www.hsracegear.com/compare/vs-k1" }
+  ]
+};
+
 export default function VsK1Page() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Topbar1 />
       <Header3 />
       <VsK1Content />

@@ -4,6 +4,17 @@ import Image from "next/image";
 
 const BLOG_POSTS = [
   {
+    slug: "aftermarket-racing-suits",
+    tag: "Buyer's Guide",
+    icon: "🔧",
+    image: "/images/home/blog2.webp",
+    title: "Aftermarket Racing Suits: When to Upgrade From Stock Gear",
+    excerpt:
+      "When is it time to move past your entry-level suit? Aftermarket auto racing suits explained — SFI ratings, Nomex® vs generic FR, custom vs off-the-rack, and the five signs your current suit is done.",
+    date: "May 2026",
+    readTime: "8 min read",
+  },
+  {
     slug: "perfect-custom-fit-racing-suit",
     tag: "Custom Fit",
     icon: "🏎️",
@@ -30,9 +41,9 @@ const BLOG_POSTS = [
     tag: "Safety",
     icon: "⚡",
     image: "/images/home/blog_1.webp",
-    title: "Understanding SFI Certifications: A Complete Guide",
+    title: "SFI Ratings Explained — Which Certification Does Your Race Suit Need?",
     excerpt:
-      "In motorsports, safety is never optional — it's a requirement. Everything you need to know about SFI ratings, TPP scores, and choosing the right protection level.",
+      "SFI 3.2A/1, 3.2A/5, 3.2A/15 demystified. What SFI ratings actually mean, what TPP measures, and which SFI suit rating you need for drag, sprint car, dirt, karting, and road racing.",
     date: "March 2026",
     readTime: "6 min read",
   },

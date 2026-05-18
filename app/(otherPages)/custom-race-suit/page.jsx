@@ -2,23 +2,49 @@ import Footer3 from "@/components/footers/Footer3";
 import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
 import CustomRaceSuitPage from "@/components/hsRaceGear/customGear/CustomRaceSuitPage";
+import RelatedBlogPosts from "@/components/hsRaceGear/blog/RelatedBlogPosts";
 import "@/public/css/custom-race-suit.css";
+import "@/public/css/contact-us.css"; // for blog card styling reuse
+import "@/public/css/compare.css";
 
 import React from "react";
 
 export const metadata = {
   alternates: { canonical: "/custom-race-suit" },
-  title: "Custom Race Suits | HS Race Gear - SFI Certified Racing Suits",
-  description: "Premium custom auto racing suits built for drivers who demand performance. SFI 3.2A/1 & 5 certified, crafted from high-quality meta-aramid fire-retardant fabric.",
-  keywords: "custom race suits, SFI certified racing suits, Nomex racing suits, fire retardant racing gear, custom racing suits, professional racing suits",
+  // Title rewritten 2026-05-16 to capture singular "racing suit" (higher
+  // search volume than plural "race suits"), the "Made in USA" angle
+  // (28-imp query "racewear usa"), and SFI cert trust signal.
+  title: "Custom Racing Suits — SFI Certified, Made in USA | HS Race Gear",
+  description:
+    "Custom racing suit built to your exact measurements. SFI 3.2A/1 & 3.2A/5 certified, premium Nomex fire-retardant fabric, unlimited color and logo options. Made in the USA. Free shipping on custom suits.",
+  keywords:
+    "custom racing suit, custom race suit, SFI certified racing suit, Nomex racing suit, made in USA racing suit, racewear USA, custom racing suits, racing gear, aftermarket auto racing suits",
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hsracegear.com" },
+    { "@type": "ListItem", "position": 2, "name": "Custom Racing Suit", "item": "https://www.hsracegear.com/custom-race-suit" }
+  ]
 };
 
 export default function page() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Topbar1 />
       <Header3 />
       <CustomRaceSuitPage />
+      <RelatedBlogPosts
+        heading="From the HS Race Gear Blog"
+        subtitle="Sizing, SFI ratings, discipline guides, and what to look for in an aftermarket suit."
+        limit={4}
+      />
       <Footer3 />
     </>
   );

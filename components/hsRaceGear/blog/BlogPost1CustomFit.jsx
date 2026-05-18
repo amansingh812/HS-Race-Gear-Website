@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import RelatedBlogPosts from "@/components/hsRaceGear/blog/RelatedBlogPosts";
 
 export default function BlogPost1CustomFit() {
   return (
@@ -202,6 +203,9 @@ export default function BlogPost1CustomFit() {
           </div>
         </div>
       </section>
+
+      {/* RELATED READING */}
+      <RelatedBlogPosts excludeSlug="perfect-custom-fit-racing-suit" />
 
       {/* CTA */}
       <section className="blog-cta-section">

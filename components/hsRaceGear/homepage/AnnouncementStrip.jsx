@@ -1,5 +1,9 @@
 import React from "react";
 
+// "Custom Made" replaced with "Made in USA" 2026-05-16 — the GSC query
+// "racewear USA" gets 28 impressions/3mo with 0 clicks, signalling buyers
+// who specifically want an American maker. The custom-made angle is
+// already covered by the rest of the homepage.
 const trustItems = [
   {
     icon: "icon-shipping",
@@ -13,8 +17,8 @@ const trustItems = [
   },
   {
     icon: "icon-gift",
-    title: "Custom Made",
-    subtitle: "Built to your measurements",
+    title: "Made in the USA",
+    subtitle: "Designed & built in Watertown, MA",
   },
   {
     icon: "icon-support",

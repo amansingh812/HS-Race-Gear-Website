@@ -16,9 +16,22 @@ export const metadata = {
     "custom power boat racing suits, SFI certified boat racing suits, Nomex power boat suits, offshore racing suits, marine racing gear, powerboat racing suit, custom boat racing apparel",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hsracegear.com" },
+    { "@type": "ListItem", "position": 2, "name": "Custom Powerboat Suit", "item": "https://www.hsracegear.com/custom-powerboat-suit" }
+  ]
+};
+
 export default function page() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Topbar1 />
       <Header3 />
       <CustomPowerboatSuitPage />

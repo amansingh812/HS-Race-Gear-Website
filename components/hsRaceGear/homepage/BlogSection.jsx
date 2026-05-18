@@ -2,32 +2,35 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+// Homepage blog cards updated 2026-05-16 to feature the new aftermarket
+// post (targets confirmed GSC demand) and to reflect the retitled SFI
+// post that now targets "SFI ratings" / "SFI suit ratings" queries.
 const articles = [
   {
-    tag: "Safety Guide",
+    tag: "Buyer's Guide",
+    date: "May 16, 2026",
+    title: "Aftermarket Racing Suits: When to Upgrade From Stock Gear",
+    excerpt:
+      "When is it time to move past your entry-level suit? Aftermarket racing suits explained — SFI ratings, Nomex® vs generic FR, custom vs off-the-rack, and when each one wins.",
+    link: "/blog/aftermarket-racing-suits",
+    image: "/images/home/blog2.webp",
+  },
+  {
+    tag: "Safety",
+    date: "January 22, 2026",
+    title: "SFI Ratings Explained — Which Certification Does Your Race Suit Need?",
+    excerpt:
+      "SFI 3.2A/1, 3.2A/5, 3.2A/15 demystified. What SFI ratings actually mean, what TPP measures, and which SFI suit rating you need for drag, sprint car, dirt, karting, and road racing.",
+    link: "/blog/understanding-sfi-certifications",
+    image: "/images/home/blog_1.webp",
+  },
+  {
+    tag: "Discipline Guide",
     date: "February 5, 2026",
     title: "How to Choose the Right Racing Suit for Your Discipline",
     excerpt:
       "From drag racing to road course, each discipline has unique requirements. Learn what certifications and features matter most for your type of racing.",
     link: "/blog/choose-right-racing-suit",
-    image: "/images/home/blog2.webp",
-  },
-  {
-    tag: "Certification",
-    date: "January 22, 2026",
-    title: "Understanding SFI Certifications: A Complete Guide",
-    excerpt:
-      "Not sure which SFI certification you need? This guide breaks down the SFI standards, requirements, and which level applies to your racing series.",
-    link: "/blog/understanding-sfi-certifications",
-    image: "/images/home/blog_1.webp",
-  },
-  {
-    tag: "Custom Fit",
-    date: "January 10, 2026",
-    title: "5 Essential Tips for Getting the Perfect Custom Fit",
-    excerpt:
-      "A perfectly fitted racing suit is more than comfort — it's safety. Follow these measurement tips to ensure your custom suit fits flawlessly.",
-    link: "/blog/perfect-custom-fit-racing-suit",
     image: "/images/home/blog3.png",
   },
 ];

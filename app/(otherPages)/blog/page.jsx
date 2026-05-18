@@ -16,9 +16,22 @@ export const metadata = {
     "racing suit guide, SFI certification, custom racing suit tips, motorsports safety, racewear advice",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hsracegear.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.hsracegear.com/blog" }
+  ]
+};
+
 export default function BlogPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Topbar1 />
       <Header3 />
       <BlogListing />

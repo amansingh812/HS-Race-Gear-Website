@@ -31,6 +31,7 @@ export default async function sitemap() {
     { url: `${baseUrl}/blog/perfect-custom-fit-racing-suit`,   lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/choose-right-racing-suit`,         lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/understanding-sfi-certifications`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/blog/aftermarket-racing-suits`,         lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-k1`,       lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-rush`,     lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-velocity`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

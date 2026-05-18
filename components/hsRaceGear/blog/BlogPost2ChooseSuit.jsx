@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import RelatedBlogPosts from "@/components/hsRaceGear/blog/RelatedBlogPosts";
 
 export default function BlogPost2ChooseSuit() {
   return (
@@ -263,6 +264,9 @@ export default function BlogPost2ChooseSuit() {
           </div>
         </div>
       </section>
+
+      {/* RELATED READING */}
+      <RelatedBlogPosts excludeSlug="choose-right-racing-suit" />
 
       {/* CTA */}
       <section className="blog-cta-section">

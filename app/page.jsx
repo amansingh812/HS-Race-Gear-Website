@@ -17,12 +17,16 @@ import {
 import Footer3 from "@/components/footers/Footer3";
 import "@/public/css/homepage.css";
 
+// Metadata rewritten 2026-05-16 to lead with "Custom Racing Suit"
+// (singular, higher volume), add "Made in USA" angle (28-imp GSC query
+// "racewear USA"), and add one-word brand spelling "HSracegear" (people
+// search the domain without the space).
 export const metadata = {
-  title: "HS Race Gear — Custom SFI Certified Racing Suits, Gloves & Shoes",
+  title: "Custom Racing Suit — SFI Certified, Made in USA | HS Race Gear",
   description:
-    "HS Race Gear offers custom-fit, SFI certified racing suits, gloves, shoes, and motorsport safety equipment. Made-to-order with unlimited customization. Trusted by racers worldwide.",
+    "HS Race Gear (HSracegear) crafts custom racing suits, karting suits, gloves, and shoes built to your exact measurements in Watertown, MA. SFI 3.2A/1 & 3.2A/5 certified. Made in the USA. Free shipping on custom suits.",
   keywords:
-    "custom racing suits, SFI certified racing gear, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suits, motorsport safety equipment",
+    "custom racing suit, custom race suit, SFI certified racing suit, made in USA racing suit, racewear USA, HSracegear, HS Race Gear, racing gear, aftermarket auto racing suits, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suit, custom karting suit",
 };
 
 // JSON-LD Structured Data for Homepage SEO

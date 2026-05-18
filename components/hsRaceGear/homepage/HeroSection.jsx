@@ -5,11 +5,14 @@ import Image from "next/image";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+// H1 rewritten 2026-05-16 to lead with "Custom Racing Suit" (singular,
+// higher search volume than plural) and "Made in USA" — both confirmed
+// from GSC queries. Subtitle keeps the SFI cert trust signal.
 const heroSlides = [
   {
-    heading: "Custom Racing Suits Built to Your Specs",
+    heading: "Custom Racing Suits — SFI Certified, Made in the USA",
     subtitle:
-      "Handcrafted, SFI-certified racing suits tailored to your exact measurements. Unlimited colors, logos, and designs.",
+      "Handcrafted custom racing suits built to your exact measurements in Watertown, MA. SFI 3.2A/1 and 3.2A/5 certified. Unlimited colors, logos, and designs. Free shipping on custom suits.",
     cta: "Design Your Suit",
     link: "/custom-race-suit",
     isH1: true,
@@ -18,7 +21,7 @@ const heroSlides = [
   {
     heading: "SFI Certified Racing Gear",
     subtitle:
-      "From gloves to shoes, every piece meets the highest international safety standards for professional motorsport.",
+      "From gloves to shoes, every piece of HS Race Gear (HSracegear) meets the highest international safety standards for professional motorsport.",
     cta: "Shop Now",
     link: "/shop",
     isH1: false,
@@ -27,7 +30,7 @@ const heroSlides = [
   {
     heading: "Precision Fit. Maximum Protection.",
     subtitle:
-      "Our custom measurement process ensures your gear fits perfectly — because in racing, every detail matters.",
+      "Our custom measurement process ensures your racing suit fits perfectly — because in racing, every detail matters.",
     cta: "Get Measured",
     link: "/custom-measurement",
     isH1: false,

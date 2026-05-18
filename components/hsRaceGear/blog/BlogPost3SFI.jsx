@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import RelatedBlogPosts from "@/components/hsRaceGear/blog/RelatedBlogPosts";
 
 export default function BlogPost3SFI() {
   return (
@@ -12,14 +13,14 @@ export default function BlogPost3SFI() {
             <span className="contact-breadcrumb-sep">/</span>
             <Link href="/blog">Blog</Link>
             <span className="contact-breadcrumb-sep">/</span>
-            <span className="contact-breadcrumb-current">SFI Certifications</span>
+            <span className="contact-breadcrumb-current">SFI Ratings Explained</span>
           </p>
           <span className="contact-hero-tag">Safety Standards</span>
           <h1 className="contact-hero-title">
-            Understanding<br /><span>SFI Certifications</span>
+            SFI Ratings<br /><span>Explained</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Everything racers need to know about SFI safety standards, ratings, TPP scores, and choosing the right level of protection.
+            Which SFI rating does your race suit actually need? SFI 3.2A/1, 3.2A/5, 3.2A/15 and beyond — what each rating means, what TPP measures, and how to pick the right SFI suit rating for your discipline.
           </p>
         </div>
       </section>
@@ -41,8 +42,8 @@ export default function BlogPost3SFI() {
 
             {/* TITLE BLOCK */}
             <div className="blog-post-title-block">
-              <h2 className="blog-post-main-title">Understanding SFI Certifications: A Complete Guide</h2>
-              <p className="blog-post-subtitle">Everything Racers Need to Know About SFI Safety Standards</p>
+              <h2 className="blog-post-main-title">SFI Ratings Explained — Which Certification Does Your Race Suit Need?</h2>
+              <p className="blog-post-subtitle">SFI Suit Ratings, TPP Scores, and How to Choose the Right Level of Protection</p>
             </div>
 
             {/* INTRO */}
@@ -59,7 +60,7 @@ export default function BlogPost3SFI() {
 
             {/* WHAT IS SFI */}
             <div className="blog-body-block">
-              <h3 className="blog-body-heading">What Is SFI Certification?</h3>
+              <h2 className="blog-body-heading">What Are SFI Ratings? (And What Is SFI Certification?)</h2>
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   SFI certification is a safety standard developed by the SFI Foundation Inc., an independent non-profit organization that establishes performance specifications for motorsports safety equipment.
@@ -204,7 +205,7 @@ export default function BlogPost3SFI() {
 
             {/* CHOOSING THE RIGHT RATING */}
             <div className="blog-body-block">
-              <h3 className="blog-body-heading">Choosing the Right SFI Rating for Your Discipline</h3>
+              <h2 className="blog-body-heading">SFI Suit Ratings by Discipline — Which Rating Do You Need?</h2>
               <div className="blog-body-card">
                 <p className="blog-body-text">The correct rating depends on several factors:</p>
                 <ul className="blog-body-list">
@@ -248,6 +249,9 @@ export default function BlogPost3SFI() {
           </div>
         </div>
       </section>
+
+      {/* RELATED READING */}
+      <RelatedBlogPosts excludeSlug="understanding-sfi-certifications" />
 
       {/* CTA */}
       <section className="blog-cta-section">
