@@ -65,7 +65,7 @@ export default function BlogPost1Page() {
       <Topbar1 />
       <Header3 />
       <BlogPost1CustomFit />
-      <Footer3 />
+      <Footer3 topBg="#0a0a0a" />
     </>
   );
 }

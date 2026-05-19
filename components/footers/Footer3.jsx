@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import "@/public/css/footer.css";
 
-export default function Footer3() {
+export default function Footer3({ topBg }) {
   const [success, setSuccess] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -71,7 +71,10 @@ export default function Footer3() {
   return (
     <>
       {/* ── NEWSLETTER OVERLAP SECTION ── */}
-      <div className="hs-newsletter-overlap">
+      <div
+        className="hs-newsletter-overlap"
+        style={topBg ? { "--newsletter-top-bg": topBg } : undefined}
+      >
         <div className="container">
           <div className="hs-newsletter-inner">
             <div className="hs-newsletter-text">

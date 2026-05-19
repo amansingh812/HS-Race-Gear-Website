@@ -7,6 +7,15 @@ import Image from "next/image";
 
 const ALL_POSTS = [
   {
+    slug: "sfi-rated-racing-suit-by-class",
+    tag: "Discipline Guide",
+    image: "/images/home/blog_1.webp",
+    title: "SFI Rated Racing Suit by Class — Which Rating You Actually Need",
+    excerpt:
+      "Sprint car, drag, dirt late model, karting, road racing — the exact SFI rating for the car you actually race, in one practical guide.",
+    readTime: "8 min read",
+  },
+  {
     slug: "aftermarket-racing-suits",
     tag: "Buyer's Guide",
     image: "/images/home/blog2.webp",

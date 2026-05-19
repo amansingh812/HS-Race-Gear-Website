@@ -234,7 +234,7 @@ export default function Home() {
       <BlogSection />
       <BrandStory />
       {/* <NewsletterSignup /> */}
-      <Footer3 />
+      <Footer3 topBg="#f8f8f8" />
     </>
   );
 }

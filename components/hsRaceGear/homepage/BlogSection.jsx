@@ -5,7 +5,20 @@ import Image from "next/image";
 // Homepage blog cards updated 2026-05-16 to feature the new aftermarket
 // post (targets confirmed GSC demand) and to reflect the retitled SFI
 // post that now targets "SFI ratings" / "SFI suit ratings" queries.
+// Homepage blog cards updated 2026-05-17 — new SFI-by-class post promoted
+// to the lead position; the older "choose-right" post drops off the
+// homepage (still in /blog hub). Routes link equity into the freshest
+// confirmed-demand content.
 const articles = [
+  {
+    tag: "Discipline Guide",
+    date: "May 17, 2026",
+    title: "SFI Rated Racing Suit by Class — Which Rating You Actually Need",
+    excerpt:
+      "Sprint car, dirt, drag, karting, road racing — the exact SFI 3.2A rating you need for the car you actually race. Practical, discipline-by-discipline.",
+    link: "/blog/sfi-rated-racing-suit-by-class",
+    image: "/images/home/blog_1.webp",
+  },
   {
     tag: "Buyer's Guide",
     date: "May 16, 2026",
@@ -20,17 +33,8 @@ const articles = [
     date: "January 22, 2026",
     title: "SFI Ratings Explained — Which Certification Does Your Race Suit Need?",
     excerpt:
-      "SFI 3.2A/1, 3.2A/5, 3.2A/15 demystified. What SFI ratings actually mean, what TPP measures, and which SFI suit rating you need for drag, sprint car, dirt, karting, and road racing.",
+      "SFI 3.2A/1, 3.2A/5, 3.2A/15 demystified. What SFI ratings actually mean, what TPP measures, and the practical floor for serious racers.",
     link: "/blog/understanding-sfi-certifications",
-    image: "/images/home/blog_1.webp",
-  },
-  {
-    tag: "Discipline Guide",
-    date: "February 5, 2026",
-    title: "How to Choose the Right Racing Suit for Your Discipline",
-    excerpt:
-      "From drag racing to road course, each discipline has unique requirements. Learn what certifications and features matter most for your type of racing.",
-    link: "/blog/choose-right-racing-suit",
     image: "/images/home/blog3.png",
   },
 ];

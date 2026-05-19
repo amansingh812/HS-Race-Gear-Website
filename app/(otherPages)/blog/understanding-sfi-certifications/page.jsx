@@ -74,7 +74,7 @@ export default function BlogPost3Page() {
       <Topbar1 />
       <Header3 />
       <BlogPost3SFI />
-      <Footer3 />
+      <Footer3 topBg="#0a0a0a" />
     </>
   );
 }

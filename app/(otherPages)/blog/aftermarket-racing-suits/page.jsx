@@ -67,7 +67,7 @@ export default function BlogPost4Page() {
       <Topbar1 />
       <Header3 />
       <BlogPost4Aftermarket />
-      <Footer3 />
+      <Footer3 topBg="#0a0a0a" />
     </>
   );
 }

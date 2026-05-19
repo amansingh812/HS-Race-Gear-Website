@@ -4,6 +4,17 @@ import Image from "next/image";
 
 const BLOG_POSTS = [
   {
+    slug: "sfi-rated-racing-suit-by-class",
+    tag: "Discipline Guide",
+    icon: "🏁",
+    image: "/images/home/blog_1.webp",
+    title: "SFI Rated Racing Suit by Class — Which Rating You Actually Need",
+    excerpt:
+      "Sprint car, dirt late model, drag, karting, road racing, powerboat — the exact SFI 3.2A rating you need for the car you actually race. A practical, discipline-by-discipline guide.",
+    date: "May 2026",
+    readTime: "8 min read",
+  },
+  {
     slug: "aftermarket-racing-suits",
     tag: "Buyer's Guide",
     icon: "🔧",

@@ -65,7 +65,7 @@ export default function BlogPost2Page() {
       <Topbar1 />
       <Header3 />
       <BlogPost2ChooseSuit />
-      <Footer3 />
+      <Footer3 topBg="#0a0a0a" />
     </>
   );
 }
