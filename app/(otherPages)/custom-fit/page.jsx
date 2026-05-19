@@ -7,10 +7,12 @@ import CustomFitFormPage from "@/components/hsRaceGear/howToMeasure/CustomFitFor
 import React from "react";
 
 export const metadata = {
-  alternates: { canonical: "/custom-fit" },
-  title: "Custom Gear Racing Suits | HS Race Gear - Tailored to Your Measurements",
-  description: "Get a perfect fit with HS Race Gear custom-tailored racing suits. Designed to your exact body measurements for maximum comfort, safety, and performance on the track.",
-  keywords: "custom Gear racing suits, tailored racing gear, custom measurements, racing suit sizing, personalized racing suits, made-to-measure racing gear",
+  alternates: { canonical: "https://www.hsracegear.com/custom-fit" },
+  // Title intentionally NOT using "custom racing suit" to avoid cannibalizing
+  // /custom-race-suit. This page is the measurement/order form — transactional intent.
+  title: "Submit Your Measurements — Order a Custom Race Suit | HS Race Gear",
+  description: "Ready to order? Submit your body measurements and we'll build your custom SFI-certified racing suit to an exact fit. Free shipping on all custom suits.",
+  keywords: "custom race suit measurements, order custom racing suit, made to measure racing suit, racing suit sizing form, custom fit race suit order",
 };
 
 export default function page() {

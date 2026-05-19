@@ -102,6 +102,14 @@ const localBusinessSchema = {
               "name": "Custom SFI Racing Suit",
               "description":
                 "Custom-fit SFI 3.2A/1 and SFI 3.2A/5 certified racing suits with unlimited color and logo options",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "299",
+                "priceValidUntil": "2027-12-31",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.hsracegear.com/custom-race-suit",
+              },
             },
           },
         ],
@@ -117,6 +125,14 @@ const localBusinessSchema = {
               "name": "Custom Racing Gloves",
               "description":
                 "SFI 3.3/5 certified racing gloves with Nomex construction",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "49",
+                "priceValidUntil": "2027-12-31",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.hsracegear.com/shop",
+              },
             },
           },
           {
@@ -126,6 +142,14 @@ const localBusinessSchema = {
               "name": "Custom Racing Shoes",
               "description":
                 "SFI 3.3/5 certified racing shoes with premium cowhide leather",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "USD",
+                "price": "149",
+                "priceValidUntil": "2027-12-31",
+                "availability": "https://schema.org/InStock",
+                "url": "https://www.hsracegear.com/shop",
+              },
             },
           },
         ],
