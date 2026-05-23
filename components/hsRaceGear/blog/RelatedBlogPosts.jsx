@@ -7,6 +7,15 @@ import Image from "next/image";
 
 const ALL_POSTS = [
   {
+    slug: "racing-suit-hs-code",
+    tag: "Import Guide",
+    image: "/images/home/SuitBanner.webp",
+    title: "What Is the HS Code for a Racing Suit? (Import & Customs Guide)",
+    excerpt:
+      "HS code 6210.40 — how to classify Nomex fire suits, gloves, and shoes at customs, duty rates by country, and what to put on the commercial invoice.",
+    readTime: "5 min read",
+  },
+  {
     slug: "sfi-rated-racing-suit-by-class",
     tag: "Discipline Guide",
     image: "/images/home/blog_1.webp",
@@ -96,9 +105,9 @@ export default function RelatedBlogPosts({ excludeSlug, heading, subtitle, limit
                 <Image
                   src={post.image}
                   alt={post.title}
-                  width={400}
-                  height={250}
-                  style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ objectFit: "cover" }}
                 />
               </div>
               <div className="blog-card-body">

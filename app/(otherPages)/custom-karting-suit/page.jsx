@@ -7,12 +7,10 @@ import "@/public/css/custom-karting-suit.css";
 import React from "react";
 
 export const metadata = {
-  alternates: { canonical: "/custom-karting-suit" },
-  // Title rewritten 2026-05-16 to capture singular "karting suit" and the
-  // alternate "kart racing suit" spelling (both have search volume).
+  alternates: { canonical: "https://www.hsracegear.com/custom-karting-suit" },
   title: "Custom Karting Suit — Sublimated, Custom-Fit | HS Race Gear",
   description:
-    "Custom karting suit built to your exact measurements with full-coverage sublimation printing and unlimited color options. Junior, senior, and shifter karting fits available. Made in the USA.",
+    "Design your own karting suit — pick every color, add your name and logos. Built to your exact measurements in the USA. Junior, senior & shifter karting fits. Free shipping.",
   keywords:
     "custom karting suit, karting suit, kart racing suit, custom kart suit, sublimated karting suit, karting racing suits, junior karting suit, shifter kart suit, Rotax Max suit, IAME X30 suit, karting gear",
 };

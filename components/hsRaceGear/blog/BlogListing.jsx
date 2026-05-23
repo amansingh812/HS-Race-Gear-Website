@@ -4,6 +4,17 @@ import Image from "next/image";
 
 const BLOG_POSTS = [
   {
+    slug: "racing-suit-hs-code",
+    tag: "Import Guide",
+    icon: "🌍",
+    image: "/images/home/SuitBanner.webp",
+    title: "What Is the HS Code for a Racing Suit? (Import & Customs Guide)",
+    excerpt:
+      "Ordering a custom race suit from the USA? The correct HS code for fire-resistant Nomex racing suits is 6210.40. Import duty rates, glove & shoe codes, and what to put on the commercial invoice — all covered.",
+    date: "May 2026",
+    readTime: "5 min read",
+  },
+  {
     slug: "sfi-rated-racing-suit-by-class",
     tag: "Discipline Guide",
     icon: "🏁",
@@ -101,9 +112,9 @@ export default function BlogListing() {
                     <Image
                       src={post.image}
                       alt={post.title}
-                      width={400}
-                      height={250}
-                      style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{ objectFit: "cover" }}
                     />
                   ) : (
                     post.icon

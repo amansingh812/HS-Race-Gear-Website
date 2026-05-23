@@ -8,12 +8,13 @@ import "@/public/css/compare.css";
 import React from "react";
 
 export const metadata = {
-  alternates: { canonical: "/blog" },
-  title: "Blog | HS Race Gear — Racing Guides, Safety Tips & Gear Advice",
+  alternates: { canonical: "https://www.hsracegear.com/blog" },
+  // "Blog" as the first word gets no clicks — lead with content value
+  title: "Racing Gear Guides — SFI Ratings, Custom Suit Tips & Fit Advice | HS Race Gear",
   description:
-    "Expert articles on custom racing suits, SFI certifications, how to choose the right racewear, and getting the perfect custom fit. Knowledge built for serious drivers.",
+    "Guides on SFI ratings explained, how to measure for a custom race suit, choosing the right suit for circle-track, drag, and karting. Written by racers, for racers.",
   keywords:
-    "racing suit guide, SFI certification, custom racing suit tips, motorsports safety, racewear advice",
+    "racing suit guide, SFI ratings explained, how to measure for a racing suit, custom race suit tips, motorsports safety gear",
 };
 
 const breadcrumbSchema = {
