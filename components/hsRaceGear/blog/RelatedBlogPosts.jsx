@@ -7,6 +7,15 @@ import Image from "next/image";
 
 const ALL_POSTS = [
   {
+    slug: "drag-racing-suit-requirements",
+    tag: "Discipline Guide",
+    image: "/images/home/blog2.webp",
+    title: "Drag Racing Suit Requirements — NHRA, IHRA & Street Strip Rules",
+    excerpt:
+      "Which SFI rating do you need for drag racing? NHRA, IHRA, and street strip fire suit requirements by ET and class.",
+    readTime: "8 min read",
+  },
+  {
     slug: "racing-suit-hs-code",
     tag: "Import Guide",
     image: "/images/home/SuitBanner.webp",
