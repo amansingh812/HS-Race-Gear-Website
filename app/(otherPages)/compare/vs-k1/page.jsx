@@ -7,12 +7,16 @@ import "@/public/css/hs-doc-theme.css";
 import "@/public/css/compare.css";
 import React from "react";
 
+// Metadata updated 2026-06-01 — exact-phrase audit. Captures "k1 racing
+// suits" (880 vol/mo per SEMrush, KD 19) and competitor brand search
+// intent. Title leads with the exact-match phrase searchers type.
 export const metadata = {
-  title: "HS Racegear vs K1 RaceGear – Custom SFI Racing Suits Comparison | HS Race Gear",
+  alternates: { canonical: "/compare/vs-k1" },
+  title: "K1 Racing Suits Alternative — Custom SFI Race Suits From $289 | HS Race Gear",
   description:
-    "Comparing HS Racegear vs K1 RaceGear? Custom SFI-certified suits from $289 with 2–3 week turnaround, unlimited design revisions, and free matching gloves & shoes. See the full comparison.",
+    "Searching for K1 racing suits? Compare HS Racegear vs K1 RaceGear — custom SFI-certified race suits from $289, 2–3 week production, deeper customization, premium Nomex® for drag, sprint, dirt, and circle track.",
   keywords:
-    "HS Racegear vs K1 RaceGear, K1 RaceGear alternative, custom SFI race suits, racing suit comparison, Nomex racing suit",
+    "k1 racing suits, k1 race suits, k1 racegear, k1 racegear suit, k1 racegear alternative, HS Racegear vs K1 RaceGear, K1 RaceGear alternative, custom SFI race suits, racing suit comparison, Nomex racing suit",
 };
 
 const breadcrumbSchema = {

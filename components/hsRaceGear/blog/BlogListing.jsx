@@ -4,6 +4,28 @@ import Image from "next/image";
 
 const BLOG_POSTS = [
   {
+    slug: "best-sprint-car-racing-suit",
+    tag: "Discipline Guide",
+    icon: "🏁",
+    image: "/images/home/blog_1.webp",
+    title: "Best Sprint Car Racing Suit — USAC, World of Outlaws & ASCS SFI Rules",
+    excerpt:
+      "What makes a sprint car racing suit different — arm-restraint compatibility, dust seal at the collar, methanol-specific multi-layer Nomex®, and abrasion-resistant panels. Plus sanctioning body requirements and Knoxville Nationals prep.",
+    date: "June 2026",
+    readTime: "8 min read",
+  },
+  {
+    slug: "endurance-racing-suit-guide",
+    tag: "Endurance Racing",
+    icon: "🏆",
+    image: "/images/home/blog2.webp",
+    title: "Endurance Racing Suits Explained — Le Mans Gear vs What You Actually Need",
+    excerpt:
+      "Le Mans is two weeks away. What makes pro endurance racing suits different — FIA 8856-2018, multi-driver fit, heat management at hour 14 — and what amateur endurance racers (Lemons, NASA, Thunderhill) actually need.",
+    date: "June 2026",
+    readTime: "9 min read",
+  },
+  {
     slug: "drag-racing-suit-requirements",
     tag: "Discipline Guide",
     icon: "🏁",

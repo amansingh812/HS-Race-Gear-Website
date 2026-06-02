@@ -14,9 +14,9 @@ export const metadata = {
   // surface for but with the wrong-word title.
   title: "SFI Ratings Explained — Which Certification Does Your Race Suit Need?",
   description:
-    "SFI ratings explained: SFI 3.2A/1, 3.2A/5, and 3.2A/15 demystified. What TPP scores mean, which SFI suit rating you need for drag, sprint car, dirt, karting, and road racing, and how to pass tech inspection every time.",
+    "SFI ratings and requirements explained: SFI 3.2A/1, 3.2A/5, and 3.2A/15 demystified. What TPP scores mean, the SFI requirements for drag, sprint car, dirt, karting, and road racing, and how to pass tech inspection every time.",
   keywords:
-    "SFI ratings, SFI suit ratings, SFI 3.2A/1, SFI 3.2A/5, SFI 3.2A/15, SFI 3.3/5, TPP thermal protective performance, SFI certification guide, racing suit ratings, fire suit ratings",
+    "SFI ratings, SFI suit ratings, SFI requirements, SFI requirements racing suit, SFI 3.2A/1, SFI 3.2A/5, SFI 3.2A/15, SFI 3.3/5, TPP thermal protective performance, SFI certification guide, racing suit ratings, fire suit ratings, fire suit requirements",
 };
 
 // JSON-LD: Article + BreadcrumbList

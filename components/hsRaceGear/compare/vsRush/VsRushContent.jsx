@@ -17,7 +17,7 @@ export default function VsRushContent() {
             HS Racegear<br /><span>vs RUSH Racegear</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Answers for drivers choosing a custom SFI racing suit. See how HS Racegear compares for stock cars, sprint cars, dirt track, and drag racing.
+            Looking at Rush race suits? Here's how HS Racegear compares — custom SFI-certified race suits from $289 for stock car, sprint car, dirt track, and drag racing. Faster production, full design freedom, premium Nomex® included.
           </p>
         </div>
       </section>
@@ -26,6 +26,15 @@ export default function VsRushContent() {
       <section className="hs-doc-section">
         <div className="container">
           <div className="hs-doc-content">
+
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">Considering Rush Race Suits? Here's a Better-Value Custom Alternative</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">
+                  If you've been pricing out Rush race suits, you already know what you're looking for: custom-fit SFI-certified racewear built for serious oval, dirt, and drag racing. HS Racegear builds the same caliber suit — premium Nomex®, SFI 3.2A/1 and 3.2A/5 certified, custom-measured to your body, designed in any color or layout you want — at a lower price point and on a faster timeline. Below is the head-to-head, in plain English.
+                </p>
+              </div>
+            </div>
 
             <div className="hs-doc-block">
               <h2 className="hs-doc-heading">What Should a High-Quality SFI Race Suit Include?</h2>

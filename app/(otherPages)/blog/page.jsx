@@ -14,7 +14,7 @@ export const metadata = {
   description:
     "Guides on SFI ratings explained, how to measure for a custom race suit, choosing the right suit for circle-track, drag, and karting. Written by racers, for racers.",
   keywords:
-    "racing suit guide, SFI ratings explained, how to measure for a racing suit, custom race suit tips, motorsports safety gear",
+    "racing suit guide, SFI ratings, SFI suit ratings, SFI ratings by class, how to measure for a racing suit, custom race suit tips, sprint car racing suit, drag racing suit, dirt late model suit, karting suit, endurance racing suit, aftermarket racing suits, motorsports safety gear",
 };
 
 const breadcrumbSchema = {

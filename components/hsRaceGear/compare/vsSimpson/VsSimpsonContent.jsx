@@ -17,7 +17,7 @@ export default function VsSimpsonContent() {
             HS Racegear<br /><span>vs Simpson Racing</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Modern custom SFI racewear vs legacy brand pricing. More flexibility, faster production, and significantly lower cost — without sacrificing protection.
+            Looking at Simpson racing suits? See how HS Racegear matches the SFI safety standard at roughly one-quarter the price — modern custom SFI racewear vs legacy brand pricing. More flexibility, faster production, no sacrifice on protection.
           </p>
         </div>
       </section>
@@ -26,6 +26,15 @@ export default function VsSimpsonContent() {
       <section className="hs-doc-section">
         <div className="container">
           <div className="hs-doc-content">
+
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">Considering Simpson Racing Suits? Here's a Better-Value Custom Alternative</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">
+                  Simpson racing suits are an institution — half a century of legacy in drag, sprint, and circle track. They're also priced like an institution. HS Racegear builds custom SFI-certified race suits to the same safety standard for roughly one-quarter the cost: SFI 3.2A/1 and 3.2A/5 certified, premium Nomex®, custom-measured to your body, full design control, starting at $289 vs $1,049+ for Simpson. Below is the head-to-head.
+                </p>
+              </div>
+            </div>
 
             <div className="hs-doc-block">
               <h2 className="hs-doc-heading">Purpose-Built SFI Suits for Today's Racers</h2>

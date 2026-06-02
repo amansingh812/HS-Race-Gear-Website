@@ -17,7 +17,7 @@ export default function VsPyrotectContent() {
             HS Racegear<br /><span>vs Pyrotect</span>
           </h1>
           <p className="contact-hero-subtitle">
-            A modern alternative to high-priced custom SFI suits. Same SFI-certified safety standards — greater design flexibility, quicker production, far more accessible pricing.
+            Looking at Pyrotect racing suits? Here's the modern custom alternative — same SFI-certified safety standards, greater design flexibility, quicker production, far more accessible pricing. NHRA, IHRA, IMCA, and USAC compliant.
           </p>
         </div>
       </section>
@@ -26,6 +26,15 @@ export default function VsPyrotectContent() {
       <section className="hs-doc-section">
         <div className="container">
           <div className="hs-doc-content">
+
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">Considering Pyrotect Racing Suits? Here's a Better-Value Custom Alternative</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">
+                  Pyrotect racing suits have a strong reputation in NHRA drag and short-track racing — they're well-built and meet SFI standards. They're also priced at the premium tier. HS Racegear builds custom SFI 3.2A/1 and 3.2A/5 race suits to the same standard, with the same NHRA, IHRA, IMCA, and USAC compliance, starting at $289 vs ~$995 for Pyrotect. Custom-measured to your body. Full design control. Premium Nomex®. Below is the head-to-head.
+                </p>
+              </div>
+            </div>
 
             <div className="hs-doc-block">
               <h2 className="hs-doc-heading">Custom SFI-Certified Suits for Serious Competition</h2>

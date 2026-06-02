@@ -6,12 +6,16 @@ import "@/public/css/contact-us.css";
 import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
+// Metadata updated 2026-06-01 to capture the GSC query "rush race suits"
+// (5 imp/0 clicks in last 7 days) — page wasn't using the exact phrase
+// the searchers type. Title now leads with that exact match.
 export const metadata = {
-  title: "HS Racegear vs RUSH Racegear – Custom SFI Suits Comparison | HS Race Gear",
+  alternates: { canonical: "/compare/vs-rush" },
+  title: "Rush Race Suits Alternative — Custom SFI Suits From $289 | HS Race Gear",
   description:
-    "Comparing HS Racegear vs RUSH Racegear? Custom SFI-certified suits from $289. Faster production, full design freedom, premium Nomex® materials for stock cars, sprint cars, and drag racing.",
+    "Searching for Rush race suits? Compare HS Racegear vs RUSH Racegear — custom SFI-certified race suits from $289, 2–3 week production, full design freedom, premium Nomex® for stock car, sprint car, dirt track, and drag racing.",
   keywords:
-    "HS Racegear vs RUSH Racegear, RUSH Racegear alternative, custom SFI race suits, stock car racing suit, dirt track suit, sprint car suit",
+    "rush race suits, rush racing suits, rush racegear, HS Racegear vs RUSH Racegear, RUSH Racegear alternative, custom SFI race suits, stock car racing suit, dirt track suit, sprint car suit",
 };
 
 const breadcrumbSchema = {

@@ -33,6 +33,8 @@ export default async function sitemap() {
     { url: `${baseUrl}/blog/understanding-sfi-certifications`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/aftermarket-racing-suits`,         lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/sfi-rated-racing-suit-by-class`,   lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/blog/endurance-racing-suit-guide`,      lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/blog/best-sprint-car-racing-suit`,      lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/compare/vs-k1`,       lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-rush`,     lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-velocity`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

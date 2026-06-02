@@ -7,6 +7,24 @@ import Image from "next/image";
 
 const ALL_POSTS = [
   {
+    slug: "best-sprint-car-racing-suit",
+    tag: "Discipline Guide",
+    image: "/images/home/blog_1.webp",
+    title: "Best Sprint Car Racing Suit — USAC, World of Outlaws & ASCS Rules",
+    excerpt:
+      "Arm-restraint compatibility, methanol-specific multi-layer Nomex®, dust seal at the collar — what makes a sprint suit different from a generic SFI 3.2A/5.",
+    readTime: "8 min read",
+  },
+  {
+    slug: "endurance-racing-suit-guide",
+    tag: "Endurance Racing",
+    image: "/images/home/blog2.webp",
+    title: "Endurance Racing Suits — Le Mans Gear vs What You Need",
+    excerpt:
+      "FIA 8856-2018 vs SFI 3.2A/5, multi-driver fit, heat at hour 14 — what amateur endurance racers actually need.",
+    readTime: "9 min read",
+  },
+  {
     slug: "drag-racing-suit-requirements",
     tag: "Discipline Guide",
     image: "/images/home/blog2.webp",

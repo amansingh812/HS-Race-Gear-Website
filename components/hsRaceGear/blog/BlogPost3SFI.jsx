@@ -53,7 +53,11 @@ export default function BlogPost3SFI() {
                   In motorsports, safety is never optional — it's a requirement. From helmets and gloves to racing suits and harness systems, every piece of protective equipment must meet strict performance standards. One of the most recognized and trusted safety benchmarks in racing is SFI certification.
                 </p>
                 <p className="blog-body-text">
-                  If you're buying professional racewear, understanding SFI ratings is essential. Whether you compete in drag racing, stock car racing, or endurance events, your gear must meet specific protection levels to keep you safe and compliant with regulations.
+                  If you're buying professional racewear, understanding SFI ratings is essential. Whether you compete in drag racing, stock car racing, or endurance events, your gear must meet specific protection levels to keep you safe and compliant with regulations. Need to skip the theory and find out the exact rating your class requires?{" "}
+                  <Link href="/blog/sfi-rated-racing-suit-by-class" style={{ color: "#e21b1b", textDecoration: "underline" }}>
+                    See our SFI rating-by-class quick reference
+                  </Link>{" "}
+                  for sprint car, drag, dirt, karting, road racing, and powerboat.
                 </p>
               </div>
             </div>
@@ -93,7 +97,7 @@ export default function BlogPost3SFI() {
 
             {/* HOW RATINGS WORK */}
             <div className="blog-body-block">
-              <h3 className="blog-body-heading">How SFI Ratings Work</h3>
+              <h3 className="blog-body-heading">How SFI Ratings &amp; Requirements Work</h3>
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   SFI ratings are numerical classifications that indicate how much protection a piece of gear provides. For racing suits, the most common specification is <strong>SFI Spec 3.2A</strong>, which measures fire resistance and thermal insulation.
@@ -221,7 +225,13 @@ export default function BlogPost3SFI() {
                   <li>Competitive circuit racing often requires 3.2A/5</li>
                   <li>Professional drag racing may require 3.2A/15 or higher</li>
                 </ul>
-                <p className="blog-body-text" style={{ marginTop: "14px" }}>Always confirm the minimum requirement for your class before purchasing racewear.</p>
+                <p className="blog-body-text" style={{ marginTop: "14px" }}>
+                  Always confirm the minimum requirement for your class before purchasing racewear. Our{" "}
+                  <Link href="/blog/sfi-rated-racing-suit-by-class" style={{ color: "#e21b1b", textDecoration: "underline" }}>
+                    rating-by-discipline guide
+                  </Link>{" "}
+                  walks through every major series.
+                </p>
               </div>
             </div>
 

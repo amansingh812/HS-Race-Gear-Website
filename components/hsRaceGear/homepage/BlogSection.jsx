@@ -9,7 +9,28 @@ import Image from "next/image";
 // to the lead position; the older "choose-right" post drops off the
 // homepage (still in /blog hub). Routes link equity into the freshest
 // confirmed-demand content.
+// Updated 2026-06-01 — Sprint car post promoted to lead (peak season +
+// Knoxville Nationals prep window). Endurance + SFI-by-class round out
+// the homepage feed. Older posts cycle to /blog hub.
 const articles = [
+  {
+    tag: "Discipline Guide",
+    date: "June 1, 2026",
+    title: "Best Sprint Car Racing Suit — USAC, World of Outlaws & ASCS Rules",
+    excerpt:
+      "What makes a sprint car suit different — arm-restraint compatibility, methanol protection, dust seal at the collar. Plus Knoxville Nationals prep.",
+    link: "/blog/best-sprint-car-racing-suit",
+    image: "/images/home/blog_1.webp",
+  },
+  {
+    tag: "Endurance Racing",
+    date: "June 1, 2026",
+    title: "Endurance Racing Suits — Le Mans Gear vs What You Actually Need",
+    excerpt:
+      "Le Mans is two weeks out. What pro endurance suits do differently, and what amateur 24-hour racers (Lemons, NASA, Thunderhill) actually need.",
+    link: "/blog/endurance-racing-suit-guide",
+    image: "/images/home/blog2.webp",
+  },
   {
     tag: "Discipline Guide",
     date: "May 17, 2026",
@@ -17,24 +38,6 @@ const articles = [
     excerpt:
       "Sprint car, dirt, drag, karting, road racing — the exact SFI 3.2A rating you need for the car you actually race. Practical, discipline-by-discipline.",
     link: "/blog/sfi-rated-racing-suit-by-class",
-    image: "/images/home/blog_1.webp",
-  },
-  {
-    tag: "Buyer's Guide",
-    date: "May 16, 2026",
-    title: "Aftermarket Racing Suits: When to Upgrade From Stock Gear",
-    excerpt:
-      "When is it time to move past your entry-level suit? Aftermarket racing suits explained — SFI ratings, Nomex® vs generic FR, custom vs off-the-rack, and when each one wins.",
-    link: "/blog/aftermarket-racing-suits",
-    image: "/images/home/blog2.webp",
-  },
-  {
-    tag: "Safety",
-    date: "January 22, 2026",
-    title: "SFI Ratings Explained — Which Certification Does Your Race Suit Need?",
-    excerpt:
-      "SFI 3.2A/1, 3.2A/5, 3.2A/15 demystified. What SFI ratings actually mean, what TPP measures, and the practical floor for serious racers.",
-    link: "/blog/understanding-sfi-certifications",
     image: "/images/home/blog3.png",
   },
 ];

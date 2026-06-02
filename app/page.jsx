@@ -22,9 +22,10 @@ import "@/public/css/homepage.css";
 // "racewear USA"), and add one-word brand spelling "HSracegear" (people
 // search the domain without the space).
 export const metadata = {
+  alternates: { canonical: "https://www.hsracegear.com/" },
   title: "Custom Racing Suit — SFI Certified, Made in USA | HS Race Gear",
   description:
-    "HS Race Gear (HSracegear) crafts custom racing suits, karting suits, gloves, and shoes built to your exact measurements in Watertown, MA. SFI 3.2A/1 & 3.2A/5 certified. Made in the USA. Free shipping on custom suits.",
+    "Custom SFI-certified racing suits built to your exact measurements. SFI 3.2A/1 from $329 — drag, dirt track, karting & more. Made in USA. Free shipping.",
   keywords:
     "custom racing suit, custom race suit, SFI certified racing suit, made in USA racing suit, racewear USA, HSracegear, HS Race Gear, racing gear, aftermarket auto racing suits, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suit, custom karting suit",
 };

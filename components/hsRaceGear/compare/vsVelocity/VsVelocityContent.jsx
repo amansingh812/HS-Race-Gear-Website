@@ -17,7 +17,7 @@ export default function VsVelocityContent() {
                         HS Racegear<br /><span>vs Velocita Racing Gear</span>
                     </h1>
                     <p className="contact-hero-subtitle">
-                        Drivers comparing racing suit options deserve clear, honest answers. See how HS Racegear stacks up against Velocita Racing Gear for custom SFI-certified suits.
+                        Looking at Velocita racing suits? See how HS Racegear stacks up — custom SFI-certified race suits from $289, transparent pricing, faster production, and real design freedom for all racing disciplines.
                     </p>
                 </div>
             </section>
@@ -26,6 +26,15 @@ export default function VsVelocityContent() {
             <section className="hs-doc-section">
                 <div className="container">
                     <div className="hs-doc-content">
+
+                        <div className="hs-doc-block">
+                            <h2 className="hs-doc-heading">Considering Velocita Racing Suits? Here's a Better-Value Custom Alternative</h2>
+                            <div className="hs-doc-card">
+                                <p className="hs-doc-card-text">
+                                    If you've been pricing out Velocita racing suits, you already know the brand — Italian heritage, sublimated graphics, SFI-certified. HS Racegear builds custom SFI 3.2A/1 and 3.2A/5 race suits to the same safety standard, with transparent pricing starting at $289, faster production timelines, and full design freedom. Below is the head-to-head, in plain English.
+                                </p>
+                            </div>
+                        </div>
 
                         <div className="hs-doc-block">
                             <h2 className="hs-doc-heading">What Drivers Are Really Looking For</h2>

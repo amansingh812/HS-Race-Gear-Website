@@ -17,7 +17,7 @@ export default function VsK1Content() {
             HS Racegear<br /><span>vs K1 RaceGear</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Why racers choose HS Racegear for custom SFI-certified racewear — faster turnaround, deeper customization, and better value without compromising safety.
+            Looking at K1 racing suits? Here's how HS Racegear compares — custom SFI-certified race suits from $289, faster turnaround, deeper customization, and better value without compromising safety.
           </p>
         </div>
       </section>
@@ -28,6 +28,15 @@ export default function VsK1Content() {
           <div className="hs-doc-content">
 
             {/* INTRO */}
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">Considering K1 Racing Suits? Here's a Better-Value Custom Alternative</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">
+                  If you've been pricing out K1 racing suits, you already know what you're after: custom-fit SFI-certified racewear from a brand racers actually trust. HS Racegear builds the same caliber suit — premium Nomex®, SFI 3.2A/1 and 3.2A/5 certified, custom-measured to your body, any color or design — starting at $289, on a faster production timeline. Below is the head-to-head, in plain English.
+                </p>
+              </div>
+            </div>
+
             <div className="hs-doc-block">
               <h2 className="hs-doc-heading">Built for Safety. Designed for Performance.</h2>
               <div className="hs-doc-card">
