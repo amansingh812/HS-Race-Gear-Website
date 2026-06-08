@@ -9,10 +9,18 @@ import Image from "next/image";
 // to the lead position; the older "choose-right" post drops off the
 // homepage (still in /blog hub). Routes link equity into the freshest
 // confirmed-demand content.
-// Updated 2026-06-01 — Sprint car post promoted to lead (peak season +
-// Knoxville Nationals prep window). Endurance + SFI-by-class round out
-// the homepage feed. Older posts cycle to /blog hub.
+// Updated 2026-06-02 — Karting post promoted to lead (summer peak +
+// underserved customer segment). Sprint car drops to #2, Endurance to #3.
 const articles = [
+  {
+    tag: "Karting Guide",
+    date: "June 2, 2026",
+    title: "Custom Karting Suit Sizing — Junior, Senior, Shifter Explained",
+    excerpt:
+      "CIK Level 2 vs Level 1, junior fit + growth room, shifter-specific upgrades, and WKA/SKUSA/Rotax Max requirements.",
+    link: "/blog/karting-suit-sizing-guide",
+    image: "/images/home/blog_1.webp",
+  },
   {
     tag: "Discipline Guide",
     date: "June 1, 2026",
@@ -20,7 +28,7 @@ const articles = [
     excerpt:
       "What makes a sprint car suit different — arm-restraint compatibility, methanol protection, dust seal at the collar. Plus Knoxville Nationals prep.",
     link: "/blog/best-sprint-car-racing-suit",
-    image: "/images/home/blog_1.webp",
+    image: "/images/home/blog2.webp",
   },
   {
     tag: "Endurance Racing",
@@ -29,15 +37,6 @@ const articles = [
     excerpt:
       "Le Mans is two weeks out. What pro endurance suits do differently, and what amateur 24-hour racers (Lemons, NASA, Thunderhill) actually need.",
     link: "/blog/endurance-racing-suit-guide",
-    image: "/images/home/blog2.webp",
-  },
-  {
-    tag: "Discipline Guide",
-    date: "May 17, 2026",
-    title: "SFI Rated Racing Suit by Class — Which Rating You Actually Need",
-    excerpt:
-      "Sprint car, dirt, drag, karting, road racing — the exact SFI 3.2A rating you need for the car you actually race. Practical, discipline-by-discipline.",
-    link: "/blog/sfi-rated-racing-suit-by-class",
     image: "/images/home/blog3.png",
   },
 ];

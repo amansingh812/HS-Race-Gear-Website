@@ -7,6 +7,15 @@ import Image from "next/image";
 
 const ALL_POSTS = [
   {
+    slug: "karting-suit-sizing-guide",
+    tag: "Karting Guide",
+    image: "/images/home/blog_1.webp",
+    title: "Karting Suit Sizing — Junior, Senior, Shifter & CIK Level 2 Explained",
+    excerpt:
+      "CIK Level 1 vs 2, junior fit and growth room, senior sponsor placement, shifter-specific upgrades, and WKA/SKUSA/Rotax requirements.",
+    readTime: "8 min read",
+  },
+  {
     slug: "best-sprint-car-racing-suit",
     tag: "Discipline Guide",
     image: "/images/home/blog_1.webp",

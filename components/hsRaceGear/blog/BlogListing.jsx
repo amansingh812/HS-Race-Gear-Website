@@ -4,6 +4,17 @@ import Image from "next/image";
 
 const BLOG_POSTS = [
   {
+    slug: "karting-suit-sizing-guide",
+    tag: "Karting Guide",
+    icon: "🛞",
+    image: "/images/home/blog_1.webp",
+    title: "Custom Karting Suit Sizing — Junior, Senior, Shifter & CIK Level 2 Explained",
+    excerpt:
+      "Karting suits aren't smaller racing suits — they're built around abrasion, not fire. CIK Level 1 vs Level 2, junior and cadet fit, senior sponsor placement, when shifter drivers need the upgrade, and WKA/SKUSA/Rotax requirements.",
+    date: "June 2026",
+    readTime: "8 min read",
+  },
+  {
     slug: "best-sprint-car-racing-suit",
     tag: "Discipline Guide",
     icon: "🏁",
