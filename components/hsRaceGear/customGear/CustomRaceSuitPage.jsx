@@ -57,12 +57,16 @@ export default function CustomRaceSuitPage() {
     ];
 
     const suitMockups = [
-        { src: "/images/powerboat/mockup-1.webp", alt: "Custom Race Suit Design 1" },
-        { src: "/images/powerboat/mockup-2.webp", alt: "Custom Race Suit Design 2" },
-        { src: "/images/powerboat/mockup-3.webp", alt: "Custom Race Suit Design 3" },
-        { src: "/images/powerboat/mockup-4.webp", alt: "Custom Race Suit Design 4" },
-        { src: "/images/powerboat/mockup-5.webp", alt: "Custom Race Suit Design 5" },
-        { src: "/images/powerboat/mockup-6.webp", alt: "Custom Race Suit Design 6" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/1.jpg", alt: "Custom Race Suit Design 1" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/2.jpg", alt: "Custom Race Suit Design 2" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/3.jpg", alt: "Custom Race Suit Design 3" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/4.jpg", alt: "Custom Race Suit Design 4" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/5.jpg", alt: "Custom Race Suit Design 5" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/6.jpg", alt: "Custom Race Suit Design 6" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/7.jpg", alt: "Custom Race Suit Design 7" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/8.jpg", alt: "Custom Race Suit Design 8" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/9.jpg", alt: "Custom Race Suit Design 9" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/10.jpg", alt: "Custom Race Suit Design 10" },
     ];
 
     return (

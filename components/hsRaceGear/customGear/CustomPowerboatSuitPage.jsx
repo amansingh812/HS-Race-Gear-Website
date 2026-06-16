@@ -109,12 +109,16 @@ export default function CustomPowerboatSuitPage() {
     ];
 
     const suitMockups = [
-        { src: "/images/powerboat/mockup-1.webp", alt: "Custom Power Boat Suit Design 1" },
-        { src: "/images/powerboat/mockup-2.webp", alt: "Custom Power Boat Suit Design 2" },
-        { src: "/images/powerboat/mockup-3.webp", alt: "Custom Power Boat Suit Design 3" },
-        { src: "/images/powerboat/mockup-4.webp", alt: "Custom Power Boat Suit Design 4" },
-        { src: "/images/powerboat/mockup-5.webp", alt: "Custom Power Boat Suit Design 5" },
-        { src: "/images/powerboat/mockup-6.webp", alt: "Custom Power Boat Suit Design 6" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/1.jpg", alt: "Custom Power Boat Suit Design 1" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/2.jpg", alt: "Custom Power Boat Suit Design 2" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/3.jpg", alt: "Custom Power Boat Suit Design 3" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/4.jpg", alt: "Custom Power Boat Suit Design 4" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/5.jpg", alt: "Custom Power Boat Suit Design 5" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/6.jpg", alt: "Custom Power Boat Suit Design 6" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/7.jpg", alt: "Custom Power Boat Suit Design 7" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/8.jpg", alt: "Custom Power Boat Suit Design 8" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/9.jpg", alt: "Custom Power Boat Suit Design 9" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/10.jpg", alt: "Custom Power Boat Suit Design 10" },
     ];
 
     return (

@@ -35,16 +35,15 @@ const PACKAGES = [
   },
 ];
 
-// Images available for race suit mockups (reusing karting suit designs)
-const EXISTING_SUIT_IMAGES = [1, 2, 3, 4, 5, 7, 8, 10, 11];
-const SUIT_MOCKUPS = Array.from({ length: 29 }, (_, i) => {
+// Images available for race suit mockups — all 50 designs from new mock directory
+const SUIT_MOCKUPS = Array.from({ length: 50 }, (_, i) => {
   const num = i + 1;
-  const hasImage = EXISTING_SUIT_IMAGES.includes(num);
+  const ext = num === 50 ? "jpeg" : "jpg";
   return {
     id: `suit-${num}`,
     name: `Design ${num}`,
     number: num,
-    image: hasImage ? `/images/karting/mockup-${num}.webp` : null,
+    image: `/images/suit_mock/CUSTOM RACE SUITS/${num}.${ext}`,
   };
 });
 
@@ -159,12 +158,31 @@ function PackageSelection({ selected, onSelect }) {
 
 /* ---- Step 2: Mockup Selection (Suit / Gloves / Shoes) ---- */
 function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSteps, currentStep }) {
+  const [visibleCount, setVisibleCount] = React.useState(12);
+  const [zoomedMockup, setZoomedMockup] = React.useState(null);
+
   const typeLabels = { suit: "Suit Design", gloves: "Gloves Design", shoes: "Shoes Design" };
   const typeDescriptions = {
-    suit: "Browse our collection of 29 custom suit designs. Select the one that matches your racing style.",
+    suit: `Browse our collection of ${mockups.length} custom suit designs. Select the one that matches your racing style.`,
     gloves: "Choose your preferred gloves design to complement your suit.",
     shoes: "Select your racing shoes design to complete the look.",
   };
+
+  const visibleMockups = mockups.slice(0, visibleCount);
+  const hasMore = visibleCount < mockups.length;
+
+  const handleZoom = (e, mockup) => {
+    e.stopPropagation();
+    setZoomedMockup(mockup);
+  };
+
+  // Close zoom on Escape key
+  React.useEffect(() => {
+    if (!zoomedMockup) return;
+    const handleKey = (e) => { if (e.key === "Escape") setZoomedMockup(null); };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [zoomedMockup]);
 
   return (
     <div className="step-content" key={type}>
@@ -174,7 +192,7 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
         <p className="step-subtitle">{typeDescriptions[type]}</p>
       </div>
       <div className="mockup-grid">
-        {mockups.map((mockup) => (
+        {visibleMockups.map((mockup) => (
           <div
             key={mockup.id}
             className={`mockup-card ${selected?.id === mockup.id ? "selected" : ""}`}
@@ -185,7 +203,14 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
           >
             <div className="mockup-card-image">
               {mockup.image ? (
-                <img src={mockup.image} alt={mockup.name} loading="lazy" />
+                <>
+                  <img src={mockup.image} alt={mockup.name} loading="lazy" />
+                  <div className="mockup-zoom-trigger" onClick={(e) => handleZoom(e, mockup)} style={{ pointerEvents: "auto", cursor: "zoom-in" }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                    </svg>
+                  </div>
+                </>
               ) : (
                 <span>{String(mockup.number).padStart(2, "0")}</span>
               )}
@@ -197,6 +222,31 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
           </div>
         ))}
       </div>
+
+      {hasMore && (
+        <div className="mockup-see-more-container">
+          <button
+            className="mockup-see-more-btn"
+            onClick={() => setVisibleCount((prev) => prev + 12)}
+          >
+            See More Designs ({mockups.length - visibleCount} remaining)
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+        </div>
+      )}
+
+      {/* Zoom Overlay */}
+      {zoomedMockup && (
+        <div className="mockup-zoom-overlay" onClick={() => setZoomedMockup(null)}>
+          <div className="mockup-zoom-content" onClick={(e) => e.stopPropagation()}>
+            <button className="mockup-zoom-close" onClick={() => setZoomedMockup(null)}>✕</button>
+            <img src={zoomedMockup.image} alt={zoomedMockup.name} />
+            <div className="mockup-zoom-label">{zoomedMockup.name}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
