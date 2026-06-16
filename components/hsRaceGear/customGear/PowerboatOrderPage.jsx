@@ -34,15 +34,15 @@ const PACKAGES = [
   },
 ];
 
-// 50 powerboat suit mockups — all from new mock directory
+// 50 powerboat suit mockups — all from new mock directory.
+// All converted to WebP 2026-06-17 (410MB→22MB across the three suit folders).
 const SUIT_MOCKUPS = Array.from({ length: 50 }, (_, i) => {
   const num = i + 1;
-  const ext = num === 50 ? "jpeg" : "jpg";
   return {
     id: `powerboat-suit-${num}`,
     name: `Design ${num}`,
     number: num,
-    image: `/images/suit_mock/POWER BOATING SUITS/${num}.${ext}`,
+    image: `/images/suit_mock/POWER BOATING SUITS/${num}.webp`,
   };
 });
 

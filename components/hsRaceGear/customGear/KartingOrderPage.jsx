@@ -35,7 +35,7 @@ const SUIT_MOCKUPS = Array.from({ length: 30 }, (_, i) => {
     id: `karting-suit-${num}`,
     name: `Design ${num}`,
     number: num,
-    image: `/images/suit_mock/KARTING SUITS/${num}.jpg`,
+    image: `/images/suit_mock/KARTING SUITS/${num}.webp`,
   };
 });
 

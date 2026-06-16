@@ -35,15 +35,15 @@ const PACKAGES = [
   },
 ];
 
-// Images available for race suit mockups — all 50 designs from new mock directory
+// Images available for race suit mockups — all 50 designs from new mock directory.
+// All converted to WebP 2026-06-17 (410MB→22MB across the three suit folders).
 const SUIT_MOCKUPS = Array.from({ length: 50 }, (_, i) => {
   const num = i + 1;
-  const ext = num === 50 ? "jpeg" : "jpg";
   return {
     id: `suit-${num}`,
     name: `Design ${num}`,
     number: num,
-    image: `/images/suit_mock/CUSTOM RACE SUITS/${num}.${ext}`,
+    image: `/images/suit_mock/CUSTOM RACE SUITS/${num}.webp`,
   };
 });
 
