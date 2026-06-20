@@ -7,6 +7,15 @@ import Image from "next/image";
 
 const ALL_POSTS = [
   {
+    slug: "tpp-rating-explained",
+    tag: "Safety Standards",
+    image: "/images/home/blog_1.webp",
+    title: "TPP Rating Explained — What Thermal Protective Performance Actually Measures",
+    excerpt:
+      "The hidden number behind every SFI rating. Why two SFI 3.2A/5 suits can have different TPP scores, and how to find the actual number.",
+    readTime: "7 min read",
+  },
+  {
     slug: "karting-suit-sizing-guide",
     tag: "Karting Guide",
     image: "/images/home/blog_1.webp",

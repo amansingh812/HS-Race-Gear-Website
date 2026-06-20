@@ -4,6 +4,17 @@ import Image from "next/image";
 
 const BLOG_POSTS = [
   {
+    slug: "tpp-rating-explained",
+    tag: "Safety Standards",
+    icon: "🔥",
+    image: "/images/home/blog_1.webp",
+    title: "TPP Rating Explained — What Thermal Protective Performance Actually Measures",
+    excerpt:
+      "The hidden number behind every SFI rating. TPP measures how long a fabric protects skin from second-degree burns — and two SFI 3.2A/5 suits can have wildly different TPP scores. Here's how to find the actual number.",
+    date: "June 2026",
+    readTime: "7 min read",
+  },
+  {
     slug: "karting-suit-sizing-guide",
     tag: "Karting Guide",
     icon: "🛞",
