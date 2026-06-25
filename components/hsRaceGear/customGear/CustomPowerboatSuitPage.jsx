@@ -1,10 +1,14 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import MockupLightbox, { MockupSliderItem } from "@/components/hsRaceGear/customGear/MockupLightbox";
 import "@/public/css/custom-powerboat-suit.css";
+import "@/public/css/mockup-lightbox.css";
 
 export default function CustomPowerboatSuitPage() {
+    const [lightboxIndex, setLightboxIndex] = useState(null);
+
     const features = [
         {
             icon: (
@@ -214,20 +218,27 @@ export default function CustomPowerboatSuitPage() {
 
             {/* Sliding Mockups Section */}
             <section className="powerboat-mockup-slider">
-                <div className="powerboat-mockup-track">
-                    {[...suitMockups, ...suitMockups].map((mockup, index) => (
-                        <div key={index} className="powerboat-mockup-item">
-                            <Image
-                                src={mockup.src}
-                                alt={mockup.alt}
-                                width={220}
-                                height={300}
-                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                <div className={`powerboat-mockup-track ${lightboxIndex !== null ? "is-paused" : ""}`}>
+                    {[...suitMockups, ...suitMockups].map((mockup, index) => {
+                        const realIndex = index % suitMockups.length;
+                        return (
+                            <MockupSliderItem
+                                key={index}
+                                mockup={mockup}
+                                onClick={() => setLightboxIndex(realIndex)}
+                                itemClassName="powerboat-mockup-item"
                             />
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </section>
+
+            <MockupLightbox
+                mockups={suitMockups}
+                openIndex={lightboxIndex}
+                onChange={setLightboxIndex}
+                label="Custom Powerboat Suit"
+            />
 
             {/* Features Section */}
             <section style={{ padding: "96px 0", backgroundColor: "#171717" }}>

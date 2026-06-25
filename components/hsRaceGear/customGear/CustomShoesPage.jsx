@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import MockupLightbox, { MockupSliderItem } from "@/components/hsRaceGear/customGear/MockupLightbox";
 import "@/public/css/custom-shoes.css";
+import "@/public/css/mockup-lightbox.css";
 
 /* ── Shoes Size Chart Modal ── */
 function ShoesSizeChartModal({ onClose }) {
@@ -269,20 +271,27 @@ export default function CustomShoesPage() {
 
             {/* Sliding Mockups Section */}
             <section className="shoes-mockup-slider">
-                <div className="shoes-mockup-track">
-                    {[...shoeMockups, ...shoeMockups].map((mockup, index) => (
-                        <div key={index} className="shoes-mockup-item">
-                            <Image
-                                src={mockup.src}
-                                alt={mockup.alt}
-                                width={260}
-                                height={220}
-                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                <div className={`shoes-mockup-track ${lightboxIndex !== null ? "is-paused" : ""}`}>
+                    {[...shoeMockups, ...shoeMockups].map((mockup, index) => {
+                        const realIndex = index % shoeMockups.length;
+                        return (
+                            <MockupSliderItem
+                                key={index}
+                                mockup={mockup}
+                                onClick={() => setLightboxIndex(realIndex)}
+                                itemClassName="shoes-mockup-item"
                             />
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </section>
+
+            <MockupLightbox
+                mockups={shoeMockups}
+                openIndex={lightboxIndex}
+                onChange={setLightboxIndex}
+                label="Custom Racing Shoe"
+            />
 
             {/* Features Section */}
             <section style={{ padding: "96px 0", backgroundColor: "#171717" }}>

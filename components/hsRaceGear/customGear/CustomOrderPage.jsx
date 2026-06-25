@@ -2,7 +2,9 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
 import "@/public/css/custom-order.css";
+import "@/public/css/mockup-lightbox.css";
 
 /* ============================================
    DATA
@@ -159,7 +161,11 @@ function PackageSelection({ selected, onSelect }) {
 /* ---- Step 2: Mockup Selection (Suit / Gloves / Shoes) ---- */
 function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSteps, currentStep }) {
   const [visibleCount, setVisibleCount] = React.useState(12);
-  const [zoomedMockup, setZoomedMockup] = React.useState(null);
+  // Lightbox tracked by INDEX into the original mockups array — shared
+  // MockupLightbox handles centering via portal + prev/next/keyboard.
+  // Replaced the old in-place zoom that didn't center (broken by the
+  // parent .step-content transform animation).
+  const [zoomIndex, setZoomIndex] = React.useState(null);
 
   const typeLabels = { suit: "Suit Design", gloves: "Gloves Design", shoes: "Shoes Design" };
   const typeDescriptions = {
@@ -171,18 +177,10 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
   const visibleMockups = mockups.slice(0, visibleCount);
   const hasMore = visibleCount < mockups.length;
 
-  const handleZoom = (e, mockup) => {
+  const handleZoom = (e, mockup, idx) => {
     e.stopPropagation();
-    setZoomedMockup(mockup);
+    setZoomIndex(idx);
   };
-
-  // Close zoom on Escape key
-  React.useEffect(() => {
-    if (!zoomedMockup) return;
-    const handleKey = (e) => { if (e.key === "Escape") setZoomedMockup(null); };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [zoomedMockup]);
 
   return (
     <div className="step-content" key={type}>
@@ -192,7 +190,7 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
         <p className="step-subtitle">{typeDescriptions[type]}</p>
       </div>
       <div className="mockup-grid">
-        {visibleMockups.map((mockup) => (
+        {visibleMockups.map((mockup, idx) => (
           <div
             key={mockup.id}
             className={`mockup-card ${selected?.id === mockup.id ? "selected" : ""}`}
@@ -205,7 +203,7 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
               {mockup.image ? (
                 <>
                   <img src={mockup.image} alt={mockup.name} loading="lazy" />
-                  <div className="mockup-zoom-trigger" onClick={(e) => handleZoom(e, mockup)} style={{ pointerEvents: "auto", cursor: "zoom-in" }}>
+                  <div className="mockup-zoom-trigger" onClick={(e) => handleZoom(e, mockup, idx)} style={{ pointerEvents: "auto", cursor: "zoom-in" }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
                     </svg>
@@ -237,16 +235,14 @@ function MockupSelection({ type, mockups, selected, onSelect, stepLabel, totalSt
         </div>
       )}
 
-      {/* Zoom Overlay */}
-      {zoomedMockup && (
-        <div className="mockup-zoom-overlay" onClick={() => setZoomedMockup(null)}>
-          <div className="mockup-zoom-content" onClick={(e) => e.stopPropagation()}>
-            <button className="mockup-zoom-close" onClick={() => setZoomedMockup(null)}>✕</button>
-            <img src={zoomedMockup.image} alt={zoomedMockup.name} />
-            <div className="mockup-zoom-label">{zoomedMockup.name}</div>
-          </div>
-        </div>
-      )}
+      {/* Shared lightbox — renders via portal so it centers correctly
+          even though parent .step-content has a transform animation. */}
+      <MockupLightbox
+        mockups={mockups}
+        openIndex={zoomIndex}
+        onChange={setZoomIndex}
+        label={typeLabels[type]}
+      />
     </div>
   );
 }

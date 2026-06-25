@@ -1,0 +1,252 @@
+/* ──────────────────────────────────────────────────────────────────
+   Shared mockup-lightbox styles.
+   Used by /custom-race-suit, /custom-karting-suit, /custom-powerboat-suit,
+   /custom-gloves, /custom-shoes.
+   Icons made high-contrast 2026-06-17: brand-red ring on solid dark
+   button — visible against any backdrop.
+   ─────────────────────────────────────────────────────────────────*/
+
+/* Zoom-hint badge on each slider item (shows on hover) */
+.mockup-zoom-hint {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(226, 27, 27, 0.95);
+  border: 2px solid #fff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* All known slider item classnames trigger the same hover behavior */
+.race-suit-mockup-item:hover .mockup-zoom-hint,
+.race-suit-mockup-item:focus-visible .mockup-zoom-hint,
+.karting-mockup-item:hover .mockup-zoom-hint,
+.karting-mockup-item:focus-visible .mockup-zoom-hint,
+.powerboat-mockup-item:hover .mockup-zoom-hint,
+.powerboat-mockup-item:focus-visible .mockup-zoom-hint,
+.gloves-mockup-item:hover .mockup-zoom-hint,
+.gloves-mockup-item:focus-visible .mockup-zoom-hint,
+.shoes-mockup-item:hover .mockup-zoom-hint,
+.shoes-mockup-item:focus-visible .mockup-zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slider items become real buttons */
+.race-suit-mockup-item,
+.karting-mockup-item,
+.powerboat-mockup-item,
+.gloves-mockup-item,
+.shoes-mockup-item {
+  cursor: zoom-in;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  position: relative;
+}
+
+.race-suit-mockup-item:focus-visible,
+.karting-mockup-item:focus-visible,
+.powerboat-mockup-item:focus-visible,
+.gloves-mockup-item:focus-visible,
+.shoes-mockup-item:focus-visible {
+  outline: 2px solid #e21b1b;
+  outline-offset: 4px;
+}
+
+/* Pause the looping slider animation when a lightbox is open
+   (modifier class added by the page component) */
+.race-suit-mockup-track.is-paused,
+.karting-mockup-track.is-paused,
+.powerboat-mockup-track.is-paused,
+.gloves-mockup-track.is-paused,
+.shoes-mockup-track.is-paused {
+  animation-play-state: paused;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   LIGHTBOX OVERLAY
+   ─────────────────────────────────────────────────────────────────*/
+.mockup-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 24px;
+  animation: mockup-lightbox-fade 0.18s ease-out;
+}
+
+@keyframes mockup-lightbox-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mockup-lightbox-content {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: mockup-lightbox-zoom 0.22s ease-out;
+}
+
+@keyframes mockup-lightbox-zoom {
+  from { transform: scale(0.94); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.mockup-lightbox-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 842 / 595;
+  max-height: 78vh;
+  background: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mockup-lightbox-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mockup-lightbox-counter {
+  color: #e21b1b;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: rgba(226, 27, 27, 0.1);
+  border: 1px solid rgba(226, 27, 27, 0.4);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.mockup-lightbox-title {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   CLOSE + NAV BUTTONS — high contrast, brand red ring, always visible
+   ─────────────────────────────────────────────────────────────────*/
+.mockup-lightbox-close,
+.mockup-lightbox-nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  border: 2px solid #e21b1b;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  z-index: 10000;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.55), 0 6px 20px rgba(226, 27, 27, 0.35);
+  padding: 0;
+}
+
+/* Defeat any global svg{stroke:...} that might be hiding the icon strokes
+   set inline on the children. Pinning to white at the button level too. */
+.mockup-lightbox-close svg,
+.mockup-lightbox-nav svg,
+.mockup-zoom-hint svg {
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+  fill: none !important;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.mockup-lightbox-close {
+  top: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+}
+
+.mockup-lightbox-close:hover,
+.mockup-lightbox-close:focus-visible {
+  background: #e21b1b;
+  transform: rotate(90deg);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.55), 0 8px 24px rgba(226, 27, 27, 0.6);
+}
+
+.mockup-lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.mockup-lightbox-prev { left: 24px; }
+.mockup-lightbox-next { right: 24px; }
+
+.mockup-lightbox-nav:hover,
+.mockup-lightbox-nav:focus-visible {
+  background: #e21b1b;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.55), 0 8px 24px rgba(226, 27, 27, 0.6);
+}
+
+.mockup-lightbox-prev:hover,
+.mockup-lightbox-prev:focus-visible {
+  transform: translateY(-50%) translateX(-2px);
+}
+
+.mockup-lightbox-next:hover,
+.mockup-lightbox-next:focus-visible {
+  transform: translateY(-50%) translateX(2px);
+}
+
+.mockup-lightbox-nav:focus-visible,
+.mockup-lightbox-close:focus-visible {
+  outline: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   MOBILE REFINEMENTS
+   ─────────────────────────────────────────────────────────────────*/
+@media (max-width: 768px) {
+  .mockup-lightbox {
+    padding: 12px;
+  }
+  .mockup-lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+  }
+  .mockup-lightbox-nav {
+    width: 48px;
+    height: 48px;
+  }
+  .mockup-lightbox-prev { left: 8px; }
+  .mockup-lightbox-next { right: 8px; }
+  .mockup-lightbox-meta {
+    font-size: 13px;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+}

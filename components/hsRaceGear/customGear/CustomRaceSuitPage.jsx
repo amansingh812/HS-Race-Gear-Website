@@ -1,10 +1,15 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import MockupLightbox, { MockupSliderItem } from "@/components/hsRaceGear/customGear/MockupLightbox";
 import "@/public/css/custom-race-suit.css";
+import "@/public/css/mockup-lightbox.css";
 
 export default function CustomRaceSuitPage() {
+    // Lightbox state for the mockup slider — added 2026-06-17
+    const [lightboxIndex, setLightboxIndex] = useState(null);
+
     const features = [
         {
             icon: (
@@ -211,20 +216,30 @@ export default function CustomRaceSuitPage() {
 
             {/* Sliding Mockups Section */}
             <section className="race-suit-mockup-slider">
-                <div className="race-suit-mockup-track">
-                    {[...suitMockups, ...suitMockups].map((mockup, index) => (
-                        <div key={index} className="race-suit-mockup-item">
-                            <Image
-                                src={mockup.src}
-                                alt={mockup.alt}
-                                width={472}
-                                height={333}
-                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                <div
+                    className={`race-suit-mockup-track ${lightboxIndex !== null ? "is-paused" : ""}`}
+                >
+                    {[...suitMockups, ...suitMockups].map((mockup, index) => {
+                        const realIndex = index % suitMockups.length;
+                        return (
+                            <MockupSliderItem
+                                key={index}
+                                mockup={mockup}
+                                onClick={() => setLightboxIndex(realIndex)}
+                                itemClassName="race-suit-mockup-item"
                             />
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </section>
+
+            {/* Lightbox modal — opens when a mockup is clicked */}
+            <MockupLightbox
+                mockups={suitMockups}
+                openIndex={lightboxIndex}
+                onChange={setLightboxIndex}
+                label="Custom Race Suit"
+            />
 
             {/* Features Section */}
             <section style={{ padding: "96px 0", backgroundColor: "#171717" }}>

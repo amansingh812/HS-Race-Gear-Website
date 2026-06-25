@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import MockupLightbox, { MockupSliderItem } from "@/components/hsRaceGear/customGear/MockupLightbox";
 import "@/public/css/custom-gloves.css";
+import "@/public/css/mockup-lightbox.css";
 
 /* ── Gloves Size Chart Modal ── */
 function GlovesSizeChartModal({ onClose }) {
@@ -285,20 +287,27 @@ export default function CustomGlovesPage() {
 
             {/* Sliding Mockups Section */}
             <section className="gloves-mockup-slider">
-                <div className="gloves-mockup-track">
-                    {[...gloveMockups, ...gloveMockups].map((mockup, index) => (
-                        <div key={index} className="gloves-mockup-item">
-                            <Image
-                                src={mockup.src}
-                                alt={mockup.alt}
-                                width={240}
-                                height={240}
-                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                <div className={`gloves-mockup-track ${lightboxIndex !== null ? "is-paused" : ""}`}>
+                    {[...gloveMockups, ...gloveMockups].map((mockup, index) => {
+                        const realIndex = index % gloveMockups.length;
+                        return (
+                            <MockupSliderItem
+                                key={index}
+                                mockup={mockup}
+                                onClick={() => setLightboxIndex(realIndex)}
+                                itemClassName="gloves-mockup-item"
                             />
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </section>
+
+            <MockupLightbox
+                mockups={gloveMockups}
+                openIndex={lightboxIndex}
+                onChange={setLightboxIndex}
+                label="Custom Racing Glove"
+            />
 
             {/* Features Section */}
             <section style={{ padding: "96px 0", backgroundColor: "#171717" }}>

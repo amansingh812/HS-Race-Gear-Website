@@ -1,10 +1,14 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import MockupLightbox, { MockupSliderItem } from "@/components/hsRaceGear/customGear/MockupLightbox";
 import "@/public/css/custom-karting-suit.css";
+import "@/public/css/mockup-lightbox.css";
 
 export default function CustomKartingSuitPage() {
+    const [lightboxIndex, setLightboxIndex] = useState(null);
+
     const features = [
         {
             icon: (
@@ -184,21 +188,28 @@ export default function CustomKartingSuitPage() {
 
             {/* Sliding Mockups Section */}
             <section className="karting-mockup-slider">
-                <div className="karting-mockup-track">
+                <div className={`karting-mockup-track ${lightboxIndex !== null ? "is-paused" : ""}`}>
                     {/* Duplicate mockups for seamless infinite scroll */}
-                    {[...suitMockups, ...suitMockups].map((mockup, index) => (
-                        <div key={index} className="karting-mockup-item">
-                            <Image
-                                src={mockup.src}
-                                alt={mockup.alt}
-                                width={220}
-                                height={300}
-                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    {[...suitMockups, ...suitMockups].map((mockup, index) => {
+                        const realIndex = index % suitMockups.length;
+                        return (
+                            <MockupSliderItem
+                                key={index}
+                                mockup={mockup}
+                                onClick={() => setLightboxIndex(realIndex)}
+                                itemClassName="karting-mockup-item"
                             />
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </section>
+
+            <MockupLightbox
+                mockups={suitMockups}
+                openIndex={lightboxIndex}
+                onChange={setLightboxIndex}
+                label="Custom Karting Suit"
+            />
 
             {/* Features Section */}
             <section style={{ padding: "96px 0", backgroundColor: "#171717" }}>
