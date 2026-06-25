@@ -178,12 +178,20 @@ export default function CustomGlovesPage() {
         }
     ];
 
+    // Expanded library — 10 designs from /images/Custom Gloves/ (25 total
+    // available; first 10 shown in the product-page slider, full set on
+    // the order page). Converted from JPG to WebP 2026-06-26.
     const gloveMockups = [
-        { src: "/images/gloves/mockup-1.webp", alt: "Custom Racing Glove Design 1" },
-        { src: "/images/gloves/mockup-2.webp", alt: "Custom Racing Glove Design 2" },
-        { src: "/images/gloves/mockup-3.webp", alt: "Custom Racing Glove Design 3" },
-        { src: "/images/gloves/mockup-4.webp", alt: "Custom Racing Glove Design 4" },
-        { src: "/images/gloves/mockup-5.webp", alt: "Custom Racing Glove Design 5" },
+        { src: "/images/Custom Gloves/1.webp", alt: "Custom Racing Glove Design 1" },
+        { src: "/images/Custom Gloves/2.webp", alt: "Custom Racing Glove Design 2" },
+        { src: "/images/Custom Gloves/3.webp", alt: "Custom Racing Glove Design 3" },
+        { src: "/images/Custom Gloves/4.webp", alt: "Custom Racing Glove Design 4" },
+        { src: "/images/Custom Gloves/5.webp", alt: "Custom Racing Glove Design 5" },
+        { src: "/images/Custom Gloves/6.webp", alt: "Custom Racing Glove Design 6" },
+        { src: "/images/Custom Gloves/7.webp", alt: "Custom Racing Glove Design 7" },
+        { src: "/images/Custom Gloves/8.webp", alt: "Custom Racing Glove Design 8" },
+        { src: "/images/Custom Gloves/9.webp", alt: "Custom Racing Glove Design 9" },
+        { src: "/images/Custom Gloves/10.webp", alt: "Custom Racing Glove Design 10" },
     ];
 
     return (

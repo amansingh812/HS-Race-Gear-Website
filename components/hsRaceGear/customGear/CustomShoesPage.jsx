@@ -161,13 +161,20 @@ export default function CustomShoesPage() {
         }
     ];
 
+    // Expanded library — 10 designs from /images/shoes-1/ (51 total
+    // available; first 10 shown in the product-page slider, full set on
+    // the order page). Converted from JPG to WebP 2026-06-26.
     const shoeMockups = [
-        { src: "/images/shoes/mockup-1.webp", alt: "Custom Racing Shoe Design 1" },
-        { src: "/images/shoes/mockup-2.webp", alt: "Custom Racing Shoe Design 2" },
-        { src: "/images/shoes/mockup-3.webp", alt: "Custom Racing Shoe Design 3" },
-        { src: "/images/shoes/mockup-4.webp", alt: "Custom Racing Shoe Design 4" },
-        { src: "/images/shoes/mockup-5.webp", alt: "Custom Racing Shoe Design 5" },
-        { src: "/images/shoes/mockup-6.webp", alt: "Custom Racing Shoe Design 6" },
+        { src: "/images/shoes-1/1.webp", alt: "Custom Racing Shoe Design 1" },
+        { src: "/images/shoes-1/2.webp", alt: "Custom Racing Shoe Design 2" },
+        { src: "/images/shoes-1/3.webp", alt: "Custom Racing Shoe Design 3" },
+        { src: "/images/shoes-1/4.webp", alt: "Custom Racing Shoe Design 4" },
+        { src: "/images/shoes-1/5.webp", alt: "Custom Racing Shoe Design 5" },
+        { src: "/images/shoes-1/6.webp", alt: "Custom Racing Shoe Design 6" },
+        { src: "/images/shoes-1/7.webp", alt: "Custom Racing Shoe Design 7" },
+        { src: "/images/shoes-1/8.webp", alt: "Custom Racing Shoe Design 8" },
+        { src: "/images/shoes-1/9.webp", alt: "Custom Racing Shoe Design 9" },
+        { src: "/images/shoes-1/10.webp", alt: "Custom Racing Shoe Design 10" },
     ];
 
     return (

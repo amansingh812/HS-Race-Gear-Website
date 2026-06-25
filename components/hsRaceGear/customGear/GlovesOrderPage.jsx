@@ -1,17 +1,21 @@
 "use client";
 import React, { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
+import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
 import "@/public/css/custom-order.css";
+import "@/public/css/mockup-lightbox.css";
 
 /* ============================================
    DATA
    ============================================ */
 
-const GLOVES_MOCKUPS = Array.from({ length: 5 }, (_, i) => ({
+// Expanded gloves library — 25 designs in /images/Custom Gloves/
+// (converted from JPG to WebP 2026-06-26, 86MB → 3.2MB total).
+const GLOVES_MOCKUPS = Array.from({ length: 25 }, (_, i) => ({
     id: `gloves-${i + 1}`,
     name: `Design ${i + 1}`,
     number: i + 1,
-    image: `/images/gloves/mockup-${i + 1}.webp`,
+    image: `/images/Custom Gloves/${i + 1}.webp`,
 }));
 
 const GLOVE_SIZES = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
@@ -67,15 +71,23 @@ const ArrowLeft = () => (
    STEP 1 — Gloves Design
    ============================================ */
 function MockupSelection({ mockups, selected, onSelect, currentStep, totalSteps }) {
+    // Lightbox state — added 2026-06-26 so users can zoom in on any design.
+    const [zoomIndex, setZoomIndex] = React.useState(null);
+
+    const handleZoom = (e, idx) => {
+        e.stopPropagation();
+        setZoomIndex(idx);
+    };
+
     return (
         <div className="step-content">
             <div className="step-header">
                 <div className="step-badge">Step {currentStep} of {totalSteps}</div>
                 <h2 className="step-title">Select Your Gloves Design</h2>
-                <p className="step-subtitle">Browse our custom racing glove designs and pick your favourite.</p>
+                <p className="step-subtitle">Browse our custom racing glove designs and pick your favourite. Tap the magnifier on any tile to zoom in.</p>
             </div>
             <div className="mockup-grid">
-                {mockups.map((mockup) => (
+                {mockups.map((mockup, idx) => (
                     <div
                         key={mockup.id}
                         className={`mockup-card ${selected?.id === mockup.id ? "selected" : ""}`}
@@ -86,7 +98,28 @@ function MockupSelection({ mockups, selected, onSelect, currentStep, totalSteps 
                     >
                         <div className="mockup-card-image">
                             {mockup.image ? (
-                                <img src={mockup.image} alt={mockup.name} loading="lazy" />
+                                <>
+                                    <img src={mockup.image} alt={mockup.name} loading="lazy" />
+                                    <div
+                                        className="mockup-zoom-trigger"
+                                        onClick={(e) => handleZoom(e, idx)}
+                                        style={{ pointerEvents: "auto", cursor: "zoom-in" }}
+                                        role="button"
+                                        tabIndex={0}
+                                        aria-label={`Zoom in on ${mockup.name}`}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter" || e.key === " ") {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                setZoomIndex(idx);
+                                            }
+                                        }}
+                                    >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                                        </svg>
+                                    </div>
+                                </>
                             ) : (
                                 <span>{String(mockup.number).padStart(2, "0")}</span>
                             )}
@@ -98,6 +131,13 @@ function MockupSelection({ mockups, selected, onSelect, currentStep, totalSteps 
                     </div>
                 ))}
             </div>
+
+            <MockupLightbox
+                mockups={mockups}
+                openIndex={zoomIndex}
+                onChange={setZoomIndex}
+                label="Gloves Design"
+            />
         </div>
     );
 }

@@ -67,8 +67,12 @@
 
 .gloves-mockup-item {
   flex-shrink: 0;
-  width: 300px;
-  aspect-ratio: 684 / 595;
+  width: 340px;
+  /* Aspect-ratio updated 2026-06-26 to match the new Custom Gloves mockup
+     images (2000×1414, ≈ 842/595). The old 684/595 ratio was too square
+     for the landscape mockups, causing them to letterbox/crop. Now
+     matches suit + shoes sliders for visual consistency. */
+  aspect-ratio: 842 / 595;
   border-radius: 12px;
   border: 1px solid #404040;
   overflow: hidden;
@@ -198,7 +202,7 @@
   }
 
   .gloves-mockup-item {
-    width: 190px;
-    aspect-ratio: 684 / 595;
+    width: 220px;
+    aspect-ratio: 842 / 595;
   }
 }

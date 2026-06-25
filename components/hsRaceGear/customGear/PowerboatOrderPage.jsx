@@ -48,18 +48,20 @@ const SUIT_MOCKUPS = Array.from({ length: 50 }, (_, i) => {
   };
 });
 
-const GLOVES_MOCKUPS = Array.from({ length: 5 }, (_, i) => ({
+// Expanded gloves library — 25 designs in /images/Custom Gloves/
+const GLOVES_MOCKUPS = Array.from({ length: 25 }, (_, i) => ({
   id: `gloves-${i + 1}`,
   name: `Gloves Design ${i + 1}`,
   number: i + 1,
-  image: `/images/gloves/mockup-${i + 1}.webp`,
+  image: `/images/Custom Gloves/${i + 1}.webp`,
 }));
 
-const SHOES_MOCKUPS = Array.from({ length: 7 }, (_, i) => ({
+// Expanded shoes library — 51 designs in /images/shoes-1/
+const SHOES_MOCKUPS = Array.from({ length: 51 }, (_, i) => ({
   id: `shoes-${i + 1}`,
   name: `Shoes Design ${i + 1}`,
   number: i + 1,
-  image: `/images/shoes/mockup-${i + 1}.webp`,
+  image: `/images/shoes-1/${i + 1}.webp`,
 }));
 
 const COLORS = [
