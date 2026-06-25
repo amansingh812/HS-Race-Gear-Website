@@ -48,6 +48,7 @@ function ShoesSizeChartModal({ onClose }) {
 
 export default function CustomShoesPage() {
     const [showSizeChart, setShowSizeChart] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(null);
     const features = [
         {
             icon: (

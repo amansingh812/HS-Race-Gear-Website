@@ -47,6 +47,7 @@ function GlovesSizeChartModal({ onClose }) {
 
 export default function CustomGlovesPage() {
     const [showSizeChart, setShowSizeChart] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(null);
     const features = [
         {
             icon: (
