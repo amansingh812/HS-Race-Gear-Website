@@ -18,6 +18,13 @@ export default async function sitemap() {
     { url: `${baseUrl}/custom-powerboat-suit/order`,  lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/custom-gloves`,                lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
     { url: `${baseUrl}/custom-shoes`,                 lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
+    // Discipline landing pages — added 2026-06-30 for buyer-intent search capture
+    { url: `${baseUrl}/custom-drag-racing-suit`,      lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
+    { url: `${baseUrl}/custom-sprint-car-suit`,       lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
+    { url: `${baseUrl}/custom-dirt-late-model-suit`,  lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
+    { url: `${baseUrl}/custom-road-racing-suit`,      lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
+    { url: `${baseUrl}/custom-junior-karting-suit`,   lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
+    { url: `${baseUrl}/custom-shifter-kart-suit`,     lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
     { url: `${baseUrl}/custom-fit`,                   lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/custom-measurement`,           lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/certifications`,               lastModified: now, changeFrequency: "monthly", priority: 0.7 },
