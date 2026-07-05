@@ -77,7 +77,14 @@ const faqSchema = {
       "name": "How do SFI ratings differ, and which one do I need?",
       "acceptedAnswer": { "@type": "Answer", "text": "SFI 3.2A/1 provides entry-level fire protection. SFI 3.2A/5 provides multi-layer protection for higher-level racing classes. Always follow your sanctioning body's minimum requirements." }
     }
-  ]
+  ],
+  // Speakable schema — makes FAQ answers eligible for voice assistants
+  // (Google Assistant, Siri, Alexa) and AI answer engines. Added 2026-06-30.
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".faq-question", ".faq-answer"],
+    "xpath": ["//h3[contains(@class, 'faq-question')]", "//div[contains(@class, 'faq-answer')]"]
+  }
 };
 
 export default function page() {

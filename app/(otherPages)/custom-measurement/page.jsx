@@ -8,7 +8,7 @@ import React from "react";
 export const metadata = {
   alternates: { canonical: "/custom-measurement" },
   title: "How to Measure for a Custom Racing Suit — Free PDF Form | HS Race Gear",
-  description: "Take 7 body measurements for a perfect custom racing suit fit. Free downloadable measurement form. Step-by-step instructions for chest, waist, hip, shoulder, inseam, outseam, and sleeve.",
+  description: "Take 7 body measurements for a perfect custom racing suit fit. Free downloadable PDF form with step-by-step instructions.",
   keywords: "how to measure for racing suit, custom racing suit measurements, measurement form PDF, body measurements racing suit, SFI racing suit order, custom fit form",
   openGraph: {
     type: 'article',

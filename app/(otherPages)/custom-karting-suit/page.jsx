@@ -2,7 +2,9 @@ import Footer3 from "@/components/footers/Footer3";
 import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
 import CustomKartingSuitPage from "@/components/hsRaceGear/customGear/CustomKartingSuitPage";
+import Link from "next/link";
 import "@/public/css/custom-karting-suit.css";
+import "@/public/css/compare.css"; // for blog-body-heading utility class
 
 import React from "react";
 
@@ -34,6 +36,27 @@ export default function page() {
       <Topbar1 />
       <Header3 />
       <CustomKartingSuitPage />
+      {/* Discipline landing pages — added 2026-06-30 for internal linking to
+          the 2 karting-specific programmatic pages. */}
+      <section className="blog-post-section" style={{ padding: "40px 0" }}>
+        <div className="container">
+          <h2 className="blog-body-heading" style={{ textAlign: "center", marginBottom: 24 }}>
+            Custom Karting Suits by Class
+          </h2>
+          <div className="row g-3 justify-content-center">
+            <div className="col-md-6 col-lg-4">
+              <Link href="/custom-junior-karting-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                Junior Karting Suits (Cadet, Micro, Mini)
+              </Link>
+            </div>
+            <div className="col-md-6 col-lg-4">
+              <Link href="/custom-shifter-kart-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                Shifter Kart Suits (KZ, IAME X30 Shifter)
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
       <Footer3 />
     </>
   );

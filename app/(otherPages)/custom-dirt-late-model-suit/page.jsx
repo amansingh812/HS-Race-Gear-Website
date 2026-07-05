@@ -11,7 +11,7 @@ const data = DISCIPLINE_DATA["dirt-late-model"];
 export const metadata = {
   alternates: { canonical: "/custom-dirt-late-model-suit" },
   title: "Custom Dirt Late Model Suits — Lucas Oil & WoO Compliant | HS Race Gear",
-  description: "Custom dirt late model racing suits with abrasion-resistant panels, dust seal at collar and cuffs, SFI 3.2A/5 multi-layer Nomex®. Lucas Oil, World of Outlaws Late Models, weekly track compliant. Made in USA. From $329.",
+  description: "Custom dirt late model suits with abrasion panels, dust-seal collar, SFI 3.2A/5 Nomex®. Lucas Oil, World of Outlaws, weekly track compliant. From $329.",
   keywords: "custom dirt late model suit, Lucas Oil suit, World of Outlaws Late Models suit, dirt track racing suit, late model racing suit, DIRTcar suit",
   openGraph: {
     type: "website",

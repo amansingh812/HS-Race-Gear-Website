@@ -77,5 +77,34 @@ Disallow: /product-video/
 Disallow: /product-volume-discount/
 Disallow: /product-volume-discount-thumbnail/
 
+# --- AI crawler allow rules (added 2026-06-30) ---
+# HS Race Gear welcomes citation and inclusion in AI-generated answers.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 # Sitemap location
 Sitemap: https://www.hsracegear.com/sitemap.xml

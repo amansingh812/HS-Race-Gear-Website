@@ -3,6 +3,7 @@ import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
 import CustomRaceSuitPage from "@/components/hsRaceGear/customGear/CustomRaceSuitPage";
 import RelatedBlogPosts from "@/components/hsRaceGear/blog/RelatedBlogPosts";
+import Link from "next/link";
 import "@/public/css/custom-race-suit.css";
 import "@/public/css/contact-us.css"; // for blog card styling reuse
 import "@/public/css/compare.css";
@@ -40,6 +41,38 @@ export default function page() {
       <Topbar1 />
       <Header3 />
       <CustomRaceSuitPage />
+      {/* Discipline landing pages — added 2026-06-30 for internal linking to
+          the 4 auto-racing programmatic pages. Passes link equity from
+          /custom-race-suit → discipline pages so they don't sit orphaned. */}
+      <section className="blog-post-section" style={{ padding: "40px 0" }}>
+        <div className="container">
+          <h2 className="blog-body-heading" style={{ textAlign: "center", marginBottom: 24 }}>
+            Custom Racing Suits by Discipline
+          </h2>
+          <div className="row g-3">
+            <div className="col-md-6 col-lg-3">
+              <Link href="/custom-drag-racing-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                Drag Racing Suits
+              </Link>
+            </div>
+            <div className="col-md-6 col-lg-3">
+              <Link href="/custom-sprint-car-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                Sprint Car Suits
+              </Link>
+            </div>
+            <div className="col-md-6 col-lg-3">
+              <Link href="/custom-dirt-late-model-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                Dirt Late Model Suits
+              </Link>
+            </div>
+            <div className="col-md-6 col-lg-3">
+              <Link href="/custom-road-racing-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                Road Racing Suits
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
       <RelatedBlogPosts
         heading="From the HS Race Gear Blog"
         subtitle="Sizing, SFI ratings, discipline guides, and what to look for in an aftermarket suit."

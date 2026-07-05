@@ -11,7 +11,7 @@ const data = DISCIPLINE_DATA["drag-racing"];
 export const metadata = {
   alternates: { canonical: "/custom-drag-racing-suit" },
   title: "Custom Drag Racing Suits — SFI Certified, NHRA & IHRA Compliant | HS Race Gear",
-  description: "Custom drag racing suits built to your measurements. SFI 3.2A/1 for sportsman, 3.2A/5 for 9.99 ET and quicker, 3.2A/15 for sub-7.49 ET. Made in USA. From $329. NHRA, IHRA, bracket-ready.",
+  description: "Custom drag racing suits built to your measurements. SFI 3.2A/1, 3.2A/5, and 3.2A/15 ratings. NHRA, IHRA, bracket-ready. Made in USA. From $329.",
   keywords: "custom drag racing suit, NHRA fire suit, IHRA fire suit, SFI 3.2A/15 drag suit, bracket racing suit, sportsman drag suit, Pro Stock racing suit, Top Sportsman suit",
   openGraph: {
     type: "website",
