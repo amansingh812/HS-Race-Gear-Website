@@ -1,6 +1,14 @@
 import connectDB from "@/lib/mongodb";
 import Product from "@/models/Product";
 
+/**
+ * Dynamic sitemap for HS Race Gear.
+ *
+ * Next.js 15 sitemap.js supports the `images` property on each URL entry —
+ * emitting <image:image> tags per the Google image sitemap protocol. Added
+ * 2026-07-09 so product images (hoodies, shirts, off-the-rack suits) appear
+ * in Google Images.
+ */
 export default async function sitemap() {
   const baseUrl = "https://www.hsracegear.com";
   const now = new Date().toISOString();
@@ -56,21 +64,33 @@ export default async function sitemap() {
     { url: `${baseUrl}/payment-methods`,     lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
   ];
 
-  // Dynamic Product Pages from MongoDB
+  // Dynamic Product Pages from MongoDB — includes image entries so
+  // product photos appear in Google Images (image sitemap protocol).
   let productPages = [];
   try {
     await connectDB();
     const products = await Product.find(
       { status: "active" },
-      { slug: 1, updatedAt: 1 }
+      { slug: 1, updatedAt: 1, images: 1 }
     ).lean();
 
-    productPages = products.map((p) => ({
-      url: `${baseUrl}/shop/${p.slug}`,
-      lastModified: p.updatedAt ? new Date(p.updatedAt).toISOString() : now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    }));
+    productPages = products.map((p) => {
+      // Include all product images (front + back for hoodies/shirts, single for suits)
+      const imageUrls = (p.images || [])
+        .map((img) => img.url ? `${baseUrl}${img.url}` : null)
+        .filter(Boolean);
+
+      const entry = {
+        url: `${baseUrl}/shop/${p.slug}`,
+        lastModified: p.updatedAt ? new Date(p.updatedAt).toISOString() : now,
+        changeFrequency: "weekly",
+        priority: 0.8,
+      };
+      if (imageUrls.length > 0) {
+        entry.images = imageUrls;
+      }
+      return entry;
+    });
   } catch (error) {
     console.error("Sitemap: failed to fetch products from MongoDB", error);
   }

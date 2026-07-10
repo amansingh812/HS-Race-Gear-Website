@@ -164,7 +164,14 @@ function buildProduct(slug, theme, themedDescription) {
     sizeOptions: STANDARD_SIZES,
     inventory: STANDARD_SIZES.map(size => ({ size, stock: 5, isAvailable: true })),
     images: [
-      { url: imagePath, alt: `${fullName} — front view`, isPrimary: true, order: 0 },
+      {
+        url: imagePath,
+        // Alt text upgraded 2026-07-09 for Google Images ranking + accessibility.
+        // Keywords: SFI 3.2A/1, Nomex, single-layer, made in USA, racing suit.
+        alt: `HS ${displayName} SFI 3.2A/1 certified single-layer Nomex® racing suit — off-the-rack fire suit made in Watertown, MA by HS Race Gear`,
+        isPrimary: true,
+        order: 0,
+      },
     ],
     customizable: false,
     customFitAvailable: false,

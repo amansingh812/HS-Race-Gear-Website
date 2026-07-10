@@ -165,8 +165,18 @@ function buildHoodie([slug, themedDescription]) {
     sizeOptions: APPAREL_SIZES,
     inventory: APPAREL_SIZES.map(size => ({ size, stock: 10, isAvailable: true })),
     images: [
-      { url: `/images/products/hoodies/hs-${slug}-f.webp`, alt: `${fullName} — front view`, isPrimary: true, order: 0 },
-      { url: `/images/products/hoodies/hs-${slug}-b.webp`, alt: `${fullName} — back view`, isPrimary: false, order: 1 },
+      {
+        url: `/images/products/hoodies/hs-${slug}-hoodie-front.webp`,
+        alt: `HS ${displayName} sublimated crew racing hoodie front view — full-color pit crew hoodie, poly fleece, made in USA by HS Race Gear`,
+        isPrimary: true,
+        order: 0,
+      },
+      {
+        url: `/images/products/hoodies/hs-${slug}-hoodie-back.webp`,
+        alt: `HS ${displayName} sublimated crew racing hoodie back view — team apparel with full sublimation graphic, made in Watertown, MA`,
+        isPrimary: false,
+        order: 1,
+      },
     ],
     customizable: true,
     customFitAvailable: false,
@@ -205,8 +215,18 @@ function buildShirt([slug, themedDescription]) {
     sizeOptions: APPAREL_SIZES,
     inventory: APPAREL_SIZES.map(size => ({ size, stock: 10, isAvailable: true })),
     images: [
-      { url: `/images/products/crew-shirts/hs-${slug}-f.webp`, alt: `${fullName} — front view`, isPrimary: true, order: 0 },
-      { url: `/images/products/crew-shirts/hs-${slug}-b.webp`, alt: `${fullName} — back view`, isPrimary: false, order: 1 },
+      {
+        url: `/images/products/crew-shirts/hs-${slug}-crew-shirt-front.webp`,
+        alt: `HS ${displayName} sublimated racing crew shirt front view — full-color pit crew shirt, performance polyester, made in USA by HS Race Gear`,
+        isPrimary: true,
+        order: 0,
+      },
+      {
+        url: `/images/products/crew-shirts/hs-${slug}-crew-shirt-back.webp`,
+        alt: `HS ${displayName} sublimated racing crew shirt back view — team pit crew apparel with full sublimation graphic, made in Watertown, MA`,
+        isPrimary: false,
+        order: 1,
+      },
     ],
     customizable: true,
     customFitAvailable: false,
