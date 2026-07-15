@@ -83,16 +83,16 @@ export default function CustomKartingSuitPage() {
     ];
 
     const suitMockups = [
-        { src: "/images/suit_mock/KARTING SUITS/1.webp", alt: "Custom Karting Suit Design 1" },
-        { src: "/images/suit_mock/KARTING SUITS/2.webp", alt: "Custom Karting Suit Design 2" },
-        { src: "/images/suit_mock/KARTING SUITS/3.webp", alt: "Custom Karting Suit Design 3" },
-        { src: "/images/suit_mock/KARTING SUITS/4.webp", alt: "Custom Karting Suit Design 4" },
-        { src: "/images/suit_mock/KARTING SUITS/5.webp", alt: "Custom Karting Suit Design 5" },
-        { src: "/images/suit_mock/KARTING SUITS/6.webp", alt: "Custom Karting Suit Design 6" },
-        { src: "/images/suit_mock/KARTING SUITS/7.webp", alt: "Custom Karting Suit Design 7" },
-        { src: "/images/suit_mock/KARTING SUITS/8.webp", alt: "Custom Karting Suit Design 8" },
         { src: "/images/suit_mock/KARTING SUITS/9.webp", alt: "Custom Karting Suit Design 9" },
-        { src: "/images/suit_mock/KARTING SUITS/10.webp", alt: "Custom Karting Suit Design 10" },
+        { src: "/images/suit_mock/KARTING SUITS/13.webp", alt: "Custom Karting Suit Design 13" },
+        { src: "/images/suit_mock/KARTING SUITS/15.webp", alt: "Custom Karting Suit Design 15" },
+        { src: "/images/suit_mock/KARTING SUITS/19.webp", alt: "Custom Karting Suit Design 19" },
+        { src: "/images/suit_mock/KARTING SUITS/21.webp", alt: "Custom Karting Suit Design 21" },
+        { src: "/images/suit_mock/KARTING SUITS/22.webp", alt: "Custom Karting Suit Design 22" },
+        { src: "/images/suit_mock/KARTING SUITS/24.webp", alt: "Custom Karting Suit Design 24" },
+        { src: "/images/suit_mock/KARTING SUITS/27.webp", alt: "Custom Karting Suit Design 27" },
+        { src: "/images/suit_mock/KARTING SUITS/28.webp", alt: "Custom Karting Suit Design 28" },
+        { src: "/images/suit_mock/KARTING SUITS/29.webp", alt: "Custom Karting Suit Design 29" },
     ];
 
     return (

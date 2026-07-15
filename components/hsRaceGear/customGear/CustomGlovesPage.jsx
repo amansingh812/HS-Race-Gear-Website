@@ -186,12 +186,12 @@ export default function CustomGlovesPage() {
         { src: "/images/Custom Gloves/2.webp", alt: "Custom Racing Glove Design 2" },
         { src: "/images/Custom Gloves/3.webp", alt: "Custom Racing Glove Design 3" },
         { src: "/images/Custom Gloves/4.webp", alt: "Custom Racing Glove Design 4" },
-        { src: "/images/Custom Gloves/5.webp", alt: "Custom Racing Glove Design 5" },
         { src: "/images/Custom Gloves/6.webp", alt: "Custom Racing Glove Design 6" },
-        { src: "/images/Custom Gloves/7.webp", alt: "Custom Racing Glove Design 7" },
         { src: "/images/Custom Gloves/8.webp", alt: "Custom Racing Glove Design 8" },
-        { src: "/images/Custom Gloves/9.webp", alt: "Custom Racing Glove Design 9" },
-        { src: "/images/Custom Gloves/10.webp", alt: "Custom Racing Glove Design 10" },
+        { src: "/images/Custom Gloves/15.webp", alt: "Custom Racing Glove Design 15" },
+        { src: "/images/Custom Gloves/21.webp", alt: "Custom Racing Glove Design 21" },
+        { src: "/images/Custom Gloves/22.webp", alt: "Custom Racing Glove Design 22" },
+        { src: "/images/Custom Gloves/23.webp", alt: "Custom Racing Glove Design 23" },
     ];
 
     return (
@@ -650,7 +650,7 @@ export default function CustomGlovesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/gloves/gloves-users.png"
+                                src="/images/gloves/gloves-users_v2.png"
                                 alt="Racing glove customization options"
                                 width={400}
                                 height={400}

@@ -166,15 +166,15 @@ export default function CustomShoesPage() {
     // the order page). Converted from JPG to WebP 2026-06-26.
     const shoeMockups = [
         { src: "/images/shoes-1/1.webp", alt: "Custom Racing Shoe Design 1" },
-        { src: "/images/shoes-1/2.webp", alt: "Custom Racing Shoe Design 2" },
-        { src: "/images/shoes-1/3.webp", alt: "Custom Racing Shoe Design 3" },
-        { src: "/images/shoes-1/4.webp", alt: "Custom Racing Shoe Design 4" },
-        { src: "/images/shoes-1/5.webp", alt: "Custom Racing Shoe Design 5" },
         { src: "/images/shoes-1/6.webp", alt: "Custom Racing Shoe Design 6" },
-        { src: "/images/shoes-1/7.webp", alt: "Custom Racing Shoe Design 7" },
-        { src: "/images/shoes-1/8.webp", alt: "Custom Racing Shoe Design 8" },
-        { src: "/images/shoes-1/9.webp", alt: "Custom Racing Shoe Design 9" },
-        { src: "/images/shoes-1/10.webp", alt: "Custom Racing Shoe Design 10" },
+        { src: "/images/shoes-1/19.webp", alt: "Custom Racing Shoe Design 19" },
+        { src: "/images/shoes-1/21.webp", alt: "Custom Racing Shoe Design 21" },
+        { src: "/images/shoes-1/25.webp", alt: "Custom Racing Shoe Design 25" },
+        { src: "/images/shoes-1/27.webp", alt: "Custom Racing Shoe Design 27" },
+        { src: "/images/shoes-1/36.webp", alt: "Custom Racing Shoe Design 36" },
+        { src: "/images/shoes-1/39.webp", alt: "Custom Racing Shoe Design 39" },
+        { src: "/images/shoes-1/46.webp", alt: "Custom Racing Shoe Design 46" },
+        { src: "/images/shoes-1/49.webp", alt: "Custom Racing Shoe Design 49" },
     ];
 
     return (
@@ -399,7 +399,7 @@ export default function CustomShoesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shoes/shoes-detail.webp"
+                                src="/images/shoes/shoes-detail_v2.png"
                                 alt="SFI Certified Racing Shoes Detail"
                                 width={400}
                                 height={500}
@@ -640,7 +640,7 @@ export default function CustomShoesPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shoes/shoes-users.webp"
+                                src="/images/shoes/shoes-users_v2.png"
                                 alt="Racing shoe customization options"
                                 width={400}
                                 height={400}

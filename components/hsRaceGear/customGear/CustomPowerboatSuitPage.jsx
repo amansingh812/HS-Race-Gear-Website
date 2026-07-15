@@ -113,16 +113,16 @@ export default function CustomPowerboatSuitPage() {
     ];
 
     const suitMockups = [
-        { src: "/images/suit_mock/POWER BOATING SUITS/1.webp", alt: "Custom Power Boat Suit Design 1" },
-        { src: "/images/suit_mock/POWER BOATING SUITS/2.webp", alt: "Custom Power Boat Suit Design 2" },
-        { src: "/images/suit_mock/POWER BOATING SUITS/3.webp", alt: "Custom Power Boat Suit Design 3" },
         { src: "/images/suit_mock/POWER BOATING SUITS/4.webp", alt: "Custom Power Boat Suit Design 4" },
-        { src: "/images/suit_mock/POWER BOATING SUITS/5.webp", alt: "Custom Power Boat Suit Design 5" },
-        { src: "/images/suit_mock/POWER BOATING SUITS/6.webp", alt: "Custom Power Boat Suit Design 6" },
-        { src: "/images/suit_mock/POWER BOATING SUITS/7.webp", alt: "Custom Power Boat Suit Design 7" },
-        { src: "/images/suit_mock/POWER BOATING SUITS/8.webp", alt: "Custom Power Boat Suit Design 8" },
         { src: "/images/suit_mock/POWER BOATING SUITS/9.webp", alt: "Custom Power Boat Suit Design 9" },
-        { src: "/images/suit_mock/POWER BOATING SUITS/10.webp", alt: "Custom Power Boat Suit Design 10" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/16.webp", alt: "Custom Power Boat Suit Design 16" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/24.webp", alt: "Custom Power Boat Suit Design 24" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/27.webp", alt: "Custom Power Boat Suit Design 27" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/31.webp", alt: "Custom Power Boat Suit Design 31" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/32.webp", alt: "Custom Power Boat Suit Design 32" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/38.webp", alt: "Custom Power Boat Suit Design 38" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/46.webp", alt: "Custom Power Boat Suit Design 46" },
+        { src: "/images/suit_mock/POWER BOATING SUITS/48.webp", alt: "Custom Power Boat Suit Design 48" },
     ];
 
     return (
