@@ -251,7 +251,7 @@ export default function BlogPost10TPP() {
             <span className="blog-cta-tag">Custom · SFI Certified · TPP-Documented</span>
             <h2 className="blog-cta-title">Custom Racing Suits with Documented TPP Scores</h2>
             <p className="blog-cta-subtitle">
-              Every HS Race Gear custom suit ships with full documentation — SFI rating, TPP score, material breakdown, manufacture date. Built with genuine Nomex® for higher TPP at the same SFI tier. Starting at $329, made in Watertown, MA. Free shipping on custom suits.
+              Every HS Race Gear custom suit ships with full documentation — SFI rating, TPP score, material breakdown, manufacture date. Built with genuine Nomex® for higher TPP at the same SFI tier. Starting at $329. Free shipping on custom suits.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/custom-race-suit" className="tf-btn btn-fill animate-btn">

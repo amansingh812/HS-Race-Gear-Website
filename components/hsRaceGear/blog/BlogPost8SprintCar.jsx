@@ -228,7 +228,7 @@ export default function BlogPost8SprintCar() {
             <span className="blog-cta-tag">Custom · SFI Certified · Made in USA</span>
             <h2 className="blog-cta-title">Custom Sprint Car Racing Suits — Built for the Cockpit</h2>
             <p className="blog-cta-subtitle">
-              HS Race Gear builds custom SFI 3.2A/5 sprint car racing suits with arm-restraint-compatible shoulder construction, dust-seal collar, reinforced shoulder and knee panels, and your team livery. USAC, World of Outlaws, ASCS, POWRi compliant. Made in Watertown, MA. Starting at $329 with free shipping on custom suits.
+              HS Race Gear builds custom SFI 3.2A/5 sprint car racing suits with arm-restraint-compatible shoulder construction, dust-seal collar, reinforced shoulder and knee panels, and your team livery. USAC, World of Outlaws, ASCS, POWRi compliant. Starting at $329 with free shipping on custom suits.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/custom-race-suit" className="tf-btn btn-fill animate-btn">

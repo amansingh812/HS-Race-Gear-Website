@@ -230,7 +230,7 @@ export default function BlogPost6Endurance() {
                 </ul>
               </div>
               <div className="blog-highlight-box">
-                <p>HS Race Gear's custom endurance suits hit every item on this list, start at $329, and ship from Watertown, MA. We've spec'd suits for 24 Hours of Lemons crews, NASA endurance teams, and Daytona supporting-series racers across the US.</p>
+                <p>HS Race Gear's custom endurance suits hit every item on this list, start at $329, and ship worldwide. We've spec'd suits for 24 Hours of Lemons crews, NASA endurance teams, and Daytona supporting-series racers across the US.</p>
               </div>
             </div>
 
@@ -264,7 +264,7 @@ export default function BlogPost6Endurance() {
             <span className="blog-cta-tag">Team Pricing · Custom · Made in USA</span>
             <h2 className="blog-cta-title">Custom Endurance Suits, Built for the Long Stint</h2>
             <p className="blog-cta-subtitle">
-              HS Race Gear builds custom SFI 3.2A/5 endurance racing suits with two-layer Nomex®, stretch panels, moisture-wicking liners, and team livery. Built to your measurements in Watertown, MA. Team pricing at 3+ suits. Free shipping on custom suits.
+              HS Race Gear builds custom SFI 3.2A/5 endurance racing suits with two-layer Nomex®, stretch panels, moisture-wicking liners, and team livery. Built to your measurements. Team pricing at 3+ suits. Free shipping on custom suits.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/custom-race-suit" className="tf-btn btn-fill animate-btn">

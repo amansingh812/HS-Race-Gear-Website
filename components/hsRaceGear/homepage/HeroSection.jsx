@@ -10,9 +10,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // from GSC queries. Subtitle keeps the SFI cert trust signal.
 const heroSlides = [
   {
-    heading: "Custom Racing Suits — SFI Certified, Made in the USA",
+    heading: "Custom Racing Suits — SFI Certified",
     subtitle:
-      "Handcrafted custom racing suits built to your exact measurements in Watertown, MA. SFI 3.2A/1 and 3.2A/5 certified. Unlimited colors, logos, and designs. Free shipping on custom suits.",
+      "Handcrafted custom racing suits built to your exact measurements. SFI 3.2A/1 and 3.2A/5 certified. Unlimited colors, logos, and designs. Free shipping on custom suits.",
     cta: "Design Your Suit",
     link: "/custom-race-suit",
     isH1: true,

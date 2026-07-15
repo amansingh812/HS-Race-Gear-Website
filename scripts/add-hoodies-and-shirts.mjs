@@ -173,7 +173,7 @@ function buildHoodie([slug, themedDescription]) {
       },
       {
         url: `/images/products/hoodies/hs-${slug}-hoodie-back.webp`,
-        alt: `HS ${displayName} sublimated crew racing hoodie back view — team apparel with full sublimation graphic, made in Watertown, MA`,
+        alt: `HS ${displayName} sublimated crew racing hoodie back view — team apparel with full sublimation graphic`,
         isPrimary: false,
         order: 1,
       },
@@ -223,7 +223,7 @@ function buildShirt([slug, themedDescription]) {
       },
       {
         url: `/images/products/crew-shirts/hs-${slug}-crew-shirt-back.webp`,
-        alt: `HS ${displayName} sublimated racing crew shirt back view — team pit crew apparel with full sublimation graphic, made in Watertown, MA`,
+        alt: `HS ${displayName} sublimated racing crew shirt back view — team pit crew apparel with full sublimation graphic`,
         isPrimary: false,
         order: 1,
       },

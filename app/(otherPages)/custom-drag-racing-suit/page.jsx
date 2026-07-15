@@ -16,7 +16,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     title: "Custom Drag Racing Suits — SFI Certified | HS Race Gear",
-    description: "Class-rated custom drag racing suits from SFI 3.2A/1 to 3.2A/15. NHRA, IHRA, bracket compliant. Made in Watertown, MA. From $329.",
+    description: "Class-rated custom drag racing suits from SFI 3.2A/1 to 3.2A/15. NHRA, IHRA, bracket compliant. From $329.",
     url: "https://www.hsracegear.com/custom-drag-racing-suit",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
   },

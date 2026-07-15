@@ -8,7 +8,7 @@ import Breadcumb from "@/components/common/Breadcumb";
 
 export const metadata = {
   alternates: { canonical: "/store-location" },
-  title: "Store Location | HS Race Gear — Watertown, MA",
+  title: "Store Location | HS Race Gear",
   description:
     "Visit HS Race Gear at 59 Kondazian St, Watertown MA 02472. Open Mon–Sat, 9am–6pm EST. Custom racing suit fittings available by appointment.",
 };

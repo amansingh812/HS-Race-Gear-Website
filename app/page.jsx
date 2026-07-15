@@ -23,11 +23,11 @@ import "@/public/css/homepage.css";
 // search the domain without the space).
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/" },
-  title: "Custom Racing Suit — SFI Certified, Made in USA | HS Race Gear",
+  title: "Custom Racing Suit — SFI Certified | HS Race Gear",
   description:
-    "Custom SFI-certified racing suits built to your exact measurements. SFI 3.2A/1 from $329 — drag, dirt track, karting & more. Made in USA. Free shipping.",
+    "Custom SFI-certified racing suits built to your exact measurements. SFI 3.2A/1 from $329 — drag, dirt track, karting & more. Free shipping.",
   keywords:
-    "custom racing suit, custom race suit, SFI certified racing suit, made in USA racing suit, racewear USA, HSracegear, HS Race Gear, racing gear, aftermarket auto racing suits, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suit, custom karting suit",
+    "custom racing suit, custom race suit, SFI certified racing suit, HSracegear, HS Race Gear, racing gear, aftermarket auto racing suits, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suit, custom karting suit",
 };
 
 // JSON-LD Structured Data for Homepage SEO

@@ -13,7 +13,7 @@ import React from "react";
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/about-us" },
   title: "About HS Race Gear — Custom SFI Racing Suits Made in USA Since 2014",
-  description: "HS Race Gear has built custom SFI-certified fire suits, gloves, and shoes for racers since 2014. Made in Watertown, MA. Every suit built to your exact measurements.",
+  description: "HS Race Gear has built custom SFI-certified fire suits, gloves, and shoes for racers since 2014. Every suit built to your exact measurements.",
   keywords: "SFI certified racing suits, custom racegear, fire-resistant racing gear, motorsports apparel, SFI 3.2A/1, racing safety equipment",
 };
 

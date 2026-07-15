@@ -13,7 +13,7 @@ export const DISCIPLINE_DATA = {
     suitNoun: "drag racing suits",
     h1First: "Custom Drag",
     h1Second: "Racing Suits",
-    subtitle: "SFI-certified custom drag racing suits for NHRA, IHRA, and bracket racing. Class-rated from SFI 3.2A/1 for sportsman classes to SFI 3.2A/15 for cars quicker than 9.99 ET. Made in Watertown, MA. From $329.",
+    subtitle: "SFI-certified custom drag racing suits for NHRA, IHRA, and bracket racing. Class-rated from SFI 3.2A/1 for sportsman classes to SFI 3.2A/15 for cars quicker than 9.99 ET. From $329.",
     primaryCtaHref: "/custom-race-suit/order",
     primaryCtaText: "Design Your Drag Suit",
     certBadge: "SFI Certified",
@@ -39,7 +39,7 @@ export const DISCIPLINE_DATA = {
       { href: "/blog/tpp-rating-explained", title: "TPP Rating Explained", note: "Why two SFI 3.2A/5 suits can have different protection" },
     ],
     ctaTitle: "Ready to Design Your Custom Drag Racing Suit?",
-    ctaSubtitle: "SFI 3.2A/1 single-layer to SFI 3.2A/15 multi-layer — built in Watertown, MA from genuine Nomex® meta-aramid. Custom-fit to your measurements. Starting at $329 with free shipping.",
+    ctaSubtitle: "SFI 3.2A/1 single-layer to SFI 3.2A/15 multi-layer — built from genuine Nomex® meta-aramid. Custom-fit to your measurements. Starting at $329 with free shipping.",
   },
 
   "sprint-car": {
@@ -76,7 +76,7 @@ export const DISCIPLINE_DATA = {
       { href: "/blog/perfect-custom-fit-racing-suit", title: "Custom Fit Tips", note: "Sprint car cockpit fit is unforgiving — measure right" },
     ],
     ctaTitle: "Ready for the Knoxville Nationals?",
-    ctaSubtitle: "Custom sprint car racing suits with arm-restraint-compatible shoulder construction, dust-seal collar, methanol-spec multi-layer Nomex®. Built in Watertown, MA. USAC, World of Outlaws, ASCS, POWRi compliant. Order by early summer to be Nationals-ready.",
+    ctaSubtitle: "Custom sprint car racing suits with arm-restraint-compatible shoulder construction, dust-seal collar, methanol-spec multi-layer Nomex®. USAC, World of Outlaws, ASCS, POWRi compliant. Order by early summer to be Nationals-ready.",
   },
 
   "dirt-late-model": {
@@ -124,7 +124,7 @@ export const DISCIPLINE_DATA = {
     suitNoun: "road racing suits",
     h1First: "Custom Road",
     h1Second: "Racing Suits",
-    subtitle: "SCCA, NASA, and vintage road racing custom racing suits. SFI 3.2A/5 multi-layer Nomex® or FIA 8856-2018 equivalents for international series. Made in Watertown, MA. From $329.",
+    subtitle: "SCCA, NASA, and vintage road racing custom racing suits. SFI 3.2A/5 multi-layer Nomex® or FIA 8856-2018 equivalents for international series. From $329.",
     primaryCtaHref: "/custom-race-suit/order",
     primaryCtaText: "Design Your Road Suit",
     certBadge: "SFI 3.2A/5",

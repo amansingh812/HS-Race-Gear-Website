@@ -81,9 +81,7 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema, 'products');
 
 // ─────────────────────────────────────────────────────────────────
-// 33 NEW OFF-THE-RACK SUITS
-// All share the same brand position: SFI 3.2A/1, Nomex single-layer,
-// $329 (compare at $599 — 45% off), Made in USA, Watertown MA.
+// $329 (compare at $599 — 45% off), Made in USA.
 // Descriptions vary by name theme.
 // ─────────────────────────────────────────────────────────────────
 const SLUGS_AND_THEMES = [
@@ -123,7 +121,7 @@ const SLUGS_AND_THEMES = [
 ];
 
 // Shared description fragment used in every product
-const COMMON_DESCRIPTION_TAIL = `\n\nEvery HS off-the-rack racing suit is built in Watertown, Massachusetts from genuine Nomex® meta-aramid fire-resistant fabric. Certified to SFI 3.2A/1 with the official SFI Foundation label sewn into the collar. Standard sizes XS through 3XL available; for sizes outside the standard range or for custom-fit construction, see our custom race suit options. Comparable SFI-certified racing suits from K1, Simpson, and Pyrotect typically retail $800–1,500. Our off-the-rack pricing reflects direct-from-manufacturer construction without retail markup.`;
+const COMMON_DESCRIPTION_TAIL = `\n\nEvery HS off-the-rack racing suit is built from genuine Nomex® meta-aramid fire-resistant fabric. Certified to SFI 3.2A/1 with the official SFI Foundation label sewn into the collar. Standard sizes XS through 3XL available; for sizes outside the standard range or for custom-fit construction, see our custom race suit options. Comparable SFI-certified racing suits from K1, Simpson, and Pyrotect typically retail $800–1,500. Our off-the-rack pricing reflects direct-from-manufacturer construction without retail markup.`;
 
 const STANDARD_SIZES = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'];
 
@@ -155,7 +153,6 @@ function buildProduct(slug, theme, themedDescription) {
       'SFI 3.2A/1 certified',
       'Genuine Nomex® meta-aramid fabric',
       'Single-layer fire-resistant construction',
-      'Made in Watertown, MA',
       'Sewn-in SFI Foundation certification label',
       'Standard sizes XS through 3XL',
       'Reinforced shoulder and knee panels',
@@ -168,7 +165,7 @@ function buildProduct(slug, theme, themedDescription) {
         url: imagePath,
         // Alt text upgraded 2026-07-09 for Google Images ranking + accessibility.
         // Keywords: SFI 3.2A/1, Nomex, single-layer, made in USA, racing suit.
-        alt: `HS ${displayName} SFI 3.2A/1 certified single-layer Nomex® racing suit — off-the-rack fire suit made in Watertown, MA by HS Race Gear`,
+        alt: `HS ${displayName} SFI 3.2A/1 certified single-layer Nomex® racing suit — off-the-rack fire suit by HS Race Gear`,
         isPrimary: true,
         order: 0,
       },

@@ -268,7 +268,7 @@ export default function BlogPost5SFIByClass() {
             <span className="blog-cta-tag">Custom · SFI Certified · Made in USA</span>
             <h2 className="blog-cta-title">Need a Suit That Matches Your Class?</h2>
             <p className="blog-cta-subtitle">
-              HS Race Gear builds custom racing suits in every SFI rating from 3.2A/1 through 3.2A/15, made to your measurements in Watertown, MA. Premium Nomex® construction, unlimited mockup revisions, free shipping on custom suits.
+              HS Race Gear builds custom racing suits in every SFI rating from 3.2A/1 through 3.2A/15, made to your measurements. Premium Nomex® construction, unlimited mockup revisions, free shipping on custom suits.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/custom-race-suit" className="tf-btn btn-fill animate-btn">

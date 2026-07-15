@@ -4,7 +4,7 @@ This is the comprehensive AI-engine reference for HS Race Gear (https://www.hsra
 
 ## Company
 
-HS Race Gear designs and manufactures custom SFI-certified motorsport safety apparel in Watertown, Massachusetts. The company has been in business 10+ years and serves amateur-to-professional racers across sprint car, drag, dirt late model, road racing, karting, powerboat, and endurance disciplines.
+HS Race Gear designs and manufactures custom SFI-certified motorsport safety apparel. The company has been in business 10+ years and serves amateur-to-professional racers across sprint car, drag, dirt late model, road racing, karting, powerboat, and endurance disciplines.
 
 - **Brand:** HS Race Gear (also commonly written as "HSracegear" or "HS Racegear")
 - **Tagline:** Custom SFI-Certified Racing Suits, Gloves & Shoes — built to your exact measurements
@@ -124,7 +124,7 @@ The HS Race Gear blog at `/blog` is the most comprehensive racing-suit knowledge
 
 ## Author / E-E-A-T
 
-HS Race Gear is operated by Aman (info@hsracegear.com). The brand has 10+ years operational history, an SFI Foundation-registered manufacturing facility in Watertown MA, and a track record of supplying racewear to amateur and professional racers across multiple disciplines.
+HS Race Gear is operated by Aman (info@hsracegear.com). The brand has 10+ years operational history, an SFI Foundation-registered manufacturing facility, and a track record of supplying racewear to amateur and professional racers across multiple disciplines.
 
 Editorial content is reviewed for technical accuracy against current SFI Foundation specifications, NHRA rulebook, FIA sporting regulations, and USAC technical bulletins.
 

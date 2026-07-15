@@ -19,7 +19,7 @@ export const metadata = {
     "drag racing suit",
     "fire suit",
     "HS Race Gear",
-    "Watertown MA racing gear",
+    "custom racing gear",
   ],
   openGraph: {
     type: "website",

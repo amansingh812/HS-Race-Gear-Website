@@ -287,7 +287,7 @@ export default function BlogPost6HSCode() {
                 <ul className="blog-body-list blog-body-list--check">
                   <li><strong>HS / HTS code:</strong> 6210.40 (or country-specific full code)</li>
                   <li><strong>Product description:</strong> "Fire-resistant racing suit, Nomex aramid fibre, SFI 3.2A/X certified, one piece" (or two-piece as applicable)</li>
-                  <li><strong>Country of origin:</strong> United States (HS Race Gear manufactures in Watertown, MA)</li>
+                  <li><strong>Country of origin:</strong> United States</li>
                   <li><strong>Declared value:</strong> The actual transaction price paid in USD</li>
                   <li><strong>Quantity and weight:</strong> Number of units, gross weight in kg</li>
                   <li><strong>Intended end use:</strong> Motorsport safety equipment (not for resale, if applicable)</li>
@@ -306,6 +306,11 @@ export default function BlogPost6HSCode() {
                 <p className="blog-body-text"><strong>Is the HS code for a one-piece suit different from a two-piece?</strong></p>
                 <p className="blog-body-text">
                   No — both one-piece and two-piece fire-resistant racing suits classify under HS 6210.40. The distinction that matters for classification is the material (fire-resistant fabric) and the wearer type (men/boys), not the number of pieces.
+                </p>
+                <hr style={{ margin: "20px 0", borderColor: "#222" }} />
+                <p className="blog-body-text"><strong>Are custom-fitted racing suits classified differently than standard sizes?</strong></p>
+                <p className="blog-body-text">
+                  No. Customs classification is based on the material composition (e.g., woven synthetic fibres) and the specific protective features of the garment (SFI or FIA label) rather than whether it is tailored to measurements or off-the-rack.
                 </p>
               </div>
 
@@ -328,7 +333,7 @@ export default function BlogPost6HSCode() {
             <div className="blog-body-block">
               <div className="blog-body-card" style={{ borderLeft: "4px solid #e21b1b" }}>
                 <p className="blog-body-text">
-                  <strong>HS Race Gear ships custom SFI-certified racing suits worldwide</strong> from Watertown, MA. Every order ships with a commercial invoice that includes the correct HS code, declared value, and country of origin — making customs clearance as straightforward as possible for international buyers.
+                  <strong>HS Race Gear ships custom SFI-certified racing suits worldwide</strong>. Every order ships with a commercial invoice that includes the correct HS code, declared value, and country of origin — making customs clearance as straightforward as possible for international buyers.
                 </p>
                 <p style={{ marginTop: "16px" }}>
                   <Link

@@ -30,7 +30,7 @@ const topBanners = [
       "Unlimited color combinations, custom embroidery, and a perfect fit built from your measurements. Stand out on the track.",
     cta: "Start Designing",
     link: "/custom-karting-suit",
-    image: "/images/home/hero_custom_suit.png",
+    image: "/images/home/hero_custom_suit_v2.png",
     placeholder: "960 × 700",
   },
 ];

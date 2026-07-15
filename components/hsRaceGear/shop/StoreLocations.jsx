@@ -22,7 +22,7 @@ export default function StoreLocations() {
             <div className="tf-grid-layout lg-col-3 sm-col-2">
               <div className="box-store">
                 <div className="content">
-                  <p className="title">HS Race Gear — Watertown, MA</p>
+                  <p className="title">HS Race Gear</p>
                   <ul className="contact-list">
                     <li>
                       <p>

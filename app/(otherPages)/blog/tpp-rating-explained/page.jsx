@@ -30,7 +30,7 @@ const articleSchema = {
     "@type": "Organization",
     "name": "HS Race Gear",
     "url": "https://www.hsracegear.com",
-    "description": "Custom SFI-certified racing suit manufacturer based in Watertown, MA. 10+ years building custom suits for sprint car, drag, dirt late model, karting, road racing, and powerboat disciplines."
+    "description": "Custom SFI-certified racing suit manufacturer. 10+ years building custom suits for sprint car, drag, dirt late model, karting, road racing, and powerboat disciplines."
   },
   "publisher": {
     "@type": "Organization",

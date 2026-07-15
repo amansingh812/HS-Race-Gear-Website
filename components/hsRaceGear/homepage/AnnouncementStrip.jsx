@@ -16,11 +16,6 @@ const trustItems = [
     subtitle: "All gear meets SFI standards",
   },
   {
-    icon: "icon-gift",
-    title: "Made in the USA",
-    subtitle: "Designed & built in Watertown, MA",
-  },
-  {
     icon: "icon-support",
     title: "24/7 Support",
     subtitle: "Expert help anytime",

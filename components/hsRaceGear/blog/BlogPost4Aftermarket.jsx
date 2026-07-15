@@ -231,7 +231,7 @@ export default function BlogPost4Aftermarket() {
             <span className="blog-cta-tag">Custom · SFI Certified · Made in USA</span>
             <h2 className="blog-cta-title">Ready to Upgrade to a Custom Racing Suit?</h2>
             <p className="blog-cta-subtitle">
-              HS Race Gear builds custom racing suits to your exact measurements in Watertown, MA. SFI 3.2A/1 and 3.2A/5 certified, premium Nomex® construction, unlimited mockup revisions until you approve. Free shipping on custom suits, starting at $329.
+              HS Race Gear builds custom racing suits to your exact measurements. SFI 3.2A/1 and 3.2A/5 certified, premium Nomex® construction, unlimited mockup revisions until you approve. Free shipping on custom suits, starting at $329.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/custom-race-suit" className="tf-btn btn-fill animate-btn">

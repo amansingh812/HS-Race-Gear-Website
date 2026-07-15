@@ -599,7 +599,7 @@ export const categories12 = [
 export const customizeCategories = [
   {
     name: "Suits",
-    img: "/images/customize/cleaned-suit.webp",
+    img: "/images/customize/suit_v2.png",
     href: "/custom-race-suit",
     subOptions: [
       { name: "Custom Racing Suit", href: "/custom-race-suit" },
@@ -610,22 +610,22 @@ export const customizeCategories = [
   },
   {
     name: "Gloves",
-    img: "/images/customize/gloves.webp",
+    img: "/images/customize/gloves_v2.png",
     href: "/custom-gloves",
   },
   {
     name: "Shoes",
-    img: "/images/customize/shoes.webp",
+    img: "/images/customize/shoes_v2.png",
     href: "/custom-shoes",
   },
   {
     name: "T-shirt",
-    img: "/images/customize/t-shirt.webp",
+    img: "/images/customize/suits_v2.png",
     href: "/shop",
   },
   {
     name: "Hoodie",
-    img: "/images/customize/hoodie.webp",
+    img: "/images/customize/hoode_v2.png",
     href: "/shop",
   },
 ];

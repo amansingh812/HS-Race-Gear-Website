@@ -255,7 +255,7 @@ export default function BlogPost9Karting() {
             <span className="blog-cta-tag">Custom · CIK Level 2 · Made in USA</span>
             <h2 className="blog-cta-title">Custom Karting Suits — Junior, Senior &amp; Shifter</h2>
             <p className="blog-cta-subtitle">
-              HS Race Gear builds custom CIK Level 2 karting suits with full-coverage sublimation, reinforced abrasion panels, and stretch panels for shoulder mobility at the wheel. Junior, cadet, senior, TaG, and shifter fits. Made in Watertown, MA. Team batch pricing at 3+ suits.
+              HS Race Gear builds custom CIK Level 2 karting suits with full-coverage sublimation, reinforced abrasion panels, and stretch panels for shoulder mobility at the wheel. Junior, cadet, senior, TaG, and shifter fits. Team batch pricing at 3+ suits.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/custom-karting-suit" className="tf-btn btn-fill animate-btn">
