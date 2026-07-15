@@ -63,15 +63,15 @@ export default function CustomRaceSuitPage() {
 
     const suitMockups = [
         { src: "/images/suit_mock/CUSTOM RACE SUITS/1.webp", alt: "Custom Race Suit Design 1" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/2.webp", alt: "Custom Race Suit Design 2" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/3.webp", alt: "Custom Race Suit Design 3" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/4.webp", alt: "Custom Race Suit Design 4" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/5.webp", alt: "Custom Race Suit Design 5" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/6.webp", alt: "Custom Race Suit Design 6" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/7.webp", alt: "Custom Race Suit Design 7" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/8.webp", alt: "Custom Race Suit Design 8" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/9.webp", alt: "Custom Race Suit Design 9" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/10.webp", alt: "Custom Race Suit Design 10" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/14.webp", alt: "Custom Race Suit Design 14" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/18.webp", alt: "Custom Race Suit Design 18" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/23.webp", alt: "Custom Race Suit Design 23" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/25.webp", alt: "Custom Race Suit Design 25" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/26.webp", alt: "Custom Race Suit Design 26" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/35.webp", alt: "Custom Race Suit Design 35" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/41.webp", alt: "Custom Race Suit Design 41" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/42.webp", alt: "Custom Race Suit Design 42" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/44.webp", alt: "Custom Race Suit Design 44" },
     ];
 
     return (
@@ -340,7 +340,7 @@ export default function CustomRaceSuitPage() {
                             overflow: "hidden"
                         }}>
                             <Image
-                                src="/images/shop/suit_tailor.png"
+                                src="/images/shop/suit_tailor_v2.png"
                                 alt="Custom Race Suit Showcase"
                                 width={400}
                                 height={500}
@@ -403,21 +403,7 @@ export default function CustomRaceSuitPage() {
                                 ))}
                             </div>
 
-                            {/* CTA */}
-                            <div style={{ marginTop: "40px" }}>
-                                <Link href="/custom-fit" style={{
-                                    display: "inline-block",
-                                    padding: "14px 28px",
-                                    border: "2px solid #fff",
-                                    borderRadius: "6px",
-                                    color: "#fff",
-                                    fontWeight: "700",
-                                    textDecoration: "none",
-                                    transition: "all 0.3s ease"
-                                }}>
-                                    HOW TO MEASURE
-                                </Link>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -447,7 +433,7 @@ export default function CustomRaceSuitPage() {
                             maxWidth: "600px",
                             margin: "0 auto"
                         }}>
-                            Two SFI certification levels to match your racing series requirements.
+                            SFI certification levels to match your racing series requirements.
                         </p>
                     </div>
 
@@ -526,6 +512,100 @@ export default function CustomRaceSuitPage() {
                                     "Late model & pro-level competition",
                                     "Sanctioned national series events",
                                     "High-horsepower & extreme performance"
+                                ].map((item, index) => (
+                                    <li key={index} style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        marginBottom: "10px",
+                                        color: "#d1d5db",
+                                        fontSize: "14px"
+                                    }}>
+                                        <svg style={{ width: "16px", height: "16px", color: "#22c55e", flexShrink: 0 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="race-suit-rating-grid" style={{ marginTop: "32px" }}>
+                        {/* SFI 3.2A/15 */}
+                        <div className="race-suit-rating-card">
+                            <div style={{
+                                display: "inline-block",
+                                padding: "4px 12px",
+                                marginBottom: "16px",
+                                backgroundColor: "rgba(239, 68, 68, 0.1)",
+                                borderRadius: "6px",
+                                color: "#f87171",
+                                fontSize: "11px",
+                                fontWeight: "700",
+                                letterSpacing: "1px",
+                                textTransform: "uppercase"
+                            }}>
+                                Professional — Extreme Protection
+                            </div>
+                            <h3 style={{ fontSize: "1.5rem", fontWeight: "700", color: "#fff", marginBottom: "8px" }}>
+                                SFI 3.2A/15
+                            </h3>
+                            <p style={{ color: "#9ca3af", fontSize: "14px", marginBottom: "24px", lineHeight: "1.6" }}>
+                                Minimum 30 seconds of flame protection. Ultra-heavy-duty multi-layer Nomex® or specialized aramid blend construction.
+                            </p>
+                            <ul style={{ listStyle: "none", padding: 0 }}>
+                                {[
+                                    "Top Fuel & Alcohol drag racing",
+                                    "Pro Mod & specialized forced-induction classes",
+                                    "Blown nitro & methanol fuel applications",
+                                    "High-risk, high-velocity drag racing environments"
+                                ].map((item, index) => (
+                                    <li key={index} style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        marginBottom: "10px",
+                                        color: "#d1d5db",
+                                        fontSize: "14px"
+                                    }}>
+                                        <svg style={{ width: "16px", height: "16px", color: "#22c55e", flexShrink: 0 }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* SFI 3.2A/20 */}
+                        <div className="race-suit-rating-card advanced">
+                            <div style={{
+                                display: "inline-block",
+                                padding: "4px 12px",
+                                marginBottom: "16px",
+                                backgroundColor: "rgba(220, 38, 38, 0.2)",
+                                borderRadius: "6px",
+                                color: "#f87171",
+                                fontSize: "11px",
+                                fontWeight: "700",
+                                letterSpacing: "1px",
+                                textTransform: "uppercase"
+                            }}>
+                                Ultimate — Maximum Protection
+                            </div>
+                            <h3 style={{ fontSize: "1.5rem", fontWeight: "700", color: "#fff", marginBottom: "8px" }}>
+                                SFI 3.2A/20
+                            </h3>
+                            <p style={{ color: "#9ca3af", fontSize: "14px", marginBottom: "24px", lineHeight: "1.6" }}>
+                                Minimum 40 seconds of flame protection. Maximum-density, highly insulated multi-layer specialty safety construction.
+                            </p>
+                            <ul style={{ listStyle: "none", padding: 0 }}>
+                                {[
+                                    "Top Fuel Dragster & Funny Car classes",
+                                    "Extreme land speed records (e.g., Bonneville Salt Flats)",
+                                    "High-volume nitro-methane fuel environments",
+                                    "Maximum hazard tier professional motorsports"
                                 ].map((item, index) => (
                                     <li key={index} style={{
                                         display: "flex",
