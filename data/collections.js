@@ -596,10 +596,13 @@ export const categories12 = [
   },
 ];
 
+// Image paths updated 2026-07-16 — repointed from the untracked
+// /images/customize/*.png (which was invisible on production) to the new
+// brand category images in public/images/categories/ added by the user.
 export const customizeCategories = [
   {
     name: "Suits",
-    img: "/images/customize/suit_v2.png",
+    img: "/images/categories/suits.webp",
     href: "/custom-race-suit",
     subOptions: [
       { name: "Custom Racing Suit", href: "/custom-race-suit" },
@@ -610,23 +613,23 @@ export const customizeCategories = [
   },
   {
     name: "Gloves",
-    img: "/images/customize/gloves_v2.png",
+    img: "/images/categories/gloves.webp",
     href: "/custom-gloves",
   },
   {
     name: "Shoes",
-    img: "/images/customize/shoes_v2.png",
+    img: "/images/categories/shoes.webp",
     href: "/custom-shoes",
   },
   {
     name: "T-shirt",
-    img: "/images/customize/suits_v2.png",
-    href: "/shop",
+    img: "/images/categories/tshirt.webp",
+    href: "/shop?category=crew-shirts",
   },
   {
     name: "Hoodie",
-    img: "/images/customize/hoode_v2.png",
-    href: "/shop",
+    img: "/images/categories/hoodi.webp",
+    href: "/shop?category=hoodies",
   },
 ];
 
