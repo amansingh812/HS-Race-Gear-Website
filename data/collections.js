@@ -596,15 +596,10 @@ export const categories12 = [
   },
 ];
 
-// Image paths updated 2026-07-15 — the previous /images/customize/*.png files
-// were untracked in git so they broke on Vercel production even though they
-// existed locally. Replaced with images that ARE tracked in git and live on
-// production: home banners for suits/gloves/shoes, and one of the new
-// crew-shirt / hoodie product photos.
 export const customizeCategories = [
   {
     name: "Suits",
-    img: "/images/home/SuitBanner.webp",
+    img: "/images/customize/suit_v2.png",
     href: "/custom-race-suit",
     subOptions: [
       { name: "Custom Racing Suit", href: "/custom-race-suit" },
@@ -615,23 +610,23 @@ export const customizeCategories = [
   },
   {
     name: "Gloves",
-    img: "/images/home/GlovesBanner.webp",
+    img: "/images/customize/gloves_v2.png",
     href: "/custom-gloves",
   },
   {
     name: "Shoes",
-    img: "/images/home/ShoesBanner.webp",
+    img: "/images/customize/shoes_v2.png",
     href: "/custom-shoes",
   },
   {
     name: "T-shirt",
-    img: "/images/products/crew-shirts/hs-apex-crew-shirt-front.webp",
-    href: "/shop?category=crew-shirts",
+    img: "/images/customize/suits_v2.png",
+    href: "/shop",
   },
   {
     name: "Hoodie",
-    img: "/images/products/hoodies/hs-attack-hoodie-front.webp",
-    href: "/shop?category=hoodies",
+    img: "/images/customize/hoode_v2.png",
+    href: "/shop",
   },
 ];
 
