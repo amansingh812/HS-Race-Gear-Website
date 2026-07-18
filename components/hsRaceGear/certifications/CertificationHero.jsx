@@ -12,12 +12,15 @@ export default function CertificationHero() {
             <span className="contact-breadcrumb-sep">/</span>
             <span className="contact-breadcrumb-current">Certifications</span>
           </p>
-          <span className="contact-hero-tag">Safety Standards</span>
+          <span className="contact-hero-tag">SFI Certification Guide (2026)</span>
+          {/* H1 rewritten 2026-07-16 — was "SFI Approved Certification" which
+              missed the top GSC query "sfi ratings" (37 imp/28d). Now leads
+              with exact-match "SFI Ratings" for on-page keyword alignment. */}
           <h1 className="contact-hero-title">
-            SFI Approved<br /><span>Certification</span>
+            SFI Ratings<br /><span>Explained</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Every fire suit sold by HS Race Gear is engineered to meet SFI Foundation–approved standards — specifically SFI 3.2A/5 and SFI 3.2A/1. Trusted globally by sanctioning bodies, race teams, and drivers.
+            Every SFI rating decoded — 3.2A/1 (single-layer, 3-second protection), 3.2A/5 (multi-layer, 10-second protection), 3.2A/15 (drag racing top-tier), and 3.3/5 (gloves & shoes). Learn which rating your sanctioning body requires and shop SFI-certified gear from HS Race Gear.
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '28px' }}>
             <span style={{

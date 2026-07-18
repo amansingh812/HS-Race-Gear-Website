@@ -21,13 +21,18 @@ import "@/public/css/homepage.css";
 // (singular, higher volume), add "Made in USA" angle (28-imp GSC query
 // "racewear USA"), and add one-word brand spelling "HSracegear" (people
 // search the domain without the space).
+// Title rewritten 2026-07-16 — GSC 28-day shows "racewear usa" earning 33
+// impressions with 0 clicks. Putting the exact phrase at word position 1
+// (Google bolds it in the SERP snippet) is the highest-leverage CTR fix
+// available at our current avg position 16. Also adding "3.2A/5" so
+// multi-layer buyers see we cover their tier.
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/" },
-  title: "Custom Racing Suit — SFI Certified | HS Race Gear",
+  title: "Racewear USA — Custom SFI Racing Suits from $329 | HS Race Gear",
   description:
-    "Custom SFI-certified racing suits built to your exact measurements. SFI 3.2A/1 from $329 — drag, dirt track, karting & more. Free shipping.",
+    "Racewear USA — custom SFI-certified racing suits built to your exact measurements. SFI 3.2A/1 & 3.2A/5 from $329. Drag, dirt track, karting, road. Made in Watertown, MA. Free shipping.",
   keywords:
-    "custom racing suit, custom race suit, SFI certified racing suit, HSracegear, HS Race Gear, racing gear, aftermarket auto racing suits, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suit, custom karting suit",
+    "racewear usa, custom racing suit, custom race suit, SFI certified racing suit, HSracegear, HS Race Gear, racing gear, aftermarket auto racing suits, custom fit racing suit, racing gloves, racing shoes, Nomex racing suit, karting suit, custom karting suit, made in USA racing gear",
 };
 
 // JSON-LD Structured Data for Homepage SEO

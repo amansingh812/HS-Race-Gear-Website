@@ -7,11 +7,33 @@ import "@/public/css/contact-us.css";
 import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
+// Metadata rewritten 2026-07-16 based on live GSC data — /certifications
+// captured 330 impressions in 28 days (2nd highest page) but only 0.9% CTR
+// because title/description weren't magnetic enough. Rewritten for the
+// 4 head queries: "sfi ratings" (37 imp), "sfi suit ratings" (34), "sfi
+// rated racing suit" (19), "sfi approved" (9). Adding year for freshness
+// signal + 3.2A/15 to capture drag racing queries.
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/certifications" },
-  title: "SFI Ratings Explained: SFI 3.2A/1, 3.2A/5 & 3.3/5 Racing Gear | HS Race Gear",
-  description: "What are SFI ratings? SFI 3.2A/1, SFI 3.2A/5, and SFI 3.3/5 measure fire protection in racing suits, gloves & shoes. Learn what each SFI rating means — and shop SFI-certified gear from HS Race Gear.",
-  keywords: "SFI ratings, SFI rating, SFI certified, SFI approved, SFI suit ratings, SFI 3.2A/5, SFI 3.2A/1, SFI 3.3/5, what does SFI stand for, racing suit certification",
+  title: "SFI Ratings Explained (2026): 3.2A/1, 3.2A/5, 3.2A/15 & 3.3/5 | HS Race Gear",
+  description: "The complete 2026 guide to SFI ratings. 3.2A/1 (3s protection), 3.2A/5 (10s), 3.2A/15 (drag racing), 3.3/5 (gloves & shoes) — every rating decoded and which one your class actually requires.",
+  keywords: "SFI ratings, SFI rating, SFI certified, SFI approved, SFI suit ratings, SFI 3.2A/5, SFI 3.2A/1, SFI 3.2A/15, SFI 3.3/5, sfi rated racing suit, what does SFI stand for, racing suit certification",
+  openGraph: {
+    type: "article",
+    title: "SFI Ratings Explained (2026) — Complete Racing Suit Certification Guide",
+    description: "Every SFI rating decoded: 3.2A/1 vs 3.2A/5 vs 3.2A/15 vs 3.3/5. Learn which one your class requires before you buy.",
+    url: "https://www.hsracegear.com/certifications",
+    images: ["https://www.hsracegear.com/images/og-image.jpg"],
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hsracegear.com" },
+    { "@type": "ListItem", "position": 2, "name": "SFI Ratings & Certifications", "item": "https://www.hsracegear.com/certifications" }
+  ]
 };
 
 const faqSchema = {
@@ -75,6 +97,10 @@ export default function page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Topbar1 />
       <Header3 />
