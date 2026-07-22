@@ -381,7 +381,8 @@ export default function GlovesOrderPage() {
         try {
             const orderData = {
                 productType: "custom-gloves",
-                mockup: selectedMockup,
+                package: { name: "Custom Gloves", price: "Contact for pricing" },
+                glovesMockup: selectedMockup,
                 colors,
                 size: customerInfo.size,
                 customer: { name: customerInfo.name, email: customerInfo.email, phone: customerInfo.phone },

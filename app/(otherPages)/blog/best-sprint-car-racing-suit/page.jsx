@@ -12,7 +12,7 @@ export const metadata = {
   // Phase B Post 3. Peak sprint car season + Knoxville Nationals 10 weeks
   // out = high commercial intent window. Targets "sprint car racing suit"
   // + arm-restraint, USAC, World of Outlaws, ASCS, methanol angles.
-  title: "Best Sprint Car Racing Suit — USAC, World of Outlaws & ASCS SFI Rules",
+  title: "Best Sprint Car Racing Suit (2026): USAC, World of Outlaws & ASCS SFI Rules",
   description:
     "Best sprint car racing suit by sanctioning body — USAC, World of Outlaws, ASCS. SFI rating, arm-restraint compatibility, dirt vs asphalt fit, methanol-specific protection, and Knoxville Nationals prep.",
   keywords:

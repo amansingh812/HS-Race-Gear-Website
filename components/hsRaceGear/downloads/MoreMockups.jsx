@@ -89,7 +89,7 @@ export default function MoreMockups() {
                             <div className="hs-doc-card hs-doc-card-note">
                                 <p className="hs-doc-card-text">
                                     If you need assistance with mockup templates or design placement, contact our team
-                                    at <a href="mailto:hsracegear@gmail.com" style={{ color: '#e21b1b' }}>hsracegear@gmail.com</a> or
+                                    at <a href="mailto:info@hsracegear.com" style={{ color: '#e21b1b' }}>info@hsracegear.com</a> or
                                     call us at <a href="tel:+16173196993" style={{ color: '#e21b1b' }}>+1 (617) 319 6993</a>.
                                     We&apos;re happy to help you create the perfect design.
                                 </p>

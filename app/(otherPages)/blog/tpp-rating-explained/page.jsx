@@ -11,9 +11,9 @@ export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/blog/tpp-rating-explained" },
   // Backlog #1 — captures TPP knowledge gap. Competitors mention TPP
   // but no one owns it. Built for AI-engine citation.
-  title: "TPP Rating Explained — What Thermal Protective Performance Actually Measures",
+  title: "TPP Rating Explained (2026): What Thermal Protective Performance Measures",
   description:
-    "TPP (Thermal Protective Performance) explained — what the number actually measures, why two SFI 3.2A/5 suits can have different TPP scores, and how to read TPP when comparing racing suits.",
+    "TPP (Thermal Protective Performance) decoded — what the number measures, why two SFI 3.2A/5 racing suits can have different TPP scores, and how to read TPP when comparing suits in 2026.",
   keywords:
     "TPP rating, thermal protective performance, what is TPP, TPP racing suit, TPP value, TPP score, SFI TPP minimum, racing suit TPP, fire suit TPP, Nomex TPP, FIA HTI",
 };

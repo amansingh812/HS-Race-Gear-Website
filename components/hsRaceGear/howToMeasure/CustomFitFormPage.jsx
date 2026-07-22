@@ -310,7 +310,7 @@ export default function CustomFitFormPage() {
                                     <span className="cf-contact-icon">📧</span>
                                     <div>
                                         <p className="fw-6 mb-0">Email Us</p>
-                                        <a href="mailto:support@hsracegear.com" className="text_black-2">support@hsracegear.com</a>
+                                        <a href="mailto:info@hsracegear.com" className="text_black-2">info@hsracegear.com</a>
                                     </div>
                                 </div>
                                 <div className="contact-item d-flex align-items-center gap-15">

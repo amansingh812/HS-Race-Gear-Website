@@ -64,7 +64,7 @@ export default function TermsAndConditions() {
                 <p className="hs-doc-card-text">
                   Questions regarding these Terms of Service should be sent to:<br /><br />
                   HS RaceGear<br />
-                  📧 Email: <a href="mailto:admin@hsracegear.com" style={{ color: '#e21b1b' }}>admin@hsracegear.com</a><br />
+                  📧 Email: <a href="mailto:info@hsracegear.com" style={{ color: '#e21b1b' }}>info@hsracegear.com</a><br />
                   🌐 Website: <a href="https://www.hsracegear.com" target="_blank" rel="noopener noreferrer" style={{ color: '#e21b1b' }}>hsracegear.com</a>
                 </p>
               </div>

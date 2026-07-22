@@ -12,7 +12,7 @@ export const metadata = {
   // Timely (Le Mans 2026 is June 13–14) capturing endurance-related search
   // spillover. Targets amateur endurance racers — Lemons, NASA, World
   // Racing League, 25 Hours of Thunderhill, Daytona supporting series.
-  title: "Endurance Racing Suits Explained — Le Mans Gear vs What You Need",
+  title: "Endurance Racing Suits (2026): Le Mans Gear vs What You Actually Need",
   description:
     "What makes Le Mans drivers' endurance racing suits different — FIA 8856-2018 vs SFI 3.2A/5, multi-driver fit, heat management at hour 14, and a custom-suit spec checklist for amateur endurance racers.",
   keywords:

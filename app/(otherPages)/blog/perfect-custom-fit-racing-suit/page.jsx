@@ -9,11 +9,14 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "/blog/perfect-custom-fit-racing-suit" },
-  title: "5 Essential Tips for Getting the Perfect Custom Fit Racing Suit | HS Race Gear Blog",
+  // Title updated 2026-07-16 — GSC "custom racing suit" 25 imp/28d 0 clicks.
+  // Reordered to lead with the money phrase "Custom Racing Suit" at word
+  // position 1 for CTR boost at same ranking.
+  title: "Custom Racing Suit Fit — 5 Essential Measurement Tips (2026) | HS Race Gear",
   description:
-    "Learn how to get the perfect custom racing suit fit with these 5 essential tips — from accurate body measurements and driving posture to mobility zones and SFI compliance.",
+    "Custom racing suit fit guide — 5 essential body measurement tips for a perfect SFI-certified custom fit. Accurate chest, waist, hip, sleeve, and driving-posture measurements.",
   keywords:
-    "custom racing suit fit, racing suit measurements, SFI racing suit, custom fit racing suit tips, how to measure for racing suit",
+    "custom racing suit, custom racing suit fit, racing suit measurements, SFI racing suit, custom fit racing suit tips, how to measure for racing suit, made in USA racing suit",
 };
 
 // JSON-LD: Article + BreadcrumbList for rich SERP eligibility

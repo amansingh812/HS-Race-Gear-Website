@@ -109,7 +109,7 @@ export default function BlanketTemplate() {
                             <div className="hs-doc-card hs-doc-card-note">
                                 <p className="hs-doc-card-text">
                                     Once your design is complete, email it to{" "}
-                                    <a href="mailto:hsracegear@gmail.com" style={{ color: '#e21b1b' }}>hsracegear@gmail.com</a> or
+                                    <a href="mailto:info@hsracegear.com" style={{ color: '#e21b1b' }}>info@hsracegear.com</a> or
                                     contact us at <a href="tel:+16173196993" style={{ color: '#e21b1b' }}>+1 (617) 319 6993</a>.
                                     Our design team will review your submission and provide a digital proof before production begins.
                                 </p>

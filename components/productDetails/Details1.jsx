@@ -35,12 +35,12 @@ export default function Details1({ product }) {
   const getSizeChartInfo = () => {
     const categorySlug = product.category?.slug || "";
     if (categorySlug === "hoodies" || product.name?.toLowerCase().includes("hoodie")) {
-      return { src: "/images/chart/hoodie_size_chart.jpg", alt: "Hoodie Size Chart", title: "Hoodie Size Chart" };
+      return { src: "/images/size_chart/HOODIES%20MEASUREMENT%20CHART.png", alt: "Hoodie Size Chart", title: "Hoodie Size Chart" };
     }
     if (categorySlug === "crew-shirts" || product.name?.toLowerCase().includes("shirt")) {
-      return { src: "/images/chart/shirt_size_chart.jpg", alt: "Shirt Size Chart", title: "Shirt Size Chart" };
+      return { src: "/images/size_chart/SHIRT%20MEASUREMENT%20CHART.png", alt: "Shirt Size Chart", title: "Shirt Size Chart" };
     }
-    return { src: "/images/deals/off_the_rack_race_suits.webp", alt: "Size Chart", title: "Size Chart" };
+    return { src: "/images/size_chart/OFF%20THE%20RACK%20SIZE%20CHART.png", alt: "Size Chart", title: "Size Chart" };
   };
   const sizeChartInfo = getSizeChartInfo();
 

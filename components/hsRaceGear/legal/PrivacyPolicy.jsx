@@ -154,7 +154,7 @@ export default function PrivacyPolicy() {
                 <p className="hs-doc-card-text">
                   If you have any questions or concerns regarding this Privacy Policy, please contact us:<br /><br />
                   HS RaceGear<br />
-                  📧 Email: <a href="mailto:admin@hsracegear.com" style={{ color: '#e21b1b' }}>admin@hsracegear.com</a>
+                  📧 Email: <a href="mailto:info@hsracegear.com" style={{ color: '#e21b1b' }}>info@hsracegear.com</a>
                 </p>
               </div>
             </div>

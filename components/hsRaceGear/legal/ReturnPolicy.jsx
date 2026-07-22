@@ -41,7 +41,7 @@ export default function ReturnPolicy() {
                                 </p>
                                 <p className="hs-doc-card-text">
                                     To start a return, you can contact us at{" "}
-                                    <a href="mailto:hsracegear@gmail.com">hsracegear@gmail.com</a> or by our
+                                    <a href="mailto:info@hsracegear.com">info@hsracegear.com</a> or by our
                                     WhatsApp number given on our website. If your return is accepted, you will
                                     receive your refund in its entirety.
                                 </p>
@@ -88,7 +88,7 @@ export default function ReturnPolicy() {
                             <div className="hs-doc-card hs-doc-card-warning">
                                 <p className="hs-doc-card-text">
                                     Contact us at{" "}
-                                    <a href="mailto:hsracegear@gmail.com">hsracegear@gmail.com</a> for any
+                                    <a href="mailto:info@hsracegear.com">info@hsracegear.com</a> for any
                                     questions related to refunds and returns. Our team is here to help you.
                                 </p>
                             </div>

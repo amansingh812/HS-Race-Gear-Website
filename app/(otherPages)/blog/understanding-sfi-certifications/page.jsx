@@ -9,12 +9,12 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "/blog/understanding-sfi-certifications" },
-  // Title rewritten 2026-05-16 to capture "SFI ratings" (74 imp/3mo) and
-  // "SFI suit ratings" (66 imp/3mo) — both 0-click queries we already
-  // surface for but with the wrong-word title.
-  title: "SFI Ratings Explained — Which Certification Does Your Race Suit Need?",
+  // Title updated 2026-07-16 based on live GSC — "sfi ratings" 37 imp / 28d,
+  // "sfi suit ratings" 34 imp / 28d, both 0 clicks at position 15-17. Added
+  // year for freshness signal + explicit tier numbers for click magnetism.
+  title: "SFI Suit Ratings Explained (2026): 3.2A/1, 3.2A/5, 3.2A/15 — Which One You Need",
   description:
-    "SFI ratings and requirements explained: SFI 3.2A/1, 3.2A/5, and 3.2A/15 demystified. What TPP scores mean, the SFI requirements for drag, sprint car, dirt, karting, and road racing, and how to pass tech inspection every time.",
+    "SFI suit ratings decoded — 3.2A/1 (3s protection), 3.2A/5 (10s), 3.2A/15 (drag racing top tier). Which SFI rating your class actually requires, tech inspection tips, and 2026 rulebook changes.",
   keywords:
     "SFI ratings, SFI suit ratings, SFI requirements, SFI requirements racing suit, SFI 3.2A/1, SFI 3.2A/5, SFI 3.2A/15, SFI 3.3/5, TPP thermal protective performance, SFI certification guide, racing suit ratings, fire suit ratings, fire suit requirements",
 };

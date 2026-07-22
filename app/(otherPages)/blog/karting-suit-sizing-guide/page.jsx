@@ -12,7 +12,7 @@ export const metadata = {
   // Phase B Post 5 — karting customer segment, summer peak season.
   // /custom-karting-suit lander currently gets impressions but no clicks;
   // this post funnels informational karting search into the lander.
-  title: "Custom Karting Suit Sizing — Junior, Senior, Shifter & CIK Level 2 Explained",
+  title: "Custom Karting Suit Sizing (2026): Junior, Senior, Shifter & CIK Level 2 Guide",
   description:
     "Karting suit guide — CIK Level 1 vs Level 2, junior and cadet fit, senior and shifter spec, WKA/SKUSA/Rotax Max requirements, and how to measure for a custom karting suit that lasts a full season.",
   keywords:

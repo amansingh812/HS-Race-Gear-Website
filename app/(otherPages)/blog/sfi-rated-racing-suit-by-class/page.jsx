@@ -9,13 +9,12 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "/blog/sfi-rated-racing-suit-by-class" },
-  // Targeting confirmed GSC queries: "sfi rated racing suit" (14 imp/0 clicks),
-  // "sfi ratings" (75 imp/0 clicks), "sfi suit ratings" (67 imp/0 clicks).
-  // Different angle than /blog/understanding-sfi-certifications — practical
-  // rating-by-discipline rather than background explainer.
-  title: "SFI Rated Racing Suit by Class — Which SFI Rating You Actually Need",
+  // Title updated 2026-07-16 — GSC shows "sfi rated racing suit" 19 imp/28d
+  // with 0 clicks at position ~16. Added year + "for sale" to signal
+  // commercial intent alongside the informational query.
+  title: "SFI Rated Racing Suit by Class (2026): Which SFI Rating You Actually Need",
   description:
-    "SFI rating by discipline — sprint car, dirt late model, drag racing, karting, road racing, powerboat. The exact SFI 3.2A rating you need for the car you actually race, in one practical guide.",
+    "SFI rated racing suit guide by discipline (2026 rulebook). Which SFI 3.2A rating for sprint car, drag racing, dirt late model, karting, road racing, powerboat — from a US custom suit maker.",
   keywords:
     "SFI rated racing suit, SFI rating by class, SFI requirements, SFI requirements racing suit, what SFI rating do I need, SFI 3.2A/1 vs 3.2A/5, SFI 3.2A/15, sprint car SFI rating, drag racing SFI rating, dirt late model SFI, karting SFI rating, road racing SFI, powerboat SFI",
 };

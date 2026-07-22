@@ -9,11 +9,13 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "/blog/choose-right-racing-suit" },
-  title: "How to Choose the Right Racing Suit for Your Discipline | HS Race Gear Blog",
+  // Title updated 2026-07-16 — added "Custom Racing Suit" phrase (GSC 25
+  // imp/28d, 0 clicks) + 2026 year signal for freshness.
+  title: "How to Choose a Custom Racing Suit by Discipline (2026 Buyer's Guide)",
   description:
-    "Complete buyer's guide to SFI certified racing suits. Learn which suit matches your racing discipline — from stock cars and drag racing to sprint cars and endurance events.",
+    "2026 buyer's guide to SFI-certified custom racing suits by discipline — drag, sprint car, dirt, road racing, karting, endurance. What rating, what construction, what fit for each.",
   keywords:
-    "how to choose racing suit, SFI racing suit guide, racing suit for drag racing, stock car racing suit, sprint car suit buyer guide",
+    "how to choose racing suit, custom racing suit, SFI racing suit guide, racing suit for drag racing, stock car racing suit, sprint car suit buyer guide, made in USA racing suit",
 };
 
 // JSON-LD: Article + BreadcrumbList

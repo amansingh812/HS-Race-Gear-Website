@@ -13,7 +13,7 @@ export async function POST(request) {
     const smtpPort = process.env.SMTP_PORT || 587;
     const smtpUser = process.env.SMTP_USER;
     const smtpPass = process.env.SMTP_PASS;
-    const businessEmail = process.env.BUSINESS_EMAIL || "hsracegear@gmail.com";
+    const businessEmail = process.env.BUSINESS_EMAIL || "info@hsracegear.com";
 
     const confirmHtml = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">

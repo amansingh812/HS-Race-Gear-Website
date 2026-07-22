@@ -36,7 +36,7 @@ const INFO_CARDS = [
       </svg>
     ),
     label: "Email Us",
-    value: <a href="mailto:hsracegear@gmail.com">hsracegear@gmail.com</a>,
+    value: <a href="mailto:info@hsracegear.com">info@hsracegear.com</a>,
     note: "We reply within 24 hours",
   },
 ];
@@ -62,10 +62,15 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        // Pass phone and subject as first-class fields so the API can put
+        // them in dedicated rows of the internal email (better readability
+        // for the info@hsracegear.com inbox).
         body: JSON.stringify({
           name: form.name,
           email: form.email,
-          message: `${form.subject ? `Subject: ${form.subject}\nPhone: ${form.phone || "N/A"}\n\n` : ""}${form.message}`,
+          phone: form.phone || undefined,
+          subject: form.subject || undefined,
+          message: form.message,
         }),
       });
       if (res.ok) {
@@ -207,7 +212,7 @@ export default function Contact() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                     </svg>
-                    Something went wrong. Email us directly at hsracegear@gmail.com.
+                    Something went wrong. Email us directly at info@hsracegear.com.
                   </div>
                 )}
 

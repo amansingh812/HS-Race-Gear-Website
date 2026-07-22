@@ -17,7 +17,7 @@ export default function Address() {
       zipCode: "2196",
       phone: "+61 1234 3435",
       isDefault: false,
-      email: "hsracegear@gmail.com",
+      email: "info@hsracegear.com",
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ export default function Address() {
       zipCode: "2196",
       phone: "+61 1234 3435",
       isDefault: false,
-      email: "hsracegear@gmail.com",
+      email: "info@hsracegear.com",
     },
   ]);
 

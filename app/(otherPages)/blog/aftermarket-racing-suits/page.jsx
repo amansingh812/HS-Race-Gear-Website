@@ -9,11 +9,12 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "/blog/aftermarket-racing-suits" },
-  // Targeting confirmed GSC query "aftermarket auto racing suits" (25 imp /
-  // 0 clicks in 3 months) — proven demand with no existing landing page.
-  title: "Aftermarket Racing Suits — When to Upgrade From Stock Gear | HS Race Gear",
+  // Targeting confirmed GSC query "aftermarket auto racing suits" — added
+  // 2026 year and USA angle 2026-07-16 to align with US buyer traffic (72%
+  // of total impressions).
+  title: "Aftermarket Racing Suits (2026): When to Upgrade From Stock Gear | Made in USA",
   description:
-    "Aftermarket racing suit buyer's guide. When to upgrade, what SFI rating you need, custom vs. off-the-rack, Nomex® vs. generic FR, and the five signs your current suit is past its useful life.",
+    "2026 aftermarket racing suit buyer's guide. When to upgrade, what SFI rating you need, Nomex® vs generic FR, custom vs off-the-rack, 5 signs your current suit is done. Made in USA options.",
   keywords:
     "aftermarket racing suit, aftermarket auto racing suits, upgrade racing suit, custom racing suit, SFI racing suit, Nomex racing suit, racing suit buyer's guide, when to replace racing suit",
 };

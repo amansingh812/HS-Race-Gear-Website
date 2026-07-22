@@ -30,7 +30,7 @@ function GlovesSizeChartModal({ onClose }) {
                 }}>✕</button>
                 {/* Chart Image */}
                 <Image
-                    src="/images/chart/shoes_chart.jpg"
+                    src="/images/size_chart/gloves%20size%20chart.png"
                     alt="Custom Gloves Size Chart"
                     width={684}
                     height={595}

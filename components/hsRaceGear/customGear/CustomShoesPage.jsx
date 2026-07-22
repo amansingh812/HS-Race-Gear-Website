@@ -31,7 +31,7 @@ function ShoesSizeChartModal({ onClose }) {
 
                 {/* Chart Image */}
                 <Image
-                    src="/images/chart/shoes_size.jpg"
+                    src="/images/size_chart/shoe%20size%20chart.png"
                     alt="Custom Shoes Size Chart"
                     width={1080}
                     height={595}

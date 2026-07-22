@@ -170,7 +170,7 @@ export default function CustomFitMeasurement() {
                   </p>
                   <p>
                     <i className="icon-email"></i>
-                    <strong> support@hsracegear.com</strong>
+                    <strong> info@hsracegear.com</strong>
                   </p>
                 </div>
               </div>
