@@ -91,8 +91,12 @@ export default function MobileMenu() {
 
               {/* CUSTOM GEAR (with sub-items) */}
               <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-custom-gear"
+                {/* Use <button>, not <a href="#...">, so Googlebot doesn't
+                    treat the collapse anchor as a crawlable URL. These were
+                    being indexed as separate pages (/#dropdown-menu-*). */}
+                <button
+                  type="button"
+                  data-bs-target="#dropdown-menu-custom-gear"
                   className="collapsed mb-menu-link"
                   data-bs-toggle="collapse"
                   aria-expanded="false"
@@ -100,7 +104,7 @@ export default function MobileMenu() {
                 >
                   <span>CUSTOM GEAR</span>
                   <span className="btn-open-sub" />
-                </a>
+                </button>
                 <div id="dropdown-menu-custom-gear" className="collapse">
                   <ul className="sub-nav-menu">
                     {customGearItems.map((item, i) => (
@@ -120,8 +124,9 @@ export default function MobileMenu() {
 
               {/* SHOP (with sub-items) */}
               <li className="nav-mb-item">
-                <a
-                  href="#dropdown-menu-shop"
+                <button
+                  type="button"
+                  data-bs-target="#dropdown-menu-shop"
                   className="collapsed mb-menu-link"
                   data-bs-toggle="collapse"
                   aria-expanded="false"
@@ -129,7 +134,7 @@ export default function MobileMenu() {
                 >
                   <span>SHOP</span>
                   <span className="btn-open-sub" />
-                </a>
+                </button>
                 <div id="dropdown-menu-shop" className="collapse">
                   <ul className="sub-nav-menu">
                     {shopMenuItems.map((item, i) => (

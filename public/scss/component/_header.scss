@@ -1309,6 +1309,17 @@ header {
             align-items: center;
             justify-content: space-between;
 
+            // Reset native <button> chrome — these toggles are <button>
+            // elements (not <a href="#...">) so Googlebot doesn't index
+            // the collapse anchors as separate URLs.
+            width: 100%;
+            padding: 0;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: inherit;
+            cursor: pointer;
+
             &:not(.collapsed) {
                 .btn-open-sub {
                     &::before {

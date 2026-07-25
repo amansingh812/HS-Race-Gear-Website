@@ -6,16 +6,28 @@ import "@/public/css/contact-us.css";
 import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
-// Metadata updated 2026-06-01 to capture the GSC query "rush race suits"
-// (5 imp/0 clicks in last 7 days) — page wasn't using the exact phrase
-// the searchers type. Title now leads with that exact match.
+// Metadata rewritten 2026-07-26 — CTR fix, not a ranking fix.
+// 3-month GSC: "rush race gear" 71 impr @ pos 7.8, "rush race suits" 29 impr
+// @ pos 4.7 — both PAGE ONE, both ZERO clicks across the full quarter.
+// The ranking is already won; the snippet wasn't earning the click.
+// Changes: lead with the comparison (what the searcher is actually doing),
+// put concrete differentiators in the description instead of a feature list,
+// and lead the description with a question that matches search intent.
 export const metadata = {
   alternates: { canonical: "/compare/vs-rush" },
-  title: "Rush Race Suits Alternative — Custom SFI Suits From $289 | HS Race Gear",
+  title: "HS Race Gear vs Rush Race Gear (2026): Side-by-Side Comparison",
   description:
-    "Searching for Rush race suits? Compare HS Racegear vs RUSH Racegear — custom SFI-certified race suits from $289, 2–3 week production, full design freedom, premium Nomex® for stock car, sprint car, dirt track, and drag racing.",
+    "Which is better for your build? Compare price, SFI rating, fit process and delivery time. HS Race Gear: custom-measured SFI 3.2A/5, made in USA, 2–3 week turnaround, from $329 shipped free. See the full breakdown before you order.",
   keywords:
-    "rush race suits, rush racing suits, rush racegear, HS Racegear vs RUSH Racegear, RUSH Racegear alternative, custom SFI race suits, stock car racing suit, dirt track suit, sprint car suit",
+    "rush race gear, rush race suits, rush racing suits, rush racegear, HS Racegear vs RUSH Racegear, RUSH Racegear alternative, custom SFI race suits, stock car racing suit, dirt track suit, sprint car suit",
+  openGraph: {
+    title: "HS Race Gear vs Rush Race Gear (2026): Side-by-Side Comparison",
+    description:
+      "Compare price, SFI rating, fit process and delivery time. Custom-measured SFI 3.2A/5 suits made in the USA, 2–3 week turnaround, from $329 shipped free.",
+    url: "https://www.hsracegear.com/compare/vs-rush",
+    siteName: "HS Race Gear",
+    type: "website",
+  },
 };
 
 const breadcrumbSchema = {

@@ -57,6 +57,7 @@ export default async function sitemap() {
     { url: `${baseUrl}/compare/vs-velocity`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-pyrotect`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-simpson`,  lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/compare/vs-hrx`,      lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/privacy-policy`,      lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
     { url: `${baseUrl}/term-and-condition`,  lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
     { url: `${baseUrl}/shipping-policy`,     lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
@@ -75,9 +76,21 @@ export default async function sitemap() {
     ).lean();
 
     productPages = products.map((p) => {
-      // Include all product images (front + back for hoodies/shirts, single for suits)
+      // Include all product images (front + back for hoodies/shirts, single for suits).
+      // Some products store absolute URLs (Cloudinary-hosted legacy items) while
+      // others store site-relative paths (/images/products/...). Prepending
+      // baseUrl unconditionally produced malformed URLs like
+      // "https://www.hsracegear.comhttps://res.cloudinary.com/..." which Google
+      // silently drops. Only prefix when the stored value is relative.
       const imageUrls = (p.images || [])
-        .map((img) => img.url ? `${baseUrl}${img.url}` : null)
+        .map((img) => {
+          if (!img?.url) return null;
+          const u = String(img.url).trim();
+          if (!u) return null;
+          if (/^https?:\/\//i.test(u)) return u;          // already absolute
+          if (u.startsWith("//")) return `https:${u}`;    // protocol-relative
+          return `${baseUrl}${u.startsWith("/") ? "" : "/"}${u}`;
+        })
         .filter(Boolean);
 
       const entry = {

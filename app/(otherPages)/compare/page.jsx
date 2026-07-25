@@ -32,6 +32,7 @@ const compareLinks = [
   { slug: "vs-velocity", title: "HS Race Gear vs Velocita-USA", blurb: "Both Made in USA. Compare on customization depth and lead time." },
   { slug: "vs-pyrotect", title: "HS Race Gear vs Pyrotect", blurb: "Pyrotect is the incumbent. Compare on price, custom process, and mockup revisions." },
   { slug: "vs-simpson", title: "HS Race Gear vs Simpson Race Products", blurb: "Simpson is legacy premium. We're custom-fit premium at half the price." },
+  { slug: "vs-hrx", title: "HS Race Gear vs HRX", blurb: "HRX ships from overseas. We build in the USA with a 2–3 week turnaround." },
 ];
 
 export default function page() {
