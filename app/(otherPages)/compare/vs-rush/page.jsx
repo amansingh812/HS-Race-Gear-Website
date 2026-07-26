@@ -17,13 +17,13 @@ export const metadata = {
   alternates: { canonical: "/compare/vs-rush" },
   title: "HS Race Gear vs Rush Race Gear (2026): Side-by-Side Comparison",
   description:
-    "Which is better for your build? Compare price, SFI rating, fit process and delivery time. HS Race Gear: custom-measured SFI 3.2A/5, made in USA, 2–3 week turnaround, from $329 shipped free. See the full breakdown before you order.",
+    "Which is better for your build? Compare price, SFI rating, fit process and delivery time. HS Race Gear: custom-measured SFI 3.2A/5, made in USA, 2–3 week turnaround, from $289. See the full breakdown before you order.",
   keywords:
     "rush race gear, rush race suits, rush racing suits, rush racegear, HS Racegear vs RUSH Racegear, RUSH Racegear alternative, custom SFI race suits, stock car racing suit, dirt track suit, sprint car suit",
   openGraph: {
     title: "HS Race Gear vs Rush Race Gear (2026): Side-by-Side Comparison",
     description:
-      "Compare price, SFI rating, fit process and delivery time. Custom-measured SFI 3.2A/5 suits made in the USA, 2–3 week turnaround, from $329 shipped free.",
+      "Compare price, SFI rating, fit process and delivery time. Custom-measured SFI 3.2A/5 suits made in the USA, 2–3 week turnaround, from $289.",
     url: "https://www.hsracegear.com/compare/vs-rush",
     siteName: "HS Race Gear",
     type: "website",

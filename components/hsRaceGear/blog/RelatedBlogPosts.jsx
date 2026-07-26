@@ -7,6 +7,15 @@ import Image from "next/image";
 
 const ALL_POSTS = [
   {
+    slug: "sfi-vs-fia-rating",
+    tag: "Safety Standards",
+    image: "/images/home/blog_1.webp",
+    title: "SFI vs FIA Rating — Which Certification Do You Need?",
+    excerpt:
+      "SFI 3.2A is tiered and US-focused; FIA 8856-2018 is single pass/fail and international. Why one won't reliably substitute for the other.",
+    readTime: "9 min read",
+  },
+  {
     slug: "tpp-rating-explained",
     tag: "Safety Standards",
     image: "/images/home/blog_1.webp",

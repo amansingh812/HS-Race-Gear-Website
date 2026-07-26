@@ -4,6 +4,17 @@ import Image from "next/image";
 
 const BLOG_POSTS = [
   {
+    slug: "sfi-vs-fia-rating",
+    tag: "Safety Standards",
+    icon: "🏁",
+    image: "/images/home/blog_1.webp",
+    title: "SFI vs FIA Rating — Which Racing Suit Certification Do You Actually Need?",
+    excerpt:
+      "Two certification bodies, two test methods, almost no overlap in who accepts what. Why an SFI tag won't reliably pass FIA tech (and vice versa), what SCCA actually accepts, and how to tell which one your class requires.",
+    date: "July 2026",
+    readTime: "9 min read",
+  },
+  {
     slug: "tpp-rating-explained",
     tag: "Safety Standards",
     icon: "🔥",
