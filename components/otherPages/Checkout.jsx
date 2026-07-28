@@ -3,24 +3,32 @@
 import { useContextElement } from "@/context/Context";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 
+/**
+ * Checkout — order enquiry flow.
+ *
+ * This does NOT take payment. The customer confirms their order and address,
+ * we email them and info@hsracegear.com, and the team contacts them to
+ * arrange payment directly — the same process the custom-order pages use.
+ *
+ * Previously this form collected card number / expiry / CVC, validated them,
+ * and then threw them away: no gateway was ever wired up, so customers
+ * believed they had paid when no charge existed and no card data was ever
+ * transmitted. Those fields are removed rather than hidden, so there is no
+ * card data on the page at all.
+ *
+ * Also removed: the login requirement (guests could not order), and an 8%
+ * tax line that was never actually collected.
+ */
 export default function Checkout() {
-  const router = useRouter();
-  const {
-    cartProducts,
-    totalPrice,
-    isAuthenticated,
-    clearCart,
-    cartLoading,
-  } = useContextElement();
+  const { cartProducts, totalPrice, clearCart, cartLoading } =
+    useContextElement();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [shippingMethod, setShippingMethod] = useState("express");
-  const [paymentMethod, setPaymentMethod] = useState("credit-card");
-  
+  const [submitted, setSubmitted] = useState(null); // { orderId } once placed
+
   // Form state
   const [formData, setFormData] = useState({
     firstName: "",
@@ -33,26 +41,15 @@ export default function Checkout() {
     city: "",
     state: "",
     zipcode: "",
-    cardNumber: "",
-    cardExpiry: "",
-    cardCvc: "",
-    cardName: "",
-    useShippingAsBilling: true,
     orderNotes: "",
   });
 
   const [formErrors, setFormErrors] = useState({});
 
-  // Shipping costs
-  const shippingCosts = {
-    free: 0,
-    express: 10,
-  };
-
-  const taxRate = 0.08; // 8% tax
-  const shippingCost = shippingCosts[shippingMethod] || 0;
-  const taxAmount = totalPrice * taxRate;
-  const grandTotal = totalPrice + shippingCost + taxAmount;
+  // Shipping is always free and folded into the total — no separate
+  // shipping charge, no paid express option, no tax. What's shown is what's
+  // owed: the listed product prices, full stop.
+  const grandTotal = totalPrice;
 
   // Handle input change
   const handleInputChange = (e) => {
@@ -81,13 +78,6 @@ export default function Checkout() {
     if (!formData.state.trim()) errors.state = "State is required";
     if (!formData.zipcode.trim()) errors.zipcode = "Zipcode is required";
 
-    if (paymentMethod === "credit-card") {
-      if (!formData.cardNumber.trim()) errors.cardNumber = "Card number is required";
-      if (!formData.cardExpiry.trim()) errors.cardExpiry = "Expiry date is required";
-      if (!formData.cardCvc.trim()) errors.cardCvc = "CVC is required";
-      if (!formData.cardName.trim()) errors.cardName = "Name on card is required";
-    }
-
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -105,81 +95,142 @@ export default function Checkout() {
       return;
     }
 
-    if (!isAuthenticated) {
-      setError("Please login to place an order");
-      return;
-    }
-
     setLoading(true);
     setError(null);
 
     try {
-      const token = localStorage.getItem("authToken");
-      
-      const orderData = {
-        shippingAddress: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          address1: formData.address,
-          address2: formData.apartment,
+      // Send the same item shape the sidebar renders from, so the confirmation
+      // email can never disagree with what the customer saw on screen.
+      const payload = {
+        customer: {
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          apartment: formData.apartment,
           city: formData.city,
           state: formData.state,
-          zipCode: formData.zipcode,
+          zipcode: formData.zipcode,
           country: formData.country,
-          phone: formData.phone,
-          email: formData.email,
+          orderNotes: formData.orderNotes,
         },
-        paymentMethod: paymentMethod === "credit-card" ? "card" : paymentMethod === "paypal" ? "paypal" : "cod",
+        items: cartProducts.map((p) => {
+          // Resolve the display name from whichever field the cart context set.
+          // Guest carts store `title`; authenticated carts store it via
+          // productSnapshot.name; older localStorage entries may have `name`.
+          const resolvedName =
+            p.title || p.name || p.productSnapshot?.name || "Product";
+
+          // Image: guest carts use imgSrc, auth carts use productSnapshot.image
+          const resolvedImage =
+            p.imgSrc ||
+            p.images?.[0]?.url ||
+            p.productSnapshot?.image ||
+            "";
+
+          return {
+            title: resolvedName,
+            name: resolvedName,
+            image: resolvedImage,
+            price: p.finalPrice ?? p.price ?? p.productSnapshot?.price ?? 0,
+            quantity: p.quantity,
+            size: p.size || "",
+            isCustomFit: !!p.isCustomFit,
+            sku: p.sku || p.slug || p.productId || p._id || "",
+          };
+        }),
         shippingMethod: {
-          name: shippingMethod === "express" ? "Express Shipping" : "Standard Shipping",
-          cost: shippingCost,
-          estimatedDays: shippingMethod === "express" ? "2-3 business days" : "5-7 business days"
+          name: "Free Shipping",
+          cost: 0,
+          estimatedDays: "7-10 business days",
         },
-        customerNotes: formData.orderNotes,
       };
 
-      const response = await fetch("/api/orders", {
+      const response = await fetch("/api/shop-enquiry", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(orderData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || data.error || "Failed to create order");
+        throw new Error(data.error || data.message || "Failed to submit order");
       }
 
-      // Order created successfully
+      // Show the reference inline rather than redirecting — guests have no
+      // account page to land on, and the order ID is what they need to quote.
+      setSubmitted({ orderId: data.orderId });
       await clearCart();
-      
-      // Redirect to order confirmation page
-      const orderNumber = data.data?.orderNumber || data.orderNumber;
-      router.push(`/account-orders?success=true&orderNumber=${orderNumber}`);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       console.error("Order error:", err);
-      setError(err.message || "Failed to place order. Please try again.");
+      setError(err.message || "Failed to submit order. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
+  // ---- Success screen ----
+  if (submitted) {
+    return (
+      <div className="flat-spacing-25">
+        <div className="container">
+          <div
+            className="text-center mx-auto"
+            style={{ maxWidth: 620, padding: "40px 20px" }}
+          >
+            <h4 className="mb-3">Thank you — your order is confirmed</h4>
+            <p className="text-sm text-main mb-4">
+              We&apos;ve emailed a confirmation to you and notified our team.
+              Someone will be in touch shortly to confirm the details and
+              arrange payment.
+            </p>
+
+            <div
+              className="d-inline-block mb-4"
+              style={{
+                border: "1px solid #e2cdc6",
+                borderRadius: 8,
+                padding: "16px 28px",
+              }}
+            >
+              <div
+                className="text-sm text-main"
+                style={{ textTransform: "uppercase", letterSpacing: 1.5 }}
+              >
+                Order Reference
+              </div>
+              <div
+                className="fw-medium"
+                style={{ fontSize: 22, color: "#8f1717", letterSpacing: 1 }}
+              >
+                {submitted.orderId}
+              </div>
+            </div>
+
+            <p className="text-sm text-main mb-4">
+              Please quote this reference if you contact us. No payment has been
+              taken yet.
+            </p>
+
+            <div className="d-flex gap-3 justify-content-center flex-wrap">
+              <Link href="/shop" className="tf-btn btn-dark2 animate-btn">
+                Continue Shopping
+              </Link>
+              <Link href="/contact-us" className="tf-btn animate-btn">
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flat-spacing-25">
       <div className="container">
-        {!isAuthenticated && (
-          <div className="alert alert-warning mb-4">
-            <strong>Note:</strong> Please{" "}
-            <Link href="/login" className="fw-bold text-decoration-underline">
-              login
-            </Link>{" "}
-            to place an order and track your purchases.
-          </div>
-        )}
-        
         {error && (
           <div className="alert alert-danger mb-4">
             {error}
@@ -350,11 +401,6 @@ export default function Checkout() {
               <div className="box-ip-contact">
                 <div className="title">
                   <div className="text-xl fw-medium">Contact Information</div>
-                  {!isAuthenticated && (
-                    <Link href="/login" className="text-sm link">
-                      Log in
-                    </Link>
-                  )}
                 </div>
                 <input
                   className={`style-2 ${formErrors.email ? "is-invalid" : ""}`}
@@ -370,189 +416,38 @@ export default function Checkout() {
                 )}
               </div>
               <div className="box-ip-shipping">
-                <div className="title text-xl fw-medium">Shipping Method</div>
-                <fieldset className="mb_16">
-                  <label htmlFor="freeship" className="check-ship">
-                    <input
-                      type="radio"
-                      id="freeship"
-                      className="tf-check-rounded"
-                      name="shippingMethod"
-                      checked={shippingMethod === "free"}
-                      onChange={() => setShippingMethod("free")}
-                    />
-                    <span className="text text-sm">
-                      <span>Free Shipping (7-10 business days)</span>
-                      <span className="price">$0.00</span>
-                    </span>
-                  </label>
-                </fieldset>
-                <fieldset>
-                  <label htmlFor="expship" className="check-ship">
-                    <input
-                      type="radio"
-                      id="expship"
-                      className="tf-check-rounded"
-                      name="shippingMethod"
-                      checked={shippingMethod === "express"}
-                      onChange={() => setShippingMethod("express")}
-                    />
-                    <span className="text text-sm">
-                      <span>Express Shipping (3-5 business days)</span>
-                      <span className="price">$10.00</span>
-                    </span>
-                  </label>
-                </fieldset>
+                <div className="title text-xl fw-medium">Shipping</div>
+                <div className="text-sm text-main">
+                  Free shipping on every order (7-10 business days), included in
+                  the total below — nothing added at checkout.
+                </div>
               </div>
               <div className="box-ip-payment">
                 <div className="title">
-                  <div className="text-lg fw-medium mb_4">Payment</div>
+                  <div className="text-lg fw-medium mb_4">How Payment Works</div>
                   <p className="text-sm text-main">
-                    All transactions are secure and encrypted.
+                    We don&apos;t take payment online. Confirm your order below and
+                    our team will contact you to arrange payment directly.
                   </p>
                 </div>
-                <div className="payment-method-box" id="payment-method-box">
-                  <div className="payment-item mb_16">
-                    <label htmlFor="delivery" className="payment-header">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        className="tf-check-rounded"
-                        id="delivery"
-                        checked={paymentMethod === "cod"}
-                        onChange={() => setPaymentMethod("cod")}
-                      />
-                      <span className="pay-title text-sm">
-                        Cash on delivery
-                      </span>
-                    </label>
-                    {paymentMethod === "cod" && (
-                      <div className="payment-body p-3">
-                        <p className="text-sm text-main">
-                          Pay with cash upon delivery.
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  <div className="payment-item mb_16">
-                    <label htmlFor="credit-card" className="payment-header">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        className="tf-check-rounded"
-                        id="credit-card"
-                        checked={paymentMethod === "credit-card"}
-                        onChange={() => setPaymentMethod("credit-card")}
-                      />
-                      <span className="pay-title text-sm">Credit Card</span>
-                    </label>
-                    {paymentMethod === "credit-card" && (
-                      <div className="payment-body">
-                        <fieldset className="ip-card mb_16">
-                          <input
-                            type="text"
-                            className={`style-2 ${formErrors.cardNumber ? "is-invalid" : ""}`}
-                            placeholder="Card number"
-                            name="cardNumber"
-                            value={formData.cardNumber}
-                            onChange={handleInputChange}
-                          />
-                          <Image
-                            className="card-logo"
-                            width={41}
-                            height={12}
-                            alt="card"
-                            src="/images/payment/visa-2.webp"
-                          />
-                        </fieldset>
-                        {formErrors.cardNumber && (
-                          <div className="invalid-feedback d-block mb-2">{formErrors.cardNumber}</div>
-                        )}
-                        <div className="grid-2 mb_16">
-                          <div>
-                            <input
-                              type="text"
-                              className={`style-2 ${formErrors.cardExpiry ? "is-invalid" : ""}`}
-                              placeholder="MM/YY"
-                              name="cardExpiry"
-                              value={formData.cardExpiry}
-                              onChange={handleInputChange}
-                            />
-                            {formErrors.cardExpiry && (
-                              <div className="invalid-feedback d-block">{formErrors.cardExpiry}</div>
-                            )}
-                          </div>
-                          <div>
-                            <input
-                              type="text"
-                              className={`style-2 ${formErrors.cardCvc ? "is-invalid" : ""}`}
-                              placeholder="CVC"
-                              name="cardCvc"
-                              value={formData.cardCvc}
-                              onChange={handleInputChange}
-                            />
-                            {formErrors.cardCvc && (
-                              <div className="invalid-feedback d-block">{formErrors.cardCvc}</div>
-                            )}
-                          </div>
-                        </div>
-                        <fieldset className="mb_16">
-                          <input
-                            type="text"
-                            className={`style-2 ${formErrors.cardName ? "is-invalid" : ""}`}
-                            placeholder="Name on card"
-                            name="cardName"
-                            value={formData.cardName}
-                            onChange={handleInputChange}
-                          />
-                          {formErrors.cardName && (
-                            <div className="invalid-feedback d-block">{formErrors.cardName}</div>
-                          )}
-                        </fieldset>
-                        <div className="cb-ship">
-                          <input
-                            type="checkbox"
-                            className="tf-check"
-                            id="checkShip"
-                            name="useShippingAsBilling"
-                            checked={formData.useShippingAsBilling}
-                            onChange={handleInputChange}
-                          />
-                          <label htmlFor="checkShip" className="text-sm text-main">
-                            Use shipping address as billing address
-                          </label>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="payment-item paypal-payment mb_16">
-                    <label htmlFor="paypal" className="payment-header">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        className="tf-check-rounded"
-                        id="paypal"
-                        checked={paymentMethod === "paypal"}
-                        onChange={() => setPaymentMethod("paypal")}
-                      />
-                      <span className="pay-title text-sm">
-                        PayPal
-                        <Image
-                          className="card-logo"
-                          width={78}
-                          height={20}
-                          alt="paypal"
-                          src="/images/payment/paypal-2.webp"
-                        />
-                      </span>
-                    </label>
-                    {paymentMethod === "paypal" && (
-                      <div className="payment-body p-3">
-                        <p className="text-sm text-main">
-                          You will be redirected to PayPal.
-                        </p>
-                      </div>
-                    )}
+                <div
+                  className="p-3 mb_16"
+                  style={{
+                    border: "1px solid #e2cdc6",
+                    borderRadius: 8,
+                    background: "#fffaf8",
+                  }}
+                >
+                  <div className="text-sm" style={{ lineHeight: 2 }}>
+                    <div>
+                      <strong>1.</strong> You place your order — no card details needed.
+                    </div>
+                    <div>
+                      <strong>2.</strong> We confirm stock, sizing and your final total.
+                    </div>
+                    <div>
+                      <strong>3.</strong> We arrange payment with you, then ship your gear.
+                    </div>
                   </div>
                 </div>
                 <fieldset className="mb_16">
@@ -624,20 +519,9 @@ export default function Checkout() {
                     </Link>
                   </div>
                 )}
-                <ul className="list-total">
-                  <li className="total-item text-sm d-flex justify-content-between">
-                    <span>Subtotal:</span>
-                    <span className="price-sub fw-medium">${totalPrice.toFixed(2)} USD</span>
-                  </li>
-                  <li className="total-item text-sm d-flex justify-content-between">
-                    <span>Shipping:</span>
-                    <span className="price-ship fw-medium">${shippingCost.toFixed(2)} USD</span>
-                  </li>
-                  <li className="total-item text-sm d-flex justify-content-between">
-                    <span>Tax (8%):</span>
-                    <span className="price-tax fw-medium">${taxAmount.toFixed(2)} USD</span>
-                  </li>
-                </ul>
+                <div className="text-sm text-main d-flex justify-content-between mb_8">
+                  <span>Free shipping included</span>
+                </div>
                 <div className="subtotal text-lg fw-medium d-flex justify-content-between">
                   <span>Total:</span>
                   <span className="total-price-order">${grandTotal.toFixed(2)} USD</span>
@@ -652,12 +536,15 @@ export default function Checkout() {
                     {loading ? (
                       <>
                         <span className="spinner-border spinner-border-sm me-2" role="status"></span>
-                        Processing...
+                        Submitting...
                       </>
                     ) : (
-                      "Place order"
+                      "Confirm order"
                     )}
                   </button>
+                  <p className="text-sm text-main text-center mt-3 mb-0">
+                    No payment taken now — our team will contact you to arrange it.
+                  </p>
                 </div>
               </div>
             </div>

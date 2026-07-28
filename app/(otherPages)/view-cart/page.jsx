@@ -14,7 +14,7 @@ export const metadata = {
 };
 export default function page() {
   return (
-    <>
+    <div className="page-light-bg">
       <Topbar1 />
       <Header3 />
       <>
@@ -22,7 +22,7 @@ export default function page() {
       </>
       <ShopCart />
 
-      <Footer3 />
-    </>
+      <Footer3 topBg="#ffffff" />
+    </div>
   );
 }

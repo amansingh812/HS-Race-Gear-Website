@@ -18,7 +18,7 @@ const defaultSlides = [
   { id: 8, color: "Grey", size: "extra large", imgSrc: "/images/products/fashion/women-grey-2.jpg" },
 ];
 
-export default function Slider2({ product, activeColor = "Black", setActiveColor = () => {} }) {
+export default function Slider2({ product, activeColor = "Black", setActiveColor = () => {}, onImageSelect = () => {} }) {
   // Build items from product data or fallback
   let items = [];
   if (product?.images && product.images.length > 0) {
@@ -184,6 +184,7 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
               if (items[swiper.activeIndex]) {
                 setActiveIndex(swiper.activeIndex);
                 setActiveColor(items[swiper.activeIndex]?.color);
+                onImageSelect(items[swiper.activeIndex]?.imgSrc);
               }
             }}
           >
@@ -251,6 +252,7 @@ export default function Slider2({ product, activeColor = "Black", setActiveColor
                 if (items[swiper.activeIndex]) {
                   setActiveIndex(swiper.activeIndex);
                   setActiveColor(items[swiper.activeIndex]?.color);
+                  onImageSelect(items[swiper.activeIndex]?.imgSrc);
                 }
               }}
             >

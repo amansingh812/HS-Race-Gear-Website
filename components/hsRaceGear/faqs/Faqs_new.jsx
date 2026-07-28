@@ -584,7 +584,7 @@ export default function Faqs() {
                     >
                       <div className="accordion-body widget-desc">
                         <p>
-                          We accept secure online payments via credit/debit cards, PayPal, Venmo and supported payment gateways shown at checkout.
+                          We don't take payment on the website. Place your order and you'll get a confirmation email with an order reference, then our team contacts you to confirm sizing and arrange payment by card, PayPal or bank transfer.
                         </p>
                       </div>
                     </div>

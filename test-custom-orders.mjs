@@ -176,6 +176,65 @@ const CASES = [
   },
 ];
 
+// ── Off-the-rack shop checkout (/api/shop-enquiry) ──────────────────
+// Same email treatment as custom orders, but many line items and no
+// payment capture. The cart checkout previously collected card details and
+// discarded them, so these cases exist to prove the replacement flow
+// actually delivers both emails.
+const SHOP_CASES = [
+  {
+    key: "shop-multi",
+    label: "SHOP: 2 line items, express shipping",
+    endpoint: "/api/shop-enquiry",
+    expect: { subtotal: 508, total: 518 },
+    payload: {
+      customer: {
+        name: "Aman Patel",
+        email: CUSTOMER_EMAIL,
+        phone: "+1 (617) 555-0100",
+        address: "42 Speedway Ave",
+        apartment: "Unit 3",
+        city: "Watertown",
+        state: "MA",
+        zipcode: "02472",
+        country: "United States",
+        orderNotes: "Need before race weekend.",
+      },
+      items: [
+        { title: "HS Pro 1 Race Suit", price: 329, quantity: 1, size: "L", sku: "hs-pro-1" },
+        { title: "Custom Gloves", price: 89.5, quantity: 2, isCustomFit: true },
+      ],
+      shippingMethod: { name: "Express Shipping", cost: 10, estimatedDays: "3-5 business days" },
+    },
+  },
+  {
+    key: "shop-free",
+    label: "SHOP: single item, free shipping, no address",
+    endpoint: "/api/shop-enquiry",
+    expect: { subtotal: 329, total: 329 },
+    payload: {
+      customer: { name: "Jo Racer", email: CUSTOMER_EMAIL, phone: "+1 (617) 555-0101" },
+      items: [{ title: "HS Ace Suit", price: 329, quantity: 1 }],
+      shippingMethod: { name: "Free Shipping", cost: 0 },
+    },
+  },
+];
+
+const SHOP_REJECT_CASES = [
+  {
+    key: "shop-reject-empty",
+    label: "SHOP REJECT: empty cart",
+    endpoint: "/api/shop-enquiry",
+    payload: { customer: { name: "A", email: CUSTOMER_EMAIL, phone: "1" }, items: [] },
+  },
+  {
+    key: "shop-reject-nocustomer",
+    label: "SHOP REJECT: missing customer email",
+    endpoint: "/api/shop-enquiry",
+    payload: { customer: { name: "A", phone: "1" }, items: [{ title: "X", price: 1, quantity: 1 }] },
+  },
+];
+
 // ── Negative cases: these MUST be rejected with 400 ─────────────────
 const REJECT_CASES = [
   {
@@ -215,8 +274,8 @@ function line(char = "─") {
   console.log(char.repeat(72));
 }
 
-async function post(payload) {
-  const res = await fetch(`${BASE_URL}/api/custom-order`, {
+async function post(payload, endpoint = "/api/custom-order") {
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -296,16 +355,57 @@ async function main() {
     }
   }
 
+  // ── Shop checkout ────────────────────────────────────────────────
+  console.log("");
+  console.log("SHOP CHECKOUT — SHOULD SUCCEED");
+  line();
+  for (const c of pick(SHOP_CASES)) {
+    if (DRY_RUN) {
+      const ok = c.payload.customer?.email && c.payload.items?.length;
+      console.log(`${ok ? "○" : "✗"} ${c.label}`);
+      ok ? pass++ : fail++;
+      continue;
+    }
+    try {
+      const { status, ok, body } = await post(c.payload, c.endpoint);
+      if (ok && body.orderId) {
+        orderIds.push({ id: body.orderId, label: c.label });
+        const p = body.pricing || {};
+        console.log(`✅ ${c.label}`);
+        console.log(`    ${body.orderId}   subtotal=${p.subtotal}  shipping=${p.shipping}  total=${p.total} ${p.currency || ""}`);
+
+        const problems = [];
+        if ("taxes" in p) problems.push("response includes a taxes field — no tax should exist");
+        if (p.subtotal !== c.expect.subtotal) problems.push(`subtotal ${p.subtotal}, expected ${c.expect.subtotal}`);
+        if (p.total !== c.expect.total) problems.push(`total ${p.total}, expected ${c.expect.total}`);
+        if (p.subtotal + p.shipping !== p.total) problems.push("total != subtotal + shipping");
+        if (problems.length) {
+          fail++;
+          problems.forEach((p2) => console.log(`    ⚠  ${p2}`));
+        } else {
+          pass++;
+        }
+      } else {
+        fail++;
+        console.log(`❌ ${c.label}`);
+        console.log(`    HTTP ${status} — ${body.error || "no orderId returned"}`);
+      }
+    } catch (err) {
+      fail++;
+      console.log(`❌ ${c.label} — ${err.message}`);
+    }
+  }
+
   console.log("");
   console.log("SHOULD BE REJECTED (400)");
   line();
-  for (const c of negatives) {
+  for (const c of [...negatives, ...pick(SHOP_REJECT_CASES)]) {
     if (DRY_RUN) {
       console.log(`○ ${c.label}`);
       continue;
     }
     try {
-      const { status, body } = await post(c.payload);
+      const { status, body } = await post(c.payload, c.endpoint);
       if (status === 400) {
         pass++;
         console.log(`✅ ${c.label}`);
@@ -356,6 +456,13 @@ async function main() {
   console.log("  □ Subject: [HSRG-…] New <product> — Aman — <total>");
   console.log("  □ Ship To present; the no-address case shows the ⚠ warning");
   console.log("  □ Pricing ledger matches the customer's copy");
+  console.log("\nShop checkout emails (both inboxes):");
+  console.log("  □ Both line items listed with qty, unit price and line total");
+  console.log("  □ Express order shows shipping $10.00; free order shows FREE");
+  console.log("  □ Totals: $518.00 (express) and $329.00 (free)");
+  console.log("  □ Customer copy says no payment has been taken");
+  console.log("  □ Admin subject reads: [HSRG-…] New shop order — …");
+  console.log("  □ No card fields anywhere on /checkout in the browser");
   console.log("  □ Reply-To goes to the customer, not to yourself");
   console.log("\nAlso worth checking:");
   console.log("  □ Neither email lands in spam (add SPF/DKIM if they do)");

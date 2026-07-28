@@ -1,5 +1,13 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import {
+  BRAND,
+  escapeHtml,
+  money,
+  generateOrderId,
+  formatPlacedAt,
+  normaliseAddress,
+  getTransporter,
+} from "@/lib/orderEmail";
 
 /**
  * Custom order API.
@@ -67,11 +75,7 @@ export async function POST(request) {
     // instead of rejecting a paying customer's order.
     const address = normaliseAddress(customer);
 
-    const orderPlacedAt = new Date().toLocaleString("en-US", {
-      timeZone: "America/New_York",
-      dateStyle: "full",
-      timeStyle: "short",
-    }) + " ET";
+    const orderPlacedAt = formatPlacedAt();
 
     // ---- Email to HS Race Gear (internal / admin) ----
     const internalEmailHtml = renderAdminNotification({
@@ -135,45 +139,17 @@ export async function POST(request) {
     });
 
     // ---- Send Emails ----
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = process.env.SMTP_PORT || 587;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const businessEmail = process.env.BUSINESS_EMAIL || "info@hsracegear.com";
-
-    // Fail loud if SMTP is missing — orders are business-critical and must
-    // never be silently lost.
-    if (!smtpHost || !smtpUser || !smtpPass) {
-      console.error("[/api/custom-order] SMTP env vars missing — CANNOT deliver order email.", {
-        smtpHost: !!smtpHost,
-        smtpUser: !!smtpUser,
-        smtpPass: !!smtpPass,
+    // Fails loud if SMTP is missing or auth fails — orders are
+    // business-critical and must never be silently lost.
+    const mail = await getTransporter();
+    if (!mail.ok) {
+      console.error("[/api/custom-order] mailer unavailable", {
         customer: customer?.email,
         productLabel,
       });
-      return NextResponse.json(
-        { error: "Order system is not fully configured. Please contact us directly at info@hsracegear.com or +1 (617) 319 6993 to place your order." },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: mail.error }, { status: 500 });
     }
-
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: Number(smtpPort),
-      secure: Number(smtpPort) === 465,
-      auth: { user: smtpUser, pass: smtpPass },
-    });
-
-    // Verify SMTP creds first — no point building emails if auth fails
-    try {
-      await transporter.verify();
-    } catch (verifyErr) {
-      console.error("[/api/custom-order] SMTP verify failed:", verifyErr?.message || verifyErr);
-      return NextResponse.json(
-        { error: "Order system authentication failed. Please contact us directly at info@hsracegear.com or +1 (617) 319 6993." },
-        { status: 500 }
-      );
-    }
+    const { transporter, smtpUser, businessEmail } = mail;
 
     // Send internal notification to info@hsracegear.com (BUSINESS_EMAIL)
     // Order ID leads the subject so the inbox sorts and searches cleanly.
@@ -238,19 +214,6 @@ export async function POST(request) {
  *   - no background-image dependency for anything load-bearing
  * ──────────────────────────────────────────────────────────────── */
 
-const BRAND = {
-  red: "#dc2626",          // primary
-  redDeep: "#8f1717",      // headings / outlined button
-  redDark: "#7a1212",      // footer ground
-  blush: "#f7ebe7",        // page ground
-  card: "#fffaf8",         // inner panels
-  ink: "#2b1a17",          // body copy
-  inkSoft: "#6f5а52",      // muted copy (fixed below)
-  rule: "#e2cdc6",         // hairlines
-  site: "https://www.hsracegear.com",
-};
-// Guard against a typo'd hex slipping into output.
-BRAND.inkSoft = "#6f5a52";
 
 /**
  * Admin / internal order notification → info@hsracegear.com
@@ -302,6 +265,23 @@ function renderAdminNotification({
            .join("")}
        </table>`
     : `<div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.redDeep}; font-weight:bold;">⚠ No colours were selected on the form — confirm with the customer.</div>`;
+
+  const thumbnails = [suitMockup, glovesMockup, shoesMockup].filter(Boolean);
+  const thumbnailsHtml = thumbnails.length
+    ? `<div style="margin-top:24px;">
+         <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:12px;">Selected Designs</div>
+         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+           <tr>
+             ${thumbnails.map(m => `
+             <td style="padding-right:16px; vertical-align:top;">
+               <img src="${BRAND.site}${m.image}" alt="${escapeHtml(m.name)}" width="100" style="width:100px; height:auto; border-radius:4px; border:1px solid ${BRAND.rule}; display:block;" />
+               <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; margin-top:8px; text-align:center;">${escapeHtml(m.name)}</div>
+             </td>
+             `).join("")}
+           </tr>
+         </table>
+       </div>`
+    : "";
 
   const addressBlock = address.present
     ? `<div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.75; color:${BRAND.ink};">
@@ -454,6 +434,8 @@ function renderAdminNotification({
                     Colours
                   </div>
                   ${swatchStrip}
+                  
+                  ${thumbnailsHtml}
                 </td>
               </tr>
             </table>
@@ -648,6 +630,23 @@ function renderCustomerConfirmation({
        </div>`
     : `<div style="font-size:13px; color:${BRAND.inkSoft};">No colours selected — we'll confirm with you.</div>`;
 
+  const thumbnails = [suitMockup, glovesMockup, shoesMockup].filter(Boolean);
+  const thumbnailsHtml = thumbnails.length
+    ? `<div style="margin-top:24px;">
+         <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-bottom:10px;">Selected Designs</div>
+         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+           <tr>
+             ${thumbnails.map(m => `
+             <td style="padding-right:16px; vertical-align:top;">
+               <img src="${BRAND.site}${m.image}" alt="${escapeHtml(m.name)}" width="100" style="width:100px; height:auto; border-radius:4px; border:1px solid ${BRAND.rule}; display:block;" />
+               <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; margin-top:8px; text-align:center;">${escapeHtml(m.name)}</div>
+             </td>
+             `).join("")}
+           </tr>
+         </table>
+       </div>`
+    : "";
+
   const addressBlock = address.present
     ? address.lines.map((l) => escapeHtml(l)).join("<br>")
     : `We don't have a delivery address yet — reply to this email with it and we'll add it to your order.`;
@@ -786,6 +785,7 @@ function renderCustomerConfirmation({
                       <td colspan="2" style="padding-top:14px;">
                         <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-bottom:2px;">Your colours</div>
                         ${swatchStrip}
+                        ${thumbnailsHtml}
                       </td>
                     </tr>
                   </table>
@@ -1008,33 +1008,6 @@ function renderCustomerConfirmationText({
   return L.join("\n");
 }
 
-/**
- * Generate a human-readable order reference.
- * Format: HSRG-260726-K4P2
- *   - sortable by date
- *   - short enough to read out over the phone
- *   - random suffix avoids collisions within the same day
- */
-function generateOrderId() {
-  const d = new Date();
-  const yy = String(d.getUTCFullYear()).slice(-2);
-  const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
-  const dd = String(d.getUTCDate()).padStart(2, "0");
-  // Avoid ambiguous characters (0/O, 1/I) so references survive being
-  // handwritten or read aloud.
-  const ALPHABET = "ACDEFGHJKLMNPQRTUVWXY2346789";
-  let suffix = "";
-  for (let i = 0; i < 4; i++) {
-    suffix += ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
-  }
-  return `HSRG-${yy}${mm}${dd}-${suffix}`;
-}
-
-/** Format a number as USD for display in emails. */
-function money(n) {
-  const v = Number.isFinite(Number(n)) ? Number(n) : 0;
-  return `$${v.toFixed(2)}`;
-}
 
 /**
  * Compute the order price breakdown.
@@ -1079,44 +1052,6 @@ function computePricing({ pkg, quantity }) {
     // Pre-formatted display strings so both email templates agree.
     subtotalText: quoteOnly ? "Quote on request" : money(subtotal),
     totalText: quoteOnly ? "Quote on request" : `${money(total)} USD`,
-  };
-}
-
-/**
- * Pull the shipping address out of the customer payload into a predictable
- * shape, and pre-render single-line and multi-line versions for emails.
- */
-function normaliseAddress(customer) {
-  const get = (k) => String(customer?.[k] || "").trim();
-
-  const line1 = get("addressLine1");
-  const line2 = get("addressLine2");
-  const city = get("city");
-  const state = get("state");
-  const postalCode = get("postalCode");
-  const country = get("country");
-  const notes = get("notes");
-
-  const present = Boolean(line1 || city || postalCode);
-
-  // "City, ST 02472" — omit separators for missing parts.
-  const cityLine = [city, [state, postalCode].filter(Boolean).join(" ")]
-    .filter(Boolean)
-    .join(", ");
-
-  const lines = [line1, line2, cityLine, country].filter(Boolean);
-
-  return {
-    present,
-    line1,
-    line2,
-    city,
-    state,
-    postalCode,
-    country,
-    notes,
-    lines,
-    oneLine: lines.join(", "),
   };
 }
 
@@ -1215,11 +1150,4 @@ function renderColorRows(colors) {
 }
 
 // Minimal HTML escape to prevent injection in the rendered email
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+

@@ -3,6 +3,38 @@
    Brand color: #c8102e (racing red)
    ============================================================= */
 
+/* ── Two-tone header on light-background pages ──
+   Matches the homepage look: white logo row + dark nav row.
+   On the homepage the header-absolute-2 floats over a dark hero so
+   transparency works; on checkout/cart/wishlist the bg is white, so we
+   make it position:relative and give each row an explicit background. */
+.page-light-bg .header-default.header-absolute-2,
+.page-light-bg header.header-default.header-absolute-2 {
+  position: relative !important;
+  margin-bottom: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Logo row — white background */
+.page-light-bg .header-default.header-absolute-2 .header-top {
+  background-color: #ffffff !important;
+}
+
+/* Make logo, SFI badge, and icon outlines visible on white bg */
+.page-light-bg .header-default.header-absolute-2 .header-top .skew-box.outline-red {
+  border-color: #c8102e;
+}
+
+.page-light-bg .header-default.header-absolute-2 .header-top .skew-box.outline-red .icon-search {
+  color: #c8102e;
+}
+
+/* Nav row — dark background */
+.page-light-bg .header-default.header-absolute-2 .header-bottom {
+  background-color: #111 !important;
+}
+
 /* ── Free-shipping progress bar accent ── */
 .tf-cart-head .tf-progress-ship .value {
   background-color: #c8102e;

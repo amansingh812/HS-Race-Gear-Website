@@ -9,11 +9,11 @@ import "@/public/css/cart-checkout.css";
 export const metadata = {
   alternates: { canonical: "/checkout" },
   title: "Checkout | HS Race Gear - Secure Checkout",
-  description: "Complete your purchase securely with address validation, shipping options, and secure payment processing.",
+  description: "Confirm your HS Race Gear order — no card details needed. We'll email your confirmation and our team will contact you to arrange payment.",
 };
 export default function page() {
   return (
-    <>
+    <div className="page-light-bg">
       <Topbar1 />
       <Header3 />
       <>
@@ -55,7 +55,7 @@ export default function page() {
         {/* /Title Page */}
       </>
       <Checkout />
-      <Footer3 />
-    </>
+      <Footer3 topBg="#ffffff" />
+    </div>
   );
 }

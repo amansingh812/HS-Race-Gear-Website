@@ -20,6 +20,7 @@ export default function Details1({ product }) {
   const [driverName, setDriverName] = useState("");
   const [showSizeChart, setShowSizeChart] = useState(false);
   const [selectedLayer, setSelectedLayer] = useState("single");
+  const [activeImage, setActiveImage] = useState("");
 
   // Detect if this is an off-the-rack race suit (show layer toggle)
   const isSuit = product.category?.slug === "race-suits";
@@ -120,7 +121,10 @@ export default function Details1({ product }) {
             <div className="col-md-6">
               <div className="tf-product-media-wrap sticky-top">
                 <div className="product-thumbs-slider">
-                  <Slider2 product={product} />
+                  <Slider2 
+                    product={product} 
+                    onImageSelect={(imgSrc) => setActiveImage(imgSrc)}
+                  />
                 </div>
               </div>
             </div>
@@ -404,7 +408,8 @@ export default function Details1({ product }) {
                               customFit,
                               selectedOptions,
                               driverName,
-                              price: totalPrice
+                              price: totalPrice,
+                              image: activeImage
                             });
                           } else {
                             alert('Please select a size');

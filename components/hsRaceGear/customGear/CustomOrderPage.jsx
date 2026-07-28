@@ -401,20 +401,35 @@ function CustomerInfoForm({ info, onChange, errors, onSubmit, isSubmitting, curr
             <span className="order-summary-label">Package</span>
             <span className="order-summary-value">{orderData.package?.name || "—"}</span>
           </div>
-          <div className="order-summary-item">
+          <div className="order-summary-item" style={{ alignItems: "flex-start" }}>
             <span className="order-summary-label">Suit Design</span>
-            <span className="order-summary-value">{orderData.suitMockup?.name || "—"}</span>
+            <span className="order-summary-value" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+              {orderData.suitMockup?.name || "—"}
+              {orderData.suitMockup?.image && (
+                <img src={orderData.suitMockup.image} alt={orderData.suitMockup.name} style={{ width: "80px", borderRadius: "4px" }} />
+              )}
+            </span>
           </div>
           {orderData.glovesMockup && (
-            <div className="order-summary-item">
+            <div className="order-summary-item" style={{ alignItems: "flex-start" }}>
               <span className="order-summary-label">Gloves Design</span>
-              <span className="order-summary-value">{orderData.glovesMockup.name}</span>
+              <span className="order-summary-value" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                {orderData.glovesMockup.name}
+                {orderData.glovesMockup.image && (
+                  <img src={orderData.glovesMockup.image} alt={orderData.glovesMockup.name} style={{ width: "80px", borderRadius: "4px" }} />
+                )}
+              </span>
             </div>
           )}
           {orderData.shoesMockup && (
-            <div className="order-summary-item">
+            <div className="order-summary-item" style={{ alignItems: "flex-start" }}>
               <span className="order-summary-label">Shoes Design</span>
-              <span className="order-summary-value">{orderData.shoesMockup.name}</span>
+              <span className="order-summary-value" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                {orderData.shoesMockup.name}
+                {orderData.shoesMockup.image && (
+                  <img src={orderData.shoesMockup.image} alt={orderData.shoesMockup.name} style={{ width: "80px", borderRadius: "4px" }} />
+                )}
+              </span>
             </div>
           )}
           <div className="order-summary-item">

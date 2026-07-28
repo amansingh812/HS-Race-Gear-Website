@@ -39,11 +39,11 @@ export default function PrivacyPolicy() {
                   <li>Phone number</li>
                   <li>Account login credentials</li>
                   <li>Order and purchase history</li>
-                  <li>Payment details (processed securely by third-party payment providers)</li>
+                  <li>Payment details (never collected on this website — arranged directly with our team after you order)</li>
                 </ul>
               </div>
               <div className="hs-doc-card hs-doc-card-note">
-                <p className="hs-doc-card-text">HS Racegear does NOT store your credit card information. All payments are processed through secure payment gateways.</p>
+                <p className="hs-doc-card-text">HS Racegear does NOT collect or store your credit card information on this website. Payment is arranged directly with our team after your order is confirmed.</p>
               </div>
               <div className="hs-doc-card">
                 <h3 className="hs-doc-card-title">Automatically Collected Information</h3>

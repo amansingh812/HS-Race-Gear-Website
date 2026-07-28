@@ -87,6 +87,7 @@ export async function POST(request) {
       price,      // client-provided price (layer price: $395/$595)
       layer,      // "single" or "double"
       driverName, // driver name for personalisation
+      image,      // currently selected image on the product page
     } = body;
     
     // Validate required fields
@@ -169,7 +170,7 @@ export async function POST(request) {
         name: product.name,
         slug: product.slug,
         price: basePrice,
-        image: primaryImage?.url,
+        image: image || primaryImage?.url,
         certification: product.certification,
         layer: layer || 'single',
         driverName: driverName || '',

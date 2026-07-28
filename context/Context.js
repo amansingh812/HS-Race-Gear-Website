@@ -158,7 +158,7 @@ export default function Context({ children }) {
 
   // Add product to cart (supports both authenticated and guest)
   const addProductToCart = async (id, qty = 1, options = {}, isModal = true) => {
-    const { size, isCustomFit, measurements, selectedOptions, price, layer, driverName } = options;
+    const { size, isCustomFit, measurements, selectedOptions, price, layer, driverName, image } = options;
 
     if (isAuthenticated) {
       // Add to database cart
@@ -181,6 +181,7 @@ export default function Context({ children }) {
             price,
             layer,
             driverName,
+            image,
           }),
         });
 
@@ -210,7 +211,7 @@ export default function Context({ children }) {
           const response = await fetch(`/api/products/${id}`);
           if (response.ok) {
             const data = await response.json();
-            const p = data.product || data;
+            const p = data.data?.product || data.product || data;
             product = {
               id: p._id || p.id,
               title: p.name || p.title,
@@ -231,6 +232,7 @@ export default function Context({ children }) {
         const item = {
           ...product,
           id: String(id),
+          imgSrc: image || product.imgSrc,
           quantity: qty,
           size,
           isCustomFit,

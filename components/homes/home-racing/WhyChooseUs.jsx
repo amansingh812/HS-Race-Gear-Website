@@ -28,8 +28,8 @@ const features = [
     },
     {
         id: 4,
-        title: "Secure Payment",
-        description: "Shop confidently with our encrypted payment system",
+        title: "Confirm Before You Pay",
+        description: "No card details online — we confirm your order first, then arrange payment",
         icon: "icon-gift",
         bgColor: "#f3e5f5",
         iconColor: "#7b1fa2",
