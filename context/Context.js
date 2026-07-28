@@ -212,13 +212,18 @@ export default function Context({ children }) {
           if (response.ok) {
             const data = await response.json();
             const p = data.data?.product || data.product || data;
+            // Mongo stores price/compareAtPrice in CENTS (32900 = $329.00).
+            // This is the only add-to-cart path that reads price straight from
+            // the API response — the product detail page always passes an
+            // explicit `price` option in dollars, which overrides this value
+            // below. Divide by 100 here so the fallback matches that unit.
             product = {
               id: p._id || p.id,
               title: p.name || p.title,
               imgSrc: p.images?.[0]?.url || "/images/products/default.webp",
               imgHover: p.images?.[1]?.url || p.images?.[0]?.url || "/images/products/default.webp",
-              price: p.price || 0,
-              salePrice: p.salePrice,
+              price: (p.price || 0) / 100,
+              salePrice: p.compareAtPrice ? p.compareAtPrice / 100 : undefined,
               slug: p.slug,
             };
           }
