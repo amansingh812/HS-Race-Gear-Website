@@ -3,7 +3,8 @@
 import { useContextElement } from "@/context/Context";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import * as gtag from "@/lib/gtag";
 
 /**
  * Checkout — order enquiry flow.
@@ -50,6 +51,17 @@ export default function Checkout() {
   // shipping charge, no paid express option, no tax. What's shown is what's
   // owed: the listed product prices, full stop.
   const grandTotal = totalPrice;
+
+  // GA4: begin_checkout — fire once, after the cart has actually loaded.
+  // The cart hydrates from localStorage/API on mount, so an unguarded effect
+  // would fire with an empty items array on first render.
+  const beginCheckoutFired = useRef(false);
+  useEffect(() => {
+    if (beginCheckoutFired.current) return;
+    if (!cartProducts.length) return;
+    beginCheckoutFired.current = true;
+    gtag.beginCheckout(cartProducts);
+  }, [cartProducts]);
 
   // Handle input change
   const handleInputChange = (e) => {
@@ -157,6 +169,16 @@ export default function Checkout() {
       if (!response.ok) {
         throw new Error(data.error || data.message || "Failed to submit order");
       }
+
+      // GA4: purchase — this is the conversion event. Must fire BEFORE
+      // clearCart(), otherwise cartProducts is empty and the items array
+      // and revenue value are both lost.
+      gtag.purchase({
+        transactionId: data.orderId,
+        items: cartProducts,
+        value: grandTotal,
+        shipping: 0,
+      });
 
       // Show the reference inline rather than redirecting — guests have no
       // account page to land on, and the order ID is what they need to quote.

@@ -37,6 +37,7 @@ import ShareModal from "@/components/modals/ShareModal";
 
 import CartComponent from "@/components/modals/CartComponent";
 import DbSidebar from "@/components/modals/DbSidebar";
+import Analytics from "@/components/analytics/Analytics";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -131,6 +132,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <Analytics />
         <NextAuthProvider>
           <AuthProvider>
             <Context>

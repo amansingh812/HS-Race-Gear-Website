@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 import ProductHeading from "./ProductHeading";
 import BoughtTogether from "./BoughtTogether";
+import * as gtag from "@/lib/gtag";
 
 export default function Details1({ product }) {
   const router = useRouter();
@@ -66,6 +67,12 @@ export default function Details1({ product }) {
       setSelectedSize(availableSizes[0].size);
     }
   }, [availableSizes, selectedSize]);
+
+  // GA4: view_item — fires once per product page view
+  useEffect(() => {
+    if (!product?._id) return;
+    gtag.viewItem(product);
+  }, [product?._id]);
 
   // Calculate total price from base price + layer multiplier (suits only) + add-ons
   const calculateTotalPrice = () => {
@@ -411,6 +418,12 @@ export default function Details1({ product }) {
                               price: totalPrice,
                               image: activeImage
                             });
+                            // GA4: add_to_cart — totalPrice is already in dollars
+                            gtag.addToCart(
+                              { ...product, size: selectedSize, price: totalPrice },
+                              quantity,
+                              { priceInDollars: true }
+                            );
                           } else {
                             alert('Please select a size');
                           }

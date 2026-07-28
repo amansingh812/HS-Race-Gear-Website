@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
+import * as gtag from "@/lib/gtag";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
 
@@ -614,6 +615,33 @@ export default function CustomOrderPage() {
       });
 
       if (!res.ok) throw new Error("Failed to submit order");
+
+      // GA4: purchase — custom orders have a fixed package price, so they
+      // report real revenue rather than a zero-value lead. Package prices
+      // are already in dollars (see PACKAGES above).
+      let orderRef = "";
+      try {
+        const data = await res.json();
+        orderRef = data?.orderId || data?.referenceId || "";
+      } catch {
+        // Response body isn't JSON — the order still succeeded, just track
+        // it without a reference ID.
+      }
+
+      gtag.purchase({
+        transactionId: orderRef,
+        value: selectedPackage?.price || 0,
+        shipping: 0,
+        items: [
+          {
+            slug: selectedPackage?.id,
+            title: selectedPackage?.name,
+            price: selectedPackage?.price || 0,
+            quantity: 1,
+            category: "Custom Race Gear",
+          },
+        ],
+      });
 
       setIsSuccess(true);
       window.scrollTo({ top: 0, behavior: "smooth" });

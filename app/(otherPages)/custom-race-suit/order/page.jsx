@@ -10,6 +10,7 @@ export const metadata = {
   title: "Start Custom Order | HS Race Gear - Custom Racing Suits",
   description: "Build your custom racing suit order. Choose your package, select your design, pick your colors, and get a professional mockup within 24 hours.",
   keywords: "custom race suit order, custom racing gear, SFI certified suits, custom gloves, custom racing shoes",
+  robots: { index: false, follow: true }, // Order form — don't index, but follow links
 };
 
 export default function page() {

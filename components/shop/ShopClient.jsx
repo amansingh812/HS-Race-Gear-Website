@@ -7,6 +7,7 @@ import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
 import Link from "next/link";
 import ProductCard1 from "@/components/productCards/ProductCard1";
+import * as gtag from "@/lib/gtag";
 import '@/public/css/shop.css';
 
 // Category configuration
@@ -222,6 +223,20 @@ export default function ShopClient() {
         }));
         setLoading(false);
         setIsPageLoading(false);
+
+        // GA4: view_item_list — prices here are already normalised to dollars
+        gtag.event('view_item_list', {
+          item_list_name: activeCategoryConfig?.title || 'Shop All',
+          items: transformedProducts.slice(0, 20).map((p, i) => ({
+            item_id: p.slug || p.id,
+            item_name: p.title,
+            item_brand: 'HS Race Gear',
+            item_category: p.category?.name || '',
+            item_variant: p.certification || '',
+            price: p.price,
+            index: i,
+          })),
+        });
       } else {
         setProducts([]);
         setLoading(false);
