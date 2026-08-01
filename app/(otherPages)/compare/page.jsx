@@ -27,6 +27,7 @@ const breadcrumbSchema = {
 };
 
 const compareLinks = [
+  { slug: "vs-customracesuit", title: "Custom Race Suit Buyer's Guide", blurb: "What to compare across any custom suit shop: SFI tier, fit process, all-in price, lead time." },
   { slug: "vs-k1", title: "HS Race Gear vs K1 RaceGear", blurb: "K1 sells volume, we sell custom fit at a lower price point." },
   { slug: "vs-rush", title: "HS Race Gear vs Rush Racewear", blurb: "Both target amateur racers. Compare custom-fit process, SFI tier, and price." },
   { slug: "vs-velocity", title: "HS Race Gear vs Velocita-USA", blurb: "Both Made in USA. Compare on customization depth and lead time." },

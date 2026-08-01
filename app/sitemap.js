@@ -59,6 +59,8 @@ export default async function sitemap() {
     { url: `${baseUrl}/compare/vs-pyrotect`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-simpson`,  lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-hrx`,      lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    // Highest-impression query in GSC (73 impr @ pos 20.9) — priority 0.8
+    { url: `${baseUrl}/compare/vs-customracesuit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/privacy-policy`,      lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
     { url: `${baseUrl}/term-and-condition`,  lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
     { url: `${baseUrl}/shipping-policy`,     lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
