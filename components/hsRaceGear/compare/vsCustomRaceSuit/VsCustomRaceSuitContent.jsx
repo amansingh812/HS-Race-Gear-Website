@@ -238,7 +238,7 @@ export default function VsCustomRaceSuitContent() {
                 <ul className="hs-doc-list">
                   <li><Link href="/compare/vs-k1">HS Racegear vs K1 RaceGear</Link></li>
                   <li><Link href="/compare/vs-rush">HS Racegear vs RUSH Racegear</Link></li>
-                  <li><Link href="/compare/vs-velocity">HS Racegear vs Velocita</Link></li>
+                  <li><Link href="/compare/vs-velocita">HS Racegear vs Velocita</Link></li>
                   <li><Link href="/compare/vs-pyrotect">HS Racegear vs Pyrotect</Link></li>
                   <li><Link href="/compare/vs-simpson">HS Racegear vs Simpson Race Products</Link></li>
                   <li><Link href="/compare/vs-hrx">HS Racegear vs HRX</Link></li>

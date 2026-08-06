@@ -25,7 +25,7 @@ const articleSchema = {
   "headline": "TPP Rating Explained — What Thermal Protective Performance Actually Measures (And Why It Matters More Than SFI)",
   "description":
     "TPP measures how long a racing suit fabric protects skin from second-degree burns. Two suits at the same SFI rating can have different TPP scores — here's why, and how to find the actual number.",
-  "image": "https://www.hsracegear.com/images/home/blog_1.webp",
+  "image": "https://www.hsracegear.com/images/blog/tpp-rating-explained.webp",
   "author": {
     "@type": "Organization",
     "name": "HS Race Gear",

@@ -26,7 +26,7 @@ const articleSchema = {
   "headline": "SFI Racing Suit Ratings by Class — Which Rating You Actually Need",
   "description":
     "Discipline-by-discipline guide to picking the right SFI 3.2A rating: sprint car, dirt late model, drag racing, karting, road racing, powerboat, and how class ETs drive the rating you need.",
-  "image": "https://www.hsracegear.com/images/home/blog_1.webp",
+  "image": "https://www.hsracegear.com/images/blog/sfi-rated-racing-suit-by-class.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",

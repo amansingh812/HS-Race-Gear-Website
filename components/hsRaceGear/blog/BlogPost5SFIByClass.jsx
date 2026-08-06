@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import RelatedBlogPosts from "@/components/hsRaceGear/blog/RelatedBlogPosts";
 
 export default function BlogPost5SFIByClass() {
@@ -90,7 +89,6 @@ export default function BlogPost5SFIByClass() {
             {/* HOW TO READ */}
             <div className="blog-body-block">
               <h2 className="blog-body-heading">How to Read the SFI Rating on Your Suit Label</h2>
-              <Image src="/images/blog/sfi-label-macro.png" alt="SFI Rating Label Macro" width={800} height={600} style={{ width: "100%", height: "auto", borderRadius: "8px", marginBottom: "20px" }} />
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   Every SFI-certified racing suit has a sewn-in label with the spec number, the rating, and the manufacturer details. Here's what each part actually means:
@@ -109,7 +107,6 @@ export default function BlogPost5SFIByClass() {
             {/* SPRINT CAR & DIRT */}
             <div className="blog-body-block">
               <h2 className="blog-body-heading">Sprint Car &amp; Dirt Track — SFI 3.2A/5 Is the Practical Floor</h2>
-              <Image src="/images/blog/sfi-sprint-car.png" alt="Sprint Car Driver" width={800} height={450} style={{ width: "100%", height: "auto", borderRadius: "8px", marginBottom: "20px" }} />
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   Sprint cars and dirt late models share a similar risk profile: open cockpit, methanol or high-octane gas, rapid fire potential after contact, and abrasion exposure if you're upside-down sliding through the infield. A single-layer SFI 3.2A/1 suit is technically allowed in some entry-level dirt divisions but it's the wrong tool for the job.
@@ -131,7 +128,6 @@ export default function BlogPost5SFIByClass() {
             {/* DRAG */}
             <div className="blog-body-block">
               <h2 className="blog-body-heading">Drag Racing — Why Class ETs Drive the SFI Rating You Need</h2>
-              <Image src="/images/blog/sfi-drag-racing.png" alt="Drag Racer in Staging Lanes" width={800} height={533} style={{ width: "100%", height: "auto", borderRadius: "8px", marginBottom: "20px" }} />
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   Drag racing is the discipline where SFI ratings are most strictly tied to performance brackets. The faster you go, the higher the rating must be — and the rule isn't a suggestion. NHRA and IHRA tech officials will turn you away in line if your suit's rating doesn't match your timing slip.
@@ -161,7 +157,6 @@ export default function BlogPost5SFIByClass() {
             {/* KARTING */}
             <div className="blog-body-block">
               <h2 className="blog-body-heading">Karting — Why SFI 3.2A/1 Is Almost Always Enough</h2>
-              <Image src="/images/blog/sfi-karting.png" alt="Junior Karting Driver" width={800} height={533} style={{ width: "100%", height: "auto", borderRadius: "8px", marginBottom: "20px" }} />
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   Karting is the discipline most racers ask the most questions about, because the SFI rating story is genuinely different here. Karts don't carry enough fuel for a sustained pool fire, the engines run cooler, and abrasion — not fire — is the primary injury risk in a kart-on-track or kart-on-barrier event.
@@ -200,7 +195,6 @@ export default function BlogPost5SFIByClass() {
             {/* POWERBOAT */}
             <div className="blog-body-block">
               <h2 className="blog-body-heading">Powerboat — APBA's Quiet SFI Requirements</h2>
-              <Image src="/images/blog/sfi-powerboat.png" alt="Powerboat Racing" width={800} height={450} style={{ width: "100%", height: "auto", borderRadius: "8px", marginBottom: "20px" }} />
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   Powerboat racing has SFI requirements that are less well-known than auto-racing's because the sport is smaller and the rulebooks are harder to find online. APBA-sanctioned classes typically require:

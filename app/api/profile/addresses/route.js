@@ -27,14 +27,30 @@ async function addAddress(request) {
     const user = request.user;
     const body = await request.json();
     
-    const { 
-      street, 
-      city, 
-      state, 
-      zipCode, 
-      country, 
-      isDefault = false 
+    // `type` is required:true on the address subschema in models/User.js, but
+    // was never read from the body or defaulted here — so every POST failed
+    // Mongoose validation and no address could be saved. Defaulting to
+    // 'shipping' (the only kind the account UI collects) and validating the
+    // enum so a bad value returns 400 rather than a 500 from the model.
+    const {
+      street,
+      city,
+      state,
+      zipCode,
+      country,
+      isDefault = false,
+      type = 'shipping'
     } = body;
+
+    if (!['billing', 'shipping'].includes(type)) {
+      return Response.json(
+        {
+          success: false,
+          error: "Address type must be 'billing' or 'shipping'"
+        },
+        { status: 400 }
+      );
+    }
 
     // Validation
     if (!street || !city || !state || !zipCode || !country) {
@@ -72,6 +88,7 @@ async function addAddress(request) {
 
     // Add new address
     dbUser.addresses.push({
+      type,
       street,
       city,
       state,

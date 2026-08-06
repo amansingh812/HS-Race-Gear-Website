@@ -9,7 +9,7 @@ Disallow: /view-cart/
 Disallow: /wish-list/
 Disallow: /coming-soon/
 Disallow: /before-you-leave/
-Disallow: /blanket-template/
+Disallow: /blank-template/
 Disallow: /cart-drawer-v2/
 Disallow: /cart-empty/
 Disallow: /more-mockups/

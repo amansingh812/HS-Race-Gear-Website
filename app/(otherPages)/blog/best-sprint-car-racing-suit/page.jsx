@@ -25,7 +25,7 @@ const articleSchema = {
   "headline": "Best Sprint Car Racing Suit — SFI Rating, Fit, Arm Restraints & What Actually Matters On Dirt",
   "description":
     "Sprint car racing suit guide — what makes a sprint suit different from a generic SFI 3.2A/5, sanctioning-body requirements (USAC, World of Outlaws, ASCS), arm-restraint compatibility, dirt vs asphalt spec, methanol-specific protection.",
-  "image": "https://www.hsracegear.com/images/home/blog_1.webp",
+  "image": "https://www.hsracegear.com/images/blog/best-sprint-car-racing-suit.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",

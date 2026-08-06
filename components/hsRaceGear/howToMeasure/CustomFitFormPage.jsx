@@ -88,12 +88,22 @@ export default function CustomFitFormPage() {
                             </div>
                         </div>
                         <div className="tf-content-right">
+                            {/* Replaced the A–Q labelled body-diagram (Custom_form.png) with the
+                                "How to Measure" tips banner, 2026-08-06 (client request).
+                                Dropped the `lazyload` class and `data-src`: lazysizes is not a
+                                dependency of this project, so that attribute never did anything —
+                                only `src` was ever loaded. Keeping it would imply lazy loading
+                                that isn't happening. Native loading="lazy" does the job instead.
+                                Source PNG was 1.06 MB; this WebP is 99 KB for the same pixels. */}
                             <div className="img-custom-fit radius-10 overflow-hidden">
                                 <img
-                                    className="lazyload w-100 custom-fit-hero-img"
-                                    data-src="/images/shop/custom-fit-hero.webp"
-                                    src="/images/shop/Custom_form.png"
-                                    alt="Custom Fit Racing Suit Measurement"
+                                    className="w-100 custom-fit-hero-img"
+                                    src="/images/shop/how-to-measure.webp"
+                                    width={1451}
+                                    height={1084}
+                                    loading="lazy"
+                                    decoding="async"
+                                    alt="How to measure for a race suit: wear light fitted clothing, use a soft flexible tape measure kept parallel to the ground, measure yourself rather than having someone else do it, keep the tape snug but not tight, and measure each dimension twice to confirm accuracy."
                                 />
                             </div>
                         </div>

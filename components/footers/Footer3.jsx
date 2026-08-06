@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { SOCIAL_LINKS } from "@/lib/socialLinks";
 import "@/public/css/footer.css";
 
 export default function Footer3({ topBg }) {
@@ -250,7 +251,7 @@ export default function Footer3({ topBg }) {
                         <Link href="/more-mockups">MORE MOCKUPS</Link>
                       </li>
                       <li className="item">
-                        <Link href="/blanket-template">BLANK TEMPLATE</Link>
+                        <Link href="/blank-template">BLANK TEMPLATE</Link>
                       </li>
                     </ul>
                   </div>
@@ -272,7 +273,7 @@ export default function Footer3({ topBg }) {
                         <Link href="/compare/vs-rush">V/S RUSH</Link>
                       </li>
                       <li className="item">
-                        <Link href="/compare/vs-velocity">V/S VELOCITA</Link>
+                        <Link href="/compare/vs-velocita">V/S VELOCITA</Link>
                       </li>
                       <li className="item">
                         <Link href="/compare/vs-pyrotect">V/S PYROTECT</Link>
@@ -308,21 +309,21 @@ export default function Footer3({ topBg }) {
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.instagram.com/hsracegear/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                       </svg>
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.facebook.com/profile.php?id=61580765382460" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
                       </svg>
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.tiktok.com/@hsracipk5hl" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                    <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.83 4.83 0 01-3.58-1.43V6.69h3.58z" />
                       </svg>

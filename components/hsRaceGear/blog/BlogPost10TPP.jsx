@@ -169,9 +169,6 @@ export default function BlogPost10TPP() {
                   <li><strong>SFI Foundation certification report.</strong> Available via the SFI website for some manufacturers. Confirms the lab-tested TPP at certification.</li>
                   <li><strong>Direct ask.</strong> Email or call the manufacturer. If they can't produce the number, that's information too.</li>
                 </ul>
-                <p className="blog-body-text" style={{ marginTop: "14px" }}>
-                  At HS Race Gear, every custom suit ships with documentation listing the SFI rating, the TPP score, and the date of manufacture. Custom orders also let you specify materials (genuine Nomex® vs treated alternatives) which directly drives the final TPP.
-                </p>
               </div>
             </div>
 

@@ -30,7 +30,7 @@ const compareLinks = [
   { slug: "vs-customracesuit", title: "Custom Race Suit Buyer's Guide", blurb: "What to compare across any custom suit shop: SFI tier, fit process, all-in price, lead time." },
   { slug: "vs-k1", title: "HS Race Gear vs K1 RaceGear", blurb: "K1 sells volume, we sell custom fit at a lower price point." },
   { slug: "vs-rush", title: "HS Race Gear vs Rush Racewear", blurb: "Both target amateur racers. Compare custom-fit process, SFI tier, and price." },
-  { slug: "vs-velocity", title: "HS Race Gear vs Velocita-USA", blurb: "Both Made in USA. Compare on customization depth and lead time." },
+  { slug: "vs-velocita", title: "HS Race Gear vs Velocita-USA", blurb: "Both Made in USA. Compare on customization depth and lead time." },
   { slug: "vs-pyrotect", title: "HS Race Gear vs Pyrotect", blurb: "Pyrotect is the incumbent. Compare on price, custom process, and mockup revisions." },
   { slug: "vs-simpson", title: "HS Race Gear vs Simpson Race Products", blurb: "Simpson is legacy premium. We're custom-fit premium at half the price." },
   { slug: "vs-hrx", title: "HS Race Gear vs HRX", blurb: "HRX ships from overseas. We build in the USA with a 2–3 week turnaround." },

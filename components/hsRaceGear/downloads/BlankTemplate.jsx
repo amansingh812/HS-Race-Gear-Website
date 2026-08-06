@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function BlanketTemplate() {
+export default function BlankTemplate() {
     return (
         <>
             {/* HERO */}

@@ -25,7 +25,7 @@ const articleSchema = {
   "headline": "Endurance Racing Suits Explained — What Makes Le Mans Drivers' Gear Different (And What You Actually Need)",
   "description":
     "Le Mans gear vs amateur endurance racing suits — FIA 8856-2018 vs SFI 3.2A/5, multi-driver fit, heat management at hour 14, pit-lane transitions, and a custom-suit spec checklist.",
-  "image": "https://www.hsracegear.com/images/home/blog2.webp",
+  "image": "https://www.hsracegear.com/images/blog/endurance-racing-suit-guide.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",

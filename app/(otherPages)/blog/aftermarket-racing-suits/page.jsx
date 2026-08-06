@@ -26,7 +26,7 @@ const articleSchema = {
   "headline": "Aftermarket Racing Suits: When to Upgrade From Stock Gear (And What to Look For)",
   "description":
     "Aftermarket racing suit buyer's guide — when to upgrade, what SFI rating you need, Nomex® vs generic FR, custom vs off-the-rack, and the five signs your current suit is done.",
-  "image": "https://www.hsracegear.com/images/home/blog2.webp",
+  "image": "https://www.hsracegear.com/images/blog/aftermarket-racing-suits.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",

@@ -25,7 +25,7 @@ const articleSchema = {
   "headline": "How to Choose the Right Racing Suit for Your Discipline",
   "description":
     "Discipline-by-discipline buyer's guide to SFI certified racing suits — drag, sprint car, stock, road racing, endurance, and karting. What rating, what construction, what fit.",
-  "image": "https://www.hsracegear.com/images/home/blog2.webp",
+  "image": "https://www.hsracegear.com/images/blog/choose-right-racing-suit.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",

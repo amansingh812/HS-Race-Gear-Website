@@ -1,522 +1,374 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
+
+import React, { useCallback, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 
+/**
+ * Saved delivery addresses.
+ *
+ * Rebuilt 2026-08-06. The previous version held two hardcoded example
+ * addresses in local useState ("HS Race Gear Pham, 16 Yarran st, Punchbowl,
+ * Australia") and never called the API, so nothing a customer entered was
+ * ever saved — it vanished on refresh, and the fake Australian addresses
+ * showed to every logged-in user.
+ *
+ * Now backed by the real endpoints:
+ *   GET    /api/profile                  -> user, including addresses
+ *   POST   /api/profile/addresses        -> add
+ *   PUT    /api/profile/addresses/[id]   -> update
+ *   DELETE /api/profile/addresses/[id]   -> remove
+ *
+ * All are wrapped in requireAuth, so every call needs the Bearer token.
+ */
+
+const EMPTY_FORM = {
+  street: "",
+  city: "",
+  state: "",
+  zipCode: "",
+  country: "United States",
+  isDefault: false,
+};
+
+const getToken = () =>
+  typeof window !== "undefined" ? localStorage.getItem("authToken") : null;
+
 export default function Address() {
-  const [addresses, setAddresses] = useState([
-    {
-      id: 1,
-      firstName: "HS Race Gear",
-      lastName: "Pham",
-      company: "Company",
-      address1: "16 Yarran st",
-      city: "Punchbowl",
-      region: "Australia",
-      province: "", // Corrected spelling
-      zipCode: "2196",
-      phone: "+61 1234 3435",
-      isDefault: false,
-      email: "info@hsracegear.com",
-    },
-    {
-      id: 2,
-      firstName: "HS Race Gear",
-      lastName: "Pham",
-      company: "Company",
-      address1: "17 Yarran st",
-      city: "Punchbowl",
-      region: "Australia",
-      province: "",
-      zipCode: "2196",
-      phone: "+61 1234 3435",
-      isDefault: false,
-      email: "info@hsracegear.com",
-    },
-  ]);
+  const [addresses, setAddresses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
+  const [notice, setNotice] = useState(null);
 
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [editingAddressId, setEditingAddressId] = useState(null);
-  const [newAddress, setNewAddress] = useState({
-    firstName: "",
-    lastName: "",
-    company: "",
-    address1: "",
-    city: "",
-    region: "",
-    province: "",
-    zipCode: "",
-    phone: "",
-    isDefault: false,
-    email: "",
-  });
+  const [showForm, setShowForm] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [form, setForm] = useState(EMPTY_FORM);
 
-  const handleInputChange = (e) => {
-    const { id, value, type, checked } = e.target;
-    setNewAddress((prevAddress) => ({
-      ...prevAddress,
-      [id]: type === "checkbox" ? checked : value,
-    }));
+  // ── Load ──────────────────────────────────────────────────────────────
+  const loadAddresses = useCallback(async () => {
+    const token = getToken();
+    if (!token) {
+      setError("Please sign in to manage your addresses.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/profile", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error("Could not load your addresses.");
+
+      const json = await res.json();
+      setAddresses(json?.data?.user?.addresses || []);
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadAddresses();
+  }, [loadAddresses]);
+
+  // Clear the success message after a few seconds
+  useEffect(() => {
+    if (!notice) return;
+    const t = setTimeout(() => setNotice(null), 4000);
+    return () => clearTimeout(t);
+  }, [notice]);
+
+  // ── Form helpers ──────────────────────────────────────────────────────
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const handleAddAddress = (e) => {
+  const openAddForm = () => {
+    setForm(EMPTY_FORM);
+    setEditingId(null);
+    setShowForm(true);
+    setError(null);
+  };
+
+  const openEditForm = (addr) => {
+    setForm({
+      street: addr.street || "",
+      city: addr.city || "",
+      state: addr.state || "",
+      zipCode: addr.zipCode || "",
+      country: addr.country || "United States",
+      isDefault: !!addr.isDefault,
+    });
+    setEditingId(addr._id);
+    setShowForm(true);
+    setError(null);
+  };
+
+  const closeForm = () => {
+    setShowForm(false);
+    setEditingId(null);
+    setForm(EMPTY_FORM);
+  };
+
+  // ── Save (create or update) ───────────────────────────────────────────
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const nextId =
-      addresses.length > 0
-        ? Math.max(...addresses.map((addr) => addr.id)) + 1
-        : 1;
+    for (const [field, label] of [
+      ["street", "Street address"],
+      ["city", "City"],
+      ["state", "State"],
+      ["zipCode", "ZIP code"],
+      ["country", "Country"],
+    ]) {
+      if (!form[field].trim()) {
+        setError(`${label} is required.`);
+        return;
+      }
+    }
 
-    const newAddressToAdd = {
-      ...newAddress,
-      id: nextId,
-    };
+    const token = getToken();
+    if (!token) {
+      setError("Your session has expired. Please sign in again.");
+      return;
+    }
 
-    setAddresses((prevAddresses) => [...prevAddresses, newAddressToAdd]);
+    setSaving(true);
+    setError(null);
 
-    setNewAddress({
-      firstName: "",
-      lastName: "",
-      company: "",
-      address1: "",
-      city: "",
-      region: "",
-      province: "",
-      zipCode: "",
-      phone: "",
-      isDefault: false,
-      email: "",
-    });
-    setShowAddForm(false);
-  };
+    try {
+      const res = await fetch(
+        editingId ? `/api/profile/addresses/${editingId}` : "/api/profile/addresses",
+        {
+          method: editingId ? "PUT" : "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          // `type` is required by the address subschema in models/User.js.
+          body: JSON.stringify({ ...form, type: "shipping" }),
+        }
+      );
 
-  const handleEditAddress = (id) => {
-    setEditingAddressId(id);
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json?.success === false) {
+        throw new Error(json?.error || "Could not save the address.");
+      }
 
-    const addressToEdit = addresses.find((addr) => addr.id === id);
+      // The API returns the full updated list — use it rather than re-fetching.
+      if (json?.data?.addresses) {
+        setAddresses(json.data.addresses);
+      } else {
+        await loadAddresses();
+      }
 
-    if (addressToEdit) {
-      setNewAddress({ ...addressToEdit }); // Pre-populate the form
+      setNotice(editingId ? "Address updated." : "Address added.");
+      closeForm();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSaving(false);
     }
   };
 
-  const handleUpdateAddress = (e) => {
-    e.preventDefault();
+  // ── Delete ────────────────────────────────────────────────────────────
+  const handleDelete = async (id) => {
+    if (!window.confirm("Remove this address?")) return;
 
-    setAddresses((prevAddresses) =>
-      prevAddresses.map((address) =>
-        address.id === editingAddressId
-          ? { ...address, ...newAddress }
-          : address
-      )
-    );
+    const token = getToken();
+    if (!token) {
+      setError("Your session has expired. Please sign in again.");
+      return;
+    }
 
-    setEditingAddressId(null);
-    setNewAddress({
-      firstName: "",
-      lastName: "",
-      company: "",
-      address1: "",
-      city: "",
-      region: "",
-      province: "",
-      zipCode: "",
-      phone: "",
-      isDefault: false,
-      email: "",
-    });
+    try {
+      const res = await fetch(`/api/profile/addresses/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json?.success === false) {
+        throw new Error(json?.error || "Could not remove the address.");
+      }
+
+      if (json?.data?.addresses) {
+        setAddresses(json.data.addresses);
+      } else {
+        setAddresses((prev) => prev.filter((a) => a._id !== id));
+      }
+      setNotice("Address removed.");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
-  const handleDeleteAddress = (id) => {
-    setAddresses((prevAddresses) =>
-      prevAddresses.filter((address) => address.id !== id)
-    );
-  };
-
-  const handleCancelEdit = () => {
-    setEditingAddressId(null);
-    setNewAddress({
-      firstName: "",
-      lastName: "",
-      company: "",
-      address1: "",
-      city: "",
-      region: "",
-      province: "",
-      zipCode: "",
-      phone: "",
-      isDefault: false,
-      email: "",
-    });
-  };
-
-  const handleSetDefault = (id) => {
-    setAddresses((prevAddresses) =>
-      prevAddresses.map((address) => ({
-        ...address,
-        isDefault: address.id === id,
-      }))
-    );
-  };
-
+  // ── Render ────────────────────────────────────────────────────────────
   return (
-    <div className="flat-spacing-13">
-      <div className="container-7">
-        <div className="btn-sidebar-mb d-lg-none">
-          <button data-bs-toggle="offcanvas" data-bs-target="#mbAccount">
-            <i className="icon icon-sidebar" />
-          </button>
-        </div>
-        {/* /sidebar-account */}
-        {/* Account */}
+    <section className="hs-account">
+      <div className="container">
+        <div className="hs-account-layout">
+          <Sidebar />
 
-        <div className="main-content-account">
-          <div className="sidebar-account-wrap sidebar-content-wrap sticky-top d-lg-block d-none">
-            <ul className="my-account-nav">
-              <Sidebar />
-            </ul>
-          </div>
-          <div className="my-acount-content account-address">
-            <h6 className="title-account">
-              Your addresses ({addresses.length})
-            </h6>
-            <div className="widget-inner-address">
-              <button
-                className="tf-btn btn-add-address animate-btn"
-                onClick={() => setShowAddForm(true)}
-              >
-                Add new address
-              </button>
+          <div className="hs-account-main">
+            <div className="hs-account-greeting">
+              <h1 className="hs-account-hello">Delivery <span>Addresses</span></h1>
+              <p className="hs-account-sub">
+                Saved addresses are offered at checkout so you don&apos;t have to
+                retype them.
+              </p>
+            </div>
 
-              {showAddForm && (
-                <form
-                  onSubmit={handleAddAddress}
-                  className="wd-form-address form-default show-form-address"
-                  style={{ display: "block" }}
-                >
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="firstName">First Name</label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        value={newAddress.firstName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                    <fieldset>
-                      <label htmlFor="lastName">Last Name</label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        value={newAddress.lastName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="company">Company</label>
-                      <input
-                        type="text"
-                        id="company"
-                        value={newAddress.company}
-                        onChange={handleInputChange}
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="address1">Address 1</label>
-                      <input
-                        type="text"
-                        id="address1"
-                        value={newAddress.address1}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="city">City</label>
-                      <input
-                        type="text"
-                        id="city"
-                        value={newAddress.city}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="region">Country/region</label>
-                      <input
-                        type="text"
-                        id="region"
-                        value={newAddress.region}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="province">Province</label>
-                      <input
-                        type="text"
-                        id="province"
-                        value={newAddress.province}
-                        onChange={handleInputChange}
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="zipCode">Postal/ZIP code</label>
-                      <input
-                        type="text"
-                        id="zipCode"
-                        value={newAddress.zipCode}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="phone">Phone</label>
-                      <input
-                        type="text"
-                        id="phone"
-                        value={newAddress.phone}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="tf-cart-checkbox">
-                    <input
-                      type="checkbox"
-                      name="isDefault"
-                      className="tf-check"
-                      id="isDefault"
-                      checked={newAddress.isDefault}
-                      onChange={handleInputChange}
-                    />
-                    <label htmlFor="isDefault" className="label">
-                      <span>Set as default address</span>
-                    </label>
-                  </div>
-                  <div className="box-btn">
-                    <button className="tf-btn animate-btn" type="submit">
-                      Add Address
-                    </button>
-                    <button
-                      type="button"
-                      className="tf-btn btn-out-line-dark btn-hide-address"
-                      onClick={() => setShowAddForm(false)}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-              )}
+            {error && <div className="hs-alert hs-alert-error">{error}</div>}
+            {notice && <div className="hs-alert hs-alert-success">{notice}</div>}
 
-              <ul className="list-account-address tf-grid-layout md-col-2">
-                {addresses.map((address, i) => (
-                  <li className="account-address-item" key={i}>
-                    <p className="title text-md fw-medium">
-                      {address.address1}
-                    </p>
-                    <div className="info-detail">
-                      <div className="box-infor">
-                        <p className="text-md">
-                          {address.firstName} {address.lastName}
-                        </p>
-                        <p className="text-md">{address.email}</p>
-                        {address.company && (
-                          <p className="text-md">{address.company}</p>
-                        )}
-                        <p className="text-md">{address.address1}</p>
-                        <p className="text-md">{address.city}</p>
-                        <p className="text-md">{address.region}</p>
-                        {address.province && (
-                          <p className="text-md">{address.province}</p>
-                        )}
-                        <p className="text-md">{address.zipCode}</p>
-                        <p className="text-md">{address.phone}</p>
-                        <p className="text-md">
-                          Default Address: {address.isDefault ? "Yes" : "No"}
-                        </p>
-                      </div>
-                      <div className="box-btn">
-                        <button
-                          className="tf-btn btn-out-line-dark btn-edit-address"
-                          onClick={() => {
-                            handleEditAddress(address.id);
-                          }}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="tf-btn btn-out-line-dark btn-delete-address"
-                          onClick={() => handleDeleteAddress(address.id)}
-                        >
-                          Delete
-                        </button>
-                      </div>
+            {/* Add / edit form */}
+            {showForm && (
+              <div className="hs-account-panel">
+                <h2 className="hs-account-panel-title">
+                  {editingId ? "Edit Address" : "Add a New Address"}
+                </h2>
+                <form onSubmit={handleSubmit}>
+                  <div className="hs-form-grid">
+                    <div className="hs-field is-full">
+                      <label htmlFor="street">Street Address</label>
+                      <input
+                        id="street" name="street" type="text"
+                        value={form.street} onChange={handleChange}
+                        placeholder="59 Kondazian St" autoComplete="street-address"
+                      />
                     </div>
-                  </li>
-                ))}
-              </ul>
-
-              {editingAddressId !== null && (
-                <form
-                  onSubmit={handleUpdateAddress}
-                  className="wd-form-address form-default edit-form-address "
-                  style={{ display: "block" }}
-                >
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="firstName">First Name</label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        value={newAddress.firstName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                    <fieldset>
-                      <label htmlFor="lastName">Last Name</label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        value={newAddress.lastName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="company">Company</label>
-                      <input
-                        type="text"
-                        id="company"
-                        value={newAddress.company}
-                        onChange={handleInputChange}
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="address1">Address 1</label>
-                      <input
-                        type="text"
-                        id="address1"
-                        value={newAddress.address1}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
+                    <div className="hs-field">
                       <label htmlFor="city">City</label>
                       <input
-                        type="text"
-                        id="city"
-                        value={newAddress.city}
-                        onChange={handleInputChange}
-                        required
+                        id="city" name="city" type="text"
+                        value={form.city} onChange={handleChange}
+                        placeholder="Watertown" autoComplete="address-level2"
                       />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="region">Country/region</label>
+                    </div>
+                    <div className="hs-field">
+                      <label htmlFor="state">State / Region</label>
                       <input
-                        type="text"
-                        id="region"
-                        value={newAddress.region}
-                        onChange={handleInputChange}
-                        required
+                        id="state" name="state" type="text"
+                        value={form.state} onChange={handleChange}
+                        placeholder="MA" autoComplete="address-level1"
                       />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="province">Province</label>
+                    </div>
+                    <div className="hs-field">
+                      <label htmlFor="zipCode">ZIP / Postal Code</label>
                       <input
-                        type="text"
-                        id="province"
-                        value={newAddress.province}
-                        onChange={handleInputChange}
+                        id="zipCode" name="zipCode" type="text"
+                        value={form.zipCode} onChange={handleChange}
+                        placeholder="02472" autoComplete="postal-code"
                       />
-                    </fieldset>
-                  </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="zipCode">Postal/ZIP code</label>
+                    </div>
+                    <div className="hs-field">
+                      <label htmlFor="country">Country</label>
                       <input
-                        type="text"
-                        id="zipCode"
-                        value={newAddress.zipCode}
-                        onChange={handleInputChange}
-                        required
+                        id="country" name="country" type="text"
+                        value={form.country} onChange={handleChange}
+                        placeholder="United States" autoComplete="country-name"
                       />
-                    </fieldset>
+                    </div>
                   </div>
-                  <div className="cols">
-                    <fieldset>
-                      <label htmlFor="phone">Phone</label>
-                      <input
-                        type="text"
-                        id="phone"
-                        value={newAddress.phone}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </fieldset>
-                  </div>
-                  <div className="tf-cart-checkbox">
+
+                  <div className="hs-checkbox-row">
                     <input
-                      type="checkbox"
-                      name="isDefault"
-                      className="tf-check"
-                      id="isDefault"
-                      checked={newAddress.isDefault}
-                      onChange={handleInputChange}
+                      id="isDefault" name="isDefault" type="checkbox"
+                      checked={form.isDefault} onChange={handleChange}
                     />
-                    <label htmlFor="isDefault" className="label">
-                      <span>Set as default address</span>
-                    </label>
+                    <label htmlFor="isDefault">Use as my default address</label>
                   </div>
-                  <div className="box-btn">
-                    <button className="tf-btn animate-btn" type="submit">
-                      Update
+
+                  <div className="hs-form-actions">
+                    <button type="submit" className="hs-btn-primary" disabled={saving}>
+                      {saving ? "Saving…" : editingId ? "Save changes" : "Add address"}
                     </button>
-                    <button
-                      type="button"
-                      className="tf-btn btn-out-line-dark btn-hide-edit-address"
-                      onClick={handleCancelEdit}
-                    >
+                    <button type="button" className="hs-btn-ghost" onClick={closeForm}>
                       Cancel
                     </button>
                   </div>
                 </form>
+              </div>
+            )}
+
+            {/* List */}
+            <div className="hs-account-panel">
+              <h2 className="hs-account-panel-title">
+                Saved Addresses{!loading && addresses.length > 0 ? ` (${addresses.length})` : ""}
+              </h2>
+
+              {loading ? (
+                <div className="hs-account-loading">
+                  <div className="hs-spinner" />
+                  <span>Loading your addresses…</span>
+                </div>
+              ) : addresses.length === 0 ? (
+                <div className="hs-account-empty">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <p>You haven&apos;t saved any addresses yet.</p>
+                  {!showForm && (
+                    <button type="button" className="hs-btn-primary" onClick={openAddForm}>
+                      Add your first address
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <div className="hs-address-grid">
+                    {addresses.map((addr) => (
+                      <div
+                        key={addr._id}
+                        className={`hs-address-card${addr.isDefault ? " is-default" : ""}`}
+                      >
+                        {addr.isDefault && <span className="hs-address-badge">Default</span>}
+                        <p className="hs-address-name">{addr.street}</p>
+                        <p className="hs-address-lines">
+                          {addr.city}
+                          {addr.state ? `, ${addr.state}` : ""} {addr.zipCode}
+                          <br />
+                          {addr.country}
+                        </p>
+                        <div className="hs-address-actions">
+                          <button
+                            type="button"
+                            className="hs-btn-danger-text"
+                            style={{ color: "rgba(255,255,255,0.7)" }}
+                            onClick={() => openEditForm(addr)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            type="button"
+                            className="hs-btn-danger-text"
+                            onClick={() => handleDelete(addr._id)}
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {!showForm && (
+                    <div style={{ marginTop: 20 }}>
+                      <button type="button" className="hs-btn-primary" onClick={openAddForm}>
+                        Add another address
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>
         </div>
-
-        {/* /Account */}
       </div>
-    </div>
+    </section>
   );
 }

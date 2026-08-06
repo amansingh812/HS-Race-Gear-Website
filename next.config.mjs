@@ -102,6 +102,23 @@ const nextConfig = {
 
       // Minor: /faqs (old nav-schema slug) → real /faq
       { source: "/faqs", destination: "/faq", permanent: true },
+
+      // ─────────────────────────────────────────────────────────────────
+      // Slug corrections, 2026-08-06 (client request)
+      //
+      // /blanket-template → /blank-template
+      //   The page is the BLANK design template, not a "blanket". It was
+      //   robots-disallowed so unlikely to be indexed, but the footer has
+      //   linked to it since launch and external/bookmarked links would 404
+      //   without this.
+      //
+      // /compare/vs-velocity → /compare/vs-velocita
+      //   The competitor is Velocita-USA. This URL WAS in the sitemap and
+      //   therefore indexed, so the 301 is load-bearing: it preserves any
+      //   accumulated ranking and stops the old URL 404ing. Do not remove.
+      // ─────────────────────────────────────────────────────────────────
+      { source: "/blanket-template", destination: "/blank-template", permanent: true },
+      { source: "/compare/vs-velocity", destination: "/compare/vs-velocita", permanent: true },
     ];
   },
   images: {

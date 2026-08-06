@@ -24,7 +24,7 @@ const articleSchema = {
   "headline": "What Is the HS Code for a Racing Suit? (Import & Customs Guide)",
   "description":
     "The HS code for fire-resistant racing suits is 6210.40. Covers race suits, gloves, and shoes — with import duty notes for the US, UK, EU, Canada, and Australia.",
-  "image": "https://www.hsracegear.com/images/home/SuitBanner.webp",
+  "image": "https://www.hsracegear.com/images/blog/racing-suit-hs-code.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",

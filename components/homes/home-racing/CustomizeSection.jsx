@@ -370,140 +370,67 @@ export default function CustomizeSection() {
             {customizeCategories.map((category, index) => {
               const hasSubs = !!(category.subOptions && category.subOptions.length);
 
+              /* Angled-panel card, rebuilt 2026-08-06 to the client's reference.
+                 The image now IS the shape: the panel is skewed and clipped, and
+                 the photo fills it edge to edge — no padding, no border, no card
+                 background behind it.
+
+                 The panel is skewed -9deg and the image wrapper counter-skewed
+                 +9deg so the photo itself stays upright inside a slanted frame.
+                 A counter-skewed child is an upright rectangle inside a
+                 parallelogram, so its corners would leave triangular gaps — the
+                 wrapper is inset -14% left and right to overfill horizontally.
+                 Overfilling sideways rather than scaling up avoids cropping the
+                 top and bottom of the garment.
+
+                 Alternate cards are nudged vertically (see .customize-card in
+                 the style block) for the staggered baseline in the reference. */
               const cardInner = (
                 <div
-                  className="customize-card"
-                  style={{ position: "relative", overflow: "visible", cursor: "pointer", height: "100%" }}
+                  className={`customize-card ${index % 2 === 1 ? "is-raised" : ""}`}
+                  style={{ position: "relative", cursor: "pointer" }}
                   {...(hasSubs
                     ? {
                       onClick: (e) => { e.preventDefault(); setModalOpen(true); },
                     }
                     : {})}
                 >
-                  {/* Skewed background */}
-                  <div
-                    className="card-skew-bg"
-                    style={{
-                      position: "absolute",
-                      top: 0, left: 0, right: 0, bottom: 0,
-                      background: "linear-gradient(180deg, #141414 0%, #111 100%)",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                      transform: "skewX(-3deg)",
-                      clipPath: "polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)",
-                      transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                      zIndex: 0,
-                    }}
-                  />
-
-                  {/* Red accent stripe */}
-                  <div
-                    className="card-accent-stripe"
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      left: "-1px",
-                      width: "3px",
-                      height: "0%",
-                      background: "#dc2626",
-                      transform: "skewX(-3deg)",
-                      transition: "height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                      zIndex: 2,
-                    }}
-                  />
-
-                  {/* Suits badge */}
-                  {hasSubs && (
-                    <div style={{
-                      position: "absolute",
-                      top: "10px",
-                      left: "14px",
-                      background: "#dc2626",
-                      color: "#fff",
-                      fontSize: "9px",
-                      fontWeight: "800",
-                      letterSpacing: "2px",
-                      textTransform: "uppercase",
-                      padding: "3px 7px",
-                      clipPath: "polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%)",
-                      zIndex: 3,
-                    }}>
-                      4 Types
-                    </div>
-                  )}
-
-                  {/* Content */}
-                  <div
-                    style={{
-                      position: "relative",
-                      zIndex: 1,
-                      padding: "28px 20px 24px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    {/* Index stamp */}
-                    <div style={{
-                      position: "absolute",
-                      top: "10px",
-                      right: "14px",
-                      fontSize: "11px",
-                      fontWeight: "800",
-                      color: "rgba(255,255,255,0.08)",
-                      letterSpacing: "1px",
-                      fontFamily: "monospace",
-                    }}>
-                      0{index + 1}
-                    </div>
-
-                    {/* Image */}
-                    <div className="card-img-wrap" style={{ width: "100%", aspectRatio: "3/4", position: "relative", marginBottom: "20px", overflow: "hidden" }}>
+                  {/* Skewed panel — the image fills this entirely */}
+                  <div className="card-panel">
+                    <div className="card-img-inner">
                       <Image
                         src={category.img}
                         alt={category.name}
                         width={400}
                         height={533}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "contain",
-                          transition: "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                        }}
                         className="card-image"
                         sizes="(max-width: 576px) 70vw, (max-width: 768px) 33vw, (max-width: 992px) 25vw, 20vw"
                       />
                     </div>
 
-                    {/* Name + icon */}
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
-                      <h3
-                        className="card-title"
-                        style={{
-                          color: "#ccc",
-                          fontSize: "15px",
-                          fontWeight: "700",
-                          textTransform: "uppercase",
-                          letterSpacing: "1.5px",
-                          margin: 0,
-                          whiteSpace: "nowrap",
-                          transition: "color 0.3s ease",
-                        }}
-                      >
-                        {category.name}
-                      </h3>
+                    {/* Suits badge — counter-skewed so it reads level */}
+                    {hasSubs && (
+                      <div className="card-badge">4 Types</div>
+                    )}
 
-                      {/* Chevrons icon for suits, arrow for others */}
-                      {hasSubs ? (
-                        <svg className="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "all 0.3s ease" }}>
-                          <polyline points="6 9 12 15 18 9" />
-                        </svg>
-                      ) : (
-                        <svg className="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "all 0.3s ease", transform: "translateX(0)" }}>
-                          <line x1="5" y1="12" x2="19" y2="12" />
-                          <polyline points="12 5 19 12 12 19" />
-                        </svg>
-                      )}
-                    </div>
+                    {/* Index stamp — counter-skewed */}
+                    <div className="card-index">0{index + 1}</div>
+                  </div>
+
+                  {/* Label sits below the panel, unskewed */}
+                  <div className="card-label">
+                    <h3 className="card-title">{category.name}</h3>
+
+                    {hasSubs ? (
+                      <svg className="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    ) : (
+                      <svg className="card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    )}
                   </div>
                 </div>
               );
@@ -551,18 +478,149 @@ export default function CustomizeSection() {
             display: none;
           }
 
-          /* Default desktop grid */
+          /* Default desktop grid.
+             The gap has to absorb the skew: a skewed panel extends sideways by
+             height x tan(9deg) (~16% of its height) beyond its grid column, so
+             the old 20px gap left the panels visibly touching. 52px gives a
+             clean separation at this column width. */
           .customize-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
+            gap: 52px;
+            align-items: start;
+          }
+
+          /* ── Angled panel card ──────────────────────────────────────
+             The image is the shape: no padding, no border, no card
+             background. Skew lives on .card-panel; .card-img-inner
+             counter-skews so the photo stays upright. */
+          .customize-card {
+            transform: translateY(10px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+
+          /* Staggered baseline — alternate cards ride higher */
+          .customize-card.is-raised {
+            transform: translateY(-10px);
+          }
+
+          /* --cut drives the notched corners. clip-path is resolved in the
+             element's own coordinate space and the skew is applied after, so
+             the cut edges lean with the panel instead of reading as flat
+             chamfers stuck on a slanted shape. */
+          .card-panel {
+            --cut: 34px;
+            position: relative;
+            aspect-ratio: 5 / 7;
+            overflow: hidden;
+            transform: skewX(-9deg);
+            clip-path: polygon(
+              var(--cut) 0,
+              100% 0,
+              100% calc(100% - var(--cut)),
+              calc(100% - var(--cut)) 100%,
+              0 100%,
+              0 var(--cut)
+            );
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+
+          /* Inset left/right so the counter-skewed rectangle overfills the
+             parallelogram — otherwise the corners leave triangular gaps.
+             14% covers a 9deg skew on a 5:7 panel with margin to spare. */
+          .card-img-inner {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -14%;
+            right: -14%;
+            transform: skewX(9deg);
+          }
+
+          .card-panel :global(.card-image) {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+
+          /* Top scrim. Product photos vary — the t-shirt shot has a pale grey
+             backdrop that swallowed the index number entirely. This keeps the
+             badge and index legible whatever the photo behind them. */
+          .card-panel::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 68px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 2;
+          }
+
+          /* Pushed right of the top-left notch — at y=14 the cut edge sits at
+             x=20, so 44px clears it. Sitting at the old left:14px put the badge
+             inside the clipped triangle and sliced it in half. */
+          .card-badge {
+            position: absolute;
+            top: 14px;
+            left: 44px;
+            z-index: 3;
+            transform: skewX(9deg);
+            background: #dc2626;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 9px;
+          }
+
+          .card-index {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            z-index: 3;
+            transform: skewX(9deg);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-family: monospace;
+            color: rgba(255, 255, 255, 0.45);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+          }
+
+          .card-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 16px;
+          }
+
+          .card-title {
+            color: #ccc;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 0;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+          }
+
+          .card-arrow {
+            flex-shrink: 0;
+            transition: all 0.3s ease;
           }
 
           /* Desktop: 5 columns */
           @media (max-width: 1200px) {
             .customize-grid {
               grid-template-columns: repeat(5, 1fr) !important;
-              gap: 16px !important;
+              gap: 38px !important;
             }
           }
 
@@ -570,7 +628,7 @@ export default function CustomizeSection() {
           @media (max-width: 991px) {
             .customize-grid {
               grid-template-columns: repeat(3, 1fr) !important;
-              gap: 16px !important;
+              gap: 40px !important;
             }
           }
 
@@ -587,7 +645,7 @@ export default function CustomizeSection() {
               display: grid !important;
               grid-template-columns: repeat(2, 1fr) !important;
               justify-content: center !important;
-              gap: 14px !important;
+              gap: 26px !important;
               margin: 0 !important;
               padding: 0 !important;
               overflow: visible !important;
@@ -600,26 +658,36 @@ export default function CustomizeSection() {
               width: 50% !important;
               margin: 0 auto !important;
             }
-            .customize-card .card-skew-bg {
-              transform: skewX(-2deg) !important;
+            /* A 9deg skew eats too much width on a narrow card — ease it off
+               and drop the stagger so the two columns stay level. */
+            .card-panel {
+              transform: skewX(-5deg) !important;
+              --cut: 20px;
             }
-            .customize-card .card-accent-stripe {
-              transform: skewX(-2deg) !important;
+            .card-badge {
+              left: 28px !important;
             }
-            /* Mobile card content adjustments */
-            .customize-card > div:last-child {
-              padding: 16px 12px 14px !important;
+            .card-img-inner {
+              transform: skewX(5deg) !important;
+              left: -9% !important;
+              right: -9% !important;
             }
-            .customize-card .card-img-wrap {
-              aspect-ratio: unset !important;
-              height: 140px !important;
-              margin-bottom: 12px !important;
+            .card-badge,
+            .card-index {
+              transform: skewX(5deg) !important;
             }
-            .customize-card .card-title {
+            .customize-card,
+            .customize-card.is-raised {
+              transform: none !important;
+            }
+            .card-label {
+              margin-top: 11px !important;
+            }
+            .card-title {
               font-size: 11px !important;
               letter-spacing: 1px !important;
             }
-            .customize-card .card-arrow {
+            .card-arrow {
               width: 14px !important;
               height: 14px !important;
             }
@@ -628,34 +696,58 @@ export default function CustomizeSection() {
             }
           }
 
-          /* Small mobile */
+          /* Small mobile — skew off entirely, it reads as a mistake this narrow */
           @media (max-width: 400px) {
             .customize-grid {
               gap: 10px !important;
             }
-            .customize-card .card-img-wrap {
-              height: 120px !important;
+            .card-panel {
+              transform: none !important;
+              --cut: 16px;
+            }
+            .card-badge {
+              left: 22px !important;
+            }
+            .card-img-inner {
+              transform: none !important;
+              left: 0 !important;
+              right: 0 !important;
+            }
+            .card-badge,
+            .card-index {
+              transform: none !important;
             }
           }
 
-          /* Card hover effects */
-          .customize-card:hover .card-skew-bg {
-            background: linear-gradient(180deg, #1a1a1a 0%, #161616 100%) !important;
-            border-color: rgba(220, 38, 38, 0.28) !important;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(220,38,38,0.08);
+          /* Card hover — the panel leans a touch further and the photo pushes in */
+          .customize-card:hover .card-panel {
+            transform: skewX(-11deg);
           }
-          .customize-card:hover .card-accent-stripe {
-            height: calc(100% - 24px) !important;
-          }
-          .customize-card:hover .card-image {
-            transform: scale(1.06) !important;
+          .customize-card:hover :global(.card-image) {
+            transform: scale(1.07);
           }
           .customize-card:hover .card-title {
-            color: #fff !important;
+            color: #fff;
           }
           .customize-card:hover .card-arrow {
-            stroke: #f87171 !important;
-            transform: translateX(4px) !important;
+            stroke: #f87171;
+            transform: translateX(4px);
+          }
+
+          /* Honour reduced-motion: keep the shape, drop the movement */
+          @media (prefers-reduced-motion: reduce) {
+            .customize-card,
+            .card-panel,
+            .card-arrow,
+            .customize-card :global(.card-image) {
+              transition: none !important;
+            }
+            .customize-card:hover .card-panel {
+              transform: skewX(-9deg);
+            }
+            .customize-card:hover :global(.card-image) {
+              transform: none;
+            }
           }
         `}</style>
       </section>

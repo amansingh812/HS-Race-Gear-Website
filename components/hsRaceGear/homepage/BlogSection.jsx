@@ -19,7 +19,7 @@ const articles = [
     excerpt:
       "CIK Level 2 vs Level 1, junior fit + growth room, shifter-specific upgrades, and WKA/SKUSA/Rotax Max requirements.",
     link: "/blog/karting-suit-sizing-guide",
-    image: "/images/home/blog_1.webp",
+    image: "/images/blog/karting-suit-sizing-guide.webp",
   },
   {
     tag: "Discipline Guide",
@@ -28,7 +28,7 @@ const articles = [
     excerpt:
       "What makes a sprint car suit different — arm-restraint compatibility, methanol protection, dust seal at the collar. Plus Knoxville Nationals prep.",
     link: "/blog/best-sprint-car-racing-suit",
-    image: "/images/home/blog2.webp",
+    image: "/images/blog/best-sprint-car-racing-suit.webp",
   },
   {
     tag: "Endurance Racing",
@@ -37,7 +37,7 @@ const articles = [
     excerpt:
       "Le Mans is two weeks out. What pro endurance suits do differently, and what amateur 24-hour racers (Lemons, NASA, Thunderhill) actually need.",
     link: "/blog/endurance-racing-suit-guide",
-    image: "/images/home/blog3.png",
+    image: "/images/blog/endurance-racing-suit-guide.webp",
   },
 ];
 

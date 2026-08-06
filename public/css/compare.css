@@ -287,6 +287,36 @@
   gap: 16px;
 }
 
+/* Heading for the RelatedBlogPosts section.
+   Previously this reused .hs-doc-heading from hs-doc-theme.css, but that file
+   isn't imported on every page that renders the component — on
+   /custom-race-suit the class resolved to nothing, so the h2 fell back to the
+   default dark heading colour and became invisible against the #070707
+   section background. Defining it here keeps the heading style in the same
+   stylesheet as .blog-listing-section, so the two can't get separated again. */
+.blog-listing-heading {
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+
+.blog-listing-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #e21b1b, transparent);
+}
+
 .blog-listing-count {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.4);
@@ -406,6 +436,162 @@
   font-size: 0.95rem;
   line-height: 1.75;
   margin: 0 0 14px;
+}
+
+/* ── Undefined classes used in BlogPost7DragRacing.jsx ──
+   That post uses .blog-section-title (x10) and a .blog-faq-* block (x5) which
+   were never defined in any stylesheet. Like the tables below, they fell back
+   to default browser styling — dark text on the #070707 background — so ten
+   section headings and the entire FAQ section were invisible on
+   /blog/drag-racing-suit-requirements.
+   .blog-section-title mirrors .blog-body-heading, which is what the other blog
+   posts use for the same purpose. */
+.blog-section-title {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+
+.blog-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #e21b1b, transparent);
+}
+
+.blog-faq-item {
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 14px;
+  transition: border-color 0.3s;
+}
+
+.blog-faq-item:hover {
+  border-color: rgba(226, 27, 27, 0.2);
+}
+
+.blog-faq-item:last-child {
+  margin-bottom: 0;
+}
+
+.blog-faq-question {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.45;
+  margin: 0 0 10px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.blog-faq-question::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 3px;
+  height: calc(100% - 10px);
+  background: #e21b1b;
+  border-radius: 2px;
+}
+
+.blog-faq-answer {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin: 0;
+  padding-left: 16px;
+}
+
+/* ── Comparison tables inside blog posts ──
+   .hs-table-wrap / .hs-compare-table were used in BlogPost7DragRacing.jsx but
+   never defined in any stylesheet, so all three tables in that post rendered
+   with default browser styling — dark text on the #070707 page background,
+   i.e. invisible. Styled here to match .blog-body-card, and the wrapper
+   scrolls horizontally so the columns don't collapse on mobile. */
+.hs-table-wrap {
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 14px;
+}
+
+.hs-compare-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hs-compare-table thead th {
+  background: rgba(226, 27, 27, 0.1);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 2px solid rgba(226, 27, 27, 0.45);
+  white-space: nowrap;
+}
+
+/* First header cell is intentionally empty — it labels the row-header column */
+.hs-compare-table thead th:first-child {
+  background: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.hs-compare-table tbody td {
+  padding: 13px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  vertical-align: top;
+}
+
+.hs-compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.hs-compare-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Row-label column — brighter so the table reads as a grid, not a wall */
+.hs-compare-table tbody td:first-child,
+.hs-compare-table tbody td strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.hs-compare-table tbody tr:hover {
+  background: rgba(226, 27, 27, 0.05);
+}
+
+@media (max-width: 575px) {
+  .hs-compare-table {
+    font-size: 0.85rem;
+  }
+  .hs-compare-table thead th,
+  .hs-compare-table tbody td {
+    padding: 11px 13px;
+  }
 }
 
 .blog-body-text:last-child {

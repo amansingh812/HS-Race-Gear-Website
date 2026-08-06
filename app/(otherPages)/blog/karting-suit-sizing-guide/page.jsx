@@ -25,7 +25,7 @@ const articleSchema = {
   "headline": "Custom Karting Suit Sizing — Junior, Senior, Shifter & CIK Level 2 Explained",
   "description":
     "Custom karting suit guide covering CIK Level 1 vs Level 2, junior and cadet fit, senior and shifter spec, sanctioning body requirements (WKA, SKUSA, Rotax Max, IAME), measurements, and replacement schedule.",
-  "image": "https://www.hsracegear.com/images/home/blog_1.webp",
+  "image": "https://www.hsracegear.com/images/blog/karting-suit-sizing-guide.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",

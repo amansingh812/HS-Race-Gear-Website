@@ -26,7 +26,7 @@ const articleSchema = {
   "headline": "5 Essential Tips for Getting the Perfect Custom Fit Racing Suit",
   "description":
     "Five essential tips to nail your custom racing suit measurements — accurate body measurements, driving posture, mobility zones, SFI compliance, and the fit-check process.",
-  "image": "https://www.hsracegear.com/images/home/blog3.png",
+  "image": "https://www.hsracegear.com/images/blog/perfect-custom-fit-racing-suit.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",

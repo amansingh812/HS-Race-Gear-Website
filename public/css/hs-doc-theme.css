@@ -170,6 +170,44 @@
 }
 
 /* ============================================
+   LINKS
+   ============================================
+   main.css sets a global `a { color: var(--dark); }`. hs-doc-theme.css had no
+   anchor rule of its own, so every link inside a doc card inherited that dark
+   colour and rendered near-invisible against the dark card background —
+   including the contact email on /return-policy and every internal link on the
+   /compare/* pages.
+
+   Scoped to .hs-doc-* so it can't affect headers, footers or other themes. */
+.hs-doc-card a,
+.hs-doc-card-text a,
+.hs-doc-list a,
+.hs-doc-content a:not(.tf-btn) {
+    color: #ff4d4d;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(255, 77, 77, 0.4);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.hs-doc-card a:hover,
+.hs-doc-card-text a:hover,
+.hs-doc-list a:hover,
+.hs-doc-content a:not(.tf-btn):hover {
+    color: #ffffff;
+    text-decoration-color: #ffffff;
+}
+
+/* Visible keyboard focus — the underline alone isn't enough of a cue */
+.hs-doc-card a:focus-visible,
+.hs-doc-content a:focus-visible {
+    outline: 2px solid #ff4d4d;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 640px) {

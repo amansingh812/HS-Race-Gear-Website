@@ -26,7 +26,7 @@ const articleSchema = {
   "headline": "SFI Ratings Explained — Which Certification Does Your Race Suit Need?",
   "description":
     "SFI 3.2A/1, 3.2A/5, 3.2A/15 demystified. What SFI ratings mean, what TPP measures, and which SFI suit rating you need for drag, sprint car, dirt, karting, and road racing.",
-  "image": "https://www.hsracegear.com/images/home/blog_1.webp",
+  "image": "https://www.hsracegear.com/images/blog/understanding-sfi-certifications.webp",
   "author": { "@type": "Organization", "name": "HS Race Gear" },
   "publisher": {
     "@type": "Organization",
