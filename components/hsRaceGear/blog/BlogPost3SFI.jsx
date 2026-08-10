@@ -17,10 +17,10 @@ export default function BlogPost3SFI() {
           </p>
           <span className="contact-hero-tag">Safety Standards</span>
           <h1 className="contact-hero-title">
-            SFI Ratings<br /><span>Explained</span>
+            What Does<br /><span>SFI Certified Mean?</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Which SFI rating does your race suit actually need? SFI 3.2A/1, 3.2A/5, 3.2A/15 and beyond — what each rating means, what TPP measures, and how to pick the right SFI suit rating for your discipline.
+            What SFI stands for, what an &ldquo;SFI approved&rdquo; tag on a race suit actually certifies, who the SFI Foundation is, and how suits get tested and re-certified — so you can tell a genuine tag from a worthless one at tech inspection.
           </p>
         </div>
       </section>
@@ -42,7 +42,7 @@ export default function BlogPost3SFI() {
 
             {/* TITLE BLOCK */}
             <div className="blog-post-title-block">
-              <h2 className="blog-post-main-title">SFI Ratings Explained — Which Certification Does Your Race Suit Need?</h2>
+              <h2 className="blog-post-main-title">What &ldquo;SFI Certified&rdquo; Actually Means on a Race Suit</h2>
               <p className="blog-post-subtitle">SFI Suit Ratings, TPP Scores, and How to Choose the Right Level of Protection</p>
             </div>
 

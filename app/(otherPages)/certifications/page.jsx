@@ -15,12 +15,19 @@ import React from "react";
 // signal + 3.2A/15 to capture drag racing queries.
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/certifications" },
-  title: "SFI Ratings Explained (2026): 3.2A/1, 3.2A/5, 3.2A/15 & 3.3/5 | HS Race Gear",
+  // HUB PAGE for the SFI rating-tier cluster (de-cannibalization pass,
+  // 2026-08-11). This page — not the blog posts — owns "sfi ratings" (111 imp
+  // @ pos 30), "sfi suit ratings" (95 @ 30), "sfi rated racing suit" (57 @ 34)
+  // and "sfi rating chart" (11 @ 17). Title trimmed from 76 to 57 chars so it
+  // stops truncating in the SERP.
+  title: "SFI Ratings Explained: 3.2A/1 vs 3.2A/5 vs 3.2A/15 (2026)",
   description: "The complete 2026 guide to SFI ratings. 3.2A/1 (3s protection), 3.2A/5 (10s), 3.2A/15 (drag racing), 3.3/5 (gloves & shoes) — every rating decoded and which one your class actually requires.",
-  keywords: "SFI ratings, SFI rating, SFI certified, SFI approved, SFI suit ratings, SFI 3.2A/5, SFI 3.2A/1, SFI 3.2A/15, SFI 3.3/5, sfi rated racing suit, what does SFI stand for, racing suit certification",
+  // "SFI certified" / "SFI approved" / "what does SFI stand for" intentionally
+  // removed — those now belong to /blog/understanding-sfi-certifications.
+  keywords: "SFI ratings, SFI rating, SFI suit ratings, SFI rating chart, sfi rated racing suit, SFI 3.2A/5, SFI 3.2A/1, SFI 3.2A/15, SFI 3.3/5, SFI rated, racing suit ratings, fire suit ratings",
   openGraph: {
     type: "article",
-    title: "SFI Ratings Explained (2026) — Complete Racing Suit Certification Guide",
+    title: "SFI Ratings Explained: 3.2A/1 vs 3.2A/5 vs 3.2A/15 (2026)",
     description: "Every SFI rating decoded: 3.2A/1 vs 3.2A/5 vs 3.2A/15 vs 3.3/5. Learn which one your class requires before you buy.",
     url: "https://www.hsracegear.com/certifications",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],

@@ -33,6 +33,9 @@ export default async function sitemap() {
     { url: `${baseUrl}/custom-road-racing-suit`,      lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
     { url: `${baseUrl}/custom-junior-karting-suit`,   lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
     { url: `${baseUrl}/custom-shifter-kart-suit`,     lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
+    // Karting vertical — added 2026-08-11. CIK-FIA hub + full-kit collection.
+    { url: `${baseUrl}/cik-fia-level-2`,              lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/go-kart-racing-apparel`,       lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
     { url: `${baseUrl}/custom-fit`,                   lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/custom-measurement`,           lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/certifications`,               lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -58,6 +61,9 @@ export default async function sitemap() {
     { url: `${baseUrl}/compare/vs-velocita`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-pyrotect`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-simpson`,  lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/compare/vs-sparco-karting`,      lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/compare/vs-alpinestars-karting`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/compare/vs-omp-karting`,         lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/compare/vs-hrx`,      lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     // Highest-impression query in GSC (73 impr @ pos 20.9) — priority 0.8
     { url: `${baseUrl}/compare/vs-customracesuit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },

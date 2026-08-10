@@ -116,6 +116,22 @@ export default function CertificationsContent() {
                         </div>
                     </div>
 
+                    {/* Cross-link to the karting certification hub, added
+                        2026-08-11. Karting runs on CIK-FIA, not SFI — anyone
+                        landing here for a kart suit needs sending across. */}
+                    <div className="hs-doc-block">
+                        <h2 className="hs-doc-heading">Racing Karts? You Need CIK-FIA, Not SFI</h2>
+                        <div className="hs-doc-card">
+                            <p className="hs-doc-card-text">
+                                Everything on this page covers SFI, the standard for car racing suits. Karting uses a different standard entirely — CIK-FIA Level 2, which tests abrasion resistance rather than thermal protection, because a kart presents a different hazard than a car.
+                            </p>
+                            <p className="hs-doc-card-text">
+                                An SFI-rated car suit will generally not pass karting tech inspection, and a CIK Level 2 kart suit is not a substitute for an SFI suit in a car. If you race both, you need both.{" "}
+                                <Link href="/cik-fia-level-2" style={{ color: '#e21b1b', textDecoration: 'underline' }}>Read the CIK-FIA Level 2 guide</Link>.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             {/* Responsive overrides inside component */}

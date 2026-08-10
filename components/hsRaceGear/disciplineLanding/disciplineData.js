@@ -155,15 +155,19 @@ export const DISCIPLINE_DATA = {
 
   "junior-karting": {
     slug: "custom-junior-karting-suit",
-    breadcrumb: "Custom Junior Karting Suit",
-    disciplineTag: "Junior Karting",
-    disciplineFullName: "Junior / Cadet Karting",
-    suitNoun: "junior karting suits",
-    h1First: "Custom Junior",
+    // Retargeted 2026-08-11 — "youth karting suits" / "youth kart racing suit"
+    // / "childrens karting suits" are 500/mo each; "junior karting suits" is
+    // 50/mo. H1 and copy now lead with youth/kids; cadet/micro/mini/junior
+    // stay in the body as long-tail.
+    breadcrumb: "Youth & Kids Karting Suits",
+    disciplineTag: "Youth & Kids Karting",
+    disciplineFullName: "Youth / Junior / Cadet Karting",
+    suitNoun: "youth karting suits",
+    h1First: "Youth & Kids",
     h1Second: "Karting Suits",
-    subtitle: "CIK Level 2 custom karting suits for cadet, micro, mini, and junior karting drivers ages 8–15. WKA, SKUSA, Rotax Max, IAME compliant. Sublimated graphics with growth-room construction. From $329.",
+    subtitle: "Custom youth karting suits for kids ages 8–15 — cadet, micro, mini, and junior classes. Built to your child's measurements with growth room, CIK Level 2 certified. WKA, SKUSA, Rotax Max, IAME compliant. Sublimated graphics. From $329.",
     primaryCtaHref: "/custom-karting-suit/order",
-    primaryCtaText: "Design Your Junior Suit",
+    primaryCtaText: "Design Your Child's Suit",
     certBadge: "CIK Level 2",
     builtForIntro: "Junior karting has its own design priorities — kids grow, weekends are long, and dust/dirt accumulates fast. Our junior karting suits are built around four:",
     builtForPoints: [
@@ -182,6 +186,7 @@ export const DISCIPLINE_DATA = {
     ],
     sanctioningCallout: "Parent tip: order the size that fits today's chest and shoulders correctly. Length adjusts via cuffs and stretch panels — chest and shoulders don't. Most juniors get 1 to 1.5 seasons out of a properly-fit suit.",
     relatedReading: [
+      { href: "/cik-fia-level-2", title: "CIK-FIA Level 2 Explained", note: "The certification every karting suit is checked against" },
       { href: "/blog/karting-suit-sizing-guide", title: "Karting Suit Sizing Guide", note: "Junior, cadet, senior, shifter fit" },
       { href: "/blog/sfi-rated-racing-suit-by-class", title: "SFI Rated Racing Suit by Class", note: "Karting section" },
     ],
@@ -218,6 +223,7 @@ export const DISCIPLINE_DATA = {
     ],
     sanctioningCallout: "If you're stepping up from non-shifter to shifter, the suit is one of the upgrades that pays back fastest. Same fire rating, but the construction differences (reinforced shoulder, cooler liner, paddle-shift stretch) matter for the longer sessions and harder physical work.",
     relatedReading: [
+      { href: "/cik-fia-level-2", title: "CIK-FIA Level 2 Explained", note: "What tech inspectors look for on the tag" },
       { href: "/blog/karting-suit-sizing-guide", title: "Karting Suit Sizing Guide", note: "Shifter-specific section" },
       { href: "/blog/sfi-rated-racing-suit-by-class", title: "SFI Rated Racing Suit by Class", note: "Karting section" },
     ],

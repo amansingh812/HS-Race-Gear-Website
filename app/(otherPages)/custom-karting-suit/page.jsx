@@ -10,11 +10,11 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/custom-karting-suit" },
-  title: "Custom Karting Suit — Sublimated, Custom-Fit | HS Race Gear",
+  title: "Custom Kart Racing Suits & Go Kart Suits (CIK Level 2)",
   description:
-    "Design your own karting suit — pick every color, add your name and logos. Built to your exact measurements in the USA. Junior, senior & shifter karting fits. Free shipping.",
+    "Design your custom go kart racing suit. Junior, senior, and shifter kart racing suits built to your exact measurements (CIK Level 2 specs). Free shipping.",
   keywords:
-    "custom karting suit, karting suit, kart racing suit, custom kart suit, sublimated karting suit, karting racing suits, junior karting suit, shifter kart suit, Rotax Max suit, IAME X30 suit, karting gear",
+    "custom karting suit, go kart racing suit, kart racing suit, karting suit, custom kart suit, sublimated karting suit, karting racing suits, junior karting suit, shifter kart suit, Rotax Max suit, IAME X30 suit, karting gear",
 };
 
 const breadcrumbSchema = {
@@ -46,12 +46,28 @@ export default function page() {
           <div className="row g-3 justify-content-center">
             <div className="col-md-6 col-lg-4">
               <Link href="/custom-junior-karting-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
-                Junior Karting Suits (Cadet, Micro, Mini)
+                Youth &amp; Kids Karting Suits (Ages 8&ndash;15)
               </Link>
             </div>
             <div className="col-md-6 col-lg-4">
               <Link href="/custom-shifter-kart-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
                 Shifter Kart Suits (KZ, IAME X30 Shifter)
+              </Link>
+            </div>
+          </div>
+
+          {/* Hub links added 2026-08-11 — /cik-fia-level-2 backs up the
+              "CIK Level 2" claim in this page's title, and the apparel page
+              catches full-kit intent. Both are new as of the karting build. */}
+          <div className="row g-3 justify-content-center" style={{ marginTop: 12 }}>
+            <div className="col-md-6 col-lg-4">
+              <Link href="/cik-fia-level-2" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                What Is CIK-FIA Level 2?
+              </Link>
+            </div>
+            <div className="col-md-6 col-lg-4">
+              <Link href="/go-kart-racing-apparel" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                Full Karting Kit &amp; Apparel
               </Link>
             </div>
           </div>

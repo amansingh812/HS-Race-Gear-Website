@@ -6,15 +6,17 @@ import "@/public/css/contact-us.css";
 import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
-// Metadata updated 2026-06-01 — exact-phrase audit. Velocita is a niche
-// but established brand. Captures "velocita racing suit" + variants.
+// Metadata updated 2026-08-11 — Keyword Planner check: "velocita race suit"
+// is 500/mo, "velocita custom racing suits" only 50/mo. Leading with the
+// higher-volume head term and restoring the $289 price anchor (price in the
+// title is the single strongest CTR lever on a competitor-alternative page).
 export const metadata = {
     alternates: { canonical: "/compare/vs-velocita" },
-    title: "Velocita Racing Suits Alternative — Custom SFI Suits From $289 | HS Race Gear",
+    title: "Velocita Race Suit Alternative — Custom SFI Suits From $289",
     description:
-        "Searching for Velocita racing suits? HS Racegear builds custom SFI-certified race suits from $289 with transparent pricing, faster production, and real design freedom for drag, sprint, dirt, and road racing.",
+        "Comparing Velocita race suits? HS Race Gear builds custom SFI-certified suits from $289 — made to your exact measurements in the USA, with transparent pricing, faster production, and real design freedom for drag, sprint, dirt, and road racing.",
     keywords:
-        "velocita racing suit, velocita racing suits, velocita race suit, velocita racing gear, velocita-usa, velocita alternative, HS Racegear vs Velocita, custom SFI race suits, dirt track suit, sprint car suit, drag racing suit",
+        "velocita custom racing suits, velocita racing suit, velocita racing suits, velocita race suit, velocita racing gear, velocita-usa, velocita alternative, HS Racegear vs Velocita, custom SFI race suits, dirt track suit, sprint car suit, drag racing suit",
 };
 
 const breadcrumbSchema = {

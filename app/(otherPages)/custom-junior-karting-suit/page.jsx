@@ -8,15 +8,24 @@ import "@/public/css/compare.css";
 
 const data = DISCIPLINE_DATA["junior-karting"];
 
+// RETARGETED 2026-08-11. This page was well built but aimed at the wrong
+// words — it said "junior / cadet / mini / micro" while buyers search "youth"
+// and "children's". Keyword Planner (US):
+//   youth karting suits        500/mo   <- was not targeted
+//   youth kart racing suit     500/mo   <- was not targeted
+//   childrens karting suits    500/mo   <- was not targeted
+//   junior karting suits        50/mo   <- was the only term targeted
+// 1,500 of the 1,900/mo youth cluster sat in words the page never used.
+// Cadet/micro/mini stay in keywords + body as valid long-tail.
 export const metadata = {
   alternates: { canonical: "/custom-junior-karting-suit" },
-  title: "Custom Junior Karting Suits — CIK Level 2, WKA, SKUSA, Rotax | HS Race Gear",
-  description: "Custom junior karting suits for cadet, micro, mini, junior karting drivers ages 8–15. CIK Level 2, stretch panels for growth, Velcro cuffs, sublimated graphics. WKA, SKUSA, Rotax Max, IAME compliant. From $329.",
-  keywords: "custom junior karting suit, cadet karting suit, mini karting suit, micro karting suit, WKA junior suit, SKUSA mini suit, Rotax junior suit, CIK Level 2",
+  title: "Youth & Kids Karting Suits — Custom Fit, CIK Level 2",
+  description: "Custom youth karting suits for kids and junior drivers ages 8–15. Built to your child's measurements with growth room, CIK Level 2 certified, Velcro cuffs, sublimated graphics. WKA, SKUSA, Rotax Max, IAME compliant. From $329.",
+  keywords: "youth karting suits, youth kart racing suit, childrens karting suits, kids karting suit, youth go kart suit, go kart racing suit youth, youth karting gear, custom junior karting suit, cadet karting suit, mini karting suit, micro karting suit, junior karting suits, WKA junior suit, SKUSA mini suit, Rotax junior suit, CIK Level 2",
   openGraph: {
     type: "website",
-    title: "Custom Junior Karting Suits — CIK Level 2 Certified",
-    description: "Stretch panels for growth, Velcro cuffs, sublimated graphics. WKA, SKUSA, Rotax Max, IAME compliant. From $329.",
+    title: "Youth & Kids Karting Suits — Custom Fit, CIK Level 2",
+    description: "Built to your child's measurements with growth room. CIK Level 2 certified, Velcro cuffs, sublimated graphics. WKA, SKUSA, Rotax Max, IAME compliant. From $329.",
     url: "https://www.hsracegear.com/custom-junior-karting-suit",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
   },

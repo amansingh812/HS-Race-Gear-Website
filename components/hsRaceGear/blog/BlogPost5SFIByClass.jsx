@@ -17,7 +17,7 @@ export default function BlogPost5SFIByClass() {
           </p>
           <span className="contact-hero-tag">Discipline Guide</span>
           <h1 className="contact-hero-title">
-            SFI Racing Suit Ratings<br /><span>by Class</span>
+            SFI Rating by<br /><span>Race Class</span>
           </h1>
           <p className="contact-hero-subtitle">
             Sprint car, drag, dirt late model, karting, road racing — the exact SFI rating you actually need for your discipline, and why the rating goes up when the class does.

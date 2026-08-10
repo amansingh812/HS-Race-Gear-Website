@@ -9,10 +9,12 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "/blog/sfi-rated-racing-suit-by-class" },
-  // Title updated 2026-07-16 — GSC shows "sfi rated racing suit" 19 imp/28d
-  // with 0 clicks at position ~16. Added year + "for sale" to signal
-  // commercial intent alongside the informational query.
-  title: "SFI Rated Racing Suit by Class (2026): Which SFI Rating You Actually Need",
+  // DE-CANNIBALIZED 2026-08-11 — see the ownership note in
+  // /blog/understanding-sfi-certifications. This page owns per-CLASS
+  // requirements; naming the actual sanctioning bodies in the title makes the
+  // intent unambiguous to Google and separates it from /certifications, which
+  // owns the generic rating-tier queries.
+  title: "SFI Rating by Race Class: NHRA, SCCA, Dirt & Circle Track",
   description:
     "SFI rated racing suit guide by discipline (2026 rulebook). Which SFI 3.2A rating for sprint car, drag racing, dirt late model, karting, road racing, powerboat — from a US custom suit maker.",
   keywords:
@@ -23,7 +25,7 @@ export const metadata = {
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "SFI Racing Suit Ratings by Class — Which Rating You Actually Need",
+  "headline": "SFI Rating by Race Class: NHRA, SCCA, Dirt & Circle Track",
   "description":
     "Discipline-by-discipline guide to picking the right SFI 3.2A rating: sprint car, dirt late model, drag racing, karting, road racing, powerboat, and how class ETs drive the rating you need.",
   "image": "https://www.hsracegear.com/images/blog/sfi-rated-racing-suit-by-class.webp",

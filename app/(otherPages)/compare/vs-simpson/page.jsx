@@ -6,16 +6,17 @@ import "@/public/css/contact-us.css";
 import "@/public/css/hs-doc-theme.css";
 import React from "react";
 
-// Metadata updated 2026-06-01 — exact-phrase audit. Simpson Racing is a
-// huge brand name with sustained search volume. Title leads with the
-// exact phrase "Simpson racing suits" + the price-anchored differentiator.
+// Metadata updated 2026-08-11 — Keyword Planner check: "simpson racing suit"
+// and "simpson fire suit" are both 500/mo; "simpson custom fire suit" is only
+// 50/mo. Leading with the head term and keeping the $289-vs-$1,049 price gap
+// in the title — the price contrast is what earns the click off a brand query.
 export const metadata = {
   alternates: { canonical: "/compare/vs-simpson" },
-  title: "Simpson Racing Suits Alternative — Custom SFI Suits From $289 | HS Race Gear",
+  title: "Simpson Racing Suits Alternative — Custom SFI Suits From $289",
   description:
-    "Searching for Simpson racing suits? HS Racegear builds custom SFI-certified race suits from $289 (vs $1,049+ for Simpson) with faster production, full design control, and premium Nomex® construction. NHRA, IHRA, sprint, drag, and oval compliant.",
+    "Comparing Simpson racing suits? HS Race Gear builds custom SFI-certified fire suits from $289 (vs $1,049+ for Simpson) — faster production, full design control, premium Nomex® construction. NHRA, IHRA, sprint, drag, and oval compliant.",
   keywords:
-    "simpson racing suit, simpson racing suits, simpson race suit, simpson fire suit, simpson racing alternative, HS Racegear vs Simpson, Simpson Racing alternative, custom SFI race suits, drag racing suit, affordable SFI fire suit, sprint car suit",
+    "simpson custom fire suit, simpson custom race suit, simpson racing suit, simpson racing suits, simpson race suit, simpson fire suit, simpson racing alternative, HS Racegear vs Simpson, Simpson Racing alternative, custom SFI race suits, drag racing suit, affordable SFI fire suit, sprint car suit",
 };
 
 const breadcrumbSchema = {

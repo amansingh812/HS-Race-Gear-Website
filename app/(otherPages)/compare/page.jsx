@@ -34,6 +34,9 @@ const compareLinks = [
   { slug: "vs-pyrotect", title: "HS Race Gear vs Pyrotect", blurb: "Pyrotect is the incumbent. Compare on price, custom process, and mockup revisions." },
   { slug: "vs-simpson", title: "HS Race Gear vs Simpson Race Products", blurb: "Simpson is legacy premium. We're custom-fit premium at half the price." },
   { slug: "vs-hrx", title: "HS Race Gear vs HRX", blurb: "HRX ships from overseas. We build in the USA with a 2–3 week turnaround." },
+  { slug: "vs-sparco-karting", title: "HS Race Gear vs Sparco Karting", blurb: "Sparco sells standard size runs. We cut CIK Level 2 kart suits to your measurements." },
+  { slug: "vs-alpinestars-karting", title: "HS Race Gear vs Alpinestars Karting", blurb: "Strong abrasion engineering, fixed colorways. Compare on design freedom and fit." },
+  { slug: "vs-omp-karting", title: "HS Race Gear vs OMP Karting", blurb: "OMP ships off the shelf today. We build to your measurements in 2–3 weeks." },
 ];
 
 export default function page() {

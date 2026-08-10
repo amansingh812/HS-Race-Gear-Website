@@ -83,3 +83,7 @@ temp/
 .Trashes
 .DocumentRevisions-V100
 /docs/
+
+# Keyword research & analytics data
+hs_race_keywords/
+

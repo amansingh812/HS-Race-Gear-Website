@@ -9,21 +9,33 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "/blog/understanding-sfi-certifications" },
-  // Title updated 2026-07-16 based on live GSC — "sfi ratings" 37 imp / 28d,
-  // "sfi suit ratings" 34 imp / 28d, both 0 clicks at position 15-17. Added
-  // year for freshness signal + explicit tier numbers for click magnetism.
-  title: "SFI Suit Ratings Explained (2026): 3.2A/1, 3.2A/5, 3.2A/15 — Which One You Need",
+  // DE-CANNIBALIZED 2026-08-11. Four pages were all titled "SFI ... Ratings
+  // (2026)" — /certifications, this post, sfi-rated-racing-suit-by-class, and
+  // sfi-vs-fia-rating. Result: "sfi ratings" (111 imp) and "sfi suit ratings"
+  // (95 imp) both stuck at position ~30 with the signal split four ways.
+  //
+  // Ownership split is now:
+  //   /certifications                 -> rating TIERS ("sfi ratings", "sfi suit ratings", "sfi rating chart")
+  //   THIS POST                       -> DEFINITIONAL ("what is sfi", "sfi certified", "sfi approved")
+  //   /blog/sfi-rated-racing-suit-by-class -> per-CLASS requirements
+  //   /blog/sfi-vs-fia-rating         -> SFI vs FIA only
+  //
+  // This post now targets the definitional cluster, which is unclaimed:
+  // "sfi certification racing" 16 imp @ pos 16, "what is sfi approved" 10 @ 13.7,
+  // "sfi approved" 23 @ 12.4, "what is sfi" 5 @ 20, "sfi certified" 21 @ 55.7.
+  // Deliberately does NOT use the word "ratings" in the title.
+  title: "What Does SFI Certified Mean? Racing Suit Certification Guide",
   description:
-    "SFI suit ratings decoded — 3.2A/1 (3s protection), 3.2A/5 (10s), 3.2A/15 (drag racing top tier). Which SFI rating your class actually requires, tech inspection tips, and 2026 rulebook changes.",
+    "SFI certification explained — what SFI stands for, what \"SFI approved\" actually means on a race suit tag, who the SFI Foundation is, how suits are tested and re-certified, and how to check a tag is genuine before tech inspection.",
   keywords:
-    "SFI ratings, SFI suit ratings, SFI requirements, SFI requirements racing suit, SFI 3.2A/1, SFI 3.2A/5, SFI 3.2A/15, SFI 3.3/5, TPP thermal protective performance, SFI certification guide, racing suit ratings, fire suit ratings, fire suit requirements",
+    "what does SFI certified mean, what is SFI approved, SFI certified, SFI approved, SFI certification racing, what is SFI, what does SFI stand for, SFI Foundation, SFI certification guide, SFI tag, SFI recertification, racing suit certification",
 };
 
 // JSON-LD: Article + BreadcrumbList
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "SFI Ratings Explained — Which Certification Does Your Race Suit Need?",
+  "headline": "What Does SFI Certified Mean? Racing Suit Certification Guide",
   "description":
     "SFI 3.2A/1, 3.2A/5, 3.2A/15 demystified. What SFI ratings mean, what TPP measures, and which SFI suit rating you need for drag, sprint car, dirt, karting, and road racing.",
   "image": "https://www.hsracegear.com/images/blog/understanding-sfi-certifications.webp",
