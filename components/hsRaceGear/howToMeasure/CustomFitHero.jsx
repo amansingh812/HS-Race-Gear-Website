@@ -17,8 +17,22 @@ export default function CustomFitHero() {
               <p className="text_black-2 mb_30">
                 Protect yourself with premium, life-saving custom auto racing suits meticulously crafted to meet the highest safety standards of SFI 3.2A/1 and SFI 3.2A/5. Each suit is crafted with precision and tailored to your exact body measurements for a flawless, comfortable fit. Choose from 1-piece, 2-piece, or jacket-style designs built for flexibility, protection, and performance.
               </p>
+              {/* Contextual link added 2026-08-11 as part of the internal
+                  linking pass into /custom-race-suit (position 28.3, 819
+                  impressions). This page carries 147 impressions of its own,
+                  so it's a useful equity source. */}
+              <p className="text_black-2 mb_30">
+                Measuring correctly is the whole reason a made-to-measure suit fits better than a size run. Once you have your numbers, our{" "}
+                <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>
+                  custom made race suits
+                </Link>{" "}
+                are cut from them directly — nothing is graded to the nearest stock size.
+              </p>
               <div className="d-flex gap-15 flex-wrap">
-                <Link href="/shop" className="tf-btn btn-fill animate-hover-btn radius-3 btn-xl">
+                {/* Was href="/shop" — the anchor text promises a custom suit
+                    designer and the shop page is off-the-rack product. Fixed
+                    2026-08-11: intent mismatch and a wasted internal link. */}
+                <Link href="/custom-race-suit" className="tf-btn btn-fill animate-hover-btn radius-3 btn-xl">
                   <span>Design My Custom Race Suit (FREE)</span>
                   <i className="icon icon-arrow-right" />
                 </Link>

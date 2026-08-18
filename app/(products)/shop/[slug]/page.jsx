@@ -71,6 +71,7 @@ export default async function ProductDetailPage({ params }) {
     const compareAtPriceCents = serializedProduct.compareAtPrice || 0;
     const price = (priceCents / 100).toFixed(2);
     const categoryName = serializedProduct.category?.name || 'Racing Gear';
+    const categorySlug = serializedProduct.category?.slug || '';
     // priceValidUntil — 1 year from now (recommended for Merchant listings)
     const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
     // Availability — determined by inventory or custom-fit option
@@ -96,13 +97,30 @@ export default async function ProductDetailPage({ params }) {
       "manufacturer": { "@type": "Organization", "name": "HS Race Gear", "address": { "@type": "PostalAddress", "streetAddress": "59 Kondazian St", "addressLocality": "Watertown", "addressRegion": "MA", "postalCode": "02472", "addressCountry": "US" } },
       "category": categoryName,
       "material": serializedProduct.material || undefined,
-      // Certification and construction as structured properties for AI/rich results
-      "additionalProperty": [
-        serializedProduct.certification ? { "@type": "PropertyValue", "name": "Certification", "value": serializedProduct.certification } : null,
-        serializedProduct.layers ? { "@type": "PropertyValue", "name": "Layers", "value": String(serializedProduct.layers) } : null,
-        serializedProduct.construction ? { "@type": "PropertyValue", "name": "Construction", "value": serializedProduct.construction } : null,
-        { "@type": "PropertyValue", "name": "Country of Origin", "value": "USA" },
-      ].filter(Boolean),
+      // Certification and construction as structured properties for AI/rich results.
+      //
+      // Updated 2026-08-11: off-the-rack race suits ship in single- OR
+      // double-layer with different SFI certifications (3.2A/1 vs 3.2A/5).
+      // The schema previously advertised only the stored single-layer value,
+      // which understated the product and — worse — would have had an AI
+      // answer engine tell a sprint car driver this suit is 3.2A/1 when the
+      // double-layer build they need is also available. Both are declared.
+      "additionalProperty": (
+        categorySlug === 'race-suits'
+          ? [
+              { "@type": "PropertyValue", "name": "Certification", "value": "SFI 3.2A/1 (single layer) or SFI 3.2A/5 (double layer)" },
+              { "@type": "PropertyValue", "name": "Certification (Single Layer)", "value": "SFI 3.2A/1" },
+              { "@type": "PropertyValue", "name": "Certification (Double Layer)", "value": "SFI 3.2A/5" },
+              { "@type": "PropertyValue", "name": "Construction", "value": "One-piece single-layer or one-piece double-layer" },
+              { "@type": "PropertyValue", "name": "Country of Origin", "value": "USA" },
+            ]
+          : [
+              serializedProduct.certification ? { "@type": "PropertyValue", "name": "Certification", "value": serializedProduct.certification } : null,
+              serializedProduct.layers ? { "@type": "PropertyValue", "name": "Layers", "value": String(serializedProduct.layers) } : null,
+              serializedProduct.construction ? { "@type": "PropertyValue", "name": "Construction", "value": serializedProduct.construction } : null,
+              { "@type": "PropertyValue", "name": "Country of Origin", "value": "USA" },
+            ]
+      ).filter(Boolean),
       "offers": {
         "@type": "Offer",
         "url": productUrl,

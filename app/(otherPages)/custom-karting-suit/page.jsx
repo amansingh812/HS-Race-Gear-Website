@@ -14,7 +14,11 @@ export const metadata = {
   description:
     "Design your custom go kart racing suit. Junior, senior, and shifter kart racing suits built to your exact measurements (CIK Level 2 specs). Free shipping.",
   keywords:
-    "custom karting suit, go kart racing suit, kart racing suit, karting suit, custom kart suit, sublimated karting suit, karting racing suits, junior karting suit, shifter kart suit, Rotax Max suit, IAME X30 suit, karting gear",
+    // Updated 2026-08-11 — "suit karting" is 5,000/mo in the Keyword Planner
+    // export (same bucket as "kart racing suit") and was matching only the
+    // homepage. Odd word order, but it's a real high-volume variant so it
+    // goes in the keyword list rather than being forced into the title.
+    "kart racing suit, suit karting, race suit karting, go kart racing suit, go kart suit, custom karting suit, custom karting suits, custom kart racing suits, karting suit, custom kart suit, custom go kart suit, sublimated karting suit, karting racing suits, youth karting suits, junior karting suit, shifter kart suit, Rotax Max suit, IAME X30 suit, CIK Level 2, karting gear",
 };
 
 const breadcrumbSchema = {

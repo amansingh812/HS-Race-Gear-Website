@@ -6,6 +6,14 @@ import AdditionalInfo from "./AdditionalInfo";
 import Reviews from "./Reviews";
 
 export default function Description1({ product }) {
+  // Off-the-rack race suits are sold in both single- and double-layer, each
+  // with its own SFI certification. This accordion sits below the fold and
+  // has no access to the layer toggle's state, so rather than show one
+  // (possibly wrong) certification it documents BOTH builds side by side —
+  // which is also the more useful reference for someone checking whether a
+  // suit will clear tech for their class.
+  const isRaceSuit = product.category?.slug === "race-suits";
+
   return (
     <section className="flat-spacing pt-0" style={{ paddingBottom: 20 }}>
       <div className="container">
@@ -29,7 +37,7 @@ export default function Description1({ product }) {
         </div>
 
         {/* Racing Specifications Section */}
-        {(product.certification || product.features?.length > 0) && (
+        {(isRaceSuit || product.certification || product.features?.length > 0) && (
           <div className="widget-accordion wd-product-descriptions">
             <div
               className="accordion-title collapsed"
@@ -45,7 +53,41 @@ export default function Description1({ product }) {
             <div id="specifications" className="collapse">
               <div className="accordion-body">
                 <div className="specifications-content">
-                  {product.certification && (
+                  {isRaceSuit ? (
+                    <div className="spec-item mb-3">
+                      <h6 className="fw-bold">Safety Certification</h6>
+                      <p className="text-muted mb-2">
+                        This suit is available in two builds. The certification depends on which layer option you select at checkout.
+                      </p>
+                      <div className="row g-3">
+                        <div className="col-md-6">
+                          <div style={{ border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "14px 16px" }}>
+                            <p className="fw-bold mb-2" style={{ color: "#e21b1b" }}>Single Layer</p>
+                            <p className="mb-1"><span className="text-muted">Certification:</span> SFI 3.2A/1</p>
+                            <p className="mb-1"><span className="text-muted">Level:</span> SFI-1</p>
+                            <p className="mb-1"><span className="text-muted">Construction:</span> One-piece single-layer</p>
+                            <p className="text-muted mb-0" style={{ fontSize: "0.85rem" }}>
+                              Roughly 3 seconds of thermal protection. Accepted in karting, sportsman drag, and many grassroots classes.
+                            </p>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div style={{ border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "14px 16px" }}>
+                            <p className="fw-bold mb-2" style={{ color: "#e21b1b" }}>Double Layer</p>
+                            <p className="mb-1"><span className="text-muted">Certification:</span> SFI 3.2A/5</p>
+                            <p className="mb-1"><span className="text-muted">Level:</span> SFI-5</p>
+                            <p className="mb-1"><span className="text-muted">Construction:</span> One-piece double-layer</p>
+                            <p className="text-muted mb-0" style={{ fontSize: "0.85rem" }}>
+                              Roughly 7&ndash;10 seconds of thermal protection. Required by USAC, World of Outlaws, ASCS, and most sprint car and dirt late model series.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-muted mb-0 mt-2" style={{ fontSize: "0.85rem" }}>
+                        Always confirm the minimum rating in your current-season rulebook before ordering.
+                      </p>
+                    </div>
+                  ) : product.certification && (
                     <div className="spec-item mb-3">
                       <h6 className="fw-bold">Safety Certification</h6>
                       <p>{product.certification}</p>

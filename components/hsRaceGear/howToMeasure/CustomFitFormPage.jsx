@@ -5,9 +5,35 @@ import { measurementSteps, customFitBenefits } from "@/data/measurementSteps";
 import CustomFitBenefitsSection from "./CustomFitBenefitsSection";
 import "@/public/css/custom-fit-form.css";
 
+/**
+ * How to Measure form (/custom-fit).
+ *
+ * REBUILT 2026-08-11 — the form was impossible to submit.
+ *
+ * What was wrong:
+ *   1. There were NO measurement inputs. Each of the 15 steps rendered an
+ *      image, a label and instruction text, then stopped. `handleMeasurementChange`
+ *      was defined on line 39 and never called from anywhere.
+ *   2. There were no inputs for total height or weight either, though both
+ *      were in state and in the validation check.
+ *   3. Validation required all 15 measurements + height + weight + name +
+ *      email. Since 17 of those 19 fields had no input, the condition could
+ *      never be satisfied — every submit hit the generic alert. That is
+ *      exactly the bug the client reported.
+ *   4. Even had it passed, handleSubmit only console.logged the data and
+ *      showed a success screen. There was no API call. Nothing was ever
+ *      emailed to anyone.
+ *
+ * Now: real inputs for every field, per-field error highlighting instead of
+ * one generic alert, and a POST to /api/measurement-form which emails
+ * info@hsracegear.com (and confirms to the customer).
+ */
 export default function CustomFitFormPage() {
     const [measurements, setMeasurements] = useState({});
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [submitting, setSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState("");
     const [additionalInfo, setAdditionalInfo] = useState({
         totalHeight: "",
         weight: "",
@@ -41,6 +67,8 @@ export default function CustomFitFormPage() {
             ...prev,
             [id]: value
         }));
+        // Clear this field's error as soon as the user types into it.
+        setErrors(prev => (prev[id] ? { ...prev, [id]: false } : prev));
     };
 
     const handleAdditionalChange = (field, value) => {
@@ -48,24 +76,71 @@ export default function CustomFitFormPage() {
             ...prev,
             [field]: value
         }));
+        setErrors(prev => (prev[field] ? { ...prev, [field]: false } : prev));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitError("");
 
-        // Check if all measurements are filled
-        const allMeasurementsFilled = measurementSteps.every(step => measurements[step.id]);
-        const additionalFilled = additionalInfo.totalHeight && additionalInfo.weight && additionalInfo.name && additionalInfo.email;
+        // Build a per-field error map rather than a single generic alert, so
+        // the customer can see exactly which measurement they missed.
+        const nextErrors = {};
+        if (!additionalInfo.name.trim()) nextErrors.name = true;
+        if (!additionalInfo.email.trim()) nextErrors.email = true;
+        if (!String(additionalInfo.totalHeight).trim()) nextErrors.totalHeight = true;
+        if (!String(additionalInfo.weight).trim()) nextErrors.weight = true;
+        measurementSteps.forEach(step => {
+            if (!String(measurements[step.id] ?? "").trim()) nextErrors[step.id] = true;
+        });
 
-        if (!allMeasurementsFilled || !additionalFilled) {
-            alert("Please fill in all required measurements and contact information.");
+        if (Object.keys(nextErrors).length) {
+            setErrors(nextErrors);
+            const count = Object.keys(nextErrors).length;
+            setSubmitError(
+                `${count} field${count === 1 ? " still needs" : "s still need"} filling in — they're highlighted in red above.`
+            );
+            // Jump to the first thing that's missing.
+            const firstId = Object.keys(nextErrors)[0];
+            const el = document.getElementById(`cf-field-${firstId}`);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "center" });
+                el.focus({ preventScroll: true });
+            }
             return;
         }
 
-        // Submit logic would go here
-        console.log("Measurements:", measurements);
-        console.log("Additional Info:", additionalInfo);
-        setFormSubmitted(true);
+        setSubmitting(true);
+        try {
+            const res = await fetch("/api/measurement-form", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    measurements,
+                    ...additionalInfo,
+                    unit: "in", // the page instructs inches throughout
+                }),
+            });
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok) {
+                // Server-side validation can also return which fields are missing.
+                if (Array.isArray(data.missing) && data.missing.length) {
+                    setErrors(Object.fromEntries(data.missing.map(k => [k, true])));
+                }
+                setSubmitError(data.error || "Something went wrong. Please email info@hsracegear.com.");
+                return;
+            }
+
+            setFormSubmitted(true);
+        } catch (err) {
+            console.error("[CustomFitFormPage] submit failed:", err);
+            setSubmitError(
+                "Couldn't reach the server. Check your connection, or email your measurements to info@hsracegear.com."
+            );
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -215,6 +290,45 @@ export default function CustomFitFormPage() {
                                                     {step.text}
                                                 </p>
 
+                                                {/* The measurement input. This did not exist before
+                                                    2026-08-11 — the step rendered image, label and
+                                                    text, then stopped, so `measurements` was always
+                                                    empty and validation could never pass. */}
+                                                <div className="form-group">
+                                                    <label className="fw-6 mb_10 d-block" htmlFor={`cf-field-${step.id}`}>
+                                                        Point {step.id} measurement <span className="text-danger">*</span>
+                                                    </label>
+                                                    <div style={{ position: "relative", maxWidth: 260 }}>
+                                                        <input
+                                                            id={`cf-field-${step.id}`}
+                                                            type="number"
+                                                            inputMode="decimal"
+                                                            step="0.25"
+                                                            min="0"
+                                                            placeholder="0.00"
+                                                            value={measurements[step.id] ?? ""}
+                                                            onChange={(e) => handleMeasurementChange(step.id, e.target.value)}
+                                                            aria-invalid={errors[step.id] ? "true" : "false"}
+                                                            className="form-control cf-form-input"
+                                                            style={{
+                                                                paddingRight: 54,
+                                                                borderColor: errors[step.id] ? "#e21b1b" : undefined,
+                                                            }}
+                                                        />
+                                                        <span style={{
+                                                            position: "absolute", right: 14, top: "50%",
+                                                            transform: "translateY(-50%)", opacity: 0.6,
+                                                            fontSize: "0.9rem", pointerEvents: "none",
+                                                        }}>
+                                                            in
+                                                        </span>
+                                                    </div>
+                                                    {errors[step.id] && (
+                                                        <p className="text-danger mb-0 mt_10" style={{ fontSize: "0.85rem" }}>
+                                                            Please enter your Point {step.id} measurement.
+                                                        </p>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -222,43 +336,102 @@ export default function CustomFitFormPage() {
                             </div>
 
                             <CustomFitBenefitsSection />
+
+                            {/* Height & Weight — both were in state and in the
+                                validation check but had no inputs before
+                                2026-08-11, which is part of why the form could
+                                never be submitted. */}
+                            <div className="cf-form-card mb_40">
+                                <h4 className="mb_20">📏 Height &amp; Weight</h4>
+                                <div className="tf-grid-layout md-col-2 gap-30">
+                                    <div className="form-group">
+                                        <label className="fw-6 mb_10 d-block" htmlFor="cf-field-totalHeight">
+                                            Total Height <span className="text-danger">*</span>
+                                        </label>
+                                        <input
+                                            id="cf-field-totalHeight"
+                                            type="text"
+                                            placeholder={`e.g. 5'11" or 71 in`}
+                                            value={additionalInfo.totalHeight}
+                                            onChange={(e) => handleAdditionalChange("totalHeight", e.target.value)}
+                                            aria-invalid={errors.totalHeight ? "true" : "false"}
+                                            className="form-control cf-form-input"
+                                            style={{ borderColor: errors.totalHeight ? "#e21b1b" : undefined }}
+                                        />
+                                        {errors.totalHeight && (
+                                            <p className="text-danger mb-0 mt_10" style={{ fontSize: "0.85rem" }}>Please enter your height.</p>
+                                        )}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label className="fw-6 mb_10 d-block" htmlFor="cf-field-weight">
+                                            Weight <span className="text-danger">*</span>
+                                        </label>
+                                        <input
+                                            id="cf-field-weight"
+                                            type="text"
+                                            placeholder="e.g. 175 lbs"
+                                            value={additionalInfo.weight}
+                                            onChange={(e) => handleAdditionalChange("weight", e.target.value)}
+                                            aria-invalid={errors.weight ? "true" : "false"}
+                                            className="form-control cf-form-input"
+                                            style={{ borderColor: errors.weight ? "#e21b1b" : undefined }}
+                                        />
+                                        {errors.weight && (
+                                            <p className="text-danger mb-0 mt_10" style={{ fontSize: "0.85rem" }}>Please enter your weight.</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
                             {/* Contact Information */}
                             <div className="cf-form-card mb_40">
                                 <h4 className="mb_20">📞 Contact Information</h4>
                                 <div className="tf-grid-layout md-col-2 gap-30">
                                     <div className="form-group">
-                                        <label className="fw-6 mb_10 d-block">
+                                        <label className="fw-6 mb_10 d-block" htmlFor="cf-field-name">
                                             Full Name <span className="text-danger">*</span>
                                         </label>
                                         <input
+                                            id="cf-field-name"
                                             type="text"
                                             placeholder="Enter your full name"
                                             value={additionalInfo.name}
                                             onChange={(e) => handleAdditionalChange("name", e.target.value)}
-                                            required
+                                            aria-invalid={errors.name ? "true" : "false"}
                                             className="form-control cf-form-input"
+                                            style={{ borderColor: errors.name ? "#e21b1b" : undefined }}
                                         />
+                                        {errors.name && (
+                                            <p className="text-danger mb-0 mt_10" style={{ fontSize: "0.85rem" }}>Please enter your name.</p>
+                                        )}
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="fw-6 mb_10 d-block">
+                                        <label className="fw-6 mb_10 d-block" htmlFor="cf-field-email">
                                             Email Address <span className="text-danger">*</span>
                                         </label>
                                         <input
+                                            id="cf-field-email"
                                             type="email"
                                             placeholder="Enter your email"
                                             value={additionalInfo.email}
                                             onChange={(e) => handleAdditionalChange("email", e.target.value)}
-                                            required
+                                            aria-invalid={errors.email ? "true" : "false"}
                                             className="form-control cf-form-input"
+                                            style={{ borderColor: errors.email ? "#e21b1b" : undefined }}
                                         />
+                                        {errors.email && (
+                                            <p className="text-danger mb-0 mt_10" style={{ fontSize: "0.85rem" }}>Please enter a valid email address.</p>
+                                        )}
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="fw-6 mb_10 d-block">
+                                        <label className="fw-6 mb_10 d-block" htmlFor="cf-field-phone">
                                             Phone Number
                                         </label>
                                         <input
+                                            id="cf-field-phone"
                                             type="tel"
                                             placeholder="Enter your phone number"
                                             value={additionalInfo.phone}
@@ -268,10 +441,11 @@ export default function CustomFitFormPage() {
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="fw-6 mb_10 d-block">
+                                        <label className="fw-6 mb_10 d-block" htmlFor="cf-field-notes">
                                             Additional Notes
                                         </label>
                                         <textarea
+                                            id="cf-field-notes"
                                             placeholder="Any special requirements or notes..."
                                             value={additionalInfo.notes}
                                             onChange={(e) => handleAdditionalChange("notes", e.target.value)}
@@ -284,12 +458,17 @@ export default function CustomFitFormPage() {
 
                             {/* Submit Button */}
                             <div className="text-center flat-spacing">
+                                {submitError && (
+                                    <p className="text-danger mb_20" style={{ fontWeight: 600 }}>{submitError}</p>
+                                )}
                                 <button
                                     type="submit"
+                                    disabled={submitting}
                                     className="tf-btn btn-fill animate-hover-btn radius-3 btn-lg"
+                                    style={{ opacity: submitting ? 0.6 : 1, cursor: submitting ? "not-allowed" : undefined }}
                                 >
-                                    <span>Submit</span>
-                                    <i className="icon icon-arrow-right" />
+                                    <span>{submitting ? "Sending…" : "Submit"}</span>
+                                    {!submitting && <i className="icon icon-arrow-right" />}
                                 </button>
                             </div>
                         </form>

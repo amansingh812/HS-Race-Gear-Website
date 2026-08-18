@@ -45,6 +45,23 @@ export default function DisciplineLandingPage({ data }) {
                     <li key={i}><strong>{p.title}</strong> — {p.detail}</li>
                   ))}
                 </ul>
+                {/* Contextual parent link, added 2026-08-11.
+                    /custom-race-suit sits at position 28.3 with 819
+                    impressions. It already has 23 inbound links — but almost
+                    all are CTA BUTTONS whose anchor text is a call to action
+                    ("Design Your Suit"), not a description of the target.
+                    Only 3 links site-wide had descriptive anchor text.
+                    This renders one contextual in-prose link per discipline
+                    page with varied, keyword-bearing anchor text. */}
+                {data.parentContext && (
+                  <p className="blog-body-text" style={{ marginTop: "16px" }}>
+                    {data.parentContext.before}{" "}
+                    <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>
+                      {data.parentContext.anchor}
+                    </Link>{" "}
+                    {data.parentContext.after}
+                  </p>
+                )}
               </div>
             </div>
 

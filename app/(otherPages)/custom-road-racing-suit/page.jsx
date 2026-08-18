@@ -10,12 +10,20 @@ const data = DISCIPLINE_DATA["road-racing"];
 
 export const metadata = {
   alternates: { canonical: "/custom-road-racing-suit" },
-  title: "Custom Road Racing Suits — SCCA, NASA, Vintage | HS Race Gear",
-  description: "Custom road racing suits for SCCA, NASA, Trans Am, IMSA, vintage. SFI 3.2A/5 or FIA 8856-2018. Stretch panels for road-course range of motion, moisture-wicking inner liner, cool-shirt compatible. From $329.",
-  keywords: "custom road racing suit, SCCA racing suit, NASA road racing suit, Trans Am racing suit, IMSA fire suit, FIA 8856-2018 suit, vintage racing suit, club racing suit",
+  // CTR FIX 2026-08-11 — GSC: 41 impressions, position 7.7, ZERO clicks.
+  // Top-10 ranking, so this is a title problem not a ranking problem. Two
+  // changes: lead with the sanctioning bodies (racers self-identify by series
+  // before they think "road racing"), and move the $329 price anchor into the
+  // title, which is the pattern that works on the compare pages.
+  // Also added "fire suit" phrasing — "scca fire suits" is a live query
+  // (5 imp @ pos 19.8) and the page only said "racing suit".
+  // Brand suffix dropped; old title was 61 chars and truncating.
+  title: "SCCA & NASA Road Racing Suits — Custom SFI From $329",
+  description: "Custom road racing suits and fire suits for SCCA, NASA, Trans Am, IMSA and vintage. SFI 3.2A/5 or FIA 8856-2018, stretch panels for road-course range of motion, moisture-wicking liner, cool-shirt compatible. Built to your measurements in the USA.",
+  keywords: "scca fire suits, scca racing suit, scca fire suit, nasa road racing suit, custom road racing suit, road racing fire suit, club racing suit, Trans Am racing suit, IMSA fire suit, FIA 8856-2018 suit, vintage racing suit, road course racing suit",
   openGraph: {
     type: "website",
-    title: "Custom Road Racing Suits — SCCA, NASA, Vintage Compliant",
+    title: "SCCA & NASA Road Racing Suits — Custom SFI From $329",
     description: "SFI 3.2A/5 or FIA 8856-2018. Stretch panels, moisture-wicking liner, cool-shirt compatible. From $329.",
     url: "https://www.hsracegear.com/custom-road-racing-suit",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],

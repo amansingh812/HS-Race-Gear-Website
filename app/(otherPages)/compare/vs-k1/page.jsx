@@ -12,11 +12,16 @@ import React from "react";
 // intent. Title leads with the exact-match phrase searchers type.
 export const metadata = {
   alternates: { canonical: "/compare/vs-k1" },
-  title: "K1 Racing Suits Alternative — Custom SFI Race Suits From $289 | HS Race Gear",
+  title: "K1 Race Gear Alternative — Custom SFI Race Suits From $289",
   description:
     "Searching for K1 racing suits? Compare HS Racegear vs K1 RaceGear — custom SFI-certified race suits from $289, 2–3 week production, deeper customization, premium Nomex® for drag, sprint, dirt, and circle track.",
   keywords:
-    "k1 racing suits, k1 race suits, k1 racegear, k1 racegear suit, k1 racegear alternative, HS Racegear vs K1 RaceGear, K1 RaceGear alternative, custom SFI race suits, racing suit comparison, Nomex racing suit",
+    // Updated 2026-08-11 — "k1 race gear" and "k 1 race gear" are 5,000/mo
+    // each (joint-highest in the Keyword Planner export) and were matching
+    // only the homepage. The old title led with "K1 Racing Suits" and never
+    // contained the phrase "race gear" at all. Spaced variant included
+    // because Keyword Planner lists it separately.
+    "k1 race gear, k 1 race gear, k1 racegear, k1 racing suits, k1 race suits, k1 race suits alternative, k1 custom race suits, k1 custom suits, k1 racegear suit, k1 racegear alternative, HS Racegear vs K1 RaceGear, K1 RaceGear alternative, custom SFI race suits, racing suit comparison, Nomex racing suit",
 };
 
 const breadcrumbSchema = {

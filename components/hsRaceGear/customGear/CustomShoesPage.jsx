@@ -56,7 +56,7 @@ export default function CustomShoesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             ),
-            title: "SFI 3.3A/5 Certified",
+            title: "SFI 3.3/5 Certified",
             description: "Approximately 10 seconds of direct flame protection before second-degree burn risk. Required for sanctioned motorsport events."
         },
         {
@@ -202,7 +202,7 @@ export default function CustomShoesPage() {
                             letterSpacing: "2px",
                             textTransform: "uppercase"
                         }}>
-                            SFI 3.3A/5 Certified
+                            SFI 3.3/5 Certified
                         </div>
 
                         {/* Heading */}
@@ -214,7 +214,11 @@ export default function CustomShoesPage() {
                             color: "#fff",
                             textTransform: "uppercase"
                         }}>
-                            Custom Racing<br />
+                            {/* H1 aligned to the retargeted title 2026-08-11 —
+                                "sfi racing shoes" and "racing shoes sfi" were
+                                matching the homepage instead of this page
+                                because the phrase never formed here. */}
+                            SFI Racing<br />
                             <span className="shoes-gradient-text">Shoes.</span>
                         </h1>
 
@@ -227,7 +231,7 @@ export default function CustomShoesPage() {
                             margin: "0 auto 40px",
                             lineHeight: "1.7"
                         }}>
-                            Professional fire-resistant Nomex® racing shoes engineered for pedal precision, endurance comfort, and heat protection. Custom colors and logos available.
+                            SFI 3.3/5 certified Nomex® racing shoes and race boots, engineered for pedal precision, endurance comfort, and heat protection. Built to your foot measurements with custom colors and logos.
                         </p>
 
                         {/* CTA Buttons */}
@@ -433,7 +437,7 @@ export default function CustomShoesPage() {
                                 color: "#fff",
                                 marginBottom: "24px"
                             }}>
-                                SFI 3.3A/5 Nomex® Racing Shoes
+                                SFI 3.3/5 Nomex® Racing Shoes
                             </h2>
                             <p style={{
                                 color: "#9ca3af",
@@ -441,7 +445,7 @@ export default function CustomShoesPage() {
                                 marginBottom: "20px",
                                 lineHeight: "1.8"
                             }}>
-                                Professional fire-resistant footwear engineered for motorsports where heat exposure, pedal precision, and endurance comfort are critical. The SFI 3.3A/5 rating certifies approximately 10 seconds of direct flame protection.
+                                Professional fire-resistant footwear engineered for motorsports where heat exposure, pedal precision, and endurance comfort are critical. The SFI 3.3/5 rating certifies approximately 10 seconds of direct flame protection.
                             </p>
                             <p style={{
                                 color: "#9ca3af",
@@ -453,7 +457,7 @@ export default function CustomShoesPage() {
                             </p>
                             <ul style={{ listStyle: "none", padding: 0 }}>
                                 {[
-                                    "SFI 3.3A/5 fire protection rating",
+                                    "SFI 3.3/5 fire protection rating",
                                     "Durable cowhide leather outer shell",
                                     "Nomex® fire-resistant inner lining",
                                     "High-grip outsole for pedal precision",
@@ -801,7 +805,7 @@ export default function CustomShoesPage() {
                                 letterSpacing: "1px",
                                 textTransform: "uppercase"
                             }}>
-                                SFI 3.3A/5 Certified
+                                SFI 3.3/5 Certified
                             </div>
                             <h3 style={{ fontSize: "1.75rem", fontWeight: "700", color: "#fff", marginBottom: "8px" }}>
                                 Custom Racing Shoes
@@ -817,7 +821,7 @@ export default function CustomShoesPage() {
                             marginBottom: "32px"
                         }}>
                             {[
-                                "SFI 3.3A/5 fire protection",
+                                "SFI 3.3/5 fire protection",
                                 "Premium cowhide leather",
                                 "Nomex® inner lining",
                                 "High-grip rubber outsole",

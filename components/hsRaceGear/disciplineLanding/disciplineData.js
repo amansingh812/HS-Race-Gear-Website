@@ -18,6 +18,11 @@ export const DISCIPLINE_DATA = {
     primaryCtaText: "Design Your Drag Suit",
     certBadge: "SFI Certified",
     builtForIntro: "Drag racing suits face a specific risk profile — short, high-fuel-load runs with potential nitromethane or alcohol exposure, plus the burnout box. Our custom drag racing suits are built around four design priorities:",
+    parentContext: {
+      before:  "Every one of these is standard on our",
+      anchor:  "custom made race suits",
+      after:   "— the drag-specific build simply starts from a different SFI tier and a lighter layer count.",
+    },
     builtForPoints: [
       { title: "Class-rated SFI certification", detail: "SFI 3.2A/1 for 10.00+ ET, 3.2A/5 for 9.99 ET and quicker, 3.2A/15 for sub-7.49 ET classes. Higher tiers available on request." },
       { title: "Lightweight construction for bracket racing", detail: "Single-layer Nomex® for classes that don't require multi-layer — keeps weight and heat down during long lanes-and-staging waits." },
@@ -55,6 +60,11 @@ export const DISCIPLINE_DATA = {
     primaryCtaText: "Design Your Sprint Suit",
     certBadge: "SFI 3.2A/5",
     builtForIntro: "Sprint car racing has a unique risk profile that most off-the-shelf suits weren't built around. Our custom sprint car racing suits address all four:",
+    parentContext: {
+      before:  "The same construction runs through our whole",
+      anchor:  "custom racing suit",
+      after:   "range — sprint car builds add the arm-restraint shoulder and the dust seal on top of it.",
+    },
     builtForPoints: [
       { title: "Arm-restraint compatible shoulder construction", detail: "Sprint cars require arm restraints. The suit's shoulder construction has to clear the restraint anchor without bunching." },
       { title: "Dust-seal collar and cuffs", detail: "Dirt sprint cars throw enough clay into the cockpit to coat the inside of an open-collar suit. Our suits use higher collars, elastic cuffs, and storm flaps." },
@@ -92,6 +102,11 @@ export const DISCIPLINE_DATA = {
     primaryCtaText: "Design Your Dirt Suit",
     certBadge: "SFI 3.2A/5",
     builtForIntro: "Dirt late model racing puts a suit through more abrasion and dust exposure than almost any other oval-track discipline. Our dirt late model suits are spec'd around four priorities:",
+    parentContext: {
+      before:  "These features sit on the same base pattern as our other",
+      anchor:  "custom race suits",
+      after:   "with dirt-specific abrasion panels added where the slide happens.",
+    },
     builtForPoints: [
       { title: "SFI 3.2A/5 multi-layer Nomex® baseline", detail: "Standard floor for Lucas Oil, World of Outlaws Late Models, and most regional touring." },
       { title: "Aggressive dust seal at collar and cuffs", detail: "Higher collar, elastic wrist and ankle cuffs, storm flap over zipper — seals out clay and dust from 30-lap features." },
@@ -129,6 +144,11 @@ export const DISCIPLINE_DATA = {
     primaryCtaText: "Design Your Road Suit",
     certBadge: "SFI 3.2A/5",
     builtForIntro: "Road racing covers a wide spectrum from amateur club racing to professional endurance. Our road racing suits are built to span the major US series:",
+    parentContext: {
+      before:  "Road-course builds start from the same measured pattern as every other",
+      anchor:  "custom made racing suit",
+      after:   "we cut, then add shoulder mobility and cooling for longer stints.",
+    },
     builtForPoints: [
       { title: "SFI 3.2A/5 or FIA 8856-2018", detail: "Both standards available. SFI for SCCA, NASA, Trans Am amateur. FIA 8856-2018 for IMSA professional classes and international series." },
       { title: "Stretch panels for road-course range of motion", detail: "Road racing demands more shoulder, elbow, and hip mobility than oval. Stretch knit at the underarms, sides, and inner elbows." },

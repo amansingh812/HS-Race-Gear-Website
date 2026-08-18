@@ -144,17 +144,28 @@ export default function BlogPost6HSCode() {
                 </p>
               </div>
 
+              {/* CONTRAST FIX 2026-08-11.
+                  The Country and Duty Rate cells set no `color`, so they
+                  inherited Bootstrap's body default (#212529) — near-black
+                  text on a near-black table, effectively invisible. The
+                  Tariff Code (#e21b1b) and Notes (#aaa) cells set their own
+                  colour, which is why only those two columns were readable.
+                  `color` is now set on the wrapper so the table can never
+                  inherit a light-theme colour again, and explicitly on every
+                  cell so each one is self-contained. */}
               <div style={{
                 overflowX: "auto",
                 borderRadius: "12px",
                 border: "1px solid rgba(255,255,255,0.08)",
-                margin: "16px 0"
+                margin: "16px 0",
+                color: "#fff"
               }}>
                 <table style={{
                   width: "100%",
                   borderCollapse: "collapse",
                   fontSize: "14px",
-                  minWidth: "560px"
+                  minWidth: "560px",
+                  color: "#fff"
                 }}>
                   <thead>
                     <tr style={{ background: "#e21b1b", color: "#fff" }}>
@@ -175,17 +186,17 @@ export default function BlogPost6HSCode() {
                       ["UAE / Middle East", "6210.40", "5%", "GCC Unified Customs Tariff; duty at point of import"],
                     ].map(([country, code, rate, notes], i) => (
                       <tr key={i} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.03)" : "transparent", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                        <td style={{ padding: "11px 16px", fontWeight: 600 }}>{country}</td>
-                        <td style={{ padding: "11px 16px", fontFamily: "monospace", color: "#e21b1b" }}>{code}</td>
-                        <td style={{ padding: "11px 16px" }}>{rate}</td>
-                        <td style={{ padding: "11px 16px", color: "#aaa", fontSize: "13px" }}>{notes}</td>
+                        <td style={{ padding: "11px 16px", fontWeight: 600, color: "#fff" }}>{country}</td>
+                        <td style={{ padding: "11px 16px", fontFamily: "monospace", color: "#ff6b6b" }}>{code}</td>
+                        <td style={{ padding: "11px 16px", color: "#fff", fontWeight: 600, whiteSpace: "nowrap" }}>{rate}</td>
+                        <td style={{ padding: "11px 16px", color: "#c9c9c9", fontSize: "13px" }}>{notes}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <p style={{ fontSize: "13px", color: "#888", marginTop: "8px" }}>
-                * Duty rates are approximate and subject to change. Always verify with your country's customs authority or a licensed customs broker before importing.
+              <p style={{ fontSize: "13px", color: "#b0b0b0", marginTop: "8px" }}>
+                * Duty rates are approximate and subject to change. Always verify with your country&rsquo;s customs authority or a licensed customs broker before importing.
               </p>
             </div>
 

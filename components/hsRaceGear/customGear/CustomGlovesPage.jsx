@@ -55,7 +55,7 @@ export default function CustomGlovesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             ),
-            title: "SFI 3.3A/5 Certified",
+            title: "SFI 3.3/5 Certified",
             description: "Approximately 10 seconds of direct flame protection. Required for sanctioned motorsport events including NHRA, NASCAR regional series, and FIA-affiliated events."
         },
         {
@@ -219,7 +219,7 @@ export default function CustomGlovesPage() {
                             letterSpacing: "2px",
                             textTransform: "uppercase"
                         }}>
-                            SFI 3.3A/5 Certified
+                            SFI 3.3/5 Certified
                         </div>
 
                         {/* Heading */}
@@ -231,8 +231,11 @@ export default function CustomGlovesPage() {
                             color: "#fff",
                             textTransform: "uppercase"
                         }}>
-                            Custom Racing<br />
-                            <span className="gloves-gradient-text">Gloves.</span>
+                            {/* H1 aligned to the retargeted title 2026-08-11 —
+                                "Nomex" is the word buyers actually search and
+                                it was missing from the H1 entirely. */}
+                            Custom Nomex<br />
+                            <span className="gloves-gradient-text">Racing Gloves.</span>
                         </h1>
 
                         {/* Subheading */}
@@ -244,7 +247,7 @@ export default function CustomGlovesPage() {
                             margin: "0 auto 40px",
                             lineHeight: "1.7"
                         }}>
-                            Professional-grade fire-resistant Nomex® gloves designed for heat protection, control precision, and custom team branding. Two-layer construction with silicone grip palm.
+                            SFI 3.3/5 certified Nomex® racing gloves and driving gloves, designed for heat protection, control precision, and custom team branding. Two-layer construction with silicone grip palm.
                         </p>
 
                         {/* CTA Buttons */}
@@ -448,7 +451,7 @@ export default function CustomGlovesPage() {
                                 color: "#fff",
                                 marginBottom: "24px"
                             }}>
-                                SFI 3.3A/5 Nomex® Racing Gloves
+                                SFI 3.3/5 Nomex® Racing Gloves
                             </h2>
                             <p style={{
                                 color: "#9ca3af",
@@ -456,7 +459,7 @@ export default function CustomGlovesPage() {
                                 marginBottom: "20px",
                                 lineHeight: "1.8"
                             }}>
-                                Professional-grade fire-resistant gloves designed for high-risk motorsport environments where heat, flames, and control precision are critical. The SFI 3.3A/5 rating certifies approximately 10 seconds of direct flame protection.
+                                Professional-grade fire-resistant gloves designed for high-risk motorsport environments where heat, flames, and control precision are critical. The SFI 3.3/5 rating certifies approximately 10 seconds of direct flame protection.
                             </p>
                             <p style={{
                                 color: "#9ca3af",
@@ -468,7 +471,7 @@ export default function CustomGlovesPage() {
                             </p>
                             <ul style={{ listStyle: "none", padding: 0 }}>
                                 {[
-                                    "Fire resistance up to SFI 3.3A/5 standards",
+                                    "Fire resistance up to SFI 3.3/5 standards",
                                     "Lightweight, breathable Nomex® construction",
                                     "Enhanced grip with silicone palm",
                                     "Customizable for team branding",
@@ -807,7 +810,7 @@ export default function CustomGlovesPage() {
                                 letterSpacing: "1px",
                                 textTransform: "uppercase"
                             }}>
-                                SFI 3.3A/5 Certified
+                                SFI 3.3/5 Certified
                             </div>
                             <h3 style={{ fontSize: "1.75rem", fontWeight: "700", color: "#fff", marginBottom: "8px" }}>
                                 Custom Racing Gloves
@@ -823,7 +826,7 @@ export default function CustomGlovesPage() {
                             marginBottom: "32px"
                         }}>
                             {[
-                                "SFI 3.3A/5 fire protection",
+                                "SFI 3.3/5 fire protection",
                                 "Two-layer Nomex® construction",
                                 "Silicone grip palm",
                                 "Custom stitching options",

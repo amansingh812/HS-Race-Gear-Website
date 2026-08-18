@@ -100,8 +100,10 @@ export async function POST(request) {
     
     await dbConnect();
     
-    // Get product
-    const product = await Product.findById(productId);
+    // Get product. Category is populated (2026-08-11) so the layer-aware
+    // certification below can tell a race suit from other products — without
+    // it, product.category is a bare ObjectId and the check fails silently.
+    const product = await Product.findById(productId).populate('category', 'slug');
     if (!product) {
       return NextResponse.json(
         { success: false, message: 'Product not found' },
@@ -159,7 +161,20 @@ export async function POST(request) {
     
     // Get primary image
     const primaryImage = product.images?.find(img => img.isPrimary) || product.images?.[0];
-    
+
+    // ── Layer-aware certification (2026-08-11) ──────────────────────────────
+    // Off-the-rack race suits ship in single- OR double-layer, and the two
+    // carry different SFI certifications. The snapshot used to record
+    // `product.certification` (always the single-layer value from Mongo)
+    // alongside the chosen `layer`, so a double-layer order was filed as
+    // SFI 3.2A/1. The order record is what gets referenced if a suit is ever
+    // questioned at tech or in a claim, so it has to match what was sold.
+    // Mirrors LAYER_SPECS in components/productDetails/Details1.jsx.
+    const isRaceSuit = product.category?.slug === 'race-suits';
+    const resolvedCertification = isRaceSuit
+      ? (layer === 'double' ? 'SFI 3.2A/5' : 'SFI 3.2A/1')
+      : product.certification;
+
     // Get or create cart
     let cart = await Cart.getOrCreateCart(decoded.userId);
     
@@ -171,7 +186,7 @@ export async function POST(request) {
         slug: product.slug,
         price: basePrice,
         image: image || primaryImage?.url,
-        certification: product.certification,
+        certification: resolvedCertification,
         layer: layer || 'single',
         driverName: driverName || '',
       },

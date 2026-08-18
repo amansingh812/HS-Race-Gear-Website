@@ -13,7 +13,7 @@ export default function BlogPost3SFI() {
             <span className="contact-breadcrumb-sep">/</span>
             <Link href="/blog">Blog</Link>
             <span className="contact-breadcrumb-sep">/</span>
-            <span className="contact-breadcrumb-current">SFI Ratings Explained</span>
+            <span className="contact-breadcrumb-current">What Does SFI Certified Mean?</span>
           </p>
           <span className="contact-hero-tag">Safety Standards</span>
           <h1 className="contact-hero-title">
@@ -43,7 +43,7 @@ export default function BlogPost3SFI() {
             {/* TITLE BLOCK */}
             <div className="blog-post-title-block">
               <h2 className="blog-post-main-title">What &ldquo;SFI Certified&rdquo; Actually Means on a Race Suit</h2>
-              <p className="blog-post-subtitle">SFI Suit Ratings, TPP Scores, and How to Choose the Right Level of Protection</p>
+              <p className="blog-post-subtitle">What the SFI Foundation certifies, how to read the tag, and how to spot gear that won&rsquo;t pass tech</p>
             </div>
 
             {/* INTRO */}
@@ -64,7 +64,7 @@ export default function BlogPost3SFI() {
 
             {/* WHAT IS SFI */}
             <div className="blog-body-block">
-              <h2 className="blog-body-heading">What Are SFI Ratings? (And What Is SFI Certification?)</h2>
+              <h2 className="blog-body-heading">What Is SFI Certification?</h2>
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   SFI certification is a safety standard developed by the SFI Foundation Inc., an independent non-profit organization that establishes performance specifications for motorsports safety equipment.
@@ -97,7 +97,7 @@ export default function BlogPost3SFI() {
 
             {/* HOW RATINGS WORK */}
             <div className="blog-body-block">
-              <h3 className="blog-body-heading">How SFI Ratings &amp; Requirements Work</h3>
+              <h3 className="blog-body-heading">How SFI Certification Works</h3>
               <div className="blog-body-card">
                 <p className="blog-body-text">
                   SFI ratings are numerical classifications that indicate how much protection a piece of gear provides. For racing suits, the most common specification is <strong>SFI Spec 3.2A</strong>, which measures fire resistance and thermal insulation.
@@ -108,63 +108,41 @@ export default function BlogPost3SFI() {
               </div>
             </div>
 
-            {/* RATINGS EXPLAINED */}
+            {/* RATINGS — TRIMMED 2026-08-11 (de-cannibalization).
+                This section was a full tier-by-tier breakdown that duplicated
+                /certifications, which is the designated hub for rating-tier
+                queries ("sfi ratings" 111 imp, "sfi suit ratings" 95 imp).
+                Reduced to a summary + link so this page stays on its own
+                intent (what "SFI certified" means) instead of competing. */}
             <div className="blog-body-block">
-              <h3 className="blog-body-heading">Common SFI Racing Suit Ratings Explained</h3>
-
+              <h3 className="blog-body-heading">Where the Rating Numbers Fit In</h3>
               <div className="blog-body-card">
-                <p className="blog-body-text"><strong style={{ color: "#e21b1b" }}>SFI 3.2A/1 — Entry-Level Protection</strong></p>
-                <ul className="blog-body-list">
-                  <li>Basic fire resistance</li>
-                  <li>Used in lower-risk racing environments</li>
-                  <li>Lightweight and breathable</li>
-                  <li>Often required for grassroots motorsports</li>
-                </ul>
-                <p className="blog-body-text" style={{ marginTop: "10px" }}>Good for beginners or limited exposure racing.</p>
-              </div>
-
-              <div className="blog-body-card">
-                <p className="blog-body-text"><strong style={{ color: "#e21b1b" }}>SFI 3.2A/5 — Standard Professional Protection</strong></p>
-                <ul className="blog-body-list">
-                  <li>Widely used across many racing categories</li>
-                  <li>Balanced fire resistance and comfort</li>
-                  <li>Multi-layer construction</li>
-                  <li>Common requirement for competitive racing</li>
-                </ul>
-                <p className="blog-body-text" style={{ marginTop: "10px" }}>This is one of the most popular suit ratings in professional racing.</p>
-              </div>
-
-              <div className="blog-body-card">
-                <p className="blog-body-text"><strong style={{ color: "#e21b1b" }}>SFI 3.2A/10 to 3.2A/20 — High Fire Risk Racing</strong></p>
-                <ul className="blog-body-list">
-                  <li>Designed for higher horsepower vehicles</li>
-                  <li>Increased thermal insulation</li>
-                  <li>Thicker multi-layer protection</li>
-                  <li>Common in advanced motorsports</li>
-                </ul>
-              </div>
-
-              <div className="blog-body-card">
-                <p className="blog-body-text"><strong style={{ color: "#e21b1b" }}>SFI 3.2A/40 and Above — Extreme Protection</strong></p>
-                <ul className="blog-body-list">
-                  <li>Maximum thermal protection</li>
-                  <li>Multiple heavy insulation layers</li>
-                  <li>Designed for extreme racing conditions</li>
-                  <li>Required in top-tier drag racing categories</li>
-                </ul>
-                <p className="blog-body-text" style={{ marginTop: "10px" }}>These suits prioritize protection above all else.</p>
+                <p className="blog-body-text">
+                  Certification and rating are two different things. Certification is the yes-or-no question this page answers — is the garment SFI approved at all. The <strong>rating</strong> is the number after it, and it tells you how much thermal protection you get: 3.2A/1 at the entry level, 3.2A/5 as the common competitive standard, and higher tiers for drag racing and other high-fire-risk classes.
+                </p>
+                <p className="blog-body-text">
+                  We keep the full tier-by-tier breakdown in one place rather than repeating it here.{" "}
+                  <Link href="/certifications" style={{ color: "#e21b1b", textDecoration: "underline" }}>
+                    See the complete SFI ratings guide
+                  </Link>{" "}
+                  for what each number means and which one your class requires.
+                </p>
               </div>
             </div>
 
-            {/* TPP */}
+            {/* TPP — TRIMMED 2026-08-11. Full explainer lives at
+                /blog/tpp-rating-explained. Kept two sentences for context. */}
             <div className="blog-body-block">
-              <h3 className="blog-body-heading">Understanding TPP — Thermal Protective Performance</h3>
+              <h3 className="blog-body-heading">How SFI Measures Protection</h3>
               <div className="blog-body-card">
                 <p className="blog-body-text">
-                  SFI racing suits are tested using a measurement called <strong>TPP (Thermal Protective Performance)</strong>. TPP measures how long a material protects skin from heat transfer before injury occurs. The higher the TPP value, the greater the insulation against fire.
+                  SFI suits are tested using <strong>TPP (Thermal Protective Performance)</strong> — a laboratory measurement of how long a material shields skin from heat before injury occurs. It&rsquo;s why a certified suit gives you a predictable protection figure rather than a marketing claim.
                 </p>
                 <p className="blog-body-text">
-                  This scientific testing ensures every certified suit provides predictable protection levels — not just marketing claims.
+                  <Link href="/blog/tpp-rating-explained" style={{ color: "#e21b1b", textDecoration: "underline" }}>
+                    Read the full TPP explainer
+                  </Link>{" "}
+                  — including why two suits with the same SFI rating can offer different real-world protection.
                 </p>
               </div>
             </div>
@@ -207,30 +185,22 @@ export default function BlogPost3SFI() {
               </div>
             </div>
 
-            {/* CHOOSING THE RIGHT RATING */}
+            {/* BY-DISCIPLINE — TRIMMED 2026-08-11 (de-cannibalization).
+                This was a second rating-by-class breakdown competing directly
+                with /blog/sfi-rated-racing-suit-by-class, which owns that
+                intent. Reduced to a pointer. */}
             <div className="blog-body-block">
-              <h2 className="blog-body-heading">SFI Suit Ratings by Discipline — Which Rating Do You Need?</h2>
+              <h3 className="blog-body-heading">Certified Isn&rsquo;t the Same as Compliant</h3>
               <div className="blog-body-card">
-                <p className="blog-body-text">The correct rating depends on several factors:</p>
-                <ul className="blog-body-list">
-                  <li>Engine power and fuel type</li>
-                  <li>Fire risk level</li>
-                  <li>Race duration</li>
-                  <li>Governing body regulations</li>
-                  <li>Personal safety preference</li>
-                </ul>
-                <p className="blog-body-text" style={{ marginTop: "14px" }}>For example:</p>
-                <ul className="blog-body-list">
-                  <li>Local amateur racing may require SFI 3.2A/1</li>
-                  <li>Competitive circuit racing often requires 3.2A/5</li>
-                  <li>Professional drag racing may require 3.2A/15 or higher</li>
-                </ul>
-                <p className="blog-body-text" style={{ marginTop: "14px" }}>
-                  Always confirm the minimum requirement for your class before purchasing racewear. Our{" "}
+                <p className="blog-body-text">
+                  A suit can be genuinely SFI certified and still fail tech, because your class specifies a <em>minimum rating</em> — not just any certification. A valid 3.2A/1 tag won&rsquo;t get you through a lane that requires 3.2A/5.
+                </p>
+                <p className="blog-body-text">
+                  Confirm the minimum for your class before buying, not on race morning.{" "}
                   <Link href="/blog/sfi-rated-racing-suit-by-class" style={{ color: "#e21b1b", textDecoration: "underline" }}>
-                    rating-by-discipline guide
+                    Our rating-by-class guide
                   </Link>{" "}
-                  walks through every major series.
+                  covers NHRA, SCCA, dirt and circle track series individually.
                 </p>
               </div>
             </div>

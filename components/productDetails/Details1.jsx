@@ -26,6 +26,35 @@ export default function Details1({ product }) {
   // Detect if this is an off-the-rack race suit (show layer toggle)
   const isSuit = product.category?.slug === "race-suits";
 
+  // ── Racing Specifications, layer-aware (2026-08-11) ──────────────────────
+  //
+  // Every off-the-rack race suit is sold in BOTH single- and double-layer
+  // (see the "Select Layer" toggle below: $329 / $429). The two builds carry
+  // genuinely different SFI certifications:
+  //
+  //   Single layer -> SFI 3.2A/1, level SFI-1
+  //   Double layer -> SFI 3.2A/5, level SFI-5
+  //
+  // The spec block used to print static values straight from Mongo, so a
+  // customer who selected "Double Layer" still saw "SFI 3.2A/1 / One-piece
+  // single-layer". That is a safety-claim mismatch, not just a display bug —
+  // the certification shown must match the item being added to the cart.
+  //
+  // Deriving it from `selectedLayer` fixes every off-the-rack suit at once
+  // and stays correct for new products without any per-product data entry.
+  // Non-suit products fall through to whatever the database holds.
+  const LAYER_SPECS = {
+    single: { certification: "SFI 3.2A/1", certificationLevel: "SFI-1", construction: "One-piece single-layer" },
+    double: { certification: "SFI 3.2A/5", certificationLevel: "SFI-5", construction: "One-piece double-layer" },
+  };
+  const specs = isSuit
+    ? LAYER_SPECS[selectedLayer]
+    : {
+        certification: product.certification,
+        certificationLevel: product.certificationLevel,
+        construction: product.construction,
+      };
+
   // Detect apparel items that don't need driver name
   const isApparel = ["hoodies", "crew-shirts"].includes(product.category?.slug) ||
     product.title?.toLowerCase().includes("hoodie") ||
@@ -194,30 +223,37 @@ export default function Details1({ product }) {
                     </div>
                   )}
 
-                  {/* Racing Specifications */}
-                  {(product.certification || product.certificationLevel || product.construction) && (
+                  {/* Racing Specifications — reads from `specs`, which is
+                      derived from the selected layer for race suits. See the
+                      LAYER_SPECS note at the top of this component. */}
+                  {(specs.certification || specs.certificationLevel || specs.construction) && (
                     <div className="tf-product-specifications mb-3">
                       <h6 className="fw-bold mb-2">Racing Specifications:</h6>
                       <ul className="list-unstyled">
-                        {product.certification && (
+                        {specs.certification && (
                           <li className="mb-1">
                             <span className="text-muted">Certification:</span>
-                            <span className="fw-medium ms-2">{product.certification}</span>
+                            <span className="fw-medium ms-2">{specs.certification}</span>
                           </li>
                         )}
-                        {product.certificationLevel && (
+                        {specs.certificationLevel && (
                           <li className="mb-1">
                             <span className="text-muted">Level:</span>
-                            <span className="fw-medium ms-2">{product.certificationLevel}</span>
+                            <span className="fw-medium ms-2">{specs.certificationLevel}</span>
                           </li>
                         )}
-                        {product.construction && (
+                        {specs.construction && (
                           <li className="mb-1">
                             <span className="text-muted">Construction:</span>
-                            <span className="fw-medium ms-2">{product.construction}</span>
+                            <span className="fw-medium ms-2">{specs.construction}</span>
                           </li>
                         )}
                       </ul>
+                      {isSuit && (
+                        <p className="text-muted mb-0" style={{ fontSize: "0.8rem", fontStyle: "italic" }}>
+                          Specifications update with your layer selection below.
+                        </p>
+                      )}
                     </div>
                   )}
 

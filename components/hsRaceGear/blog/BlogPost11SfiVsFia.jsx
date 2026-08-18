@@ -116,6 +116,14 @@ export default function BlogPost11SfiVsFia() {
                   <Link href="/custom-road-racing-suit">road racing suit page</Link>{" "}
                   covers SCCA and NASA specifically.
                 </p>
+                {/* Contextual link to the money page added 2026-08-11 — this
+                    post had no link to /custom-race-suit at all. Anchor text
+                    deliberately descriptive rather than a CTA phrase. */}
+                <p className="hs-doc-card-text">
+                  Once you know which certification your series requires, our{" "}
+                  <Link href="/custom-race-suit">custom made race suits</Link>{" "}
+                  can be built to either standard — tell us the series at order time and we spec the suit to that rulebook.
+                </p>
               </div>
             </div>
 

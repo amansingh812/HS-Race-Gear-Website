@@ -15,11 +15,31 @@ export const metadata = {
   // Title rewritten 2026-05-16 to capture singular "racing suit" (higher
   // search volume than plural "race suits"), the "Made in USA" angle
   // (28-imp query "racewear usa"), and SFI cert trust signal.
-  title: "Custom Racing Suits — SFI Certified, Made in USA | HS Race Gear",
+  //
+  // UPDATED 2026-08-11 — the coverage audit found "custom made race suits"
+  // (5,000/mo, joint-highest term in the whole Keyword Planner export) was
+  // matching only the HOMEPAGE. The money page didn't contain the phrase.
+  // "Custom Made" now leads the title, which also still reads naturally for
+  // "custom made racing fire suits" (500/mo) and "custom made fire suits".
+  //
+  // Also note GSC: this page has 819 impressions at position 28.3 for
+  // "custom racing suit" (90 imp) and "custom race suits" (35 imp). Position
+  // 28 is an authority problem that metadata alone will NOT fix — see
+  // docs/seo/open-gaps.md C1 for the internal-linking work still needed.
+  title: "Custom Made Race Suits — SFI Certified, Made in USA",
   description:
-    "Custom racing suit built to your exact measurements. SFI 3.2A/1 & 3.2A/5 certified, premium Nomex fire-retardant fabric, unlimited color and logo options. Made in the USA. Free shipping on custom suits.",
+    "Custom made race suits built to your exact measurements. SFI 3.2A/1 & 3.2A/5 certified, premium Nomex fire-retardant fabric, unlimited color and logo options. Made in the USA. Free shipping on custom racing suits.",
   keywords:
-    "custom racing suit, custom race suit, SFI certified racing suit, Nomex racing suit, made in USA racing suit, racewear USA, custom racing suits, racing gear, aftermarket auto racing suits",
+    "custom made race suits, custom race suit, custom racing suit, custom racing suits, custom race suits, custom made racing fire suits, custom made fire suits, custom racing fire suits, custom fire suit, custom sfi race suit, SFI certified racing suit, Nomex racing suit, made in USA racing suit, racewear USA, custom auto racing suits, aftermarket auto racing suits",
+  openGraph: {
+    type: "website",
+    title: "Custom Made Race Suits — SFI Certified, Made in USA",
+    description:
+      "Built to your exact measurements. SFI 3.2A/1 & 3.2A/5 certified, premium Nomex, unlimited colors and logos. Made in the USA with free shipping.",
+    url: "https://www.hsracegear.com/custom-race-suit",
+    siteName: "HS Race Gear",
+    images: ["https://www.hsracegear.com/images/og-image.jpg"],
+  },
 };
 
 const breadcrumbSchema = {
