@@ -12,7 +12,7 @@ export const metadata = {
   alternates: { canonical: "/custom-sprint-car-suit" },
   title: "Custom Sprint Car Suits — USAC, World of Outlaws, ASCS Compliant | HS Race Gear",
   description: "Custom sprint car racing suits with arm-restraint-compatible shoulders, dust-seal collar, methanol-spec SFI 3.2A/5 multi-layer Nomex®. USAC, WoO, ASCS, POWRi compliant. Made in USA. From $329.",
-  keywords: "custom sprint car suit, USAC racing suit, World of Outlaws sprint suit, ASCS sprint suit, POWRi racing suit, winged sprint car suit, methanol fire suit, Knoxville Nationals",
+  keywords: "sprint car fire suits, sprint car fire suit, custom sprint car suit, USAC racing suit, World of Outlaws sprint suit, ASCS sprint suit, POWRi racing suit, winged sprint car suit, methanol fire suit, Knoxville Nationals",
   openGraph: {
     type: "website",
     title: "Custom Sprint Car Suits — USAC, World of Outlaws, ASCS Compliant",

@@ -20,7 +20,7 @@ export const metadata = {
   description:
     "SFI vs FIA 8856-2018 compared — how the two racing suit certifications differ, why an SFI tag won't always pass FIA tech (and vice versa), what SCCA accepts, and how to tell which one your series requires in 2026.",
   keywords:
-    "sfi vs fia, sfi vs fia rating, fia 8856-2018 vs sfi, fia vs sfi racing suit, sfi or fia certification, fia 8856-2018, sfi 3.2a/5, racing suit certification, scca fire suit certification, which sfi rating do i need",
+    "FIA 8856-2018 vs SFI 5, sfi vs fia, sfi vs fia rating, fia 8856-2018 vs sfi, fia vs sfi racing suit, sfi or fia certification, fia 8856-2018, sfi 3.2a/5, racing suit certification, scca fire suit certification, which sfi rating do i need",
   openGraph: {
     title: "SFI vs FIA 8856-2018: Key Differences & Which One You Need",
     description:

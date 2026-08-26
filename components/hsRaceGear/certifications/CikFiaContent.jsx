@@ -73,6 +73,39 @@ export default function CikFiaContent() {
               </div>
             </div>
 
+            {/* ADDED 2026-08-25 — material correction to this page.
+                CIK-FIA Level 2 has been superseded by FIA 8877-2022. New
+                production to the old Level standard ended 31 Dec 2024;
+                existing suits stay valid per their label until 31 Dec 2029.
+                The page as originally written (11 Aug) described Level 2 as
+                the current standard without mentioning the transition, which
+                was incomplete in a way that matters commercially. */}
+            <div className="hs-doc-block">
+              <h2 className="hs-doc-heading">Important: Level 2 Is Being Replaced by FIA 8877-2022</h2>
+              <div className="hs-doc-card">
+                <p className="hs-doc-card-text">
+                  The CIK-FIA Level system has been superseded by a new standard, <strong style={{ color: '#fff' }}>FIA 8877-2022</strong>. If you&rsquo;re buying a karting suit now, this is the single most important thing to understand — and most retail listings still don&rsquo;t mention it.
+                </p>
+                <p className="hs-doc-card-text">The timeline that matters:</p>
+                <ul className="hs-doc-list">
+                  <li><strong style={{ color: '#fff' }}>31 December 2024</strong> — manufacturers could no longer <em>produce</em> new suits to the old CIK-FIA Level standard.</li>
+                  <li><strong style={{ color: '#e21b1b' }}>Now through 31 December 2029</strong> — Level 2 suits manufactured before that cut-off remain accepted, in line with the expiry printed on the suit&rsquo;s own label. Level 2 suits also carry a five-year validity from manufacture, so check both dates.</li>
+                  <li><strong style={{ color: '#fff' }}>From 1 January 2030</strong> — only FIA 8877-2022 is accepted at events run under FIA safety regulations.</li>
+                </ul>
+                <p className="hs-doc-card-text">
+                  So a Level 2 suit is <em>not</em> obsolete today — it&rsquo;s legal to race in, subject to its label. But it is a standard on a countdown, and the useful life left on one you buy now is shorter than the five years the label might imply.
+                </p>
+                <p className="hs-doc-card-text">
+                  <strong style={{ color: '#fff' }}>Buying advice:</strong> check the homologation and expiry printed on the label before you buy, particularly secondhand. And if you&rsquo;re a junior driver whose family expects several seasons out of a suit, factor the 2029 date into the decision.
+                </p>
+              </div>
+              <div className="hs-doc-card hs-doc-card-note">
+                <p className="hs-doc-card-text">
+                  Individual national bodies and event organisers set their own acceptance windows within these dates. Confirm against your series&rsquo; current-season regulations rather than relying on a supplier&rsquo;s website — including this one.
+                </p>
+              </div>
+            </div>
+
             <div className="hs-doc-block">
               <h2 className="hs-doc-heading">CIK-FIA Level 2 vs Level 1 — Which One Do You Need?</h2>
               <div className="hs-doc-card">

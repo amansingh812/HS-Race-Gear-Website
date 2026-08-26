@@ -12,7 +12,7 @@ export const metadata = {
   alternates: { canonical: "/custom-drag-racing-suit" },
   title: "Custom Drag Racing Suits — SFI Certified, NHRA & IHRA Compliant | HS Race Gear",
   description: "Custom drag racing suits built to your measurements. SFI 3.2A/1, 3.2A/5, and 3.2A/15 ratings. NHRA, IHRA, bracket-ready. Made in USA. From $329.",
-  keywords: "custom drag racing suit, NHRA fire suit, IHRA fire suit, SFI 3.2A/15 drag suit, bracket racing suit, sportsman drag suit, Pro Stock racing suit, Top Sportsman suit",
+  keywords: "drag racing fire suits, custom drag racing suits, SFI 3.2A/20 drag racing suit, 2 piece drag racing suits, buy custom female drag racing suit, custom drag racing suit, NHRA fire suit, IHRA fire suit, SFI 3.2A/15 drag suit, bracket racing suit, sportsman drag suit, Pro Stock racing suit, Top Sportsman suit",
   openGraph: {
     type: "website",
     title: "Custom Drag Racing Suits — SFI Certified | HS Race Gear",

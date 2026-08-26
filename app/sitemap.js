@@ -36,6 +36,13 @@ export default async function sitemap() {
     // Karting vertical — added 2026-08-11. CIK-FIA hub + full-kit collection.
     { url: `${baseUrl}/cik-fia-level-2`,              lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/go-kart-racing-apparel`,       lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
+    // Added 2026-08-22 from the client keyword list — women's (10 uncovered
+    // terms) and the Rush SR spec-series cluster (7 uncovered terms).
+    { url: `${baseUrl}/womens-racing-suit`,           lastModified: now, changeFrequency: "weekly",  priority: 0.85 },
+    { url: `${baseUrl}/rush-sr-race-suit`,            lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
+    // Australian market — added 2026-08-25. Speedway only; Motorsport
+    // Australia circuit racing requires FIA homologation we don't hold.
+    { url: `${baseUrl}/race-suits-australia`,         lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
     { url: `${baseUrl}/custom-fit`,                   lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/custom-measurement`,           lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/certifications`,               lastModified: now, changeFrequency: "monthly", priority: 0.7 },

@@ -27,6 +27,24 @@ export default function VsRushContent() {
         <div className="container">
           <div className="hs-doc-content">
 
+            {/* Disambiguation added 2026-08-22. "Rush SR" is an open-cockpit
+                spec sports racer from Rush Auto Works, raced in the GRIDLIFE
+                RUSH Series — nothing to do with Rush Race Gear, the apparel
+                brand this page compares against. The keyword list showed real
+                search demand for "rush sr custom driver gear" and similar, and
+                some of those people will land here by mistake. Send them to
+                the right page rather than pitching them a comparison they
+                didn't ask for. */}
+            <div className="hs-doc-block">
+              <div className="hs-doc-card hs-doc-card-note">
+                <p className="hs-doc-card-text">
+                  <strong style={{ color: '#fff' }}>Looking for Rush SR gear?</strong> This page compares HS Race Gear with <em>Rush Race Gear</em>, an apparel brand. If you race the <em>Rush SR</em> — the open-cockpit spec sports racer in the GRIDLIFE RUSH Series — you want our{" "}
+                  <Link href="/rush-sr-race-suit" style={{ color: '#e21b1b', textDecoration: 'underline' }}>Rush SR race suit page</Link>{" "}
+                  instead. Different Rush entirely.
+                </p>
+              </div>
+            </div>
+
             <div className="hs-doc-block">
               <h2 className="hs-doc-heading">Considering Rush Race Suits? Here's a Better-Value Custom Alternative</h2>
               <div className="hs-doc-card">

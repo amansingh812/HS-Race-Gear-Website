@@ -81,6 +81,7 @@ export const DISCIPLINE_DATA = {
     ],
     sanctioningCallout: "If you race across multiple sanctioning bodies in a season, build to the strictest one — usually USAC. Our custom sprint car suits ship USAC-spec by default unless you tell us otherwise.",
     relatedReading: [
+      { href: "/race-suits-australia", title: "Race Suits Australia", note: "Australian speedway accepts SFI — shipping, ratings and season timing" },
       { href: "/blog/best-sprint-car-racing-suit", title: "Best Sprint Car Racing Suit — USAC, World of Outlaws & ASCS Rules", note: "Definitive guide" },
       { href: "/blog/sfi-rated-racing-suit-by-class", title: "SFI Rated Racing Suit by Class", note: "Discipline-by-discipline rating breakdown" },
       { href: "/blog/perfect-custom-fit-racing-suit", title: "Custom Fit Tips", note: "Sprint car cockpit fit is unforgiving — measure right" },
@@ -123,6 +124,7 @@ export const DISCIPLINE_DATA = {
     ],
     sanctioningCallout: "Dirt late model is one of the few classes where over-spec'd protection (3.2A/10) makes sense for upper-tier touring drivers — methanol fuel loads + closed-cockpit heat make extra TPP worth the weight.",
     relatedReading: [
+      { href: "/race-suits-australia", title: "Race Suits Australia", note: "Australian speedway accepts SFI — shipping, ratings and season timing" },
       { href: "/blog/sfi-rated-racing-suit-by-class", title: "SFI Rated Racing Suit by Class", note: "Full discipline-by-discipline rating guide" },
       { href: "/blog/tpp-rating-explained", title: "TPP Rating Explained", note: "Why TPP matters more than SFI tier alone" },
       { href: "/blog/aftermarket-racing-suits", title: "When to Upgrade From Stock Gear", note: "Especially relevant for dirt — abrasion ages suits fast" },
@@ -139,7 +141,7 @@ export const DISCIPLINE_DATA = {
     suitNoun: "road racing suits",
     h1First: "Custom Road",
     h1Second: "Racing Suits",
-    subtitle: "SCCA, NASA, and vintage road racing custom racing suits. SFI 3.2A/5 multi-layer Nomex® or FIA 8856-2018 equivalents for international series. From $329.",
+    subtitle: "SCCA, NASA, and vintage road racing custom racing suits. SFI 3.2A/5 multi-layer Nomex®, built to your measurements. From $329.",
     primaryCtaHref: "/custom-race-suit/order",
     primaryCtaText: "Design Your Road Suit",
     certBadge: "SFI 3.2A/5",
@@ -150,7 +152,7 @@ export const DISCIPLINE_DATA = {
       after:   "we cut, then add shoulder mobility and cooling for longer stints.",
     },
     builtForPoints: [
-      { title: "SFI 3.2A/5 or FIA 8856-2018", detail: "Both standards available. SFI for SCCA, NASA, Trans Am amateur. FIA 8856-2018 for IMSA professional classes and international series." },
+      { title: "SFI 3.2A/5 multi-layer Nomex®", detail: "Covers SCCA, NASA, Trans Am amateur and most US club road racing. We build to SFI only — if your class mandates FIA 8856-2018 you will need a suit from an FIA-listed manufacturer." },
       { title: "Stretch panels for road-course range of motion", detail: "Road racing demands more shoulder, elbow, and hip mobility than oval. Stretch knit at the underarms, sides, and inner elbows." },
       { title: "Moisture-wicking inner liner", detail: "30-minute SCCA races + 45-minute NASA enduros + 2-hour Trans Am races demand a moisture-wicking liner. Standard on all our road racing suits." },
       { title: "Compatible with cool-shirt and head-cooling systems", detail: "Pre-installed grommets for cool-shirt tubes, designed not to block the airflow." },
@@ -163,7 +165,7 @@ export const DISCIPLINE_DATA = {
       { name: "IMSA Michelin Pilot Challenge", requirement: "FIA 8856-2018 required by class rules." },
       { name: "Vintage racing (HSR, SVRA, VARA)", requirement: "SFI 3.2A/5 minimum across vintage clubs. Period-correct exemptions exist for the car but not the driver." },
     ],
-    sanctioningCallout: "For amateur road racers, SFI 3.2A/5 is sufficient for 95% of US series. FIA 8856-2018 is mandatory only for IMSA professional and a few international championships — don't overspend on FIA if SFI does the job.",
+    sanctioningCallout: "For amateur road racers, SFI 3.2A/5 covers the overwhelming majority of US series, and that is what we build. FIA 8856-2018 is mandatory for IMSA professional classes and a number of international championships — we do not hold FIA homologation, so for those you need an FIA-listed manufacturer — don't overspend on FIA if SFI does the job.",
     relatedReading: [
       { href: "/blog/sfi-rated-racing-suit-by-class", title: "SFI Rated Racing Suit by Class", note: "Including road racing requirements" },
       { href: "/blog/endurance-racing-suit-guide", title: "Endurance Racing Suits Explained", note: "FIA vs SFI deep dive" },

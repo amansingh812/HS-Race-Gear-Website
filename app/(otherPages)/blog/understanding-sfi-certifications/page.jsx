@@ -28,7 +28,7 @@ export const metadata = {
   description:
     "SFI certification explained — what SFI stands for, what \"SFI approved\" actually means on a race suit tag, who the SFI Foundation is, how suits are tested and re-certified, and how to check a tag is genuine before tech inspection.",
   keywords:
-    "what does SFI certified mean, what is SFI approved, SFI certified, SFI approved, SFI certification racing, what is SFI, what does SFI stand for, SFI Foundation, SFI certification guide, SFI tag, SFI recertification, racing suit certification",
+    "what does SFI certified mean, what is SFI approved, SFI approved fire apparel, sfi approved racing apparel, SFI certified, SFI approved, SFI certification racing, what is SFI, what does SFI stand for, SFI Foundation, SFI certification guide, SFI tag, SFI recertification, racing suit certification",
 };
 
 // JSON-LD: Article + BreadcrumbList

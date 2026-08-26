@@ -27,9 +27,9 @@ export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/cik-fia-level-2" },
   title: "CIK-FIA Level 2 Explained: Karting Suit Certification Guide",
   description:
-    "CIK-FIA Level 2 decoded — what the karting suit standard tests, Level 2 vs Level 1, why an SFI car suit won't pass karting tech, how to read a homologation tag before it expires, and which US series (WKA, SKUSA, Rotax, IAME) require it.",
+    "CIK-FIA Level 2 decoded — what the karting suit standard tests, how FIA 8877-2022 replaces it and what the 2029 deadline means for a suit you buy today, why an SFI car suit won't pass karting tech, and which US series (WKA, SKUSA, Rotax, IAME) require what.",
   keywords:
-    "cik fia level 2, cik level 2, cik fia level 2 suit, cik fia level 2 approved, cik fia level 2 fireproof, cik level 2 kart suit, cik kart suit, karting suit certification, CIK homologation, kart suit homologation, CIK vs SFI, WKA suit requirements, SKUSA suit requirements",
+    "cik fia level 2, cik level 2, cik fia level 2 suit, cik fia level 2 approved, cik fia level 2 fireproof, cik level 2 kart suit, cik kart suit, fia 8877-2022, fia 8877 2022 karting, fia 8877 kart suit, cik level 2 vs fia 8877, karting suit certification, CIK homologation, kart suit homologation, CIK vs SFI, WKA suit requirements, SKUSA suit requirements",
   openGraph: {
     type: "article",
     title: "CIK-FIA Level 2 Explained: Karting Suit Certification Guide",
@@ -105,6 +105,14 @@ const faqSchema = {
         "@type": "Answer",
         "text": "Yes. A CIK-FIA homologation is issued with a validity period printed on the suit tag. Once it lapses the suit is no longer compliant regardless of physical condition. This matters most when buying used — a suit that looks fine may already be outside its homologation window. Check the validity date before each season rather than on race morning.",
       },
+    },
+    {
+      "@type": "Question",
+      "name": "Is CIK-FIA Level 2 still valid, or has FIA 8877-2022 replaced it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both are true at the moment. FIA 8877-2022 has replaced the CIK-FIA Level system, and manufacturers could no longer produce new suits to the old Level standard after 31 December 2024. However, Level 2 suits manufactured before that cut-off remain accepted in line with the expiry printed on their label, up to 31 December 2029. From 1 January 2030 only FIA 8877-2022 is accepted at events run under FIA safety regulations. A Level 2 suit bought today is legal to race in but has a shorter useful life than its five-year label validity might suggest."
+      }
     },
     {
       "@type": "Question",

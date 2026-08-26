@@ -24,7 +24,13 @@ export const metadata = {
   description: "The complete 2026 guide to SFI ratings. 3.2A/1 (3s protection), 3.2A/5 (10s), 3.2A/15 (drag racing), 3.3/5 (gloves & shoes) — every rating decoded and which one your class actually requires.",
   // "SFI certified" / "SFI approved" / "what does SFI stand for" intentionally
   // removed — those now belong to /blog/understanding-sfi-certifications.
-  keywords: "SFI ratings, SFI rating, SFI suit ratings, SFI rating chart, sfi rated racing suit, SFI 3.2A/5, SFI 3.2A/1, SFI 3.2A/15, SFI 3.3/5, SFI rated, racing suit ratings, fire suit ratings",
+  //
+  // Extended 2026-08-22 from the client keyword list. These tiers were named
+  // in the list but appeared on no page: SFI 3.4/5 (NASCAR-rated uniforms),
+  // SFI 3.2A/20, SFI 15, and the "SFI level 5" phrasing people use instead of
+  // the formal 3.2A/5. Kept to rating-tier terms only so the de-cannibalization
+  // split with the blog posts holds.
+  keywords: "SFI ratings, SFI rating, SFI suit ratings, SFI rating chart, sfi rated racing suit, SFI 3.2A/5, SFI 3.2A/1, SFI 3.2A/15, SFI 3.2A/20, SFI 3.3/5, SFI 3.4/5, SFI 3.4/5 NASCAR rated uniform, SFI level 5 fire suit, sfi 5 racing suits, sfi 3.2a 5 racing suit, SFI 15, drag racing safety gear SFI 15, SFI rated, racing suit ratings, fire suit ratings",
   openGraph: {
     type: "article",
     title: "SFI Ratings Explained: 3.2A/1 vs 3.2A/5 vs 3.2A/15 (2026)",
