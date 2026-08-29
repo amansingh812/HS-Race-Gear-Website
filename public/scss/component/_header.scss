@@ -1312,10 +1312,22 @@ header {
             // Reset native <button> chrome — these toggles are <button>
             // elements (not <a href="#...">) so Googlebot doesn't index
             // the collapse anchors as separate URLs.
+            //
+            // -webkit-appearance ADDED 2026-08-27. Without it the reset is
+            // incomplete on iOS Safari: Bootstrap sets `-webkit-appearance:
+            // button`, which makes the browser paint its own native control
+            // over the element. `background: none` alone does not defeat
+            // that, so CUSTOM GEAR and SHOP rendered as solid dark pills with
+            // the black label invisible on top. Desktop was unaffected, which
+            // is why it went unnoticed.
+            -webkit-appearance: none;
+            appearance: none;
             width: 100%;
             padding: 0;
+            margin: 0;
             background: none;
             border: none;
+            border-radius: 0;
             text-align: left;
             font-family: inherit;
             cursor: pointer;

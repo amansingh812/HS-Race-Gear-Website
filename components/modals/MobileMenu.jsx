@@ -18,6 +18,20 @@ const shopMenuItems = [
   { text: "SUBLIMATED CREW HOODIES", href: "/shop?category=hoodies" },
 ];
 
+/*
+ * NOTE (2026-08-27) — the CUSTOM GEAR and SHOP toggles below are <button>
+ * elements rather than <a href="#...">, so Googlebot stops indexing the
+ * collapse anchors as separate URLs (/#dropdown-menu-* were appearing in GSC).
+ *
+ * Their styling reset lives in CSS, not here:
+ *   source   public/scss/component/_header.scss  -> .nav-ul-mb .nav-mb-item .mb-menu-link
+ *   compiled public/css/main.css                 (hand-patched — see below)
+ *
+ * ⚠️ public/css/main.css has drifted from public/scss/ and can no longer be
+ * safely regenerated (a clean rebuild differs by ~3,000 lines). Any change to
+ * that selector must be made in BOTH files until the drift is reconciled.
+ */
+
 export default function MobileMenu() {
   const FireIcon = () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '4px', verticalAlign: 'middle', marginTop: '-2px' }}>
