@@ -11,11 +11,13 @@
     "create:admin": "node scripts/create-admin.mjs",
     "test:api": "node scripts/test-api.js",
     "validate:phase1": "node scripts/validate-phase1.js",
-    "css:check": "sass public/scss/main.scss /tmp/main-check.css --no-source-map --style=expanded && diff -q public/css/main.css /tmp/main-check.css || echo 'WARNING: public/css/main.css has drifted from public/scss/ \u2014 do NOT blind-rebuild, patch both by hand'",
+    "css:check": "sass public/scss/main.scss /tmp/main-check.css --no-source-map --style=expanded && diff -q public/css/main.css /tmp/main-check.css || echo 'WARNING: public/css/main.css has drifted from public/scss/ — do NOT blind-rebuild, patch both by hand'",
     "css:build": "sass public/scss/main.scss public/css/main.css --no-source-map --style=expanded"
   },
   "dependencies": {
     "@google/model-viewer": "^3.5.0",
+    "@stripe/stripe-js": "^9.14.0",
+    "@vercel/blob": "^0.23.4",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.3",
     "bootstrap": "^5.3.2",
@@ -33,6 +35,7 @@
     "react-compare-slider": "^3.1.0",
     "react-dom": "^19.0.0",
     "sass": "^1.85.1",
+    "stripe": "^22.6.0",
     "swiper": "^11.1.15",
     "zod": "^4.2.1"
   }

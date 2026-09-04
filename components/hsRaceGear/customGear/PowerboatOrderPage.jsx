@@ -3,6 +3,7 @@ import React, { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
+import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
 
@@ -161,7 +162,6 @@ function PackageSelection({ selected, onSelect }) {
 
 function MockupSelection({ type, mockups, selected, onSelect, currentStep, totalSteps }) {
   const [visibleCount, setVisibleCount] = React.useState(12);
-  // Replaced broken in-place zoom with shared portal-based MockupLightbox.
   const [zoomIndex, setZoomIndex] = React.useState(null);
 
   const typeLabels = { suit: "Power Boat Suit Design", gloves: "Gloves Design", shoes: "Shoes Design" };
@@ -337,6 +337,12 @@ function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, t
 
         <ShippingAddressFields info={info} onChange={onChange} errors={errors} />
 
+        <LogoUpload 
+          onUploadSuccess={info.onLogoUpload} 
+          description={info.logoNotes} 
+          onDescriptionChange={info.onLogoNotesChange} 
+        />
+
         <div className="order-summary">
           <div className="order-summary-title">Order Summary</div>
           <div className="order-summary-item">
@@ -404,6 +410,8 @@ export default function PowerboatOrderPage() {
   const [glovesMockup, setGlovesMockup] = useState(null);
   const [shoesMockup, setShoesMockup] = useState(null);
   const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
+  const [customLogoUrl, setCustomLogoUrl] = useState(null);
+  const [customLogoNotes, setCustomLogoNotes] = useState("");
   const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", ...EMPTY_ADDRESS });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -482,29 +490,38 @@ export default function PowerboatOrderPage() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
-      const orderData = {
+      const payload = {
+        type: "custom",
+        customer: customerInfo,
+        packageData: {
+          id: selectedPackage.id,
+          name: selectedPackage.name,
+          price: selectedPackage.price,
+          includes: selectedPackage.includes,
+        },
         productType: "powerboat-suit",
-        package: selectedPackage,
         suitMockup,
         glovesMockup: selectedPackage?.includes?.includes("gloves") ? glovesMockup : null,
         shoesMockup: selectedPackage?.includes?.includes("shoes") ? shoesMockup : null,
         colors,
-        customer: customerInfo,
+        customLogoUrl,
+        customLogoNotes,
+        quantity: 1,
       };
 
-      const res = await fetch("/api/custom-order", {
+      const res = await fetch("/api/stripe/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),
+        body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("Failed to submit order");
-      setIsSuccess(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to create checkout session");
+
+      window.location.href = data.url;
     } catch (err) {
       console.error("Order submission error:", err);
-      alert("There was an error submitting your order. Please try again.");
-    } finally {
+      alert("There was an error starting checkout. Please try again.");
       setIsSubmitting(false);
     }
   };
@@ -548,12 +565,22 @@ export default function PowerboatOrderPage() {
         {currentStepId === "gloves" && <MockupSelection type="gloves" mockups={GLOVES_MOCKUPS} selected={glovesMockup} onSelect={setGlovesMockup} currentStep={currentStep + 1} totalSteps={totalSteps} />}
         {currentStepId === "shoes" && <MockupSelection type="shoes" mockups={SHOES_MOCKUPS} selected={shoesMockup} onSelect={setShoesMockup} currentStep={currentStep + 1} totalSteps={totalSteps} />}
         {currentStepId === "colors" && <ColorSelection selections={colors} onChange={handleColorChange} currentStep={currentStep + 1} totalSteps={totalSteps} />}
-        {currentStepId === "info" && <CustomerInfoForm info={customerInfo} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
+        {currentStepId === "info" && (
+          <CustomerInfoForm
+            info={{ ...customerInfo, onLogoUpload: setCustomLogoUrl, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }}
+            onChange={handleCustomerInfoChange}
+            errors={formErrors}
+            isSubmitting={isSubmitting}
+            currentStep={currentStep + 1}
+            totalSteps={totalSteps}
+            orderData={orderDataForSummary}
+          />
+        )}
 
         <div className="step-navigation">
           {currentStep > 0 ? <button className="btn-back" onClick={handleBack}><ArrowLeft /> Back</button> : <div />}
           <button className={`btn-next ${currentStepId === "info" ? "btn-submit" : ""}`} onClick={handleNext} disabled={!canProceed() || isSubmitting}>
-            {isSubmitting ? (<><div className="spinner" /> Submitting...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
+            {isSubmitting ? (<><div className="spinner" /> Redirecting to payment...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
           </button>
         </div>
       </div>

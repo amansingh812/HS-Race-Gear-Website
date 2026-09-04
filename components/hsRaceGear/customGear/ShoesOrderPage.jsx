@@ -3,6 +3,7 @@ import React, { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
+import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
 
@@ -285,6 +286,12 @@ function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, t
                     {errors.size && <div className="form-error">{errors.size}</div>}
                 </div>
 
+                <LogoUpload 
+                  onUploadSuccess={info.onLogoUpload} 
+                  description={info.logoNotes} 
+                  onDescriptionChange={info.onLogoNotesChange} 
+                />
+
                 <div className="order-summary">
                     <div className="order-summary-title">Order Summary</div>
                     <div className="order-summary-item">
@@ -344,6 +351,8 @@ export default function ShoesOrderPage() {
     const [currentStep, setCurrentStep] = useState(0);
     const [selectedMockup, setSelectedMockup] = useState(null);
     const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
+    const [customLogoUrl, setCustomLogoUrl] = useState(null);
+    const [customLogoNotes, setCustomLogoNotes] = useState("");
     const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", size: "", ...EMPTY_ADDRESS });
     const [formErrors, setFormErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -411,26 +420,36 @@ export default function ShoesOrderPage() {
         setIsSubmitting(true);
         try {
             const orderData = {
+                type: "custom",
                 productType: "custom-shoes",
-                mockup: selectedMockup,
+                shoesMockup: selectedMockup,
                 colors,
-                size: customerInfo.size,
+                customLogoUrl,
+                customLogoNotes,
+                shoeSize: customerInfo.size,
                 customer: customerInfo,
+                packageData: {
+                    id: "custom-shoes",
+                    name: "Custom Shoes",
+                    price: PRICE,
+                    includes: ["Custom Racing Shoes"],
+                },
             };
 
-            const res = await fetch("/api/custom-order", {
+            const res = await fetch("/api/stripe/create-checkout-session", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(orderData),
             });
 
-            if (!res.ok) throw new Error("Failed to submit order");
-            setIsSuccess(true);
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || "Failed to create checkout session");
+
+            // Redirect to Stripe's hosted checkout
+            window.location.href = data.url;
         } catch (err) {
             console.error("Order submission error:", err);
             alert("There was an error submitting your order. Please try again.");
-        } finally {
             setIsSubmitting(false);
         }
     };
@@ -467,14 +486,14 @@ export default function ShoesOrderPage() {
             <div className="custom-order-container">
                 {currentStepId === "design" && <MockupSelection mockups={SHOES_MOCKUPS} selected={selectedMockup} onSelect={setSelectedMockup} currentStep={currentStep + 1} totalSteps={totalSteps} />}
                 {currentStepId === "colors" && <ColorSelection selections={colors} onChange={handleColorChange} currentStep={currentStep + 1} totalSteps={totalSteps} />}
-                {currentStepId === "info"   && <CustomerInfoForm info={customerInfo} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
+                {currentStepId === "info" && <CustomerInfoForm info={{ ...customerInfo, onLogoUpload: setCustomLogoUrl, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
 
                 <div className="step-navigation">
                     {currentStep > 0 ? (
                         <button className="btn-back" onClick={handleBack}><ArrowLeft /> Back</button>
                     ) : <div />}
                     <button className={`btn-next ${currentStepId === "info" ? "btn-submit" : ""}`} onClick={handleNext} disabled={!canProceed() || isSubmitting}>
-                        {isSubmitting ? (<><div className="spinner" /> Submitting...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
+                        {isSubmitting ? (<><div className="spinner" /> Redirecting to payment...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
                     </button>
                 </div>
             </div>

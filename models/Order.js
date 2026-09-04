@@ -132,7 +132,7 @@ const orderSchema = new mongoose.Schema({
   payment: {
     method: {
       type: String,
-      enum: ['card', 'paypal', 'bank_transfer', 'cod', 'other'],
+      enum: ['card', 'stripe', 'paypal', 'bank_transfer', 'cod', 'other'],
       required: true
     },
     status: {
@@ -140,7 +140,8 @@ const orderSchema = new mongoose.Schema({
       enum: ['pending', 'authorized', 'captured', 'failed', 'refunded'],
       default: 'pending'
     },
-    transactionId: String,
+    transactionId: String,        // Stripe PaymentIntent ID (pi_...)
+    stripeSessionId: String,      // Stripe Checkout Session ID (cs_...)
     last4: String,
     brand: String,
     paidAt: Date
@@ -165,6 +166,8 @@ const orderSchema = new mongoose.Schema({
   // Custom Gear
   hasCustomFit: { type: Boolean, default: false },
   customFitLeadTime: String,
+  customLogoUrl: String,
+  customLogoNotes: String,
   
   // Notes
   customerNotes: String,
@@ -275,7 +278,9 @@ orderSchema.statics.createFromCart = async function(cart, orderData) {
     customerNotes,
     isGift,
     giftMessage,
-    customFitLeadTime: orderItems.some(item => item.isCustomFit) ? '3-4 weeks' : null
+    customFitLeadTime: orderItems.some(item => item.isCustomFit) ? '3-4 weeks' : null,
+    customLogoUrl: orderData.customLogoUrl || null,
+    customLogoNotes: orderData.customLogoNotes || null
   });
   
   return order;
@@ -359,6 +364,8 @@ orderSchema.methods.toClientJSON = function() {
     estimatedDelivery: this.estimatedDelivery,
     hasCustomFit: this.hasCustomFit,
     customFitLeadTime: this.customFitLeadTime,
+    customLogoUrl: this.customLogoUrl,
+    customLogoNotes: this.customLogoNotes,
     customerNotes: this.customerNotes,
     isGift: this.isGift,
     placedAt: this.placedAt,

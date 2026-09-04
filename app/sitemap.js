@@ -9,6 +9,7 @@ import Product from "@/models/Product";
  * 2026-07-09 so product images (hoodies, shirts, off-the-rack suits) appear
  * in Google Images.
  */
+
 export default async function sitemap() {
   const baseUrl = "https://www.hsracegear.com";
   const now = new Date().toISOString();

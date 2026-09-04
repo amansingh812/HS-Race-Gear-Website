@@ -7,20 +7,16 @@ import { useState, useEffect, useRef } from "react";
 import * as gtag from "@/lib/gtag";
 
 /**
- * Checkout — order enquiry flow.
+ * Checkout — Stripe-powered payment flow.
  *
- * This does NOT take payment. The customer confirms their order and address,
- * we email them and info@hsracegear.com, and the team contacts them to
- * arrange payment directly — the same process the custom-order pages use.
+ * The customer reviews their cart, enters contact info, then clicks
+ * "Pay Now" which redirects them to Stripe's hosted Checkout page.
+ * Stripe collects the shipping address and payment details, then
+ * redirects back to /order-confirmation on success.
  *
- * Previously this form collected card number / expiry / CVC, validated them,
- * and then threw them away: no gateway was ever wired up, so customers
- * believed they had paid when no charge existed and no card data was ever
- * transmitted. Those fields are removed rather than hidden, so there is no
- * card data on the page at all.
- *
- * Also removed: the login requirement (guests could not order), and an 8%
- * tax line that was never actually collected.
+ * The webhook at /api/stripe/webhook handles order creation, inventory
+ * decrement, cart clearing, and confirmation emails. The client redirect
+ * is just for UX — the webhook is the source of truth.
  */
 export default function Checkout() {
   const { cartProducts, totalPrice, clearCart, cartLoading } =
@@ -28,33 +24,21 @@ export default function Checkout() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [submitted, setSubmitted] = useState(null); // { orderId } once placed
 
-  // Form state
+  // Contact info form (Stripe handles shipping address + payment)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    country: "United States",
-    address: "",
-    apartment: "",
-    city: "",
-    state: "",
-    zipcode: "",
     orderNotes: "",
   });
 
   const [formErrors, setFormErrors] = useState({});
 
-  // Shipping is always free and folded into the total — no separate
-  // shipping charge, no paid express option, no tax. What's shown is what's
-  // owed: the listed product prices, full stop.
   const grandTotal = totalPrice;
 
-  // GA4: begin_checkout — fire once, after the cart has actually loaded.
-  // The cart hydrates from localStorage/API on mount, so an unguarded effect
-  // would fire with an empty items array on first render.
+  // GA4: begin_checkout — fire once after cart loads
   const beginCheckoutFired = useRef(false);
   useEffect(() => {
     if (beginCheckoutFired.current) return;
@@ -63,44 +47,30 @@ export default function Checkout() {
     gtag.beginCheckout(cartProducts);
   }, [cartProducts]);
 
-  // Handle input change
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-    // Clear error for this field
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (formErrors[name]) {
       setFormErrors((prev) => ({ ...prev, [name]: null }));
     }
   };
 
-  // Validate form
   const validateForm = () => {
     const errors = {};
-
     if (!formData.firstName.trim()) errors.firstName = "First name is required";
     if (!formData.lastName.trim()) errors.lastName = "Last name is required";
     if (!formData.email.trim()) errors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = "Invalid email";
     if (!formData.phone.trim()) errors.phone = "Phone is required";
-    if (!formData.address.trim()) errors.address = "Address is required";
-    if (!formData.city.trim()) errors.city = "City is required";
-    if (!formData.state.trim()) errors.state = "State is required";
-    if (!formData.zipcode.trim()) errors.zipcode = "Zipcode is required";
-
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
-  // Handle form submission
+  // Redirect to Stripe Checkout
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     if (cartProducts.length === 0) {
       setError("Your cart is empty");
@@ -111,152 +81,61 @@ export default function Checkout() {
     setError(null);
 
     try {
-      // Send the same item shape the sidebar renders from, so the confirmation
-      // email can never disagree with what the customer saw on screen.
+      // Build cart items for guest checkout (authenticated carts are
+      // read from DB server-side via the auth token)
+      const token =
+        typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
       const payload = {
+        type: "shop",
         customer: {
           name: `${formData.firstName} ${formData.lastName}`.trim(),
           email: formData.email,
           phone: formData.phone,
-          address: formData.address,
-          apartment: formData.apartment,
-          city: formData.city,
-          state: formData.state,
-          zipcode: formData.zipcode,
-          country: formData.country,
-          orderNotes: formData.orderNotes,
         },
-        items: cartProducts.map((p) => {
-          // Resolve the display name from whichever field the cart context set.
-          // Guest carts store `title`; authenticated carts store it via
-          // productSnapshot.name; older localStorage entries may have `name`.
-          const resolvedName =
-            p.title || p.name || p.productSnapshot?.name || "Product";
-
-          // Image: guest carts use imgSrc, auth carts use productSnapshot.image
-          const resolvedImage =
-            p.imgSrc ||
-            p.images?.[0]?.url ||
-            p.productSnapshot?.image ||
-            "";
-
-          return {
-            title: resolvedName,
-            name: resolvedName,
-            image: resolvedImage,
-            price: p.finalPrice ?? p.price ?? p.productSnapshot?.price ?? 0,
-            quantity: p.quantity,
-            size: p.size || "",
-            isCustomFit: !!p.isCustomFit,
-            sku: p.sku || p.slug || p.productId || p._id || "",
-          };
-        }),
-        shippingMethod: {
-          name: "Free Shipping",
-          cost: 0,
-          estimatedDays: "7-10 business days",
-        },
+        // Guest items — only used when no auth token is present
+        items: cartProducts.map((p) => ({
+          productId: p.productId || p._id || p.id,
+          quantity: p.quantity || 1,
+          size: p.size || "Standard",
+          isCustomFit: !!p.isCustomFit,
+        })),
       };
 
-      const response = await fetch("/api/shop-enquiry", {
+      const headers = { "Content-Type": "application/json" };
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+      }
+
+      const response = await fetch("/api/stripe/create-checkout-session", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify(payload),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || data.message || "Failed to submit order");
+        throw new Error(data.error || "Failed to create checkout session");
       }
 
-      // GA4: purchase — this is the conversion event. Must fire BEFORE
-      // clearCart(), otherwise cartProducts is empty and the items array
-      // and revenue value are both lost.
-      gtag.purchase({
-        transactionId: data.orderId,
-        items: cartProducts,
-        value: grandTotal,
-        shipping: 0,
-      });
+      // GA4: begin_checkout fires above; the purchase event fires on
+      // /order-confirmation after Stripe confirms payment.
 
-      // Show the reference inline rather than redirecting — guests have no
-      // account page to land on, and the order ID is what they need to quote.
-      setSubmitted({ orderId: data.orderId });
-      await clearCart();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Redirect to Stripe's hosted checkout
+      window.location.href = data.url;
     } catch (err) {
-      console.error("Order error:", err);
-      setError(err.message || "Failed to submit order. Please try again.");
-    } finally {
+      console.error("Checkout error:", err);
+      setError(err.message || "Failed to start checkout. Please try again.");
       setLoading(false);
     }
   };
-
-  // ---- Success screen ----
-  if (submitted) {
-    return (
-      <div className="flat-spacing-25">
-        <div className="container">
-          <div
-            className="text-center mx-auto"
-            style={{ maxWidth: 620, padding: "40px 20px" }}
-          >
-            <h4 className="mb-3">Thank you — your order is confirmed</h4>
-            <p className="text-sm text-main mb-4">
-              We&apos;ve emailed a confirmation to you and notified our team.
-              Someone will be in touch shortly to confirm the details and
-              arrange payment.
-            </p>
-
-            <div
-              className="d-inline-block mb-4"
-              style={{
-                border: "1px solid #e2cdc6",
-                borderRadius: 8,
-                padding: "16px 28px",
-              }}
-            >
-              <div
-                className="text-sm text-main"
-                style={{ textTransform: "uppercase", letterSpacing: 1.5 }}
-              >
-                Order Reference
-              </div>
-              <div
-                className="fw-medium"
-                style={{ fontSize: 22, color: "#8f1717", letterSpacing: 1 }}
-              >
-                {submitted.orderId}
-              </div>
-            </div>
-
-            <p className="text-sm text-main mb-4">
-              Please quote this reference if you contact us. No payment has been
-              taken yet.
-            </p>
-
-            <div className="d-flex gap-3 justify-content-center flex-wrap">
-              <Link href="/shop" className="tf-btn btn-dark2 animate-btn">
-                Continue Shopping
-              </Link>
-              <Link href="/contact-us" className="tf-btn animate-btn">
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="flat-spacing-25">
       <div className="container">
         {error && (
-          <div className="alert alert-danger mb-4">
-            {error}
-          </div>
+          <div className="alert alert-danger mb-4">{error}</div>
         )}
 
         <div className="row">
@@ -300,108 +179,25 @@ export default function Checkout() {
                     )}
                   </div>
                 </div>
-                <fieldset className="tf-field style-2 style-3 mb_16">
-                  <input
-                    className="tf-field-input tf-input"
-                    id="country"
-                    type="text"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleInputChange}
-                    placeholder=""
-                  />
-                  <label className="tf-field-label" htmlFor="country">
-                    Country
-                  </label>
-                </fieldset>
-                <fieldset className="tf-field style-2 style-3 mb_16">
-                  <input
-                    className={`tf-field-input tf-input ${formErrors.address ? "is-invalid" : ""}`}
-                    id="address"
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    placeholder=""
-                  />
-                  <label className="tf-field-label" htmlFor="address">
-                    Address
-                  </label>
-                  {formErrors.address && (
-                    <div className="invalid-feedback d-block">{formErrors.address}</div>
-                  )}
-                </fieldset>
+              </div>
+              <div className="box-ip-contact">
+                <div className="title">
+                  <div className="text-xl fw-medium">Contact Information</div>
+                </div>
                 <fieldset className="mb_16">
                   <input
-                    type="text"
-                    className="style-2"
-                    name="apartment"
-                    value={formData.apartment}
+                    className={`style-2 ${formErrors.email ? "is-invalid" : ""}`}
+                    id="email"
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="Apartment, suite, etc (optional)"
                   />
+                  {formErrors.email && (
+                    <div className="invalid-feedback d-block">{formErrors.email}</div>
+                  )}
                 </fieldset>
-                <div className="grid-3 mb_16">
-                  <fieldset className="tf-field style-2 style-3">
-                    <input
-                      className={`tf-field-input tf-input ${formErrors.city ? "is-invalid" : ""}`}
-                      id="city"
-                      type="text"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleInputChange}
-                      placeholder=""
-                    />
-                    <label className="tf-field-label" htmlFor="city">
-                      City
-                    </label>
-                    {formErrors.city && (
-                      <div className="invalid-feedback d-block">{formErrors.city}</div>
-                    )}
-                  </fieldset>
-                  <div className="tf-select select-square">
-                    <select 
-                      name="state" 
-                      id="state"
-                      value={formData.state}
-                      onChange={handleInputChange}
-                    >
-                      <option value="">State</option>
-                      <option value="AL">Alabama</option>
-                      <option value="AK">Alaska</option>
-                      <option value="AZ">Arizona</option>
-                      <option value="CA">California</option>
-                      <option value="CO">Colorado</option>
-                      <option value="FL">Florida</option>
-                      <option value="GA">Georgia</option>
-                      <option value="HI">Hawaii</option>
-                      <option value="IL">Illinois</option>
-                      <option value="NY">New York</option>
-                      <option value="TX">Texas</option>
-                      <option value="WA">Washington</option>
-                    </select>
-                    {formErrors.state && (
-                      <div className="invalid-feedback d-block">{formErrors.state}</div>
-                    )}
-                  </div>
-                  <fieldset className="tf-field style-2 style-3">
-                    <input
-                      className={`tf-field-input tf-input ${formErrors.zipcode ? "is-invalid" : ""}`}
-                      id="code"
-                      type="text"
-                      name="zipcode"
-                      value={formData.zipcode}
-                      onChange={handleInputChange}
-                      placeholder=""
-                    />
-                    <label className="tf-field-label" htmlFor="code">
-                      Zipcode/Postal
-                    </label>
-                    {formErrors.zipcode && (
-                      <div className="invalid-feedback d-block">{formErrors.zipcode}</div>
-                    )}
-                  </fieldset>
-                </div>
                 <fieldset className="tf-field style-2 style-3 mb_16">
                   <input
                     className={`tf-field-input tf-input ${formErrors.phone ? "is-invalid" : ""}`}
@@ -420,36 +216,19 @@ export default function Checkout() {
                   )}
                 </fieldset>
               </div>
-              <div className="box-ip-contact">
-                <div className="title">
-                  <div className="text-xl fw-medium">Contact Information</div>
-                </div>
-                <input
-                  className={`style-2 ${formErrors.email ? "is-invalid" : ""}`}
-                  id="email"
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-                {formErrors.email && (
-                  <div className="invalid-feedback d-block">{formErrors.email}</div>
-                )}
-              </div>
               <div className="box-ip-shipping">
                 <div className="title text-xl fw-medium">Shipping</div>
                 <div className="text-sm text-main">
-                  Free shipping on every order (7-10 business days), included in
-                  the total below — nothing added at checkout.
+                  Free shipping on every order (7–10 business days), included in
+                  the total below.
                 </div>
               </div>
               <div className="box-ip-payment">
                 <div className="title">
-                  <div className="text-lg fw-medium mb_4">How Payment Works</div>
+                  <div className="text-lg fw-medium mb_4">Secure Payment</div>
                   <p className="text-sm text-main">
-                    We don&apos;t take payment online. Confirm your order below and
-                    our team will contact you to arrange payment directly.
+                    You&apos;ll be redirected to our secure Stripe checkout to
+                    enter your shipping address and payment details.
                   </p>
                 </div>
                 <div
@@ -462,13 +241,14 @@ export default function Checkout() {
                 >
                   <div className="text-sm" style={{ lineHeight: 2 }}>
                     <div>
-                      <strong>1.</strong> You place your order — no card details needed.
+                      <strong>1.</strong> Review your cart and enter your contact info.
                     </div>
                     <div>
-                      <strong>2.</strong> We confirm stock, sizing and your final total.
+                      <strong>2.</strong> Click &quot;Pay Now&quot; — you&apos;ll be taken to
+                      our secure checkout powered by Stripe.
                     </div>
                     <div>
-                      <strong>3.</strong> We arrange payment with you, then ship your gear.
+                      <strong>3.</strong> Once paid, your order ships and you get tracking.
                     </div>
                   </div>
                 </div>
@@ -558,15 +338,27 @@ export default function Checkout() {
                     {loading ? (
                       <>
                         <span className="spinner-border spinner-border-sm me-2" role="status"></span>
-                        Submitting...
+                        Redirecting to payment...
                       </>
                     ) : (
-                      "Confirm order"
+                      <>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="me-2" style={{ verticalAlign: "-2px" }}>
+                          <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                          <line x1="1" y1="10" x2="23" y2="10"/>
+                        </svg>
+                        Pay Now
+                      </>
                     )}
                   </button>
-                  <p className="text-sm text-main text-center mt-3 mb-0">
-                    No payment taken now — our team will contact you to arrange it.
-                  </p>
+                  <div className="text-center mt-3">
+                    <div className="d-flex align-items-center justify-content-center gap-2 text-sm text-main">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      Secure checkout powered by Stripe
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -34,7 +34,7 @@ export async function POST(request) {
       hasShoesMockup: !!orderData.shoesMockup,
     });
 
-    const { customer, package: pkg, suitMockup, glovesMockup, shoesMockup, shoeSize, colors, productType } = orderData;
+    const { customer, package: pkg, suitMockup, glovesMockup, shoesMockup, shoeSize, colors, productType, customLogoUrl, customLogoNotes } = orderData;
     const productLabels = {
       "karting-suit": "Custom Karting Suit",
       "powerboat-suit": "Custom Power Boat Suit",
@@ -91,6 +91,8 @@ export async function POST(request) {
       glovesMockup,
       shoesMockup,
       shoeSize,
+      customLogoUrl,
+      customLogoNotes,
     });
 
     const internalEmailText = renderAdminNotificationText({
@@ -106,6 +108,8 @@ export async function POST(request) {
       glovesMockup,
       shoesMockup,
       shoeSize,
+      customLogoUrl,
+      customLogoNotes,
     });
 
     // ---- Email to Customer ----
@@ -122,6 +126,7 @@ export async function POST(request) {
       glovesMockup,
       shoesMockup,
       shoeSize,
+      customLogoUrl,
     });
 
     const customerEmailText = renderCustomerConfirmationText({
@@ -136,6 +141,7 @@ export async function POST(request) {
       glovesMockup,
       shoesMockup,
       shoeSize,
+      customLogoUrl,
     });
 
     // ---- Send Emails ----
@@ -231,7 +237,7 @@ export async function POST(request) {
  */
 function renderAdminNotification({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
-  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize,
+  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoNotes
 }) {
   const design = suitMockup?.name || glovesMockup?.name || shoesMockup?.name || "";
   const colourList = normaliseColors(colors);
@@ -242,6 +248,8 @@ function renderAdminNotification({
     ["Quantity", String(pricing.quantity)],
     design ? ["Design", design] : null,
     shoeSize?.label ? ["Shoe size", shoeSize.label] : null,
+    customLogoUrl ? ["Custom Logo", `<a href="${customLogoUrl}">View Logo</a>`] : null,
+    customLogoNotes ? ["Logo Notes", customLogoNotes] : null,
   ].filter(Boolean);
 
   const swatchStrip = colourList.length
@@ -541,7 +549,7 @@ function renderAdminNotification({
 /** Plain-text admin notification. */
 function renderAdminNotificationText({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
-  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize,
+  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoNotes
 }) {
   const design = suitMockup?.name || glovesMockup?.name || shoesMockup?.name || "";
   const colourList = normaliseColors(colors);
@@ -577,6 +585,8 @@ function renderAdminNotificationText({
   L.push(`Quantity: ${pricing.quantity}`);
   if (design) L.push(`Design:   ${design}`);
   if (shoeSize?.label) L.push(`Shoe size: ${shoeSize.label}`);
+  if (customLogoUrl) L.push(`Custom Logo: ${customLogoUrl}`);
+  if (customLogoNotes) L.push(`Logo Notes: ${customLogoNotes}`);
   L.push("");
   L.push("Colours:");
   if (colourList.length) {
@@ -602,7 +612,7 @@ function renderAdminNotificationText({
 
 function renderCustomerConfirmation({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
-  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize,
+  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl
 }) {
   const design =
     suitMockup?.name || glovesMockup?.name || shoesMockup?.name || "";
@@ -611,6 +621,7 @@ function renderCustomerConfirmation({
   const specRows = [
     design ? ["Design", design] : null,
     shoeSize?.label ? ["Size", shoeSize.label] : null,
+    customLogoUrl ? ["Custom Logo", `<a href="${customLogoUrl}">View Logo</a>`] : null,
   ].filter(Boolean);
 
   const colourList = normaliseColors(colors);
@@ -951,7 +962,7 @@ function renderCustomerConfirmation({
  */
 function renderCustomerConfirmationText({
   orderId, customer, productLabel, pkg, pricing, address, colors,
-  suitMockup, glovesMockup, shoesMockup, shoeSize,
+  suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl
 }) {
   const design = suitMockup?.name || glovesMockup?.name || shoesMockup?.name || "";
   const colourList = normaliseColors(colors);
@@ -971,6 +982,7 @@ function renderCustomerConfirmationText({
   L.push(`Product: ${productLabel}`);
   if (design) L.push(`Design: ${design}`);
   if (shoeSize?.label) L.push(`Size: ${shoeSize.label}`);
+  if (customLogoUrl) L.push(`Custom Logo: ${customLogoUrl}`);
   L.push(
     `Colours: ${colourList.length ? colourList.map((c) => `${c.name}${c.hex ? ` (${c.hex})` : ""}`).join(", ") : "none selected"}`
   );

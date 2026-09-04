@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
+import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import * as gtag from "@/lib/gtag";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
@@ -395,6 +396,12 @@ function CustomerInfoForm({ info, onChange, errors, onSubmit, isSubmitting, curr
 
         <ShippingAddressFields info={info} onChange={onChange} errors={errors} />
 
+        <LogoUpload 
+          onUploadSuccess={info.onLogoUpload} 
+          description={info.logoNotes} 
+          onDescriptionChange={info.onLogoNotesChange} 
+        />
+
         {/* Order Summary */}
         <div className="order-summary">
           <div className="order-summary-title">Order Summary</div>
@@ -498,6 +505,8 @@ export default function CustomOrderPage() {
   const [glovesMockup, setGlovesMockup] = useState(null);
   const [shoesMockup, setShoesMockup] = useState(null);
   const [colors, setColors] = useState({ primary: [] });
+  const [customLogoUrl, setCustomLogoUrl] = useState(null);
+  const [customLogoNotes, setCustomLogoNotes] = useState("");
   const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", ...EMPTY_ADDRESS });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -599,56 +608,51 @@ export default function CustomOrderPage() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
-      const orderData = {
-        package: selectedPackage,
+      // Redirect to Stripe Checkout for payment
+      const payload = {
+        type: "custom",
+        customer: customerInfo,
+        packageData: {
+          id: selectedPackage.id,
+          name: selectedPackage.name,
+          price: selectedPackage.price,
+          includes: selectedPackage.includes,
+        },
+        productType: "custom-race-suit",
         suitMockup,
         glovesMockup: selectedPackage?.includes?.includes("gloves") ? glovesMockup : null,
         shoesMockup: selectedPackage?.includes?.includes("shoes") ? shoesMockup : null,
         colors,
-        customer: customerInfo,
+        customLogoUrl,
+        customLogoNotes,
+        quantity: 1,
       };
 
-      const res = await fetch("/api/custom-order", {
+      const res = await fetch("/api/stripe/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),
+        body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("Failed to submit order");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to create checkout session");
 
-      // GA4: purchase — custom orders have a fixed package price, so they
-      // report real revenue rather than a zero-value lead. Package prices
-      // are already in dollars (see PACKAGES above).
-      let orderRef = "";
-      try {
-        const data = await res.json();
-        orderRef = data?.orderId || data?.referenceId || "";
-      } catch {
-        // Response body isn't JSON — the order still succeeded, just track
-        // it without a reference ID.
-      }
+      // GA4: begin_checkout fires here; purchase event fires on /order-confirmation
+      gtag.beginCheckout([
+        {
+          slug: selectedPackage?.id,
+          title: selectedPackage?.name,
+          price: selectedPackage?.price || 0,
+          quantity: 1,
+          category: "Custom Race Gear",
+        },
+      ]);
 
-      gtag.purchase({
-        transactionId: orderRef,
-        value: selectedPackage?.price || 0,
-        shipping: 0,
-        items: [
-          {
-            slug: selectedPackage?.id,
-            title: selectedPackage?.name,
-            price: selectedPackage?.price || 0,
-            quantity: 1,
-            category: "Custom Race Gear",
-          },
-        ],
-      });
-
-      setIsSuccess(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Redirect to Stripe's hosted checkout
+      window.location.href = data.url;
     } catch (err) {
       console.error("Order submission error:", err);
-      alert("There was an error submitting your order. Please try again.");
-    } finally {
+      alert("There was an error starting checkout. Please try again.");
       setIsSubmitting(false);
     }
   };
@@ -763,7 +767,7 @@ export default function CustomOrderPage() {
 
         {currentStepId === "info" && (
           <CustomerInfoForm
-            info={customerInfo}
+            info={{ ...customerInfo, onLogoUpload: setCustomLogoUrl, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }}
             onChange={handleCustomerInfoChange}
             errors={formErrors}
             onSubmit={handleSubmit}
@@ -791,7 +795,7 @@ export default function CustomOrderPage() {
           >
             {isSubmitting ? (
               <>
-                <div className="spinner" /> Submitting...
+                <div className="spinner" /> Redirecting to payment...
               </>
             ) : currentStepId === "info" ? (
               <>
