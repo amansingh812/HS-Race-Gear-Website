@@ -75,29 +75,14 @@ export async function POST(request) {
     // ---- Save to MongoDB ----
     await dbConnect();
 
-    const nameParts = (customer.name || "").trim().split(/\s+/);
-    const firstName = nameParts[0] || "";
-    const lastName = nameParts.slice(1).join(" ") || "";
-
-    // Build a minimal shipping address if the customer provided one
-    const shippingAddress = address.present
-      ? {
-          firstName,
-          lastName,
-          address1: customer.address1 || customer.street || address.lines[0] || "",
-          address2: customer.address2 || "",
-          city: customer.city || "",
-          state: customer.state || "",
-          zipCode: customer.zip || customer.zipCode || "",
-          country: customer.country || "United States",
-          phone: customer.phone,
-          email: customer.email,
-        }
-      : undefined;
-
     // Price in cents for DB consistency (DB stores cents)
     const totalCents = Math.round(pricing.total * 100);
     const subtotalCents = Math.round(pricing.subtotal * 100);
+
+    // NOTE: We intentionally skip shippingAddress for custom leads.
+    // The Order schema requires all address fields (zipCode, city, etc.)
+    // but the custom order form doesn't collect a full address upfront.
+    // Shipping is confirmed later after mockup approval.
 
     const dbOrder = await Order.create({
       orderNumber: orderId,
@@ -122,7 +107,6 @@ export async function POST(request) {
           itemTotal: subtotalCents,
         },
       ],
-      ...(shippingAddress && { shippingAddress }),
       subtotal: subtotalCents,
       shippingCost: 0,
       total: totalCents,
