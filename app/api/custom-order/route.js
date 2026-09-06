@@ -347,6 +347,20 @@ function renderAdminNotification({
        </div>`
     : "";
 
+  const customLogoHtml = customLogoUrl
+    ? `<div style="margin-top:24px;">
+         <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:12px;">Customer Logo</div>
+         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+           <tr>
+             <td style="vertical-align:top;">
+               <img src="${escapeHtml(customLogoUrl)}" alt="Customer Logo" width="140" style="width:140px; max-height:140px; height:auto; border-radius:6px; border:1px solid ${BRAND.rule}; display:block; object-fit:contain;" />
+               ${customLogoNotes ? `<div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; margin-top:8px; max-width:200px; line-height:1.5;">${escapeHtml(customLogoNotes)}</div>` : ""}
+             </td>
+           </tr>
+         </table>
+       </div>`
+    : "";
+
   const addressBlock = address.present
     ? `<div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.75; color:${BRAND.ink};">
          ${escapeHtml(customer.name)}<br>${address.lines.map((l) => escapeHtml(l)).join("<br>")}
@@ -498,8 +512,10 @@ function renderAdminNotification({
                     Colours
                   </div>
                   ${swatchStrip}
-                  
+
                   ${thumbnailsHtml}
+
+                  ${customLogoHtml}
                 </td>
               </tr>
             </table>
@@ -714,6 +730,19 @@ function renderCustomerConfirmation({
        </div>`
     : "";
 
+  const customLogoHtml = customLogoUrl
+    ? `<div style="margin-top:24px;">
+         <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-bottom:10px;">Your Logo</div>
+         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+           <tr>
+             <td style="vertical-align:top;">
+               <img src="${escapeHtml(customLogoUrl)}" alt="Your Logo" width="140" style="width:140px; max-height:140px; height:auto; border-radius:6px; border:1px solid ${BRAND.rule}; display:block; object-fit:contain;" />
+             </td>
+           </tr>
+         </table>
+       </div>`
+    : "";
+
   const addressBlock = address.present
     ? address.lines.map((l) => escapeHtml(l)).join("<br>")
     : `We don't have a delivery address yet — reply to this email with it and we'll add it to your order.`;
@@ -853,6 +882,7 @@ function renderCustomerConfirmation({
                         <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-bottom:2px;">Your colours</div>
                         ${swatchStrip}
                         ${thumbnailsHtml}
+                        ${customLogoHtml}
                       </td>
                     </tr>
                   </table>
