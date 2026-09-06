@@ -183,19 +183,19 @@ const orderSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Generate order number
-orderSchema.pre('save', async function(next) {
+orderSchema.pre('save', async function() {
   if (!this.orderNumber) {
     const date = new Date();
     const dateStr = date.toISOString().slice(0, 10).replace(/-/g, '');
     const random = Math.random().toString(36).substring(2, 7).toUpperCase();
     this.orderNumber = `HS-${dateStr}-${random}`;
   }
-  
+
   this.hasCustomFit = this.items.some(item => item.isCustomFit);
-  
+
   if (this.isModified('status')) {
     this.statusHistory.push({ status: this.status, updatedAt: new Date() });
-    
+
     switch (this.status) {
       case 'confirmed': this.confirmedAt = new Date(); break;
       case 'shipped': this.shippedAt = new Date(); break;
@@ -203,7 +203,6 @@ orderSchema.pre('save', async function(next) {
       case 'cancelled': this.cancelledAt = new Date(); break;
     }
   }
-  next();
 });
 
 // Virtual: Item count
