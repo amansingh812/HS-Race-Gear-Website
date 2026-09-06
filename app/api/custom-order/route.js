@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import dbConnect from "@/lib/mongodb";
+import Order from "@/models/Order";
 import {
   BRAND,
   escapeHtml,
@@ -10,17 +12,15 @@ import {
 } from "@/lib/orderEmail";
 
 /**
- * Custom order API.
- * Sends TWO emails:
- *   1. Internal notification → BUSINESS_EMAIL (default: info@hsracegear.com)
- *   2. Order confirmation → the customer
+ * Custom order API — LEAD CAPTURE (no payment).
  *
- * Required env vars — see .env.example for the full list with GoDaddy
- * Titan Email settings (smtp.titan.email).
+ * 1. Saves the order to MongoDB (status: "pending", payment.status: "pending")
+ * 2. Sends TWO emails:
+ *    a. Internal notification → BUSINESS_EMAIL (info@hsracegear.com)
+ *    b. Order confirmation → the customer
  *
- * If SMTP vars are missing, this route now returns HTTP 500 so the
- * frontend shows the error banner (rather than pretending to succeed —
- * previously orders were silently lost).
+ * Payment is collected later after mockup approval — this is a lead/quote,
+ * not a transaction.
  */
 export async function POST(request) {
   try {
@@ -62,20 +62,92 @@ export async function POST(request) {
     }
 
     // ---- Order reference ----
-    // Human-readable, sortable, and short enough to read over the phone.
-    // Format: HSRG-YYMMDD-XXXX  (XXXX = random base36, uppercase)
     const orderId = generateOrderId();
 
     // ---- Pricing ----
     const pricing = computePricing({ pkg, quantity: orderData.quantity });
 
     // ---- Shipping address ----
-    // Not hard-required: existing in-flight orders and older clients may not
-    // send it. Missing address is flagged prominently in the internal email
-    // instead of rejecting a paying customer's order.
     const address = normaliseAddress(customer);
 
     const orderPlacedAt = formatPlacedAt();
+
+    // ---- Save to MongoDB ----
+    await dbConnect();
+
+    const nameParts = (customer.name || "").trim().split(/\s+/);
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
+
+    // Build a minimal shipping address if the customer provided one
+    const shippingAddress = address.present
+      ? {
+          firstName,
+          lastName,
+          address1: customer.address1 || customer.street || address.lines[0] || "",
+          address2: customer.address2 || "",
+          city: customer.city || "",
+          state: customer.state || "",
+          zipCode: customer.zip || customer.zipCode || "",
+          country: customer.country || "United States",
+          phone: customer.phone,
+          email: customer.email,
+        }
+      : undefined;
+
+    // Price in cents for DB consistency (DB stores cents)
+    const totalCents = Math.round(pricing.total * 100);
+    const subtotalCents = Math.round(pricing.subtotal * 100);
+
+    const dbOrder = await Order.create({
+      orderNumber: orderId,
+      isGuest: true,
+      guestEmail: customer.email,
+      customer: {
+        name: customer.name,
+        email: customer.email,
+        phone: customer.phone,
+      },
+      items: [
+        {
+          productSnapshot: {
+            name: `${productLabel} — ${pkg.name}`,
+            slug: productType,
+            price: subtotalCents,
+            image: suitMockup?.image || glovesMockup?.image || shoesMockup?.image || "",
+          },
+          size: shoeSize?.label || "Custom",
+          quantity: pricing.quantity,
+          basePrice: subtotalCents,
+          itemTotal: subtotalCents,
+        },
+      ],
+      ...(shippingAddress && { shippingAddress }),
+      subtotal: subtotalCents,
+      shippingCost: 0,
+      total: totalCents,
+      currency: "USD",
+      payment: {
+        method: "other",
+        status: "pending",
+      },
+      status: "pending",
+      statusHistory: [{ status: "pending", note: "Custom order lead received — awaiting mockup approval and payment" }],
+      hasCustomFit: true,
+      customLogoUrl: customLogoUrl || "",
+      customLogoNotes: customLogoNotes || "",
+      customerNotes: JSON.stringify({
+        productType,
+        packageId: pkg.id,
+        suitMockup: suitMockup?.name || null,
+        glovesMockup: glovesMockup?.name || null,
+        shoesMockup: shoesMockup?.name || null,
+        shoeSize: shoeSize?.label || null,
+        colors: colors || {},
+      }),
+    });
+
+    console.log(`[/api/custom-order] Saved to DB: ${dbOrder._id} / ${orderId}`);
 
     // ---- Email to HS Race Gear (internal / admin) ----
     const internalEmailHtml = renderAdminNotification({

@@ -420,7 +420,6 @@ export default function ShoesOrderPage() {
         setIsSubmitting(true);
         try {
             const orderData = {
-                type: "custom",
                 productType: "custom-shoes",
                 shoesMockup: selectedMockup,
                 colors,
@@ -428,7 +427,7 @@ export default function ShoesOrderPage() {
                 customLogoNotes,
                 shoeSize: customerInfo.size,
                 customer: customerInfo,
-                packageData: {
+                package: {
                     id: "custom-shoes",
                     name: "Custom Shoes",
                     price: PRICE,
@@ -436,17 +435,16 @@ export default function ShoesOrderPage() {
                 },
             };
 
-            const res = await fetch("/api/stripe/create-checkout-session", {
+            const res = await fetch("/api/custom-order", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(orderData),
             });
 
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Failed to create checkout session");
+            if (!res.ok) throw new Error(data.error || "Failed to submit order");
 
-            // Redirect to Stripe's hosted checkout
-            window.location.href = data.url;
+            setIsSuccess(true);
         } catch (err) {
             console.error("Order submission error:", err);
             alert("There was an error submitting your order. Please try again.");
@@ -493,7 +491,7 @@ export default function ShoesOrderPage() {
                         <button className="btn-back" onClick={handleBack}><ArrowLeft /> Back</button>
                     ) : <div />}
                     <button className={`btn-next ${currentStepId === "info" ? "btn-submit" : ""}`} onClick={handleNext} disabled={!canProceed() || isSubmitting}>
-                        {isSubmitting ? (<><div className="spinner" /> Redirecting to payment...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
+                        {isSubmitting ? (<><div className="spinner" /> Submitting...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
                     </button>
                 </div>
             </div>

@@ -532,9 +532,8 @@ export default function KartingOrderPage() {
     setIsSubmitting(true);
     try {
       const payload = {
-        type: "custom",
         customer: customerInfo,
-        packageData: {
+        package: {
           id: selectedPackage.id,
           name: selectedPackage.name,
           price: selectedPackage.price,
@@ -550,19 +549,19 @@ export default function KartingOrderPage() {
         quantity: 1,
       };
 
-      const res = await fetch("/api/stripe/create-checkout-session", {
+      const res = await fetch("/api/custom-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to create checkout session");
+      if (!res.ok) throw new Error(data.error || "Failed to submit order");
 
-      window.location.href = data.url;
+      setIsSuccess(true);
     } catch (err) {
       console.error("Order submission error:", err);
-      alert("There was an error starting checkout. Please try again.");
+      alert("There was an error submitting your order. Please try again.");
       setIsSubmitting(false);
     }
   };
@@ -703,7 +702,7 @@ export default function KartingOrderPage() {
           >
             {isSubmitting ? (
               <>
-                <div className="spinner" /> Redirecting to payment...
+                <div className="spinner" /> Submitting...
               </>
             ) : currentStepId === "info" ? (
               <>
