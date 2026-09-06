@@ -3,7 +3,7 @@ import Footer3 from "@/components/footers/Footer3";
 import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
 import "@/public/css/account.css";
-import React from "react";
+import React, { Suspense } from "react";
 
 // Removed 2026-08-06 with the account redesign:
 //  - <Breadcumb />: light peach banner that clashed with the dark theme; the
@@ -22,8 +22,11 @@ export default function page() {
     <>
       <Topbar1 />
       <Header3 />
-      <Orders />
+      <Suspense fallback={null}>
+        <Orders />
+      </Suspense>
       <Footer3 />
     </>
   );
 }
+

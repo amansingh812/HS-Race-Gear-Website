@@ -2,7 +2,7 @@ import Footer3 from "@/components/footers/Footer3";
 import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
 import OrderConfirmation from "@/components/otherPages/OrderConfirmation";
-import React from "react";
+import React, { Suspense } from "react";
 import "@/public/css/cart-checkout.css";
 
 export const metadata = {
@@ -17,8 +17,11 @@ export default function OrderConfirmationPage() {
     <div className="page-light-bg">
       <Topbar1 />
       <Header3 />
-      <OrderConfirmation />
+      <Suspense fallback={null}>
+        <OrderConfirmation />
+      </Suspense>
       <Footer3 topBg="#ffffff" />
     </div>
   );
 }
+
