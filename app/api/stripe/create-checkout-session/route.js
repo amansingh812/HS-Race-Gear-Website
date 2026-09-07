@@ -177,7 +177,7 @@ async function handleShopCheckout(request, body) {
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
-    payment_method_types: ["card", "paypal"],
+    automatic_payment_methods: { enabled: true },
     line_items,
     customer_email: customer.email,
     shipping_address_collection: {
@@ -257,7 +257,7 @@ async function handleCustomCheckout(request, body) {
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
-    payment_method_types: ["card", "paypal"],
+    automatic_payment_methods: { enabled: true },
     line_items: [
       {
         price_data: {
