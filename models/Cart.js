@@ -346,6 +346,7 @@ cartSchema.methods.toClientJSON = function() {
           ...item.productSnapshot?.toObject?.() || item.productSnapshot,
           image: resolvedImage,
         },
+        categorySlug: item.product?.category?.slug || "",
         size: item.size,
         isCustomFit: item.isCustomFit,
         measurements: item.measurements,

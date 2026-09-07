@@ -35,7 +35,7 @@ export async function GET(request) {
     let cart = await Cart.getOrCreateCart(decoded.userId);
     
     // Populate product details
-    await cart.populate('items.product', 'name slug price images inventory status');
+    await cart.populate({ path: 'items.product', select: 'name slug price images inventory status category', populate: { path: 'category', select: 'slug' } });
     
     return NextResponse.json({
       success: true,
@@ -201,7 +201,7 @@ export async function POST(request) {
     });
     
     // Populate and return
-    await cart.populate('items.product', 'name slug price images inventory status');
+    await cart.populate({ path: 'items.product', select: 'name slug price images inventory status category', populate: { path: 'category', select: 'slug' } });
     
     return NextResponse.json({
       success: true,
@@ -282,7 +282,7 @@ export async function PUT(request) {
     }
     
     // Populate and return
-    await cart.populate('items.product', 'name slug price images inventory status');
+    await cart.populate({ path: 'items.product', select: 'name slug price images inventory status category', populate: { path: 'category', select: 'slug' } });
     
     return NextResponse.json({
       success: true,
@@ -347,7 +347,7 @@ export async function DELETE(request) {
       await cart.clearCart();
     }
     
-    await cart.populate('items.product', 'name slug price images inventory status');
+    await cart.populate({ path: 'items.product', select: 'name slug price images inventory status category', populate: { path: 'category', select: 'slug' } });
     
     return NextResponse.json({
       success: true,

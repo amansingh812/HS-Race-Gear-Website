@@ -15,7 +15,7 @@ import "@/public/css/racing-header.css";
 import "@/public/css/pricing.css";
 import "photoswipe/dist/photoswipe.css";
 import "rc-slider/assets/index.css";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 import Compare from "@/components/modals/Compare";
 import Login from "@/components/modals/Login";
@@ -38,6 +38,7 @@ import ShareModal from "@/components/modals/ShareModal";
 import CartComponent from "@/components/modals/CartComponent";
 import DbSidebar from "@/components/modals/DbSidebar";
 import Analytics from "@/components/analytics/Analytics";
+import NavigationProgress from "@/components/common/NavigationProgress";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -133,6 +134,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Analytics />
+        <Suspense fallback={null}>
+          <NavigationProgress />
+        </Suspense>
         <NextAuthProvider>
           <AuthProvider>
             <Context>

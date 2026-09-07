@@ -8,7 +8,6 @@ const trustItems = [
   {
     icon: "icon-shipping",
     title: "Free Shipping",
-    subtitle: "for custom suits",
   },
   {
     icon: "icon-return",
@@ -19,6 +18,10 @@ const trustItems = [
     icon: "icon-support",
     title: "24/7 Support",
     subtitle: "Expert help anytime",
+  },
+  {
+    icon: "icon-clock",
+    title: "Fast Delivery",
   },
 ];
 
@@ -34,7 +37,7 @@ export default function AnnouncementStrip() {
               </div>
               <div className="announcement-strip__text">
                 {item.title}
-                <small>{item.subtitle}</small>
+                {item.subtitle && <small>{item.subtitle}</small>}
               </div>
             </div>
           ))}

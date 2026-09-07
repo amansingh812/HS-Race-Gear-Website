@@ -17,25 +17,25 @@ const PACKAGES = [
   {
     category: "SUIT ONLY",
     items: [
-      { id: "single-suit", name: "Single Layer Custom SFI Rated Suit", price: 549, includes: ["suit"] },
-      { id: "double-suit", name: "Double Layer Custom SFI Rated Suit", price: 649, includes: ["suit"] },
-      { id: "triple-suit", name: "Triple Layer Custom SFI Rated Suit", price: 749, includes: ["suit"] },
+      { id: "single-suit", name: "Single Layer Custom SFI 3.2A/1 Race Suit", price: 549, includes: ["suit"] },
+      { id: "double-suit", name: "Double Layer Custom SFI 3.2/5 Race Suit", price: 649, includes: ["suit"] },
+      { id: "triple-suit", name: "Triple Layer Custom SFI 3.2A/5 Race Suit", price: 749, includes: ["suit"] },
     ],
   },
   {
     category: "SUIT + GLOVES",
     items: [
-      { id: "single-suit-gloves", name: "Single Layer Custom SFI Rated Suit + Custom Gloves", price: 649, includes: ["suit", "gloves"] },
-      { id: "double-suit-gloves", name: "Double Layer Custom SFI Rated Suit + Custom Gloves", price: 749, includes: ["suit", "gloves"] },
-      { id: "triple-suit-gloves", name: "Triple Layer Custom SFI Rated Suit + Custom Gloves", price: 849, includes: ["suit", "gloves"] },
+      { id: "single-suit-gloves", name: "Single Layer Custom SFI 3.2A/1 Race Suit + Custom 3.3/5 Gloves", price: 649, includes: ["suit", "gloves"] },
+      { id: "double-suit-gloves", name: "Double Layer Custom SFI 3.2/5 Race Suit + Custom 3.3/5 Gloves", price: 749, includes: ["suit", "gloves"] },
+      { id: "triple-suit-gloves", name: "Triple Layer Custom SFI 3.2A/5 Race Suit + Custom 3.3/5 Gloves", price: 849, includes: ["suit", "gloves"] },
     ],
   },
   {
     category: "SUIT + GLOVES + SHOES",
     items: [
-      { id: "single-suit-gloves-shoes", name: "Single Layer Custom SFI Rated Suit + Custom Gloves + Custom Shoes", price: 729, includes: ["suit", "gloves", "shoes"] },
-      { id: "double-suit-gloves-shoes", name: "Double Layer Custom SFI Rated Suit + Custom Gloves + Custom Shoes", price: 829, includes: ["suit", "gloves", "shoes"] },
-      { id: "triple-suit-gloves-shoes", name: "Triple Layer Custom SFI Rated Suit + Custom Gloves + Custom Shoes", price: 929, includes: ["suit", "gloves", "shoes"] },
+      { id: "single-suit-gloves-shoes", name: "Single Layer Custom SFI 3.2A/1 Race Suit + Custom 3.3/5 Gloves + Custom 3.3/5 Shoes", price: 729, includes: ["suit", "gloves", "shoes"] },
+      { id: "double-suit-gloves-shoes", name: "Double Layer Custom SFI 3.2/5 Race Suit + Custom 3.3/5 Gloves + Custom 3.3/5 Shoes", price: 829, includes: ["suit", "gloves", "shoes"] },
+      { id: "triple-suit-gloves-shoes", name: "Triple Layer Custom SFI 3.2A/5 Race Suit + Custom 3.3/5 Gloves + Custom 3.3/5 Shoes", price: 929, includes: ["suit", "gloves", "shoes"] },
     ],
   },
 ];

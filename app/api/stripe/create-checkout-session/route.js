@@ -3,7 +3,9 @@ import stripe from "@/lib/stripe";
 import dbConnect from "@/lib/mongodb";
 import Cart from "@/models/Cart";
 import Product from "@/models/Product";
+import Category from "@/models/Category";
 import { verifyToken } from "@/lib/auth";
+import { calculateShipping } from "@/lib/shipping";
 
 /**
  * POST /api/stripe/create-checkout-session
@@ -97,10 +99,11 @@ async function handleShopCheckout(request, body) {
   let cartItems = [];
 
   if (userId) {
-    const cart = await Cart.findOne({ user: userId }).populate(
-      "items.product",
-      "name slug price images status"
-    );
+    const cart = await Cart.findOne({ user: userId }).populate({
+      path: "items.product",
+      select: "name slug price images status category",
+      populate: { path: "category", select: "slug" },
+    });
     if (!cart || cart.items.length === 0) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
     }
@@ -112,7 +115,7 @@ async function handleShopCheckout(request, body) {
     }
 
     for (const item of guestItems) {
-      const product = await Product.findById(item.productId || item.id);
+      const product = await Product.findById(item.productId || item.id).populate("category", "slug");
       if (!product || product.status !== "active") {
         return NextResponse.json(
           { error: `Product not found or unavailable: ${item.productId || item.id}` },
@@ -167,6 +170,27 @@ async function handleShopCheckout(request, body) {
     };
   });
 
+  // ── Calculate shipping (server-side, tamper-proof) ──
+  const shippingItems = cartItems.map((item) => ({
+    categorySlug: item.product?.category?.slug || "",
+    quantity: item.quantity || 1,
+  }));
+  const { totalCents: shippingCents } = calculateShipping(shippingItems);
+
+  if (shippingCents > 0) {
+    line_items.push({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: "Shipping",
+          description: "Standard shipping (7–10 business days)",
+        },
+        unit_amount: shippingCents,
+      },
+      quantity: 1,
+    });
+  }
+
   // Serialize minimal cart reference for the webhook
   const cartItemIds = cartItems.map((item) => ({
     productId: (item.product?._id || item.product)?.toString(),
@@ -177,7 +201,7 @@ async function handleShopCheckout(request, body) {
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
-    automatic_payment_methods: { enabled: true },
+    payment_method_types: ["card"],
     line_items,
     customer_email: customer.email,
     shipping_address_collection: {
@@ -257,7 +281,7 @@ async function handleCustomCheckout(request, body) {
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
-    automatic_payment_methods: { enabled: true },
+    payment_method_types: ["card"],
     line_items: [
       {
         price_data: {

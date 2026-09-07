@@ -519,7 +519,7 @@ function DealCard({ offer }) {
 
         {/* CTA Button — uniform red for all cards */}
         <Link
-          href={`/custom-race-suit/order?package=${offer.packageId}`}
+          href={`${offer.packageId.startsWith("karting") ? "/custom-karting-suit" : "/custom-race-suit"}/order?package=${offer.packageId}`}
           style={{
             width: "100%",
             padding: "16px 24px",

@@ -272,13 +272,6 @@ export default function ShopClient() {
 
   return (
     <>
-      {isPageLoading && (
-        <div className="preload preload-container">
-          <div className="preload-logo">
-            <div className="spinner"></div>
-          </div>
-        </div>
-      )}
       <Topbar1 />
       <Header3 />
 

@@ -1,9 +1,10 @@
 "use client";
 import { allProducts } from "@/data/products";
 import { openCartModal } from "@/utlis/openCartModal";
+import { calculateShippingDollars } from "@/lib/shipping";
 // import { openWistlistModal } from "@/utlis/openWishlist";
 
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useMemo } from "react";
 import { useContext, useState } from "react";
 const dataContext = React.createContext();
 export const useContextElement = () => {
@@ -44,6 +45,19 @@ export default function Context({ children }) {
     setTotalPrice(subtotal);
   }, [cartProducts]);
 
+  // Calculate shipping cost from cart products
+  const shippingInfo = useMemo(() => {
+    if (cartProducts.length === 0) return { total: 0, breakdown: [] };
+    return calculateShippingDollars(
+      cartProducts.map((p) => ({
+        categorySlug: p.categorySlug || "",
+        quantity: p.quantity || 1,
+      }))
+    );
+  }, [cartProducts]);
+
+  const shippingCost = shippingInfo.total;
+
   // Sync cart with database when authenticated
   const syncCartWithDatabase = useCallback(async () => {
     if (!isAuthenticated) return;
@@ -79,6 +93,7 @@ export default function Context({ children }) {
             selectedOptions: item.selectedOptions,
             layer: item.productSnapshot?.layer,
             driverName: item.productSnapshot?.driverName,
+            categorySlug: item.categorySlug || "",
           }));
           setCartProducts(items);
           localStorage.setItem("cartList", JSON.stringify(items));
@@ -225,6 +240,7 @@ export default function Context({ children }) {
               price: (p.price || 0) / 100,
               salePrice: p.compareAtPrice ? p.compareAtPrice / 100 : undefined,
               slug: p.slug,
+              categorySlug: p.category?.slug || "",
             };
           }
         } catch (err) {
@@ -247,6 +263,7 @@ export default function Context({ children }) {
           driverName,
           price: finalPrice,
           finalPrice,
+          categorySlug: product.categorySlug || "",
         };
         setCartProducts((pre) => [...pre, item]);
         if (isModal) {
@@ -469,6 +486,8 @@ export default function Context({ children }) {
     cartProducts,
     setCartProducts,
     totalPrice,
+    shippingCost,
+    shippingInfo,
     cartLoading,
     cartError,
     

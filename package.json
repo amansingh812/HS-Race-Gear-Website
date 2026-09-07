@@ -9,7 +9,11 @@
     "lint": "next lint",
     "seed": "node scripts/seed.mjs",
     "create:admin": "node scripts/create-admin.mjs",
-    "test:api": "node scripts/test-api.js",
+    "test": "jest --forceExit",
+    "test:api": "jest __tests__/api --forceExit",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:old-api": "node scripts/test-api.js",
     "validate:phase1": "node scripts/validate-phase1.js",
     "css:check": "sass public/scss/main.scss /tmp/main-check.css --no-source-map --style=expanded && diff -q public/css/main.css /tmp/main-check.css || echo 'WARNING: public/css/main.css has drifted from public/scss/ — do NOT blind-rebuild, patch both by hand'",
     "css:build": "sass public/scss/main.scss public/css/main.css --no-source-map --style=expanded"
@@ -38,5 +42,9 @@
     "stripe": "^22.6.0",
     "swiper": "^11.1.15",
     "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "jest": "^30.5.1"
   }
 }

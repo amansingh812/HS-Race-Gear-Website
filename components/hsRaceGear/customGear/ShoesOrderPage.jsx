@@ -166,11 +166,28 @@ function MockupSelection({ mockups, selected, onSelect, currentStep, totalSteps 
    STEP 2 — Colours
    ============================================ */
 function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
-    const colorAreas = [
-        { key: "primary",   label: "Primary Color" },
-        { key: "secondary", label: "Secondary Color" },
-        { key: "accent",    label: "Accent Color" },
-    ];
+    // Design Color allows multiple selections
+    const designColors = selections.secondary || [];
+
+    const toggleDesignColor = (color) => {
+        const current = selections.secondary || [];
+        const exists = current.some((c) => c.hex === color.hex);
+        if (exists) {
+            onChange("secondary", current.filter((c) => c.hex !== color.hex));
+        } else {
+            onChange("secondary", [...current, color]);
+        }
+    };
+
+    // Build preview gradient from all selected colors
+    const allColors = [
+        selections.primary?.hex,
+        ...(designColors.map((c) => c.hex)),
+    ].filter(Boolean);
+
+    const previewBg = allColors.length > 0
+        ? `linear-gradient(135deg, ${allColors.map((c, i) => `${c} ${(i / allColors.length) * 100}%, ${c} ${((i + 1) / allColors.length) * 100}%`).join(", ")})`
+        : "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)";
 
     return (
         <div className="step-content">
@@ -185,9 +202,7 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
                     style={{
                         maxWidth: 300,
                         aspectRatio: "4/3",
-                        background: selections.primary
-                            ? `linear-gradient(135deg, ${selections.primary.hex} 0%, ${selections.primary.hex} 40%, ${selections.secondary?.hex || "#222"} 40%, ${selections.secondary?.hex || "#222"} 70%, ${selections.accent?.hex || "#333"} 70%, ${selections.accent?.hex || "#333"} 100%)`
-                            : "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+                        background: previewBg,
                     }}
                 >
                     {!selections.primary && (
@@ -196,36 +211,77 @@ function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
                 </div>
 
                 <div className="color-sections">
-                    {colorAreas.map((area) => (
-                        <div key={area.key}>
-                            <div className="color-section-title">
-                                {area.label}
-                                {selections[area.key] && (
-                                    <span className="color-name-tag" style={{ marginLeft: 12 }}>
-                                        {selections[area.key].name}
-                                    </span>
-                                )}
-                            </div>
-                            <div className="color-swatches">
-                                {COLORS.map((color) => (
-                                    <div
-                                        key={color.hex + area.key}
-                                        className={`color-swatch ${selections[area.key]?.hex === color.hex ? "selected" : ""}`}
-                                        style={{ backgroundColor: color.hex }}
-                                        onClick={() => onChange(area.key, color)}
-                                        title={color.name}
-                                        role="button"
-                                        tabIndex={0}
-                                        onKeyDown={(e) => e.key === "Enter" && onChange(area.key, color)}
-                                    >
-                                        <div className="color-swatch-check">
-                                            <CheckIcon size={14} color={color.light ? "#000" : "#fff"} />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                    {/* Single-select: Shoe Base Color */}
+                    <div>
+                        <div className="color-section-title">
+                            Shoe Base Color
+                            {selections.primary && (
+                                <span className="color-name-tag" style={{ marginLeft: 12 }}>
+                                    {selections.primary.name}
+                                </span>
+                            )}
                         </div>
-                    ))}
+                        <div className="color-swatches">
+                            {COLORS.map((color) => (
+                                <div
+                                    key={color.hex + "primary"}
+                                    className={`color-swatch ${selections.primary?.hex === color.hex ? "selected" : ""}`}
+                                    style={{ backgroundColor: color.hex }}
+                                    onClick={() => onChange("primary", color)}
+                                    title={color.name}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => e.key === "Enter" && onChange("primary", color)}
+                                >
+                                    <div className="color-swatch-check">
+                                        <CheckIcon size={14} color={color.light ? "#000" : "#fff"} />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Multi-select: Design Color */}
+                    <div>
+                        <div className="color-section-title">
+                            Design Color
+                            <span style={{ fontSize: "0.75rem", fontWeight: 400, opacity: 0.7, marginLeft: 8 }}>(select multiple)</span>
+                            {designColors.length > 0 && (
+                                <span className="color-name-tag" style={{ marginLeft: 12 }}>
+                                    {designColors.map((c) => c.name).join(", ")}
+                                </span>
+                            )}
+                        </div>
+                        <div className="color-swatches">
+                            {COLORS.map((color) => (
+                                <div
+                                    key={color.hex + "secondary"}
+                                    className={`color-swatch ${designColors.some((c) => c.hex === color.hex) ? "selected" : ""}`}
+                                    style={{ backgroundColor: color.hex }}
+                                    onClick={() => toggleDesignColor(color)}
+                                    title={color.name}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => e.key === "Enter" && toggleDesignColor(color)}
+                                >
+                                    <div className="color-swatch-check">
+                                        <CheckIcon size={14} color={color.light ? "#000" : "#fff"} />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Contact note for other colors */}
+                <div style={{ marginTop: 20, padding: "14px 18px", background: "rgba(255,255,255,0.06)", borderRadius: 8, border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
+                        Want a color not listed here? Contact us at{" "}
+                        <a href="mailto:info@hsracegear.com" style={{ color: "#dc2626", textDecoration: "none", fontWeight: 600 }}>info@hsracegear.com</a>
+                        {" "}or{" "}
+                        <a href="https://wa.me/16173196993" target="_blank" rel="noopener noreferrer" style={{ color: "#25D366", textDecoration: "none", fontWeight: 600 }}>WhatsApp</a>
+                        {" "}and we'll match any color you need.
+                    </p>
                 </div>
             </div>
         </div>
@@ -307,11 +363,21 @@ function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, t
                         <span className="order-summary-value">{info.size || "—"}</span>
                     </div>
                     <div className="order-summary-item">
-                        <span className="order-summary-label">Colours</span>
+                        <span className="order-summary-label">Base Color</span>
                         <span className="order-summary-value" style={{ display: "flex", gap: 6, alignItems: "center" }}>
                             {orderData.colors?.primary && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.primary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
-                            {orderData.colors?.secondary && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.secondary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
-                            {orderData.colors?.accent && <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.accent.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />}
+                            <span>{orderData.colors?.primary?.name || "—"}</span>
+                        </span>
+                    </div>
+                    <div className="order-summary-item">
+                        <span className="order-summary-label">Design Colors</span>
+                        <span className="order-summary-value" style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
+                            {(orderData.colors?.secondary || []).length > 0
+                                ? (orderData.colors.secondary).map((c) => (
+                                    <span key={c.hex} style={{ width: 18, height: 18, borderRadius: 4, background: c.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />
+                                ))
+                                : <span>—</span>
+                            }
                         </span>
                     </div>
                     <div className="order-summary-total">
@@ -350,7 +416,7 @@ function SuccessScreen() {
 export default function ShoesOrderPage() {
     const [currentStep, setCurrentStep] = useState(0);
     const [selectedMockup, setSelectedMockup] = useState(null);
-    const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
+    const [colors, setColors] = useState({ primary: null, secondary: [] });
     const [customLogoUrl, setCustomLogoUrl] = useState(null);
     const [customLogoNotes, setCustomLogoNotes] = useState("");
     const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", size: "", ...EMPTY_ADDRESS });

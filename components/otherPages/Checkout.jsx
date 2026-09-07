@@ -19,7 +19,7 @@ import * as gtag from "@/lib/gtag";
  * is just for UX — the webhook is the source of truth.
  */
 export default function Checkout() {
-  const { cartProducts, totalPrice, clearCart, cartLoading } =
+  const { cartProducts, totalPrice, shippingCost, shippingInfo, clearCart, cartLoading } =
     useContextElement();
 
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ export default function Checkout() {
 
   const [formErrors, setFormErrors] = useState({});
 
-  const grandTotal = totalPrice;
+  const grandTotal = totalPrice + shippingCost;
 
   // GA4: begin_checkout — fire once after cart loads
   const beginCheckoutFired = useRef(false);
@@ -219,8 +219,7 @@ export default function Checkout() {
               <div className="box-ip-shipping">
                 <div className="title text-xl fw-medium">Shipping</div>
                 <div className="text-sm text-main">
-                  Free shipping on every order (7–10 business days), included in
-                  the total below.
+                  Shipping is calculated based on your cart items (7–10 business days).
                 </div>
               </div>
               <div className="box-ip-payment">
@@ -322,7 +321,12 @@ export default function Checkout() {
                   </div>
                 )}
                 <div className="text-sm text-main d-flex justify-content-between mb_8">
-                  <span>Free shipping included</span>
+                  <span>Subtotal:</span>
+                  <span>${totalPrice.toFixed(2)}</span>
+                </div>
+                <div className="text-sm text-main d-flex justify-content-between mb_8">
+                  <span>Shipping:</span>
+                  <span>${shippingCost.toFixed(2)}</span>
                 </div>
                 <div className="subtotal text-lg fw-medium d-flex justify-content-between">
                   <span>Total:</span>

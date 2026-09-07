@@ -121,6 +121,7 @@
   height: 12px;
   background: rgba(255, 255, 255, 0.4);
   opacity: 1;
+  margin: 0 6px !important;
 }
 
 .hero-racing .swiper-pagination-bullet-active {
@@ -181,7 +182,7 @@
 
 .announcement-strip__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 

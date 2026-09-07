@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
@@ -385,20 +386,6 @@ function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, t
               <span className="order-summary-value">{orderData.shoesMockup.name}</span>
             </div>
           )}
-          <div className="order-summary-item">
-            <span className="order-summary-label">Colors</span>
-            <span className="order-summary-value" style={{ display: "flex", gap: 6, alignItems: "center" }}>
-              {orderData.colors?.primary && (
-                <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.primary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />
-              )}
-              {orderData.colors?.secondary && (
-                <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.secondary.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />
-              )}
-              {orderData.colors?.accent && (
-                <span style={{ width: 18, height: 18, borderRadius: 4, background: orderData.colors.accent.hex, display: "inline-block", border: "1px solid rgba(255,255,255,0.2)" }} />
-              )}
-            </span>
-          </div>
           <div className="order-summary-total">
             <span className="order-summary-total-label">Total</span>
             <span className="order-summary-total-price">${orderData.package?.price || 0} USD</span>
@@ -445,6 +432,7 @@ function SuccessScreen() {
    MAIN COMPONENT
    ============================================ */
 export default function KartingOrderPage() {
+  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [suitMockup, setSuitMockup] = useState(null);
@@ -458,6 +446,19 @@ export default function KartingOrderPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // Pre-select package from URL param (e.g. ?package=karting-suit-gloves)
+  // and jump straight to suit design selection (Step 2)
+  useEffect(() => {
+    const paramId = searchParams.get("package");
+    if (!paramId) return;
+    const allPackages = PACKAGES.flatMap((cat) => cat.items);
+    const match = allPackages.find((p) => p.id === paramId);
+    if (match) {
+      setSelectedPackage(match);
+      setCurrentStep(1); // skip to suit design selection
+    }
+  }, [searchParams]);
+
   const steps = useMemo(() => {
     const s = [
       { id: "package", label: "Package" },
@@ -469,7 +470,6 @@ export default function KartingOrderPage() {
     if (selectedPackage?.includes?.includes("shoes")) {
       s.push({ id: "shoes", label: "Shoes" });
     }
-    s.push({ id: "colors", label: "Colors" });
     s.push({ id: "info", label: "Your Info" });
     return s;
   }, [selectedPackage]);
@@ -503,7 +503,6 @@ export default function KartingOrderPage() {
       case "suit": return !!suitMockup;
       case "gloves": return !!glovesMockup;
       case "shoes": return !!shoesMockup;
-      case "colors": return !!colors.primary;
       case "info": return true;
       default: return false;
     }
@@ -543,7 +542,7 @@ export default function KartingOrderPage() {
         suitMockup,
         glovesMockup: selectedPackage?.includes?.includes("gloves") ? glovesMockup : null,
         shoesMockup: selectedPackage?.includes?.includes("shoes") ? shoesMockup : null,
-        colors,
+        colors: {},
         customLogoUrl,
         customLogoNotes,
         quantity: 1,
@@ -659,15 +658,6 @@ export default function KartingOrderPage() {
             mockups={SHOES_MOCKUPS}
             selected={shoesMockup}
             onSelect={setShoesMockup}
-            currentStep={currentStep + 1}
-            totalSteps={totalSteps}
-          />
-        )}
-
-        {currentStepId === "colors" && (
-          <ColorSelection
-            selections={colors}
-            onChange={handleColorChange}
             currentStep={currentStep + 1}
             totalSteps={totalSteps}
           />
