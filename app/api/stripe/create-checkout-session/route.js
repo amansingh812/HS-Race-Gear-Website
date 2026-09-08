@@ -170,26 +170,27 @@ async function handleShopCheckout(request, body) {
     };
   });
 
+  // TODO: REVERT — shipping temporarily disabled for prod payment test
   // ── Calculate shipping (server-side, tamper-proof) ──
-  const shippingItems = cartItems.map((item) => ({
-    categorySlug: item.product?.category?.slug || "",
-    quantity: item.quantity || 1,
-  }));
-  const { totalCents: shippingCents } = calculateShipping(shippingItems);
-
-  if (shippingCents > 0) {
-    line_items.push({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: "Shipping",
-          description: "Standard shipping (7–10 business days)",
-        },
-        unit_amount: shippingCents,
-      },
-      quantity: 1,
-    });
-  }
+  // const shippingItems = cartItems.map((item) => ({
+  //   categorySlug: item.product?.category?.slug || "",
+  //   quantity: item.quantity || 1,
+  // }));
+  // const { totalCents: shippingCents } = calculateShipping(shippingItems);
+  //
+  // if (shippingCents > 0) {
+  //   line_items.push({
+  //     price_data: {
+  //       currency: "usd",
+  //       product_data: {
+  //         name: "Shipping",
+  //         description: "Standard shipping (7–10 business days)",
+  //       },
+  //       unit_amount: shippingCents,
+  //     },
+  //     quantity: 1,
+  //   });
+  // }
 
   // Serialize minimal cart reference for the webhook
   const cartItemIds = cartItems.map((item) => ({
