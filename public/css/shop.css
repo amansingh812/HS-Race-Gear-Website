@@ -930,6 +930,9 @@
     bottom: calc(var(--hs-spacing) * 1);
     left: calc(var(--hs-spacing) * 1);
     right: calc(var(--hs-spacing) * 1);
+    /* Always visible on mobile — no hover on touch devices */
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .hs-card-action-btn {
