@@ -59,8 +59,25 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const categorySchema = new mongoose.Schema(
+  {
+    name: String,
+    slug: { type: String, unique: true },
+    description: String,
+    isActive: Boolean,
+    isVisible: Boolean,
+    isFeatured: Boolean,
+    level: Number,
+    order: Number,
+    productCount: Number,
+  },
+  { timestamps: true }
+);
+
 const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);
+const Category =
+  mongoose.models.Category || mongoose.model("Category", categorySchema);
 
 const removeMode = process.argv.includes("--remove");
 
@@ -70,27 +87,52 @@ async function main() {
 
   if (removeMode) {
     const result = await Product.deleteOne({ slug: TEST_SLUG });
+    const catResult = await Category.deleteOne({ slug: "test" });
     if (result.deletedCount) {
       console.log("🗑️  Removed test product: " + TEST_SLUG);
     } else {
       console.log("ℹ️  Test product not found — nothing to remove.");
     }
+    if (catResult.deletedCount) {
+      console.log("🗑️  Removed test category");
+    }
+    console.log("\n⚠️  Also remove `test: 0` from lib/shipping.js SHIPPING_RATES");
   } else {
+    // Create or find test category (slug "test" → $0 shipping in lib/shipping.js)
+    let testCategory = await Category.findOne({ slug: "test" });
+    if (!testCategory) {
+      testCategory = await Category.create({
+        name: "Test",
+        slug: "test",
+        description: "Temporary test category — delete after Stripe testing",
+        isActive: true,
+        isVisible: false, // hidden from storefront nav
+        isFeatured: false,
+        level: 0,
+        order: 999,
+        productCount: 1,
+      });
+      console.log("✅ Created 'test' category (hidden from nav)");
+    } else {
+      console.log("ℹ️  'test' category already exists");
+    }
+
     const existing = await Product.findOne({ slug: TEST_SLUG });
     if (existing) {
       console.log("ℹ️  Test product already exists. Updating price to $1.00...");
       await Product.updateOne(
         { slug: TEST_SLUG },
-        { price: 100, status: "active", isVisible: true }
+        { price: 100, status: "active", isVisible: true, category: testCategory._id }
       );
     } else {
       await Product.create({
         name: "[TEST] $1 Race Suit — Delete After Testing",
         slug: TEST_SLUG,
         description:
-          "This is a $1.00 test product for verifying Stripe and PayPal checkout in production. Delete after testing.",
+          "This is a $1.00 test product for verifying Stripe checkout in production. Delete after testing.",
         shortDescription: "⚠️ TEST PRODUCT — $1.00 — delete after verifying payments",
         price: 100, // $1.00 in cents
+        category: testCategory._id,
         certification: "SFI 3.2A/1",
         material: "Test",
         features: ["Test product for payment verification"],
@@ -119,14 +161,16 @@ async function main() {
     }
 
     console.log("\n══════════════════════════════════════════");
-    console.log("  Product: [TEST] $1 Race Suit");
-    console.log("  Price:   $1.00 (100 cents)");
-    console.log("  Slug:    " + TEST_SLUG);
-    console.log("  Size:    M (99 in stock)");
-    console.log("  URL:     /shop/" + TEST_SLUG);
+    console.log("  Product:  [TEST] $1 Race Suit");
+    console.log("  Price:    $1.00 (100 cents)");
+    console.log("  Shipping: $0.00 (test category)");
+    console.log("  Slug:     " + TEST_SLUG);
+    console.log("  Size:     M (99 in stock)");
+    console.log("  URL:      /shop/" + TEST_SLUG);
     console.log("══════════════════════════════════════════");
     console.log("\nAfter testing, remove with:");
-    console.log("  node scripts/seed-test-product.mjs --remove\n");
+    console.log("  node scripts/seed-test-product.mjs --remove");
+    console.log("  Also remove `test: 0` from lib/shipping.js\n");
   }
 
   await mongoose.disconnect();
