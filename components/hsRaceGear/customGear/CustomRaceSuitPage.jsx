@@ -17,8 +17,8 @@ export default function CustomRaceSuitPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             ),
-            title: "SFI Certified",
-            description: "Fully compliant with SFI 3.2A/1 & 5 standards. Ready for Sprint car, Drag, Modified, Late model, and Stock racing."
+            title: "Custom SFI 3.2A/5 Fire Suit",
+            description: "Custom SFI 5 race suit fully compliant with SFI 3.2A/1 and 3.2A/5 standards. Ready for Sprint Car, Drag, Modified, Late Model, and Stock racing."
         },
         {
             icon: (
@@ -36,7 +36,7 @@ export default function CustomRaceSuitPage() {
                 </svg>
             ),
             title: "Nomex Protection",
-            description: "Constructed from premium meta-aramid fabrics. Delivers fire resistance without sacrificing breathability or flexibility."
+            description: "Custom Nomex race suit constructed from premium meta-aramid fabrics. Delivers fire resistance without sacrificing breathability or flexibility."
         }
     ];
 
@@ -143,7 +143,7 @@ export default function CustomRaceSuitPage() {
                             letterSpacing: "2px",
                             textTransform: "uppercase"
                         }}>
-                            SFI 3.2A/1 & 5 Certified
+                            Custom SFI 3.2A/5 Fire Suit • SFI 3.2A/1
                         </div>
 
                         {/* Heading */}
@@ -168,7 +168,7 @@ export default function CustomRaceSuitPage() {
                             margin: "0 auto 40px",
                             lineHeight: "1.7"
                         }}>
-                            Custom auto racing suits built for drivers who demand performance. Crafted from high-quality meta-aramid fire-retardant fabric.
+                            Custom Nomex race suit with logos, sponsor branding, and unlimited color options. Custom SFI 5 race suit crafted from premium meta-aramid fire-retardant fabric, built to your exact measurements.
                         </p>
 
                         {/* CTA Buttons */}
@@ -368,7 +368,7 @@ export default function CustomRaceSuitPage() {
                                 marginBottom: "32px",
                                 lineHeight: "1.7"
                             }}>
-                                Choose from 1-piece suits or 2-piece jacket-style designs. We offer complete customization for teams and individual drivers.
+                                Choose from 1-piece suits or 2-piece jacket-style designs. Every custom Nomex race suit comes with logos, sponsor branding, driver name, and flag — included at no extra charge.
                             </p>
 
                             {/* Steps */}

@@ -28,7 +28,7 @@ export const metadata = {
   // docs/seo/open-gaps.md C1 for the internal-linking work still needed.
   title: "Custom Made Race Suits — SFI Certified, Made in USA",
   description:
-    "Custom made race suits built to your exact measurements — single layer, double layer or 3-layer, one-piece or two-piece. SFI 3.2A/1 and 3.2A/5 certified, premium Nomex fire-retardant fabric, unlimited color and logo options. Made in the USA with free shipping.",
+    "Custom made race suits built to your exact measurements — single layer, double layer or 3-layer, one-piece or two-piece. Custom SFI 3.2A/5 fire suit and SFI 3.2A/1 certified, premium Nomex fire-retardant fabric. Custom nomex race suit with logos — unlimited color, sponsor logo, and embroidery options. Made in the USA with free shipping.",
   // Keyword clusters assigned 2026-08-22 from the client keyword list.
   // Coverage audit found 46 of 71 terms had no page at all. Four clusters
   // belong here because they describe this product, not a separate one:
@@ -39,7 +39,7 @@ export const metadata = {
   // Note these are keyword-list terms with no volume data attached — treat
   // as intent signals, not as validated demand.
   keywords:
-    "custom made race suits, custom race suit, custom racing suit, custom racing suits, custom race suits, custom made racing fire suits, custom made fire suits, custom racing fire suits, custom fire suit, custom sfi race suit, custom fire suit for racing, sfi rated custom fireproof race suits, custom multi layer fireproof race suit, " +
+    "custom sfi 3.2a/5 fire suit, custom sfi 5 race suit, custom nomex race suit with logos, custom made race suits, custom race suit, custom racing suit, custom racing suits, custom race suits, custom made racing fire suits, custom made fire suits, custom racing fire suits, custom fire suit, custom sfi race suit, custom fire suit for racing, sfi rated custom fireproof race suits, custom multi layer fireproof race suit, " +
     // Layer variants — every one of these was uncovered
     "single layer race suit, double layer race suit, double layer fire suit, 1 layer custom fire suit, custom 2 layer race suit, 3-layer racing fire suit, 3 layer racing fire suit, " +
     // One-piece / two-piece construction
@@ -55,7 +55,7 @@ export const metadata = {
     type: "website",
     title: "Custom Made Race Suits — SFI Certified, Made in USA",
     description:
-      "Built to your exact measurements. SFI 3.2A/1 & 3.2A/5 certified, premium Nomex, unlimited colors and logos. Made in the USA with free shipping.",
+      "Custom SFI 5 race suit and SFI 3.2A/1 certified. Custom nomex race suit with logos — unlimited colors, sponsor branding, and embroidery. Made in the USA with free shipping.",
     url: "https://www.hsracegear.com/custom-race-suit",
     siteName: "HS Race Gear",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
@@ -123,6 +123,11 @@ export default function page() {
             <div className="col-md-6 col-lg-3">
               <Link href="/rush-sr-race-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
                 Rush SR &amp; GRIDLIFE
+              </Link>
+            </div>
+            <div className="col-md-6 col-lg-3">
+              <Link href="/blog/custom-youth-nomex-race-suit" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
+                Youth Racing Suits Guide
               </Link>
             </div>
           </div>

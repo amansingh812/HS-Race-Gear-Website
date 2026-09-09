@@ -13,7 +13,7 @@ export const DISCIPLINE_DATA = {
     suitNoun: "drag racing suits",
     h1First: "Custom Drag",
     h1Second: "Racing Suits",
-    subtitle: "SFI-certified custom drag racing suits for NHRA, IHRA, and bracket racing. Class-rated from SFI 3.2A/1 for sportsman classes to SFI 3.2A/15 for cars quicker than 9.99 ET. From $329.",
+    subtitle: "Custom SFI 15 and SFI 20 drag racing suits for NHRA, IHRA, and bracket racing. Class-rated from SFI 3.2A/1 for sportsman classes through SFI 3.2A/15 and SFI 3.2A/20 for Top Fuel and Funny Car. From $329.",
     primaryCtaHref: "/custom-race-suit/order",
     primaryCtaText: "Design Your Drag Suit",
     certBadge: "SFI Certified",
@@ -24,7 +24,7 @@ export const DISCIPLINE_DATA = {
       after:   "— the drag-specific build simply starts from a different SFI tier and a lighter layer count.",
     },
     builtForPoints: [
-      { title: "Class-rated SFI certification", detail: "SFI 3.2A/1 for 10.00+ ET, 3.2A/5 for 9.99 ET and quicker, 3.2A/15 for sub-7.49 ET classes. Higher tiers available on request." },
+      { title: "Class-rated SFI certification", detail: "SFI 3.2A/1 for 10.00+ ET, 3.2A/5 for 9.99 ET and quicker, custom SFI 15 race suit for sub-7.49 ET classes, and custom SFI 20 drag racing suit for Top Fuel and Funny Car." },
       { title: "Lightweight construction for bracket racing", detail: "Single-layer Nomex® for classes that don't require multi-layer — keeps weight and heat down during long lanes-and-staging waits." },
       { title: "Reinforced shoulder and knee panels", detail: "For the inevitable race-day slides and tow strap interactions." },
       { title: "Sponsor-ready custom graphics", detail: "Sublimated graphics, embroidered driver name, team patches — Pro Stock-quality finish at sportsman price." },
@@ -33,7 +33,8 @@ export const DISCIPLINE_DATA = {
     sanctioningBodies: [
       { name: "NHRA Sportsman (10.00–13.99 ET)", requirement: "SFI 3.2A/1 jacket minimum required for sub-13.99 ET classes." },
       { name: "NHRA Pro Sportsman (7.50–9.99 ET)", requirement: "SFI 3.2A/5 multi-layer jacket and pants required. Head sock SFI 3.3 required." },
-      { name: "NHRA Pro Stock and faster", requirement: "SFI 3.2A/15 minimum, full multi-layer construction with head and hand protection." },
+      { name: "NHRA Pro Stock / Top Sportsman (sub-7.49 ET)", requirement: "SFI 3.2A/15 minimum (custom SFI 15 race suit), full multi-layer construction with head and hand protection." },
+      { name: "NHRA Top Fuel / Funny Car / Pro Mod", requirement: "SFI 3.2A/20 required (custom SFI 20 drag racing suit). Must be recertified every 5 years. Contact us for SFI 20 builds." },
       { name: "IHRA Sportsman and Pro", requirement: "Similar tier structure to NHRA — confirm against current IHRA Rulebook before each season." },
       { name: "Bracket racing / weekly tracks", requirement: "Track-specific rules; most weekly tracks accept SFI 3.2A/1 for cars 11.99 ET and slower." },
     ],
@@ -44,7 +45,7 @@ export const DISCIPLINE_DATA = {
       { href: "/blog/tpp-rating-explained", title: "TPP Rating Explained", note: "Why two SFI 3.2A/5 suits can have different protection" },
     ],
     ctaTitle: "Ready to Design Your Custom Drag Racing Suit?",
-    ctaSubtitle: "SFI 3.2A/1 single-layer to SFI 3.2A/15 multi-layer — built from genuine Nomex® meta-aramid. Custom-fit to your measurements. Starting at $329 with free shipping.",
+    ctaSubtitle: "SFI 3.2A/1 single-layer to SFI 3.2A/20 multi-layer — built from genuine Nomex® meta-aramid. Custom-fit to your measurements. Starting at $329 with free shipping.",
   },
 
   "sprint-car": {

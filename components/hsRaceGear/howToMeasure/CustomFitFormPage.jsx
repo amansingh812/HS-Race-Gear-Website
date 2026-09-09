@@ -152,10 +152,10 @@ export default function CustomFitFormPage() {
                         <div className="tf-content-left">
                             <div className="heading">
                                 <h2 className="heading-title mb_20">
-                                    What Is Custom Gear?
+                                    Tailored Custom Fit Racing Suit — Measured to You
                                 </h2>
                                 <p className="text_black-2 mb_20">
-                                    Custom Gear means your racing suit is designed and tailored to your <strong>exact body measurements</strong>—not based on generic size charts or standard patterns. This is critical for professional motorsports including Sprint Car, Drag Racing, Circle Track, and any discipline requiring SFI compliance.
+                                    A tailored custom fit racing suit is designed and built to your <strong>exact body measurements</strong> — not based on generic size charts or standard patterns. This is critical for professional motorsports including Sprint Car, Drag Racing, Circle Track, and any discipline requiring SFI compliance.
                                 </p>
                                 <p className="text_black-2 mb_20">
                                     Unlike off-the-rack suits that use approximate sizes, a custom-fit suit ensures every seam, panel, and contour is positioned perfectly for your body. This eliminates bunching, gaps, and restrictions that can affect your performance and safety on the track.

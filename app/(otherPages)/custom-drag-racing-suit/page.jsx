@@ -10,13 +10,13 @@ const data = DISCIPLINE_DATA["drag-racing"];
 
 export const metadata = {
   alternates: { canonical: "/custom-drag-racing-suit" },
-  title: "Custom Drag Racing Suits — SFI Certified, NHRA & IHRA Compliant | HS Race Gear",
-  description: "Custom drag racing suits built to your measurements. SFI 3.2A/1, 3.2A/5, and 3.2A/15 ratings. NHRA, IHRA, bracket-ready. Made in USA. From $329.",
-  keywords: "drag racing fire suits, custom drag racing suits, SFI 3.2A/20 drag racing suit, 2 piece drag racing suits, buy custom female drag racing suit, custom drag racing suit, NHRA fire suit, IHRA fire suit, SFI 3.2A/15 drag suit, bracket racing suit, sportsman drag suit, Pro Stock racing suit, Top Sportsman suit",
+  title: "Custom SFI 15 & SFI 20 Drag Racing Suits — NHRA Compliant | HS Race Gear",
+  description: "Custom SFI 15 and SFI 20 drag racing suits built to your measurements. SFI 3.2A/1, 3.2A/5, 3.2A/15, and 3.2A/20 ratings for every NHRA and IHRA class. Made in USA from $329.",
+  keywords: "custom sfi 20 drag racing suit, custom sfi 15 race suit, drag racing fire suits, custom drag racing suits, SFI 3.2A/20 drag racing suit, SFI 3.2A/15 drag suit, 2 piece drag racing suits, buy custom female drag racing suit, custom drag racing suit, NHRA fire suit, IHRA fire suit, bracket racing suit, sportsman drag suit, Pro Stock racing suit, Top Sportsman suit, Top Fuel fire suit, Funny Car fire suit",
   openGraph: {
     type: "website",
-    title: "Custom Drag Racing Suits — SFI Certified | HS Race Gear",
-    description: "Class-rated custom drag racing suits from SFI 3.2A/1 to 3.2A/15. NHRA, IHRA, bracket compliant. From $329.",
+    title: "Custom SFI 15 & SFI 20 Drag Racing Suits | HS Race Gear",
+    description: "Custom SFI 15 and SFI 20 drag racing suits. SFI 3.2A/1 through 3.2A/20 for every NHRA and IHRA class. From $329.",
     url: "https://www.hsracegear.com/custom-drag-racing-suit",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
   },
@@ -35,7 +35,7 @@ const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Custom Drag Racing Suit",
-  "description": "SFI-certified custom drag racing suit for NHRA, IHRA, and bracket racing. Class-rated from SFI 3.2A/1 to 3.2A/15.",
+  "description": "Custom SFI 15 and SFI 20 drag racing suit for NHRA, IHRA, and bracket racing. Class-rated from SFI 3.2A/1 through SFI 3.2A/20 for Top Fuel.",
   "image": "https://www.hsracegear.com/images/og-image.jpg",
   "brand": { "@type": "Brand", "name": "HS Race Gear" },
   "category": "Drag Racing Suit",

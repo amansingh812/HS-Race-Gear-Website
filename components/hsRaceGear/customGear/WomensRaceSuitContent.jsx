@@ -26,12 +26,12 @@ export default function WomensRaceSuitContent() {
             <span className="contact-breadcrumb-sep">/</span>
             <span className="contact-breadcrumb-current">Women&rsquo;s Racing Suits</span>
           </p>
-          <span className="contact-hero-tag">Female-Specific Patterns</span>
+          <span className="contact-hero-tag">SFI Approved &bull; Female-Specific Patterns</span>
           <h1 className="contact-hero-title">
-            Women&rsquo;s Custom<br /><span>Racing Fire Suits</span>
+            Custom Female<br /><span>Race Suits — SFI Approved</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Cut from a female-specific pattern, not a men&rsquo;s suit in a smaller size. SFI 3.2A/1 and 3.2A/5 certified, made to your exact measurements in the USA, in any color and layout you want. From $329.
+            Custom female race suit, SFI approved and cut from a female-specific pattern — not a men&rsquo;s suit in a smaller size. SFI 3.2A/1 and 3.2A/5 certified Nomex, made to your exact measurements in the USA, in any color and layout you want. From $329 with free shipping.
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '28px' }}>
             <span style={{

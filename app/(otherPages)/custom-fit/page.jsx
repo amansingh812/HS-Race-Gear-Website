@@ -19,12 +19,12 @@ import React from "react";
 // /custom-race-suit.
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/custom-fit" },
-  title: "Race Suit Measurements & Sizing Guide — How to Measure | HS Race Gear",
-  description: "How to measure for a race suit: chest, waist, inseam, sleeve and torso rise, with the seated-in-car adjustments most size charts miss. Submit your numbers and we build to an exact fit. Free shipping on custom suits.",
-  keywords: "race suit measurements, race suit sizing, racing suit sizes, how to measure for a racing suit, custom race suit measurements, measurement form, made to measure racing suit, racing suit size chart",
+  title: "Tailored Custom Fit Racing Suit — Measurements & Sizing Guide | HS Race Gear",
+  description: "Tailored custom fit racing suit measurements: chest, waist, inseam, sleeve and torso rise, with the seated-in-car adjustments most size charts miss. Submit your numbers and we build a tailored race suit to your exact fit. Free shipping.",
+  keywords: "tailored custom fit racing suit, race suit measurements, race suit sizing, racing suit sizes, how to measure for a racing suit, custom race suit measurements, measurement form, made to measure racing suit, racing suit size chart, tailored racing suit, bespoke race suit",
   openGraph: {
-    title: "Race Suit Measurements & Sizing Guide — How to Measure",
-    description: "Chest, waist, inseam, sleeve and torso rise — plus the seated-in-car adjustments most size charts miss. Then submit your numbers for an exact-fit custom suit.",
+    title: "Tailored Custom Fit Racing Suit — Measurements & Sizing Guide",
+    description: "Tailored custom fit racing suit guide. Chest, waist, inseam, sleeve and torso rise — plus the seated-in-car adjustments most size charts miss.",
     url: "https://www.hsracegear.com/custom-fit",
     siteName: "HS Race Gear",
     type: "website",

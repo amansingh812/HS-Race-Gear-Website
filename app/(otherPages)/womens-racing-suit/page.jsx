@@ -22,16 +22,16 @@ import React from "react";
 // change with it.
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/womens-racing-suit" },
-  title: "Women's Racing Suits — Custom SFI Fire Suits From $329",
+  title: "Custom Female Race Suit — SFI Approved Women's Fire Suits From $329",
   description:
-    "Women's custom racing fire suits cut from a female-specific pattern, not a men's suit in a smaller size. SFI 3.2A/1 and 3.2A/5 certified, made to your exact measurements in the USA. Unlimited colors and logos, from $329 with free shipping.",
+    "Custom female race suit, SFI approved and cut from a female-specific pattern — not a men's suit in a smaller size. SFI 3.2A/1 and 3.2A/5 certified Nomex, made to your exact measurements in the USA. Unlimited colors and logos, from $329 with free shipping.",
   keywords:
-    "womens racing suit, women's racing suit, custom womens racing fire suits, female racing fire suits, made to measure womens sfi race suit, custom sfi 3.2a/5 racing suit women, bespoke women's motorsport fire suit, custom tailored female race suits, women's custom auto racing fire suits, buy custom female drag racing suit, custom fit women's fireproof race gear, ladies racing suit, womens fire suit, womens drag racing suit, womens nomex race suit",
+    "custom female race suit sfi approved, womens racing suit, women's racing suit, custom womens racing fire suits, female racing fire suits, made to measure womens sfi race suit, custom sfi 3.2a/5 racing suit women, bespoke women's motorsport fire suit, custom tailored female race suits, women's custom auto racing fire suits, buy custom female drag racing suit, custom fit women's fireproof race gear, ladies racing suit, womens fire suit, womens drag racing suit, womens nomex race suit",
   openGraph: {
     type: "website",
-    title: "Women's Racing Suits — Custom SFI Fire Suits From $329",
+    title: "Custom Female Race Suit — SFI Approved Women's Fire Suits From $329",
     description:
-      "Cut from a female-specific pattern, not a men's suit in a smaller size. SFI certified, made to your exact measurements in the USA.",
+      "Custom female race suit, SFI approved. Cut from a female-specific pattern, not a men's suit in a smaller size. Made to your exact measurements in the USA.",
     url: "https://www.hsracegear.com/womens-racing-suit",
     siteName: "HS Race Gear",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
