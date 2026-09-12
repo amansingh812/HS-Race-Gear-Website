@@ -981,7 +981,13 @@ async function processPaymentLinkOrder(session) {
 
   // ── Send receipt email to customer ──
   try {
-    const { transporter, from } = await getTransporter();
+    const mail = await getTransporter();
+    if (!mail.ok) {
+      console.error("[stripe/webhook] mailer unavailable for payment link receipt:", mail.error);
+      throw new Error(mail.error);
+    }
+    const { transporter, smtpUser, businessEmail } = mail;
+    const from = `"HS Race Gear" <${smtpUser}>`;
     const displayAmount = money(amountCents / 100);
     const safeName = escapeHtml(customerName || "Customer");
     const safeDesc = escapeHtml(paymentLink.description || "Custom Racing Gear");
@@ -1011,7 +1017,7 @@ async function processPaymentLinkOrder(session) {
     // Admin notification
     await transporter.sendMail({
       from,
-      to: process.env.BUSINESS_EMAIL || CONTACT.email,
+      to: businessEmail,
       subject: `[Payment Received] ${displayAmount} — ${customerName} (${orderNumber})`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;">

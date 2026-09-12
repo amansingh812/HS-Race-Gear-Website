@@ -63,7 +63,14 @@ export async function POST(request) {
     // ── Send email to customer ──
     if (sendEmail) {
       try {
-        const { transporter, from } = await getTransporter();
+        const mail = await getTransporter();
+        if (!mail.ok) {
+          console.error("[pay/create] mailer unavailable:", mail.error);
+          // Don't fail the request — the link is still created and can be copied
+          throw new Error(mail.error);
+        }
+        const { transporter, smtpUser, businessEmail } = mail;
+        const from = `"HS Race Gear" <${smtpUser}>`;
         const displayAmount = money(amount / 100);
         const safeDesc = escapeHtml(paymentLink.description);
         const safeName = escapeHtml(customerName);
@@ -83,7 +90,7 @@ export async function POST(request) {
         // Also notify admin
         await transporter.sendMail({
           from,
-          to: process.env.BUSINESS_EMAIL || CONTACT.email,
+          to: businessEmail,
           subject: `[Payment Link Created] ${displayAmount} — ${customerName}`,
           html: `
             <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;">
