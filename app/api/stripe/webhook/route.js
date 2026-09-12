@@ -4,6 +4,7 @@ import dbConnect from "@/lib/mongodb";
 import Order from "@/models/Order";
 import Cart from "@/models/Cart";
 import Product from "@/models/Product";
+import PaymentLink from "@/models/PaymentLink";
 import {
   BRAND,
   CONTACT,
@@ -163,6 +164,8 @@ async function handleCheckoutComplete(session) {
     await processShopOrder(session);
   } else if (orderType === "custom") {
     await processCustomOrder(session);
+  } else if (orderType === "payment-link") {
+    await processPaymentLinkOrder(session);
   } else {
     console.warn(
       `[stripe/webhook] Unknown orderType "${orderType}" in session ${session.id}`
@@ -894,4 +897,231 @@ function buildShippingAddress(stripeDetails, fallback) {
     phone: fallback.phone || "",
     email: fallback.email || "",
   };
+}
+
+/* ────────────────────────────────────────────────────────────────
+ * PAYMENT LINK ORDER
+ *
+ * Created via /pay/create by the team, paid by the customer via
+ * /pay/{paymentId}. No cart, no product inventory — just a
+ * custom amount. We:
+ *   1. Mark the PaymentLink as paid
+ *   2. Create an Order record (for admin dashboard consistency)
+ *   3. Email receipt to customer + notification to admin
+ * ──────────────────────────────────────────────────────────────── */
+async function processPaymentLinkOrder(session) {
+  const { paymentId, customerName, customerEmail } = session.metadata;
+
+  // Find and update the PaymentLink
+  const paymentLink = await PaymentLink.findOne({ paymentId });
+  if (!paymentLink) {
+    console.error(`[stripe/webhook] PaymentLink not found for paymentId: ${paymentId}`);
+    return;
+  }
+
+  if (paymentLink.status === "paid") {
+    console.log(`[stripe/webhook] PaymentLink ${paymentId} already marked paid`);
+    return;
+  }
+
+  paymentLink.status = "paid";
+  paymentLink.paidAt = new Date();
+  paymentLink.stripeSessionId = session.id;
+  await paymentLink.save();
+
+  // Retrieve payment details
+  let paymentIntent = null;
+  if (session.payment_intent) {
+    paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
+  }
+  const cardDetails = await getCardDetails(paymentIntent);
+
+  // Create an Order for the admin dashboard
+  const orderNumber = generateOrderId();
+  const amountCents = paymentLink.amount;
+
+  await Order.create({
+    orderNumber,
+    orderType: "payment-link",
+    customer: {
+      firstName: customerName?.split(" ")[0] || "",
+      lastName: customerName?.split(" ").slice(1).join(" ") || "",
+      email: customerEmail,
+      phone: "",
+    },
+    items: [
+      {
+        productSnapshot: {
+          name: paymentLink.description || "Custom Racing Gear",
+          slug: "",
+          price: amountCents,
+          image: "",
+          certification: "",
+        },
+        quantity: 1,
+        basePrice: amountCents,
+        customFitPrice: 0,
+        optionsPrice: 0,
+        itemTotal: amountCents,
+      },
+    ],
+    subtotal: amountCents,
+    shipping: 0,
+    total: amountCents,
+    payment: {
+      method: cardDetails.brand === "paypal" ? "paypal" : "stripe",
+      status: "paid",
+      stripeSessionId: session.id,
+      cardBrand: cardDetails.brand,
+      cardLast4: cardDetails.last4,
+    },
+    status: "confirmed",
+    placedAt: new Date(),
+  });
+
+  // ── Send receipt email to customer ──
+  try {
+    const { transporter, from } = await getTransporter();
+    const displayAmount = money(amountCents / 100);
+    const safeName = escapeHtml(customerName || "Customer");
+    const safeDesc = escapeHtml(paymentLink.description || "Custom Racing Gear");
+    const placedAt = formatPlacedAt();
+    const payMethodLabel =
+      cardDetails.brand === "paypal"
+        ? "PayPal"
+        : cardDetails.brand && cardDetails.last4
+        ? `${cardDetails.brand.charAt(0).toUpperCase() + cardDetails.brand.slice(1)} ending in ${cardDetails.last4}`
+        : "Card";
+
+    // Customer receipt
+    await transporter.sendMail({
+      from,
+      to: customerEmail,
+      subject: `HS Race Gear — Payment Receipt (${orderNumber})`,
+      html: buildPaymentReceipt({
+        name: safeName,
+        amount: displayAmount,
+        description: safeDesc,
+        orderNumber,
+        payMethod: payMethodLabel,
+        placedAt,
+      }),
+    });
+
+    // Admin notification
+    await transporter.sendMail({
+      from,
+      to: process.env.BUSINESS_EMAIL || CONTACT.email,
+      subject: `[Payment Received] ${displayAmount} — ${customerName} (${orderNumber})`,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;">
+          <h2 style="color:${BRAND.red};">Payment Received ✓</h2>
+          <p><strong>Order:</strong> ${orderNumber}</p>
+          <p><strong>Customer:</strong> ${safeName} (${escapeHtml(customerEmail)})</p>
+          <p><strong>Amount:</strong> ${displayAmount}</p>
+          <p><strong>Description:</strong> ${safeDesc}</p>
+          <p><strong>Payment:</strong> ${payMethodLabel}</p>
+          <p><strong>Time:</strong> ${placedAt}</p>
+          <p><strong>Stripe Session:</strong> ${session.id}</p>
+        </div>
+      `,
+    });
+
+    console.log(
+      `[stripe/webhook] Payment link order ${orderNumber} processed — ${displayAmount} from ${customerEmail}`
+    );
+  } catch (emailErr) {
+    console.error("[stripe/webhook] Payment link email failed:", emailErr.message);
+  }
+}
+
+/**
+ * Build a simple payment receipt email for payment-link orders.
+ */
+function buildPaymentReceipt({ name, amount, description, orderNumber, payMethod, placedAt }) {
+  return `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:${BRAND.blush};font-family:Arial,Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:${BRAND.blush};padding:40px 20px;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" style="background-color:${BRAND.card};border-radius:12px;overflow:hidden;">
+
+  <tr>
+    <td style="background-color:${BRAND.red};padding:32px 40px;text-align:center;">
+      <h1 style="margin:0;font-size:24px;color:#ffffff;font-weight:800;letter-spacing:1px;">
+        HS RACE GEAR
+      </h1>
+      <p style="margin:8px 0 0;color:rgba(255,255,255,0.85);font-size:14px;">
+        Payment Receipt
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:40px;">
+      <p style="color:${BRAND.ink};font-size:16px;line-height:1.6;margin:0 0 20px;">
+        Hi ${name},
+      </p>
+      <p style="color:${BRAND.ink};font-size:16px;line-height:1.6;margin:0 0 24px;">
+        Thank you! Your payment has been received and confirmed. Here are your details:
+      </p>
+
+      <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+        <tr>
+          <td style="background-color:${BRAND.blush};border-radius:8px;padding:24px;border:1px solid ${BRAND.rule};">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="color:${BRAND.inkSoft};font-size:14px;padding-bottom:8px;">Order Number</td>
+                <td style="color:${BRAND.ink};font-size:14px;padding-bottom:8px;text-align:right;font-weight:600;">${orderNumber}</td>
+              </tr>
+              <tr>
+                <td style="color:${BRAND.inkSoft};font-size:14px;padding-bottom:8px;">Description</td>
+                <td style="color:${BRAND.ink};font-size:14px;padding-bottom:8px;text-align:right;font-weight:600;">${description}</td>
+              </tr>
+              <tr>
+                <td style="color:${BRAND.inkSoft};font-size:14px;padding-bottom:8px;">Payment Method</td>
+                <td style="color:${BRAND.ink};font-size:14px;padding-bottom:8px;text-align:right;font-weight:600;">${payMethod}</td>
+              </tr>
+              <tr>
+                <td style="color:${BRAND.inkSoft};font-size:14px;padding-bottom:8px;">Date</td>
+                <td style="color:${BRAND.ink};font-size:14px;padding-bottom:8px;text-align:right;font-weight:600;">${placedAt}</td>
+              </tr>
+              <tr>
+                <td colspan="2" style="border-top:1px solid ${BRAND.rule};padding-top:12px;">
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="color:${BRAND.ink};font-size:20px;font-weight:800;">Amount Paid</td>
+                      <td style="color:${BRAND.red};font-size:28px;font-weight:800;text-align:right;">${amount}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <p style="color:${BRAND.inkSoft};font-size:13px;line-height:1.6;margin:0;">
+        If you have any questions about your order, contact us at
+        <a href="mailto:${CONTACT.email}" style="color:${BRAND.red};">${CONTACT.email}</a>
+        or call <a href="tel:${CONTACT.phoneHref}" style="color:${BRAND.red};">${CONTACT.phone}</a>.
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="background-color:${BRAND.redDark};padding:24px 40px;text-align:center;">
+      <p style="margin:0;color:rgba(255,255,255,0.7);font-size:12px;">
+        HS Race Gear &middot; ${CONTACT.address}
+      </p>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
 }
