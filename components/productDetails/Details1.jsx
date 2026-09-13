@@ -223,10 +223,8 @@ export default function Details1({ product }) {
                     </div>
                   )}
 
-                  {/* Racing Specifications — reads from `specs`, which is
-                      derived from the selected layer for race suits. See the
-                      LAYER_SPECS note at the top of this component. */}
-                  {(specs.certification || specs.certificationLevel || specs.construction) && (
+                  {/* Racing Specifications — non-suit products only (suits show side-by-side below layer selector) */}
+                  {!isSuit && (specs.certification || specs.certificationLevel || specs.construction) && (
                     <div className="tf-product-specifications mb-3">
                       <h6 className="fw-bold mb-2">Racing Specifications:</h6>
                       <ul className="list-unstyled">
@@ -249,11 +247,6 @@ export default function Details1({ product }) {
                           </li>
                         )}
                       </ul>
-                      {isSuit && (
-                        <p className="text-muted mb-0" style={{ fontSize: "0.8rem", fontStyle: "italic" }}>
-                          Specifications update with your layer selection below.
-                        </p>
-                      )}
                     </div>
                   )}
 
@@ -329,6 +322,56 @@ export default function Details1({ product }) {
                               ${price.toFixed(2)}
                             </span>
                           </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Racing Specifications — side-by-side for suits */}
+                  {isSuit && (
+                    <div className="tf-product-specifications mb-3">
+                      <h6 className="fw-bold mb-2">Racing Specifications:</h6>
+                      <div style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: 12,
+                      }}>
+                        {[
+                          { label: "Single Layer", ...LAYER_SPECS.single },
+                          { label: "Double Layer", ...LAYER_SPECS.double },
+                        ].map((layer) => (
+                          <div
+                            key={layer.label}
+                            style={{
+                              border: selectedLayer === (layer.label === "Single Layer" ? "single" : "double")
+                                ? "2px solid #e21b1b"
+                                : "1px solid rgba(255,255,255,0.15)",
+                              borderRadius: 8,
+                              padding: "12px 14px",
+                              background: selectedLayer === (layer.label === "Single Layer" ? "single" : "double")
+                                ? "rgba(226,27,27,0.08)"
+                                : "rgba(255,255,255,0.03)",
+                              transition: "all 0.2s",
+                            }}
+                          >
+                            <div style={{ fontWeight: 700, fontSize: "0.85rem", marginBottom: 8, color: "#fff" }}>
+                              {layer.label}
+                            </div>
+                            <ul className="list-unstyled" style={{ fontSize: "0.82rem", margin: 0 }}>
+                              <li className="mb-1">
+                                <span className="text-muted">Certification:</span>
+                                <span className="fw-medium ms-2">{layer.certification}</span>
+                              </li>
+                              <li className="mb-1">
+                                <span className="text-muted">Level:</span>
+                                <span className="fw-medium ms-2">{layer.certificationLevel}</span>
+                              </li>
+                              <li>
+                                <span className="text-muted">Construction:</span>
+                                <span className="fw-medium ms-2">{layer.construction}</span>
+                              </li>
+                            </ul>
+                          </div>
                         ))}
                       </div>
                     </div>

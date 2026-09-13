@@ -15,9 +15,9 @@ import {
  * Custom order API — LEAD CAPTURE (no payment).
  *
  * 1. Saves the order to MongoDB (status: "pending", payment.status: "pending")
- * 2. Sends TWO emails:
- *    a. Internal notification → BUSINESS_EMAIL (info@hsracegear.com)
- *    b. Order confirmation → the customer
+ * 2. Sends ONE internal email → BUSINESS_EMAIL (info@hsracegear.com)
+ *    with all lead info so the team can contact the customer.
+ *    NO email is sent to the customer — they only see a thank-you screen.
  *
  * Payment is collected later after mockup approval — this is a lead/quote,
  * not a transaction.
@@ -168,39 +168,7 @@ export async function POST(request) {
       customLogoNotes,
     });
 
-    // ---- Email to Customer ----
-    const customerEmailHtml = renderCustomerConfirmation({
-      orderId,
-      orderPlacedAt,
-      customer,
-      productLabel,
-      pkg,
-      pricing,
-      address,
-      colors,
-      suitMockup,
-      glovesMockup,
-      shoesMockup,
-      shoeSize,
-      customLogoUrl,
-    });
-
-    const customerEmailText = renderCustomerConfirmationText({
-      orderId,
-      customer,
-      productLabel,
-      pkg,
-      pricing,
-      address,
-      colors,
-      suitMockup,
-      glovesMockup,
-      shoesMockup,
-      shoeSize,
-      customLogoUrl,
-    });
-
-    // ---- Send Emails ----
+    // ---- Send Email ----
     // Fails loud if SMTP is missing or auth fails — orders are
     // business-critical and must never be silently lost.
     const mail = await getTransporter();
@@ -215,6 +183,7 @@ export async function POST(request) {
 
     // Send internal notification to info@hsracegear.com (BUSINESS_EMAIL)
     // Order ID leads the subject so the inbox sorts and searches cleanly.
+    // NO customer email — customer only sees the thank-you screen.
     await transporter.sendMail({
       from: `"HS Race Gear Orders" <${smtpUser}>`,
       to: businessEmail,
@@ -222,16 +191,6 @@ export async function POST(request) {
       subject: `[${orderId}] New ${productLabel} — ${customer.name} — ${pricing.totalText}`,
       text: internalEmailText,
       html: internalEmailHtml,
-    });
-
-    // Send confirmation to customer
-    await transporter.sendMail({
-      from: `"HS Race Gear" <${smtpUser}>`,
-      to: customer.email,
-      replyTo: businessEmail,
-      subject: `Order ${orderId} confirmed — thank you! | HS Race Gear`,
-      text: customerEmailText,
-      html: customerEmailHtml,
     });
 
     console.log(`[/api/custom-order] ${orderId} — ${productLabel} — ${customer.email} — ${money(pricing.total)}`);
@@ -258,118 +217,65 @@ export async function POST(request) {
 }
 
 /* ────────────────────────────────────────────────────────────────
- * Customer order confirmation email
+ * Internal admin notification → info@hsracegear.com
  *
- * Layout follows the editorial confirmation style Aman supplied as a
- * reference (Flamingo Estate): centred wordmark, oversized serif "THANK
- * YOU", short note, two CTAs, itemised order summary with a totals ledger,
- * then a dark footer with contact details.
+ * Redesigned to be concise and branded. Matches the HS Racegear
+ * internal notification style:
+ *   - branded header with diagonal red/grey stripe
+ *   - order number badge, date + total
+ *   - package/offer details with item list
+ *   - colour swatches displayed horizontally
+ *   - customer contact info (name, phone, email)
+ *   - "What happens next" numbered steps
+ *   - WhatsApp footer with "Race Ready. Always." tagline
  *
- * The reference used a deep-green palette; this is rebuilt around the
- * HS Race Gear red (#dc2626 primary, #8f1717 deep) on a warm blush ground.
+ * ALL lead info is preserved — the team needs everything to contact
+ * the customer. No email goes to the customer.
  *
  * Email-client constraints observed throughout:
  *   - tables for all layout (no flex/grid — Outlook strips them)
  *   - inline styles only (no <style> blocks, no classes)
  *   - explicit widths, bgcolor attributes alongside CSS
  *   - web-safe fonts with serif stack for display type
- *   - no background-image dependency for anything load-bearing
  * ──────────────────────────────────────────────────────────────── */
-
-
-/**
- * Admin / internal order notification → info@hsracegear.com
- *
- * Same editorial shell as the customer confirmation so the two read as one
- * system, but the content is reordered for operations rather than
- * reassurance:
- *   - headline is "NEW ORDER", not "THANK YOU"
- *   - customer contact sits near the top with tap-to-call / tap-to-email
- *   - a missing shipping address is called out loudly instead of glossed over
- *   - the action row is "email / call the customer", not a shop link
- *
- * Shares BRAND, renderColorRows(), normaliseColors() and money() with the
- * customer template so the two can't drift apart.
- */
 function renderAdminNotification({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
   address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoNotes
 }) {
-  const design = suitMockup?.name || glovesMockup?.name || shoesMockup?.name || "";
+  const designs = [suitMockup, glovesMockup, shoesMockup].filter(Boolean);
+  const designNames = designs.map(d => d.name).filter(Boolean);
   const colourList = normaliseColors(colors);
 
-  const specRows = [
-    ["Product", productLabel],
-    ["Package", pkg.name],
-    ["Quantity", String(pricing.quantity)],
-    design ? ["Design", design] : null,
-    shoeSize?.label ? ["Shoe size", shoeSize.label] : null,
-    customLogoUrl ? ["Custom Logo", `<a href="${customLogoUrl}">View Logo</a>`] : null,
-    customLogoNotes ? ["Logo Notes", customLogoNotes] : null,
-  ].filter(Boolean);
+  // Build items bullet list
+  const itemBullets = [];
+  if (suitMockup) itemBullets.push(`Suit Design: ${escapeHtml(suitMockup.name)}`);
+  if (glovesMockup) itemBullets.push(`Gloves Design: ${escapeHtml(glovesMockup.name)}`);
+  if (shoesMockup) itemBullets.push(`Shoes Design: ${escapeHtml(shoesMockup.name)}`);
+  if (shoeSize?.label) itemBullets.push(`Shoe Size: ${escapeHtml(shoeSize.label)}`);
+  if (customLogoUrl) itemBullets.push(`Custom Logo: <a href="${escapeHtml(customLogoUrl)}" style="color:${BRAND.red};">View</a>`);
+  if (customLogoNotes) itemBullets.push(`Logo Notes: ${escapeHtml(customLogoNotes)}`);
 
-  const swatchStrip = colourList.length
-    ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>${colourList
-        .map(
-          (c) => `<td style="padding:0 8px 0 0;">
-            <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-              <td width="22" height="22" bgcolor="${escapeHtml(c.hex || "#cccccc")}" style="width:22px; height:22px; border-radius:4px; border:1px solid ${BRAND.rule};">&nbsp;</td>
-            </tr></table>
-          </td>`
-        )
-        .join("")}</tr></table>
-       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px; border-collapse:collapse;">
-         ${colourList
-           .map(
-             (c) => `<tr>
-           <td style="padding:2px 12px 2px 0; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; white-space:nowrap;">${escapeHtml(c.label)}</td>
-           <td style="padding:2px 0; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.ink}; font-weight:bold;">${escapeHtml(c.name)}${c.hex ? ` <span style="font-weight:normal; color:${BRAND.inkSoft};">${escapeHtml(c.hex)}</span>` : ""}</td>
-         </tr>`
-           )
-           .join("")}
+  // Determine if this is a deal/offer (package with id) or single item
+  const isOffer = pkg.id && /offer|deal|package/i.test(pkg.name);
+  const offerLabel = isOffer ? `OFFER #${escapeHtml(String(pkg.id))}` : null;
+
+  // Colour swatches — horizontal circles with labels below
+  const swatchHtml = colourList.length
+    ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+         <tr>
+           ${colourList.map(c => `<td align="center" style="padding:0 10px 0 0;">
+             <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+               <td width="36" height="36" bgcolor="${escapeHtml(c.hex || "#cccccc")}" style="width:36px; height:36px; border-radius:50%; border:2px solid #e0e0e0;">&nbsp;</td>
+             </tr></table>
+           </td>`).join("")}
+         </tr>
+         <tr>
+           ${colourList.map(c => `<td align="center" style="padding:6px 10px 0 0; font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft};">
+             ${escapeHtml(c.name)}
+           </td>`).join("")}
+         </tr>
        </table>`
-    : `<div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.redDeep}; font-weight:bold;">⚠ No colours were selected on the form — confirm with the customer.</div>`;
-
-  const thumbnails = [suitMockup, glovesMockup, shoesMockup].filter(Boolean);
-  const thumbnailsHtml = thumbnails.length
-    ? `<div style="margin-top:24px;">
-         <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:12px;">Selected Designs</div>
-         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-           <tr>
-             ${thumbnails.map(m => `
-             <td style="padding-right:16px; vertical-align:top;">
-               <img src="${BRAND.site}${m.image}" alt="${escapeHtml(m.name)}" width="100" style="width:100px; height:auto; border-radius:4px; border:1px solid ${BRAND.rule}; display:block;" />
-               <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; margin-top:8px; text-align:center;">${escapeHtml(m.name)}</div>
-             </td>
-             `).join("")}
-           </tr>
-         </table>
-       </div>`
-    : "";
-
-  const customLogoHtml = customLogoUrl
-    ? `<div style="margin-top:24px;">
-         <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:12px;">Customer Logo</div>
-         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-           <tr>
-             <td style="vertical-align:top;">
-               <img src="${escapeHtml(customLogoUrl)}" alt="Customer Logo" width="140" style="width:140px; max-height:140px; height:auto; border-radius:6px; border:1px solid ${BRAND.rule}; display:block; object-fit:contain;" />
-               ${customLogoNotes ? `<div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; margin-top:8px; max-width:200px; line-height:1.5;">${escapeHtml(customLogoNotes)}</div>` : ""}
-             </td>
-           </tr>
-         </table>
-       </div>`
-    : "";
-
-  const addressBlock = address.present
-    ? `<div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.75; color:${BRAND.ink};">
-         ${escapeHtml(customer.name)}<br>${address.lines.map((l) => escapeHtml(l)).join("<br>")}
-       </div>`
-    : `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fff2f2; border-left:3px solid ${BRAND.red}; border-radius:3px;">
-         <tr><td style="padding:14px 16px; font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.6; color:${BRAND.redDeep}; font-weight:bold;">
-           ⚠ No shipping address submitted — follow up before production.
-         </td></tr>
-       </table>`;
+    : `<div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.redDeep}; font-weight:bold;">⚠ No colours selected — confirm with customer.</div>`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -378,86 +284,116 @@ function renderAdminNotification({
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(orderId)} — New ${escapeHtml(productLabel)}</title>
 </head>
-<body style="margin:0; padding:0; background:${BRAND.blush}; -webkit-text-size-adjust:100%;">
+<body style="margin:0; padding:0; background:#f4f4f4; -webkit-text-size-adjust:100%;">
 
-<div style="display:none; font-size:1px; color:${BRAND.blush}; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
-  ${escapeHtml(customer.name)} · ${escapeHtml(pkg.name)} · ${escapeHtml(pricing.totalText)}${address.present ? "" : " · NO ADDRESS"}
+<div style="display:none; font-size:1px; color:#f4f4f4; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+  New lead: ${escapeHtml(customer.name)} · ${escapeHtml(pkg.name)} · ${escapeHtml(pricing.totalText)}
 </div>
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.blush}" style="background:${BRAND.blush};">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f4f4f4" style="background:#f4f4f4;">
   <tr>
-    <td align="center" style="padding:0;">
-      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px;">
+    <td align="center" style="padding:20px 0;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background:#ffffff; border-radius:8px; overflow:hidden;">
 
-        <!-- ── HEADER ── -->
+        <!-- ── BRANDED HEADER with diagonal stripe ── -->
         <tr>
-          <td style="padding:34px 34px 0;">
+          <td style="background: linear-gradient(135deg, ${BRAND.red} 0%, ${BRAND.red} 50%, #4a4a4a 50%, #4a4a4a 100%); height:8px; font-size:1px; line-height:1px;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td style="background:${BRAND.redDark}; padding:20px 30px;" align="center">
+            <div style="font-family:Georgia,'Times New Roman',serif; font-size:22px; font-weight:bold; color:#ffffff; letter-spacing:3px;">
+              HS RACEGEAR
+            </div>
+          </td>
+        </tr>
+
+        <!-- ── ORDER NUMBER BADGE ── -->
+        <tr>
+          <td align="center" style="padding:28px 30px 0;">
+            <div style="display:inline-block; font-family:Arial,Helvetica,sans-serif; font-size:12px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:#fff; background:${BRAND.red}; padding:8px 20px; border-radius:4px;">
+              ORDER ${escapeHtml(orderId)}
+            </div>
+          </td>
+        </tr>
+
+        <!-- ── DATE + TOTAL ROW ── -->
+        <tr>
+          <td style="padding:20px 30px 0;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
-                <td align="left" valign="middle" style="font-family:Georgia,'Times New Roman',serif; font-size:19px; font-weight:bold; color:${BRAND.redDeep}; letter-spacing:1px;">
-                  HS<span style="color:${BRAND.red};">·</span>RACE GEAR
+                <td style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.inkSoft};">
+                  <strong style="color:${BRAND.ink};">Order Date:</strong> ${escapeHtml(orderPlacedAt)}
                 </td>
-                <td align="right" valign="middle" style="font-family:Arial,Helvetica,sans-serif; font-size:10px; color:${BRAND.inkSoft}; letter-spacing:2.5px; line-height:1.6; text-transform:uppercase;">
-                  Internal<br>Notification
+                <td align="right" style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.inkSoft};">
+                  <strong style="color:${BRAND.ink};">Total:</strong> <span style="color:${BRAND.red}; font-size:16px; font-weight:bold;">${escapeHtml(pricing.totalText)}</span>
                 </td>
               </tr>
             </table>
           </td>
         </tr>
 
-        <!-- ── NEW ORDER ── -->
+        <tr><td style="padding:20px 30px 0;"><div style="border-top:1px solid #e8e8e8; height:1px; line-height:1px;">&nbsp;</div></td></tr>
+
+        <!-- ── OFFER / PACKAGE DETAILS ── -->
         <tr>
-          <td align="center" style="padding:38px 34px 0;">
-            <div style="font-family:Georgia,'Times New Roman',serif; font-size:58px; line-height:0.94; color:${BRAND.redDeep}; letter-spacing:-1px;">
-              NEW<br>ORDER
+          <td style="padding:20px 30px 0;">
+            ${offerLabel ? `<div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.red}; margin-bottom:6px;">${offerLabel}</div>` : ""}
+            <div style="font-family:Arial,Helvetica,sans-serif; font-size:16px; font-weight:bold; color:${BRAND.ink}; margin-bottom:4px;">
+              ${escapeHtml(pkg.name)}
             </div>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" style="padding:14px 34px 0;">
-            <div style="display:inline-block; font-family:Arial,Helvetica,sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#fff; background:${BRAND.red}; padding:7px 16px; border-radius:3px;">
-              ${escapeHtml(orderId)}
+            <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.inkSoft}; margin-bottom:14px;">
+              ${escapeHtml(productLabel)} · Qty: ${escapeHtml(String(pricing.quantity))}
             </div>
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-top:10px;">
-              ${escapeHtml(orderPlacedAt)}
-            </div>
-            <div style="font-family:Georgia,'Times New Roman',serif; font-size:26px; color:${BRAND.redDeep}; margin-top:16px;">
-              ${escapeHtml(pricing.totalText)}
-            </div>
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-top:4px;">
-              ${escapeHtml(productLabel)}
-            </div>
+            ${itemBullets.length ? `
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink};">
+              ${itemBullets.map(b => `<tr>
+                <td valign="top" style="padding:3px 8px 3px 0; color:${BRAND.red}; font-size:16px; line-height:1;">•</td>
+                <td valign="top" style="padding:3px 0; line-height:1.5;">${b}</td>
+              </tr>`).join("")}
+            </table>` : ""}
           </td>
         </tr>
 
-        <tr><td style="padding:30px 34px 0;"><div style="border-top:1px solid ${BRAND.rule}; height:1px; line-height:1px;">&nbsp;</div></td></tr>
+        <tr><td style="padding:20px 30px 0;"><div style="border-top:1px solid #e8e8e8; height:1px; line-height:1px;">&nbsp;</div></td></tr>
 
-        <!-- ── CUSTOMER ── -->
+        <!-- ── COLOURS ── -->
         <tr>
-          <td style="padding:26px 34px 0;">
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2.5px; text-transform:uppercase; color:${BRAND.ink};">
-              Customer
+          <td style="padding:20px 30px 0;">
+            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:14px;">
+              Colours Selected
             </div>
+            ${swatchHtml}
           </td>
         </tr>
+
+        <tr><td style="padding:20px 30px 0;"><div style="border-top:1px solid #e8e8e8; height:1px; line-height:1px;">&nbsp;</div></td></tr>
+
+        <!-- ── CUSTOMER CONTACT ── -->
         <tr>
-          <td style="padding:16px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.card}" style="background:${BRAND.card}; border:1px solid ${BRAND.rule}; border-radius:4px;">
+          <td style="padding:20px 30px 0;">
+            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:12px;">
+              Customer Details
+            </div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px; background:#fafafa; border:1px solid #e8e8e8; border-radius:6px;">
               <tr>
-                <td style="padding:18px;">
-                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px;">
+                <td style="padding:14px 16px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr>
-                      <td width="80" style="padding:4px 12px 4px 0; color:${BRAND.inkSoft};">Name</td>
-                      <td style="padding:4px 0; color:${BRAND.ink}; font-weight:bold;">${escapeHtml(customer.name)}</td>
+                      <td width="70" style="padding:3px 8px 3px 0; color:${BRAND.inkSoft};">Name</td>
+                      <td style="padding:3px 0; color:${BRAND.ink}; font-weight:bold;">${escapeHtml(customer.name)}</td>
                     </tr>
                     <tr>
-                      <td width="80" style="padding:4px 12px 4px 0; color:${BRAND.inkSoft};">Email</td>
-                      <td style="padding:4px 0;"><a href="mailto:${escapeHtml(customer.email)}?subject=${encodeURIComponent(`Your HS Race Gear order ${orderId}`)}" style="color:${BRAND.redDeep}; font-weight:bold; text-decoration:none;">${escapeHtml(customer.email)}</a></td>
+                      <td width="70" style="padding:3px 8px 3px 0; color:${BRAND.inkSoft};">Email</td>
+                      <td style="padding:3px 0;"><a href="mailto:${escapeHtml(customer.email)}?subject=${encodeURIComponent(`Re: Order ${orderId}`)}" style="color:${BRAND.red}; font-weight:bold; text-decoration:none;">${escapeHtml(customer.email)}</a></td>
                     </tr>
                     <tr>
-                      <td width="80" style="padding:4px 12px 4px 0; color:${BRAND.inkSoft};">Phone</td>
-                      <td style="padding:4px 0;"><a href="tel:${escapeHtml(String(customer.phone).replace(/[^0-9+]/g, ""))}" style="color:${BRAND.redDeep}; font-weight:bold; text-decoration:none;">${escapeHtml(customer.phone)}</a></td>
+                      <td width="70" style="padding:3px 8px 3px 0; color:${BRAND.inkSoft};">Phone</td>
+                      <td style="padding:3px 0;"><a href="tel:${escapeHtml(String(customer.phone).replace(/[^0-9+]/g, ""))}" style="color:${BRAND.red}; font-weight:bold; text-decoration:none;">${escapeHtml(customer.phone)}</a></td>
                     </tr>
+                    ${address.present ? `<tr>
+                      <td width="70" style="padding:3px 8px 3px 0; color:${BRAND.inkSoft}; vertical-align:top;">Address</td>
+                      <td style="padding:3px 0; color:${BRAND.ink};">${address.lines.map(l => escapeHtml(l)).join("<br>")}</td>
+                    </tr>` : ""}
                   </table>
                 </td>
               </tr>
@@ -465,144 +401,54 @@ function renderAdminNotification({
           </td>
         </tr>
 
-        <!-- ── SHIP TO ── -->
-        <tr>
-          <td style="padding:26px 34px 0;">
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2.5px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:12px;">
-              Ship To
-            </div>
-            ${addressBlock}
-            ${address.notes ? `
-            <div style="margin-top:16px; padding:14px 16px; background:#fff6f4; border-left:3px solid ${BRAND.red}; border-radius:3px;">
-              <div style="font-family:Arial,Helvetica,sans-serif; font-size:10px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.redDeep}; margin-bottom:6px;">Delivery Notes From Customer</div>
-              <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.6; color:${BRAND.ink};">${escapeHtml(address.notes).replace(/\n/g, "<br>")}</div>
-            </div>` : ""}
-          </td>
-        </tr>
+        <tr><td style="padding:20px 30px 0;"><div style="border-top:1px solid #e8e8e8; height:1px; line-height:1px;">&nbsp;</div></td></tr>
 
-        <tr><td style="padding:26px 34px 0;"><div style="border-top:1px solid ${BRAND.rule}; height:1px; line-height:1px;">&nbsp;</div></td></tr>
-
-        <!-- ── ORDER SPEC ── -->
+        <!-- ── WHAT HAPPENS NEXT ── -->
         <tr>
-          <td style="padding:26px 34px 0;">
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2.5px; text-transform:uppercase; color:${BRAND.ink};">
-              Build Spec
+          <td style="padding:20px 30px 0;">
+            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:14px;">
+              What Happens Next
             </div>
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:16px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.card}" style="background:${BRAND.card}; border:1px solid ${BRAND.rule}; border-radius:4px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink};">
               <tr>
-                <td style="padding:18px;">
-                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px;">
-                    ${specRows
-                      .map(
-                        ([k, v]) => `<tr>
-                      <td width="90" style="padding:4px 12px 4px 0; color:${BRAND.inkSoft}; white-space:nowrap;">${escapeHtml(k)}</td>
-                      <td style="padding:4px 0; color:${BRAND.ink}; font-weight:bold;">${escapeHtml(v)}</td>
-                    </tr>`
-                      )
-                      .join("")}
-                  </table>
-
-                  <div style="border-top:1px solid ${BRAND.rule}; margin:16px 0 0; height:1px; line-height:1px;">&nbsp;</div>
-
-                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin:14px 0 10px;">
-                    Colours
-                  </div>
-                  ${swatchStrip}
-
-                  ${thumbnailsHtml}
-
-                  ${customLogoHtml}
-                </td>
+                <td valign="top" width="28" style="padding:0 0 8px; color:${BRAND.red}; font-weight:bold; font-size:15px;">1</td>
+                <td valign="top" style="padding:0 0 8px; line-height:1.5;">Contact the customer within 24 hours</td>
+              </tr>
+              <tr>
+                <td valign="top" width="28" style="padding:0 0 8px; color:${BRAND.red}; font-weight:bold; font-size:15px;">2</td>
+                <td valign="top" style="padding:0 0 8px; line-height:1.5;">Send mockup for approval</td>
+              </tr>
+              <tr>
+                <td valign="top" width="28" style="padding:0 0 8px; color:${BRAND.red}; font-weight:bold; font-size:15px;">3</td>
+                <td valign="top" style="padding:0 0 8px; line-height:1.5;">Confirm measurements and collect payment</td>
+              </tr>
+              <tr>
+                <td valign="top" width="28" style="padding:0; color:${BRAND.red}; font-weight:bold; font-size:15px;">4</td>
+                <td valign="top" style="padding:0; line-height:1.5;">Production, QC and ship</td>
               </tr>
             </table>
           </td>
         </tr>
 
-        <!-- ── PRICING LEDGER ── -->
+        <!-- ── WHATSAPP + FOOTER ── -->
         <tr>
-          <td style="padding:24px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td width="45%">&nbsp;</td>
-                <td>
-                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px;">
-                    <tr>
-                      <td style="padding:5px 0; color:${BRAND.ink};">Subtotal</td>
-                      <td align="right" style="padding:5px 0; color:${BRAND.ink}; font-weight:bold;">${escapeHtml(pricing.subtotalText)}</td>
-                    </tr>
-                    <tr>
-                      <td style="padding:5px 0; color:${BRAND.inkSoft};">Shipping</td>
-                      <td align="right" style="padding:5px 0; color:${pricing.shipping === 0 ? BRAND.red : BRAND.ink}; font-weight:bold;">${pricing.shipping === 0 ? "FREE" : escapeHtml(money(pricing.shipping))}</td>
-                    </tr>
-                    <tr><td colspan="2" style="padding:8px 0 0;"><div style="border-top:1px solid ${BRAND.rule}; height:1px; line-height:1px;">&nbsp;</div></td></tr>
-                    <tr>
-                      <td style="padding:10px 0 0; font-size:13px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.ink};">Total</td>
-                      <td align="right" style="padding:10px 0 0; font-size:17px; font-weight:bold; color:${BRAND.redDeep}; white-space:nowrap;">${escapeHtml(pricing.totalText)}</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; line-height:1.6; margin-top:14px;">
-              Quote only — no payment captured. Confirm final pricing with the customer before production.
-            </div>
-          </td>
-        </tr>
-
-        <!-- ── ACTIONS ── -->
-        <tr>
-          <td align="center" style="padding:30px 34px 0;">
-            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td align="center" bgcolor="${BRAND.red}" style="background:${BRAND.red}; border-radius:2px;">
-                  <a href="mailto:${escapeHtml(customer.email)}?subject=${encodeURIComponent(`Your HS Race Gear order ${orderId}`)}" style="display:inline-block; padding:13px 34px; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:#ffffff; text-decoration:none;">
-                    Email ${escapeHtml(String(customer.name).split(" ")[0])}
-                  </a>
-                </td>
-                <td width="12">&nbsp;</td>
-                <td align="center" style="border:1px solid ${BRAND.redDeep}; border-radius:2px;">
-                  <a href="tel:${escapeHtml(String(customer.phone).replace(/[^0-9+]/g, ""))}" style="display:inline-block; padding:13px 34px; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.redDeep}; text-decoration:none;">
-                    Call
-                  </a>
-                </td>
-              </tr>
-            </table>
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; margin-top:14px; line-height:1.6;">
-              Replying to this email goes straight to the customer.
-            </div>
-          </td>
-        </tr>
-
-        <!-- ── NEXT STEP REMINDER ── -->
-        <tr>
-          <td style="padding:28px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.card}" style="background:${BRAND.card}; border:1px solid ${BRAND.rule}; border-radius:4px;">
-              <tr>
-                <td style="padding:18px; font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.7; color:${BRAND.ink};">
-                  The customer has been told a designer will send a mockup
-                  <strong>within 24 hours</strong>, and that measurements will be
-                  confirmed before production.
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- ── FOOTER ── -->
-        <tr>
-          <td style="padding:30px 0 0;">
+          <td style="padding:28px 0 0;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.redDark}" style="background:${BRAND.redDark};">
               <tr>
-                <td align="center" style="padding:26px 34px;">
+                <td align="center" style="padding:24px 30px;">
                   <div style="font-family:Georgia,'Times New Roman',serif; font-size:16px; font-weight:bold; color:#ffffff; letter-spacing:2px;">
-                    HS RACE GEAR
+                    HS RACEGEAR
                   </div>
-                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:rgba(255,255,255,0.6); margin-top:8px;">
-                    Automated order notification · ${escapeHtml(orderId)}
+                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:rgba(255,255,255,0.7); margin-top:6px; letter-spacing:1px;">
+                    Race Ready. Always.
+                  </div>
+                  <div style="margin-top:14px;">
+                    <a href="https://wa.me/16173196993" style="display:inline-block; padding:8px 20px; font-family:Arial,Helvetica,sans-serif; font-size:12px; font-weight:bold; color:#ffffff; background:#25D366; border-radius:4px; text-decoration:none; letter-spacing:0.5px;">
+                      WhatsApp: +1 (617) 319-6993
+                    </a>
+                  </div>
+                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:rgba(255,255,255,0.5); margin-top:12px;">
+                    ${escapeHtml(orderId)} · Replying goes straight to the customer
                   </div>
                 </td>
               </tr>
@@ -618,45 +464,26 @@ function renderAdminNotification({
 </html>`;
 }
 
-/** Plain-text admin notification. */
+/** Plain-text admin notification — concise version. */
 function renderAdminNotificationText({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
   address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoNotes
 }) {
-  const design = suitMockup?.name || glovesMockup?.name || shoesMockup?.name || "";
   const colourList = normaliseColors(colors);
   const L = [];
 
-  L.push("NEW ORDER — HS RACE GEAR");
-  L.push("=".repeat(46), "");
-  L.push(`Order:   ${orderId}`);
-  L.push(`Placed:  ${orderPlacedAt}`);
-  L.push(`Total:   ${pricing.totalText}`);
-  L.push(`Product: ${productLabel}`, "");
-  L.push("-".repeat(46));
-  L.push("CUSTOMER");
-  L.push("-".repeat(46));
-  L.push(`Name:  ${customer.name}`);
-  L.push(`Email: ${customer.email}`);
-  L.push(`Phone: ${customer.phone}`, "");
-  L.push("-".repeat(46));
-  L.push("SHIP TO");
-  L.push("-".repeat(46));
-  if (address.present) {
-    L.push(customer.name, ...address.lines);
-  } else {
-    L.push("*** NO SHIPPING ADDRESS SUBMITTED ***");
-    L.push("Follow up with the customer before production.");
-  }
-  if (address.notes) L.push("", `Delivery notes: ${address.notes}`);
-  L.push("");
-  L.push("-".repeat(46));
-  L.push("BUILD SPEC");
-  L.push("-".repeat(46));
+  L.push("NEW ORDER — HS RACEGEAR");
+  L.push("=".repeat(40), "");
+  L.push(`Order:    ${orderId}`);
+  L.push(`Date:     ${orderPlacedAt}`);
+  L.push(`Total:    ${pricing.totalText}`, "");
   L.push(`Package:  ${pkg.name}`);
-  L.push(`Quantity: ${pricing.quantity}`);
-  if (design) L.push(`Design:   ${design}`);
-  if (shoeSize?.label) L.push(`Shoe size: ${shoeSize.label}`);
+  L.push(`Product:  ${productLabel}`);
+  L.push(`Qty:      ${pricing.quantity}`);
+  if (suitMockup) L.push(`Suit Design:   ${suitMockup.name}`);
+  if (glovesMockup) L.push(`Gloves Design: ${glovesMockup.name}`);
+  if (shoesMockup) L.push(`Shoes Design:  ${shoesMockup.name}`);
+  if (shoeSize?.label) L.push(`Shoe Size: ${shoeSize.label}`);
   if (customLogoUrl) L.push(`Custom Logo: ${customLogoUrl}`);
   if (customLogoNotes) L.push(`Logo Notes: ${customLogoNotes}`);
   L.push("");
@@ -664,447 +491,30 @@ function renderAdminNotificationText({
   if (colourList.length) {
     colourList.forEach((c) => L.push(`  ${c.label}: ${c.name}${c.hex ? ` (${c.hex})` : ""}`));
   } else {
-    L.push("  *** NONE SELECTED — confirm with customer ***");
+    L.push("  NONE — confirm with customer");
   }
   L.push("");
-  L.push("-".repeat(46));
-  L.push("PRICING");
-  L.push("-".repeat(46));
-  L.push(`Subtotal: ${pricing.subtotalText}`);
-  L.push(`Shipping: ${pricing.shipping === 0 ? "FREE" : money(pricing.shipping)}`);
-  L.push(`TOTAL:    ${pricing.totalText}`);
+  L.push("-".repeat(40));
+  L.push("CUSTOMER");
+  L.push("-".repeat(40));
+  L.push(`Name:  ${customer.name}`);
+  L.push(`Email: ${customer.email}`);
+  L.push(`Phone: ${customer.phone}`);
+  if (address.present) {
+    L.push(`Address: ${address.lines.join(", ")}`);
+  }
   L.push("");
-  L.push("Quote only — no payment captured.");
+  L.push("NEXT: Contact within 24h, send mockup, confirm measurements.");
   L.push("");
   L.push("Replying to this email goes straight to the customer.");
-  L.push("=".repeat(46));
+  L.push("Race Ready. Always. | WhatsApp: +1 (617) 319-6993");
 
   return L.join("\n");
 }
 
-function renderCustomerConfirmation({
-  orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
-  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl
-}) {
-  const design =
-    suitMockup?.name || glovesMockup?.name || shoesMockup?.name || "";
-
-  // Spec rows shown under the line item.
-  const specRows = [
-    design ? ["Design", design] : null,
-    shoeSize?.label ? ["Size", shoeSize.label] : null,
-    customLogoUrl ? ["Custom Logo", `<a href="${customLogoUrl}">View Logo</a>`] : null,
-  ].filter(Boolean);
-
-  const colourList = normaliseColors(colors);
-
-  const swatchStrip = colourList.length
-    ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin-top:6px;"><tr>${colourList
-        .map(
-          (c) => `<td style="padding:0 6px 0 0;">
-            <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-              <td width="20" height="20" bgcolor="${escapeHtml(c.hex || "#cccccc")}" style="width:20px; height:20px; border-radius:4px; border:1px solid ${BRAND.rule};">&nbsp;</td>
-            </tr></table>
-          </td>`
-        )
-        .join("")}</tr></table>
-       <div style="font-size:12px; color:${BRAND.inkSoft}; margin-top:8px; line-height:1.6;">
-         ${colourList.map((c) => escapeHtml(c.name)).join(" &nbsp;·&nbsp; ")}
-       </div>`
-    : `<div style="font-size:13px; color:${BRAND.inkSoft};">No colours selected — we'll confirm with you.</div>`;
-
-  const thumbnails = [suitMockup, glovesMockup, shoesMockup].filter(Boolean);
-  const thumbnailsHtml = thumbnails.length
-    ? `<div style="margin-top:24px;">
-         <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-bottom:10px;">Selected Designs</div>
-         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-           <tr>
-             ${thumbnails.map(m => `
-             <td style="padding-right:16px; vertical-align:top;">
-               <img src="${BRAND.site}${m.image}" alt="${escapeHtml(m.name)}" width="100" style="width:100px; height:auto; border-radius:4px; border:1px solid ${BRAND.rule}; display:block;" />
-               <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; margin-top:8px; text-align:center;">${escapeHtml(m.name)}</div>
-             </td>
-             `).join("")}
-           </tr>
-         </table>
-       </div>`
-    : "";
-
-  const customLogoHtml = customLogoUrl
-    ? `<div style="margin-top:24px;">
-         <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-bottom:10px;">Your Logo</div>
-         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-           <tr>
-             <td style="vertical-align:top;">
-               <img src="${escapeHtml(customLogoUrl)}" alt="Your Logo" width="140" style="width:140px; max-height:140px; height:auto; border-radius:6px; border:1px solid ${BRAND.rule}; display:block; object-fit:contain;" />
-             </td>
-           </tr>
-         </table>
-       </div>`
-    : "";
-
-  const addressBlock = address.present
-    ? address.lines.map((l) => escapeHtml(l)).join("<br>")
-    : `We don't have a delivery address yet — reply to this email with it and we'll add it to your order.`;
-
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Order ${escapeHtml(orderId)} — HS Race Gear</title>
-</head>
-<body style="margin:0; padding:0; background:${BRAND.blush}; -webkit-text-size-adjust:100%;">
-
-<!-- Preheader: shows in inbox preview, hidden in the body -->
-<div style="display:none; font-size:1px; color:${BRAND.blush}; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
-  Order ${escapeHtml(orderId)} confirmed — your designer will be in touch within 24 hours with a mockup.
-</div>
-
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.blush}" style="background:${BRAND.blush};">
-  <tr>
-    <td align="center" style="padding:0;">
-
-      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px;">
-
-        <!-- ── HEADER ── -->
-        <tr>
-          <td style="padding:34px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td align="left" valign="middle" style="font-family:Georgia,'Times New Roman',serif; font-size:19px; font-weight:bold; color:${BRAND.redDeep}; letter-spacing:1px;">
-                  HS<span style="color:${BRAND.red};">·</span>RACE GEAR
-                </td>
-                <td align="right" valign="middle" style="font-family:Arial,Helvetica,sans-serif; font-size:10px; color:${BRAND.inkSoft}; letter-spacing:2.5px; line-height:1.6; text-transform:uppercase;">
-                  Order<br>Confirmation
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- ── THANK YOU ── -->
-        <tr>
-          <td align="center" style="padding:40px 34px 8px;">
-            <div style="font-family:Georgia,'Times New Roman',serif; font-size:62px; line-height:0.94; color:${BRAND.redDeep}; letter-spacing:-1px;">
-              THANK<br>YOU
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" style="padding:14px 34px 0;">
-            <div style="display:inline-block; font-family:Arial,Helvetica,sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#fff; background:${BRAND.red}; padding:7px 16px; border-radius:3px;">
-              Order ${escapeHtml(orderId)}
-            </div>
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-top:10px;">
-              ${escapeHtml(orderPlacedAt)}
-            </div>
-          </td>
-        </tr>
-
-        <!-- ── NOTE ── -->
-        <tr>
-          <td style="padding:34px 34px 0; font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:1.75; color:${BRAND.ink};">
-            <p style="margin:0 0 14px;">Hi ${escapeHtml(customer.name)},</p>
-            <p style="margin:0 0 14px;">
-              Thanks for your order. A dedicated designer will email you
-              <strong>within 24 hours</strong> with a digital mockup of your ${escapeHtml(productLabel.toLowerCase())}.
-            </p>
-            <p style="margin:0 0 14px;">
-              <strong>Revisions are unlimited and free</strong> — nothing gets cut until you approve the mockup.
-              Production then takes 2–3 weeks.
-            </p>
-            <p style="margin:0;">
-              <strong>Please keep order ${escapeHtml(orderId)} handy</strong> — quote it on any email or call about this order.
-            </p>
-          </td>
-        </tr>
-
-        <!-- ── CTA ── -->
-        <tr>
-          <td align="center" style="padding:30px 34px 0;">
-            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td align="center" bgcolor="${BRAND.red}" style="background:${BRAND.red}; border-radius:2px;">
-                  <a href="${BRAND.site}/contact-us" style="display:inline-block; padding:13px 40px; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:#ffffff; text-decoration:none;">
-                    Questions? Contact Us
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <tr><td style="padding:34px 34px 0;"><div style="border-top:1px solid ${BRAND.rule}; height:1px; line-height:1px;">&nbsp;</div></td></tr>
-
-        <!-- ── ORDER SUMMARY ── -->
-        <tr>
-          <td style="padding:26px 34px 0;">
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2.5px; text-transform:uppercase; color:${BRAND.ink};">
-              Order Summary
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td style="padding:18px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.card}" style="background:${BRAND.card}; border:1px solid ${BRAND.rule}; border-radius:4px;">
-              <tr>
-                <td style="padding:18px;">
-                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                      <td valign="top" style="font-family:Arial,Helvetica,sans-serif; font-size:14px; font-weight:bold; color:${BRAND.ink}; line-height:1.5;">
-                        ${escapeHtml(pkg.name)}
-                        <span style="color:${BRAND.inkSoft}; font-weight:normal;">&nbsp;×&nbsp;${escapeHtml(String(pricing.quantity))}</span>
-                        <div style="font-size:12px; font-weight:normal; color:${BRAND.inkSoft}; margin-top:4px;">${escapeHtml(productLabel)}</div>
-                      </td>
-                      <td valign="top" align="right" style="font-family:Arial,Helvetica,sans-serif; font-size:14px; font-weight:bold; color:${BRAND.ink}; white-space:nowrap;">
-                        ${escapeHtml(pricing.subtotalText)}
-                      </td>
-                    </tr>
-                    ${specRows.length ? `
-                    <tr>
-                      <td colspan="2" style="padding-top:14px;">
-                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-                          ${specRows
-                            .map(
-                              ([k, v]) => `<tr>
-                            <td style="padding:2px 14px 2px 0; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; white-space:nowrap;">${escapeHtml(k)}</td>
-                            <td style="padding:2px 0; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.ink}; font-weight:bold;">${escapeHtml(v)}</td>
-                          </tr>`
-                            )
-                            .join("")}
-                        </table>
-                      </td>
-                    </tr>` : ""}
-                    <tr>
-                      <td colspan="2" style="padding-top:14px;">
-                        <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-bottom:2px;">Your colours</div>
-                        ${swatchStrip}
-                        ${thumbnailsHtml}
-                        ${customLogoHtml}
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <!-- ── TOTALS LEDGER ── -->
-        <tr>
-          <td style="padding:20px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td width="45%">&nbsp;</td>
-                <td>
-                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px;">
-                    <tr>
-                      <td style="padding:5px 0; color:${BRAND.ink};">Subtotal</td>
-                      <td align="right" style="padding:5px 0; color:${BRAND.ink}; font-weight:bold;">${escapeHtml(pricing.subtotalText)}</td>
-                    </tr>
-                    <tr>
-                      <td style="padding:5px 0; color:${BRAND.inkSoft};">Shipping</td>
-                      <td align="right" style="padding:5px 0; color:${pricing.shipping === 0 ? BRAND.red : BRAND.ink}; font-weight:bold;">
-                        ${pricing.shipping === 0 ? "FREE" : escapeHtml(money(pricing.shipping))}
-                      </td>
-                    </tr>
-                    <tr><td colspan="2" style="padding:8px 0 0;"><div style="border-top:1px solid ${BRAND.rule}; height:1px; line-height:1px;">&nbsp;</div></td></tr>
-                    <tr>
-                      <td style="padding:10px 0 0; font-size:13px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.ink};">Total</td>
-                      <td align="right" style="padding:10px 0 0; font-size:17px; font-weight:bold; color:${BRAND.redDeep}; white-space:nowrap;">
-                        ${escapeHtml(pricing.totalText)}
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; line-height:1.6; margin-top:14px;">
-              This is your order confirmation, not a receipt — no payment has been taken yet.
-              Your designer will confirm final pricing with you before production begins.
-            </div>
-          </td>
-        </tr>
-
-        <tr><td style="padding:26px 34px 0;"><div style="border-top:1px solid ${BRAND.rule}; height:1px; line-height:1px;">&nbsp;</div></td></tr>
-
-        <!-- ── DELIVERY ── -->
-        <tr>
-          <td style="padding:26px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td valign="top" width="50%" style="padding-right:12px;">
-                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:10px;">Ship To</div>
-                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.7; color:${BRAND.ink};">
-                    ${escapeHtml(customer.name)}<br>${addressBlock}
-                  </div>
-                </td>
-                <td valign="top" width="50%" style="padding-left:12px;">
-                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:10px;">Contact</div>
-                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.7; color:${BRAND.ink};">
-                    ${escapeHtml(customer.email)}<br>${escapeHtml(customer.phone)}
-                  </div>
-                </td>
-              </tr>
-            </table>
-            ${address.notes ? `
-            <div style="margin-top:18px; padding:14px 16px; background:#fff6f4; border-left:3px solid ${BRAND.red}; border-radius:3px;">
-              <div style="font-family:Arial,Helvetica,sans-serif; font-size:10px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.redDeep}; margin-bottom:6px;">Your Delivery Notes</div>
-              <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.6; color:${BRAND.ink};">${escapeHtml(address.notes).replace(/\n/g, "<br>")}</div>
-            </div>` : ""}
-          </td>
-        </tr>
-
-        <!-- ── WHAT HAPPENS NEXT ── -->
-        <tr>
-          <td style="padding:30px 34px 0;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${BRAND.card}" style="background:${BRAND.card}; border:1px solid ${BRAND.rule}; border-radius:4px;">
-              <tr>
-                <td style="padding:20px;">
-                  <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:14px;">What Happens Next</div>
-                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink};">
-                    <tr>
-                      <td valign="top" width="26" style="padding:0 0 10px; color:${BRAND.red}; font-weight:bold;">1</td>
-                      <td valign="top" style="padding:0 0 10px; line-height:1.6;"><strong>Mockup</strong> — your designer emails a digital proof within 24 hours.</td>
-                    </tr>
-                    <tr>
-                      <td valign="top" width="26" style="padding:0 0 10px; color:${BRAND.red}; font-weight:bold;">2</td>
-                      <td valign="top" style="padding:0 0 10px; line-height:1.6;"><strong>Revisions</strong> — unlimited and free. Nothing is cut until you approve.</td>
-                    </tr>
-                    <tr>
-                      <td valign="top" width="26" style="padding:0 0 10px; color:${BRAND.red}; font-weight:bold;">3</td>
-                      <td valign="top" style="padding:0 0 10px; line-height:1.6;"><strong>Measurements</strong> — we'll confirm your sizing before production.</td>
-                    </tr>
-                    <tr>
-                      <td valign="top" width="26" style="padding:0 0 10px; color:${BRAND.red}; font-weight:bold;">4</td>
-                      <td valign="top" style="padding:0 0 10px; line-height:1.6;"><strong>Production &amp; QC</strong> — 2–3 weeks.</td>
-                    </tr>
-                    <tr>
-                      <td valign="top" width="26" style="padding:0; color:${BRAND.red}; font-weight:bold;">5</td>
-                      <td valign="top" style="padding:0; line-height:1.6;"><strong>Ship</strong> — tracking sent to ${escapeHtml(customer.email)}.</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-        <tr>
-          <td style="padding:26px 34px 34px; font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.7; color:${BRAND.inkSoft};">
-            Spotted a mistake? Reply to this email before you approve your mockup and we'll fix it — no charge, no fuss.
-          </td>
-        </tr>
-
-        <!-- ── FOOTER ── -->
-        <tr>
-          <td bgcolor="${BRAND.redDark}" style="background:${BRAND.redDark}; padding:34px;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td align="center" style="font-family:Georgia,'Times New Roman',serif; font-size:18px; font-weight:bold; color:#ffffff; letter-spacing:2px;">
-                  HS RACE GEAR
-                </td>
-              </tr>
-              <tr>
-                <td align="center" style="padding-top:6px; font-family:Arial,Helvetica,sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.65);">
-                  Custom SFI-Certified Racewear
-                </td>
-              </tr>
-              <tr>
-                <td align="center" style="padding-top:20px;">
-                  <div style="border-top:1px solid rgba(255,255,255,0.18); height:1px; line-height:1px;">&nbsp;</div>
-                </td>
-              </tr>
-              <tr>
-                <td align="center" style="padding-top:18px; font-family:Arial,Helvetica,sans-serif; font-size:12px; line-height:1.8; color:rgba(255,255,255,0.8);">
-                  59 Kondazian St, Watertown, MA 02472<br>
-                  <a href="tel:+16173196993" style="color:#ffffff; text-decoration:none;">+1 (617) 319 6993</a>
-                  &nbsp;·&nbsp;
-                  <a href="mailto:info@hsracegear.com" style="color:#ffffff; text-decoration:none;">info@hsracegear.com</a>
-                </td>
-              </tr>
-              <tr>
-                <td align="center" style="padding-top:16px; font-family:Arial,Helvetica,sans-serif; font-size:11px; color:rgba(255,255,255,0.5);">
-                  You received this email because you placed order ${escapeHtml(orderId)} at hsracegear.com
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-</table>
-</body>
-</html>`;
-}
-
-/**
- * Plain-text alternative. Worth sending: improves spam scores and covers
- * text-only clients and screen readers.
- */
-function renderCustomerConfirmationText({
-  orderId, customer, productLabel, pkg, pricing, address, colors,
-  suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl
-}) {
-  const design = suitMockup?.name || glovesMockup?.name || shoesMockup?.name || "";
-  const colourList = normaliseColors(colors);
-  const L = [];
-
-  L.push("HS RACE GEAR — ORDER CONFIRMATION");
-  L.push("=".repeat(46), "");
-  L.push(`THANK YOU, ${customer.name.toUpperCase()}`, "");
-  L.push(`Order reference: ${orderId}`);
-  L.push("Please quote this on any email or call about your order.", "");
-  L.push(`A designer will email you within 24 hours with a digital mockup of your ${productLabel.toLowerCase()}.`);
-  L.push("Revisions are unlimited and free — nothing is cut until you approve.", "");
-  L.push("-".repeat(46));
-  L.push("ORDER SUMMARY");
-  L.push("-".repeat(46));
-  L.push(`${pkg.name} x ${pricing.quantity}`);
-  L.push(`Product: ${productLabel}`);
-  if (design) L.push(`Design: ${design}`);
-  if (shoeSize?.label) L.push(`Size: ${shoeSize.label}`);
-  if (customLogoUrl) L.push(`Custom Logo: ${customLogoUrl}`);
-  L.push(
-    `Colours: ${colourList.length ? colourList.map((c) => `${c.name}${c.hex ? ` (${c.hex})` : ""}`).join(", ") : "none selected"}`
-  );
-  L.push("");
-  L.push(`Subtotal:  ${pricing.subtotalText}`);
-  L.push(`Shipping:  ${pricing.shipping === 0 ? "FREE" : money(pricing.shipping)}`);
-  L.push(`TOTAL:     ${pricing.totalText}`);
-  L.push("");
-  L.push("This is an order confirmation, not a receipt — no payment has been");
-  L.push("taken. Final pricing is confirmed before production.", "");
-  L.push("-".repeat(46));
-  L.push("SHIP TO");
-  L.push("-".repeat(46));
-  L.push(customer.name);
-  if (address.present) L.push(...address.lines);
-  else L.push("(no address on file — reply with your delivery address)");
-  if (address.notes) L.push("", `Delivery notes: ${address.notes}`);
-  L.push("");
-  L.push(`Contact: ${customer.email} / ${customer.phone}`, "");
-  L.push("-".repeat(46));
-  L.push("WHAT HAPPENS NEXT");
-  L.push("-".repeat(46));
-  L.push("1. Mockup — digital proof within 24 hours");
-  L.push("2. Revisions — unlimited and free");
-  L.push("3. Measurements — confirmed before production");
-  L.push("4. Production & QC — 2-3 weeks");
-  L.push(`5. Ship — tracking sent to ${customer.email}`);
-  L.push("");
-  L.push("Spotted a mistake? Reply to this email before approving your mockup.", "");
-  L.push("=".repeat(46));
-  L.push("HS Race Gear · 59 Kondazian St, Watertown, MA 02472");
-  L.push("+1 (617) 319 6993 · info@hsracegear.com");
-  L.push("https://www.hsracegear.com");
-
-  return L.join("\n");
-}
+/* Customer email functions removed — customer no longer receives
+   a confirmation email on custom orders. They only see the thank-you
+   screen. All lead info goes to the internal admin email above. */
 
 
 /**

@@ -5,6 +5,8 @@
 // Added 2026-06-17. Updated 2026-06-17 to render via React Portal so it
 // escapes any parent that creates a containing block (e.g. transform on
 // .step-content broke fixed-position centering on the order page).
+// Updated 2026-09-13: added Back / Continue / Select buttons in footer
+// so users can navigate directly from the zoomed view.
 
 import React, { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -16,8 +18,15 @@ import Image from "next/image";
  * @param {number|null} openIndex - currently open index, or null when closed
  * @param {(idx: number|null) => void} onChange - called to set the open index
  * @param {string} label - aria-label / counter label e.g. "Custom Race Suit"
+ * @param {Function} [onContinue] - if provided, show Continue button in footer
+ * @param {Function} [onBack]     - if provided, show Back button in footer
+ * @param {Function} [onSelect]   - if provided, show Select button; called with current index
+ * @param {string}   [selectedId] - id of the currently selected mockup (to show "Selected" state)
  */
-export default function MockupLightbox({ mockups, openIndex, onChange, label = "Design" }) {
+export default function MockupLightbox({
+  mockups, openIndex, onChange, label = "Design",
+  onContinue, onBack, onSelect, selectedId,
+}) {
   const total = mockups.length;
   const close = useCallback(() => onChange(null), [onChange]);
   const [mounted, setMounted] = useState(false);
@@ -62,6 +71,13 @@ export default function MockupLightbox({ mockups, openIndex, onChange, label = "
   // {image, name} (order-page mockup cards). Normalize for rendering.
   const src = current.src || current.image;
   const alt = current.alt || current.name || `${label} ${openIndex + 1}`;
+
+  // Is this the currently selected design?
+  const currentId = current.id;
+  const isSelected = selectedId && currentId === selectedId;
+
+  // Whether to show the action footer (at least one callback provided)
+  const showActions = !!(onContinue || onBack || onSelect);
 
   const overlay = (
     <div
@@ -150,9 +166,53 @@ export default function MockupLightbox({ mockups, openIndex, onChange, label = "
             priority
           />
         </div>
-        <div className="mockup-lightbox-meta">
-          <span className="mockup-lightbox-counter">{openIndex + 1} / {total}</span>
-          <span className="mockup-lightbox-title">{alt}</span>
+
+        {/* Footer: counter + title (+ action buttons when in order flow) */}
+        <div className={`mockup-lightbox-meta ${showActions ? "mockup-lightbox-meta--with-actions" : ""}`}>
+          <div className="mockup-lightbox-meta-left">
+            <span className="mockup-lightbox-counter">{openIndex + 1} / {total}</span>
+            <span className="mockup-lightbox-title">{alt}</span>
+          </div>
+
+          {showActions && (
+            <div className="mockup-lightbox-actions">
+              {onBack && (
+                <button
+                  type="button"
+                  className="mockup-lightbox-action-btn mockup-lightbox-action-back"
+                  onClick={(e) => { e.stopPropagation(); onBack(); }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+                  Back
+                </button>
+              )}
+              {onSelect && !isSelected && (
+                <button
+                  type="button"
+                  className="mockup-lightbox-action-btn mockup-lightbox-action-select"
+                  onClick={(e) => { e.stopPropagation(); onSelect(openIndex); }}
+                >
+                  Select This Design
+                </button>
+              )}
+              {isSelected && !onContinue && (
+                <span className="mockup-lightbox-selected-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 13l4 4L19 7" /></svg>
+                  Selected
+                </span>
+              )}
+              {onContinue && (
+                <button
+                  type="button"
+                  className="mockup-lightbox-action-btn mockup-lightbox-action-continue"
+                  onClick={(e) => { e.stopPropagation(); onContinue(); }}
+                >
+                  Continue
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

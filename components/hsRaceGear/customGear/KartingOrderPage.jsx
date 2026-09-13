@@ -2,7 +2,8 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
+import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelectionStep";
+import PackageConfigurator from "@/components/hsRaceGear/customGear/PackageConfigurator";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import "@/public/css/custom-order.css";
@@ -32,6 +33,16 @@ const PACKAGES = [
     ],
   },
 ];
+
+/* Package configurator data — karting has 1 layer (auto-selected) */
+const KARTING_LAYERS = [
+  { id: "karting", label: "Karting Suit", cert: "SFI 3.2A/1", basePrice: 289 },
+];
+const KARTING_ADDONS = [
+  { key: "gloves", label: "Custom Gloves", cert: "SFI 3.3/5", price: 26 },
+  { key: "shoes", label: "Custom Shoes", cert: "SFI 3.3/5", price: 100 },
+];
+const ALL_PACKAGES = PACKAGES.flatMap((cat) => cat.items);
 
 // 30 karting suit mockups — all from new mock directory
 const SUIT_MOCKUPS = Array.from({ length: 30 }, (_, i) => {
@@ -109,132 +120,8 @@ const ArrowLeft = () => (
    STEP COMPONENTS
    ============================================ */
 
-function PackageSelection({ selected, onSelect }) {
-  return (
-    <div className="step-content">
-      <div className="step-header">
-        <div className="step-badge">Step 1</div>
-        <h2 className="step-title">Choose Your Package</h2>
-        <p className="step-subtitle">Select your custom karting gear combination. Full sublimation printing with unlimited colors on every suit.</p>
-      </div>
-      <div className="package-categories">
-        {PACKAGES.map((cat) => (
-          <div key={cat.category}>
-            <div className="package-category-title">{cat.category}</div>
-            <div className="package-cards">
-              {cat.items.map((pkg) => (
-                <div
-                  key={pkg.id}
-                  className={`package-card ${selected?.id === pkg.id ? "selected" : ""}`}
-                  onClick={() => onSelect(pkg)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && onSelect(pkg)}
-                >
-                  <div className="package-card-info">
-                    <div className="package-radio">
-                      <div className="package-radio-dot" />
-                    </div>
-                    <div className="package-card-name" dangerouslySetInnerHTML={{
-                      __html: pkg.name
-                        .replace(/(Suit|Gloves|Shoes)/g, "<strong>$1</strong>")
-                    }} />
-                  </div>
-                  <div className="package-card-price">
-                    ${pkg.price}<span>USD</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MockupSelection({ type, mockups, selected, onSelect, currentStep, totalSteps }) {
-  const [visibleCount, setVisibleCount] = React.useState(12);
-  // Replaced broken in-place zoom with shared portal-based MockupLightbox.
-  const [zoomIndex, setZoomIndex] = React.useState(null);
-
-  const typeLabels = { suit: "Karting Suit Design", gloves: "Gloves Design", shoes: "Shoes Design" };
-  const typeDescriptions = {
-    suit: `Browse our collection of ${mockups.length} custom karting suit designs. Select the one that matches your style.`,
-    gloves: "Choose your preferred gloves design to complement your karting suit.",
-    shoes: "Select your racing shoes design to complete the look.",
-  };
-
-  const visibleMockups = mockups.slice(0, visibleCount);
-  const hasMore = visibleCount < mockups.length;
-
-  const handleZoom = (e, mockup, idx) => {
-    e.stopPropagation();
-    setZoomIndex(idx);
-  };
-
-  return (
-    <div className="step-content" key={type}>
-      <div className="step-header">
-        <div className="step-badge">Step {currentStep} of {totalSteps}</div>
-        <h2 className="step-title">Select Your {typeLabels[type]}</h2>
-        <p className="step-subtitle">{typeDescriptions[type]}</p>
-      </div>
-      <div className="mockup-grid">
-        {visibleMockups.map((mockup, idx) => (
-          <div
-            key={mockup.id}
-            className={`mockup-card ${selected?.id === mockup.id ? "selected" : ""}`}
-            onClick={() => onSelect(mockup)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && onSelect(mockup)}
-          >
-            <div className="mockup-card-image">
-              {mockup.image ? (
-                <>
-                  <img src={mockup.image} alt={mockup.name} loading="lazy" />
-                  <div className="mockup-zoom-trigger" onClick={(e) => handleZoom(e, mockup, idx)} style={{ pointerEvents: "auto", cursor: "zoom-in" }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-                    </svg>
-                  </div>
-                </>
-              ) : (
-                <span>{String(mockup.number).padStart(2, "0")}</span>
-              )}
-            </div>
-            <div className="mockup-card-label">{mockup.name}</div>
-            <div className="mockup-card-check">
-              <CheckIcon size={16} />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {hasMore && (
-        <div className="mockup-see-more-container">
-          <button
-            className="mockup-see-more-btn"
-            onClick={() => setVisibleCount((prev) => prev + 12)}
-          >
-            See More Designs ({mockups.length - visibleCount} remaining)
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </button>
-        </div>
-      )}
-
-      <MockupLightbox
-        mockups={mockups}
-        openIndex={zoomIndex}
-        onChange={setZoomIndex}
-        label={typeLabels[type]}
-      />
-    </div>
-  );
-}
+/* PackageSelection replaced by shared PackageConfigurator */
+/* Uses shared MockupSelectionStep component with sticky bar */
 
 function ColorSelection({ selections, onChange, currentStep, totalSteps }) {
   const colorAreas = [
@@ -404,7 +291,7 @@ function SuccessScreen() {
       </div>
       <h2 className="success-title">Order Submitted!</h2>
       <p className="success-message">
-        Thank you for your custom karting order! A dedicated designer will contact you within 24 hours with a mockup of your product. Check your email for confirmation details.
+        Thank you for your custom karting order! A dedicated designer will contact you within 24 hours with a mockup of your product. Please keep your order number handy for reference.
       </p>
       <Link
         href="/custom-karting-suit"
@@ -627,39 +514,61 @@ export default function KartingOrderPage() {
       {/* Step Content */}
       <div className="custom-order-container">
         {currentStepId === "package" && (
-          <PackageSelection selected={selectedPackage} onSelect={handlePackageSelect} />
+          <PackageConfigurator
+            layers={KARTING_LAYERS}
+            addons={KARTING_ADDONS}
+            packages={ALL_PACKAGES}
+            selected={selectedPackage}
+            onSelect={handlePackageSelect}
+            currentStep={currentStep + 1}
+            totalSteps={totalSteps}
+            onContinue={handleNext}
+          />
         )}
 
         {currentStepId === "suit" && (
-          <MockupSelection
-            type="suit"
+          <MockupSelectionStep
             mockups={SUIT_MOCKUPS}
             selected={suitMockup}
             onSelect={setSuitMockup}
+            title="Select Your Karting Suit Design"
+            subtitle={`Browse our collection of ${SUIT_MOCKUPS.length} custom karting suit designs. Select the one that matches your style.`}
+            label="Karting Suit Design"
             currentStep={currentStep + 1}
             totalSteps={totalSteps}
+            onBack={handleBack}
+            onContinue={handleNext}
+            canGoBack={currentStep > 0}
           />
         )}
 
         {currentStepId === "gloves" && (
-          <MockupSelection
-            type="gloves"
+          <MockupSelectionStep
             mockups={GLOVES_MOCKUPS}
             selected={glovesMockup}
             onSelect={setGlovesMockup}
+            title="Select Your Gloves Design"
+            subtitle="Choose your preferred gloves design to complement your karting suit."
+            label="Gloves Design"
             currentStep={currentStep + 1}
             totalSteps={totalSteps}
+            onBack={handleBack}
+            onContinue={handleNext}
           />
         )}
 
         {currentStepId === "shoes" && (
-          <MockupSelection
-            type="shoes"
+          <MockupSelectionStep
             mockups={SHOES_MOCKUPS}
             selected={shoesMockup}
             onSelect={setShoesMockup}
+            title="Select Your Shoes Design"
+            subtitle="Select your racing shoes design to complete the look."
+            label="Shoes Design"
             currentStep={currentStep + 1}
             totalSteps={totalSteps}
+            onBack={handleBack}
+            onContinue={handleNext}
           />
         )}
 
@@ -675,8 +584,8 @@ export default function KartingOrderPage() {
           />
         )}
 
-        {/* Navigation Buttons */}
-        <div className="step-navigation">
+        {/* Navigation Buttons — hidden on design steps (sticky bar handles it) */}
+        {!["suit", "gloves", "shoes", "package"].includes(currentStepId) && <div className="step-navigation">
           {currentStep > 0 ? (
             <button className="btn-back" onClick={handleBack}>
               <ArrowLeft /> Back
@@ -704,7 +613,7 @@ export default function KartingOrderPage() {
               </>
             )}
           </button>
-        </div>
+        </div>}
       </div>
     </div>
   );

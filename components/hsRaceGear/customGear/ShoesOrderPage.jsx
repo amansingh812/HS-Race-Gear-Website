@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
-import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
+import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelectionStep";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import "@/public/css/custom-order.css";
@@ -90,77 +90,7 @@ const ArrowLeft = () => (
 /* ============================================
    STEP 1 — Shoes Design
    ============================================ */
-function MockupSelection({ mockups, selected, onSelect, currentStep, totalSteps }) {
-    // Lightbox state — added 2026-06-26 so users can zoom in on any design.
-    const [zoomIndex, setZoomIndex] = React.useState(null);
-
-    const handleZoom = (e, idx) => {
-        e.stopPropagation();
-        setZoomIndex(idx);
-    };
-
-    return (
-        <div className="step-content">
-            <div className="step-header">
-                <div className="step-badge">Step {currentStep} of {totalSteps}</div>
-                <h2 className="step-title">Select Your Shoes Design</h2>
-                <p className="step-subtitle">Browse our custom racing shoe designs and pick your favourite. Tap the magnifier on any tile to zoom in.</p>
-            </div>
-            <div className="mockup-grid">
-                {mockups.map((mockup, idx) => (
-                    <div
-                        key={mockup.id}
-                        className={`mockup-card ${selected?.id === mockup.id ? "selected" : ""}`}
-                        onClick={() => onSelect(mockup)}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === "Enter" && onSelect(mockup)}
-                    >
-                        <div className="mockup-card-image">
-                            {mockup.image ? (
-                                <>
-                                    <img src={mockup.image} alt={mockup.name} loading="lazy" />
-                                    <div
-                                        className="mockup-zoom-trigger"
-                                        onClick={(e) => handleZoom(e, idx)}
-                                        style={{ pointerEvents: "auto", cursor: "zoom-in" }}
-                                        role="button"
-                                        tabIndex={0}
-                                        aria-label={`Zoom in on ${mockup.name}`}
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter" || e.key === " ") {
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                                setZoomIndex(idx);
-                                            }
-                                        }}
-                                    >
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-                                        </svg>
-                                    </div>
-                                </>
-                            ) : (
-                                <span>{String(mockup.number).padStart(2, "0")}</span>
-                            )}
-                        </div>
-                        <div className="mockup-card-label">{mockup.name}</div>
-                        <div className="mockup-card-check">
-                            <CheckIcon size={16} />
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            <MockupLightbox
-                mockups={mockups}
-                openIndex={zoomIndex}
-                onChange={setZoomIndex}
-                label="Shoes Design"
-            />
-        </div>
-    );
-}
+/* Uses shared MockupSelectionStep component with sticky bar */
 
 /* ============================================
    STEP 2 — Colours
@@ -401,7 +331,7 @@ function SuccessScreen() {
             </div>
             <h2 className="success-title">Order Submitted!</h2>
             <p className="success-message">
-                Thank you for your custom shoes order! A dedicated designer will contact you within 24 hours with a mockup of your product. Check your email for confirmation details.
+                Thank you for your custom shoes order! A dedicated designer will contact you within 24 hours with a mockup of your product. Please keep your order number handy for reference.
             </p>
             <Link href="/custom-shoes" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "16px 32px", background: "#dc2626", borderRadius: 10, color: "#fff", fontWeight: 700, fontSize: 15, textDecoration: "none" }}>
                 Back to Custom Shoes
@@ -548,18 +478,34 @@ export default function ShoesOrderPage() {
             </div>
 
             <div className="custom-order-container">
-                {currentStepId === "design" && <MockupSelection mockups={SHOES_MOCKUPS} selected={selectedMockup} onSelect={setSelectedMockup} currentStep={currentStep + 1} totalSteps={totalSteps} />}
+                {currentStepId === "design" && (
+          <MockupSelectionStep
+            mockups={SHOES_MOCKUPS}
+            selected={selectedMockup}
+            onSelect={setSelectedMockup}
+            title="Select Your Shoes Design"
+            subtitle="Browse our custom racing shoe designs and pick your favourite. Tap any tile to zoom in."
+            label="Shoes Design"
+            currentStep={currentStep + 1}
+            totalSteps={totalSteps}
+            paginate={false}
+            onBack={handleBack}
+            onContinue={handleNext}
+            canGoBack={currentStep > 0}
+          />
+        )}
                 {currentStepId === "colors" && <ColorSelection selections={colors} onChange={handleColorChange} currentStep={currentStep + 1} totalSteps={totalSteps} />}
                 {currentStepId === "info" && <CustomerInfoForm info={{ ...customerInfo, onLogoUpload: setCustomLogoUrl, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
 
-                <div className="step-navigation">
+                {/* Navigation Buttons — hidden on design step (sticky bar handles it) */}
+                {currentStepId !== "design" && <div className="step-navigation">
                     {currentStep > 0 ? (
                         <button className="btn-back" onClick={handleBack}><ArrowLeft /> Back</button>
                     ) : <div />}
                     <button className={`btn-next ${currentStepId === "info" ? "btn-submit" : ""}`} onClick={handleNext} disabled={!canProceed() || isSubmitting}>
                         {isSubmitting ? (<><div className="spinner" /> Submitting...</>) : currentStepId === "info" ? (<>Submit Order <ArrowRight /></>) : (<>Continue <ArrowRight /></>)}
                     </button>
-                </div>
+                </div>}
             </div>
         </div>
     );
