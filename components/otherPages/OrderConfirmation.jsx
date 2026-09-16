@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useContextElement } from "@/context/Context";
+import * as gtag from "@/lib/gtag";
 
 /**
  * Order confirmation page — shown after successful Stripe Checkout.
@@ -23,6 +24,7 @@ export default function OrderConfirmation() {
   const [loading, setLoading] = useState(true);
   const [orderData, setOrderData] = useState(null);
   const [error, setError] = useState(null);
+  const purchaseFired = useRef(false);
 
   useEffect(() => {
     // Clear the cart on the client side
@@ -51,6 +53,18 @@ export default function OrderConfirmation() {
       })
       .finally(() => setLoading(false));
   }, [sessionId]);
+
+  // GA4: fire purchase event once when order data loads
+  useEffect(() => {
+    if (!orderData || purchaseFired.current) return;
+    purchaseFired.current = true;
+    gtag.purchase({
+      transactionId: orderData.orderNumber || sessionId,
+      items: [],
+      value: orderData.total || 0,
+      shipping: 0,
+    });
+  }, [orderData, sessionId]);
 
   // ── Loading state ──
   if (loading) {

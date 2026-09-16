@@ -521,16 +521,12 @@ export default function CustomOrderPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to submit order");
 
-      // GA4: generate_lead event
-      gtag.beginCheckout([
-        {
-          slug: selectedPackage?.id,
-          title: selectedPackage?.name,
-          price: selectedPackage?.price || 0,
-          quantity: 1,
-          category: "Custom Race Gear",
-        },
-      ]);
+      // GA4: generate_lead event for custom order submission
+      gtag.customOrderSubmit({
+        productType: productType || "",
+        packageName: selectedPackage?.name || "",
+        referenceId: data.orderNumber || data.referenceId || "",
+      });
 
       setIsSuccess(true);
     } catch (err) {

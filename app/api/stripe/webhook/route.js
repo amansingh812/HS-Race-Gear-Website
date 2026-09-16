@@ -653,6 +653,14 @@ function paymentBadge(brand, last4) {
 }
 
 function renderPaidCustomerEmail({ orderId, orderPlacedAt, firstName, customer, lineItems, total, paymentLast4, paymentBrand, shippingAddress }) {
+  const subtotal = lineItems.reduce((sum, li) => sum + li.lineTotal, 0);
+  const shippingCost = Math.max(0, total - subtotal);
+
+  let payMethod;
+  if (paymentBrand === "paypal") payMethod = "PayPal";
+  else if (paymentBrand) payMethod = `${paymentBrand.charAt(0).toUpperCase() + paymentBrand.slice(1)} ending in ${paymentLast4 || "****"}`;
+  else payMethod = `Card ending in ${paymentLast4 || "****"}`;
+
   const itemRows = lineItems.map((li) => {
     let imgUrl = li.image || "";
     if (imgUrl && imgUrl.startsWith("/")) imgUrl = `${BRAND.site}${imgUrl}`;
@@ -664,105 +672,239 @@ function renderPaidCustomerEmail({ orderId, orderPlacedAt, firstName, customer, 
       <td style="padding:12px 0; border-bottom:1px solid ${BRAND.rule}; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink};">
         <div style="font-weight:bold;">${escapeHtml(li.name)}</div>
         ${li.variant ? `<div style="font-size:12px; color:${BRAND.inkSoft}; margin-top:3px;">${escapeHtml(li.variant)}</div>` : ""}
-        <div style="font-size:12px; color:${BRAND.inkSoft}; margin-top:3px;">Qty ${li.quantity} × ${money(li.unitPrice / 100)}</div>
       </td>
+      <td align="center" style="padding:12px 8px; border-bottom:1px solid ${BRAND.rule}; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink};">${li.quantity}</td>
       <td align="right" valign="top" style="padding:12px 0; border-bottom:1px solid ${BRAND.rule}; font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold; color:${BRAND.ink}; white-space:nowrap;">${money(li.lineTotal / 100)}</td>
     </tr>`;
   }).join("");
 
-  const addressLines = shippingAddress
-    ? [shippingAddress.address1, shippingAddress.address2, `${shippingAddress.city}, ${shippingAddress.state} ${shippingAddress.zipCode}`, shippingAddress.country].filter(Boolean).map(l => escapeHtml(l)).join("<br>")
-    : "We'll confirm your delivery address.";
+  const fmtAddr = (addr) => {
+    if (!addr) return `<em style="color:${BRAND.inkSoft};">Not provided</em>`;
+    return [
+      `<strong>${escapeHtml(((addr.firstName || "") + " " + (addr.lastName || "")).trim())}</strong>`,
+      addr.address1 ? escapeHtml(addr.address1) : "",
+      addr.address2 ? escapeHtml(addr.address2) : "",
+      `${escapeHtml(addr.city || "")}, ${escapeHtml(addr.state || "")} ${escapeHtml(addr.zipCode || "")}`,
+      escapeHtml(addr.country || ""),
+    ].filter(Boolean).join("<br>");
+  };
 
   return emailShell(`
-    <tr><td style="padding:34px 34px 0; text-align:center;">
-      <div style="font-family:Georgia,'Times New Roman',serif; font-size:17px; letter-spacing:4px; color:${BRAND.redDeep}; text-transform:uppercase;">HS Race Gear</div>
-    </td></tr>
-    <tr><td style="padding:26px 34px 0; text-align:center;">
-      <div style="font-family:Georgia,'Times New Roman',serif; font-size:40px; line-height:1.15; color:${BRAND.redDeep}; letter-spacing:2px;">THANK YOU</div>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:14px; color:${BRAND.ink}; line-height:1.7; margin-top:16px;">
-        ${escapeHtml(firstName)}, your payment has been received and your order is confirmed!
-      </div>
-    </td></tr>
-    <tr><td style="padding:22px 34px 0; text-align:center;">
-      <div style="display:inline-block; border:1px solid ${BRAND.rule}; border-radius:6px; padding:12px 22px;">
-        <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.inkSoft};">Order Reference</div>
-        <div style="font-family:Arial,Helvetica,sans-serif; font-size:19px; font-weight:bold; color:${BRAND.redDeep}; letter-spacing:1px; margin-top:4px;">${escapeHtml(orderId)}</div>
-      </div>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:${BRAND.inkSoft}; margin-top:10px;">${escapeHtml(orderPlacedAt)}</div>
-      <div style="margin-top:14px;">${paymentBadge(paymentBrand, paymentLast4)}</div>
-    </td></tr>
-    <tr><td style="padding:30px 34px 0;">
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.inkSoft}; margin-bottom:10px;">Your Order</div>
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">${itemRows}</table>
-    </td></tr>
-    <tr><td style="padding:18px 34px 0;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr><td width="42%">&nbsp;</td><td>
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px;">
-            <tr>
-              <td style="padding:10px 0 0; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.ink};">Total Paid</td>
-              <td align="right" style="padding:10px 0 0; font-size:17px; font-weight:bold; color:${BRAND.redDeep};">${money(total / 100)} USD</td>
-            </tr>
-            <tr><td colspan="2" style="padding:4px 0 0; font-size:11px; color:${BRAND.inkSoft};">Free shipping included</td></tr>
-          </table>
-        </td></tr>
-      </table>
-    </td></tr>
-    <tr><td style="padding:26px 34px 0;">
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.inkSoft}; margin-bottom:10px;">Delivery Address</div>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.7;">${addressLines}</div>
-    </td></tr>
-    <tr><td style="padding:26px 34px 34px;">
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.inkSoft}; margin-bottom:10px;">What Happens Next</div>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.9;">
-        1. We process and prepare your order.<br>
-        2. Your gear ships and you get tracking via email.<br>
-        3. Enjoy the race!
-      </div>
-    </td></tr>
+    <!-- Red header bar -->
+    <tr>
+      <td bgcolor="${BRAND.red}" style="background:${BRAND.red}; padding:28px 34px; text-align:center;">
+        <div style="font-family:Georgia,'Times New Roman',serif; font-size:15px; letter-spacing:3px; color:rgba(255,255,255,0.85); text-transform:uppercase;">HS Race Gear</div>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:22px; font-weight:bold; color:#ffffff; margin-top:10px;">Order Confirmed: #${escapeHtml(orderId)}</div>
+      </td>
+    </tr>
+    <!-- Greeting -->
+    <tr>
+      <td style="padding:28px 34px 0;">
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:14px; color:${BRAND.ink}; line-height:1.7;">
+          Hi ${escapeHtml(firstName)}, thank you for your order! Your payment has been received.
+        </div>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.inkSoft}; margin-top:8px;">
+          <a href="${BRAND.site}" style="color:${BRAND.red}; text-decoration:none; font-weight:bold;">[Order #${escapeHtml(orderId)}]</a>
+          (${escapeHtml(orderPlacedAt)})
+        </div>
+      </td>
+    </tr>
+    <!-- Product table -->
+    <tr>
+      <td style="padding:24px 34px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td colspan="2" style="padding:8px 0; border-bottom:2px solid ${BRAND.red}; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.inkSoft};">Product</td>
+            <td align="center" style="padding:8px 8px; border-bottom:2px solid ${BRAND.red}; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.inkSoft};">Qty</td>
+            <td align="right" style="padding:8px 0; border-bottom:2px solid ${BRAND.red}; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.inkSoft};">Price</td>
+          </tr>
+          ${itemRows}
+        </table>
+      </td>
+    </tr>
+    <!-- Pricing breakdown -->
+    <tr>
+      <td style="padding:16px 34px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px;">
+          <tr>
+            <td style="padding:6px 0; color:${BRAND.inkSoft};">Subtotal:</td>
+            <td align="right" style="padding:6px 0; color:${BRAND.ink};">${money(subtotal / 100)}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:${BRAND.inkSoft};">Shipping:</td>
+            <td align="right" style="padding:6px 0; color:${BRAND.ink};">${shippingCost > 0 ? money(shippingCost / 100) : "Free"}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:${BRAND.inkSoft};">Payment method:</td>
+            <td align="right" style="padding:6px 0; color:${BRAND.ink};">${escapeHtml(payMethod)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0 0; border-top:2px solid ${BRAND.red}; font-size:15px; font-weight:bold; color:${BRAND.ink};">Total:</td>
+            <td align="right" style="padding:10px 0 0; border-top:2px solid ${BRAND.red}; font-size:17px; font-weight:bold; color:${BRAND.redDeep};">${money(total / 100)} USD</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <!-- Addresses side by side -->
+    <tr>
+      <td style="padding:26px 34px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="48%" valign="top">
+              <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.red}; margin-bottom:8px;">Billing Address</div>
+              <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.7;">${fmtAddr(shippingAddress)}</div>
+            </td>
+            <td width="4%">&nbsp;</td>
+            <td width="48%" valign="top">
+              <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.red}; margin-bottom:8px;">Shipping Address</div>
+              <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.7;">${fmtAddr(shippingAddress)}</div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <!-- What happens next -->
+    <tr>
+      <td style="padding:26px 34px 34px;">
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.inkSoft}; margin-bottom:10px;">What Happens Next</div>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.9;">
+          1. We process and prepare your order.<br>
+          2. Your gear ships and you get tracking via email.<br>
+          3. Enjoy the race!
+        </div>
+      </td>
+    </tr>
     ${renderFooter()}
   `);
 }
 
 function renderPaidAdminEmail({ orderId, orderPlacedAt, customer, lineItems, total, paymentLast4, paymentBrand, transactionId, shippingAddress }) {
+  const subtotal = lineItems.reduce((sum, li) => sum + li.lineTotal, 0);
+  const shippingCost = Math.max(0, total - subtotal);
+
+  let payMethod;
+  if (paymentBrand === "paypal") payMethod = "PayPal";
+  else if (paymentBrand) payMethod = `${paymentBrand.charAt(0).toUpperCase() + paymentBrand.slice(1)} ending in ${paymentLast4 || "****"}`;
+  else payMethod = `Card ending in ${paymentLast4 || "****"}`;
+
   const itemRows = lineItems.map((li) => `<tr>
-    <td style="padding:8px 0; border-bottom:1px solid ${BRAND.rule}; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink};">
+    <td style="padding:10px 0; border-bottom:1px solid ${BRAND.rule}; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink};">
       <strong>${escapeHtml(li.name)}</strong>${li.variant ? ` <span style="color:${BRAND.inkSoft};">(${escapeHtml(li.variant)})</span>` : ""}
-      <div style="font-size:12px; color:${BRAND.inkSoft};">Qty ${li.quantity} × ${money(li.unitPrice / 100)}</div>
     </td>
-    <td align="right" valign="top" style="padding:8px 0; border-bottom:1px solid ${BRAND.rule}; font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold; color:${BRAND.ink};">${money(li.lineTotal / 100)}</td>
+    <td align="center" style="padding:10px 8px; border-bottom:1px solid ${BRAND.rule}; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink};">${li.quantity}</td>
+    <td align="right" valign="top" style="padding:10px 0; border-bottom:1px solid ${BRAND.rule}; font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold; color:${BRAND.ink};">${money(li.lineTotal / 100)}</td>
   </tr>`).join("");
 
-  const addressStr = shippingAddress
-    ? `${shippingAddress.firstName} ${shippingAddress.lastName}<br>${escapeHtml(shippingAddress.address1)}${shippingAddress.address2 ? "<br>" + escapeHtml(shippingAddress.address2) : ""}<br>${escapeHtml(shippingAddress.city)}, ${escapeHtml(shippingAddress.state)} ${escapeHtml(shippingAddress.zipCode)}<br>${escapeHtml(shippingAddress.country)}`
-    : "<strong style='color:" + BRAND.red + ";'>⚠ No address</strong>";
+  const fmtAddr = (addr) => {
+    if (!addr) return `<strong style="color:${BRAND.red};">⚠ No address</strong>`;
+    return [
+      `<strong>${escapeHtml(((addr.firstName || "") + " " + (addr.lastName || "")).trim())}</strong>`,
+      addr.address1 ? escapeHtml(addr.address1) : "",
+      addr.address2 ? escapeHtml(addr.address2) : "",
+      `${escapeHtml(addr.city || "")}, ${escapeHtml(addr.state || "")} ${escapeHtml(addr.zipCode || "")}`,
+      escapeHtml(addr.country || ""),
+      addr.phone ? escapeHtml(addr.phone) : "",
+      addr.email ? `<a href="mailto:${escapeHtml(addr.email)}" style="color:${BRAND.red};">${escapeHtml(addr.email)}</a>` : "",
+    ].filter(Boolean).join("<br>");
+  };
 
   return emailShell(`
-    <tr><td style="padding:34px; text-align:center;">
-      <div style="font-family:Georgia,'Times New Roman',serif; font-size:17px; letter-spacing:4px; color:${BRAND.redDeep}; text-transform:uppercase;">HS Race Gear</div>
-      <div style="font-family:Georgia,'Times New Roman',serif; font-size:34px; line-height:1.15; color:${BRAND.redDeep}; letter-spacing:2px; margin-top:18px;">PAID ORDER</div>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.inkSoft}; margin-top:10px;">${escapeHtml(orderId)} · ${escapeHtml(orderPlacedAt)}</div>
-      <div style="margin-top:14px;">${paymentBadge(paymentBrand, paymentLast4)}</div>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; color:${BRAND.inkSoft}; margin-top:8px;">Stripe: ${escapeHtml(transactionId || "—")}</div>
-    </td></tr>
-    <tr><td style="padding:0 34px 26px;">
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.inkSoft}; margin-bottom:10px;">Customer</div>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:14px; color:${BRAND.ink}; line-height:1.8;">
-        <strong>${escapeHtml(customer.name)}</strong><br>
-        <a href="mailto:${escapeHtml(customer.email)}" style="color:${BRAND.red}; text-decoration:none;">${escapeHtml(customer.email)}</a><br>
-        ${escapeHtml(customer.phone || "")}
-      </div>
-    </td></tr>
-    <tr><td style="padding:0 34px 26px;">
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.inkSoft}; margin-bottom:10px;">Items</div>
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">${itemRows}</table>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:17px; font-weight:bold; color:${BRAND.redDeep}; margin-top:12px; text-align:right;">${money(total / 100)} USD</div>
-    </td></tr>
-    <tr><td style="padding:0 34px 34px;">
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.inkSoft}; margin-bottom:10px;">Ship To</div>
-      <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.7;">${addressStr}</div>
-    </td></tr>
+    <!-- Red header bar -->
+    <tr>
+      <td bgcolor="${BRAND.red}" style="background:${BRAND.red}; padding:28px 34px; text-align:center;">
+        <div style="font-family:Georgia,'Times New Roman',serif; font-size:15px; letter-spacing:3px; color:rgba(255,255,255,0.85); text-transform:uppercase;">HS Race Gear</div>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:22px; font-weight:bold; color:#ffffff; margin-top:10px;">New Order: #${escapeHtml(orderId)}</div>
+      </td>
+    </tr>
+    <!-- Order intro -->
+    <tr>
+      <td style="padding:28px 34px 0;">
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:14px; color:${BRAND.ink}; line-height:1.7;">
+          You've received the following order from <strong>${escapeHtml(customer.name)}</strong>:
+        </div>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.inkSoft}; margin-top:8px;">
+          <a href="${BRAND.site}" style="color:${BRAND.red}; text-decoration:none; font-weight:bold;">[Order #${escapeHtml(orderId)}]</a>
+          (${escapeHtml(orderPlacedAt)})
+        </div>
+      </td>
+    </tr>
+    <!-- Product table -->
+    <tr>
+      <td style="padding:24px 34px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding:8px 0; border-bottom:2px solid ${BRAND.red}; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.inkSoft};">Product</td>
+            <td align="center" style="padding:8px 8px; border-bottom:2px solid ${BRAND.red}; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.inkSoft};">Qty</td>
+            <td align="right" style="padding:8px 0; border-bottom:2px solid ${BRAND.red}; font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1px; color:${BRAND.inkSoft};">Price</td>
+          </tr>
+          ${itemRows}
+        </table>
+      </td>
+    </tr>
+    <!-- Pricing breakdown -->
+    <tr>
+      <td style="padding:16px 34px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px;">
+          <tr>
+            <td style="padding:6px 0; color:${BRAND.inkSoft};">Subtotal:</td>
+            <td align="right" style="padding:6px 0; color:${BRAND.ink};">${money(subtotal / 100)}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:${BRAND.inkSoft};">Shipping:</td>
+            <td align="right" style="padding:6px 0; color:${BRAND.ink};">${shippingCost > 0 ? money(shippingCost / 100) : "Free"}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:${BRAND.inkSoft};">Payment method:</td>
+            <td align="right" style="padding:6px 0; color:${BRAND.ink};">${escapeHtml(payMethod)}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:${BRAND.inkSoft};">Stripe:</td>
+            <td align="right" style="padding:6px 0; font-size:11px; color:${BRAND.inkSoft};">${escapeHtml(transactionId || "—")}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0 0; border-top:2px solid ${BRAND.red}; font-size:15px; font-weight:bold; color:${BRAND.ink};">Total:</td>
+            <td align="right" style="padding:10px 0 0; border-top:2px solid ${BRAND.red}; font-size:17px; font-weight:bold; color:${BRAND.redDeep};">${money(total / 100)} USD</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <!-- Customer details -->
+    <tr>
+      <td style="padding:24px 34px 0;">
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.red}; margin-bottom:8px;">Customer</div>
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.8;">
+          <strong>${escapeHtml(customer.name)}</strong><br>
+          <a href="mailto:${escapeHtml(customer.email)}" style="color:${BRAND.red}; text-decoration:none;">${escapeHtml(customer.email)}</a><br>
+          ${customer.phone ? `<a href="tel:${escapeHtml(String(customer.phone).replace(/[^0-9+]/g, ""))}" style="color:${BRAND.red}; text-decoration:none;">${escapeHtml(customer.phone)}</a>` : ""}
+        </div>
+      </td>
+    </tr>
+    <!-- Addresses side by side -->
+    <tr>
+      <td style="padding:24px 34px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="48%" valign="top">
+              <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.red}; margin-bottom:8px;">Billing Address</div>
+              <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.7;">${fmtAddr(shippingAddress)}</div>
+            </td>
+            <td width="4%">&nbsp;</td>
+            <td width="48%" valign="top">
+              <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:1.5px; color:${BRAND.red}; margin-bottom:8px;">Shipping Address</div>
+              <div style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:${BRAND.ink}; line-height:1.7;">${fmtAddr(shippingAddress)}</div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <!-- Congratulations -->
+    <tr>
+      <td style="padding:26px 34px 34px; text-align:center;">
+        <div style="font-family:Arial,Helvetica,sans-serif; font-size:14px; color:${BRAND.ink}; font-style:italic;">
+          Congratulations on the sale.
+        </div>
+      </td>
+    </tr>
     ${renderFooter()}
   `);
 }
