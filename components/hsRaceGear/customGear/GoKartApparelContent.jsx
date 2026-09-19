@@ -73,6 +73,17 @@ export default function GoKartApparelContent() {
                 <p className="hs-doc-card-text">
                   Every suit includes a digital mockup before production, unlimited revisions, driver name, country flag, and sponsor logos. From <strong style={{ color: '#e21b1b' }}>$329</strong> with free shipping.
                 </p>
+                {/* Mid-page order CTA — added 2026-09-19. This collection page
+                    previously had exactly one order-page link, at the very
+                    bottom below four more full sections. Someone who already
+                    knows which suit they want right after reading this
+                    section shouldn't have to keep scrolling. */}
+                <p className="hs-doc-card-text" style={{ marginBottom: 0 }}>
+                  Know which suit you need?{" "}
+                  <Link href="/custom-karting-suit/order" style={{ color: '#e21b1b', textDecoration: 'underline', fontWeight: 600 }}>
+                    Start your order now →
+                  </Link>
+                </p>
               </div>
             </div>
 
@@ -135,14 +146,28 @@ export default function GoKartApparelContent() {
 
             <div className="hs-doc-block">
               <div className="hs-doc-card" style={{ textAlign: 'center', paddingTop: '32px', paddingBottom: '32px' }}>
-                <Link href="/custom-karting-suit/order" style={{
-                  display: 'inline-block', background: '#e21b1b', color: '#fff',
-                  padding: '14px 32px', borderRadius: '8px', fontWeight: 700,
-                  fontSize: '0.9rem', textDecoration: 'none', letterSpacing: '1.5px',
-                  textTransform: 'uppercase', fontFamily: 'Poppins, sans-serif'
-                }}>
-                  Build Your Karting Outfit
-                </Link>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <Link href="/custom-karting-suit/order" style={{
+                    display: 'inline-block', background: '#e21b1b', color: '#fff',
+                    padding: '14px 32px', borderRadius: '8px', fontWeight: 700,
+                    fontSize: '0.9rem', textDecoration: 'none', letterSpacing: '1.5px',
+                    textTransform: 'uppercase', fontFamily: 'Poppins, sans-serif'
+                  }}>
+                    Build Your Karting Outfit
+                  </Link>
+                  {/* Team-pricing path added 2026-09-19 — this page explicitly
+                      targets team/crew buyers ("Team & Crew Apparel" section
+                      above) but had no path to that inquiry. */}
+                  <Link href="/contact-us" style={{
+                    display: 'inline-block', background: 'transparent', color: '#fff',
+                    border: '1px solid rgba(226,27,27,0.5)', padding: '14px 32px',
+                    borderRadius: '8px', fontWeight: 700, fontSize: '0.9rem',
+                    textDecoration: 'none', letterSpacing: '1.5px',
+                    textTransform: 'uppercase', fontFamily: 'Poppins, sans-serif'
+                  }}>
+                    Ask About Team Pricing
+                  </Link>
+                </div>
                 <p className="hs-doc-card-text" style={{ marginTop: '12px', marginBottom: 0 }}>Custom-measured, made in the USA, free shipping.</p>
               </div>
             </div>

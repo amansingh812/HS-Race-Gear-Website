@@ -148,6 +148,19 @@ export default function CikFiaContent() {
                   if you&rsquo;re comparing car-racing certifications.
                 </p>
               </div>
+              {/* Mid-page order CTA — added 2026-09-19. This page previously had
+                  exactly one order-page link, at the very bottom of a ~1,800-word
+                  article. Anyone who already knows they need a CIK Level 2 suit
+                  by this point (right after the SFI-vs-CIK explainer) shouldn't
+                  have to keep scrolling to act on it. */}
+              <div className="hs-doc-card hs-doc-card-note">
+                <p className="hs-doc-card-text" style={{ marginBottom: 0 }}>
+                  Already know you need a CIK Level 2 suit?{" "}
+                  <Link href="/custom-karting-suit/order" style={{ color: '#e21b1b', textDecoration: 'underline', fontWeight: 600 }}>
+                    Start your custom order →
+                  </Link>
+                </p>
+              </div>
             </div>
 
             <div className="hs-doc-block">
@@ -228,14 +241,28 @@ export default function CikFiaContent() {
                 </ul>
               </div>
               <div className="hs-doc-card" style={{ textAlign: 'center', paddingTop: '32px', paddingBottom: '32px' }}>
-                <Link href="/custom-karting-suit/order" style={{
-                  display: 'inline-block', background: '#e21b1b', color: '#fff',
-                  padding: '14px 32px', borderRadius: '8px', fontWeight: 700,
-                  fontSize: '0.9rem', textDecoration: 'none', letterSpacing: '1.5px',
-                  textTransform: 'uppercase', fontFamily: 'Poppins, sans-serif'
-                }}>
-                  Design Your CIK Level 2 Karting Suit
-                </Link>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <Link href="/custom-karting-suit/order" style={{
+                    display: 'inline-block', background: '#e21b1b', color: '#fff',
+                    padding: '14px 32px', borderRadius: '8px', fontWeight: 700,
+                    fontSize: '0.9rem', textDecoration: 'none', letterSpacing: '1.5px',
+                    textTransform: 'uppercase', fontFamily: 'Poppins, sans-serif'
+                  }}>
+                    Design Your CIK Level 2 Karting Suit
+                  </Link>
+                  {/* Team-pricing path added 2026-09-19 for club/team buyers
+                      ordering multiple suits, matching the CTA pattern used on
+                      the discipline landing pages. */}
+                  <Link href="/contact-us" style={{
+                    display: 'inline-block', background: 'transparent', color: '#fff',
+                    border: '1px solid rgba(226,27,27,0.5)', padding: '14px 32px',
+                    borderRadius: '8px', fontWeight: 700, fontSize: '0.9rem',
+                    textDecoration: 'none', letterSpacing: '1.5px',
+                    textTransform: 'uppercase', fontFamily: 'Poppins, sans-serif'
+                  }}>
+                    Ask About Team Pricing
+                  </Link>
+                </div>
                 <p className="hs-doc-card-text" style={{ marginTop: '12px', marginBottom: 0 }}>Custom-measured, made in the USA, from $329.</p>
               </div>
             </div>

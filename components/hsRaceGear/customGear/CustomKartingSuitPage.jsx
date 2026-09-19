@@ -82,17 +82,20 @@ export default function CustomKartingSuitPage() {
         }
     ];
 
+    // Alt text broadened 2026-09-19 from generic "Design N" to include the
+    // certification + material keywords the page targets, without repeating
+    // the exact same string 10 times.
     const suitMockups = [
-        { src: "/images/suit_mock/KARTING SUITS/9.webp", alt: "Custom Karting Suit Design 9" },
-        { src: "/images/suit_mock/KARTING SUITS/13.webp", alt: "Custom Karting Suit Design 13" },
-        { src: "/images/suit_mock/KARTING SUITS/15.webp", alt: "Custom Karting Suit Design 15" },
-        { src: "/images/suit_mock/KARTING SUITS/19.webp", alt: "Custom Karting Suit Design 19" },
-        { src: "/images/suit_mock/KARTING SUITS/21.webp", alt: "Custom Karting Suit Design 21" },
-        { src: "/images/suit_mock/KARTING SUITS/22.webp", alt: "Custom Karting Suit Design 22" },
-        { src: "/images/suit_mock/KARTING SUITS/24.webp", alt: "Custom Karting Suit Design 24" },
-        { src: "/images/suit_mock/KARTING SUITS/27.webp", alt: "Custom Karting Suit Design 27" },
-        { src: "/images/suit_mock/KARTING SUITS/28.webp", alt: "Custom Karting Suit Design 28" },
-        { src: "/images/suit_mock/KARTING SUITS/29.webp", alt: "Custom Karting Suit Design 29" },
+        { src: "/images/suit_mock/KARTING SUITS/9.webp", alt: "CIK Level 2 custom karting suit — sublimated design 9" },
+        { src: "/images/suit_mock/KARTING SUITS/13.webp", alt: "Custom karting suit sublimation design 13" },
+        { src: "/images/suit_mock/KARTING SUITS/15.webp", alt: "CIK Level 2 karting suit design 15" },
+        { src: "/images/suit_mock/KARTING SUITS/19.webp", alt: "Custom kart racing suit sublimation design 19" },
+        { src: "/images/suit_mock/KARTING SUITS/21.webp", alt: "CIK Level 2 custom karting suit design 21" },
+        { src: "/images/suit_mock/KARTING SUITS/22.webp", alt: "Custom karting suit sublimation design 22" },
+        { src: "/images/suit_mock/KARTING SUITS/24.webp", alt: "CIK Level 2 karting suit design 24" },
+        { src: "/images/suit_mock/KARTING SUITS/27.webp", alt: "Custom kart racing suit sublimation design 27" },
+        { src: "/images/suit_mock/KARTING SUITS/28.webp", alt: "CIK Level 2 custom karting suit design 28" },
+        { src: "/images/suit_mock/KARTING SUITS/29.webp", alt: "Custom karting suit sublimation design 29" },
     ];
 
     return (
@@ -115,10 +118,14 @@ export default function CustomKartingSuitPage() {
                             letterSpacing: "2px",
                             textTransform: "uppercase"
                         }}>
-                            Non SFI — Sublimated Karting Suits
+                            CIK Level 2 Certified · Full Sublimation
                         </div>
 
-                        {/* Heading */}
+                        {/* Heading — rewritten 2026-09-19. Was "Performance & Maximum
+                            Safety." which had zero keyword relevance for the flagship
+                            karting page (nav, homepage hero, sitemap priority 0.9). Now
+                            leads with the exact-match target keyword and states the
+                            certification the title/meta already promise. */}
                         <h1 style={{
                             fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
                             fontWeight: "800",
@@ -127,11 +134,13 @@ export default function CustomKartingSuitPage() {
                             color: "#fff",
                             textTransform: "uppercase"
                         }}>
-                            Performance &<br />
-                            Maximum <span style={{ color: "#dc2626" }}>Safety.</span>
+                            Custom Karting Suits<br />
+                            <span style={{ color: "#dc2626" }}>CIK Level 2 Certified</span>
                         </h1>
 
-                        {/* Subheading */}
+                        {/* Subheading — rewritten 2026-09-19 to state CIK Level 2
+                            explicitly instead of only describing sublimation/comfort,
+                            fixing the mismatch with the page's own title/meta. */}
                         <p style={{
                             fontSize: "clamp(1rem, 2vw, 1.25rem)",
                             color: "#d1d5db",
@@ -140,7 +149,7 @@ export default function CustomKartingSuitPage() {
                             margin: "0 auto 40px",
                             lineHeight: "1.7"
                         }}>
-                            Custom-made karting suits designed to deliver comfort, performance, and personal style. Full-coverage sublimation printing with unlimited colors and sharp graphics.
+                            Custom-made karting suits built to CIK Level 2 specification and tailored to your exact measurements — full-coverage sublimation printing with unlimited colors, sharp graphics, and abrasion-resistant construction for junior, senior, and shifter classes.
                         </p>
 
                         {/* CTA Buttons */}
@@ -335,15 +344,24 @@ export default function CustomKartingSuitPage() {
                                 letterSpacing: "2px",
                                 textTransform: "uppercase"
                             }}>
-                                Important
+                                Certification
                             </div>
+                            {/* Rewritten 2026-09-19 — this section previously branded the
+                                suits "Non SFI Rated" and described them as suits for
+                                drivers who want a look "without SFI certification
+                                requirements," with zero mention of CIK Level 2 anywhere
+                                on the page despite the page's own title/meta claiming it,
+                                and despite /cik-fia-level-2 and the sibling junior/shifter
+                                pages all stating every HS Race Gear karting suit meets CIK
+                                Level 2 spec. Confirmed with the team this was stale copy,
+                                not a real product-tier split — rewritten to match. */}
                             <h2 style={{
                                 fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
                                 fontWeight: "700",
                                 color: "#fff",
                                 marginBottom: "24px"
                             }}>
-                                Non SFI Rated Sublimated Karting Suits
+                                CIK Level 2 Certified Construction
                             </h2>
                             <p style={{
                                 color: "#9ca3af",
@@ -351,7 +369,11 @@ export default function CustomKartingSuitPage() {
                                 marginBottom: "20px",
                                 lineHeight: "1.8"
                             }}>
-                                These custom-made karting suits are designed to deliver comfort, performance, and personal style for drivers who want a professional look without SFI certification requirements. Each suit is tailored to your measurements, ensuring a precise fit that supports full mobility in the kart.
+                                Every HS Race Gear karting suit is built to CIK Level 2 specification — the standard karting bodies test for abrasion resistance, tear strength, and seam integrity, since a kart carries very little fuel and sits inches off the track surface. Karting doesn't use the SFI rating that applies to car racing suits; if you also race cars,{" "}
+                                <Link href="/certifications" style={{ color: "#f87171", textDecoration: "underline" }}>see our SFI ratings guide</Link>{" "}
+                                for that side, and{" "}
+                                <Link href="/cik-fia-level-2" style={{ color: "#f87171", textDecoration: "underline" }}>read the full CIK-FIA Level 2 guide</Link>{" "}
+                                for how the two standards differ. Each suit is also tailored to your exact measurements, ensuring a precise fit that supports full mobility in the kart.
                             </p>
                             <p style={{
                                 color: "#9ca3af",
@@ -359,10 +381,15 @@ export default function CustomKartingSuitPage() {
                                 marginBottom: "24px",
                                 lineHeight: "1.8"
                             }}>
-                                Ideal for practice, club racing, indoor karting, and promotional motorsport events where professional appearance and comfort matter most.
+                                Built for cadet through senior competition — Rotax Max, IAME X30, WSK, and club or regional sanctioned events — as well as practice and indoor karting, where comfort and appearance matter just as much. Racing shifter classes or need a suit for a junior driver?{" "}
+                                <Link href="/custom-shifter-kart-suit" style={{ color: "#f87171", textDecoration: "underline" }}>See our shifter kart suits</Link>{" "}
+                                or{" "}
+                                <Link href="/custom-junior-karting-suit" style={{ color: "#f87171", textDecoration: "underline" }}>youth &amp; kids karting suits</Link>.
                             </p>
                             <ul style={{ listStyle: "none", padding: 0 }}>
                                 {[
+                                    "CIK Level 2 certified construction",
+                                    "Reinforced abrasion panels at high-wear points",
                                     "Full-coverage sublimation printing",
                                     "Lightweight and breathable design",
                                     "Reinforced stitching & stretch panels",
@@ -839,6 +866,81 @@ export default function CustomKartingSuitPage() {
                 </div>
             </section>
 
+            {/* FAQ Section — added 2026-09-19. Renders the same 6 Q&As as the
+                page's FAQPage JSON-LD schema verbatim, so structured data and
+                visible content agree (Google requires FAQ schema to match
+                on-page content). */}
+            <section style={{ padding: "96px 0", backgroundColor: "#171717" }}>
+                <div className="container" style={{ maxWidth: "900px", padding: "0 24px", margin: "0 auto" }}>
+                    <div style={{ textAlign: "center", marginBottom: "56px" }}>
+                        <h2 style={{
+                            fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                            fontWeight: "700",
+                            color: "#fff",
+                            marginBottom: "16px"
+                        }}>
+                            Frequently Asked Questions
+                        </h2>
+                        <div style={{
+                            height: "4px",
+                            width: "80px",
+                            backgroundColor: "#dc2626",
+                            margin: "0 auto"
+                        }}></div>
+                    </div>
+
+                    <div>
+                        {[
+                            {
+                                q: "Is a custom karting suit CIK Level 2 certified?",
+                                a: "Yes. Every HS Race Gear karting suit is built to CIK Level 2 specification — the standard karting bodies test for abrasion resistance, tear strength, and seam integrity. Karting doesn't use the SFI rating system that applies to car racing suits."
+                            },
+                            {
+                                q: "Do I need an SFI-rated suit for karting?",
+                                a: "No. SFI ratings apply to car racing, where fire is the primary risk. Karting runs on CIK-FIA Level 2, which tests abrasion resistance instead, because a kart carries very little fuel and sits inches off the track surface."
+                            },
+                            {
+                                q: "What sizes are available for a custom karting suit?",
+                                a: "Every suit is made to your exact measurements rather than pulled from a size chart. We build for junior and youth drivers (ages 8–15), senior classes, and shifter kart classes."
+                            },
+                            {
+                                q: "How long does a custom karting suit take to make?",
+                                a: "You'll receive a digital mockup within 24–72 hours of submitting your measurements, with unlimited revisions before production starts. Production typically takes 4–5 weeks after you approve the final design."
+                            },
+                            {
+                                q: "Can I add sponsor logos and my driver name to a karting suit?",
+                                a: "Yes. Full sublimation printing supports unlimited colors, sponsor-style logos, driver name, and race number infused directly into the fabric at no extra design cost."
+                            },
+                            {
+                                q: "Do you ship karting suits internationally?",
+                                a: "Yes, HS Race Gear ships custom karting suits worldwide."
+                            }
+                        ].map((item, index, arr) => (
+                            <div
+                                key={index}
+                                style={{
+                                    padding: "24px 0",
+                                    borderBottom: index < arr.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none"
+                                }}
+                            >
+                                <h3 className="faq-question" style={{
+                                    fontSize: "1.05rem",
+                                    fontWeight: "600",
+                                    color: "#fff",
+                                    marginBottom: "10px"
+                                }}>
+                                    {item.q}
+                                </h3>
+                                <div className="faq-answer">
+                                    <p style={{ color: "#9ca3af", fontSize: "0.95rem", lineHeight: "1.7", margin: 0 }}>
+                                        {item.a}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
         </>
     );

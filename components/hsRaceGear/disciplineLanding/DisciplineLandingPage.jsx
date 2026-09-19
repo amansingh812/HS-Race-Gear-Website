@@ -95,6 +95,17 @@ export default function DisciplineLandingPage({ data }) {
                   <li>Production: 4–6 weeks from approved mockup</li>
                   <li>QC check, ship to your door — free shipping on custom suits</li>
                 </ul>
+                {/* Mid-page order CTA — added 2026-09-19. Previously the only
+                    order-page links on this page were the hero button and the
+                    bottom CTA section, both above/below the full article. A
+                    reader who decides here, right after seeing the process
+                    and price, had to scroll back up or down to convert. */}
+                <p className="blog-body-text" style={{ marginTop: "16px" }}>
+                  Ready to start?{" "}
+                  <Link href={data.primaryCtaHref} style={{ color: "#e21b1b", textDecoration: "underline", fontWeight: 600 }}>
+                    {data.primaryCtaText} →
+                  </Link>
+                </p>
               </div>
             </div>
 

@@ -5,6 +5,10 @@ import CertificationHero from "@/components/hsRaceGear/certifications/Certificat
 import CertificationsContent from "@/components/hsRaceGear/certifications/CertificationsContent";
 import "@/public/css/contact-us.css";
 import "@/public/css/hs-doc-theme.css";
+// compare.css defines .hs-table-wrap / .hs-compare-table, added here so the
+// new SFI rating comparison table (added 2026-09-19) renders styled instead
+// of falling back to unstyled browser table defaults.
+import "@/public/css/compare.css";
 import React from "react";
 
 // Metadata rewritten 2026-07-16 based on live GSC data — /certifications
@@ -47,6 +51,40 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hsracegear.com" },
     { "@type": "ListItem", "position": 2, "name": "SFI Ratings & Certifications", "item": "https://www.hsracegear.com/certifications" }
   ]
+};
+
+// Article schema added 2026-09-19 — backs the "(2026)" freshness claim in the
+// title/H1 with a real datePublished/dateModified pair, and gives Google an
+// author/publisher entity for a compliance-adjacent page (E-E-A-T).
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "SFI Ratings Explained: 3.2A/1 vs 3.2A/5 vs 3.2A/15",
+  "description": "The complete guide to SFI ratings — 3.2A/1, 3.2A/5, 3.2A/15, 3.2A/20, 3.3/5, and 3.4/5 decoded, with a full comparison chart.",
+  "image": "https://www.hsracegear.com/images/og-image.jpg",
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-09-19",
+  "author": { "@type": "Organization", "name": "HS Race Gear", "url": "https://www.hsracegear.com" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HS Race Gear",
+    "logo": { "@type": "ImageObject", "url": "https://www.hsracegear.com/images/logo.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.hsracegear.com/certifications" }
+};
+
+// Speakable schema — mirrors the pattern already used on /faq. Makes the
+// visible FAQ block (added 2026-09-19, .faq-question/.faq-answer) eligible
+// for voice assistants and AI answer engines, tying into the site's broader
+// AI-visibility push.
+const speakableSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".faq-question", ".faq-answer"]
+  },
+  "url": "https://www.hsracegear.com/certifications"
 };
 
 const faqSchema = {
@@ -114,6 +152,14 @@ export default function page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }}
       />
       <Topbar1 />
       <Header3 />

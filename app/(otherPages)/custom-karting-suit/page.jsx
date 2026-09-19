@@ -30,12 +30,100 @@ const breadcrumbSchema = {
   ]
 };
 
+// Added 2026-09-19 — this is the flagship karting page (nav, homepage hero,
+// shop mega-menu, sitemap priority 0.9) but was the only kart lander with no
+// Product schema, unlike its own children (/custom-shifter-kart-suit,
+// /custom-junior-karting-suit). Matches their schema shape for consistency.
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Custom Karting Suit",
+  "description": "CIK Level 2 certified custom karting suit with full-coverage sublimation printing, tailored to your exact measurements. Built for junior, senior, and shifter kart classes.",
+  "image": "https://www.hsracegear.com/images/og-image.jpg",
+  "brand": { "@type": "Brand", "name": "HS Race Gear" },
+  "category": "Karting Suit",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "329",
+    "highPrice": "699",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "seller": { "@type": "Organization", "name": "HS Race Gear", "url": "https://www.hsracegear.com" },
+  },
+};
+
+// FAQ schema — mirrors the 6 Q&As rendered visibly in CustomKartingSuitPage
+// (added 2026-09-19). Kept in sync verbatim per the lesson from /certifications:
+// FAQPage schema must match on-page, user-visible content.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is a custom karting suit CIK Level 2 certified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every HS Race Gear karting suit is built to CIK Level 2 specification — the standard karting bodies test for abrasion resistance, tear strength, and seam integrity. Karting doesn't use the SFI rating system that applies to car racing suits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an SFI-rated suit for karting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. SFI ratings apply to car racing, where fire is the primary risk. Karting runs on CIK-FIA Level 2, which tests abrasion resistance instead, because a kart carries very little fuel and sits inches off the track surface."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What sizes are available for a custom karting suit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every suit is made to your exact measurements rather than pulled from a size chart. We build for junior and youth drivers (ages 8-15), senior classes, and shifter kart classes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a custom karting suit take to make?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll receive a digital mockup within 24-72 hours of submitting your measurements, with unlimited revisions before production starts. Production typically takes 4-5 weeks after you approve the final design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add sponsor logos and my driver name to a karting suit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Full sublimation printing supports unlimited colors, sponsor-style logos, driver name, and race number infused directly into the fabric at no extra design cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you ship karting suits internationally?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, HS Race Gear ships custom karting suits worldwide."
+      }
+    }
+  ]
+};
+
 export default function page() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Topbar1 />
       <Header3 />
