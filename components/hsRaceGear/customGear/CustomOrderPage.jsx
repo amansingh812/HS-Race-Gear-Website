@@ -3,8 +3,6 @@ import React, { useState, useCallback, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelectionStep";
-import PackageConfigurator from "@/components/hsRaceGear/customGear/PackageConfigurator";
-import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import * as gtag from "@/lib/gtag";
 import "@/public/css/custom-order.css";
@@ -40,21 +38,6 @@ const PACKAGES = [
     ],
   },
 ];
-
-// Configurator data — derived from PACKAGES above
-const SUIT_LAYERS = [
-  { id: "single", label: "Single Layer", cert: "SFI 3.2A/1", basePrice: 549 },
-  { id: "double", label: "Double Layer", cert: "SFI 3.2/5", basePrice: 649 },
-  { id: "triple", label: "Triple Layer", cert: "SFI 3.2A/5", basePrice: 749 },
-];
-
-const SUIT_ADDONS = [
-  { key: "gloves", label: "Custom Gloves", cert: "SFI 3.3/5", price: 100 },
-  { key: "shoes", label: "Custom Shoes", cert: "SFI 3.3/5", price: 80 },
-];
-
-// Flatten all packages for configurator lookup
-const ALL_PACKAGES = PACKAGES.flatMap((cat) => cat.items);
 
 // Images available for race suit mockups — all 50 designs from new mock directory.
 // All converted to WebP 2026-06-17 (410MB→22MB across the three suit folders).
@@ -135,7 +118,57 @@ const ArrowLeft = () => (
    STEP COMPONENTS
    ============================================ */
 
-/* ---- Step 1: Package Selection — uses shared PackageConfigurator ---- */
+/* ---- Step 1: Package Selection ---- */
+// Reverted 2026-09-20 — restored the original grouped radio-list selector
+// (SUIT ONLY / SUIT + GLOVES / SUIT + GLOVES + SHOES, each a Single/Double/
+// Triple layer row with bundled pricing) per request. This had been replaced
+// by the layer-cards + accessory-checkboxes PackageConfigurator; that change
+// is left in place for the karting and powerboat order pages, which weren't
+// part of this request.
+function PackageSelection({ selected, onSelect }) {
+  return (
+    <div className="step-content">
+      <div className="step-header">
+        <div className="step-badge">Step 1 of 4</div>
+        <h2 className="step-title">Choose Your Package</h2>
+        <p className="step-subtitle">Select your custom racing gear combination. All suits are SFI certified and crafted from premium Nomex fabric.</p>
+      </div>
+      <div className="package-categories">
+        {PACKAGES.map((cat) => (
+          <div key={cat.category}>
+            <div className="package-category-title">{cat.category}</div>
+            <div className="package-cards">
+              {cat.items.map((pkg) => (
+                <div
+                  key={pkg.id}
+                  className={`package-card ${selected?.id === pkg.id ? "selected" : ""}`}
+                  onClick={() => onSelect(pkg)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === "Enter" && onSelect(pkg)}
+                >
+                  <div className="package-card-info">
+                    <div className="package-radio">
+                      <div className="package-radio-dot" />
+                    </div>
+                    <div className="package-card-name" dangerouslySetInnerHTML={{
+                      __html: pkg.name
+                        .replace(/(Single|Double|Triple)/g, "<strong>$1</strong>")
+                        .replace(/(Gloves|Shoes)/g, "<strong>$1</strong>")
+                    }} />
+                  </div>
+                  <div className="package-card-price">
+                    ${pkg.price}<span>USD</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 /* ---- Step 2: Mockup Selection (Suit / Gloves / Shoes) ---- */
 /* Uses shared MockupSelectionStep component with sticky bar */
@@ -271,18 +304,7 @@ function CustomerInfoForm({ info, onChange, errors, onSubmit, isSubmitting, curr
           {errors.phone && <div className="form-error">{errors.phone}</div>}
         </div>
 
-        <div style={{ margin: "26px 0 18px", paddingTop: "22px", borderTop: "1px solid rgba(255,255,255,0.12)" }}>
-          <div style={{ fontSize: "0.72rem", letterSpacing: "2px", textTransform: "uppercase", opacity: 0.6, marginBottom: "4px" }}>
-            Delivery
-          </div>
-          <div style={{ fontSize: "0.85rem", opacity: 0.7 }}>
-            Where should we ship the finished gear?
-          </div>
-        </div>
-
-        <ShippingAddressFields info={info} onChange={onChange} errors={errors} />
-
-        <LogoUpload 
+        <LogoUpload
           onUploadSuccess={info.onLogoUpload} 
           description={info.logoNotes} 
           onDescriptionChange={info.onLogoNotesChange} 
@@ -393,7 +415,7 @@ export default function CustomOrderPage() {
   const [colors, setColors] = useState({ primary: [] });
   const [customLogoUrl, setCustomLogoUrl] = useState(null);
   const [customLogoNotes, setCustomLogoNotes] = useState("");
-  const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", ...EMPTY_ADDRESS });
+  const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "" });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -455,7 +477,6 @@ export default function CustomOrderPage() {
     if (!customerInfo.email.trim()) errors.email = "Please enter your email";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerInfo.email)) errors.email = "Please enter a valid email";
     if (!customerInfo.phone.trim()) errors.phone = "Please enter your phone number";
-    Object.assign(errors, validateShippingAddress(customerInfo));
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -599,16 +620,7 @@ export default function CustomOrderPage() {
       {/* Step Content */}
       <div className="custom-order-container">
         {currentStepId === "package" && (
-          <PackageConfigurator
-            layers={SUIT_LAYERS}
-            addons={SUIT_ADDONS}
-            packages={ALL_PACKAGES}
-            selected={selectedPackage}
-            onSelect={handlePackageSelect}
-            currentStep={currentStep + 1}
-            totalSteps={totalSteps}
-            onContinue={handleNext}
-          />
+          <PackageSelection selected={selectedPackage} onSelect={handlePackageSelect} />
         )}
 
         {currentStepId === "suit" && (
@@ -679,8 +691,10 @@ export default function CustomOrderPage() {
           />
         )}
 
-        {/* Navigation Buttons — hidden on design steps (sticky bar handles it) */}
-        {!["suit", "gloves", "shoes", "package"].includes(currentStepId) && <div className="step-navigation">
+        {/* Navigation Buttons — hidden on design steps (sticky bar handles it).
+            "package" restored to the shared nav 2026-09-20 since PackageSelection
+            has no built-in Continue button (PackageConfigurator did). */}
+        {!["suit", "gloves", "shoes"].includes(currentStepId) && <div className="step-navigation">
           {currentStep > 0 ? (
             <button className="btn-back" onClick={handleBack}>
               <ArrowLeft /> Back

@@ -4,11 +4,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+// Expanded 2026-09-20 — was 4 tags (Race Suits, Karting Suit, Hoodie,
+// T-Shirt), all pointing at off-the-rack shop categories or the one karting
+// lander. Added the custom-order landers and the go-kart apparel collection
+// so the search modal surfaces the site's highest-intent pages, not just shop
+// filters.
 const POPULAR = [
-  { label: "Race Suits",   href: "/shop?category=race-suits" },
-  { label: "Karting Suit", href: "/custom-karting-suit" },
-  { label: "Hoodie",       href: "/shop?category=hoodies" },
-  { label: "T-Shirt",      href: "/shop?category=crew-shirts" },
+  { label: "Custom Race Suit",  href: "/custom-race-suit" },
+  { label: "Karting Suit",      href: "/custom-karting-suit" },
+  { label: "Go Karting Gear",   href: "/go-kart-racing-apparel" },
+  { label: "Gloves",            href: "/custom-gloves" },
+  { label: "Shoes",             href: "/custom-shoes" },
+  { label: "Race Suits",        href: "/shop?category=race-suits" },
+  { label: "Hoodie",            href: "/shop?category=hoodies" },
+  { label: "T-Shirt",           href: "/shop?category=crew-shirts" },
 ];
 
 export default function SearchModal() {
