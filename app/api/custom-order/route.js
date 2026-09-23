@@ -34,7 +34,16 @@ export async function POST(request) {
       hasShoesMockup: !!orderData.shoesMockup,
     });
 
-    const { customer, package: pkg, suitMockup, glovesMockup, shoesMockup, shoeSize, colors, productType, customLogoUrl, customLogoNotes } = orderData;
+    const { customer, package: pkg, suitMockup, glovesMockup, shoesMockup, shoeSize, colors, productType, customLogoNotes } = orderData;
+
+    // Logo uploads went multi-file on 2026-09-23. The order pages send
+    // `customLogoUrls` (full array) plus `customLogoUrl` (first entry) for
+    // back-compat; older clients send only the single field. Normalise both
+    // shapes into one array here so nothing downstream has to care.
+    const customLogoUrls = Array.isArray(orderData.customLogoUrls)
+      ? orderData.customLogoUrls.filter(Boolean)
+      : (orderData.customLogoUrl ? [orderData.customLogoUrl] : []);
+    const customLogoUrl = customLogoUrls[0] || "";
     const productLabels = {
       "karting-suit": "Custom Karting Suit",
       "powerboat-suit": "Custom Power Boat Suit",
@@ -119,6 +128,7 @@ export async function POST(request) {
       statusHistory: [{ status: "pending", note: "Custom order lead received — awaiting mockup approval and payment" }],
       hasCustomFit: true,
       customLogoUrl: customLogoUrl || "",
+      customLogoUrls,
       customLogoNotes: customLogoNotes || "",
       customerNotes: JSON.stringify({
         productType,
@@ -148,6 +158,7 @@ export async function POST(request) {
       shoesMockup,
       shoeSize,
       customLogoUrl,
+      customLogoUrls,
       customLogoNotes,
     });
 
@@ -165,6 +176,7 @@ export async function POST(request) {
       shoesMockup,
       shoeSize,
       customLogoUrl,
+      customLogoUrls,
       customLogoNotes,
     });
 
@@ -240,7 +252,7 @@ export async function POST(request) {
  * ──────────────────────────────────────────────────────────────── */
 function renderAdminNotification({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
-  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoNotes
+  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoUrls = [], customLogoNotes
 }) {
   const designs = [suitMockup, glovesMockup, shoesMockup].filter(Boolean);
   const designNames = designs.map(d => d.name).filter(Boolean);
@@ -252,7 +264,17 @@ function renderAdminNotification({
   if (glovesMockup) itemBullets.push(`Gloves Design: ${escapeHtml(glovesMockup.name)}`);
   if (shoesMockup) itemBullets.push(`Shoes Design: ${escapeHtml(shoesMockup.name)}`);
   if (shoeSize?.label) itemBullets.push(`Shoe Size: ${escapeHtml(shoeSize.label)}`);
-  if (customLogoUrl) itemBullets.push(`Custom Logo: <a href="${escapeHtml(customLogoUrl)}" style="color:${BRAND.red};">View</a>`);
+  // Multi-logo (2026-09-23): list every uploaded file as its own numbered
+  // link. A single "View" link used to hide the fact that more than one
+  // asset had been sent, and the extras went unnoticed by the design team.
+  if (customLogoUrls.length === 1) {
+    itemBullets.push(`Custom Logo: <a href="${escapeHtml(customLogoUrls[0])}" style="color:${BRAND.red};">View</a>`);
+  } else if (customLogoUrls.length > 1) {
+    const links = customLogoUrls
+      .map((u, i) => `<a href="${escapeHtml(u)}" style="color:${BRAND.red};">Logo ${i + 1}</a>`)
+      .join(" &nbsp;·&nbsp; ");
+    itemBullets.push(`Custom Logos (${customLogoUrls.length}): ${links}`);
+  }
   if (customLogoNotes) itemBullets.push(`Logo Notes: ${escapeHtml(customLogoNotes)}`);
 
   // Determine if this is a deal/offer (package with id) or single item
@@ -467,7 +489,7 @@ function renderAdminNotification({
 /** Plain-text admin notification — concise version. */
 function renderAdminNotificationText({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
-  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoNotes
+  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoUrls = [], customLogoNotes
 }) {
   const colourList = normaliseColors(colors);
   const L = [];
@@ -484,7 +506,12 @@ function renderAdminNotificationText({
   if (glovesMockup) L.push(`Gloves Design: ${glovesMockup.name}`);
   if (shoesMockup) L.push(`Shoes Design:  ${shoesMockup.name}`);
   if (shoeSize?.label) L.push(`Shoe Size: ${shoeSize.label}`);
-  if (customLogoUrl) L.push(`Custom Logo: ${customLogoUrl}`);
+  if (customLogoUrls.length === 1) {
+    L.push(`Custom Logo: ${customLogoUrls[0]}`);
+  } else if (customLogoUrls.length > 1) {
+    L.push(`Custom Logos (${customLogoUrls.length}):`);
+    customLogoUrls.forEach((u, i) => L.push(`  ${i + 1}. ${u}`));
+  }
   if (customLogoNotes) L.push(`Logo Notes: ${customLogoNotes}`);
   L.push("");
   L.push("Colours:");

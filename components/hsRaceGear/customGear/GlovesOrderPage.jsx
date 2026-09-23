@@ -344,7 +344,7 @@ export default function GlovesOrderPage() {
     const [currentStep, setCurrentStep] = useState(0);
     const [selectedMockup, setSelectedMockup] = useState(null);
     const [colors, setColors] = useState({ primary: null, secondary: null, accent: [] });
-    const [customLogoUrl, setCustomLogoUrl] = useState(null);
+    const [customLogoUrls, setCustomLogoUrls] = useState([]);
     const [customLogoNotes, setCustomLogoNotes] = useState("");
     const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", size: "", ...EMPTY_ADDRESS });
     const [formErrors, setFormErrors] = useState({});
@@ -422,7 +422,8 @@ export default function GlovesOrderPage() {
                 },
                 glovesMockup: selectedMockup,
                 colors,
-                customLogoUrl,
+                customLogoUrl: customLogoUrls[0] || null,
+                customLogoUrls,
                 customLogoNotes,
                 size: customerInfo.size,
                 customer: customerInfo,
@@ -492,7 +493,7 @@ export default function GlovesOrderPage() {
           />
         )}
                 {currentStepId === "colors" && <ColorSelection selections={colors} onChange={handleColorChange} currentStep={currentStep + 1} totalSteps={totalSteps} />}
-                {currentStepId === "info" && <CustomerInfoForm info={{ ...customerInfo, onLogoUpload: setCustomLogoUrl, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
+                {currentStepId === "info" && <CustomerInfoForm info={{ ...customerInfo, onLogoUpload: setCustomLogoUrls, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }} onChange={handleCustomerInfoChange} errors={formErrors} isSubmitting={isSubmitting} currentStep={currentStep + 1} totalSteps={totalSteps} orderData={orderDataForSummary} />}
 
                 {/* Navigation Buttons — hidden on design step (sticky bar handles it) */}
                 {currentStepId !== "design" && <div className="step-navigation">

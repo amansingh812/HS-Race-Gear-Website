@@ -166,7 +166,11 @@ const orderSchema = new mongoose.Schema({
   // Custom Gear
   hasCustomFit: { type: Boolean, default: false },
   customFitLeadTime: String,
+  // customLogoUrl holds the FIRST uploaded logo and is kept for backward
+  // compatibility with orders placed before multi-logo upload (2026-09-23).
+  // customLogoUrls holds the full set — read this one preferentially.
   customLogoUrl: String,
+  customLogoUrls: { type: [String], default: [] },
   customLogoNotes: String,
   
   // Notes
@@ -278,7 +282,8 @@ orderSchema.statics.createFromCart = async function(cart, orderData) {
     isGift,
     giftMessage,
     customFitLeadTime: orderItems.some(item => item.isCustomFit) ? '3-4 weeks' : null,
-    customLogoUrl: orderData.customLogoUrl || null,
+    customLogoUrl: orderData.customLogoUrl || orderData.customLogoUrls?.[0] || null,
+    customLogoUrls: orderData.customLogoUrls || (orderData.customLogoUrl ? [orderData.customLogoUrl] : []),
     customLogoNotes: orderData.customLogoNotes || null
   });
   
@@ -364,6 +369,9 @@ orderSchema.methods.toClientJSON = function() {
     hasCustomFit: this.hasCustomFit,
     customFitLeadTime: this.customFitLeadTime,
     customLogoUrl: this.customLogoUrl,
+    customLogoUrls: this.customLogoUrls?.length
+      ? this.customLogoUrls
+      : (this.customLogoUrl ? [this.customLogoUrl] : []),
     customLogoNotes: this.customLogoNotes,
     customerNotes: this.customerNotes,
     isGift: this.isGift,

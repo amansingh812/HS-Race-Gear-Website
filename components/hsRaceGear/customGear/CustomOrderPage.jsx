@@ -413,7 +413,7 @@ export default function CustomOrderPage() {
   const [glovesMockup, setGlovesMockup] = useState(null);
   const [shoesMockup, setShoesMockup] = useState(null);
   const [colors, setColors] = useState({ primary: [] });
-  const [customLogoUrl, setCustomLogoUrl] = useState(null);
+  const [customLogoUrls, setCustomLogoUrls] = useState([]);
   const [customLogoNotes, setCustomLogoNotes] = useState("");
   const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "" });
   const [formErrors, setFormErrors] = useState({});
@@ -528,7 +528,8 @@ export default function CustomOrderPage() {
         glovesMockup: selectedPackage?.includes?.includes("gloves") ? glovesMockup : null,
         shoesMockup: selectedPackage?.includes?.includes("shoes") ? shoesMockup : null,
         colors,
-        customLogoUrl,
+        customLogoUrl: customLogoUrls[0] || null,
+        customLogoUrls,
         customLogoNotes,
         quantity: 1,
       };
@@ -680,7 +681,7 @@ export default function CustomOrderPage() {
 
         {currentStepId === "info" && (
           <CustomerInfoForm
-            info={{ ...customerInfo, onLogoUpload: setCustomLogoUrl, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }}
+            info={{ ...customerInfo, onLogoUpload: setCustomLogoUrls, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }}
             onChange={handleCustomerInfoChange}
             errors={formErrors}
             onSubmit={handleSubmit}

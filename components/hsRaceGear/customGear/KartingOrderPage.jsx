@@ -326,7 +326,7 @@ export default function KartingOrderPage() {
   const [glovesMockup, setGlovesMockup] = useState(null);
   const [shoesMockup, setShoesMockup] = useState(null);
   const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
-  const [customLogoUrl, setCustomLogoUrl] = useState(null);
+  const [customLogoUrls, setCustomLogoUrls] = useState([]);
   const [customLogoNotes, setCustomLogoNotes] = useState("");
   const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", ...EMPTY_ADDRESS });
   const [formErrors, setFormErrors] = useState({});
@@ -430,7 +430,8 @@ export default function KartingOrderPage() {
         glovesMockup: selectedPackage?.includes?.includes("gloves") ? glovesMockup : null,
         shoesMockup: selectedPackage?.includes?.includes("shoes") ? shoesMockup : null,
         colors: {},
-        customLogoUrl,
+        customLogoUrl: customLogoUrls[0] || null,
+        customLogoUrls,
         customLogoNotes,
         quantity: 1,
       };
@@ -574,7 +575,7 @@ export default function KartingOrderPage() {
 
         {currentStepId === "info" && (
           <CustomerInfoForm
-            info={{ ...customerInfo, onLogoUpload: setCustomLogoUrl, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }}
+            info={{ ...customerInfo, onLogoUpload: setCustomLogoUrls, logoNotes: customLogoNotes, onLogoNotesChange: setCustomLogoNotes }}
             onChange={handleCustomerInfoChange}
             errors={formErrors}
             isSubmitting={isSubmitting}
