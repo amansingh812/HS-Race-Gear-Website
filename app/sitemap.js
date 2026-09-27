@@ -65,6 +65,10 @@ export default async function sitemap() {
     { url: `${baseUrl}/blog/tpp-rating-explained`,             lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/blog/sfi-vs-fia-rating`,                lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/blog/drag-racing-suit-requirements`,    lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    // Dirt oval pillar — added 2026-09-27. Priority 0.9: the drag equivalent is
+    // the site's highest-impression page and was already surfacing for dirt
+    // queries it doesn't serve, so this one targets a confirmed live demand.
+    { url: `${baseUrl}/blog/dirt-track-racing-suit-requirements`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/blog/racing-suit-hs-code`,              lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/custom-youth-nomex-race-suit`,     lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/compare/vs-k1`,       lastModified: now, changeFrequency: "monthly", priority: 0.7 },

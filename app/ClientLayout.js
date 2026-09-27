@@ -16,6 +16,7 @@ import "@/public/css/pricing.css";
 import "photoswipe/dist/photoswipe.css";
 import "rc-slider/assets/index.css";
 import { Suspense, useEffect } from "react";
+import { captureAttribution } from "@/lib/attribution";
 
 import Compare from "@/components/modals/Compare";
 import Login from "@/components/modals/Login";
@@ -42,6 +43,16 @@ import NavigationProgress from "@/components/common/NavigationProgress";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
+
+  // First-touch attribution — must run in the root layout, not on the order
+  // pages, so the page that actually earned the visit is what gets recorded.
+  // A visitor landing on /custom-drag-racing-suit and clicking through to
+  // /custom-race-suit/order is credited to the drag page. Runs once per
+  // session; see lib/attribution.js.
+  useEffect(() => {
+    captureAttribution();
+  }, []);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Import the script only on the client side

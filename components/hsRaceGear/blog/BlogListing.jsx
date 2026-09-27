@@ -59,6 +59,17 @@ const BLOG_POSTS = [
     readTime: "9 min read",
   },
   {
+    slug: "dirt-track-racing-suit-requirements",
+    tag: "Discipline Guide",
+    icon: "🏁",
+    image: "/images/blog/best-sprint-car-racing-suit.webp",
+    title: "Dirt Track Racing Suit Requirements — IMCA, WISSOTA, USAC & World of Outlaws Rules",
+    excerpt:
+      "Street stock starts at SFI 3.2A/1; World of Outlaws and ASCS sprint cars require SFI 3.2A/5 plus SFI 3.3 gloves and shoes. Every dirt oval sanctioning body, broken down by class.",
+    date: "September 2026",
+    readTime: "10 min read",
+  },
+  {
     slug: "drag-racing-suit-requirements",
     tag: "Discipline Guide",
     icon: "🏁",

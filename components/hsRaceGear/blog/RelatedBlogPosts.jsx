@@ -7,6 +7,15 @@ import Image from "next/image";
 
 const ALL_POSTS = [
   {
+    slug: "dirt-track-racing-suit-requirements",
+    tag: "Discipline Guide",
+    image: "/images/blog/best-sprint-car-racing-suit.webp",
+    title: "Dirt Track Racing Suit Requirements — IMCA, WISSOTA, USAC & World of Outlaws",
+    excerpt:
+      "Which SFI rating each dirt oval body requires, by class. Street stock through winged sprint car, plus what tech actually checks.",
+    readTime: "10 min read",
+  },
+  {
     slug: "sfi-vs-fia-rating",
     tag: "Safety Standards",
     image: "/images/home/blog_1.webp",

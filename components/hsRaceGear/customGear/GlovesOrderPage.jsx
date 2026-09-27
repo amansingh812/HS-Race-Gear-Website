@@ -4,6 +4,7 @@ import Link from "next/link";
 import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelectionStep";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
+import { getAttribution } from "@/lib/attribution";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
 
@@ -414,6 +415,7 @@ export default function GlovesOrderPage() {
         try {
             const orderData = {
                 productType: "custom-gloves",
+                attribution: getAttribution(),
                 package: {
                     id: "custom-gloves",
                     name: "Custom Gloves",

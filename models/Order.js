@@ -173,6 +173,21 @@ const orderSchema = new mongoose.Schema({
   customLogoUrls: { type: [String], default: [] },
   customLogoNotes: String,
   
+  // First-touch attribution (added 2026-09-24) — which page earned the visit,
+  // as opposed to which order form was submitted. Lets us finally answer
+  // "which SEO page makes money". Best-effort: absent when storage is blocked.
+  attribution: {
+    landingPage: String,
+    orderPage: String,
+    referrer: String,
+    utm_source: String,
+    utm_medium: String,
+    utm_campaign: String,
+    utm_term: String,
+    utm_content: String,
+    landedAt: String,
+  },
+
   // Notes
   customerNotes: String,
   internalNotes: String,

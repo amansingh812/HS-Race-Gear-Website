@@ -6,6 +6,7 @@ import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelect
 import PackageConfigurator from "@/components/hsRaceGear/customGear/PackageConfigurator";
 import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
+import { getAttribution } from "@/lib/attribution";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
 
@@ -426,6 +427,7 @@ export default function KartingOrderPage() {
           includes: selectedPackage.includes,
         },
         productType: "karting-suit",
+        attribution: getAttribution(),
         suitMockup,
         glovesMockup: selectedPackage?.includes?.includes("gloves") ? glovesMockup : null,
         shoesMockup: selectedPackage?.includes?.includes("shoes") ? shoesMockup : null,

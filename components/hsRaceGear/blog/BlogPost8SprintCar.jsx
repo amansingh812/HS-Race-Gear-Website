@@ -54,6 +54,11 @@ export default function BlogPost8SprintCar() {
                 <p className="blog-body-text">
                   Sprint car racing has a unique risk profile that most off-the-rack suits weren't designed around — open cockpit, methanol fuel, dirt slung at 100+ mph through the wing's wake, and arm-restraint mounting points that have to clear the suit's shoulder construction. Buy the wrong suit and you'll either fail tech or be the driver fighting their gear instead of the car.
                 </p>
+                <p className="blog-body-text" style={{ marginBottom: 0 }}>
+                  Racing something other than a sprint car, or running multiple dirt classes? Our{" "}
+                  <Link href="/blog/dirt-track-racing-suit-requirements" style={{ color: "#e21b1b", textDecoration: "underline" }}>dirt track suit requirements guide</Link>{" "}
+                  covers IMCA, WISSOTA, USAC, DIRTcar and World of Outlaws side by side, from street stock up.
+                </p>
               </div>
             </div>
 

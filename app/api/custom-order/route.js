@@ -130,6 +130,7 @@ export async function POST(request) {
       customLogoUrl: customLogoUrl || "",
       customLogoUrls,
       customLogoNotes: customLogoNotes || "",
+      attribution: orderData.attribution || {},
       customerNotes: JSON.stringify({
         productType,
         packageId: pkg.id,
@@ -160,6 +161,7 @@ export async function POST(request) {
       customLogoUrl,
       customLogoUrls,
       customLogoNotes,
+      attribution: orderData.attribution || {},
     });
 
     const internalEmailText = renderAdminNotificationText({
@@ -178,6 +180,7 @@ export async function POST(request) {
       customLogoUrl,
       customLogoUrls,
       customLogoNotes,
+      attribution: orderData.attribution || {},
     });
 
     // ---- Send Email ----
@@ -252,7 +255,7 @@ export async function POST(request) {
  * ──────────────────────────────────────────────────────────────── */
 function renderAdminNotification({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
-  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoUrls = [], customLogoNotes
+  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoUrls = [], customLogoNotes, attribution = {}
 }) {
   const designs = [suitMockup, glovesMockup, shoesMockup].filter(Boolean);
   const designNames = designs.map(d => d.name).filter(Boolean);
@@ -425,6 +428,12 @@ function renderAdminNotification({
 
         <tr><td style="padding:20px 30px 0;"><div style="border-top:1px solid #e8e8e8; height:1px; line-height:1px;">&nbsp;</div></td></tr>
 
+        <!-- ── SOURCE / ATTRIBUTION ──
+             Added 2026-09-24. Tells the team (and the SEO work) which page
+             actually earned this lead, which the order form alone can't
+             show — all 13 discipline landers submit the same form. -->
+        ${renderAttributionBlock(attribution)}
+
         <!-- ── WHAT HAPPENS NEXT ── -->
         <tr>
           <td style="padding:20px 30px 0;">
@@ -486,10 +495,74 @@ function renderAdminNotification({
 </html>`;
 }
 
+/**
+ * "Where this lead came from" block for the admin email.
+ *
+ * Attribution is best-effort — blocked storage, privacy modes and direct
+ * navigation all legitimately produce nothing. When that happens we say so
+ * plainly rather than rendering an empty section that looks like a bug.
+ */
+function renderAttributionBlock(attribution = {}) {
+  const rows = [];
+
+  if (attribution.landingPage) {
+    const url = `https://www.hsracegear.com${attribution.landingPage}`;
+    rows.push([
+      "Landed on",
+      `<a href="${escapeHtml(url)}" style="color:${BRAND.red}; text-decoration:none;">${escapeHtml(attribution.landingPage)}</a>`,
+    ]);
+  }
+  if (attribution.orderPage && attribution.orderPage !== attribution.landingPage) {
+    rows.push(["Ordered from", escapeHtml(attribution.orderPage)]);
+  }
+
+  const source = attribution.utm_source || (attribution.referrer ? hostOf(attribution.referrer) : "");
+  if (source) {
+    const medium = attribution.utm_medium ? ` / ${escapeHtml(attribution.utm_medium)}` : "";
+    rows.push(["Source", `${escapeHtml(source)}${medium}`]);
+  } else if (attribution.landingPage) {
+    rows.push(["Source", "Direct or unknown"]);
+  }
+
+  if (attribution.utm_campaign) rows.push(["Campaign", escapeHtml(attribution.utm_campaign)]);
+
+  if (!rows.length) return "";
+
+  return `
+        <tr>
+          <td style="padding:20px 30px 0;">
+            <div style="font-family:Arial,Helvetica,sans-serif; font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; color:${BRAND.ink}; margin-bottom:12px;">
+              Where This Lead Came From
+            </div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; font-size:13px;">
+              ${rows
+                .map(
+                  ([k, v]) => `<tr>
+                <td width="100" style="padding:3px 8px 3px 0; color:${BRAND.inkSoft};">${k}</td>
+                <td style="padding:3px 0; color:${BRAND.ink};">${v}</td>
+              </tr>`
+                )
+                .join("")}
+            </table>
+          </td>
+        </tr>
+
+        <tr><td style="padding:20px 30px 0;"><div style="border-top:1px solid #e8e8e8; height:1px; line-height:1px;">&nbsp;</div></td></tr>`;
+}
+
+/** Hostname only, for readable referrer display. */
+function hostOf(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
 /** Plain-text admin notification — concise version. */
 function renderAdminNotificationText({
   orderId, orderPlacedAt, customer, productLabel, pkg, pricing,
-  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoUrls = [], customLogoNotes
+  address, colors, suitMockup, glovesMockup, shoesMockup, shoeSize, customLogoUrl, customLogoUrls = [], customLogoNotes, attribution = {}
 }) {
   const colourList = normaliseColors(colors);
   const L = [];
@@ -530,6 +603,20 @@ function renderAdminNotificationText({
   if (address.present) {
     L.push(`Address: ${address.lines.join(", ")}`);
   }
+  if (attribution.landingPage) {
+    L.push("");
+    L.push("-".repeat(40));
+    L.push("SOURCE");
+    L.push("-".repeat(40));
+    L.push(`Landed on:  ${attribution.landingPage}`);
+    if (attribution.orderPage && attribution.orderPage !== attribution.landingPage) {
+      L.push(`Ordered on: ${attribution.orderPage}`);
+    }
+    const src = attribution.utm_source || (attribution.referrer ? hostOf(attribution.referrer) : "Direct or unknown");
+    L.push(`Source:     ${src}${attribution.utm_medium ? ` / ${attribution.utm_medium}` : ""}`);
+    if (attribution.utm_campaign) L.push(`Campaign:   ${attribution.utm_campaign}`);
+  }
+
   L.push("");
   L.push("NEXT: Contact within 24h, send mockup, confirm measurements.");
   L.push("");

@@ -466,7 +466,9 @@ export default function BlogPost7DragRacing() {
               <div className="blog-faq-item">
                 <h3 className="blog-faq-question">Can I use the same fire suit for drag racing and circle track?</h3>
                 <p className="blog-faq-answer">
-                  Yes — an SFI 3.2A/5 suit is legal for both NHRA drag racing (9.99 and quicker) and most circle-track sanctioning bodies. SFI 3.2A/1 is generally sufficient for circle-track classes that don't require a higher rating. The SFI 3.2A standard is the universal drag and circle-track fire suit specification.
+                  Yes — an SFI 3.2A/5 suit is legal for both NHRA drag racing (9.99 and quicker) and most circle-track sanctioning bodies. SFI 3.2A/1 is generally sufficient for circle-track classes that don&apos;t require a higher rating. The SFI 3.2A standard is the universal drag and circle-track fire suit specification. For the full breakdown by dirt sanctioning body, see our guide to{" "}
+                  <Link href="/blog/dirt-track-racing-suit-requirements" style={{ color: "#e21b1b", textDecoration: "underline" }}>dirt track racing suit requirements</Link>{" "}
+                  — IMCA, WISSOTA, USAC and World of Outlaws each set a different floor.
                 </p>
               </div>
 
