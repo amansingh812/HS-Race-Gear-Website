@@ -22,6 +22,14 @@ import {
  * Payment is collected later after mockup approval — this is a lead/quote,
  * not a transaction.
  */
+
+/**
+ * Mongo connect + Order.create + an SMTP handshake and send can exceed the
+ * platform's 10s default, and a function killed mid-flight produced exactly
+ * the failure this route was reported for: order saved, customer shown an
+ * error. 30s is ample headroom for the slowest realistic path.
+ */
+export const maxDuration = 30;
 export async function POST(request) {
   try {
     const orderData = await request.json();
@@ -183,38 +191,86 @@ export async function POST(request) {
       attribution: orderData.attribution || {},
     });
 
-    // ---- Send Email ----
-    // Fails loud if SMTP is missing or auth fails — orders are
-    // business-critical and must never be silently lost.
-    const mail = await getTransporter();
-    if (!mail.ok) {
-      console.error("[/api/custom-order] mailer unavailable", {
-        customer: customer?.email,
-        productLabel,
+    // ---- Send the internal notification ----
+    //
+    // Changed 2026-09-28 after a production report of "there was a problem
+    // submitting your order" appearing on orders that had in fact saved.
+    //
+    // The cause was the control flow here: Order.create() above had already
+    // committed the lead, and then ANY email problem below returned a 500.
+    // The customer saw a failure for an order that existed, which is the
+    // worst of both worlds — it invites a resubmission (creating duplicate
+    // leads) and it makes a genuinely captured order look lost.
+    //
+    // The order is the business-critical artifact and it is already safe in
+    // MongoDB by this point. The email is an internal convenience. So email
+    // failure is now logged loudly and recorded on the order, but it never
+    // fails the customer's request. The team finds unsent notifications via
+    // the notificationStatus field rather than via an angry customer.
+    let notificationSent = false;
+    let notificationError = null;
+
+    try {
+      const mail = await getTransporter();
+      if (!mail.ok) throw new Error(mail.error);
+
+      const { transporter, smtpUser, businessEmail } = mail;
+
+      // Order ID leads the subject so the inbox sorts and searches cleanly.
+      // NO customer email — customer only sees the thank-you screen.
+      await transporter.sendMail({
+        from: `"HS Race Gear Orders" <${smtpUser}>`,
+        to: businessEmail,
+        replyTo: customer.email, // replies go straight to the customer
+        subject: `[${orderId}] New ${productLabel} — ${customer.name} — ${pricing.totalText}`,
+        text: internalEmailText,
+        html: internalEmailHtml,
       });
-      return NextResponse.json({ error: mail.error }, { status: 500 });
+
+      notificationSent = true;
+      console.log(`[/api/custom-order] ${orderId} — ${productLabel} — ${customer.email} — ${money(pricing.total)}`);
+    } catch (mailErr) {
+      notificationError = mailErr?.message || String(mailErr);
+      // Loud and structured — this is the line that tells the team a real
+      // lead came in that nobody was emailed about. Everything needed to
+      // contact the customer by hand is included so the lead is recoverable
+      // straight from the logs even if the database is awkward to reach.
+      console.error("[/api/custom-order] ORDER SAVED BUT NOTIFICATION FAILED", {
+        orderId,
+        dbId: String(dbOrder._id),
+        name: customer.name,
+        email: customer.email,
+        phone: customer.phone,
+        product: productLabel,
+        package: pkg?.name,
+        total: pricing.totalText,
+        reason: notificationError,
+      });
     }
-    const { transporter, smtpUser, businessEmail } = mail;
 
-    // Send internal notification to info@hsracegear.com (BUSINESS_EMAIL)
-    // Order ID leads the subject so the inbox sorts and searches cleanly.
-    // NO customer email — customer only sees the thank-you screen.
-    await transporter.sendMail({
-      from: `"HS Race Gear Orders" <${smtpUser}>`,
-      to: businessEmail,
-      replyTo: customer.email, // replies go straight to the customer
-      subject: `[${orderId}] New ${productLabel} — ${customer.name} — ${pricing.totalText}`,
-      text: internalEmailText,
-      html: internalEmailHtml,
-    });
+    // Record delivery state on the order itself so undelivered leads are
+    // findable later. Best-effort: if this write fails too, the console
+    // error above is still the backstop, and it must not break the response.
+    try {
+      await Order.updateOne(
+        { _id: dbOrder._id },
+        {
+          $set: {
+            notificationStatus: notificationSent ? "sent" : "failed",
+            notificationError: notificationSent ? null : notificationError,
+          },
+        }
+      );
+    } catch (flagErr) {
+      console.error("[/api/custom-order] could not record notification status", flagErr?.message);
+    }
 
-    console.log(`[/api/custom-order] ${orderId} — ${productLabel} — ${customer.email} — ${money(pricing.total)}`);
-
-    // Return the order ID so the frontend can show it on the success screen.
+    // The order exists, so this is a success regardless of the email.
     return NextResponse.json({
       success: true,
       orderId,
       message: "Order submitted successfully",
+      notificationSent,
       pricing: {
         subtotal: pricing.subtotal,
         shipping: pricing.shipping,
@@ -223,6 +279,8 @@ export async function POST(request) {
       },
     });
   } catch (error) {
+    // Reaching here means the order was NOT saved — validation, the JSON
+    // body, or the database itself. A failure message is correct now.
     console.error("[/api/custom-order] Uncaught error:", error);
     return NextResponse.json(
       { error: "Something went wrong. Please contact us at info@hsracegear.com or +1 (617) 319 6993 to complete your order." },
@@ -413,7 +471,13 @@ function renderAdminNotification({
                     </tr>
                     <tr>
                       <td width="70" style="padding:3px 8px 3px 0; color:${BRAND.inkSoft};">Phone</td>
-                      <td style="padding:3px 0;"><a href="tel:${escapeHtml(String(customer.phone).replace(/[^0-9+]/g, ""))}" style="color:${BRAND.red}; font-weight:bold; text-decoration:none;">${escapeHtml(customer.phone)}</a></td>
+                      <td style="padding:3px 0;">
+                        <a href="tel:${escapeHtml(telHref(customer.phone))}" style="color:${BRAND.red}; font-weight:bold; text-decoration:none;">${escapeHtml(customer.phone)}</a>
+                        ${/* The order form asks for a WhatsApp-reachable number (2026-09-28),
+                             so give the team a one-click chat link rather than making them
+                             copy the number into WhatsApp by hand. */ ""}
+                        <a href="https://wa.me/${escapeHtml(waNumber(customer.phone))}" style="display:inline-block; margin-left:8px; padding:2px 10px; background:#25D366; color:#ffffff; border-radius:3px; font-size:11px; font-weight:bold; text-decoration:none;">WhatsApp</a>
+                      </td>
                     </tr>
                     ${address.present ? `<tr>
                       <td width="70" style="padding:3px 8px 3px 0; color:${BRAND.inkSoft}; vertical-align:top;">Address</td>
@@ -550,6 +614,25 @@ function renderAttributionBlock(attribution = {}) {
         <tr><td style="padding:20px 30px 0;"><div style="border-top:1px solid #e8e8e8; height:1px; line-height:1px;">&nbsp;</div></td></tr>`;
 }
 
+/** Strip a phone number down to digits and a leading +, for tel: links. */
+function telHref(phone) {
+  return String(phone || "").replace(/[^0-9+]/g, "");
+}
+
+/**
+ * wa.me requires digits only — no plus sign, spaces, dashes or parentheses.
+ *
+ * Numbers typed without a country code can't be dialled internationally, so
+ * a bare 10-digit number is assumed to be US/Canada and gets a 1 prefix.
+ * That's the right default for this business (Watertown MA, US home market)
+ * and the raw number is still shown next to the link if the guess is wrong.
+ */
+function waNumber(phone) {
+  let digits = String(phone || "").replace(/\D/g, "");
+  if (digits.length === 10) digits = `1${digits}`;
+  return digits;
+}
+
 /** Hostname only, for readable referrer display. */
 function hostOf(url) {
   try {
@@ -600,6 +683,7 @@ function renderAdminNotificationText({
   L.push(`Name:  ${customer.name}`);
   L.push(`Email: ${customer.email}`);
   L.push(`Phone: ${customer.phone}`);
+  L.push(`WhatsApp: https://wa.me/${waNumber(customer.phone)}`);
   if (address.present) {
     L.push(`Address: ${address.lines.join(", ")}`);
   }

@@ -294,11 +294,11 @@ function CustomerInfoForm({ info, onChange, errors, onSubmit, isSubmitting, curr
         </div>
 
         <div className="form-group">
-          <label className="form-label">Contact Number</label>
+          <label className="form-label">Contact Number (WhatsApp)</label>
           <input
             type="tel"
             className={`form-input ${errors.phone ? "error" : ""}`}
-            placeholder="Enter your phone number"
+            placeholder="WhatsApp number with country code"
             value={info.phone}
             onChange={(e) => onChange("phone", e.target.value)}
           />

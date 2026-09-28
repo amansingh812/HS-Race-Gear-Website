@@ -4,7 +4,6 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelectionStep";
 import PackageConfigurator from "@/components/hsRaceGear/customGear/PackageConfigurator";
-import ShippingAddressFields, { validateShippingAddress, EMPTY_ADDRESS } from "@/components/hsRaceGear/customGear/ShippingAddressFields";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import { getAttribution } from "@/lib/attribution";
 import "@/public/css/custom-order.css";
@@ -223,27 +222,17 @@ function CustomerInfoForm({ info, onChange, errors, isSubmitting, currentStep, t
         </div>
 
         <div className="form-group">
-          <label className="form-label">Contact Number</label>
+          <label className="form-label">Contact Number (WhatsApp)</label>
           <input
             type="tel"
             className={`form-input ${errors.phone ? "error" : ""}`}
-            placeholder="Enter your phone number"
+            placeholder="WhatsApp number with country code"
             value={info.phone}
             onChange={(e) => onChange("phone", e.target.value)}
           />
           {errors.phone && <div className="form-error">{errors.phone}</div>}
         </div>
 
-        <div style={{ margin: "26px 0 18px", paddingTop: "22px", borderTop: "1px solid rgba(255,255,255,0.12)" }}>
-          <div style={{ fontSize: "0.72rem", letterSpacing: "2px", textTransform: "uppercase", opacity: 0.6, marginBottom: "4px" }}>
-            Delivery
-          </div>
-          <div style={{ fontSize: "0.85rem", opacity: 0.7 }}>
-            Where should we ship the finished gear?
-          </div>
-        </div>
-
-        <ShippingAddressFields info={info} onChange={onChange} errors={errors} />
 
         <LogoUpload 
           onUploadSuccess={info.onLogoUpload} 
@@ -329,7 +318,7 @@ export default function KartingOrderPage() {
   const [colors, setColors] = useState({ primary: null, secondary: null, accent: null });
   const [customLogoUrls, setCustomLogoUrls] = useState([]);
   const [customLogoNotes, setCustomLogoNotes] = useState("");
-  const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "", ...EMPTY_ADDRESS });
+  const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "" });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -380,7 +369,6 @@ export default function KartingOrderPage() {
     if (!customerInfo.email.trim()) errors.email = "Please enter your email";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerInfo.email)) errors.email = "Please enter a valid email";
     if (!customerInfo.phone.trim()) errors.phone = "Please enter your phone number";
-    Object.assign(errors, validateShippingAddress(customerInfo));
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };

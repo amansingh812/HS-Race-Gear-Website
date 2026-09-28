@@ -94,7 +94,7 @@ async function main() {
   const Order = (await import("../models/Order.js")).default;
 
   const orders = await Order.find({ placedAt: { $gte: since } })
-    .select("orderNumber placedAt createdAt total status payment items customerNotes hasCustomFit customLogoUrl customLogoUrls attribution")
+    .select("orderNumber placedAt createdAt total status payment items customerNotes hasCustomFit customLogoUrl customLogoUrls attribution customer notificationStatus notificationError")
     .lean();
 
   // placedAt may be unset on older records — fall back to createdAt.
@@ -287,6 +287,24 @@ async function main() {
   }
   if (shopLeads.length) {
     console.log(`\n  (${shopLeads.length} non-custom orders without captured payment — abandoned or pending.)`);
+  }
+
+  // ===== 5b. Leads nobody was emailed about =====
+  // Email failure stopped failing the customer's request on 2026-09-28, so
+  // these would otherwise be invisible — a real lead sitting in the database
+  // that never reached anyone's inbox. Printed last and loudly on purpose.
+  const undelivered = rows.filter((r) => r.notificationStatus === "failed");
+  if (undelivered.length) {
+    console.log("\n");
+    line("═");
+    console.log(`  ⚠  ${undelivered.length} LEAD(S) SAVED BUT NEVER EMAILED — CONTACT THESE BY HAND`);
+    line("═");
+    for (const r of undelivered) {
+      const when = r._when ? new Date(r._when).toISOString().slice(0, 10) : "—";
+      console.log(`  ${r.orderNumber}  ${when}  ${r.customer?.name || "—"}`);
+      console.log(`      ${r.customer?.email || "—"}  ${r.customer?.phone || "—"}`);
+      if (r.notificationError) console.log(`      reason: ${r.notificationError}`);
+    }
   }
 
   // ===== 6. Caveats =====

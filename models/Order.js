@@ -173,6 +173,17 @@ const orderSchema = new mongoose.Schema({
   customLogoUrls: { type: [String], default: [] },
   customLogoNotes: String,
   
+  // Internal notification delivery (added 2026-09-28). Email failure no
+  // longer fails the customer's submission, so this is how the team finds
+  // leads that came in without anyone being emailed. Query for
+  // { notificationStatus: "failed" } to recover them.
+  notificationStatus: {
+    type: String,
+    enum: ["sent", "failed", "unknown"],
+    default: "unknown",
+  },
+  notificationError: String,
+
   // First-touch attribution (added 2026-09-24) — which page earned the visit,
   // as opposed to which order form was submitted. Lets us finally answer
   // "which SEO page makes money". Best-effort: absent when storage is blocked.
