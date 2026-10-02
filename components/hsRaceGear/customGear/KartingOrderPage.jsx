@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelectionStep";
 import PackageConfigurator from "@/components/hsRaceGear/customGear/PackageConfigurator";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import { getAttribution } from "@/lib/attribution";
+import { makeSubmissionId } from "@/lib/submissionId";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
 
@@ -321,6 +322,10 @@ export default function KartingOrderPage() {
   const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "" });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // One idempotency key per order ATTEMPT, reused on every retry so a
+  // resubmission returns the original order instead of creating a second.
+  const submissionIdRef = useRef(null);
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Pre-select package from URL param (e.g. ?package=karting-suit-gloves)
@@ -404,6 +409,7 @@ export default function KartingOrderPage() {
   };
 
   const handleSubmit = async () => {
+    if (!submissionIdRef.current) submissionIdRef.current = makeSubmissionId();
     setIsSubmitting(true);
     try {
       const payload = {
@@ -416,6 +422,7 @@ export default function KartingOrderPage() {
         },
         productType: "karting-suit",
         attribution: getAttribution(),
+        submissionId: submissionIdRef.current,
         suitMockup,
         glovesMockup: selectedPackage?.includes?.includes("gloves") ? glovesMockup : null,
         shoesMockup: selectedPackage?.includes?.includes("shoes") ? shoesMockup : null,
@@ -434,6 +441,8 @@ export default function KartingOrderPage() {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to submit order");
+
+      submissionIdRef.current = null;
 
       setIsSuccess(true);
     } catch (err) {

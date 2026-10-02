@@ -78,6 +78,33 @@ export async function POST(request) {
       return NextResponse.json({ error: "Missing suit design selection" }, { status: 400 });
     }
 
+    // ---- Idempotency ----
+    //
+    // Added 2026-09-29 after two identical leads were created a minute apart:
+    // the first request saved the order and sent the notification but was
+    // killed before responding, so the customer saw a failure and pressed
+    // submit again. The order page sends the same submissionId on every
+    // retry, so a replay returns the original order rather than a new one.
+    //
+    // Checked BEFORE the order is generated, so a replay costs one indexed
+    // lookup and sends no second email.
+    await dbConnect();
+
+    const submissionId = typeof orderData.submissionId === "string" ? orderData.submissionId.slice(0, 100) : "";
+
+    if (submissionId) {
+      const existing = await Order.findOne({ submissionId }).select("orderNumber total").lean();
+      if (existing) {
+        console.log(`[/api/custom-order] replay of ${submissionId} → returning ${existing.orderNumber}`);
+        return NextResponse.json({
+          success: true,
+          orderId: existing.orderNumber,
+          message: "Order already received",
+          duplicate: true,
+        });
+      }
+    }
+
     // ---- Order reference ----
     const orderId = generateOrderId();
 
@@ -89,8 +116,7 @@ export async function POST(request) {
 
     const orderPlacedAt = formatPlacedAt();
 
-    // ---- Save to MongoDB ----
-    await dbConnect();
+    // ---- Save to MongoDB ---- (already connected above for the replay check)
 
     // Price in cents for DB consistency (DB stores cents)
     const totalCents = Math.round(pricing.total * 100);
@@ -101,8 +127,9 @@ export async function POST(request) {
     // but the custom order form doesn't collect a full address upfront.
     // Shipping is confirmed later after mockup approval.
 
-    const dbOrder = await Order.create({
+    const orderPayload = {
       orderNumber: orderId,
+      submissionId: submissionId || undefined,
       isGuest: true,
       guestEmail: customer.email,
       customer: {
@@ -148,7 +175,30 @@ export async function POST(request) {
         shoeSize: shoeSize?.label || null,
         colors: colors || {},
       }),
-    });
+    };
+
+    let dbOrder;
+    try {
+      dbOrder = await Order.create(orderPayload);
+    } catch (createErr) {
+      // E11000 = unique index violation on submissionId. Two retries landed
+      // close enough together that both passed the findOne check above; the
+      // database is the arbiter and one of them lost. That's the correct
+      // outcome — return the order the winner created rather than erroring.
+      if (createErr?.code === 11000 && submissionId) {
+        const winner = await Order.findOne({ submissionId }).select("orderNumber").lean();
+        if (winner) {
+          console.log(`[/api/custom-order] concurrent replay of ${submissionId} → returning ${winner.orderNumber}`);
+          return NextResponse.json({
+            success: true,
+            orderId: winner.orderNumber,
+            message: "Order already received",
+            duplicate: true,
+          });
+        }
+      }
+      throw createErr;
+    }
 
     console.log(`[/api/custom-order] Saved to DB: ${dbOrder._id} / ${orderId}`);
 

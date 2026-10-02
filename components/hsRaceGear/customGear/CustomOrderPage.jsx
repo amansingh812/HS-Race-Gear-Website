@@ -1,10 +1,11 @@
 "use client";
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useRef, useState, useCallback, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelectionStep";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import { getAttribution } from "@/lib/attribution";
+import { makeSubmissionId } from "@/lib/submissionId";
 import * as gtag from "@/lib/gtag";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
@@ -419,6 +420,10 @@ export default function CustomOrderPage() {
   const [customerInfo, setCustomerInfo] = useState({ name: "", email: "", phone: "" });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // One idempotency key per order ATTEMPT, reused on every retry so a
+  // resubmission returns the original order instead of creating a second.
+  const submissionIdRef = useRef(null);
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Pre-select package from URL param (e.g. ?package=single-suit-gloves)
@@ -514,6 +519,7 @@ export default function CustomOrderPage() {
   };
 
   const handleSubmit = async () => {
+    if (!submissionIdRef.current) submissionIdRef.current = makeSubmissionId();
     setIsSubmitting(true);
     try {
       const payload = {
@@ -526,6 +532,7 @@ export default function CustomOrderPage() {
         },
         productType: "custom-race-suit",
         attribution: getAttribution(),
+        submissionId: submissionIdRef.current,
         suitMockup,
         glovesMockup: selectedPackage?.includes?.includes("gloves") ? glovesMockup : null,
         shoesMockup: selectedPackage?.includes?.includes("shoes") ? shoesMockup : null,
@@ -551,6 +558,8 @@ export default function CustomOrderPage() {
         packageName: selectedPackage?.name || "",
         referenceId: data.orderNumber || data.referenceId || "",
       });
+
+      submissionIdRef.current = null;
 
       setIsSuccess(true);
     } catch (err) {

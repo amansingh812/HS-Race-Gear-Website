@@ -173,6 +173,17 @@ const orderSchema = new mongoose.Schema({
   customLogoUrls: { type: [String], default: [] },
   customLogoNotes: String,
   
+  // Idempotency key (added 2026-09-29) after two identical leads were created
+  // a minute apart in production: the first request did all its work but was
+  // killed before responding, the customer saw a failure and pressed submit
+  // again. The order page generates one id per order attempt and reuses it on
+  // every retry, so a replay returns the original order instead of creating a
+  // second. Unique + sparse: older orders have no key and must not collide.
+  submissionId: {
+    type: String,
+    index: { unique: true, sparse: true },
+  },
+
   // Internal notification delivery (added 2026-09-28). Email failure no
   // longer fails the customer's submission, so this is how the team finds
   // leads that came in without anyone being emailed. Query for
