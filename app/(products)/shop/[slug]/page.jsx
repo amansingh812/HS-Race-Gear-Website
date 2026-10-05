@@ -20,14 +20,14 @@ export async function generateMetadata({ params }) {
     const product = await Product.findOne({ slug }).lean();
 
     if (!product) {
-      return { title: 'Product Not Found | HS Race Gear' };
+      return { title: 'Product Not Found' };
     }
 
     const description = product.shortDescription || product.description?.substring(0, 160);
     const imageUrl = product.images?.[0]?.url || '/images/og-image.jpg';
 
     return {
-      title: `${product.name} | HS Race Gear`,
+      title: product.name,
       description,
       alternates: { canonical: `/shop/${slug}` },
       openGraph: {
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
       },
     };
   } catch (error) {
-    return { title: 'Product | HS Race Gear' };
+    return { title: 'Product' };
   }
 }
 
@@ -203,7 +203,7 @@ export default async function ProductDetailPage({ params }) {
         <Breadcumb product={serializedProduct} />
         <Details1 product={serializedProduct} />
         {serializedProduct.category?.slug === 'race-suits' ? (
-          <RaceSuitSeoDescription />
+          <RaceSuitSeoDescription product={serializedProduct} />
         ) : (
           <div className="flat-single-product">
             <Description1 product={serializedProduct} />

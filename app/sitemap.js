@@ -20,11 +20,8 @@ export default async function sitemap() {
     { url: `${baseUrl}/about-us`,                     lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/contact-us`,                   lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/custom-race-suit`,             lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${baseUrl}/custom-race-suit/order`,       lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/custom-karting-suit`,          lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${baseUrl}/custom-karting-suit/order`,    lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/custom-powerboat-suit`,        lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${baseUrl}/custom-powerboat-suit/order`,  lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/custom-gloves`,                lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
     { url: `${baseUrl}/custom-shoes`,                 lastModified: now, changeFrequency: "weekly",  priority: 0.8 },
     // Discipline landing pages — added 2026-06-30 for buyer-intent search capture
@@ -95,7 +92,7 @@ export default async function sitemap() {
   try {
     await connectDB();
     const products = await Product.find(
-      { status: "active" },
+      { status: "active", slug: { $not: /(^|-)test(-|$)/i } },
       { slug: 1, updatedAt: 1, images: 1 }
     ).lean();
 

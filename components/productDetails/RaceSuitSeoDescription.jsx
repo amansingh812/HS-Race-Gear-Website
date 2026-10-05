@@ -1,11 +1,26 @@
 import React from "react";
 import "@/public/css/race-suit-seo.css";
 
-export default function RaceSuitSeoDescription() {
+export default function RaceSuitSeoDescription({ product } = {}) {
+  const name = product?.name;
+  const blurb = (product?.description || product?.shortDescription || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
   return (
     <section className="race-suit-seo-section">
       <div className="container">
         <div className="race-suit-seo-content">
+
+          {name && (
+            <>
+              <h2 className="race-suit-seo-heading">About the {name}</h2>
+              <p className="race-suit-seo-text">
+                The {name} is an off-the-rack SFI-certified racing suit made by HS Race Gear in Watertown, MA. It is available in single-layer (SFI 3.2A/1) and double-layer (SFI 3.2A/5) Nomex construction, in sizes 7XS to 3XL, and ships ready to race.
+                {blurb ? ` ${blurb.slice(0, 400)}` : ""}
+              </p>
+              <p className="race-suit-seo-text">
+                Need your own colors, logos or exact measurements? See our <a href="/custom-race-suit">custom race suits</a>, check the <a href="/certifications">SFI rating chart</a>, or compare <a href="/StandardPricing">pricing</a>.
+              </p>
+            </>
+          )}
 
           <h2 className="race-suit-seo-heading">Off-the-Rack SFI Race Suits</h2>
           <p className="race-suit-seo-text">

@@ -6,7 +6,7 @@ import ShopClient from '@/components/shop/ShopClient';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Shop SFI-Certified Racing Gear — Off-the-Rack Suits, Gloves & Shoes | HS Race Gear',
+  title: 'Shop SFI-Certified Racing Gear — Off-the-Rack Suits, Gloves & Shoes',
   description: 'Browse 33+ off-the-rack SFI-certified racing suits from $329 (regularly $599 — 45% off), plus crew shirts and sublimated hoodies. Genuine Nomex® construction. Made in USA. Free shipping on custom suits.',
   keywords: 'racing suits, off the rack racing suits, SFI racing suits, Nomex racing suit, custom race suit, crew shirts, sublimated hoodies, racing accessories, made in USA racing gear',
   alternates: {
@@ -31,7 +31,7 @@ async function getProducts() {
     const products = await Product.find({ status: 'active' })
       .populate('category', 'name slug')
       .sort({ createdAt: -1 })
-      .limit(50)
+      .limit(500)
       .lean();
     return JSON.parse(JSON.stringify(products));
   } catch (err) {
