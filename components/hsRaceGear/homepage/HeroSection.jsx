@@ -19,13 +19,13 @@ const heroSlides = [
     image: "/images/home/hs_hero_1.webp",
   },
   {
-    heading: "SFI Certified Racing Gear",
+    heading: "HALLOWEEN SALE",
     subtitle:
-      "From gloves to shoes, every piece of HS Race Gear (HSracegear) meets the highest international safety standards for professional motorsport.",
-    cta: "Shop Now",
+      "Get your coupon code for exclusive offers on all our premium racing gear.",
+    cta: "GET YOUR COUPON CODE",
     link: "/shop",
     isH1: false,
-    image: "/images/home/hs_hero_2.png",
+    image: "/images/home/hs-racegear-halloween-banner.png",
   },
   {
     heading: "Precision Fit. Maximum Protection.",
