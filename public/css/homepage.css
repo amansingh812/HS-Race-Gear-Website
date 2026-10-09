@@ -151,9 +151,29 @@
     margin-top: 45px;
   }
 
+  /* Mobile: show the full landscape banner (1920x800 = 12:5) uncropped,
+     with the copy stacked on a dark panel underneath instead of over it. */
   .hero-racing__slide {
-    height: 55vh;
-    min-height: 350px;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    display: block;
+    background: #0b0b0b;
+  }
+
+  .hero-racing__bg {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 12 / 5;
+  }
+
+  .hero-racing__overlay {
+    display: none;
+  }
+
+  .hero-racing__content {
+    padding: 20px 0 32px;
   }
 
   .hero-racing__heading {
