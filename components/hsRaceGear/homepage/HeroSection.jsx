@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// H1 rewritten 2026-05-16 to lead with "Custom Racing Suit" (singular,
-// higher search volume than plural) and "Made in USA" — both confirmed
-// from GSC queries. Subtitle keeps the SFI cert trust signal.
+// Slides 2 and 3 have their copy baked into the artwork, so on desktop they
+// render image-only (overlay: false). On mobile the baked-in text is too small
+// to read, so every slide shows its heading + CTA in a panel under the image.
 const heroSlides = [
   {
     heading: "Custom Racing Suits — SFI Certified",
@@ -16,27 +16,60 @@ const heroSlides = [
     cta: "Design Your Suit",
     link: "/custom-race-suit",
     isH1: true,
-    image: "/images/home/hs_hero_1.webp",
+    overlay: true,
+    alt: "Racer celebrating in a custom HS Race Gear SFI-certified racing suit",
+    web: "/images/banner/newBanner/banner-1-web.png",
+    mob: "/images/banner/newBanner/banner-1-mob.png",
   },
   {
-    heading: "HALLOWEEN SALE",
-    subtitle:
-      "Get your coupon code for exclusive offers on all our premium racing gear.",
-    cta: "GET YOUR COUPON CODE",
-    link: "/shop",
+    heading: "Halloween Sale — 10% Off",
+    subtitle: "Get in contact with us to claim 10% off your custom racing gear.",
+    cta: "Contact Us",
+    link: "/contact-us",
     isH1: false,
-    image: "/images/home/hs-racegear-halloween-banner.png",
+    overlay: false,
+    alt: "HS Race Gear Halloween Sale — 10% off. Get in contact with us to avail this discount.",
+    web: "/images/banner/newBanner/banner-2-web.png",
+    mob: "/images/banner/newBanner/banner-2-mob.png",
   },
   {
-    heading: "Precision Fit. Maximum Protection.",
+    heading: "Premium Nomex Fabric",
     subtitle:
-      "Our custom measurement process ensures your racing suit fits perfectly — because in racing, every detail matters.",
-    cta: "Get Measured",
-    link: "/custom-measurement",
+      "Lightweight, durable, race ready — reinforced shoulders, flexible stretch panels, secure wrist cuffs and an ergonomic fit.",
+    cta: "Design Your Suit",
+    link: "/custom-race-suit",
     isH1: false,
-    image: "/images/slider/fashion/hero_cars.webp",
+    overlay: false,
+    alt: "Premium Nomex racing suit features: comfortable neck design, reinforced shoulders, adjustable waist belt, flexible stretch panels, secure wrist cuffs, ergonomic fit",
+    web: "/images/banner/newBanner/banner-3-web.png",
+    mob: "/images/banner/newBanner/banner-3-mob.png",
   },
 ];
+
+// Higher than the default 75 so the text baked into the banners stays crisp.
+const IMAGE_QUALITY = 90;
+
+function HeroImage({ web, mob, alt, priority }) {
+  const common = { alt, fill: true, sizes: "100vw", quality: IMAGE_QUALITY };
+  const {
+    props: { srcSet: mobSrcSet },
+  } = getImageProps({ ...common, src: mob });
+  const {
+    props: { srcSet: webSrcSet, style, ...imgProps },
+  } = getImageProps({
+    ...common,
+    src: web,
+    ...(priority ? { fetchPriority: "high", loading: "eager" } : {}),
+  });
+
+  return (
+    <picture>
+      <source media="(max-width: 767px)" srcSet={mobSrcSet} />
+      <source media="(min-width: 768px)" srcSet={webSrcSet} />
+      <img {...imgProps} style={{ ...style, objectFit: "cover" }} className="hero-racing__image" />
+    </picture>
+  );
+}
 
 export default function HeroSection() {
   return (
@@ -44,56 +77,55 @@ export default function HeroSection() {
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
         effect="fade"
+        fadeEffect={{ crossFade: true }}
         loop
         speed={1000}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         dir="ltr"
       >
-        {heroSlides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div className="hero-racing__slide">
-              {/* Background Image or Placeholder */}
-              <div className="hero-racing__bg">
-                {slide.image ? (
-                  <Image
-                    src={slide.image}
-                    alt={slide.heading}
-                    fill
-                    className="hero-racing__image"
+        {heroSlides.map((slide, index) => {
+          const HeadingTag = slide.isH1 ? "h1" : "h2";
+          return (
+            <SwiperSlide key={index}>
+              <div
+                className={`hero-racing__slide ${
+                  slide.overlay ? "hero-racing__slide--overlay" : "hero-racing__slide--art"
+                }`}
+              >
+                <div className="hero-racing__bg">
+                  <HeroImage
+                    web={slide.web}
+                    mob={slide.mob}
+                    alt={slide.alt}
                     priority={index === 0}
-                    style={{ objectFit: "cover" }}
                   />
-                ) : (
-                  <div className="img-placeholder" style={{ fontSize: "1.1rem" }}>
-                    1920 x 800
-                  </div>
-                )}
-              </div>
-              <div className="hero-racing__overlay" />
-
-              {/* Content */}
-              <div className="container">
-                <div className="hero-racing__content">
-                  {slide.isH1 ? (
-                    <h1 className="hero-racing__heading">
-                      {slide.heading}
-                    </h1>
-                  ) : (
-                    <h2 className="hero-racing__heading">
-                      {slide.heading}
-                    </h2>
+                  {!slide.overlay && (
+                    <Link
+                      href={slide.link}
+                      className="hero-racing__slide-link"
+                      aria-label={slide.heading}
+                    />
                   )}
-                  <p className="hero-racing__subtitle">{slide.subtitle}</p>
-                  <Link href={slide.link} className="hero-racing__btn">
-                    {slide.cta}
-                    <i className="icon icon-arr-right" />
-                  </Link>
+                </div>
+                {slide.overlay && <div className="hero-racing__overlay" />}
+
+                <div className="hero-racing__body">
+                  <div className="container">
+                    <div className="hero-racing__content">
+                      <HeadingTag className="hero-racing__heading">{slide.heading}</HeadingTag>
+                      <p className="hero-racing__subtitle">{slide.subtitle}</p>
+                      <Link href={slide.link} className="hero-racing__btn">
+                        {slide.cta}
+                        <i className="icon icon-arr-right" />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </section>
   );
