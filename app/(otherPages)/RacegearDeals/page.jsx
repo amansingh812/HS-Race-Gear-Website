@@ -11,12 +11,19 @@ import Breadcumb from "@/components/common/Breadcumb";
 
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/RacegearDeals" },
-  // Leading with the discount % — the strongest click signal for this page
-  title: "Race Suit Sale — 45% Off SFI-Certified Racing Suits | HS Race Gear",
+  title: "Want 45% Off SFI Racing Suits? Pre-Built Suits From $329",
   description:
-    "Save 45% on SFI-certified race suits, gloves, and shoes. Pre-built suits start at $329 and ship in days — or go fully custom. Free shipping. Limited stock.",
+    "Looking for the best racing suit deals? Save 45% on SFI-certified Nomex suits ready to ship in days, or order custom-measured suits from $329 with free shipping.",
   keywords:
     "racing suit sale, race suit discount, cheap racing suits, SFI suit deals, affordable race suits, racing gear sale",
+  openGraph: {
+    title: "Want 45% Off SFI Racing Suits? Pre-Built Suits From $329",
+    description:
+      "Looking for the best racing suit deals? Save 45% on SFI-certified Nomex suits ready to ship in days, or order custom-measured suits from $329 with free shipping.",
+    url: "https://www.hsracegear.com/RacegearDeals",
+    siteName: "HS Race Gear",
+    type: "website",
+  },
 };
 
 export default function page() {

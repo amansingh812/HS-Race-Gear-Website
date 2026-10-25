@@ -17,7 +17,7 @@ export default function VsRushContent() {
             HS Racegear<br /><span>vs RUSH Racegear</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Looking at Rush race suits? Here's how HS Racegear compares — custom SFI-certified race suits from $289 for stock car, sprint car, dirt track, and drag racing. Faster production, full design freedom, premium Nomex® included.
+            Looking at Rush race suits? Here's how HS Racegear compares — custom SFI-certified race suits from $329 for stock car, sprint car, dirt track, and drag racing. Faster production, full design freedom, premium Nomex® included.
           </p>
         </div>
       </section>
@@ -86,7 +86,7 @@ export default function VsRushContent() {
               <h2 className="hs-doc-heading">Pricing</h2>
               <div className="hs-doc-card">
                 <p className="hs-doc-card-text">Custom SFI racewear doesn't need to cost four figures to meet safety standards.</p>
-                <p className="hs-doc-card-text">HS Racegear custom suits start at <strong style={{ color: '#e21b1b' }}>$289</strong>, making them ideal for drivers competing in stock car racing, sprint car series, dirt track championships, drag racing events, and road racing.</p>
+                <p className="hs-doc-card-text">HS Racegear custom suits start at <strong style={{ color: '#e21b1b' }}>$329</strong>, making them ideal for drivers competing in stock car racing, sprint car series, dirt track championships, drag racing events, and road racing.</p>
                 <p className="hs-doc-card-text">Each suit includes custom sizing, professional-grade construction, SFI certification, and full design flexibility.</p>
               </div>
               <div className="hs-doc-card hs-doc-card-note">

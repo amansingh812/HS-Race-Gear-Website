@@ -24,7 +24,10 @@ export async function generateMetadata({ params }) {
     }
 
     const description = product.shortDescription || product.description?.substring(0, 160);
-    const imageUrl = product.images?.[0]?.url || '/images/og-image.jpg';
+    const rawImageUrl = product.images?.[0]?.url || '/images/og-image.jpg';
+    const imageUrl = rawImageUrl.startsWith('http')
+      ? rawImageUrl
+      : `https://www.hsracegear.com${rawImageUrl.startsWith('/') ? '' : '/'}${rawImageUrl}`;
 
     return {
       title: product.name,
@@ -65,7 +68,10 @@ export default async function ProductDetailPage({ params }) {
     const productUrl = `https://www.hsracegear.com/shop/${slug}`;
     // Prefer image with isPrimary=true, then first available, then fallback
     const primaryImage = serializedProduct.images?.find(img => img.isPrimary);
-    const imageUrl = primaryImage?.url || serializedProduct.images?.[0]?.url || 'https://www.hsracegear.com/images/og-image.jpg';
+    const rawImageUrl = primaryImage?.url || serializedProduct.images?.[0]?.url || '/images/og-image.jpg';
+    const imageUrl = rawImageUrl.startsWith('http')
+      ? rawImageUrl
+      : `https://www.hsracegear.com${rawImageUrl.startsWith('/') ? '' : '/'}${rawImageUrl}`;
     // Prices stored in cents (e.g., 32900 = $329). Normalize to dollars for schema.
     const priceCents = serializedProduct.price || 0;
     const compareAtPriceCents = serializedProduct.compareAtPrice || 0;

@@ -221,7 +221,7 @@ export default function BlogPost3SFI() {
               </div>
               <div className="blog-tip-card" style={{ marginTop: "14px" }}>
                 <p className="blog-body-text" style={{ margin: 0 }}>
-                  A properly rated SFI racing suit is more than protective clothing — it's engineered safety designed to perform when it matters most. <strong style={{ color: "#e21b1b" }}>Race smart. Choose certified protection. Trust proven safety standards.</strong>
+                  A properly rated SFI racing suit is more than protective clothing — it's engineered safety designed to perform when it matters most. Explore our <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom race suits</Link> precision-tailored to your measurements in SFI 3.2A/1 and SFI 3.2A/5 specs. <strong style={{ color: "#e21b1b" }}>Race smart. Choose certified protection. Trust proven safety standards.</strong>
                 </p>
               </div>
             </div>
@@ -240,7 +240,7 @@ export default function BlogPost3SFI() {
             <span className="blog-cta-tag">SFI Certified</span>
             <h2 className="blog-cta-title">Custom SFI-Certified Racing Suits</h2>
             <p className="blog-cta-subtitle">
-              Every HS Race Gear suit is SFI certified, built with premium Nomex® materials, and custom-fit to your exact measurements. Starting at $289.
+              Every HS Race Gear suit is SFI certified, built with premium Nomex® materials, and custom-fit to your exact measurements. Starting at $329.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/certifications" className="tf-btn btn-fill animate-btn">

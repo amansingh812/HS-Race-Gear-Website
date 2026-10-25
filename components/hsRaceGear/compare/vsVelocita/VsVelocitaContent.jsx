@@ -17,7 +17,7 @@ export default function VsVelocitaContent() {
                         HS Racegear<br /><span>vs Velocita Racing Gear</span>
                     </h1>
                     <p className="contact-hero-subtitle">
-                        Looking at Velocita racing suits? See how HS Racegear stacks up — custom SFI-certified race suits from $289, transparent pricing, faster production, and real design freedom for all racing disciplines.
+                        Looking at Velocita racing suits? See how HS Racegear stacks up — custom SFI-certified race suits from $329, transparent pricing, faster production, and real design freedom for all racing disciplines.
                     </p>
                 </div>
             </section>
@@ -31,7 +31,7 @@ export default function VsVelocitaContent() {
                             <h2 className="hs-doc-heading">Considering Velocita Racing Suits? Here's a Better-Value Custom Alternative</h2>
                             <div className="hs-doc-card">
                                 <p className="hs-doc-card-text">
-                                    If you've been pricing out Velocita racing suits, you already know the brand — Italian heritage, sublimated graphics, SFI-certified. HS Racegear builds custom SFI 3.2A/1 and 3.2A/5 race suits to the same safety standard, with transparent pricing starting at $289, faster production timelines, and full design freedom. Below is the head-to-head, in plain English.
+                                    If you've been pricing out Velocita racing suits, you already know the brand — Italian heritage, sublimated graphics, SFI-certified. HS Racegear builds custom SFI 3.2A/1 and 3.2A/5 race suits to the same safety standard, with transparent pricing starting at $329, faster production timelines, and full design freedom. Below is the head-to-head, in plain English.
                                 </p>
                             </div>
                         </div>
@@ -55,7 +55,7 @@ export default function VsVelocitaContent() {
                             <h2 className="hs-doc-heading">Pricing</h2>
                             <div className="hs-doc-card">
                                 <ul className="hs-doc-list">
-                                    <li><strong>HS Racegear:</strong> Custom SFI race suits start at $289</li>
+                                    <li><strong>HS Racegear:</strong> Custom SFI race suits start at $329</li>
                                     <li><strong>Velocita Racing Gear:</strong> Pricing varies by product line and region</li>
                                 </ul>
                                 <p className="hs-doc-card-text">HS Racegear offers transparent, accessible pricing with custom sizing included — no surprises at checkout.</p>

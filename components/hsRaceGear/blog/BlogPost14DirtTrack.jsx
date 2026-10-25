@@ -247,7 +247,10 @@ export default function BlogPost14DirtTrack() {
                   Building for a specific discipline?{" "}
                   <Link href="/custom-sprint-car-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>Custom sprint car suits</Link>{" "}and{" "}
                   <Link href="/custom-dirt-late-model-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom dirt late model suits</Link>{" "}
-                  are both cut to your measurements in your team colours, with sponsor logos included.
+                  are both cut to your measurements in your team colours, with sponsor logos included. Not sure which fits your class? Start with our{" "}
+                  <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom racing suit</Link>{" "}
+                  builder, or browse <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom fire suits</Link>{" "}
+                  in SFI 3.2A/1 and 3.2A/5.
                 </p>
               </div>
             </div>

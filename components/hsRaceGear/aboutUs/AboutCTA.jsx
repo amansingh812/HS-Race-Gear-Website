@@ -9,7 +9,7 @@ export default function AboutCTA() {
         <div className="about-cta-inner">
           <h2 className="about-cta-title">Ready to Build Your Custom Suit?</h2>
           <p className="about-cta-desc">
-            SFI-certified. Fully custom. Starting at $289. Free worldwide shipping.
+            SFI-certified. Fully custom. Starting at $329. Free worldwide shipping.
             Unlimited design revisions. Your gear. Your identity. Your race.
           </p>
           <div className="about-cta-actions">

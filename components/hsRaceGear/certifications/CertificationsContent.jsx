@@ -249,9 +249,7 @@ export default function CertificationsContent() {
                             <div style={{ flex: '1' }}>
                                 <h3 className="hs-doc-card-title" style={{ fontSize: '1.4rem' }}>Tech Inspection Ready</h3>
                                 <p className="hs-doc-card-text" style={{ fontSize: '1rem' }}>
-                                    Every custom suit, glove, and shoe from HS Racegear includes a genuine SFI certification patch
-                                    permanently affixed to the garment exterior. This ensures zero delays or issues during pre-race tech
-                                    inspections.
+                                    All of our <Link href="/custom-race-suit" style={{ color: '#e21b1b', textDecoration: 'underline' }}>custom fire suits</Link>, gloves, and shoes from HS Race Gear include an authentic SFI certification patch permanently affixed to the garment exterior starting from $329. This ensures zero delays or issues during pre-race tech inspections.
                                 </p>
                                 <div style={{ marginTop: '20px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                                     <Link href="/custom-race-suit" style={{

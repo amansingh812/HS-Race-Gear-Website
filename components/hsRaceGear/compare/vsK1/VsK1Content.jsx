@@ -17,7 +17,7 @@ export default function VsK1Content() {
             HS Racegear<br /><span>vs K1 RaceGear</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Looking at K1 racing suits? Here's how HS Racegear compares — custom SFI-certified race suits from $289, faster turnaround, deeper customization, and better value without compromising safety.
+            Looking at K1 racing suits? Here's how HS Racegear compares — custom SFI-certified race suits from $329, faster turnaround, deeper customization, and better value without compromising safety.
           </p>
         </div>
       </section>
@@ -32,7 +32,7 @@ export default function VsK1Content() {
               <h2 className="hs-doc-heading">Considering K1 Racing Suits? Here's a Better-Value Custom Alternative</h2>
               <div className="hs-doc-card">
                 <p className="hs-doc-card-text">
-                  If you've been pricing out K1 racing suits, you already know what you're after: custom-fit SFI-certified racewear from a brand racers actually trust. HS Racegear builds the same caliber suit — premium Nomex®, SFI 3.2A/1 and 3.2A/5 certified, custom-measured to your body, any color or design — starting at $289, on a faster production timeline. Below is the head-to-head, in plain English.
+                  If you've been pricing out K1 racing suits, you already know what you're after: custom-fit SFI-certified racewear from a brand racers actually trust. HS Racegear builds the same caliber suit — premium Nomex®, SFI 3.2A/1 and 3.2A/5 certified, custom-measured to your body, any color or design — starting at $329, on a faster production timeline. Below is the head-to-head, in plain English.
                 </p>
               </div>
             </div>
@@ -62,7 +62,7 @@ export default function VsK1Content() {
                 <div className="vs-compare-grid">
                   <div className="vs-compare-col vs-compare-col--hs">
                     <div className="vs-compare-brand">HS Racegear</div>
-                    <p className="vs-compare-value">Custom suits starting at <strong style={{ color: "#e21b1b" }}>$289</strong></p>
+                    <p className="vs-compare-value">Custom suits starting at <strong style={{ color: "#e21b1b" }}>$329</strong></p>
                   </div>
                   <div className="vs-compare-col vs-compare-col--them">
                     <div className="vs-compare-brand">K1 RaceGear</div>
@@ -183,7 +183,7 @@ export default function VsK1Content() {
                   <li>Faster 2–3 week turnaround</li>
                   <li>Fully custom SFI-certified suits</li>
                   <li>Unlimited design revisions</li>
-                  <li>Competitive custom pricing from $289</li>
+                  <li>Competitive custom pricing from $329</li>
                   <li>Premium Nomex® materials included as standard</li>
                   <li>Matching gloves &amp; shoes available in bundles</li>
                 </ul>

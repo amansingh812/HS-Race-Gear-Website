@@ -177,7 +177,7 @@ export default function BlogPost4Aftermarket() {
               <div className="blog-tip-card" style={{ marginTop: "14px" }}>
                 <p className="blog-tip-label">Worth Knowing</p>
                 <p className="blog-body-text" style={{ margin: 0 }}>
-                  Custom doesn't always cost more than premium off-the-rack. HS Race Gear's HS Pro 1, Super, Rush, and Ace lines start at $329 — competitive with mid-tier off-the-rack — and you get measurement-perfect fit, unlimited mockup revisions, and Made-in-USA construction.{" "}
+                  Custom doesn't always cost more than premium off-the-rack. HS Race Gear's <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom fire suits</Link> start at $329 — competitive with mid-tier off-the-rack — and you get measurement-perfect fit, unlimited mockup revisions, and SFI-certified Nomex® protection.{" "}
                   <Link href="/StandardPricing" style={{ color: "#e21b1b", textDecoration: "underline" }}>
                     See pricing →
                   </Link>

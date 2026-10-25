@@ -11,9 +11,9 @@ import React from "react";
 // track — pricing anchor in title is the key differentiator.
 export const metadata = {
   alternates: { canonical: "/compare/vs-pyrotect" },
-  title: "Pyrotect Racing Suits Alternative — Custom SFI Suits From $289 | HS Race Gear",
+  title: "Pyrotect Racing Suits Alternative — Custom SFI Suits From $329 | HS Race Gear",
   description:
-    "Searching for Pyrotect racing suits? HS Racegear builds custom SFI-certified race suits from $289 (vs ~$995 for Pyrotect) with NHRA, IHRA, IMCA, and USAC compliance. Faster production, full design control, premium Nomex®.",
+    "Searching for Pyrotect racing suits? HS Racegear builds custom SFI-certified race suits from $329 (vs ~$995 for Pyrotect) with NHRA, IHRA, IMCA, and USAC compliance. Faster production, full design control, premium Nomex®.",
   keywords:
     "pyrotect racing suit, pyrotect racing suits, pyrotect race suit, pyrotect fire suit, pyrotect alternative, HS Racegear vs Pyrotect, custom SFI race suits, NHRA drag racing suit, affordable SFI fire suit",
 };

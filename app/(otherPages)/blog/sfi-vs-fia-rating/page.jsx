@@ -16,15 +16,15 @@ import React from "react";
 // AI-engine citation target (clear comparative structure + explicit facts).
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/blog/sfi-vs-fia-rating" },
-  title: "SFI vs FIA 8856-2018: Key Differences & Which One You Need",
+  title: "SFI vs FIA: Which Rating Do You Need? Custom Suits From $329",
   description:
-    "SFI vs FIA 8856-2018 compared — how the two racing suit certifications differ, why an SFI tag won't always pass FIA tech (and vice versa), what SCCA accepts, and how to tell which one your series requires in 2026.",
+    "Need SFI or FIA certification? Learn which rating passes your series tech inspection, and get custom-tailored SFI racing suits from $329. Made in USA.",
   keywords:
     "FIA 8856-2018 vs SFI 5, sfi vs fia, sfi vs fia rating, fia 8856-2018 vs sfi, fia vs sfi racing suit, sfi or fia certification, fia 8856-2018, sfi 3.2a/5, racing suit certification, scca fire suit certification, which sfi rating do i need",
   openGraph: {
-    title: "SFI vs FIA 8856-2018: Key Differences & Which One You Need",
+    title: "SFI vs FIA: Which Rating Do You Need? Custom Suits From $329",
     description:
-      "Two certification bodies, two test methods, almost no overlap in who accepts what. The practical difference between SFI 3.2A and FIA 8856-2018.",
+      "Need SFI or FIA certification? Learn which rating passes your series tech inspection, and get custom-tailored SFI racing suits from $329. Made in USA.",
     url: "https://www.hsracegear.com/blog/sfi-vs-fia-rating",
     siteName: "HS Race Gear",
     type: "article",

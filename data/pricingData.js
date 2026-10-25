@@ -36,7 +36,7 @@ export const racingSuitPricing = [
     name: 'Standard 1-Layer Racing Suit',
     certification: 'SFI 3.2A/1',
     badge: null,
-    price: 299,
+    price: 329,
     originalPrice: null,
     image: '/images/pricing/racing-suit-1-layer.jpg',
     description: 'Entry-level protection ideal for karting and lower-heat environments.',
@@ -425,6 +425,6 @@ export const suitComparisonData = {
     ['Embroidery', 'Add-on', 'Add-on', 'Included'],
     ['Stretch Panels', '✗', '✗', '✓'],
     ['Premium Finishing', '✗', '✗', '✓'],
-    ['Price', '$299', '$499', '$649'],
+    ['Price', '$329', '$499', '$649'],
   ],
 };

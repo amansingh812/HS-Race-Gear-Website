@@ -230,7 +230,7 @@ export default function BlogPost6Endurance() {
                 </ul>
               </div>
               <div className="blog-highlight-box">
-                <p>HS Race Gear's custom endurance suits hit every item on this list, start at $329, and ship worldwide. We've spec'd suits for 24 Hours of Lemons crews, NASA endurance teams, and Daytona supporting-series racers across the US.</p>
+                <p>HS Race Gear's <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom racing suit</Link> builds hit every endurance requirement on this list, start at $329, and ship worldwide. We've spec'd suits for 24 Hours of Lemons crews, NASA endurance teams, and Daytona supporting-series racers across the US.</p>
               </div>
             </div>
 

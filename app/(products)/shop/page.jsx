@@ -43,7 +43,7 @@ async function getProducts() {
 export default async function ShopPage() {
   const products = await getProducts();
 
-  // Build dynamic ItemList schema from real product data
+  // Build dynamic ItemList schema with full Product items from real product data
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -56,12 +56,50 @@ export default async function ShopPage() {
       '@type': 'ItemList',
       'itemListOrder': 'https://schema.org/ItemListOrderDescending',
       'numberOfItems': products.length || 33,
-      'itemListElement': products.slice(0, 20).map((p, i) => ({
-        '@type': 'ListItem',
-        'position': i + 1,
-        'name': p.name,
-        'url': `https://www.hsracegear.com/shop/${p.slug}`,
-      })),
+      'itemListElement': products.slice(0, 30).map((p, i) => {
+        const rawImg = p.images?.[0]?.url || '/images/og-image.jpg';
+        const absoluteImg = rawImg.startsWith('http')
+          ? rawImg
+          : `https://www.hsracegear.com${rawImg.startsWith('/') ? '' : '/'}${rawImg}`;
+        const priceDollars = ((p.price || 32900) / 100).toFixed(2);
+        const totalStock = (p.inventory || []).reduce((sum, item) => sum + (item.stock || 0), 0);
+        const availability = (totalStock > 0 || p.customFitAvailable !== false)
+          ? 'https://schema.org/InStock'
+          : 'https://schema.org/InStock';
+        const productUrl = `https://www.hsracegear.com/shop/${p.slug}`;
+
+        return {
+          '@type': 'ListItem',
+          'position': i + 1,
+          'url': productUrl,
+          'item': {
+            '@type': 'Product',
+            '@id': `${productUrl}#product`,
+            'name': p.name,
+            'url': productUrl,
+            'image': absoluteImg,
+            'description': p.shortDescription || p.description || `${p.name} - SFI certified racing gear from HS Race Gear.`,
+            'sku': p.sku || p.slug,
+            'brand': {
+              '@type': 'Brand',
+              'name': 'HS Race Gear',
+            },
+            'offers': {
+              '@type': 'Offer',
+              'url': productUrl,
+              'priceCurrency': 'USD',
+              'price': priceDollars,
+              'availability': availability,
+              'itemCondition': 'https://schema.org/NewCondition',
+              'seller': {
+                '@type': 'Organization',
+                'name': 'HS Race Gear',
+                'url': 'https://www.hsracegear.com',
+              },
+            },
+          },
+        };
+      }),
     },
   };
 

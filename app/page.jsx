@@ -111,7 +111,7 @@ const localBusinessSchema = {
               "offers": {
                 "@type": "Offer",
                 "priceCurrency": "USD",
-                "price": "299",
+                "price": "329",
                 "priceValidUntil": "2027-12-31",
                 "availability": "https://schema.org/InStock",
                 "url": "https://www.hsracegear.com/custom-race-suit",

@@ -155,6 +155,7 @@ export default function CustomRaceSuitPage() {
                             color: "#fff",
                             textTransform: "uppercase"
                         }}>
+                            Custom Race Suits<br />
                             Precision Tailored.<br />
                             Maximum <span style={{ color: "#dc2626" }}>Safety.</span>
                         </h1>
@@ -252,7 +253,7 @@ export default function CustomRaceSuitPage() {
                             color: "#fff",
                             marginBottom: "16px"
                         }}>
-                            Engineered for the Track
+                            Custom Fire Suits Engineered for the Track
                         </h2>
                         <div style={{
                             height: "4px",
@@ -360,7 +361,7 @@ export default function CustomRaceSuitPage() {
                                 color: "#fff",
                                 marginBottom: "24px"
                             }}>
-                                Designed for Your Style
+                                Design Your Custom Racing Suit
                             </h2>
                             <p style={{
                                 color: "#9ca3af",

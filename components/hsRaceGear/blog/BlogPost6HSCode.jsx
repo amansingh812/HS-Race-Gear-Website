@@ -268,7 +268,7 @@ export default function BlogPost6HSCode() {
                 </ul>
               </div>
               <div className="blog-highlight-box">
-                <p>US buyers ordering a single custom racing suit from HS Race Gear (priced from $299) will typically clear customs duty-free under the $800 de minimis threshold — even when ordering internationally.</p>
+                <p>US buyers ordering a single custom racing suit from HS Race Gear (priced from $329) will typically clear customs duty-free under the $800 de minimis threshold — even when ordering internationally.</p>
               </div>
             </div>
 

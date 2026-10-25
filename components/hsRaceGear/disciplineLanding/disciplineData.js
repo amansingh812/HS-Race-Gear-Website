@@ -20,7 +20,7 @@ export const DISCIPLINE_DATA = {
     builtForIntro: "Drag racing suits face a specific risk profile — short, high-fuel-load runs with potential nitromethane or alcohol exposure, plus the burnout box. Our custom drag racing suits are built around four design priorities:",
     parentContext: {
       before:  "Every one of these is standard on our",
-      anchor:  "custom made race suits",
+      anchor:  "custom fire suits",
       after:   "— the drag-specific build simply starts from a different SFI tier and a lighter layer count.",
     },
     builtForPoints: [
@@ -149,7 +149,7 @@ export const DISCIPLINE_DATA = {
     builtForIntro: "Road racing covers a wide spectrum from amateur club racing to professional endurance. Our road racing suits are built to span the major US series:",
     parentContext: {
       before:  "Road-course builds start from the same measured pattern as every other",
-      anchor:  "custom made racing suit",
+      anchor:  "custom racing suit",
       after:   "we cut, then add shoulder mobility and cooling for longer stints.",
     },
     builtForPoints: [

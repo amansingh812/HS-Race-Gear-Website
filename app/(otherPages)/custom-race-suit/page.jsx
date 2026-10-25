@@ -87,7 +87,7 @@ export default function page() {
       <section className="blog-post-section" style={{ padding: "40px 0" }}>
         <div className="container">
           <h2 className="blog-body-heading" style={{ textAlign: "center", marginBottom: 24 }}>
-            Custom Racing Suits by Discipline
+            Custom Race Suits by Discipline
           </h2>
           <div className="row g-3">
             <div className="col-md-6 col-lg-3">

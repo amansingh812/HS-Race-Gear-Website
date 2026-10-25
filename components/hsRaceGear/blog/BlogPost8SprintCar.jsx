@@ -181,7 +181,7 @@ export default function BlogPost8SprintCar() {
                   <li><strong>Inner thigh length</strong> — the lower 1/3 of the suit binds first if this measurement is off by even 1 inch.</li>
                 </ul>
                 <p className="blog-body-text" style={{ marginTop: "14px" }}>
-                  This is why custom-measured beats off-the-rack for sprint car specifically. The cockpit demands more from the suit than almost any other open-cockpit discipline. For the full measurement guide,{" "}
+                  This is why custom-measured beats off-the-rack for sprint car specifically. When building <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom fire suits</Link> for high-intensity open cockpits, precision tailoring ensures zero binding under the harness. For the full measurement process,{" "}
                   <Link href="/blog/perfect-custom-fit-racing-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>
                     see our custom fit tips post
                   </Link>

@@ -19,7 +19,7 @@ const pillars = [
   {
     icon: "💰",
     title: "Accessible Pricing",
-    desc: "SFI-certified custom racewear starting at $289. We believe every driver deserves professional protection — not just factory teams.",
+    desc: "SFI-certified custom racewear starting at $329. We believe every driver deserves professional protection — not just factory teams.",
   },
 ];
 

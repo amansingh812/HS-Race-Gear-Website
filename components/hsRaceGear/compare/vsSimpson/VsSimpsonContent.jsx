@@ -31,7 +31,7 @@ export default function VsSimpsonContent() {
               <h2 className="hs-doc-heading">Considering Simpson Racing Suits? Here's a Better-Value Custom Alternative</h2>
               <div className="hs-doc-card">
                 <p className="hs-doc-card-text">
-                  Simpson racing suits are an institution — half a century of legacy in drag, sprint, and circle track. They're also priced like an institution. HS Racegear builds custom SFI-certified race suits to the same safety standard for roughly one-quarter the cost: SFI 3.2A/1 and 3.2A/5 certified, premium Nomex®, custom-measured to your body, full design control, starting at $289 vs $1,049+ for Simpson. Below is the head-to-head.
+                  Simpson racing suits are an institution — half a century of legacy in drag, sprint, and circle track. They're also priced like an institution. HS Racegear builds custom SFI-certified race suits to the same safety standard for roughly one-quarter the cost: SFI 3.2A/1 and 3.2A/5 certified, premium Nomex®, custom-measured to your body, full design control, starting at $329 vs $1,049+ for Simpson. Below is the head-to-head.
                 </p>
               </div>
             </div>
@@ -54,7 +54,7 @@ export default function VsSimpsonContent() {
               <h2 className="hs-doc-heading">Cost of Entry</h2>
               <div className="hs-doc-card">
                 <ul className="hs-doc-list">
-                  <li><strong>HS Racegear:</strong> Custom SFI race suits start at $289</li>
+                  <li><strong>HS Racegear:</strong> Custom SFI race suits start at $329</li>
                   <li><strong>Simpson Racing:</strong> Custom SFI race suits start at $1,049 USD</li>
                 </ul>
               </div>

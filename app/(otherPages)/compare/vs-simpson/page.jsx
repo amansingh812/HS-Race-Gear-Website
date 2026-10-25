@@ -8,13 +8,13 @@ import React from "react";
 
 // Metadata updated 2026-08-11 — Keyword Planner check: "simpson racing suit"
 // and "simpson fire suit" are both 500/mo; "simpson custom fire suit" is only
-// 50/mo. Leading with the head term and keeping the $289-vs-$1,049 price gap
+// 50/mo. Leading with the head term and keeping the $329-vs-$1,049 price gap
 // in the title — the price contrast is what earns the click off a brand query.
 export const metadata = {
   alternates: { canonical: "/compare/vs-simpson" },
-  title: "Simpson Racing Suits Alternative — Custom SFI Suits From $289",
+  title: "Simpson Racing Suits Alternative — Custom SFI Suits From $329",
   description:
-    "Comparing Simpson racing suits? HS Race Gear builds custom SFI-certified fire suits from $289 (vs $1,049+ for Simpson) — faster production, full design control, premium Nomex® construction. NHRA, IHRA, sprint, drag, and oval compliant.",
+    "Comparing Simpson racing suits? HS Race Gear builds custom SFI-certified fire suits from $329 (vs $1,049+ for Simpson) — faster production, full design control, premium Nomex® construction. NHRA, IHRA, sprint, drag, and oval compliant.",
   keywords:
     "simpson custom fire suit, simpson custom race suit, simpson racing suit, simpson racing suits, simpson race suit, simpson fire suit, simpson racing alternative, HS Racegear vs Simpson, Simpson Racing alternative, custom SFI race suits, drag racing suit, affordable SFI fire suit, sprint car suit",
 };

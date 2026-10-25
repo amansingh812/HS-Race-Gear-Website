@@ -214,7 +214,7 @@ export default function BlogPost1CustomFit() {
             <span className="blog-cta-tag">Ready to Order?</span>
             <h2 className="blog-cta-title">Build Your Custom Racing Suit</h2>
             <p className="blog-cta-subtitle">
-              Custom SFI-certified suits from $289. 2–3 week turnaround, unlimited design revisions, premium Nomex® materials included.
+              Custom SFI-certified suits from $329. 2–3 week turnaround, unlimited design revisions, premium Nomex® materials included.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/custom-race-suit" className="tf-btn btn-fill animate-btn">

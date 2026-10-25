@@ -188,7 +188,7 @@ const pricingData = [
     label: "KARTING SUIT",
     title: "CUSTOM KARTING SUIT",
     packageId: "karting-suit-gloves",
-    price: 289,
+    price: 329,
     icon: "kart",
     imagePlaceholder: "/images/pricing/karting-suit.jpg",
     certification: null,

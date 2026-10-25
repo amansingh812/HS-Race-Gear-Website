@@ -7,12 +7,19 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/StandardPricing" },
-  // "Pricing" as a standalone word gets no clicks — lead with the price anchor
-  title: "Racing Suit Pricing — Custom Suits from $299 | HS Race Gear",
+  title: "How Much Does a Custom Race Suit Cost? Suits From $329",
   description:
-    "Exact pricing for custom SFI racing suits, karting suits, gloves & shoes. SFI 3.2A/1 from $299, SFI 3.2A/5 from $499. Unlimited colors and logos. Free shipping.",
+    "Wondering what a custom SFI race suit costs? Get all-inclusive pricing with unlimited colors, logos, and custom fit from $329. Free worldwide shipping.",
   keywords:
     "racing suit price, how much does a racing suit cost, custom race suit cost, SFI suit pricing, racing gear prices",
+  openGraph: {
+    title: "How Much Does a Custom Race Suit Cost? Suits From $329",
+    description:
+      "Wondering what a custom SFI race suit costs? Get all-inclusive pricing with unlimited colors, logos, and custom fit from $329. Free worldwide shipping.",
+    url: "https://www.hsracegear.com/StandardPricing",
+    siteName: "HS Race Gear",
+    type: "website",
+  },
 };
 
 export default function page() {

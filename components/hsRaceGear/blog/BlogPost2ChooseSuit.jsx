@@ -222,6 +222,9 @@ export default function BlogPost2ChooseSuit() {
                     </ul>
                   </div>
                 </div>
+                <p className="blog-body-text" style={{ marginTop: "14px" }}>
+                  For competitive racers needing custom tailored sizing, bespoke team graphics, and certified protection starting at just $329, explore our <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom race suits</Link> tailored to your exact measurements.
+                </p>
               </div>
             </div>
 
@@ -275,7 +278,7 @@ export default function BlogPost2ChooseSuit() {
             <span className="blog-cta-tag">Ready to Upgrade?</span>
             <h2 className="blog-cta-title">SFI Certified Suits for Every Discipline</h2>
             <p className="blog-cta-subtitle">
-              Custom SFI-certified suits from $289. Premium Nomex® materials, 2–3 week turnaround, and unlimited design revisions included.
+              Custom SFI-certified suits from $329. Premium Nomex® materials, 2–3 week turnaround, and unlimited design revisions included.
             </p>
             <div className="blog-cta-buttons">
               <Link href="/custom-race-suit" className="tf-btn btn-fill animate-btn">

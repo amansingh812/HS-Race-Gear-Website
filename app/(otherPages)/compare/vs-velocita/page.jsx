@@ -8,13 +8,13 @@ import React from "react";
 
 // Metadata updated 2026-08-11 — Keyword Planner check: "velocita race suit"
 // is 500/mo, "velocita custom racing suits" only 50/mo. Leading with the
-// higher-volume head term and restoring the $289 price anchor (price in the
+// higher-volume head term and restoring the $329 price anchor (price in the
 // title is the single strongest CTR lever on a competitor-alternative page).
 export const metadata = {
     alternates: { canonical: "/compare/vs-velocita" },
-    title: "Velocita Race Suit Alternative — Custom SFI Suits From $289",
+    title: "Velocita Race Suit Alternative — Custom SFI Suits From $329",
     description:
-        "Comparing Velocita race suits? HS Race Gear builds custom SFI-certified suits from $289 — made to your exact measurements in the USA, with transparent pricing, faster production, and real design freedom for drag, sprint, dirt, and road racing.",
+        "Comparing Velocita race suits? HS Race Gear builds custom SFI-certified suits from $329 — made to your exact measurements in the USA, with transparent pricing, faster production, and real design freedom for drag, sprint, dirt, and road racing.",
     keywords:
         "velocita custom racing suits, velocita racing suit, velocita racing suits, velocita race suit, velocita racing gear, velocita-usa, velocita alternative, HS Racegear vs Velocita, custom SFI race suits, dirt track suit, sprint car suit, drag racing suit",
 };

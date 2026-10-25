@@ -221,7 +221,7 @@ export default function BlogPost5SFIByClass() {
                   <li><strong>Mismatched accessories.</strong> A 3.2A/15 jacket with 3.3/1 gloves fails tech in classes that require all-3.2A/15 head-to-foot. The rating is system-wide, not just the suit.</li>
                   <li><strong>"SFI-style" knockoffs.</strong> Imported suits that say "SFI compliant" or "SFI-style" but lack the actual SFI Foundation label. These never pass.</li>
                   <li><strong>Fabric contamination.</strong> Fuel stains, oil burns, or chemical exposure can void compliance even with a valid label. Tech inspectors will flag visible contamination.</li>
-                  <li><strong>Wrong cut for the cockpit.</strong> Not a failure mode for tech, but a real safety issue: a suit that binds at the shoulders or rides up under harness compresses your range of motion. Custom-fit solves this completely.</li>
+                  <li><strong>Wrong cut for the cockpit.</strong> Not a failure mode for tech, but a real safety issue: a suit that binds at the shoulders or rides up under harness compresses your range of motion. Ordering made-to-measure <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom fire suits</Link> solves this completely by tailoring every panel to your seating angle.</li>
                 </ul>
               </div>
             </div>
@@ -245,6 +245,9 @@ export default function BlogPost5SFIByClass() {
                   <li>Your car runs hot — methanol fuel, alcohol injection, header proximity — and you've personally felt the heat in the cockpit.</li>
                   <li>You race in a series where mid-season rule changes are common, and a one-tier buffer keeps you compliant if minimums move.</li>
                 </ul>
+                <p className="blog-body-text" style={{ marginTop: "14px" }}>
+                  Whether you need SFI 3.2A/1, 3.2A/5, or heavy-duty protection, our <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom racing suit</Link> service lets you specify exact ratings, layers, and team embroidery.
+                </p>
               </div>
             </div>
 

@@ -9,12 +9,19 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/blog" },
-  // "Blog" as the first word gets no clicks — lead with content value
-  title: "Racing Gear Guides — SFI Ratings, Custom Suit Tips & Fit Advice | HS Race Gear",
+  title: "Need Racing Suit & SFI Advice? Custom Race Suits From $329",
   description:
-    "Guides on SFI ratings explained, how to measure for a custom race suit, choosing the right suit for circle-track, drag, and karting. Written by racers, for racers.",
+    "How do you choose the right racing suit and pass tech? Read expert SFI guides, sizing tips, and order custom-fit SFI fire suits from $329 with free shipping.",
   keywords:
     "racing suit guide, SFI ratings, SFI suit ratings, SFI ratings by class, how to measure for a racing suit, custom race suit tips, sprint car racing suit, drag racing suit, dirt late model suit, karting suit, endurance racing suit, aftermarket racing suits, motorsports safety gear",
+  openGraph: {
+    title: "Need Racing Suit & SFI Advice? Custom Race Suits From $329",
+    description:
+      "How do you choose the right racing suit and pass tech? Read expert SFI guides, sizing tips, and order custom-fit SFI fire suits from $329 with free shipping.",
+    url: "https://www.hsracegear.com/blog",
+    siteName: "HS Race Gear",
+    type: "website",
+  },
 };
 
 const breadcrumbSchema = {

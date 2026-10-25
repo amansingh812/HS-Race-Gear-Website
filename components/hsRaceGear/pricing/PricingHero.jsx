@@ -78,7 +78,7 @@ export default function PricingHero() {
                                 />
                                 <div className="hero-price-tag">
                                     <span className="price-label">Starting at</span>
-                                    <span className="price-value">$299</span>
+                                    <span className="price-value">$329</span>
                                     <span className="price-note">Custom Fit Included</span>
                                 </div>
                             </div>

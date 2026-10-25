@@ -15,15 +15,15 @@ import React from "react";
 // and lead the description with a question that matches search intent.
 export const metadata = {
   alternates: { canonical: "/compare/vs-rush" },
-  title: "Rush Race Gear Alternative — Custom SFI Suits From $289",
+  title: "Comparing Rush Race Gear? Custom SFI Race Suits From $329",
   description:
-    "Comparing Rush Race Gear suits? See the side-by-side on price, SFI rating, fit process and delivery. HS Race Gear: custom-measured SFI 3.2A/5, made in the USA, 2–3 week turnaround, from $289. Check the breakdown before you order.",
+    "Looking for a Rush Race Gear alternative? Get custom-measured SFI 3.2A/5 fire suits made in the USA with 2–3 week turnaround and free logos from $329. Compare now.",
   keywords:
     "rush race gear, rush race suits, rush racing suits, rush racegear, HS Racegear vs RUSH Racegear, RUSH Racegear alternative, custom SFI race suits, stock car racing suit, dirt track suit, sprint car suit",
   openGraph: {
-    title: "Rush Race Gear Alternative — Custom SFI Suits From $289",
+    title: "Comparing Rush Race Gear? Custom SFI Race Suits From $329",
     description:
-      "Compare price, SFI rating, fit process and delivery time. Custom-measured SFI 3.2A/5 suits made in the USA, 2–3 week turnaround, from $289.",
+      "Looking for a Rush Race Gear alternative? Get custom-measured SFI 3.2A/5 fire suits made in the USA with 2–3 week turnaround and free logos from $329. Compare now.",
     url: "https://www.hsracegear.com/compare/vs-rush",
     siteName: "HS Race Gear",
     type: "website",

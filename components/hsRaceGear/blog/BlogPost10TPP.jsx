@@ -120,7 +120,7 @@ export default function BlogPost10TPP() {
                   <li><strong style={{ color: "#e21b1b" }}>Inner liner.</strong> A breathable knit inner liner adds TPP at the cost of weight. Some performance-focused suits skip the inner liner to save weight, which means they barely clear the SFI 3.2A/5 minimum.</li>
                 </ul>
                 <p className="blog-body-text" style={{ marginTop: "14px" }}>
-                  This is why a $300 SFI 3.2A/5 suit and a $1,500 SFI 3.2A/5 suit are not the same product. The SFI label confirms both meet the minimum. The TPP score — when manufacturers publish it — tells you which one over-performs.
+                  This is why a generic off-the-rack suit and custom-tailored gear are not the same product. At HS Race Gear, our <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom race suits</Link> are built with multi-layer genuine Nomex® to deliver optimal TPP thermal protection exceeding safety minimums from just $329.
                 </p>
               </div>
               <div className="blog-tip-card" style={{ marginTop: "14px" }}>

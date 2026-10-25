@@ -19,26 +19,15 @@ import React from "react";
 // signal + 3.2A/15 to capture drag racing queries.
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/certifications" },
-  // HUB PAGE for the SFI rating-tier cluster (de-cannibalization pass,
-  // 2026-08-11). This page — not the blog posts — owns "sfi ratings" (111 imp
-  // @ pos 30), "sfi suit ratings" (95 @ 30), "sfi rated racing suit" (57 @ 34)
-  // and "sfi rating chart" (11 @ 17). Title trimmed from 76 to 57 chars so it
-  // stops truncating in the SERP.
-  title: "SFI Ratings Explained: 3.2A/1 vs 3.2A/5 vs 3.2A/15 (2026)",
-  description: "The complete 2026 guide to SFI ratings. 3.2A/1 (3s protection), 3.2A/5 (10s), 3.2A/15 (drag racing), 3.3/5 (gloves & shoes) — every rating decoded and which one your class actually requires.",
-  // "SFI certified" / "SFI approved" / "what does SFI stand for" intentionally
-  // removed — those now belong to /blog/understanding-sfi-certifications.
-  //
-  // Extended 2026-08-22 from the client keyword list. These tiers were named
-  // in the list but appeared on no page: SFI 3.4/5 (NASCAR-rated uniforms),
-  // SFI 3.2A/20, SFI 15, and the "SFI level 5" phrasing people use instead of
-  // the formal 3.2A/5. Kept to rating-tier terms only so the de-cannibalization
-  // split with the blog posts holds.
+  title: "What SFI Rating Do You Need? Certified Race Suits From $329",
+  description:
+    "Unsure which SFI rating your series requires? Decode 3.2A/1, 3.2A/5 & 3.2A/15 standards to pass tech inspection with custom Nomex fire suits starting from $329.",
   keywords: "SFI ratings, SFI rating, SFI suit ratings, SFI rating chart, sfi rated racing suit, SFI 3.2A/5, SFI 3.2A/1, SFI 3.2A/15, SFI 3.2A/20, SFI 3.3/5, SFI 3.4/5, SFI 3.4/5 NASCAR rated uniform, SFI level 5 fire suit, sfi 5 racing suits, sfi 3.2a 5 racing suit, SFI 15, drag racing safety gear SFI 15, SFI rated, racing suit ratings, fire suit ratings",
   openGraph: {
     type: "article",
-    title: "SFI Ratings Explained: 3.2A/1 vs 3.2A/5 vs 3.2A/15 (2026)",
-    description: "Every SFI rating decoded: 3.2A/1 vs 3.2A/5 vs 3.2A/15 vs 3.3/5. Learn which one your class requires before you buy.",
+    title: "What SFI Rating Do You Need? Certified Race Suits From $329",
+    description:
+      "Unsure which SFI rating your series requires? Decode 3.2A/1, 3.2A/5 & 3.2A/15 standards to pass tech inspection with custom Nomex fire suits starting from $329.",
     url: "https://www.hsracegear.com/certifications",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
   },

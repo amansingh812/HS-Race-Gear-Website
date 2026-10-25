@@ -31,7 +31,7 @@ export default function VsPyrotectContent() {
               <h2 className="hs-doc-heading">Considering Pyrotect Racing Suits? Here's a Better-Value Custom Alternative</h2>
               <div className="hs-doc-card">
                 <p className="hs-doc-card-text">
-                  Pyrotect racing suits have a strong reputation in NHRA drag and short-track racing — they're well-built and meet SFI standards. They're also priced at the premium tier. HS Racegear builds custom SFI 3.2A/1 and 3.2A/5 race suits to the same standard, with the same NHRA, IHRA, IMCA, and USAC compliance, starting at $289 vs ~$995 for Pyrotect. Custom-measured to your body. Full design control. Premium Nomex®. Below is the head-to-head.
+                  Pyrotect racing suits have a strong reputation in NHRA drag and short-track racing — they're well-built and meet SFI standards. They're also priced at the premium tier. HS Racegear builds custom SFI 3.2A/1 and 3.2A/5 race suits to the same standard, with the same NHRA, IHRA, IMCA, and USAC compliance, starting at $329 vs ~$995 for Pyrotect. Custom-measured to your body. Full design control. Premium Nomex®. Below is the head-to-head.
                 </p>
               </div>
             </div>
@@ -54,7 +54,7 @@ export default function VsPyrotectContent() {
               <h2 className="hs-doc-heading">Pricing &amp; Value</h2>
               <div className="hs-doc-card">
                 <ul className="hs-doc-list">
-                  <li><strong>HS Racegear:</strong> Custom SFI race suits start at $289</li>
+                  <li><strong>HS Racegear:</strong> Custom SFI race suits start at $329</li>
                   <li><strong>Pyrotect:</strong> Custom race suits start around $995 USD</li>
                 </ul>
               </div>
