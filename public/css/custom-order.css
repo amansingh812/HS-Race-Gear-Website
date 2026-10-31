@@ -1535,3 +1535,176 @@
     flex: 0 0 100%;
   }
 }
+/* ==========================================================
+   Design carousel (coverflow) — MockupCarouselStep
+   Centre design large, neighbours tilted and dimmed.
+   ========================================================== */
+.mockup-carousel {
+  overflow: hidden;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 0 8px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(220, 38, 38, 0.22), transparent 62%);
+}
+
+.mockup-carousel-swiper {
+  width: 100%;
+  padding: 24px 0 40px;
+}
+
+.mockup-carousel-slide {
+  width: min(58%, 700px);
+  aspect-ratio: 842 / 595;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #bbb;
+}
+
+.mockup-carousel-slide.swiper-slide-active {
+  border-color: rgba(220, 38, 38, 0.9);
+  box-shadow: 0 0 40px rgba(220, 38, 38, 0.35), 0 18px 50px rgba(0, 0, 0, 0.7);
+  cursor: grab;
+}
+
+.mockup-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+.mockup-carousel-arrow {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 68px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e60000;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  /* The theme gives every <button> large horizontal padding, which squeezed
+     the arrow icon to 0px wide. Zero it so the icon has room. */
+  padding: 0 !important;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.mockup-carousel-arrow:hover { background: #ff1a1a; transform: translateY(-50%) scale(1.08); }
+.mockup-carousel-arrow--left { left: 4px; }
+.mockup-carousel-arrow--right { right: 4px; }
+
+/* Block arrows cut with clip-path (no rotation, svg or fonts involved):
+   ← points left on the left button, → points right on the right button. */
+.mockup-carousel-chevron {
+  display: block;
+  flex: 0 0 auto;
+  width: 34px;
+  min-width: 34px;
+  height: 26px;
+  background: #fff;
+}
+.mockup-carousel-chevron--left {
+  clip-path: polygon(0 50%, 48% 0, 48% 28%, 100% 28%, 100% 72%, 48% 72%, 48% 100%);
+}
+.mockup-carousel-chevron--right {
+  clip-path: polygon(100% 50%, 52% 0, 52% 28%, 0 28%, 0 72%, 52% 72%, 52% 100%);
+}
+
+.mockup-carousel-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 4px 0 14px;
+  font-size: 14px;
+  color: #aaa;
+}
+.mockup-carousel-gridlink {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #ef4444;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.mockup-carousel-actions {
+  display: flex;
+  gap: 14px;
+  max-width: 900px;
+  margin: 0 auto 22px;
+}
+.mockup-carousel-btn,
+.mockup-carousel-btn-spacer { flex: 1; }
+.mockup-carousel-btn--main { flex: 2.4; }
+.mockup-carousel-btn {
+  min-height: 54px;
+  padding: 0 18px;
+  background: #e60000;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+.mockup-carousel-btn:hover:not(:disabled) { background: #ff1a1a; transform: translateY(-2px); }
+.mockup-carousel-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.mockup-carousel-btn--main.is-selected { background: #16a34a; }
+
+.mockup-carousel-desc {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 22px 28px 26px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  text-align: center;
+}
+.mockup-carousel-desc-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+}
+.mockup-carousel-desc-title::before,
+.mockup-carousel-desc-title::after { content: ""; flex: 1; height: 2px; background: #e60000; }
+.mockup-carousel-desc p { margin: 0; color: #cfcfcf; line-height: 1.6; font-size: 15px; }
+
+@media (max-width: 767px) {
+  .mockup-carousel-slide { width: 82%; }
+  .mockup-carousel-arrow { width: 44px; height: 40px; top: 38%; }
+  .mockup-carousel-chevron { width: 26px; min-width: 26px; height: 20px; }
+  .mockup-carousel-actions { flex-wrap: wrap; }
+  .mockup-carousel-btn--main { flex: 1 1 100%; order: -1; }
+  .mockup-carousel-btn { min-height: 48px; font-size: 14px; }
+  .mockup-carousel-desc { margin: 0 12px 32px; padding: 18px 16px 20px; }
+  .mockup-carousel-desc-title { font-size: 19px; }
+}

@@ -648,6 +648,7 @@ export default function CustomOrderPage() {
             onBack={handleBack}
             onContinue={handleNext}
             canGoBack={currentStep > 0}
+            variant="carousel"
           />
         )}
 

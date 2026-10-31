@@ -15,6 +15,7 @@
 
 import React, { useState, useCallback } from "react";
 import MockupLightbox from "@/components/hsRaceGear/customGear/MockupLightbox";
+import MockupCarouselStep from "@/components/hsRaceGear/customGear/MockupCarouselStep";
 
 /* ---- Tiny SVG icons (inlined to avoid extra deps) ---- */
 const CheckIcon = ({ size = 16, color = "#fff" }) => (
@@ -50,6 +51,8 @@ const ArrowLeft = ({ size = 14 }) => (
  * @param {Function} props.onBack        - called when Back pressed
  * @param {Function} props.onContinue    - called when Continue pressed
  * @param {boolean}  [props.canGoBack=true] - show/hide Back button
+ * @param {"grid"|"carousel"} [props.variant="grid"] - "carousel" opens a coverflow
+ *        carousel (with a "View all designs" link back to the grid)
  */
 export default function MockupSelectionStep({
   mockups,
@@ -65,7 +68,9 @@ export default function MockupSelectionStep({
   onBack,
   onContinue,
   canGoBack = true,
+  variant = "grid",
 }) {
+  const [view, setView] = useState(variant);
   const [visibleCount, setVisibleCount] = useState(pageSize);
   const [zoomIndex, setZoomIndex] = useState(null);
 
@@ -94,6 +99,25 @@ export default function MockupSelectionStep({
       onSelect(mockups[idx]);
     }
   }, [mockups, onSelect]);
+
+  if (view === "carousel") {
+    return (
+      <MockupCarouselStep
+        mockups={mockups}
+        selected={selected}
+        onSelect={onSelect}
+        title={title}
+        subtitle={subtitle}
+        label={label}
+        currentStep={currentStep}
+        totalSteps={totalSteps}
+        onBack={onBack}
+        onContinue={onContinue}
+        canGoBack={canGoBack}
+        onShowGrid={() => setView("grid")}
+      />
+    );
+  }
 
   return (
     <div className="step-content" key={label}>

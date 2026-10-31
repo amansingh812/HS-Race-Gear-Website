@@ -122,16 +122,16 @@ const nextConfig = {
     ];
   },
   images: {
-    // Allow Next.js to optimize images from any HTTPS source
-    // (product images stored in MongoDB can come from any CDN)
-    remotePatterns: [
-      { protocol: "https", hostname: "**" },
-      { protocol: "http",  hostname: "**" },
-    ],
-    // Serve WebP/AVIF for smaller file sizes and faster load times
-    formats: ["image/avif", "image/webp"],
-    // Cache optimized images for 30 days
-    minimumCacheTTL: 2592000,
+    // Images are served through Cloudinary (see lib/cloudinaryLoader.js), NOT
+    // Vercel's optimizer — the Hobby plan's 5K transformations/month ran out
+    // and production images went blank. With a custom loader Vercel performs
+    // no image transformations at all.
+    loader: "custom",
+    loaderFile: "./lib/cloudinaryLoader.js",
+    // Fewer breakpoints = fewer unique derived images per source file.
+    // (imageSizes must stay below the smallest deviceSize.)
+    deviceSizes: [640, 828, 1200, 1920],
+    imageSizes: [64, 128, 256, 384],
   },
 };
 
