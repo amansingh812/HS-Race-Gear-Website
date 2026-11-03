@@ -234,6 +234,15 @@ export default function Footer3({ topBg }) {
                       <li className="item">
                         <Link href="/custom-fit">HOW TO MEASURE</Link>
                       </li>
+                      <li className="item">
+                        <Link href="/blog/understanding-sfi-certifications">WHAT IS SFI APPROVED</Link>
+                      </li>
+                      <li className="item">
+                        <Link href="/blog/sfi-rated-racing-suit-by-class">SFI RATING BY CLASS</Link>
+                      </li>
+                      <li className="item">
+                        <Link href="/cik-fia-level-2">CIK-FIA LEVEL 2</Link>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -281,12 +290,54 @@ export default function Footer3({ topBg }) {
                       <li className="item">
                         <Link href="/compare/vs-simpson">V/S SIMPSON</Link>
                       </li>
+                      <li className="item">
+                        <Link href="/compare/vs-hrx">V/S HRX</Link>
+                      </li>
+                      <li className="item">
+                        <Link href="/compare/vs-sparco-karting">V/S SPARCO KART</Link>
+                      </li>
+                      <li className="item">
+                        <Link href="/compare/vs-alpinestars-karting">V/S ALPINESTARS KART</Link>
+                      </li>
+                      <li className="item">
+                        <Link href="/compare/vs-omp-karting">V/S OMP KART</Link>
+                      </li>
                     </ul>
                   </div>
                 </div>
               </div>
 
             </div>
+
+            {/* Sitewide discipline links. These landers were only reachable from
+                deep pages, which kept Google from crawling them ("Discovered -
+                currently not indexed"). Linking from the footer puts them one
+                click from every indexed page. */}
+            <nav
+              aria-label="Custom racing suits by sport"
+              style={{
+                marginTop: "28px",
+                paddingTop: "20px",
+                borderTop: "1px solid rgba(255,255,255,0.12)",
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: "10px 22px",
+                fontSize: "13px",
+              }}
+            >
+              <span style={{ fontWeight: 600, letterSpacing: "1px", opacity: 0.7 }}>CUSTOM SUITS BY SPORT</span>
+              <Link href="/custom-drag-racing-suit">Drag Racing</Link>
+              <Link href="/custom-sprint-car-suit">Sprint Car</Link>
+              <Link href="/custom-dirt-late-model-suit">Dirt Late Model</Link>
+              <Link href="/custom-road-racing-suit">Road Racing</Link>
+              <Link href="/custom-junior-karting-suit">Junior Karting</Link>
+              <Link href="/custom-shifter-kart-suit">Shifter Kart</Link>
+              <Link href="/go-kart-racing-apparel">Go-Kart Apparel</Link>
+              <Link href="/womens-racing-suit">Women&apos;s</Link>
+              <Link href="/rush-sr-race-suit">RUSH Series</Link>
+              <Link href="/race-suits-australia">Australia</Link>
+            </nav>
           </div>
         </div>
 
