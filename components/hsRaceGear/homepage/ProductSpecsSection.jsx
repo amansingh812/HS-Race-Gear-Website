@@ -7,7 +7,8 @@ import Link from "next/link";
 const products = [
   {
     title: "Racing Suit",
-    image: "/images/home/suit.png",
+    image: "/images/home/suit-infographic.webp",
+    alt: "Custom SFI 3.2A/1 and 3.2A/5 Nomex racing suit features: customizable collar, reinforced shoulders, brass zipper, Nomex cuffs, boot cuff",
     link: "/custom-race-suit",
     sfi: "SFI 3.2A/1 & 3.2A/5",
     specs: [
@@ -23,7 +24,8 @@ const products = [
   },
   {
     title: "Racing Shoes",
-    image: "/images/home/shoes.png",
+    image: "/images/home/shoes-infographic.webp",
+    alt: "SFI 3.3/5 custom racing shoes features: cowhide leather shell, Nomex inner lining, high-grip rubber outsole, cushioned insole",
     link: "/custom-shoes",
     sfi: "SFI 3.3/5",
     specs: [
@@ -39,7 +41,8 @@ const products = [
   },
   {
     title: "Racing Gloves",
-    image: "/images/home/gloves.png",
+    image: "/images/home/gloves-infographic.webp",
+    alt: "SFI 3.3/5 custom racing gloves features: Nomex fabric, raised silicone palm grip, elastic wrist, logo branding",
     link: "/custom-gloves",
     sfi: "SFI 3.3/5",
     specs: [
@@ -113,7 +116,7 @@ export default function ProductSpecsSection() {
                 {/* Background image */}
                 <Image
                   src={item.image}
-                  alt={item.title}
+                  alt={item.alt || item.title}
                   fill
                   className="gear-image"
                   sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"

@@ -1821,3 +1821,28 @@
     font-size: 1.05rem;
   }
 }
+/* --- Gear cards: full infographic images (2026-11-11) ---
+   Images are 1068x1472 portrait infographics with their own headings and
+   callouts, so show them uncropped: card follows the image ratio, no zoom,
+   and the bottom title bar is hidden visually (kept for screen readers/SEO). */
+.gear-grid .gear-card {
+  height: auto;
+  aspect-ratio: 1068 / 1472;
+}
+.gear-grid .gear-card .gear-image,
+.gear-grid .gear-card:hover .gear-image,
+.gear-grid .gear-card--active .gear-image {
+  object-fit: cover;
+  transform: none;
+}
+.gear-grid .gear-card__default {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

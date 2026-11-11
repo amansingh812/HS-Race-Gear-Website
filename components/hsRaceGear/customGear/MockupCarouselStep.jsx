@@ -107,15 +107,6 @@ export default function MockupCarouselStep({
         </Swiper>
       </div>
 
-      <div className="mockup-carousel-meta">
-        <span className="mockup-carousel-count">{current?.name} · {active + 1} of {total}</span>
-        {onShowGrid && (
-          <button type="button" className="mockup-carousel-gridlink" onClick={onShowGrid}>
-            View all {total} designs
-          </button>
-        )}
-      </div>
-
       <div className="mockup-carousel-actions">
         {canGoBack && onBack ? (
           <button type="button" className="mockup-carousel-btn mockup-carousel-btn--side" onClick={onBack}>
