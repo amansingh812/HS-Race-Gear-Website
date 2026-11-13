@@ -62,16 +62,16 @@ export default function CustomRaceSuitPage() {
     ];
 
     const suitMockups = [
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/1.webp", alt: "Custom Race Suit Design 1" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/14.webp", alt: "Custom Race Suit Design 14" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/18.webp", alt: "Custom Race Suit Design 18" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/23.webp", alt: "Custom Race Suit Design 23" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/25.webp", alt: "Custom Race Suit Design 25" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/26.webp", alt: "Custom Race Suit Design 26" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/35.webp", alt: "Custom Race Suit Design 35" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/41.webp", alt: "Custom Race Suit Design 41" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/42.webp", alt: "Custom Race Suit Design 42" },
-        { src: "/images/suit_mock/CUSTOM RACE SUITS/44.webp", alt: "Custom Race Suit Design 44" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/1.webp", alt: "Custom SFI racing suit design 1 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/14.webp", alt: "Custom SFI racing suit design 14 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/18.webp", alt: "Custom SFI racing suit design 18 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/23.webp", alt: "Custom SFI racing suit design 23 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/25.webp", alt: "Custom SFI racing suit design 25 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/26.webp", alt: "Custom SFI racing suit design 26 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/35.webp", alt: "Custom SFI racing suit design 35 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/41.webp", alt: "Custom SFI racing suit design 41 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/42.webp", alt: "Custom SFI racing suit design 42 — one-piece Nomex fire suit mockup with sponsor logo layout" },
+        { src: "/images/suit_mock/CUSTOM RACE SUITS/44.webp", alt: "Custom SFI racing suit design 44 — one-piece Nomex fire suit mockup with sponsor logo layout" },
     ];
 
     return (
@@ -155,7 +155,7 @@ export default function CustomRaceSuitPage() {
                             color: "#fff",
                             textTransform: "uppercase"
                         }}>
-                            Custom Race Suits<br />
+                            Custom Racing Suits<br />
                             Precision Tailored.<br />
                             Maximum <span style={{ color: "#dc2626" }}>Safety.</span>
                         </h1>
@@ -169,7 +169,10 @@ export default function CustomRaceSuitPage() {
                             margin: "0 auto 40px",
                             lineHeight: "1.7"
                         }}>
-                            Custom Nomex race suit with logos, sponsor branding, and unlimited color options. Custom SFI 5 race suit crafted from premium meta-aramid fire-retardant fabric, built to your exact measurements.
+                            Custom made race suits cut to your exact measurements from Nomex® meta-aramid fabric. SFI 3.2A/1 and SFI 3.2A/5 certified, with your colors, sponsor logos, name and flag embroidered free.
+                        </p>
+                        <p style={{ color: "#fff", fontWeight: 700, fontSize: "1.05rem", margin: "-16px auto 32px", letterSpacing: "0.5px" }}>
+                            From <span style={{ color: "#f87171" }}>$549</span> · Free mockup in 24 hrs · Free shipping
                         </p>
 
                         {/* CTA Buttons */}
@@ -342,7 +345,7 @@ export default function CustomRaceSuitPage() {
                         }}>
                             <Image
                                 src="/images/shop/suit_tailor_v2.png"
-                                alt="Custom Race Suit Showcase"
+                                alt="Custom racing suit being tailored to a driver's measurements"
                                 width={400}
                                 height={500}
                                 style={{
@@ -705,7 +708,7 @@ export default function CustomRaceSuitPage() {
                         }}>
                             <Image
                                 src="/images/shop/side_hero_sfi.webp"
-                                alt="Custom Race Suit Showcase"
+                                alt="SFI certified custom Nomex race suit with SFI label"
                                 width={400}
                                 height={500}
                                 style={{
@@ -812,7 +815,7 @@ export default function CustomRaceSuitPage() {
                                 ))}
                             </ul>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "8px" }}>
-                                <Link href="/faqs" style={{
+                                <Link href="/faq" style={{
                                     display: "inline-flex", alignItems: "center", gap: "8px",
                                     color: "#fff", fontWeight: "700", textDecoration: "none", fontSize: "0.95rem"
                                 }}>

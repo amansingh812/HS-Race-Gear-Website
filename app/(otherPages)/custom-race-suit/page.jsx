@@ -2,6 +2,7 @@ import Footer3 from "@/components/footers/Footer3";
 import Header3 from "@/components/headers/Header3";
 import Topbar1 from "@/components/headers/Topbar1";
 import CustomRaceSuitPage from "@/components/hsRaceGear/customGear/CustomRaceSuitPage";
+import CustomRaceSuitSeoContent, { RACE_SUIT_FAQS, RACE_SUIT_PACKAGES } from "@/components/hsRaceGear/customGear/CustomRaceSuitSeoContent";
 import RelatedBlogPosts from "@/components/hsRaceGear/blog/RelatedBlogPosts";
 import Link from "next/link";
 import "@/public/css/custom-race-suit.css";
@@ -26,9 +27,14 @@ export const metadata = {
   // "custom racing suit" (90 imp) and "custom race suits" (35 imp). Position
   // 28 is an authority problem that metadata alone will NOT fix — see
   // docs/seo/open-gaps.md C1 for the internal-linking work still needed.
-  title: "Custom Made Race Suits — SFI Certified, Made in USA",
+  // UPDATED 2026-11-13 — page at position ~24. Every result above it puts a
+  // price in the title/snippet (K1 "from $599", Pyrotect "$395.95", Zamp
+  // "$659.95"). Lead with the top GSC query ("custom racing suit", 99 imp)
+  // and our price, which undercuts K1's $1,599.95 SFI-5 suit. Description
+  // trimmed to ~155 chars so it isn't truncated.
+  title: "Custom Racing Suits From $549 — SFI 3.2A/5 Nomex, Made in USA",
   description:
-    "Custom made race suits built to your exact measurements — single layer, double layer or 3-layer, one-piece or two-piece. Custom SFI 3.2A/5 fire suit and SFI 3.2A/1 certified, premium Nomex fire-retardant fabric. Custom nomex race suit with logos — unlimited color, sponsor logo, and embroidery options. Made in the USA with free shipping.",
+    "Custom made race suits cut to your measurements. SFI 3.2A/1 from $549, SFI 3.2A/5 double layer $649. Unlimited logos & colors, free mockup, free shipping.",
   // Keyword clusters assigned 2026-08-22 from the client keyword list.
   // Coverage audit found 46 of 71 terms had no page at all. Four clusters
   // belong here because they describe this product, not a separate one:
@@ -53,9 +59,9 @@ export const metadata = {
     "SFI certified racing suit, sfi 3.2a/5 racing suit, Nomex racing suit, fire-resistant race suit, made in USA racing suit, racewear USA, custom auto racing suits, aftermarket auto racing suits, oval track stock car suits",
   openGraph: {
     type: "website",
-    title: "Custom Made Race Suits — SFI Certified, Made in USA",
+    title: "Custom Racing Suits From $549 — SFI 3.2A/5 Nomex, Made in USA",
     description:
-      "Custom SFI 5 race suit and SFI 3.2A/1 certified. Custom nomex race suit with logos — unlimited colors, sponsor branding, and embroidery. Made in the USA with free shipping.",
+      "Custom made SFI race suits cut to your measurements. Single layer $549, double layer SFI 3.2A/5 $649. Unlimited logos and colors, free mockup, free shipping.",
     url: "https://www.hsracegear.com/custom-race-suit",
     siteName: "HS Race Gear",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
@@ -71,6 +77,43 @@ const breadcrumbSchema = {
   ]
 };
 
+// FAQPage mirrors the visible FAQ in CustomRaceSuitSeoContent (same source
+// array), so the schema can never drift from what users see.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: RACE_SUIT_FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+// Product with AggregateOffer from the real package prices. No
+// aggregateRating — add it only when real reviews exist.
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Custom SFI Certified Racing Suit",
+  description:
+    "Custom made Nomex racing suit built to the driver's measurements. SFI 3.2A/1 single layer or SFI 3.2A/5 double and triple layer, one-piece or two-piece, with unlimited embroidery and colors.",
+  brand: { "@type": "Brand", name: "HS Race Gear" },
+  image: [
+    "https://www.hsracegear.com/images/home/suit-infographic.webp",
+    "https://www.hsracegear.com/images/shop/suit_tailor_v2.png",
+  ],
+  url: "https://www.hsracegear.com/custom-race-suit",
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: Math.min(...RACE_SUIT_PACKAGES.map((p) => p.price)),
+    highPrice: Math.max(...RACE_SUIT_PACKAGES.map((p) => p.price)),
+    offerCount: RACE_SUIT_PACKAGES.length,
+    availability: "https://schema.org/InStock",
+    url: "https://www.hsracegear.com/custom-race-suit/order",
+  },
+};
+
 export default function page() {
   return (
     <>
@@ -78,9 +121,18 @@ export default function page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <Topbar1 />
       <Header3 />
       <CustomRaceSuitPage />
+      <CustomRaceSuitSeoContent />
       {/* Discipline landing pages — added 2026-06-30 for internal linking to
           the 4 auto-racing programmatic pages. Passes link equity from
           /custom-race-suit → discipline pages so they don't sit orphaned. */}
@@ -135,8 +187,10 @@ export default function page() {
       </section>
       <RelatedBlogPosts
         heading="From the HS Race Gear Blog"
-        subtitle="Sizing, SFI ratings, discipline guides, and what to look for in an aftermarket suit."
-        limit={4}
+        subtitle="Rules and ratings for the suit you're ordering."
+        limit={3}
+        variant="compact"
+        slugs={["sfi-rated-racing-suit-by-class", "drag-racing-suit-requirements", "dirt-track-racing-suit-requirements"]}
       />
       <Footer3 />
     </>

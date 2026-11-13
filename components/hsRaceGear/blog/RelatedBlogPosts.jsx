@@ -125,8 +125,14 @@ const ALL_POSTS = [
   },
 ];
 
-export default function RelatedBlogPosts({ excludeSlug, heading, subtitle, limit = 3 }) {
-  const posts = ALL_POSTS.filter((p) => p.slug !== excludeSlug).slice(0, limit);
+// variant="compact": horizontal cards with a small thumbnail, no excerpt —
+// used where the blog block is secondary (e.g. /custom-race-suit).
+// slugs: pick specific posts in a specific order instead of the first N.
+export default function RelatedBlogPosts({ excludeSlug, heading, subtitle, limit = 3, variant = "card", slugs }) {
+  const pool = slugs
+    ? slugs.map((s) => ALL_POSTS.find((p) => p.slug === s)).filter(Boolean)
+    : ALL_POSTS;
+  const posts = pool.filter((p) => p.slug !== excludeSlug).slice(0, limit);
   const sectionHeading = heading || "Related Reading";
   const sectionSubtitle =
     subtitle || "Keep going — more racing-suit guides from the HS Race Gear blog.";
@@ -161,6 +167,22 @@ export default function RelatedBlogPosts({ excludeSlug, heading, subtitle, limit
           </Link>
         </div>
 
+        {variant === "compact" ? (
+          <div className="blog-compact-grid">
+            {posts.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="blog-compact-card">
+                <div className="blog-compact-thumb">
+                  <Image src={post.image} alt={post.title} fill sizes="120px" style={{ objectFit: "cover" }} />
+                </div>
+                <div className="blog-compact-body">
+                  <span className="blog-card-tag">{post.tag}</span>
+                  <h3 className="blog-compact-title">{post.title}</h3>
+                  <span className="blog-compact-meta"><span>{post.readTime}</span><span className="blog-card-read">Read →</span></span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
         <div className="blog-listing-grid">
           {posts.map((post) => (
             <Link
@@ -189,6 +211,7 @@ export default function RelatedBlogPosts({ excludeSlug, heading, subtitle, limit
             </Link>
           ))}
         </div>
+        )}
       </div>
     </section>
   );

@@ -953,7 +953,7 @@ export default function StandardPricing() {
               Not sure which suit or package is right for your racing discipline? Our team is happy to help you choose the right gear, certifications, and fit for your needs.
             </p>
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "8px" }}>
-              <Link href="/faqs" style={{
+              <Link href="/faq" style={{
                 padding: "14px 28px",
                 background: "transparent",
                 border: "1.5px solid rgba(255,255,255,0.12)",
