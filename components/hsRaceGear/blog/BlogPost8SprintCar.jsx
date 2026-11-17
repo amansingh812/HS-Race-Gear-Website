@@ -181,7 +181,7 @@ export default function BlogPost8SprintCar() {
                   <li><strong>Inner thigh length</strong> — the lower 1/3 of the suit binds first if this measurement is off by even 1 inch.</li>
                 </ul>
                 <p className="blog-body-text" style={{ marginTop: "14px" }}>
-                  This is why custom-measured beats off-the-rack for sprint car specifically. When building <Link href="/custom-race-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom fire suits</Link> for high-intensity open cockpits, precision tailoring ensures zero binding under the harness. For the full measurement process,{" "}
+                  This is why custom-measured beats off-the-rack for sprint car specifically. When building <Link href="/custom-sprint-car-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>custom sprint car suits</Link> for high-intensity open cockpits, precision tailoring ensures zero binding under the harness. For the full measurement process,{" "}
                   <Link href="/blog/perfect-custom-fit-racing-suit" style={{ color: "#e21b1b", textDecoration: "underline" }}>
                     see our custom fit tips post
                   </Link>
@@ -236,7 +236,7 @@ export default function BlogPost8SprintCar() {
               HS Race Gear builds custom SFI 3.2A/5 sprint car racing suits with arm-restraint-compatible shoulder construction, dust-seal collar, reinforced shoulder and knee panels, and your team livery. USAC, World of Outlaws, ASCS, POWRi compliant. Starting at $329 with free shipping on custom suits.
             </p>
             <div className="blog-cta-buttons">
-              <Link href="/custom-race-suit" className="tf-btn btn-fill animate-btn">
+              <Link href="/custom-sprint-car-suit" className="tf-btn btn-fill animate-btn">
                 Design Your Sprint Car Suit
               </Link>
               <Link href="/custom-measurement" className="tf-btn animate-btn" style={{ border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>

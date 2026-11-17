@@ -6,6 +6,7 @@ import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelect
 import PackageConfigurator from "@/components/hsRaceGear/customGear/PackageConfigurator";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import { getAttribution } from "@/lib/attribution";
+import * as gtag from "@/lib/gtag";
 import { makeSubmissionId } from "@/lib/submissionId";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
@@ -441,6 +442,14 @@ export default function KartingOrderPage() {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to submit order");
+
+      // GA4: generate_lead + quote_submitted (+ Google Ads lead conversion)
+      gtag.quoteSubmitted({
+        productType: payload.productType,
+        packageName: payload.package?.name || "",
+        value: payload.package?.price || 0,
+        referenceId: data.orderId || data.orderNumber || "",
+      });
 
       submissionIdRef.current = null;
 

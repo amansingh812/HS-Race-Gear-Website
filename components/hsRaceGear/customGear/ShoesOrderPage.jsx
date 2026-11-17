@@ -4,6 +4,7 @@ import Link from "next/link";
 import MockupSelectionStep from "@/components/hsRaceGear/customGear/MockupSelectionStep";
 import LogoUpload from "@/components/hsRaceGear/customGear/LogoUpload";
 import { getAttribution } from "@/lib/attribution";
+import * as gtag from "@/lib/gtag";
 import { makeSubmissionId } from "@/lib/submissionId";
 import "@/public/css/custom-order.css";
 import "@/public/css/mockup-lightbox.css";
@@ -437,6 +438,14 @@ export default function ShoesOrderPage() {
 
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || "Failed to submit order");
+
+            // GA4: generate_lead + quote_submitted (+ Google Ads lead conversion)
+            gtag.quoteSubmitted({
+              productType: orderData.productType,
+              packageName: orderData.package?.name || "",
+              value: orderData.package?.price || 0,
+              referenceId: data.orderId || data.orderNumber || "",
+            });
 
             submissionIdRef.current = null;
 

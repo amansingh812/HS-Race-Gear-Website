@@ -499,7 +499,10 @@ export default function Faqs() {
                       <div className="accordion-body">
                         <ul>
                           <li><strong>SFI 3.2A/1:</strong> Entry-level fire protection</li>
-                          <li><strong>SFI 3.2A/5:</strong> Multi-layer protection for Top Fuel Dragster, Funny Car, Pro Stock Car, Pro Mod, Pro Stock Motorcycle, Alcohol Dragster, Alcohol Funny Car, Super Comp Dragster, Super Gas Car, Super Street Car, Sprint Car, Winged Sprint Car, Non-Wing Sprint Car, Midget Car, Dirt Late Model, Modified Dirt Car, Micro Sprint, Late Model Stock Car, Super Late Model, Modified Asphalt Car, Legends Car, Super Modified, GT Car, Touring Car, Prototype Car, Formula Car, Time Attack Car, Drift Car, Trophy Truck, Class 1 Buggy, Ultra4 Rock Racer, Rally Car, Hill Climb Car, Time Trial Car</li>
+                          <li><strong>SFI 3.2A/15:</strong> Pro Stock Car and sub-7.49 ET classes</li>
+                          <li><strong>SFI 3.2A/20:</strong> Top Fuel Dragster, Funny Car and Pro Mod</li>
+                          <li><strong>Alcohol Dragster / Alcohol Funny Car:</strong> SFI 3.2A/15 or 3.2A/20 depending on class; check the current NHRA rulebook</li>
+                          <li><strong>SFI 3.2A/5:</strong> Multi-layer protection for Super Comp Dragster, Super Gas Car, Super Street Car, Sprint Car, Winged Sprint Car, Non-Wing Sprint Car, Midget Car, Dirt Late Model, Modified Dirt Car, Micro Sprint, Late Model Stock Car, Super Late Model, Modified Asphalt Car, Legends Car, Super Modified, GT Car, Touring Car, Prototype Car, Formula Car, Time Attack Car, Drift Car, Trophy Truck, Class 1 Buggy, Ultra4 Rock Racer, Rally Car, Hill Climb Car, Time Trial Car</li>
                         </ul>
                         <p>Always follow your sanctioning body's minimum requirements.</p>
                       </div>

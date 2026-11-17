@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { SOCIAL_LINKS } from "@/lib/socialLinks";
+import * as gtag from "@/lib/gtag";
 
 const INFO_CARDS = [
   {
@@ -42,11 +43,23 @@ const INFO_CARDS = [
   },
 ];
 
-const SUBJECTS = ["Custom Order", "Pricing", "Sizing & Fit", "General Enquiry", "Other"];
+const SUBJECTS = ["Custom Order", "Free Mockup", "Pricing", "Sizing & Fit", "General Enquiry", "Other"];
+
+const MOCKUP_MESSAGE =
+  "Hi, I'd like a free mockup for a custom race suit.\n\nRacing class / series:\nSFI rating (3.2A/1 or 3.2A/5):\nColors:\nSponsor logos / name / flag:\n";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [status, setStatus] = useState(null);
+
+  // "Request a Free Mockup" CTA on /custom-race-suit links here with
+  // ?topic=free-mockup — preselect the subject and pre-fill the message.
+  useEffect(() => {
+    const topic = new URLSearchParams(window.location.search).get("topic");
+    if (topic === "free-mockup") {
+      setForm((prev) => ({ ...prev, subject: "Free Mockup", message: prev.message || MOCKUP_MESSAGE }));
+    }
+  }, []);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -75,6 +88,9 @@ export default function Contact() {
         }),
       });
       if (res.ok) {
+        const isMockup = form.subject === "Free Mockup";
+        gtag.contactSubmit(isMockup ? "free_mockup" : "contact_form");
+        if (isMockup) gtag.quoteSubmitted({ productType: "custom-race-suit", packageName: "Free mockup request" });
         setStatus("success");
         setForm({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
@@ -148,7 +164,7 @@ export default function Contact() {
                 ))}
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form id="contact-form" onSubmit={handleSubmit} style={{ scrollMarginTop: "100px" }}>
                 <div className="contact-field-row">
                   <div className="contact-field">
                     <label htmlFor="ct-name">Full Name *</label>

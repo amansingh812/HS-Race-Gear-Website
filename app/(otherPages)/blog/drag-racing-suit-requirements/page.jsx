@@ -9,7 +9,8 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/blog/drag-racing-suit-requirements" },
-  title: "Drag Racing Suit Requirements — NHRA, IHRA & Street Strip Fire Suit Rules (2026)",
+  // Title test 2026-11-17 (client plan). Previous: "Drag Racing Suit Requirements — NHRA, IHRA & Street Strip Fire Suit Rules (2026)"
+  title: "NHRA Fire Suit Requirements: SFI Ratings Guide",
   description:
     "Which SFI rating do you need for drag racing? NHRA requires SFI 3.2A/1 for 10.00–11.99 ET and SFI 3.2A/5 for 9.99 and quicker. Full breakdown by class, ET, and sanctioning body.",
   keywords:

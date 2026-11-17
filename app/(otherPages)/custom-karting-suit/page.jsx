@@ -10,15 +10,15 @@ import React from "react";
 
 export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/custom-karting-suit" },
-  title: "Custom Kart Racing Suits & Go Kart Suits (CIK Level 2)",
+  title: "Custom Kart Racing Suits & Go Kart Suits | Made to Measure",
   description:
-    "Design your custom go kart racing suit. Junior, senior, and shifter kart racing suits built to your exact measurements (CIK Level 2 specs). Free shipping.",
+    "Design your custom go kart racing suit. Junior, senior, and shifter kart racing suits built to your exact measurements. Free shipping.",
   keywords:
     // Updated 2026-08-11 — "suit karting" is 5,000/mo in the Keyword Planner
     // export (same bucket as "kart racing suit") and was matching only the
     // homepage. Odd word order, but it's a real high-volume variant so it
     // goes in the keyword list rather than being forced into the title.
-    "kart racing suit, suit karting, race suit karting, go kart racing suit, go kart suit, custom karting suit, custom karting suits, custom kart racing suits, karting suit, custom kart suit, custom go kart suit, sublimated karting suit, karting racing suits, youth karting suits, junior karting suit, shifter kart suit, Rotax Max suit, IAME X30 suit, CIK Level 2, karting gear",
+    "kart racing suit, suit karting, race suit karting, go kart racing suit, go kart suit, custom karting suit, custom karting suits, custom kart racing suits, karting suit, custom kart suit, custom go kart suit, sublimated karting suit, karting racing suits, youth karting suits, junior karting suit, shifter kart suit, Rotax Max suit, IAME X30 suit, karting gear",
 };
 
 const breadcrumbSchema = {
@@ -38,7 +38,7 @@ const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Custom Karting Suit",
-  "description": "CIK Level 2 certified custom karting suit with full-coverage sublimation printing, tailored to your exact measurements. Built for junior, senior, and shifter kart classes.",
+  "description": "Custom karting suit with full-coverage sublimation printing, tailored to your exact measurements. Built for junior, senior, and shifter kart classes.",
   "image": "https://www.hsracegear.com/images/og-image.jpg",
   "brand": { "@type": "Brand", "name": "HS Race Gear" },
   "category": "Karting Suit",
@@ -59,22 +59,6 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is a custom karting suit CIK Level 2 certified?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Every HS Race Gear karting suit is built to CIK Level 2 specification — the standard karting bodies test for abrasion resistance, tear strength, and seam integrity. Karting doesn't use the SFI rating system that applies to car racing suits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need an SFI-rated suit for karting?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. SFI ratings apply to car racing, where fire is the primary risk. Karting runs on CIK-FIA Level 2, which tests abrasion resistance instead, because a kart carries very little fuel and sits inches off the track surface."
-      }
-    },
     {
       "@type": "Question",
       "name": "What sizes are available for a custom karting suit?",
@@ -148,15 +132,7 @@ export default function page() {
             </div>
           </div>
 
-          {/* Hub links added 2026-08-11 — /cik-fia-level-2 backs up the
-              "CIK Level 2" claim in this page's title, and the apparel page
-              catches full-kit intent. Both are new as of the karting build. */}
           <div className="row g-3 justify-content-center" style={{ marginTop: 12 }}>
-            <div className="col-md-6 col-lg-4">
-              <Link href="/cik-fia-level-2" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
-                What Is CIK-FIA Level 2?
-              </Link>
-            </div>
             <div className="col-md-6 col-lg-4">
               <Link href="/go-kart-racing-apparel" className="tf-btn animate-btn" style={{ width: "100%", display: "block", textAlign: "center", padding: "14px 12px", border: "1px solid rgba(226,27,27,0.5)", color: "#fff" }}>
                 Full Karting Kit &amp; Apparel

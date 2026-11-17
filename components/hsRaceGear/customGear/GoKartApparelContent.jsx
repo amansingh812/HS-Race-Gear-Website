@@ -29,7 +29,7 @@ export default function GoKartApparelContent() {
             Go Kart Racing<br /><span>Apparel &amp; Outfits</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Everything you wear on the grid — kart racing suit, gloves, shoes, and the protection that goes underneath. Custom-made to your measurements in the USA, CIK Level 2 certified, with your colors and sponsor logos included. Suits from $329.
+            Everything you wear on the grid — kart racing suit, gloves, shoes, and the protection that goes underneath. Custom-made to your measurements in the USA, with your colors and sponsor logos included. Suits from $329.
           </p>
         </div>
       </section>
@@ -46,7 +46,7 @@ export default function GoKartApparelContent() {
                   If you&rsquo;re putting a karting outfit together for the first time, the list is shorter than it looks — and most of it is required by tech, not optional. Here&rsquo;s the full kit, in the order it matters.
                 </p>
                 <ul className="hs-doc-list">
-                  <li><strong style={{ color: '#fff' }}>Kart racing suit (overalls)</strong> — CIK Level 2 homologated. Required at every sanctioned event. This is the piece you should not compromise on.</li>
+                  <li><strong style={{ color: '#fff' }}>Kart racing suit (overalls)</strong> — made to your measurements. This is the piece you should not compromise on.</li>
                   <li><strong style={{ color: '#fff' }}>Gloves</strong> — abrasion protection for the part of you most likely to hit the ground first.</li>
                   <li><strong style={{ color: '#fff' }}>Shoes</strong> — high-ankle, thin-soled for pedal feel, with a smooth outer so they don&rsquo;t catch on the pedals.</li>
                   <li><strong style={{ color: '#fff' }}>Helmet</strong> — Snell or FIA rated per your series. We don&rsquo;t make helmets; buy from a specialist and check the rating against your rulebook.</li>
@@ -60,9 +60,7 @@ export default function GoKartApparelContent() {
               <h2 className="hs-doc-heading">Custom Kart Racing Suits &amp; Overalls</h2>
               <div className="hs-doc-card">
                 <p className="hs-doc-card-text">
-                  Kart overalls are the centerpiece of the outfit and the only piece with a hard certification requirement. Every HS Race Gear kart suit is built to{" "}
-                  <Link href="/cik-fia-level-2" style={{ color: '#e21b1b', textDecoration: 'underline' }}>CIK-FIA Level 2</Link>{" "}
-                  specification and cut to your measurements rather than pulled from a size run — which matters more in karting than most people expect, because a loose suit bunches at the shoulders every time you turn the wheel.
+                  Kart overalls are the centerpiece of the outfit. Every HS Race Gear kart suit is cut to your measurements rather than pulled from a size run — which matters more in karting than most people expect, because a loose suit bunches at the shoulders every time you turn the wheel.
                 </p>
                 <p className="hs-doc-card-text">Choose the suit built for how you race:</p>
                 <ul className="hs-doc-list">
@@ -128,19 +126,11 @@ export default function GoKartApparelContent() {
               <h2 className="hs-doc-heading">Buying a Full Karting Outfit — What to Get Right</h2>
               <div className="hs-doc-card">
                 <ul className="hs-doc-list">
-                  <li><strong style={{ color: '#fff' }}>Check certification before anything else.</strong> A suit that fails tech is worthless regardless of price. Confirm CIK Level 2 and check the homologation validity date.</li>
                   <li><strong style={{ color: '#fff' }}>Fit the chest and shoulders, not the length.</strong> Cuffs and stretch panels adjust length. Chest and shoulders don&rsquo;t. This is the most common sizing mistake.</li>
                   <li><strong style={{ color: '#fff' }}>Buy the suit and the accessories together</strong> if you want them to match — retrofitting a color scheme later rarely comes out right.</li>
                   <li><strong style={{ color: '#fff' }}>Think about what dirt looks like on your color choice.</strong> White looks superb in the paddock on Saturday morning and rough by Sunday afternoon.</li>
                   <li><strong style={{ color: '#fff' }}>Order ahead of the season.</strong> Custom production runs 2&ndash;3 weeks. Ordering the week before a national event is how people end up in a rental suit.</li>
                 </ul>
-              </div>
-              <div className="hs-doc-card hs-doc-card-note">
-                <p className="hs-doc-card-text">
-                  Not sure what your series requires? Start with the{" "}
-                  <Link href="/cik-fia-level-2" style={{ color: '#e21b1b', textDecoration: 'underline' }}>CIK-FIA Level 2 guide</Link>{" "}
-                  — it covers WKA, SKUSA, Rotax Max, IAME and the regional series in one place.
-                </p>
               </div>
             </div>
 

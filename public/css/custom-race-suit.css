@@ -305,6 +305,34 @@
   }
 }
 
+/* Mobile: keep both hero CTAs ("Start Designing Your Suit" and
+   "Request a Free Mockup") on the first screen and full-width / tappable. */
+@media (max-width: 767px) {
+  .hero-section {
+    min-height: auto;
+    padding: 96px 0 48px;
+  }
+  .hero-section h1 {
+    font-size: 2.1rem !important;
+    margin-bottom: 16px !important;
+  }
+  .hero-section p {
+    margin-bottom: 20px !important;
+  }
+  .hero-cta-buttons {
+    width: 100%;
+    gap: 12px !important;
+  }
+  .hero-cta-buttons a {
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+    text-align: center;
+    min-height: 52px;
+    padding: 14px 20px !important;
+  }
+}
+
 @media (max-width: 480px) {
   .race-suit-mockup-item {
     width: 200px;

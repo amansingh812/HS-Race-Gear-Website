@@ -67,15 +67,19 @@ export default function DisciplineLandingPage({ data }) {
 
             {/* SANCTIONING */}
             <div className="blog-body-block">
-              <h2 className="blog-body-heading">Sanctioning Body Compliance</h2>
-              <div className="blog-body-card">
-                <p className="blog-body-text">{data.sanctioningIntro}</p>
-                <ul className="blog-body-list">
-                  {data.sanctioningBodies.map((b, i) => (
-                    <li key={i}><strong style={{ color: "#e21b1b" }}>{b.name}:</strong> {b.requirement}</li>
-                  ))}
-                </ul>
-              </div>
+              {data.sanctioningBodies.length > 0 && (
+                <>
+                  <h2 className="blog-body-heading">Sanctioning Body Compliance</h2>
+                  <div className="blog-body-card">
+                    <p className="blog-body-text">{data.sanctioningIntro}</p>
+                    <ul className="blog-body-list">
+                      {data.sanctioningBodies.map((b, i) => (
+                        <li key={i}><strong style={{ color: "#e21b1b" }}>{b.name}:</strong> {b.requirement}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
               <div className="blog-highlight-box">
                 <p>{data.sanctioningCallout}</p>
               </div>

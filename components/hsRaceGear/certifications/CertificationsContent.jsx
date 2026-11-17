@@ -156,7 +156,8 @@ export default function CertificationsContent() {
                                     The base tier of the SFI 3.2A spec: a single-layer suit rated for roughly 3 seconds of protection
                                     before second-degree burn risk. It's the common baseline for track days and lower-ET drag brackets
                                     that don't require a multi-layer suit. See{" "}
-                                    <Link href="/blog/sfi-rated-racing-suit-by-class">which rating your class actually needs</Link>.
+                                    <Link href="/blog/sfi-rated-racing-suit-by-class">which rating your class actually needs</Link>, or{" "}
+                                    <Link href="/custom-race-suit">build a custom SFI 3.2A/1 race suit</Link>.
                                 </p>
                             </div>
 

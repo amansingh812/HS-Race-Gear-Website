@@ -155,7 +155,7 @@ export default function CikFiaContent() {
                   have to keep scrolling to act on it. */}
               <div className="hs-doc-card hs-doc-card-note">
                 <p className="hs-doc-card-text" style={{ marginBottom: 0 }}>
-                  Already know you need a CIK Level 2 suit?{" "}
+                  Looking for a custom (non-homologated) karting suit?{" "}
                   <Link href="/custom-karting-suit/order" style={{ color: '#e21b1b', textDecoration: 'underline', fontWeight: 600 }}>
                     Start your custom order →
                   </Link>
@@ -228,10 +228,10 @@ export default function CikFiaContent() {
             </div>
 
             <div className="hs-doc-block">
-              <h2 className="hs-doc-heading">Shop CIK Level 2 Karting Suits</h2>
+              <h2 className="hs-doc-heading">Custom Karting Suits from HS Race Gear</h2>
               <div className="hs-doc-card">
                 <p className="hs-doc-card-text">
-                  Every HS Race Gear karting suit is built to CIK Level 2 specification and made to your exact measurements — not pulled from a size run. Custom colors, sponsor logos, and driver name included, with a digital mockup before anything is cut.
+                  Please note: HS Race Gear karting suits are not CIK-FIA homologated. They are custom-made to your exact measurements — not pulled from a size run. Custom colors, sponsor logos, and driver name included, with a digital mockup before anything is cut.
                 </p>
                 <ul className="hs-doc-list">
                   <li><Link href="/custom-karting-suit" style={{ color: '#e21b1b', textDecoration: 'underline' }}>Custom kart racing suits</Link> — senior and adult classes, full custom design.</li>
@@ -248,7 +248,7 @@ export default function CikFiaContent() {
                     fontSize: '0.9rem', textDecoration: 'none', letterSpacing: '1.5px',
                     textTransform: 'uppercase', fontFamily: 'Poppins, sans-serif'
                   }}>
-                    Design Your CIK Level 2 Karting Suit
+                    Design Your Custom Karting Suit
                   </Link>
                   {/* Team-pricing path added 2026-09-19 for club/team buyers
                       ordering multiple suits, matching the CTA pattern used on

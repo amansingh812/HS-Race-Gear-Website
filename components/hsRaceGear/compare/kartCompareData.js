@@ -25,7 +25,7 @@ export const KART_COMPARE = {
     // sparco karting suits 500 · sparco go kart suit 500 · sparco level 2
     // kart suit 50 · sparco kerb 50 · sparco rookie 50 · sparco tony kart 50
     heroText:
-      "Comparing Sparco karting suits? Here's the honest side-by-side. HS Race Gear builds CIK Level 2 kart suits to your exact measurements — not to a size chart — from $329, made in the USA with a 2–3 week turnaround.",
+      "Comparing Sparco karting suits? Here's the honest side-by-side. HS Race Gear builds kart suits to your exact measurements — not to a size chart — from $329, made in the USA with a 2–3 week turnaround.",
     intro:
       "Sparco is one of the best-known names in motorsport apparel, and their karting range — Kerb, Rookie, Thunder and the Tony Kart team suits — is a familiar sight in any paddock. It's well-made kit from a serious manufacturer. The question worth asking isn't whether Sparco makes a good suit. It's whether an off-the-rack size run is the right way to buy one.",
     knownFor: [
@@ -38,9 +38,9 @@ export const KART_COMPARE = {
     differenceBody:
       "Sparco karting suits are sold in standard sizes. You pick the closest fit and live with the compromise. HS Race Gear suits are cut from your measurements — chest, shoulder, sleeve, inseam, and the rest — which is why a custom suit doesn't bunch at the shoulders when you turn the wheel. In karting that matters more than in a car, because you're gripping a small wheel with a lot of feedback and a suit that binds at the shoulder costs you across a long stint.",
     modelNote:
-      "If you've been looking at the Sparco Kerb or Rookie specifically, those are the entry-level CIK Level 2 options in the range — the direct comparison point for a custom HS Race Gear kart suit.",
+      "If you've been looking at the Sparco Kerb or Rookie specifically, those are the entry-level options in the range — the direct comparison point for a custom HS Race Gear kart suit.",
     keywords:
-      "sparco karting suits, sparco go kart suit, sparco kart suit, sparco level 2 kart suit, sparco kerb kart suit, sparco rookie kart suit, sparco tony kart suit, sparco karting alternative, custom kart racing suit, CIK Level 2 kart suit",
+      "sparco karting suits, sparco go kart suit, sparco kart suit, sparco level 2 kart suit, sparco kerb kart suit, sparco rookie kart suit, sparco tony kart suit, sparco karting alternative, custom kart racing suit",
   },
 
   alpinestars: {
@@ -53,7 +53,7 @@ export const KART_COMPARE = {
     // alpinestars go kart suit 500 · alpinestar karting suit 500 ·
     // alpinestars youth karting suit 50
     heroText:
-      "Comparing Alpinestars go kart suits? Here's how a custom-measured alternative stacks up. HS Race Gear builds CIK Level 2 kart suits to your exact measurements from $329, made in the USA, 2–3 week turnaround.",
+      "Comparing Alpinestars go kart suits? Here's how a custom-measured alternative stacks up. HS Race Gear builds kart suits to your exact measurements from $329, made in the USA, 2–3 week turnaround.",
     intro:
       "Alpinestars came out of motocross and brought that construction philosophy to karting — their kart range is built around abrasion performance, which is exactly the right priority for the discipline. It's genuinely good gear. Where the comparison gets interesting is fit, design freedom, and what you pay for the brand.",
     knownFor: [
@@ -68,7 +68,7 @@ export const KART_COMPARE = {
     modelNote:
       "Parents looking at the Alpinestars youth karting range should also compare our youth and kids karting suits, which are built with growth room in the knees and adjustable cuffs so the suit lasts more than one season.",
     keywords:
-      "alpinestars go kart suit, alpinestar karting suit, alpinestars karting suit, alpinestars kart suit, alpinestars youth karting suit, alpinestars karting alternative, custom kart racing suit, CIK Level 2 kart suit",
+      "alpinestars go kart suit, alpinestar karting suit, alpinestars karting suit, alpinestars kart suit, alpinestars youth karting suit, alpinestars karting alternative, custom kart racing suit",
   },
 
   omp: {
@@ -81,7 +81,7 @@ export const KART_COMPARE = {
     // omp kart suits 500 · omp ks3 kart suit 50 · omp go kart suit 50 ·
     // omp tony kart suit 50
     heroText:
-      "Comparing OMP kart suits? Here's the side-by-side. HS Race Gear builds CIK Level 2 karting suits to your exact measurements from $329, made in the USA with a 2–3 week turnaround and your design included.",
+      "Comparing OMP kart suits? Here's the side-by-side. HS Race Gear builds karting suits to your exact measurements from $329, made in the USA with a 2–3 week turnaround and your design included.",
     intro:
       "OMP has been building motorsport safety equipment out of Italy for decades, and the KS range is a staple of club and national karting. Solid, proven kit. The comparison worth making is about how the suit gets to you — a standard size pulled off a shelf, or a suit cut to your measurements.",
     knownFor: [
@@ -94,8 +94,8 @@ export const KART_COMPARE = {
     differenceBody:
       "The honest trade-off is this: an OMP suit off a dealer shelf is available today. An HS Race Gear suit takes 2–3 weeks because it's being made for you. If you need a suit for this weekend, buy off the shelf — we'd tell you the same. If you're ordering for the season ahead, the custom route gets you a suit that fits properly, in your colors, with your sponsors on it, for a price that's competitive with off-the-rack.",
     modelNote:
-      "If you've been pricing the OMP KS-3 or similar entry-level CIK Level 2 suits, that's the right comparison point for a custom HS Race Gear kart suit.",
+      "If you've been pricing the OMP KS-3 or similar entry-level suits, that's the right comparison point for a custom HS Race Gear kart suit.",
     keywords:
-      "omp kart suits, omp go kart suit, omp ks3 kart suit, omp karting suit, omp tony kart suit, omp karting alternative, custom kart racing suit, CIK Level 2 kart suit",
+      "omp kart suits, omp go kart suit, omp ks3 kart suit, omp karting suit, omp tony kart suit, omp karting alternative, custom kart racing suit",
   },
 };

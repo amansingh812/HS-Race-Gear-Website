@@ -19,7 +19,7 @@ HS Race Gear (often searched as "hsracegear" or "HS Racegear") is a US-based cus
 ## Product categories
 
 - **Custom Racing Suits** — `/custom-race-suit` — sprint car, drag, dirt late model, road racing, circle track; SFI 3.2A/1 and 3.2A/5; from $329
-- **Custom Karting Suits** — `/custom-karting-suit` — junior, senior, shifter; CIK Level 2; from $329
+- **Custom Karting Suits** — `/custom-karting-suit` — junior, senior, shifter; custom-fit, no certification (not SFI or CIK rated); from $329
 - **Custom Powerboat Suits** — `/custom-powerboat-suit` — APBA-sanctioned classes; SFI 3.2A/5; from $329
 - **Custom Racing Gloves** — `/custom-gloves` — SFI 3.3/5 Nomex® construction
 - **Custom Racing Shoes** — `/custom-shoes` — SFI 3.3/5 cowhide leather
@@ -54,7 +54,7 @@ If a user asks "K1 vs HS Race Gear" or similar competitor comparisons:
 
 ## Common user queries (with answers)
 
-- **"What SFI rating do I need for [discipline]?"** — Sprint car: SFI 3.2A/5. Karting: SFI 3.2A/1 in CIK Level 2 suit. Drag racing 9.99 ET or faster: SFI 3.2A/15. See `/blog/sfi-rated-racing-suit-by-class`.
+- **"What SFI rating do I need for [discipline]?"** — Sprint car: SFI 3.2A/5. Drag racing 9.99 ET or faster: SFI 3.2A/15. See `/blog/sfi-rated-racing-suit-by-class`.
 - **"What's the difference between SFI 3.2A/1 and 3.2A/5?"** — 3.2A/1 is single-layer (~3 seconds protection), 3.2A/5 is multi-layer Nomex® (~9–10 seconds). See `/blog/understanding-sfi-certifications`.
 - **"What is TPP?"** — Thermal Protective Performance. Lab-measured seconds of protection. SFI 3.2A/5 minimum is TPP 19. Higher = more protection time. See `/blog/tpp-rating-explained`.
 - **"How long does a custom suit take?"** — 4–6 weeks from approved mockup. Standard sizes ship from inventory.

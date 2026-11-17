@@ -22,14 +22,14 @@ export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/go-kart-racing-apparel" },
   title: "Go Kart Racing Apparel & Outfits — Suits, Gloves, Shoes",
   description:
-    "Complete go kart racing apparel — custom kart suits and overalls, gloves, shoes and crew kit. CIK Level 2 certified, built to your measurements in the USA with your colors and logos. Suits from $329, free shipping.",
+    "Complete go kart racing apparel — custom kart suits and overalls, gloves, shoes and crew kit. Built to your measurements in the USA with your colors and logos. Suits from $329, free shipping.",
   keywords:
     "go kart racing apparel, go kart racing outfit, gokart outfit, go kart racing jackets, go kart driving suit, kart overalls, go karting overalls, go kart racing overalls, karting apparel, karting outfit, kart racing gear, karting kit, go kart suit",
   openGraph: {
     type: "website",
     title: "Go Kart Racing Apparel & Outfits — Suits, Gloves, Shoes",
     description:
-      "Everything you wear on the grid — custom kart suits, gloves and shoes. CIK Level 2, made to your measurements in the USA. From $329.",
+      "Everything you wear on the grid — custom kart suits, gloves and shoes. Made to your measurements in the USA. From $329.",
     url: "https://www.hsracegear.com/go-kart-racing-apparel",
     siteName: "HS Race Gear",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
@@ -51,7 +51,7 @@ const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Go Kart Racing Apparel",
-  "description": "Complete karting kit — CIK Level 2 kart racing suits, gloves, shoes and crew apparel, custom made in the USA.",
+  "description": "Complete karting kit — custom kart racing suits, gloves, shoes and crew apparel, custom made in the USA.",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Custom Kart Racing Suits", "url": "https://www.hsracegear.com/custom-karting-suit" },
     { "@type": "ListItem", "position": 2, "name": "Youth & Kids Karting Suits", "url": "https://www.hsracegear.com/custom-junior-karting-suit" },

@@ -19,13 +19,13 @@ export const metadata = {
   alternates: { canonical: "https://www.hsracegear.com/compare/vs-sparco-karting" },
   title: "Sparco Karting Suits Alternative — Custom From $329",
   description:
-    "Comparing Sparco karting suits? HS Race Gear builds CIK Level 2 kart suits to your exact measurements from $329 — unlimited colors, sponsor logos and driver name included, made in the USA with a 2–3 week turnaround.",
+    "Comparing Sparco karting suits? HS Race Gear builds kart suits to your exact measurements from $329 — unlimited colors, sponsor logos and driver name included, made in the USA with a 2–3 week turnaround.",
   keywords: data.keywords,
   openGraph: {
     type: "website",
     title: "Sparco Karting Suits Alternative — Custom From $329",
     description:
-      "Comparing Sparco karting suits? HS Race Gear builds CIK Level 2 kart suits to your exact measurements from $329 — unlimited colors, sponsor logos and driver name included, made in the USA with a 2–3 week turnaround.",
+      "Comparing Sparco karting suits? HS Race Gear builds kart suits to your exact measurements from $329 — unlimited colors, sponsor logos and driver name included, made in the USA with a 2–3 week turnaround.",
     url: "https://www.hsracegear.com/compare/vs-sparco-karting",
     siteName: "HS Race Gear",
     images: ["https://www.hsracegear.com/images/og-image.jpg"],
@@ -45,9 +45,9 @@ const breadcrumbSchema = {
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "Custom CIK Level 2 Kart Racing Suit",
+  "name": "Custom Kart Racing Suit",
   "description":
-    "Custom-measured CIK-FIA Level 2 karting suit made in the USA. Unlimited colors, sponsor logos, driver name and country flag included. WKA, SKUSA, Rotax Max and IAME compliant.",
+    "Custom-measured karting suit made in the USA. Unlimited colors, sponsor logos, driver name and country flag included.",
   "image": "https://www.hsracegear.com/images/og-image.jpg",
   "brand": { "@type": "Brand", "name": "HS Race Gear" },
   "category": "Kart Racing Suit",

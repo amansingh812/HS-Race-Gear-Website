@@ -196,12 +196,12 @@ export default function CustomRaceSuitPage() {
                                 textDecoration: "none",
                                 transition: "background-color 0.3s ease"
                             }}>
-                                Start Custom Order
+                                Start Designing Your Suit
                                 <svg style={{ width: "20px", height: "20px" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </Link>
-                            <Link href="/custom-measurement" className="glass-panel" style={{
+                            <Link href="/contact-us?topic=free-mockup#contact-form" className="glass-panel" style={{
                                 display: "inline-block",
                                 color: "#fff",
                                 padding: "16px 32px",
@@ -211,9 +211,13 @@ export default function CustomRaceSuitPage() {
                                 textDecoration: "none",
                                 transition: "background-color 0.3s ease"
                             }}>
-                                Custom Measurement Form
+                                Request a Free Mockup
                             </Link>
                         </div>
+                        <p className="hero-cta-secondary-link" style={{ marginTop: "18px", fontSize: "14px", color: "#9ca3af" }}>
+                            Already have your measurements?{" "}
+                            <Link href="/custom-measurement" style={{ color: "#f87171", textDecoration: "underline" }}>Use the measurement form</Link>
+                        </p>
                     </div>
                 </div>
             </section>

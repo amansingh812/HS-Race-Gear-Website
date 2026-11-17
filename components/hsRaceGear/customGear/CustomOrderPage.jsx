@@ -552,11 +552,12 @@ export default function CustomOrderPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to submit order");
 
-      // GA4: generate_lead event for custom order submission
-      gtag.customOrderSubmit({
-        productType: productType || "",
-        packageName: selectedPackage?.name || "",
-        referenceId: data.orderNumber || data.referenceId || "",
+      // GA4: generate_lead + quote_submitted (+ Google Ads lead conversion)
+      gtag.quoteSubmitted({
+        productType: payload.productType,
+        packageName: payload.package?.name || "",
+        value: payload.package?.price || 0,
+        referenceId: data.orderId || data.orderNumber || "",
       });
 
       submissionIdRef.current = null;

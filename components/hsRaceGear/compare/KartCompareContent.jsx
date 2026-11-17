@@ -66,9 +66,6 @@ export default function KartCompareContent({ data }) {
               <h2 className="hs-doc-heading">Side by Side</h2>
               <div className="hs-doc-card">
                 <ul className="hs-doc-list">
-                  <li><strong style={{ color: '#fff' }}>Certification</strong> — both meet CIK-FIA Level 2, the standard required by WKA, SKUSA, Rotax Max and IAME.{" "}
-                    <Link href="/cik-fia-level-2" style={{ color: '#e21b1b', textDecoration: 'underline' }}>What Level 2 actually means</Link>.
-                  </li>
                   <li><strong style={{ color: '#fff' }}>Fit</strong> — {data.brand} sells standard size runs. HS Race Gear cuts from your measurements.</li>
                   <li><strong style={{ color: '#fff' }}>Design</strong> — {data.brand} offers set colorways. HS Race Gear includes unlimited colors, sponsor logos, driver name and flag.</li>
                   <li><strong style={{ color: '#fff' }}>Price</strong> — HS Race Gear custom kart suits start at <strong style={{ color: '#e21b1b' }}>$329</strong>, which is competitive with off-the-rack pricing from the major brands.</li>
@@ -114,7 +111,7 @@ export default function KartCompareContent({ data }) {
                 }}>
                   Design Your Custom Kart Suit
                 </Link>
-                <p className="hs-doc-card-text" style={{ marginTop: '12px', marginBottom: 0 }}>CIK Level 2, custom-measured, from $329.</p>
+                <p className="hs-doc-card-text" style={{ marginTop: '12px', marginBottom: 0 }}>Custom-measured, from $329.</p>
               </div>
             </div>
 
