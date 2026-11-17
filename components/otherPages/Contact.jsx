@@ -89,8 +89,10 @@ export default function Contact() {
       });
       if (res.ok) {
         const isMockup = form.subject === "Free Mockup";
-        gtag.contactSubmit(isMockup ? "free_mockup" : "contact_form");
+        // One lead per submission: a mockup request is a quote lead
+        // (quote_submitted + generate_lead), everything else a contact lead.
         if (isMockup) gtag.quoteSubmitted({ productType: "custom-race-suit", packageName: "Free mockup request" });
+        else gtag.contactSubmit("contact_form");
         setStatus("success");
         setForm({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
